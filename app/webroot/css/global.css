@@ -1,4 +1,27 @@
+
+/*table, table heading ,table cells*/
 table, th, td {
 	border-collapse: collapse;
 	border: solid 1px;
+}
+
+
+/*message, flashMessage*/
+.message{
+	background-color: rgb(238, 238, 238);
+	border-bottom-left-radius: 6px;
+	border-bottom-right-radius: 6px;
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+	box-sizing: border-box;
+	color: rgb(51, 51, 51);
+	display: block;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font-size: 14px;
+	line-height: 20px;
+	margin-bottom: 0px;
+	padding-bottom: 12px;
+	padding-left: 60px;
+	padding-right: 60px;
+	padding-top: 12px;
 }

@@ -57,11 +57,28 @@ class AppController extends Controller {
             'logoutRedirect' => array(
                 'controller' => 'Pages',
                 'action' => 'display',
-            )
+            ),
+            'authError' => 'You are not authorized for this page',
+            'authorize' => array('Controller')
 	    ),
         'Session'
     );
 
     public function beforeFilter() {
+    }
+
+    /* 
+     * controll access
+     */ 
+    public function isAuthorized($user) {
+        // Admin can access every action
+        if (isset($user['role']) && $user['role'] === 'admin') {
+            return true;
+        }
+        $this->Session->setFlash(__("You are not authorized for that pages"));
+        $this->redirect(array('controller' =>'pages', 'action' => 'display', 'home'));
+
+        // Default deny
+        return false;
     }
 }
