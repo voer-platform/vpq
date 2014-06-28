@@ -3686,3 +3686,181 @@ Stack Trace:
 #3 F:\Dropbox\http\questionbank\lib\Cake\Core\App.php(902): App::_checkFatalError()
 #4 [internal function]: App::shutdown()
 #5 {main}
+2014-06-28 15:15:28 Error: [NotFoundException] Invalid progress
+Request URL: /questionbank/progresses/edit
+Stack Trace:
+#0 [internal function]: ProgressesController->edit()
+#1 F:\Dropbox\http\questionbank\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(ProgressesController), Array)
+#2 F:\Dropbox\http\questionbank\lib\Cake\Routing\Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#3 F:\Dropbox\http\questionbank\lib\Cake\Routing\Dispatcher.php(160): Dispatcher->_invoke(Object(ProgressesController), Object(CakeRequest), Object(CakeResponse))
+#4 F:\Dropbox\http\questionbank\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2014-06-28 15:15:37 Error: [NotFoundException] Invalid progress
+Request URL: /questionbank/progresses/view
+Stack Trace:
+#0 [internal function]: ProgressesController->view()
+#1 F:\Dropbox\http\questionbank\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(ProgressesController), Array)
+#2 F:\Dropbox\http\questionbank\lib\Cake\Routing\Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#3 F:\Dropbox\http\questionbank\lib\Cake\Routing\Dispatcher.php(160): Dispatcher->_invoke(Object(ProgressesController), Object(CakeRequest), Object(CakeResponse))
+#4 F:\Dropbox\http\questionbank\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2014-06-28 15:15:54 Error: [NotFoundException] Invalid progress
+Request URL: /questionbank/progresses/view
+Stack Trace:
+#0 [internal function]: ProgressesController->view()
+#1 F:\Dropbox\http\questionbank\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(ProgressesController), Array)
+#2 F:\Dropbox\http\questionbank\lib\Cake\Routing\Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#3 F:\Dropbox\http\questionbank\lib\Cake\Routing\Dispatcher.php(160): Dispatcher->_invoke(Object(ProgressesController), Object(CakeRequest), Object(CakeResponse))
+#4 F:\Dropbox\http\questionbank\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2014-06-28 15:15:58 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Progress.id' in 'where clause'
+Request URL: /questionbank/progresses/view/1
+Stack Trace:
+#0 F:\Dropbox\http\questionbank\lib\Cake\Model\Datasource\DboSource.php(458): PDOStatement->execute(Array)
+#1 F:\Dropbox\http\questionbank\lib\Cake\Model\Datasource\DboSource.php(424): DboSource->_execute('SELECT COUNT(*)...', Array)
+#2 F:\Dropbox\http\questionbank\lib\Cake\Model\Datasource\DboSource.php(665): DboSource->execute('SELECT COUNT(*)...', Array, Array)
+#3 F:\Dropbox\http\questionbank\lib\Cake\Model\Datasource\DboSource.php(1077): DboSource->fetchAll('SELECT COUNT(*)...', false)
+#4 F:\Dropbox\http\questionbank\lib\Cake\Model\Model.php(2900): DboSource->read(Object(Progress), Array)
+#5 F:\Dropbox\http\questionbank\lib\Cake\Model\Model.php(2872): Model->_readDataSource('count', Array)
+#6 F:\Dropbox\http\questionbank\lib\Cake\Model\Model.php(2782): Model->find('count', Array)
+#7 F:\Dropbox\http\questionbank\app\Controller\ProgressesController.php(36): Model->exists('1')
+#8 [internal function]: ProgressesController->view('1')
+#9 F:\Dropbox\http\questionbank\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(ProgressesController), Array)
+#10 F:\Dropbox\http\questionbank\lib\Cake\Routing\Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#11 F:\Dropbox\http\questionbank\lib\Cake\Routing\Dispatcher.php(160): Dispatcher->_invoke(Object(ProgressesController), Object(CakeRequest), Object(CakeResponse))
+#12 F:\Dropbox\http\questionbank\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#13 {main}
+2014-06-28 15:31:43 Error: [MissingControllerException] Controller class AboutController could not be found.
+Exception Attributes: array (
+  'class' => 'AboutController',
+  'plugin' => NULL,
+)
+Request URL: /questionbank/about
+Stack Trace:
+#0 F:\Dropbox\http\questionbank\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-06-28 15:32:03 Error: [MissingControllerException] Controller class AboutController could not be found.
+Exception Attributes: array (
+  'class' => 'AboutController',
+  'plugin' => NULL,
+)
+Request URL: /questionbank/about/
+Stack Trace:
+#0 F:\Dropbox\http\questionbank\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-06-28 15:32:07 Error: [MissingControllerException] Controller class About..Controller could not be found.
+Exception Attributes: array (
+  'class' => 'About..Controller',
+  'plugin' => NULL,
+)
+Request URL: /questionbank/about..
+Stack Trace:
+#0 F:\Dropbox\http\questionbank\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-06-28 15:32:12 Error: [MissingControllerException] Controller class AboutController could not be found.
+Exception Attributes: array (
+  'class' => 'AboutController',
+  'plugin' => NULL,
+)
+Request URL: /questionbank/about
+Stack Trace:
+#0 F:\Dropbox\http\questionbank\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-06-28 15:32:19 Error: [MissingControllerException] Controller class AboutController could not be found.
+Exception Attributes: array (
+  'class' => 'AboutController',
+  'plugin' => NULL,
+)
+Request URL: /questionbank/about
+Stack Trace:
+#0 F:\Dropbox\http\questionbank\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-06-28 15:33:37 Error: [MissingViewException] View file "F:\Dropbox\http\questionbank\app\View\People\admin.ctp" is missing.
+Exception Attributes: array (
+  'file' => 'F:\\Dropbox\\http\\questionbank\\app\\View\\People\\admin.ctp',
+)
+Request URL: /questionbank/admin
+Stack Trace:
+#0 F:\Dropbox\http\questionbank\lib\Cake\View\View.php(457): View->_getViewFileName(NULL)
+#1 F:\Dropbox\http\questionbank\lib\Cake\Controller\Controller.php(952): View->render(NULL, NULL)
+#2 F:\Dropbox\http\questionbank\lib\Cake\Routing\Dispatcher.php(192): Controller->render()
+#3 F:\Dropbox\http\questionbank\lib\Cake\Routing\Dispatcher.php(160): Dispatcher->_invoke(Object(PeopleController), Object(CakeRequest), Object(CakeResponse))
+#4 F:\Dropbox\http\questionbank\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2014-06-28 15:43:37 Error: Fatal Error (4): syntax error, unexpected '(', expecting ')' in [F:\Dropbox\http\questionbank\app\Controller\AppController.php, line 61]
+2014-06-28 15:43:37 Error: [FatalErrorException] syntax error, unexpected '(', expecting ')'
+Request URL: /questionbank/people/add
+Stack Trace:
+#0 F:\Dropbox\http\questionbank\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'F:\\Dropbox\\http...', 61)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'F:\\Dropbox\\http...', 61, Array)
+#2 F:\Dropbox\http\questionbank\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'F:\\Dropbox\\http...', 61, Array)
+#3 F:\Dropbox\http\questionbank\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-06-28 15:43:49 Error: Fatal Error (4): syntax error, unexpected '(', expecting ')' in [F:\Dropbox\http\questionbank\app\Controller\AppController.php, line 61]
+2014-06-28 15:43:49 Error: [FatalErrorException] syntax error, unexpected '(', expecting ')'
+Request URL: /questionbank/people/add
+Stack Trace:
+#0 F:\Dropbox\http\questionbank\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'F:\\Dropbox\\http...', 61)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'F:\\Dropbox\\http...', 61, Array)
+#2 F:\Dropbox\http\questionbank\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'F:\\Dropbox\\http...', 61, Array)
+#3 F:\Dropbox\http\questionbank\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-06-28 15:48:32 Error: [MissingControllerException] Controller class PepleController could not be found.
+Exception Attributes: array (
+  'class' => 'PepleController',
+  'plugin' => NULL,
+)
+Request URL: /questionbank/peple
+Stack Trace:
+#0 F:\Dropbox\http\questionbank\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-06-28 16:18:17 Error: [MissingControllerException] Controller class PeopleController could not be found.
+Exception Attributes: array (
+  'class' => 'PeopleController',
+  'plugin' => NULL,
+)
+Request URL: /questionbank/people/progress
+Stack Trace:
+#0 F:\Dropbox\http\questionbank\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-06-28 16:26:25 Error: Fatal Error (4): syntax error, unexpected '{' in [F:\Dropbox\http\questionbank\app\Controller\PeopleController.php, line 25]
+2014-06-28 16:26:25 Error: [FatalErrorException] syntax error, unexpected '{'
+Request URL: /questionbank/people/progress
+Stack Trace:
+#0 F:\Dropbox\http\questionbank\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'F:\\Dropbox\\http...', 25)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'F:\\Dropbox\\http...', 25, Array)
+#2 F:\Dropbox\http\questionbank\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'F:\\Dropbox\\http...', 25, Array)
+#3 F:\Dropbox\http\questionbank\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-06-28 16:26:48 Error: Fatal Error (4): syntax error, unexpected '{' in [F:\Dropbox\http\questionbank\app\Controller\PeopleController.php, line 25]
+2014-06-28 16:26:48 Error: [FatalErrorException] syntax error, unexpected '{'
+Request URL: /questionbank/people/progress
+Stack Trace:
+#0 F:\Dropbox\http\questionbank\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'F:\\Dropbox\\http...', 25)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'F:\\Dropbox\\http...', 25, Array)
+#2 F:\Dropbox\http\questionbank\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'F:\\Dropbox\\http...', 25, Array)
+#3 F:\Dropbox\http\questionbank\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-06-28 16:30:22 Error: [MissingControllerException] Controller class AmdinController could not be found.
+Exception Attributes: array (
+  'class' => 'AmdinController',
+  'plugin' => NULL,
+)
+Request URL: /questionbank/amdin
+Stack Trace:
+#0 F:\Dropbox\http\questionbank\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-06-28 16:45:35 Error: Fatal Error (4): syntax error, unexpected ')', expecting ',' or ';' in [F:\Dropbox\http\questionbank\app\View\Elements\menu.ctp, line 20]
+2014-06-28 16:45:37 Error: [FatalErrorException] syntax error, unexpected ')', expecting ',' or ';'
+Request URL: /questionbank/pages/about_us
+Stack Trace:
+#0 F:\Dropbox\http\questionbank\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'F:\\Dropbox\\http...', 20)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'F:\\Dropbox\\http...', 20, Array)
+#2 F:\Dropbox\http\questionbank\lib\Cake\Core\App.php(929): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'F:\\Dropbox\\http...', 20, Array)
+#3 F:\Dropbox\http\questionbank\lib\Cake\Core\App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}

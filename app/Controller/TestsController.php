@@ -7,7 +7,20 @@ App::uses('AppController', 'Controller');
  * @property PaginatorComponent $Paginator
  */
 class TestsController extends AppController {
+/*
+ * authorization
+ * 
+ */
+	public function isAuthorized($user) {
+	    // user can logout, dashboard, progress, history, suggest
+	    if (isset($user['role']) && $user['role'] === 'user' ){
+	    	if( in_array( $this->action, array('chooseTest', 'doTest', 'score'))){
+	    		return true;
+	    	}
+	    }
 
+	    return parent::isAuthorized($user);
+	}
 /**
  * beforeFilter
  *

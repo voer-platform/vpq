@@ -13,6 +13,21 @@ class PeopleController extends AppController {
  * @var array
  */
 	public $components = array('Paginator');
+	/*
+/*
+ * authorization
+ * 
+ */
+	public function isAuthorized($user) {
+	    // user can logout, dashboard, progress, history, suggest
+	    if (isset($user['role']) && $user['role'] === 'user' ){
+	    	if( in_array( $this->action, array('progress', 'logout', 'history', 'dashboard','suggest'))){
+	    		return true;
+	    	}
+	    }
+
+	    return parent::isAuthorized($user);
+	}
 /*
 * beforeFilter
 */
@@ -158,7 +173,7 @@ class PeopleController extends AppController {
 /*
  * suggestion
  */
-	public function suggestion(){
+	public function suggest(){
 		$this->layout = 'question_bank';
 
 	}
@@ -171,5 +186,12 @@ class PeopleController extends AppController {
 		$this->loadModel('Progress');
 		$progresses = $this->Progress->getProgresses($this->Session->read('Auth.User')['id']);
 		$this->set('progresses', $progresses);
+	}
+
+/*
+ * admin
+ */	
+	public function admin(){
+		$this->layout = 'question_bank';
 	}
 }
