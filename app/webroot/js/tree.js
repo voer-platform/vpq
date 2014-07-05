@@ -17,7 +17,13 @@ $.ajax({
         'chartType' : 'd3'
     },
     success : function (msg) {
-        data = JSON.parse(msg);
+        if(msg != ''){
+            ajaxData = JSON.parse(msg);
+        }
+        else {
+            ajaxData = [];
+        }
+    }
     }
 });
 

@@ -108,4 +108,17 @@ class QuestionsController extends AppController {
 			$this->Session->setFlash(__('The question could not be deleted. Please, try again.'));
 		}
 		return $this->redirect(array('action' => 'index'));
-	}}
+	}
+/**
+ * upload Test
+ * user upload a file with pre-defined format, contain questions. upload and import to db
+ *
+ */
+	public function uploadQuestions(){
+		$this->layout = 'question_bank';
+		if($this->request->is('POST')){
+			
+		}
+		
+	}
+}

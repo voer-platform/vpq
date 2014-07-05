@@ -30,6 +30,7 @@ App::uses('Controller', 'Controller');
  * @package		app.Controller
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
+
 class AppController extends Controller {
     public $components = array(
         'Auth' => array(
@@ -64,7 +65,27 @@ class AppController extends Controller {
         'Session'
     );
 
+    /**
+     * beforeFilter
+     */
     public function beforeFilter() {
+        // load sdk
+        Configure::load('facebook');
+        App::import('Vendor', 'facebook-php-sdk-master/src/facebook');
+        $this->Facebook = new Facebook(array(
+            'appId'     =>  Configure::read('Facebook.AppID'),
+            'secret'    =>  Configure::read('Facebook.AppSecret')
+        ));
+
+    }
+
+    /**
+     * beforeRender
+     */
+    public function beforeRender() {
+        // set variables before render to user
+        $this->set('fb_login_url', $this->Facebook->getLoginUrl(array('redirect_uri' => Router::url(array('controller' => 'people', 'action' => 'login'), true))));
+        $this->set('user', $this->Auth->user());
     }
 
     /* 
