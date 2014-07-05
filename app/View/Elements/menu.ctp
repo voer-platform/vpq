@@ -33,7 +33,7 @@
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <?php if(!empty($user)): ?>
-              <!-- <li><?php echo $this->Html->image($this->Facebook->api('/me/picture', array('alt' => 'FB picture  '))); ?></li> --> -->
+              <!-- <li><?php echo $this->Html->image($this->Facebook->api('/me/picture', array('alt' => 'FB picture  '))); ?></li> -->
 	            <li><?php echo $this->Html->link($user['first_name']." ".$user['last_name'],"#"); ?></li>
 	            <li><?php echo $this->Html->link(__('Logout'),array('controller'=> 'people','action'=> 'logout')); ?></li>
 		        <?php else: ?>
