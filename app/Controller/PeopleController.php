@@ -131,13 +131,67 @@ class PeopleController extends AppController {
  */
     public function login() {
         $this->layout = 'question_bank';
-        $this->set('title_for_layout',"Login");
-        if ($this->request->is('post')) {
-            if ($this->Auth->login()) {
-                return $this->redirect($this->Auth->redirect());
-            }
-            $this->Session->setFlash(__('Invalid username or password, try again'));
-        }
+        // $this->set('title_for_layout',__("Login"));
+        // if ($this->request->is('post')) {
+        //     if ($this->Auth->login()) {
+        //         return $this->redirect($this->Auth->redirect());
+        //     }
+        //     $this->Session->setFlash(__('Invalid username or password, try again'));
+        // }
+
+        // If it is a post request we can assume this is a local login request
+	    if ($this->request->isPost()){
+	        if ($this->Auth->login()){
+	            $this->redirect($this->Auth->redirectUrl());
+	        } else {
+	            $this->Session->setFlash(__('Invalid Username or password. Try again.'));
+	        }
+	    } 
+
+	    // When facebook login is used, facebook always returns $_GET['code'].
+	    elseif($this->request->query('code')){
+
+	        // User login successful
+	        $fb_user = $this->Facebook->getUser();          # Returns facebook user_id
+	        if ($fb_user){
+	            $fb_user = $this->Facebook->api('/me');     # Returns user information
+
+	            // We will varify if a local user exists first
+	            $local_user = $this->Person->find('first', array(
+	                'conditions' => array('facebook' => $fb_user['id'])
+	            ));
+
+	            // If exists, we will log them in
+	            if ($local_user){
+	                $this->Auth->login($local_user['Person']);            # Manual Login
+	                $this->redirect($this->Auth->redirect());
+	            } 
+
+	            // Otherwise we ll add a new user (Registration)
+	            else {
+	                $data['Person'] = array(
+	                    'username'      => $fb_user['id'],                               # Normally Unique
+	                    'facebook'		=> $fb_user['id'],
+	                    'password'      => AuthComponent::password(uniqid(md5(mt_rand()))), # Set random password
+	                    'first_name'	=> $fb_user['first_name'],
+	                    'last_name'	=> $fb_user['last_name'],
+	                    'role'          => 'user',
+	                    'date_created'	=> date("Y-m-d H:i:s")
+	                );
+
+	                // You should change this part to include data validation
+	                $this->Person->save($data, array('validate' => false));
+
+	                // After registration we will redirect them back here so they will be logged in
+	                $this->redirect(Router::url(array('controller' => 'people', 'action' => 'login'), array('code' => true)));
+	            }
+	        }
+
+	        else{
+	            // User login failed..
+	            $this->Session->setFlash(__('Something wrong, cannot log in. Please try again!'));
+	        }
+	    }
     }
 /*
  * log out

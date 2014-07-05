@@ -127,7 +127,8 @@ class Progress extends AppModel {
 							"sub_category_id" => $subCategory["subcategory_id"],
 							"progress" => $correctNess,
 							"total" => 1,
-							"date" => date("Y-m-d H:i:s")));
+							"date" => date("Y-m-d H:i:s")
+						));
 						$this->save();
                         $this->clear();
 					}

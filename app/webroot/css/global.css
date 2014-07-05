@@ -1,8 +1,12 @@
-
 /*table, table heading ,table cells*/
 table, th, td {
 	border-collapse: collapse;
 	border: solid 1px;
+}
+
+/* table heading*/
+table th {
+	background-color: aqua;
 }
 
 

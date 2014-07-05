@@ -12,7 +12,12 @@ $.ajax({
         'chartType' : 'ggChart'
     },
     success : function (msg) {
-        ajaxData = JSON.parse(msg);
+        if(msg != ''){
+            ajaxData = JSON.parse(msg);
+        }
+        else {
+            ajaxData = [];
+        }
     }
 });
 
@@ -39,6 +44,10 @@ $.ajax({
         'chartType' : 'overall'
     },
     success : function (msg) {
+        if(!isNaN(msg)){
+            msg = 0;
+        }
+        
         $('#performance_value').text(msg+'%');
     }
 });
