@@ -169,21 +169,25 @@ class PeopleController extends AppController {
 
 	            // Otherwise we ll add a new user (Registration)
 	            else {
+	            	$picture = $this->Facebook->api('/me/picture?redirect=false');
+	            	pr($fb_user);
+	            	pr($picture);
 	                $data['Person'] = array(
-	                    'username'      => $fb_user['id'],                               # Normally Unique
+	                    'username'      => $fb_user['id'],                               	# Normally Unique
 	                    'facebook'		=> $fb_user['id'],
 	                    'password'      => AuthComponent::password(uniqid(md5(mt_rand()))), # Set random password
 	                    'first_name'	=> $fb_user['first_name'],
 	                    'last_name'	=> $fb_user['last_name'],
 	                    'role'          => 'user',
-	                    'date_created'	=> date("Y-m-d H:i:s")
+	                    'date_created'	=> date("Y-m-d H:i:s"),
+	                    'image'			=> $picture['data']['url']
 	                );
 
 	                // You should change this part to include data validation
 	                $this->Person->save($data, array('validate' => false));
 
 	                // After registration we will redirect them back here so they will be logged in
-	                $this->redirect(Router::url(array('controller' => 'people', 'action' => 'login'), array('code' => true)));
+	                $this->redirect(array('controller' => 'people', 'action' => 'login'), array('code' => true));
 	            }
 	        }
 

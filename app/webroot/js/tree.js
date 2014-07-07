@@ -11,7 +11,7 @@ var data = null;
 // get data from ajax call
 $.ajax({
     type: 'POST',
-    url : '../progresses/ajax',
+    url : '/people',
     async : false,
     data: {
         'chartType' : 'd3'

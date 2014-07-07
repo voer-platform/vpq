@@ -6,7 +6,7 @@ var ajaxData = null;
 // get chart data from ajax call
 $.ajax({
     type: 'POST',
-    url : '../progresses/ajax',
+    url : "<?php echo Router::url(array=>('controller' => 'progresses', 'action' => 'ajax'));?>",
     async : false,
     data: {
         'chartType' : 'ggChart'

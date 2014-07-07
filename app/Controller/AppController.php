@@ -76,7 +76,6 @@ class AppController extends Controller {
             'appId'     =>  Configure::read('Facebook.AppID'),
             'secret'    =>  Configure::read('Facebook.AppSecret')
         ));
-
     }
 
     /**

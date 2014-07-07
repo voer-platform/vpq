@@ -3,6 +3,7 @@
  * @var $this View
  */
 ?>
+
 <div class='dashboard container'>
     <div class='row'>
         <div class="col-md-6">
