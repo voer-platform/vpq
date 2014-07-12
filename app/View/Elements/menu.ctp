@@ -33,8 +33,8 @@
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <?php if(!empty($user)): ?>
-              <li><?php echo $this->Html->image($user['image']); ?></li>
-	            <li><?php echo $this->Html->link($user['first_name']." ".$user['last_name'],"#"); ?></li>
+              <li><?php echo $this->Html->link($this->Html->image($user['image'], array('class' => 'profile-img')), array('controller'=> 'people','action'=> 'view', $user['id']), array('escape' => false, 'class' => 'profile-img') ); ?></li>
+	            <li><?php echo $this->Html->link($user['first_name']." ".$user['last_name'],array('controller'=> 'people','action'=> 'view', $user['id'])); ?></li>
 	            <li><?php echo $this->Html->link(__('Logout'),array('controller'=> 'people','action'=> 'logout')); ?></li>
 		        <?php else: ?>
 		        	<li><?php echo $this->Html->link(__('Login'),array('controller'=> 'people','action'=> 'login'));?></li>

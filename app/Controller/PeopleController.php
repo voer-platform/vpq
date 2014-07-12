@@ -155,7 +155,8 @@ class PeopleController extends AppController {
 	        $fb_user = $this->Facebook->getUser();          # Returns facebook user_id
 	        if ($fb_user){
 	            $fb_user = $this->Facebook->api('/me');     # Returns user information
-
+	            $picture = $this->Facebook->api('/me/picture?height=200&width=200&redirect=false');		# FB picture
+	            
 	            // We will varify if a local user exists first
 	            $local_user = $this->Person->find('first', array(
 	                'conditions' => array('facebook' => $fb_user['id'])
@@ -164,20 +165,28 @@ class PeopleController extends AppController {
 	            // If exists, we will log them in
 	            if ($local_user){
 	                $this->Auth->login($local_user['Person']);            # Manual Login
-	                $this->redirect($this->Auth->redirect());
-	            } 
+
+	                // update data after login.
+	                $this->Person->updateAll(
+	                	array(
+			                'first_name'=> '\''.$fb_user['first_name'].'\'',
+			                'last_name'=> '\''.$fb_user['last_name'].'\'',
+			                'image'=> '\''.$picture['data']['url'].'\'',
+						),
+	                	array( 'id' => $fb_user['id'])
+	                );
+
+	                //$this->redirect($this->Auth->redirect());
+	            }
 
 	            // Otherwise we ll add a new user (Registration)
 	            else {
-	            	$picture = $this->Facebook->api('/me/picture?redirect=false');
-	            	pr($fb_user);
-	            	pr($picture);
 	                $data['Person'] = array(
 	                    'username'      => $fb_user['id'],                               	# Normally Unique
 	                    'facebook'		=> $fb_user['id'],
 	                    'password'      => AuthComponent::password(uniqid(md5(mt_rand()))), # Set random password
 	                    'first_name'	=> $fb_user['first_name'],
-	                    'last_name'	=> $fb_user['last_name'],
+	                    'last_name'		=> $fb_user['last_name'],
 	                    'role'          => 'user',
 	                    'date_created'	=> date("Y-m-d H:i:s"),
 	                    'image'			=> $picture['data']['url']

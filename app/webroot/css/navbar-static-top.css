@@ -5,3 +5,11 @@ body {
 .navbar-static-top {
   margin-bottom: 19px;
 }
+
+.nav>li>a>img.profile-img{
+	max-width: 50px;
+}
+
+.navbar-nav>li>a.profile-img{
+	padding: 0;
+}

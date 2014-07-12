@@ -15,9 +15,9 @@
 <div class='container'>
     <?php if($user): ?>
         <h2>Welcome <?php echo $user['last_name'].' '.$user['first_name'];?> </h2>
-
+        <?php echo $this->Html->link('Logout', array('controller' => 'people', 'action' => 'logout')); ?>
     <?php else: ?>
         <h2>Login with FB account</h2>
-        <?php echo $this->Html->link('Facebook Login', $fb_login_url) . ' | '; ?>
+        <?php echo $this->Html->link($this->Html->image('facebook-login-button.png', array('class' => 'facebook-btn')), $fb_login_url, array('escape' => false)); ?>
     <?php endif; ?>
 </div>

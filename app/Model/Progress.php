@@ -85,13 +85,6 @@ class Progress extends AppModel {
 	    	);
 			// Iterate each subcategories
 			foreach($subCategories as $subCategory){
-				// check if row for personID & categoryID exist for today!
-//				$progressRow = $this->query(
-//                    "select * from progresses Progress".
-//                    " where Progress.person_id = ".$person_id.
-//                    " and Progress.sub_category_id = ".$subCategory["subcategory_id"]. 
-//                    " and date(Progress.date) = date(now())"
-//				);
                 $progressRow = $this->find('first', array(
                     "recursive" => -1,
                     "conditions" => array(
@@ -246,7 +239,12 @@ class Progress extends AppModel {
             from progresses Progress
             where Progress.person_id = ".$person_id
            );
-        return $results[0][0]["total"] != 0 ? round($results[0][0]["progress"] / $results[0][0]["total"]*100, 0) : 0;
+        if(!empty($results)){
+        	return $results[0][0]["total"] != 0 ? round($results[0][0]["progress"] / $results[0][0]["total"]*100, 0) : 0;
+        }
+        else{
+        	return 0;
+        }
     }
 	
 }

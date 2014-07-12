@@ -11,19 +11,13 @@ var data = null;
 // get data from ajax call
 $.ajax({
     type: 'POST',
-    url : '/people',
+    url : '../progresses/ajax',
     async : false,
     data: {
         'chartType' : 'd3'
     },
     success : function (msg) {
-        if(msg != ''){
-            ajaxData = JSON.parse(msg);
-        }
-        else {
-            ajaxData = [];
-        }
-    }
+        data = JSON.parse(msg);
     }
 });
 

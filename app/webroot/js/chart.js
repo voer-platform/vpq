@@ -6,7 +6,7 @@ var ajaxData = null;
 // get chart data from ajax call
 $.ajax({
     type: 'POST',
-    url : "<?php echo Router::url(array=>('controller' => 'progresses', 'action' => 'ajax'));?>",
+    url : "../progresses/ajax",
     async : false,
     data: {
         'chartType' : 'ggChart'
@@ -44,7 +44,7 @@ $.ajax({
         'chartType' : 'overall'
     },
     success : function (msg) {
-        if(!isNaN(msg)){
+        if(isNaN(msg)){
             msg = 0;
         }
         
