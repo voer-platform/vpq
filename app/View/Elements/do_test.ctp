@@ -4,30 +4,30 @@
 
 	<?php echo $this->Form->create('TestAnswers', array( 'url' => 'score')); ?>
 		<?php foreach ($questions as $index => $question): ?>
-			<?php echo "<div id = 'dotestQuestions'>";?>
-			<?php echo '<fieldset>';?>
-			<?php echo "<b>",$index+1, "</b>  "; ?>
-			<?php echo h($question['Question']['content']); ?>
-			<!-- debug -->
-			<?php foreach($question['Subcategory'] as $sub){
-				echo $sub['id'].' ';
-				} ?>
+			<div id = 'dotestQuestions'>
+				<fieldset>
+					<?php echo "<b>",$index+1, "</b>  "; ?>
+					<?php echo h($question['Question']['content']); ?>
+					<!-- debug -->
+					<?php foreach($question['Subcategory'] as $sub){
+						echo $sub['id'].' ';
+						} ?>
 
-			<?php $option = array(); ?>
-			<?php foreach ($question['Answer'] as $aindex => $answer): ?>
-				<?php $option[$aindex] = $answer['content'].'--'.$answer['correctness']; ?>
-			<?php endforeach; ?>
-			
-			<?php echo $this->Form->input( $index, array(
-				'name' => $question['Question']['id'],
-				'legend' => false,
-				'options' => $option,
-				'separator' => '</br>',
-				'type' => 'radio',
-				)); 
-			?>
-			<?php echo '</fieldset>';?>
-			<?php echo "</div>";?>
+					<?php $option = array(); ?>
+					<?php foreach ($question['Answer'] as $aindex => $answer): ?>
+						<?php $option[$aindex] = $answer['content'].'--'.$answer['correctness']; ?>
+					<?php endforeach; ?>
+					
+					<?php echo $this->Form->input( $index, array(
+						'name' => $question['Question']['id'],
+						'legend' => false,
+						'options' => $option,
+						'separator' => '</br>',
+						'type' => 'radio',
+						)); 
+					?>
+				</fieldset>
+			</div>
 		<?php endforeach; ?>
 		<?php echo $this->Form->input( 'test_id', array(
 				'name' => 'testID',

@@ -152,8 +152,9 @@ public function beforeFilter(){
  * @throws NotFoundException
  * @return void
  */
-	public function chooseTest() {
+	public function chooseTest($category = null) {
 		$this->layout = 'question_bank';
+		$this->set('category', $category);
 	}
 
 /**
@@ -166,17 +167,20 @@ public function beforeFilter(){
 		if ($this->request->is('post')) {
 			$this->layout = 'question_bank';
 
+			$numberOfQuestions = $this->data['Test']['time_limit'];
+			$timeLimit = $this->data['Test']['time_limit'];
+
 			// query <number of questions> from db, random ID
-			$questions = $this->Test->genTest($this->data['Test']['number_of_questions'], -1, -1);
+			$questions = $this->Test->genTest($numberOfQuestions, -1, -1);
 			$this->set('questions', $questions);
 
 			// create tests in database
 			$testID = $this->Test->nextTestId();
 			$this->set('testID', $testID);
-			$this->set('duration', $this->data['Test']['time_limit']);
-			$this->set('numberOfQuestions', $this->data['Test']['number_of_questions']);
+			$this->set('duration', $timeLimit);
+			$this->set('numberOfQuestions', $numberOfQuestions);
 			// save test: id, timeLimit, allow attemps, category(currently df is 2)
-			$this->Test->saveTest($testID, $this->data['Test']['time_limit'], -1, 2);
+			$this->Test->saveTest($testID, $timeLimit, -1, 2);
 
 			//create questions for test in db
 			$conn = mysql_connect("localhost:3306", 'root', 'abc123');

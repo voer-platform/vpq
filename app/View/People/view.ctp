@@ -72,7 +72,7 @@
 			<td><?php echo $progress['sub_category_id']; ?></td>
 			<td><?php echo $progress['progress']; ?></td>
 			<td class="actions">
-				<?php echo $this->Html->link(__('View'), array('controller' => 'progresses', 'action' => 'view', $progress['id'])); ?>
+				<?php echo $this->Html->link(__('View'), array('controller' => 'progresses', 'action' => 'view', $progress['person_id'],$progress['sub_category_id'])); ?>
 				<?php echo $this->Html->link(__('Edit'), array('controller' => 'progresses', 'action' => 'edit', $progress['id'])); ?>
 				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'progresses', 'action' => 'delete', $progress['id']), null, __('Are you sure you want to delete # %s?', $progress['id'])); ?>
 			</td>

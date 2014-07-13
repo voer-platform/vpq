@@ -29,7 +29,7 @@ function drawChart(id){
         title: 'Overal performances',
         // curveType : 'function',
         vAxis:{
-            format: '#,##%'
+            format: '#\'%\''
         }
     };
 

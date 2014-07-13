@@ -176,7 +176,7 @@ class PeopleController extends AppController {
 	                	array( 'id' => $fb_user['id'])
 	                );
 
-	                //$this->redirect($this->Auth->redirect());
+	                $this->redirect($this->Auth->redirect());
 	            }
 
 	            // Otherwise we ll add a new user (Registration)
@@ -186,7 +186,7 @@ class PeopleController extends AppController {
 	                    'facebook'		=> $fb_user['id'],
 	                    'password'      => AuthComponent::password(uniqid(md5(mt_rand()))), # Set random password
 	                    'first_name'	=> $fb_user['first_name'],
-	                    'last_name'		=> $fb_user['last_name'],
+	                    'last_name'		>= $fb_user['last_name'],
 	                    'role'          => 'user',
 	                    'date_created'	=> date("Y-m-d H:i:s"),
 	                    'image'			=> $picture['data']['url']

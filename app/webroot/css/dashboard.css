@@ -8,7 +8,7 @@ div .dashboard #performance{
 /*dashboard.performance value*/
 #performance #performance_value{
     font-family: 'tahoma';
-    font-size: 100px;
+    font-size: 60px;
     margin: 0px;
     padding: 0px;
 }
@@ -42,4 +42,9 @@ div .dashboard #performance{
     font-size: 10px;
     margin: 0px;
     padding: 0px;
+}
+
+/*take-a-test*/
+.take-a-test {
+    text-align: center;
 }

@@ -32,11 +32,11 @@ class ProgressesController extends AppController {
  * @param string $id
  * @return void
  */
-	public function view($id = null) {
+	public function view($p_id = null, $s_id = null) {
 		if (!$this->Progress->exists($id)) {
 			throw new NotFoundException(__('Invalid progress'));
 		}
-		$options = array('conditions' => array('Progress.' . $this->Progress->primaryKey => $id));
+		$options = array('conditions' => array('Progress.person_id' => $p_id, 'Progress.subcategory_id' => $s_id));
 		$this->set('progress', $this->Progress->find('first', $options));
 	}
 
