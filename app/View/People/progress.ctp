@@ -1,9 +1,8 @@
 <div class='container'>
 
 	<h2>Your progresses</h2>
-	<table>
+	<table class = 'table'>
 	<?php
-
 		if( !empty($progresses) ){
 			echo $this->Html->tableHeaders(array('SubCategory', 'Progress', 'Date'));
 			foreach($progresses as $progress){

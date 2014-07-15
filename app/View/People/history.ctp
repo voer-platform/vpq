@@ -1,9 +1,8 @@
 <div class='container'>
 
 	<h2>Your attempts</h2>
-	<table>
+	<table class = 'table'>
 	<?php
-
 		if( !empty($scores) ){
 			echo $this->Html->tableHeaders(array('Test ID', 'Time taken', 'Time limit','Score'));
 			foreach($scores as $score){

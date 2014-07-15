@@ -130,7 +130,7 @@ class PeopleController extends AppController {
  * login page
  */
     public function login() {
-        $this->layout = 'question_bank';
+        $this->autoRender = false;
         // $this->set('title_for_layout',__("Login"));
         // if ($this->request->is('post')) {
         //     if ($this->Auth->login()) {
@@ -240,7 +240,7 @@ class PeopleController extends AppController {
 /*
  * suggestion
  */
-	public function suggest(){
+	public function suggestion(){
 		$this->layout = 'question_bank';
 
 	}

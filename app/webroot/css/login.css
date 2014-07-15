@@ -32,7 +32,9 @@
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
-
-.facebook-btn {
-  max-width: 250px;
+.facebook-btn, .google-btn {
+  max-width: 350px;
+}
+.modal-body{
+  text-align: center;
 }
