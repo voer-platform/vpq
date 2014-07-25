@@ -1,7 +1,7 @@
 <div class='container'>
 
-	<h2>Your attempts</h2>
-	<table class = 'table'>
+	<h2>Your tests history</h2>
+	<table class = 'table table-striped table-condensed table-hover table-bordered'>
 	<?php
 		if( !empty($scores) ){
 			echo $this->Html->tableHeaders(array('Test ID', 'Time taken', 'Time limit','Score'));

@@ -126,7 +126,7 @@ class ProgressesController extends AppController {
             }
             else if($this->data['chartType'] == 'ggChart'){
                 $this->layout = null;
-                $result = $this->Progress->chartGoogle($this->Session->read('Auth.User')['id']);
+                $result = $this->Progress->chartGoogle($this->Session->read('Auth.User')['id'], $this->data['category']);
                 $this->set('result',$result);
             }
             else if($this->data['chartType'] == 'overall'){

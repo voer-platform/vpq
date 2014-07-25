@@ -10,24 +10,24 @@
         <span class="icon-bar"></span>
       </button>
       <?php echo $this->HTML->link(
-      			__('VOER'), 
-      			'http://voer.edu.vn', 
+      			__('PLAS'), 
+      			'/', 
       			array('class'=>'navbar-brand')); ?>
     </div>
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li><?php echo $this->HTML->link(__('Home'), '/'); ?></li>
-        <li><?php echo $this->HTML->link(__('About'), '/about'); ?></li>
         <!-- if logged in user -->
         <?php if(!empty($user) ): ?>
           <li><?php echo $this->HTML->link(__('Dashboard'), array('controller' => 'people', 'action' => 'dashboard')); ?></li>
-          <li><?php echo $this->HTML->link(__('Choose Test'), array('controller' => 'tests', 'action' => 'chooseTest')); ?></li>
           <li><?php echo $this->HTML->link(__('History'), array('controller' => 'people', 'action' => 'history')); ?></li>
           <li><?php echo $this->HTML->link(__('Progress'), array('controller' => 'people', 'action' => 'progress')); ?></li>
-          <!-- if is admin -->
-          <?php if($user['role'] === 'admin'): ?>
-            <li><?php echo $this->HTML->link(__('Admin'), '/admin'); ?></li>
-          <?php endif; ?>  
+        <?php else: ?>
+          <li><?php echo $this->HTML->link(__('About'), '/about'); ?></li>
+        <?php endif; ?>    
+
+        <!-- if is admin -->
+        <?php if($user['role'] === 'admin'): ?>
+          <li><?php echo $this->HTML->link(__('Admin'), '/admin'); ?></li>
         <?php endif; ?> 
        
       </ul>

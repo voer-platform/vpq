@@ -162,48 +162,38 @@ public function beforeFilter(){
  *
  * @return void
  */
-	public function doTest() {
+	public function doTest($time, $category) {
 
-		if ($this->request->is('post')) {
-			$this->layout = 'question_bank';
+		$this->layout = 'question_bank';
 
-			$numberOfQuestions = $this->data['Test']['time_limit'];
-			$timeLimit = $this->data['Test']['time_limit'];
+        // retrieve request data
+		$numberOfQuestions = $time;
+		$timeLimit = $time;
 
-			// query <number of questions> from db, random ID
-			$questions = $this->Test->genTest($numberOfQuestions, -1, -1);
-			$this->set('questions', $questions);
+		// query <number of questions> from db, random ID
+		$questions = $this->Test->genTest($numberOfQuestions, -1, -1);
 
-			// create tests in database
-			$testID = $this->Test->nextTestId();
-			$this->set('testID', $testID);
-			$this->set('duration', $timeLimit);
-			$this->set('numberOfQuestions', $numberOfQuestions);
-			// save test: id, timeLimit, allow attemps, category(currently df is 2)
-			$this->Test->saveTest($testID, $timeLimit, -1, 2);
+		// create tests in database
+		$testID = $this->Test->nextTestId();
+		// save test: id, timeLimit, allow attemps, category(currently df is 2)
+		$this->Test->saveTest($testID, $timeLimit, -1, 2);
 
-			//create questions for test in db
-			$conn = mysql_connect("localhost:3306", 'root', 'abc123');
-			mysql_select_db('questionbank');
-			foreach($questions as $question){
-				$query = 'INSERT INTO `tests_questions`(`test_id`, `question_id`) values('.$testID.','.$question['Question']['id'].');';
-				mysql_query($query, $conn);
-			}
-			mysql_close($conn);
-			// $this->loadModel('TestsQuestion');			
-			// foreach( $questions as $question){
-			// 	$this->TestsQuestion->set(array(
-			// 		'test_id' => $testID,
-			// 		'question_id' => $question['Question']['id']
-			// 	));
-			// 	$this->TestsQuestion->save();
-			// 	$this->TestsQuestion->clear();
-			// }
+		//create questions for test in db
+		$conn = mysql_connect("localhost:3306", 'root', 'abc123');
+		mysql_select_db('questionbank');
+		foreach($questions as $question){
+			$query = 'INSERT INTO `tests_questions`(`test_id`, `question_id`) values('.$testID.','.$question['Question']['id'].');';
+			mysql_query($query, $conn);
 		}
-		// if it's not a post, return to chooseTest
-		else{
-			$this->redirect('chooseTest');
-		}
+		mysql_close($conn);
+
+		// set to view
+		$this->set('questions', $questions);
+		$this->set('category', $category);
+		$this->set('testID', $testID);
+		$this->set('duration', $timeLimit);
+		$this->set('numberOfQuestions', $numberOfQuestions);
+		
 	}
 
 /**
@@ -212,10 +202,14 @@ public function beforeFilter(){
  * @return void
  */
 	public function score() {
+        
+        // process if request is post
 		if( $this->request->is('post')){
 			
+            //layout
 			$this->layout = 'question_bank';
-			//counter to determine score			
+			
+            //counter to determine score			
 			$correctCounter = 0;
 			$questionCounter = 0;
 

@@ -219,17 +219,16 @@ class PeopleController extends AppController {
     public function dashboard(){
         $this->layout = 'question_bank';
         $this->set('title_for_layout',"Dashboard");
-    }
-/*
- * register
- */   
-	public function register(){
-		$this->layout = 'question_bank';
-	}
 
-/*
+        $this->loadModel('Progress');
+        $performance = array();
+        $performance['physics'] = $this->Progress->overall($this->Session->read('Auth.User')['id'], 'physics');
+        $this->set('performance', $performance);
+    }
+
+/**
  * history
-*/
+ */
 	public function history(){
 		$this->layout = 'question_bank';
 		$this->loadModel('Score');
@@ -237,15 +236,14 @@ class PeopleController extends AppController {
 		$this->set('scores', $result);
 	}
 
-/*
+/**
  * suggestion
  */
 	public function suggestion(){
 		$this->layout = 'question_bank';
-
 	}
 
-/*
+/**
  * progress
  */	
 	public function progress(){
@@ -260,5 +258,23 @@ class PeopleController extends AppController {
  */	
 	public function admin(){
 		$this->layout = 'question_bank';
+	}
+
+/**
+ * performance details
+ */
+	public function performanceDetails($category){
+		$this->loadModel('Progress');
+
+		// set to view
+		$this->set('category', $category);
+	}
+/**
+ *	coverage details
+ */	
+	public function coverDetails($category){
+
+		// set to view
+		$this->set('category', $category);
 	}
 }

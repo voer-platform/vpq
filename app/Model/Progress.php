@@ -1,6 +1,6 @@
 <?php
-App::uses("AppModel", "Model");
-App::import("Model", "QuestionsSubcategory");
+App::uses('AppModel', 'Model');
+App::import('Model', 'QuestionsSubcategory');
 /**
  * Progress Model
  *
@@ -18,19 +18,19 @@ class Progress extends AppModel {
  * @var array
  */
 	public $belongsTo = array(
-		"Person" => array(
-			"className" => "Person",
-			"foreignKey" => "person_id",
-			"conditions" => "",
-			"fields" => "",
-			"order" => ""
+		'Person' => array(
+			'className' => 'Person',
+			'foreignKey' => 'person_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
 		),
-		"SubCategory" => array(
-			"className" => "SubCategory",
-			"foreignKey" => "sub_category_id",
-			"conditions" => "",
-			"fields" => "",
-			"order" => ""
+		'SubCategory' => array(
+			'className' => 'SubCategory',
+			'foreignKey' => 'sub_category_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
 		)
 	);
 /*
@@ -39,11 +39,11 @@ class Progress extends AppModel {
  */
 	public function saveProgress($person_id, $sub_category_id, $progress, $total, $date){
 		$this->set(array(
-			"person_id" => $person_id,
-			"sub_category_id" => $sub_category_id,
-			"progress" => $progress,
-			"total" => $total,
-			"date" => $date));
+			'person_id' => $person_id,
+			'sub_category_id' => $sub_category_id,
+			'progress' => $progress,
+			'total' => $total,
+			'date' => $date));
 		$this->save();
 	}
 /*
@@ -51,10 +51,10 @@ class Progress extends AppModel {
  * @param: personId
  */
 	public function getProgresses($person_id){
-		return $this->find("all", array(
-			"recursive" => 0,
-			"conditions" => array(
-				"person_id" => $person_id)
+		return $this->find('all', array(
+			'recursive' => 0,
+			'conditions' => array(
+				'person_id' => $person_id)
 			));
 	}
 /*
@@ -76,51 +76,51 @@ class Progress extends AppModel {
 			// equal array(array([QuestionsSubcategory][subcategory_id]))
 			$QuestionsSubcategory = new QuestionsSubcategory();
             
-			$subCategories = $QuestionsSubcategory->find("first", array(
-	    		"recursive" => -1,
-	    		"conditions" => array(
-	    			"question_id" => $questionId
+			$subCategories = $QuestionsSubcategory->find('first', array(
+	    		'recursive' => -1,
+	    		'conditions' => array(
+	    			'question_id' => $questionId
 	    			)
 	    		)
 	    	);
 			// Iterate each subcategories
 			foreach($subCategories as $subCategory){
                 $progressRow = $this->find('first', array(
-                    "recursive" => -1,
-                    "conditions" => array(
-                        "person_id" => $person_id,
-                        "sub_category_id" => $subCategory["subcategory_id"],
-                        "date <= " => date("Y-m-d")." 23:59:59",
-                        "date >= " => date("Y-m-d")." 00:00:00",
+                    'recursive' => -1,
+                    'conditions' => array(
+                        'person_id' => $person_id,
+                        'sub_category_id' => $subCategory['subcategory_id'],
+                        'date <= ' => date('Y-m-d').' 23:59:59',
+                        'date >= ' => date('Y-m-d').' 00:00:00',
                     ),
                 ));
                 
 				// if exits
 				if(!empty($progressRow)){
                     // $progressRow = $progressRow[0];
-					$currentDate = date("Ymd");
-					$dbDate = date("Ymd", strtotime($progressRow["Progress"]["date"]));
+					$currentDate = date('Ymd');
+					$dbDate = date('Ymd', strtotime($progressRow['Progress']['date']));
 
 					// equal to current date, update new data
 					if(strtotime($currentDate) == strtotime($dbDate)){
 						$this->query(
-							"update progresses Progress".
-                            " set Progress.progress = ".($progressRow["Progress"]["progress"] + $correctNess).
-								", Progress.total = ".($progressRow["Progress"]["total"] + 1).
-								", date = now()".
-							" where person_id = ".$person_id.
-				            " and sub_category_id = ".$subCategory["subcategory_id"].
-                            " and date(date) = date(now())"
+							'update progresses Progress'.
+                            ' set Progress.progress = '.($progressRow['Progress']['progress'] + $correctNess).
+								', Progress.total = '.($progressRow['Progress']['total'] + 1).
+								', date = now()'.
+							' where person_id = '.$person_id.
+				            ' and sub_category_id = '.$subCategory['subcategory_id'].
+                            ' and date(date) = date(now())'
 							);
 					}
 					// if it is a new day, insert to database
 					else{
 						$this->set(array(
-							"person_id" => $person_id,
-							"sub_category_id" => $subCategory["subcategory_id"],
-							"progress" => $correctNess,
-							"total" => 1,
-							"date" => date("Y-m-d H:i:s")
+							'person_id' => $person_id,
+							'sub_category_id' => $subCategory['subcategory_id'],
+							'progress' => $correctNess,
+							'total' => 1,
+							'date' => date('Y-m-d H:i:s')
 						));
 						$this->save();
                         $this->clear();
@@ -129,11 +129,11 @@ class Progress extends AppModel {
 				// else it is not exist, insert
 				else{
 					$this->set(array(
-						"person_id" => $person_id,
-						"sub_category_id" => $subCategory["subcategory_id"],
-						"progress" => $correctNess,
-						"total" => 1,
-						"date" => date("Y-m-d H:i:s")));
+						'person_id' => $person_id,
+						'sub_category_id' => $subCategory['subcategory_id'],
+						'progress' => $correctNess,
+						'total' => 1,
+						'date' => date('Y-m-d H:i:s')));
 					$this->save();
                     $this->clear();
 				}
@@ -148,28 +148,28 @@ class Progress extends AppModel {
 	public function ajaxD3($person_id){
 		// query
 		$results =  $this->query(
-			"select Category.name, SubCategory.name as name, sum(Progress.progress) as progress, sum(Progress.total) as total
+			'select Category.name, SubCategory.name as name, sum(Progress.progress) as progress, sum(Progress.total) as total
 			from progresses Progress
 			join subcategories SubCategory
 				on Progress.sub_category_id = SubCategory.id
 			join categories Category
 				on SubCategory.category_id = Category.id
-			where Progress.person_id = ".$person_id. 
-			" group by sub_category_id "
+			where Progress.person_id = '.$person_id. 
+			' group by sub_category_id '
 			
 		);
 
-		// convert CakePHP"s array to json
+		// convert CakePHP's array to json
 		$json = array();
-        $json[] = array("name" => "Overall", "parent" => "null", "value" => 0);
-        $json[] = array("name" => "Maths", "parent" => "Overall", "value" => 0);
-		$json[] = array("name" => "Physics", "parent" => "Overall", "value" => 0);
+        $json[] = array('name' => 'Overall', 'parent' => 'null', 'value' => 0);
+        $json[] = array('name' => 'Maths', 'parent' => 'Overall', 'value' => 0);
+		$json[] = array('name' => 'Physics', 'parent' => 'Overall', 'value' => 0);
         if(!empty($results)){
             foreach($results as $result){
                 $row = array();
-                $row["name"] = $result["SubCategory"]["name"];
-                $row["parent"] = $result["Category"]["name"];
-                $row["value"] = round($result[0]["progress"]/$result[0]["total"]*100,2);
+                $row['name'] = $result['SubCategory']['name'];
+                $row['parent'] = $result['Category']['name'];
+                $row['value'] = round($result[0]['progress']/$result[0]['total']*100,2);
                 $json[] = $row;
             }
         }
@@ -191,15 +191,15 @@ class Progress extends AppModel {
     public function chartGoogle($person_id){
         //query
         $results = $this->query(
-            "select SUM(Progress.progress) as progress, SUM(Progress.total) as total, Category.name, Progress.date
+            'select SUM(Progress.progress) as progress, SUM(Progress.total) as total, Category.name, Progress.date
             from progresses Progress
             join subcategories Subcategory
                 on Progress.sub_category_id = Subcategory.id
             join categories Category
                 on Category.id = Subcategory.category_id
-                where Progress.person_id = ".$person_id.
-                " group by date(Progress.date)
-                order by Progress.date asc"
+                where Progress.person_id = '.$person_id.
+                ' group by date(Progress.date)
+                order by Progress.date asc'
                 
 		);
         
@@ -209,13 +209,13 @@ class Progress extends AppModel {
         // counters
         $progress = 0;
         $total = 0;
-        $json[] = array("YEAR", "Physics");
+        $json[] = array('YEAR', 'Physics');
         if($results){
             foreach($results as $result){
                 $row = array();
-                $row[] = $result["Progress"]["date"];
-                $progress += $result[0]["progress"];
-                $total += $result[0]["total"];
+                $row[] = $result['Progress']['date'];
+                $progress += $result[0]['progress'];
+                $total += $result[0]['total'];
                 $row[] = $progress/$total;
                 $json[] = $row;
             }
@@ -232,15 +232,17 @@ class Progress extends AppModel {
  * @param: person_id
  * @return: overall
  */
-    public function overall($person_id){
+    public function overall($person_id, $category){
         //query
         $results = $this->query(
-            "select sum(Progress.progress) as progress, sum(Progress.total) as total
+            'select sum(Progress.progress) as progress, sum(Progress.total) as total
             from progresses Progress
-            where Progress.person_id = ".$person_id
+            where Progress.person_id = '.$person_id.
+            ' limit 10'
+
            );
         if(!empty($results)){
-        	return $results[0][0]["total"] != 0 ? round($results[0][0]["progress"] / $results[0][0]["total"]*100, 0) : 0;
+        	return $results[0][0]['total'] != 0 ? round($results[0][0]['progress'] / $results[0][0]['total']*100, 0) : 0;
         }
         else{
         	return 0;

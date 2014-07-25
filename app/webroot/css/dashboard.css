@@ -1,50 +1,29 @@
-/*temp for info*/
-div .dashboard #performance{
+.progress-container{
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+.progress {
+    margin-bottom: 0;
+    margin-top: 0;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    height: 30px;
+}
+.progress span{
+    display: block;
+    position: absolute;
+    width: 100%;
+}
+.progress-container .row{
+    padding: 5px 5px 5px 5px;
+}
+.dashboard .head {
     text-align: center;
-    margin-left: 150px;
-    vertical-align: middle;
 }
-
-/*dashboard.performance value*/
-#performance #performance_value{
-    font-family: 'tahoma';
-    font-size: 60px;
-    margin: 0px;
-    padding: 0px;
-}
-
-/*dashboard.performance rank*/
-#performance #ranking{
-    font-family: 'tahoma';
-    font-size: 10px;
-    margin: 0px;
-    padding: 0px;
-}
-
-/*dashboard.performance hint text*/
-#performance p #hint{
-    font-family: 'tahoma';
-    font-size: 12px;
-}
-
-/*dashboard.performance suggestions*/
-#performance #suggestion{
-    font-family: 'arial';
-    font-size: 12px;
-    font-weight: bold;
-    margin: 0px;
-    padding: 0px;
-}
-
-/**dashboard.performance rating*/
-#performance #rating{
-    font-family: 'tahoma';
-    font-size: 10px;
-    margin: 0px;
-    padding: 0px;
-}
-
-/*take-a-test*/
-.take-a-test {
-    text-align: center;
+.row-2 , .row-1{
+    margin: 0;
+    padding: 0;
 }

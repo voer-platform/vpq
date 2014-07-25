@@ -15,7 +15,7 @@
 	<title><?php echo $title_for_layout; ?></title>
 
     <!-- meta -->
-    <?php echo $this->Html->meta('viewport', 'width=device-width, initial-scale=1');?>
+    <?php echo $this->Html->meta('viewport', 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no');?>
 
     <!-- css -->
 	<?php echo $this->Html->css('bootstrap.min.css'); ?>
@@ -40,7 +40,7 @@
     </div>
 
     
-    <?php echo $this->element('footer');?>
+    <?php //echo $this->element('footer');?>
     <?php //echo $this->element('sql_dump'); ?>
     
 </body>

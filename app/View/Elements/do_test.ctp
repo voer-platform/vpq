@@ -1,6 +1,6 @@
 <div class='doTest'>
 	<h2><?php echo 'Do your Test'?></h2>
-	<?php echo 'Timelimit: ', $duration, ' minutes, questions: ',	$numberOfQuestions?>
+	<?php echo ucfirst($category). ' test. Timelimit: ', $duration, ' minutes, questions: ',	$numberOfQuestions?>
 
 	<?php echo $this->Form->create('TestAnswers', array( 'url' => 'score')); ?>
 		<?php foreach ($questions as $index => $question): ?>

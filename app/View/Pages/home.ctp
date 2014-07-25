@@ -2,15 +2,14 @@
 
 <div class='container'>
     <div class="jumbotron">
-        <h1>Check it!</h1>
-        <p class="lead">Join us to access Open, Free, Huge pool of questions in many categories</p>
-        <?php 
-        	if(empty($this->Session->read('Auth.User'))){
-                echo $this->Html->link('Join us', array('controller' => 'people', 'action' => 'register'),array('class' => "btn btn-lg btn-success"));
-            }
-            else {
-            	echo $this->Html->link('Start', array('controller' => 'tests', 'action' => 'chooseTest'),array('class' => "btn btn-lg btn-success"));
-            }
-         ?>
+        <?php if(empty($this->Session->read('Auth.User'))): ?>
+            <h1>PLAS?</h1>
+            <p class="lead">Join us to access Open, Free, Huge pool of questions in many categories!</p>
+            <?php echo $this->Html->link(__('Join us!'), '#', array('data-toggle' => 'modal', 'data-target' => '#modal-login', 'class' => "btn btn-lg btn-success")); ?>
+        <?php else: ?>
+            <h1>How is your study?</h1>
+        	<p class="lead">Don't let your progress die...</p>
+            <?php echo $this->Html->link(__('Take a look'), array('controller' => 'people', 'action' => 'dashboard'), array('class' => "btn btn-lg btn-primary")); ?>
+        <?php endif; ?>    
     </div>
 </div>

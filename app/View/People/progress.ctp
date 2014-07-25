@@ -1,7 +1,7 @@
 <div class='container'>
 
-	<h2>Your progresses</h2>
-	<table class = 'table'>
+	<h2>Your performance</h2>
+	<table class = 'table table-striped table-condensed table-hover table-bordered'>
 	<?php
 		if( !empty($progresses) ){
 			echo $this->Html->tableHeaders(array('SubCategory', 'Progress', 'Date'));
