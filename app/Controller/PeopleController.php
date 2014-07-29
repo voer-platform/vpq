@@ -253,13 +253,6 @@ class PeopleController extends AppController {
 		$this->set('progresses', $progresses);
 	}
 
-/*
- * admin
- */	
-	public function admin(){
-		$this->layout = 'question_bank';
-	}
-
 /**
  * performance details
  */

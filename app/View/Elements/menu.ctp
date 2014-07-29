@@ -27,7 +27,7 @@
 
         <!-- if is admin -->
         <?php if($user['role'] === 'admin'): ?>
-          <li><?php echo $this->HTML->link(__('Admin'), '/admin'); ?></li>
+          <li><?php echo $this->HTML->link(__('Admin'), array('controller' => 'Admin', 'action' => 'index')); ?></li>
         <?php endif; ?> 
        
       </ul>

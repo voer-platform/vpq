@@ -14,7 +14,7 @@
                 <div class='col-lg-6 col-md-8 col-sm- col-xs-9 col-lg-offset-3 col-md-offset-3'>
                     <div class="progress">
                         <div class="progress-bar" role="progressbar" aria-valuenow="63" aria-valuemin="0" aria-valuemax="100" style='width:63%;'>
-                        Covered: 63%
+                        <?php echo $this->Html->link(__('Covered').':'.'63%', array('controller' => 'people', 'action' => 'coverDetails', 'physics')); ?>
                         </div>
                     </div>
                 </div>
