@@ -55,10 +55,9 @@ class QuestionsController extends AppController {
 				$this->Session->setFlash(__('The question could not be saved. Please, try again.'));
 			}
 		}
-		$categories = $this->Question->Category->find('list');
 		$subcategories = $this->Question->Subcategory->find('list');
 		$tests = $this->Question->Test->find('list');
-		$this->set(compact('categories', 'subcategories', 'tests'));
+		$this->set(compact('subcategories', 'tests'));
 	}
 
 /**
@@ -83,10 +82,9 @@ class QuestionsController extends AppController {
 			$options = array('conditions' => array('Question.' . $this->Question->primaryKey => $id));
 			$this->request->data = $this->Question->find('first', $options);
 		}
-		$categories = $this->Question->Category->find('list');
 		$subcategories = $this->Question->Subcategory->find('list');
 		$tests = $this->Question->Test->find('list');
-		$this->set(compact('categories', 'subcategories', 'tests'));
+		$this->set(compact('subcategories', 'tests'));
 	}
 
 /**
@@ -101,24 +99,12 @@ class QuestionsController extends AppController {
 		if (!$this->Question->exists()) {
 			throw new NotFoundException(__('Invalid question'));
 		}
-		$this->request->onlyAllow('post', 'delete');
+		$this->request->allowMethod('post', 'delete');
 		if ($this->Question->delete()) {
 			$this->Session->setFlash(__('The question has been deleted.'));
 		} else {
 			$this->Session->setFlash(__('The question could not be deleted. Please, try again.'));
 		}
 		return $this->redirect(array('action' => 'index'));
-	}
-/**
- * upload Test
- * user upload a file with pre-defined format, contain questions. upload and import to db
- *
- */
-	public function uploadQuestions(){
-		$this->layout = 'question_bank';
-		if($this->request->is('POST')){
-			
-		}
-		
 	}
 }

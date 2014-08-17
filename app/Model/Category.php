@@ -3,9 +3,9 @@ App::uses('AppModel', 'Model');
 /**
  * Category Model
  *
+ * @property Subject $Subject
+ * @property Grade $Grade
  * @property Subcategory $Subcategory
- * @property Question $Question
- * @property Test $Test
  */
 class Category extends AppModel {
 
@@ -25,9 +25,41 @@ class Category extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
+		'subject_id' => array(
+			'numeric' => array(
+				'rule' => array('numeric'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
 	);
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
+
+/**
+ * belongsTo associations
+ *
+ * @var array
+ */
+	public $belongsTo = array(
+		'Subject' => array(
+			'className' => 'Subject',
+			'foreignKey' => 'subject_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
+		'Grade' => array(
+			'className' => 'Grade',
+			'foreignKey' => 'grade_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		)
+	);
 
 /**
  * hasMany associations
@@ -47,41 +79,6 @@ class Category extends AppModel {
 			'exclusive' => '',
 			'finderQuery' => '',
 			'counterQuery' => ''
-		)
-	);
-
-
-/**
- * hasAndBelongsToMany associations
- *
- * @var array
- */
-	public $hasAndBelongsToMany = array(
-		'Question' => array(
-			'className' => 'Question',
-			'joinTable' => 'questions_categories',
-			'foreignKey' => 'category_id',
-			'associationForeignKey' => 'question_id',
-			'unique' => 'keepExisting',
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'finderQuery' => '',
-		),
-		'Test' => array(
-			'className' => 'Test',
-			'joinTable' => 'tests_categories',
-			'foreignKey' => 'category_id',
-			'associationForeignKey' => 'test_id',
-			'unique' => 'keepExisting',
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'finderQuery' => '',
 		)
 	);
 

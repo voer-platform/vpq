@@ -14,19 +14,18 @@ class CategoriesControllerTest extends ControllerTestCase {
  */
 	public $fixtures = array(
 		'app.category',
-		'app.subcategory',
-		'app.grade',
-		'app.question',
-		'app.answer',
-		'app.score',
+		'app.subject',
 		'app.test',
-		'app.tests_category',
-		'app.tests_question',
+		'app.score',
 		'app.person',
 		'app.progress',
+		'app.subcategory',
+		'app.question',
+		'app.answer',
 		'app.scores_answer',
-		'app.questions_category',
-		'app.questions_subcategory'
+		'app.questions_subcategory',
+		'app.tests_question',
+		'app.tests_subject'
 	);
 
 /**

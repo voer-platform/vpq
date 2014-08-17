@@ -12,11 +12,6 @@
     position: relative;
     height: 30px;
 }
-.progress span{
-    display: block;
-    position: absolute;
-    width: 100%;
-}
 .progress-container .row{
     padding: 5px 5px 5px 5px;
 }
@@ -26,4 +21,9 @@
 .row-2 , .row-1{
     margin: 0;
     padding: 0;
+}
+.progress-container .progress a{
+    font-size: 18px;
+    color: white;
+    margin: 3px 3px 3px 3px;
 }

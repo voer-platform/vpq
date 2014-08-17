@@ -4,8 +4,8 @@ App::uses('AppModel', 'Model');
  * Test Model
  *
  * @property Score $Score
- * @property Category $Category
  * @property Question $Question
+ * @property Subject $Subject
  */
 class Test extends AppModel {
 
@@ -40,19 +40,6 @@ class Test extends AppModel {
  * @var array
  */
 	public $hasAndBelongsToMany = array(
-		'Category' => array(
-			'className' => 'Category',
-			'joinTable' => 'tests_categories',
-			'foreignKey' => 'test_id',
-			'associationForeignKey' => 'category_id',
-			'unique' => 'keepExisting',
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'finderQuery' => '',
-		),
 		'Question' => array(
 			'className' => 'Question',
 			'joinTable' => 'tests_questions',
@@ -65,15 +52,28 @@ class Test extends AppModel {
 			'limit' => '',
 			'offset' => '',
 			'finderQuery' => '',
+		),
+		'Subject' => array(
+			'className' => 'Subject',
+			'joinTable' => 'tests_subjects',
+			'foreignKey' => 'test_id',
+			'associationForeignKey' => 'subject_id',
+			'unique' => 'keepExisting',
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'finderQuery' => '',
 		)
 	);
 
-	/*
+/*
 	 * generate test
 	 * @params: number of question, time limit, category
 	 * @return: a test correspond to input parameters
 	 */
-	public function genTest($numberOfQuestions, $timeLimit, $categoryId){
+	public function genTest($numberOfQuestions, $timeLimit, $subjectId){
 		return $this->Question->find('all', array(
 					'limit' => $numberOfQuestions,
 					'order' => 'rand()'
@@ -86,15 +86,15 @@ class Test extends AppModel {
 	 *
 	 */
 	public function nextTestId(){
-		$tests = $this->find('all', array(
+		$test = $this->find('first', array(
 				'recursive' => -1,
 				'limit' => 1,
 				'fields' => array('id'),
 				'order' => 'id DESC'
 				));
-		$tests = array_filter($tests);
-		if( !empty($tests) ){
-			$testID = $tests[0]['Test']['id'] + 1;
+		$test = array_filter($test);
+		if( !empty($test) ){
+			$testID = $test['Test']['id'] + 1;
 		}
 		else {
 			$testID = 1;
@@ -107,17 +107,18 @@ class Test extends AppModel {
 	 * @param: test parameters
 	 *
 	 */
-	public function saveTest($id, $timeLimit, $allowAttemps, $categoryId){
+	public function saveTest($id, $timeLimit, $numberOfQuestions, $allowAttemps, $subjectId){
 		$this->set(array(
 				'id' => $id, 
 				'time_limit' => $timeLimit,
 				'allow_attempts' => -1,
+				'number_questions' => $numberOfQuestions,
 			));
 		$this->save();
 
 		$this->save(array(
-				'Test' => array('id' => $id),
-				'Category' => array('id' => $categoryId)
-				));
+			'Test' => array('id' => $id),
+			'Subject' => array('id' => $subjectId)
+			));
 	}
 }

@@ -55,9 +55,8 @@ class CategoriesController extends AppController {
 				$this->Session->setFlash(__('The category could not be saved. Please, try again.'));
 			}
 		}
-		$questions = $this->Category->Question->find('list');
-		$tests = $this->Category->Test->find('list');
-		$this->set(compact('questions', 'tests'));
+		$subjects = $this->Category->Subject->find('list');
+		$this->set(compact('subjects'));
 	}
 
 /**
@@ -82,9 +81,8 @@ class CategoriesController extends AppController {
 			$options = array('conditions' => array('Category.' . $this->Category->primaryKey => $id));
 			$this->request->data = $this->Category->find('first', $options);
 		}
-		$questions = $this->Category->Question->find('list');
-		$tests = $this->Category->Test->find('list');
-		$this->set(compact('questions', 'tests'));
+		$subjects = $this->Category->Subject->find('list');
+		$this->set(compact('subjects'));
 	}
 
 /**

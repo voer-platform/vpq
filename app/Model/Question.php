@@ -4,8 +4,8 @@ App::uses('AppModel', 'Model');
  * Question Model
  *
  * @property Answer $Answer
- * @property Category $Category
  * @property Subcategory $Subcategory
+ * @property Score $Score
  * @property Test $Test
  */
 class Question extends AppModel {
@@ -41,11 +41,11 @@ class Question extends AppModel {
  * @var array
  */
 	public $hasAndBelongsToMany = array(
-		'Category' => array(
-			'className' => 'Category',
-			'joinTable' => 'questions_categories',
+		'Subcategory' => array(
+			'className' => 'Subcategory',
+			'joinTable' => 'questions_subcategories',
 			'foreignKey' => 'question_id',
-			'associationForeignKey' => 'category_id',
+			'associationForeignKey' => 'subcategory_id',
 			'unique' => 'keepExisting',
 			'conditions' => '',
 			'fields' => '',
@@ -54,11 +54,11 @@ class Question extends AppModel {
 			'offset' => '',
 			'finderQuery' => '',
 		),
-		'Subcategory' => array(
-			'className' => 'Subcategory',
-			'joinTable' => 'questions_subcategories',
+		'Score' => array(
+			'className' => 'Score',
+			'joinTable' => 'scores_questions',
 			'foreignKey' => 'question_id',
-			'associationForeignKey' => 'subcategory_id',
+			'associationForeignKey' => 'score_id',
 			'unique' => 'keepExisting',
 			'conditions' => '',
 			'fields' => '',
@@ -82,4 +82,19 @@ class Question extends AppModel {
 		)
 	);
 
+	/**
+	 * get questions from ids
+	 * @param: id list
+	 * @return: questions list
+	 */
+	public function getQuestionsFromIds($ids){
+		$this->unBindModel( array('hasAndBelongsToMany' => array('Test', 'Score', 'Subcategory')) );
+		return $this->find('all', array(
+			'recursive' => 1,
+			'contain' => true,
+			'conditions' => array(
+				'id' => $ids
+				)
+			));
+	}
 }

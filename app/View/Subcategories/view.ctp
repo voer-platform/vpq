@@ -11,11 +11,6 @@
 			<?php echo h($subcategory['Subcategory']['name']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Grade'); ?></dt>
-		<dd>
-			<?php echo $this->Html->link($subcategory['Grade']['name'], array('controller' => 'grades', 'action' => 'view', $subcategory['Grade']['id'])); ?>
-			&nbsp;
-		</dd>
 		<dt><?php echo __('Category'); ?></dt>
 		<dd>
 			<?php echo $this->Html->link($subcategory['Category']['name'], array('controller' => 'categories', 'action' => 'view', $subcategory['Category']['id'])); ?>

@@ -57,8 +57,7 @@ class ScoresController extends AppController {
 		}
 		$tests = $this->Score->Test->find('list');
 		$people = $this->Score->Person->find('list');
-		$answers = $this->Score->Answer->find('list');
-		$this->set(compact('tests', 'people', 'answers'));
+		$this->set(compact('tests', 'people'));
 	}
 
 /**
@@ -85,8 +84,7 @@ class ScoresController extends AppController {
 		}
 		$tests = $this->Score->Test->find('list');
 		$people = $this->Score->Person->find('list');
-		$answers = $this->Score->Answer->find('list');
-		$this->set(compact('tests', 'people', 'answers'));
+		$this->set(compact('tests', 'people'));
 	}
 
 /**
@@ -101,12 +99,46 @@ class ScoresController extends AppController {
 		if (!$this->Score->exists()) {
 			throw new NotFoundException(__('Invalid score'));
 		}
-		$this->request->onlyAllow('post', 'delete');
+		$this->request->allowMethod('post', 'delete');
 		if ($this->Score->delete()) {
 			$this->Session->setFlash(__('The score has been deleted.'));
 		} else {
 			$this->Session->setFlash(__('The score could not be deleted. Please, try again.'));
 		}
 		return $this->redirect(array('action' => 'index'));
+	}
+
+/**
+ * view score details
+ *	
+ *	@param int $id
+ *	@return void
+ */
+	public function viewDetails($id){
+		$this->layout = 'question_bank';
+
+		$this->loadModel('ScoresQuestion');
+
+		$this->Score->unbindModel(array('belongsTo' => array('Person')));
+		$score = $this->Score->find('first', array('conditions' => array('Score.id' => $id), 'recursive' => 0) );
+
+		$scoreData = $this->ScoresQuestion->find('all', array(
+			'recursive' => -1,
+			'conditions' => array(
+				'score_id' => $id
+			)
+		));
+
+		$questionsIds = array();
+		foreach($scoreData as $data){$questionIds[] = $data['ScoresQuestion']['question_id'];}
+
+		$this->loadModel('Question');
+		$questions = $this->Question->getQuestionsFromIds($questionIds);
+	
+		ksort($scoreData); // sort the data to match result from $questions
+		$this->set('questionsData', $questions);
+		$this->set('scoreData', $scoreData);
+		$this->set('correct', $score['Score']['score']);
+		$this->set('numberOfQuestions', $score['Test']['number_questions']);
 	}
 }

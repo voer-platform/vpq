@@ -2,7 +2,7 @@ google.load("visualization", "1", {packages:["corechart"]});
 google.setOnLoadCallback(drawChart);
 
 var ajaxData = null;
-var category = $('#js-category').text();
+var subject = $('#js-subject').text();
 var URL = '../../progresses/ajax';
 
 // get chart data from ajax call
@@ -12,7 +12,7 @@ $.ajax({
     async : false,
     data: {
         'chartType' : 'ggChart',
-        'category'  : category
+        'subject'  : subject
     },
     success : function (msg) {
         if(msg != ''){
@@ -30,7 +30,7 @@ function drawChart(id){
 
     var options = {
         format: "MM/dd/yy",
-        title: 'latest 10 tests performace on ' + category.charAt(0).toUpperCase() + category.slice(1),
+        title: 'Latest performace on ' + subject.charAt(0).toUpperCase() + subject.slice(1),
         vAxis:{
             curveType: 'function',
             format: '##%',

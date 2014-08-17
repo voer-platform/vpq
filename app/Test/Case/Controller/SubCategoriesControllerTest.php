@@ -16,17 +16,17 @@ class SubcategoriesControllerTest extends ControllerTestCase {
 		'app.subcategory',
 		'app.grade',
 		'app.category',
-		'app.question',
-		'app.answer',
-		'app.score',
+		'app.subject',
 		'app.test',
-		'app.tests_category',
-		'app.tests_question',
+		'app.score',
 		'app.person',
 		'app.progress',
+		'app.answer',
+		'app.question',
+		'app.questions_subcategory',
+		'app.tests_question',
 		'app.scores_answer',
-		'app.questions_category',
-		'app.questions_subcategory'
+		'app.tests_subject'
 	);
 
 /**

@@ -14,7 +14,7 @@ class TestsController extends AppController {
 	public function isAuthorized($user) {
 	    // user can logout, dashboard, progress, history, suggest
 	    if (isset($user['role']) && $user['role'] === 'user' ){
-	    	if( in_array( $this->action, array('chooseTest', 'doTest', 'score'))){
+	    	if( in_array( $this->request->action, array('chooseTest', 'doTest', 'score'))){
 	    		return true;
 	    	}
 	    }
@@ -30,7 +30,6 @@ public function beforeFilter(){
 
 	$this->Auth->allow('sampleTest', 'score');
 }
-
 /**
  * Components
  *
@@ -129,32 +128,15 @@ public function beforeFilter(){
 			$this->Session->setFlash(__('The test could not be deleted. Please, try again.'));
 		}
 		return $this->redirect(array('action' => 'index'));
-	}
-/*
- *	sampleTest
- */
-	public function sampleTest(){
-		$this->layout = 'question_bank';
-
-		// gen test
-		$questions = $this->Test->genTest(5);
-		$this->set('questions', $questions);
-
-		$this->set('duration', 5);
-		$this->set('numberOfQuestions', 5);
-		$this->set('testID', null);
-		$this->set('title_for_layout', 'Your first test!');
-	}
-
-/**
+	}/**
  * chooseTest
  *
  * @throws NotFoundException
  * @return void
  */
-	public function chooseTest($category = null) {
+	public function chooseTest($subject = null) {
 		$this->layout = 'question_bank';
-		$this->set('category', $category);
+		$this->set('subject', $subject);
 	}
 
 /**
@@ -162,37 +144,42 @@ public function beforeFilter(){
  *
  * @return void
  */
-	public function doTest($time, $category) {
+	public function doTest($time, $subject) {
+		// process if request is post
+		if( isset($time) && isset($subject) ){
 
-		$this->layout = 'question_bank';
+			$this->layout = 'question_bank';
 
-        // retrieve request data
-		$numberOfQuestions = $time;
-		$timeLimit = $time;
+	        // retrieve request data
+			$numberOfQuestions = $time;
+			$timeLimit = $time;
 
-		// query <number of questions> from db, random ID
-		$questions = $this->Test->genTest($numberOfQuestions, -1, -1);
+			// query <number of questions> from db, random ID
+			$questions = $this->Test->genTest($numberOfQuestions, -1, -1);
 
-		// create tests in database
-		$testID = $this->Test->nextTestId();
-		// save test: id, timeLimit, allow attemps, category(currently df is 2)
-		$this->Test->saveTest($testID, $timeLimit, -1, 2);
+			// create tests in database
+			$testID = $this->Test->nextTestId();
 
-		//create questions for test in db
-		$conn = mysql_connect("localhost:3306", 'root', 'abc123');
-		mysql_select_db('questionbank');
-		foreach($questions as $question){
-			$query = 'INSERT INTO `tests_questions`(`test_id`, `question_id`) values('.$testID.','.$question['Question']['id'].');';
-			mysql_query($query, $conn);
+			// save test: id, timeLimit, allow attemps, subject(currently df is 2)
+			$this->Test->saveTest($testID, $timeLimit, $numberOfQuestions,-1, $subject);
+
+			$dataTest = array();
+			foreach($questions as $question){
+				$dataTest[] = array('test_id' => $testID, 'question_id' => $question['Question']['id']);
+			}
+			$this->loadModel('TestsQuestion');
+			$this->TestsQuestion->saveAll($dataTest);
+
+			// set to view
+			$this->set('questions', $questions);
+			$this->set('subject', $subject);
+			$this->set('testID', $testID);
+			$this->set('duration', $timeLimit);
+			$this->set('numberOfQuestions', $numberOfQuestions);
 		}
-		mysql_close($conn);
-
-		// set to view
-		$this->set('questions', $questions);
-		$this->set('category', $category);
-		$this->set('testID', $testID);
-		$this->set('duration', $timeLimit);
-		$this->set('numberOfQuestions', $numberOfQuestions);
+		else{
+			$this->redirect(array('controller' => 'people', 'action' => 'dashboard'));
+		}
 		
 	}
 
@@ -207,76 +194,30 @@ public function beforeFilter(){
 		if( $this->request->is('post')){
 			
             //layout
-			$this->layout = 'question_bank';
-			
+			$this->render = false;
+
+			// data
+			$user = $this->Session->read('Auth.User');
+			$testId = $this->request->data('testID');
+			$numberOfQuestions = $this->request->data['numberOfQuestions'];
+
             //counter to determine score			
 			$correctCounter = 0;
-			$questionCounter = 0;
 
-			//check if answer is right or not
-			// it is: increse correctCounter by 1
-			$this->loadModel('Answer');
+			// array for progress calulate
+			$scoreData = array();
 
-			// remove with int(0)
-			function my_filter($var){
-				return ($var !== NULL && $var !== FALSE && $var !== '');
-			}
-
-			// filter empty-answered questions
-			// user did not tick in the answer
-			$filteredArray = array_filter($this->data, 'my_filter');
-
-			$progressArray = array();
-			// get row in array, key=question_id, value=>answer_id
-			foreach ( $filteredArray as $question => $answerId) {
-				
-				// there are some hidden fields, need to confirm that field is test's id or not
-				if(!is_numeric($question))
-					continue;
-
-				// evaluate answerId by 1 becase:
-				// 		answer is return from 0-1
-				// 		db has answer id 1-4
-				$answerId++;
-
-				$result = $this->Answer->find('first', array(
-					'recursive' => -1,
-					'conditions' => array(
-						'question_id' => $question,
-						'id' => $answerId
-						)
-					));
-				// count correct questions
-				// store correctness to progressArray for calculate progress
-				if( $result['Answer']['correctness'] == 1){
-					$correctCounter++;
-					$progressArray[$question] = 1;
-				}
-				else{
-					$progressArray[$question] = 0;
-				}
-				// countnumber of questions for scoring
-				$questionCounter++;
-				
-			}
-			$user = $this->Session->read('Auth.User');
-			if(!empty($user)){
-				//save to database
-				//save score
-				$this->loadModel('Score');
-				$this->Score->saveScore($this->data['testID'], $user['id'], $questionCounter==0?0 : round($correctCounter/$questionCounter,2), -1, date("Y-m-d H:i:s"));
-
-				// save score_answers
-                // >>> NOT DO YET!!! <<<
-				
-			}
+			// calculate score
+			$this->loadModel('Score');
+			// save to db if user has logged in
+			// else just calculate.
+			$scoreId = $this->Score->calculateScore($testId, $this->request->data, $user, $scoreData, $numberOfQuestions);
+			
 			// calculate progress
 			$this->loadModel('Progress');
-			$this->Progress->calculateProgress($user['id'], $progressArray);
+			$this->Progress->calculateProgress($user['id'], $scoreData);
 			
-			// set variable to view
-			$this->set('finalScore', $correctCounter);
-			$this->set('correct', array($correctCounter, $questionCounter, $this->data['numberOfQuestions']));
+			$this->redirect(array('controller' => 'Scores', 'action' => 'viewDetails', $scoreId));
 		}
 		else {
 			$this->redirect('chooseTest');

@@ -120,16 +120,16 @@ class ProgressesController extends AppController {
         // if it is POST
         if( $this->request->is('POST')){
             $this->layout = null;
-            if( $this->data['chartType'] == 'd3'){
+            if( $this->request->data['chartType'] == 'd3'){
                 $result = $this->Progress->ajaxD3($this->Session->read('Auth.User')['id']);
                 $this->set('result', $result);
             }
-            else if($this->data['chartType'] == 'ggChart'){
+            else if($this->request->data['chartType'] == 'ggChart'){
                 $this->layout = null;
-                $result = $this->Progress->chartGoogle($this->Session->read('Auth.User')['id'], $this->data['category']);
+                $result = $this->Progress->chartGoogle($this->Session->read('Auth.User')['id'], $this->request->data['subject']);
                 $this->set('result',$result);
             }
-            else if($this->data['chartType'] == 'overall'){
+            else if($this->request->data['chartType'] == 'overall'){
                 $this->layout = null;
                 $result = $this->Progress->overall($this->Session->read('Auth.User')['id']);
                 $this->set('result',$result);

@@ -4,7 +4,6 @@
 		<legend><?php echo __('Add Subcategory'); ?></legend>
 	<?php
 		echo $this->Form->input('name');
-		echo $this->Form->input('grade_id');
 		echo $this->Form->input('category_id');
 		echo $this->Form->input('Question');
 	?>

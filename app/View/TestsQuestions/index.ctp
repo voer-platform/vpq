@@ -1,13 +1,18 @@
 <div class="testsQuestions index">
 	<h2><?php echo __('Tests Questions'); ?></h2>
 	<table cellpadding="0" cellspacing="0">
+	<thead>
 	<tr>
+			<th><?php echo $this->Paginator->sort('id'); ?></th>
 			<th><?php echo $this->Paginator->sort('test_id'); ?></th>
 			<th><?php echo $this->Paginator->sort('question_id'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
+	</thead>
+	<tbody>
 	<?php foreach ($testsQuestions as $testsQuestion): ?>
 	<tr>
+		<td><?php echo h($testsQuestion['TestsQuestion']['id']); ?>&nbsp;</td>
 		<td>
 			<?php echo $this->Html->link($testsQuestion['Test']['id'], array('controller' => 'tests', 'action' => 'view', $testsQuestion['Test']['id'])); ?>
 		</td>
@@ -17,10 +22,11 @@
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $testsQuestion['TestsQuestion']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $testsQuestion['TestsQuestion']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $testsQuestion['TestsQuestion']['id']), null, __('Are you sure you want to delete # %s?', $testsQuestion['TestsQuestion']['id'])); ?>
+			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $testsQuestion['TestsQuestion']['id']), array(), __('Are you sure you want to delete # %s?', $testsQuestion['TestsQuestion']['id'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
+	</tbody>
 	</table>
 	<p>
 	<?php

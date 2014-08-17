@@ -4,7 +4,6 @@ App::uses('AppModel', 'Model');
  * Answer Model
  *
  * @property Question $Question
- * @property Score $Score
  */
 class Answer extends AppModel {
 
@@ -52,26 +51,4 @@ class Answer extends AppModel {
 			'order' => ''
 		)
 	);
-
-/**
- * hasAndBelongsToMany associations
- *
- * @var array
- */
-	public $hasAndBelongsToMany = array(
-		'Score' => array(
-			'className' => 'Score',
-			'joinTable' => 'scores_answers',
-			'foreignKey' => 'answer_id',
-			'associationForeignKey' => 'score_id',
-			'unique' => 'keepExisting',
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'finderQuery' => '',
-		)
-	);
-
 }

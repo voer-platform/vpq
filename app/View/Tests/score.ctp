@@ -1,8 +1,17 @@
+<?php echo $this->Html->css('score'); ?>
+
 <div id = 'score'>
-	<h2><?php echo 'Your result' ?></h2>
-	<?php echo 'Your score for this test:'.$finalScore.'('.$correct[0].'/'.$correct[2].' questions correct).' ?>
+	<h2><?php echo __('Your result'); ?></h2>
+
+	<div class='score-result'>
+	<?php echo __('Your score for this test:'); ?>
+	<span id='result'>
+		<?php echo $correct.'/'.$questionAnswered; ?>
+	</span>
+	<?php echo __('questions correct.'); ?>
+	
 	<?php
-		$percentage = $correct[1]==0?0:$correct[0]/$correct[1];
+		$percentage = $questionAnswered==0?0:$correct/$questionAnswered;
 
 		if($percentage == 1.0){
 			echo 'Exellent, perfect!';
@@ -20,4 +29,14 @@
 			echo 'Do you need a tutor?';
 		}
 	?>
+	</div>
+	</br>
+
+	<?php echo $this->Html->link('Return to Dashboard', array('controller' => 'people', 'action' => 'dashboard'), array('class' => 'btn btn-primary btn-sm') ); ?>
+	<hr>
+	<h2><?php echo __('Details'); ?></h2>
+	<?php echo $this->element('score_view'); ?>
+	<hr>
+
+	<?php echo $this->Html->link('Return to Dashboard', array('controller' => 'people', 'action' => 'dashboard'), array('class' => 'btn btn-primary btn-sm') ); ?>
 </div>

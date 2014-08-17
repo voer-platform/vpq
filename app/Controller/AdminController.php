@@ -8,6 +8,9 @@ App::uses('AppController', 'Controller');
  */
 class AdminController extends AppController {
 
+// do not use model
+	var $uses = false;
+	
 /*
  * authorization
  * 
@@ -34,7 +37,11 @@ class AdminController extends AppController {
  * @return void
  */
 	public function index(){
-
+		$this->layout = 'question_bank';
+		
+		if($this->request->is('post')){
+			pr($this->data);
+		}
 	}
 
 }

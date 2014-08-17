@@ -56,7 +56,7 @@ $config['rules']['allow'] = array(
 	'/controllers/invoices/edit' => 'User/db_manager_2',
 	'/controllers/db/*' => 'Role/database_manager',
 	'/controllers/*/(add|edit|publish)' => 'User/stan',
-	'/controllers/users/dashboard.ctp' => 'Role/default',
+	'/controllers/users/dashboard' => 'Role/default',
 	// test for case insensitivity
 	'controllers/Forms/NEW' => 'Role/data_acquirer',
 );

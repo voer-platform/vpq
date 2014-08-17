@@ -1,4 +1,5 @@
 <?php echo $this->HTML->css('navbar-static-top');?>
+<?php Configure::load("pls"); ?>
 
 <div class="navbar navbar-default navbar-static-top" role="navigation">
   <div class="container">
@@ -10,7 +11,7 @@
         <span class="icon-bar"></span>
       </button>
       <?php echo $this->HTML->link(
-      			__('PLAS'), 
+      			__(Configure::read('PLS.Name')), 
       			'/', 
       			array('class'=>'navbar-brand')); ?>
     </div>

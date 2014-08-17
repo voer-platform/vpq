@@ -1,14 +1,16 @@
-	<?php
+<?php
 App::uses('AppModel', 'Model');
+App::import('Model', 'Answer');
+App::import('Model', 'ScoresQuestion');
+
 /**
  * Score Model
  *
  * @property Test $Test
  * @property Person $Person
- * @property Answer $Answer
+ * @property Question $Question
  */
 class Score extends AppModel {
-
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
@@ -40,11 +42,11 @@ class Score extends AppModel {
  * @var array
  */
 	public $hasAndBelongsToMany = array(
-		'Answer' => array(
-			'className' => 'Answer',
-			'joinTable' => 'scores_answers',
+		'Question' => array(
+			'className' => 'Question',
+			'joinTable' => 'scores_questions',
 			'foreignKey' => 'score_id',
-			'associationForeignKey' => 'answer_id',
+			'associationForeignKey' => 'question_id',
 			'unique' => 'keepExisting',
 			'conditions' => '',
 			'fields' => '',
@@ -54,12 +56,14 @@ class Score extends AppModel {
 			'finderQuery' => '',
 		)
 	);
-/*
+
+/**
  * save a score
  * @param:
  */
-	public function saveScore($testId, $user, $score, $duration, $timeTaken){
+	public function saveScore($scoreId, $testId, $user, $score, $duration, $timeTaken){
 		$this->set(array(
+				'id' => $scoreId,
 				'test_id' => $testId,
 				'person_id' => $user,
 				'score' => $score,
@@ -71,10 +75,10 @@ class Score extends AppModel {
 /*
  * get all user
  */
-	public function getAllScores($id){
+	public function getAllScores($personId){
 		return $this->find('all', array(
 				'conditions' => array(
-					'Score.person_id' => $id,
+					'Score.person_id' => $personId,
 				),
 				'fields' => array(
 					'Score.score',
@@ -84,5 +88,111 @@ class Score extends AppModel {
 				),
 				'order' => array('time_taken' => 'desc')
 			));
+	}
+/**
+ * get next ScoreID
+ * @return: scoreID
+ */
+	public function getNextScoreId(){
+		$score = $this->find('first', array(
+				'recursive' => -1,
+				'limit' => 1,
+				'fields' => array('id'),
+				'order' => 'id DESC'
+				));
+		$score = array_filter($score);
+		if( !empty($score) ){
+			$scoreID = $score['Score']['id'] + 1;
+		}
+		else {
+			$scoreID = 1;
+		}
+		return $scoreID;
+	}
+/**
+ * evaluate score for one user
+ * @param:
+ *	  in: testId - id of the test
+ *    in: answers: array() - array of answer from user
+ *    in: user - user
+ *    out: scoreData
+ *    in: numboerOfQuestions - number of questions
+ * @return id of stored score 
+ *	    
+ */
+	public function calculateScore($testId, $answers, $user, &$scoreData, $numberOfQuestions){
+		//check if answer is right or not
+		$correctCounter = 0;
+
+		// filter empty-answered questions
+		// user did not tick in the answer
+		function emptyAnswerFilter($var){
+		 	// remove with int(0)
+		 	return ($var !== '') || ($var == '0');
+		}
+		 
+
+		// array after filter empty
+		$filteredArray = array_filter($answers,'emptyAnswerFilter');
+
+		// get row in array, key=question_id, value=>answer_id
+		foreach ( $filteredArray as $question => $answerId) {
+			
+			// there are some hidden fields, need to confirm that field is test's id or not
+			if(!is_numeric($question))
+				continue;
+
+			// evaluate answerId by 1 becase:
+			// 		answer is return from 0-3
+			// 		db has answer id 1-4
+			// SKIP this, we will use range of data in 0-3, it sounds more appropriate
+			// $answerId++;
+
+			$Answer = new Answer();
+			$result = $Answer->find('first', array(
+				'recursive' => -1,
+				'conditions' => array(
+					'question_id' => $question,
+					'Answer.id' => $answerId
+					)
+				));
+			// count correct questions
+			// store correctness to scoreData for calculate progress
+			$scoreData[$question] = array();
+			$scoreData[$question]['answer'] = $answerId;
+
+			if( $result['Answer']['correctness'] == 1){
+				$correctCounter++;
+				$scoreData[$question]['correct'] = 1;
+			}
+			else{
+				$scoreData[$question]['correct'] = 0;
+			}
+			
+		}
+
+		if(!empty($user)){
+			// save score to db
+			$scoreId = $this->getNextScoreId();
+			$this->saveScore($scoreId, $testId, $user['id'], $correctCounter, -1, date("Y-m-d H:i:s"));
+		}
+
+		// save score_question
+  		$scoreQuestionData = array();
+
+		// sort the question on id filed so that data is consistent
+		ksort($answers);
+        // we use filteredArray to remove hidden/non-question elements
+        foreach($answers as $question => $answer){
+        	// there are some hidden fields, need to confirm that field is test's id or not
+			if(!is_numeric($question))
+				continue;
+        	$scoreQuestionData[] = array('score_id' => $scoreId, 'question_id' => $question, 'answer' => $answer );
+        }
+
+        $ScoresQuestion = new ScoresQuestion();
+        $ScoresQuestion->saveAll($scoreQuestionData);
+
+        return $scoreId;
 	}
 }

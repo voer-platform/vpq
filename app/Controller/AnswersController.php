@@ -56,8 +56,7 @@ class AnswersController extends AppController {
 			}
 		}
 		$questions = $this->Answer->Question->find('list');
-		$scores = $this->Answer->Score->find('list');
-		$this->set(compact('questions', 'scores'));
+		$this->set(compact('questions'));
 	}
 
 /**
@@ -83,8 +82,7 @@ class AnswersController extends AppController {
 			$this->request->data = $this->Answer->find('first', $options);
 		}
 		$questions = $this->Answer->Question->find('list');
-		$scores = $this->Answer->Score->find('list');
-		$this->set(compact('questions', 'scores'));
+		$this->set(compact('questions'));
 	}
 
 /**
@@ -99,11 +97,12 @@ class AnswersController extends AppController {
 		if (!$this->Answer->exists()) {
 			throw new NotFoundException(__('Invalid answer'));
 		}
-		$this->request->onlyAllow('post', 'delete');
+		$this->request->allowMethod('post', 'delete');
 		if ($this->Answer->delete()) {
 			$this->Session->setFlash(__('The answer has been deleted.'));
 		} else {
 			$this->Session->setFlash(__('The answer could not be deleted. Please, try again.'));
 		}
 		return $this->redirect(array('action' => 'index'));
-	}}
+	}
+}

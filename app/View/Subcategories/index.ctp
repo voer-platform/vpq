@@ -4,7 +4,6 @@
 	<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
 			<th><?php echo $this->Paginator->sort('name'); ?></th>
-			<th><?php echo $this->Paginator->sort('grade_id'); ?></th>
 			<th><?php echo $this->Paginator->sort('category_id'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
@@ -12,9 +11,6 @@
 	<tr>
 		<td><?php echo h($subcategory['Subcategory']['id']); ?>&nbsp;</td>
 		<td><?php echo h($subcategory['Subcategory']['name']); ?>&nbsp;</td>
-		<td>
-			<?php echo $this->Html->link($subcategory['Grade']['name'], array('controller' => 'grades', 'action' => 'view', $subcategory['Grade']['id'])); ?>
-		</td>
 		<td>
 			<?php echo $this->Html->link($subcategory['Category']['name'], array('controller' => 'categories', 'action' => 'view', $subcategory['Category']['id'])); ?>
 		</td>

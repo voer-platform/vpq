@@ -1,0 +1,2 @@
+1408288639
+a:2:{s:11:"question_id";a:6:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";N;s:6:"length";i:11;s:8:"unsigned";b:0;s:3:"key";s:5:"index";}s:14:"subcategory_id";a:5:{s:4:"type";s:7:"integer";s:4:"null";b:1;s:7:"default";N;s:6:"length";i:11;s:8:"unsigned";b:0;}}

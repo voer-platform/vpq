@@ -3,9 +3,9 @@
 <div class='container'>
     <div class="jumbotron">
         <?php if(empty($this->Session->read('Auth.User'))): ?>
-            <h1>PLAS?</h1>
+            <h1>PLS</h1>
             <p class="lead">Join us to access Open, Free, Huge pool of questions in many categories!</p>
-            <?php echo $this->Html->link(__('Join us!'), '#', array('data-toggle' => 'modal', 'data-target' => '#modal-login', 'class' => "btn btn-lg btn-success")); ?>
+            <?php echo $this->Html->link(__('Join us!'), '#', array('data-toggle' => 'modal', 'data-target' => '#modal-login', 'class' => "btn btn-lg btn-primary")); ?>
         <?php else: ?>
             <h1>How is your study?</h1>
         	<p class="lead">Don't let your progress die...</p>

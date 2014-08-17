@@ -19,14 +19,14 @@ class TestsQuestionsControllerTest extends ControllerTestCase {
 		'app.person',
 		'app.progress',
 		'app.subcategory',
-		'app.grade',
 		'app.category',
+		'app.subject',
+		'app.tests_subject',
+		'app.grade',
 		'app.question',
 		'app.answer',
 		'app.scores_answer',
-		'app.questions_category',
-		'app.questions_subcategory',
-		'app.tests_category'
+		'app.questions_subcategory'
 	);
 
 /**
@@ -35,6 +35,7 @@ class TestsQuestionsControllerTest extends ControllerTestCase {
  * @return void
  */
 	public function testIndex() {
+		$this->markTestIncomplete('testIndex not implemented.');
 	}
 
 /**
@@ -43,6 +44,7 @@ class TestsQuestionsControllerTest extends ControllerTestCase {
  * @return void
  */
 	public function testView() {
+		$this->markTestIncomplete('testView not implemented.');
 	}
 
 /**
@@ -51,6 +53,7 @@ class TestsQuestionsControllerTest extends ControllerTestCase {
  * @return void
  */
 	public function testAdd() {
+		$this->markTestIncomplete('testAdd not implemented.');
 	}
 
 /**
@@ -59,6 +62,7 @@ class TestsQuestionsControllerTest extends ControllerTestCase {
  * @return void
  */
 	public function testEdit() {
+		$this->markTestIncomplete('testEdit not implemented.');
 	}
 
 /**
@@ -67,6 +71,7 @@ class TestsQuestionsControllerTest extends ControllerTestCase {
  * @return void
  */
 	public function testDelete() {
+		$this->markTestIncomplete('testDelete not implemented.');
 	}
 
 }

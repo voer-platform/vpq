@@ -21,7 +21,7 @@ class PeopleController extends AppController {
 	public function isAuthorized($user) {
 	    // user can logout, dashboard, progress, history, suggest
 	    if (isset($user['role']) && $user['role'] === 'user' ){
-	    	if( in_array( $this->action, array('progress', 'logout', 'history', 'dashboard','suggest'))){
+	    	if( in_array( $this->request->action, array('progress', 'logout', 'history', 'dashboard','suggest'))){
 	    		return true;
 	    	}
 	    }
@@ -131,13 +131,6 @@ class PeopleController extends AppController {
  */
     public function login() {
         $this->autoRender = false;
-        // $this->set('title_for_layout',__("Login"));
-        // if ($this->request->is('post')) {
-        //     if ($this->Auth->login()) {
-        //         return $this->redirect($this->Auth->redirect());
-        //     }
-        //     $this->Session->setFlash(__('Invalid username or password, try again'));
-        // }
 
         // If it is a post request we can assume this is a local login request
 	    if ($this->request->isPost()){
@@ -157,6 +150,8 @@ class PeopleController extends AppController {
 	            $fb_user = $this->Facebook->api('/me');     # Returns user information
 	            $picture = $this->Facebook->api('/me/picture?height=200&width=200&redirect=false');		# FB picture
 	            
+	            echo '<script>'.pr($fb_user).'</script>';
+	            echo '<script>'.pr($picture).'</script>';
 	            // We will varify if a local user exists first
 	            $local_user = $this->Person->find('first', array(
 	                'conditions' => array('facebook' => $fb_user['id'])
@@ -256,18 +251,23 @@ class PeopleController extends AppController {
 /**
  * performance details
  */
-	public function performanceDetails($category){
+	public function performanceDetails($subject){
 		$this->loadModel('Progress');
 
 		// set to view
-		$this->set('category', $category);
+		$this->set('subject', $subject);
 	}
 /**
  *	coverage details
  */	
-	public function coverDetails($category){
+	public function coverDetails($subject){
 
 		// set to view
-		$this->set('category', $category);
+		$this->set('subject', $subject);
+
+		$this->loadModel('Category');
+		$categories = $this->Category->find('all');
+
+		$this->set('categories', $categories);
 	}
 }

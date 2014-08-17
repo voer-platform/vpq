@@ -94,7 +94,7 @@ class ExtractTaskTest extends CakeTestCase {
 		$pattern = '/"Plural-Forms\: nplurals\=INTEGER; plural\=EXPRESSION;/';
 		$this->assertRegExp($pattern, $result);
 
-		// home_default.ctp
+		// home.ctp
 		$pattern = '/msgid "Your tmp directory is writable."\nmsgstr ""\n/';
 		$this->assertRegExp($pattern, $result);
 
@@ -351,6 +351,9 @@ class ExtractTaskTest extends CakeTestCase {
 
 		$pattern = '#msgid "Post body is super required"#';
 		$this->assertRegExp($pattern, $result);
+
+		$this->assertContains('msgid "double \\"quoted\\" validation"', $result, 'Strings with quotes not handled correctly');
+		$this->assertContains("msgid \"single 'quoted' validation\"", $result, 'Strings with quotes not handled correctly');
 	}
 
 /**

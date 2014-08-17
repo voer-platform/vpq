@@ -15,18 +15,17 @@ class QuestionsControllerTest extends ControllerTestCase {
 	public $fixtures = array(
 		'app.question',
 		'app.answer',
-		'app.score',
-		'app.test',
-		'app.category',
 		'app.subcategory',
-		'app.grade',
-		'app.questions_subcategory',
-		'app.questions_category',
-		'app.tests_category',
-		'app.tests_question',
+		'app.category',
+		'app.subject',
+		'app.test',
+		'app.score',
 		'app.person',
 		'app.progress',
-		'app.scores_answer'
+		'app.tests_question',
+		'app.tests_subject',
+		'app.grade',
+		'app.questions_subcategory'
 	);
 
 /**
@@ -35,6 +34,7 @@ class QuestionsControllerTest extends ControllerTestCase {
  * @return void
  */
 	public function testIndex() {
+		$this->markTestIncomplete('testIndex not implemented.');
 	}
 
 /**
@@ -43,6 +43,7 @@ class QuestionsControllerTest extends ControllerTestCase {
  * @return void
  */
 	public function testView() {
+		$this->markTestIncomplete('testView not implemented.');
 	}
 
 /**
@@ -51,6 +52,7 @@ class QuestionsControllerTest extends ControllerTestCase {
  * @return void
  */
 	public function testAdd() {
+		$this->markTestIncomplete('testAdd not implemented.');
 	}
 
 /**
@@ -59,6 +61,7 @@ class QuestionsControllerTest extends ControllerTestCase {
  * @return void
  */
 	public function testEdit() {
+		$this->markTestIncomplete('testEdit not implemented.');
 	}
 
 /**
@@ -67,6 +70,7 @@ class QuestionsControllerTest extends ControllerTestCase {
  * @return void
  */
 	public function testDelete() {
+		$this->markTestIncomplete('testDelete not implemented.');
 	}
 
 }

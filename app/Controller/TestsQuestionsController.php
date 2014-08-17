@@ -55,6 +55,9 @@ class TestsQuestionsController extends AppController {
 				$this->Session->setFlash(__('The tests question could not be saved. Please, try again.'));
 			}
 		}
+		$tests = $this->TestsQuestion->Test->find('list');
+		$questions = $this->TestsQuestion->Question->find('list');
+		$this->set(compact('tests', 'questions'));
 	}
 
 /**
@@ -79,6 +82,9 @@ class TestsQuestionsController extends AppController {
 			$options = array('conditions' => array('TestsQuestion.' . $this->TestsQuestion->primaryKey => $id));
 			$this->request->data = $this->TestsQuestion->find('first', $options);
 		}
+		$tests = $this->TestsQuestion->Test->find('list');
+		$questions = $this->TestsQuestion->Question->find('list');
+		$this->set(compact('tests', 'questions'));
 	}
 
 /**
@@ -93,11 +99,12 @@ class TestsQuestionsController extends AppController {
 		if (!$this->TestsQuestion->exists()) {
 			throw new NotFoundException(__('Invalid tests question'));
 		}
-		$this->request->onlyAllow('post', 'delete');
+		$this->request->allowMethod('post', 'delete');
 		if ($this->TestsQuestion->delete()) {
 			$this->Session->setFlash(__('The tests question has been deleted.'));
 		} else {
 			$this->Session->setFlash(__('The tests question could not be deleted. Please, try again.'));
 		}
 		return $this->redirect(array('action' => 'index'));
-	}}
+	}
+}

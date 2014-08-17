@@ -1,6 +1,6 @@
 <div class='doTest'>
 	<h2><?php echo 'Do your Test'?></h2>
-	<?php echo ucfirst($category). ' test. Timelimit: ', $duration, ' minutes, questions: ',	$numberOfQuestions?>
+	<?php echo ucfirst($subject). ' test. Timelimit: ', $duration, ' minutes, questions: ',	$numberOfQuestions?>
 
 	<?php echo $this->Form->create('TestAnswers', array( 'url' => 'score')); ?>
 		<?php foreach ($questions as $index => $question): ?>
@@ -8,7 +8,9 @@
 				<fieldset>
 					<?php echo "<b>",$index+1, "</b>  "; ?>
 					<?php echo h($question['Question']['content']); ?>
+
 					<!-- debug -->
+					<?php echo '=='.$question['Question']['id'].'=='; ?>
 					<?php foreach($question['Subcategory'] as $sub){
 						echo $sub['id'].' ';
 						} ?>
