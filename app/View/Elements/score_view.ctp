@@ -1,6 +1,5 @@
 <div class='score-view'>
 	<?php foreach($scoreData as $index => $data): ?>
-		<?php pr($data); ?>
 		<?php echo '<b>'.($index+1).'</b>'; ?>
 		<?php echo $questionsData[$index]['Question']['content'] ?>
 		</br>
