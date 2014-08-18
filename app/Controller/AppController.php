@@ -76,6 +76,9 @@ class AppController extends Controller {
             'appId'     =>  Configure::read('Facebook.AppID'),
             'secret'    =>  Configure::read('Facebook.AppSecret')
         ));
+
+        // set default language is Vietnamese
+        Configure::write('Config.language', 'vie');
     }
 
     /**

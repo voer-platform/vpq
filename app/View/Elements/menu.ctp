@@ -47,7 +47,7 @@
             </ul>
           </li>
         <?php else: ?>
-          <li><?php echo $this->Html->link('Login', '#', array('data-toggle' => 'modal', 'data-target' => '#modal-login')); ?></li>
+          <li><?php echo $this->Html->link(__('Login'), '#', array('data-toggle' => 'modal', 'data-target' => '#modal-login')); ?></li>
       	<?php endif; ?>
       </ul>
     </div><!--/.nav-collapse -->

@@ -24,9 +24,9 @@
             </div>
             <div class = 'row row-2'>
                 <div class='col-lg-5 col-md-8 col-sm- col-xs-9 col-lg-offset-3 col-md-offset-3'>
-                    Performance:
+                    <?php echo __('Performance:'); ?>
                     <?php echo $this->Html->link($performance['physics'].'%', array('controller' => 'People', 'action' => 'performanceDetails', 2) ) ?>
-                    (latest 10 tests).
+                    <?php echo __('(latest 10 tests).'); ?>
                 </div>
             </div>
         </div>
