@@ -179,7 +179,7 @@ class PeopleController extends AppController {
 	                    'facebook'		=> $fb_user['id'],
 	                    'password'      => AuthComponent::password(uniqid(md5(mt_rand()))), # Set random password
 	                    'first_name'	=> $fb_user['first_name'],
-	                    'last_name'		>= $fb_user['last_name'],
+	                    'last_name'		=> $fb_user['last_name'],
 	                    'role'          => 'user',
 	                    'date_created'	=> date("Y-m-d H:i:s"),
 	                    'image'			=> $picture['data']['url']
@@ -189,7 +189,7 @@ class PeopleController extends AppController {
 	                $this->Person->save($data, array('validate' => false));
 
 	                // After registration we will redirect them back here so they will be logged in
-	                $this->redirect(array('controller' => 'people', 'action' => 'login'), array('code' => true));
+	                $this->redirect(Router::url('/people/login?code=true', true));
 	            }
 	        }
 

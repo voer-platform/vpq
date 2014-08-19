@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2014-08-19 11:03+0700\n"
+"POT-Creation-Date: 2014-08-19 11:30+0700\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -1048,6 +1048,10 @@ msgstr ""
 #: View/Progresses/index.ctp:44
 #: View/Progresses/view.ctp:27
 msgid "New Progress"
+msgstr ""
+
+#: View/People/dashboard.ctp:6
+msgid "Your subjects"
 msgstr ""
 
 #: View/People/dashboard.ctp:17

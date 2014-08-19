@@ -3,7 +3,7 @@
 
 <div class='dashboard'>
     <div class ='head'>  
-        <h2>Your subjects</h2>
+        <h2><?php echo __('Your subjects'); ?></h2>
     </div>
   
     <!-- Progress -->
