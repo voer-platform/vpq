@@ -2,7 +2,7 @@
 
 <div class='container'>
     <div class="jumbotron">
-        <?php if(empty($this->Session->read('Auth.User'))): ?>
+        <?php if(empty($user)): ?>
             <h1>PLS</h1>
             <p class="lead"><?php echo __('Join us to access Open, Free, Huge pool of questions in many categories'); ?>!</p>
             <?php echo $this->Html->link(__('Join us!'), '#', array('data-toggle' => 'modal', 'data-target' => '#modal-login', 'class' => "btn btn-lg btn-primary")); ?>
