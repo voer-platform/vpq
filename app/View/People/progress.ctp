@@ -4,7 +4,7 @@
 	<table class = 'table table-striped table-condensed table-hover table-bordered'>
 	<?php
 		if( !empty($progresses) ){
-			echo $this->Html->tableHeaders(array('SubCategory', 'Progress', 'Date'));
+			echo $this->Html->tableHeaders(array(__('SubCategory'), __('Progress'), __('Date')));
 			foreach($progresses as $progress){
 				echo $this->Html->tableCells(array(
 					$progress['SubCategory']['name'],

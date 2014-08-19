@@ -226,28 +226,5 @@ class Progress extends AppModel {
         }
         
         return json_encode($json);        
-    }
-    
-/**
- * get overall performance
- * @param: personId
- * @return: overall
- */
-    public function overall($personId, $subject){
-        //query
-        $results = $this->query(
-            'select sum(Progress.progress) as progress, sum(Progress.total) as total
-            from progresses Progress
-            where Progress.person_id = '.$personId.
-            ' limit 10'
-
-           );
-        if(!empty($results)){
-        	return $results[0][0]['total'] != 0 ? round($results[0][0]['progress'] / $results[0][0]['total']*100, 0) : 0;
-        }
-        else{
-        	return 0;
-        }
-    }
-	
+    }	
 }

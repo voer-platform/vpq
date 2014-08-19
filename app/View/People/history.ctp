@@ -4,13 +4,13 @@
 	<table class = 'table table-striped table-condensed table-hover table-bordered'>
 	<?php
 		if( !empty($scores) ){
-			echo $this->Html->tableHeaders(array('Test ID', 'Time taken', 'Time limit','Score'));
+			echo $this->Html->tableHeaders(array(__('Test ID'), __('Time taken'), __('Time limit'),__('Score')));
 			foreach($scores as $score){
 				echo $this->Html->tableCells(array(
 					$score['Score']['test_id'],
 					$score['Score']['time_taken'],
-					$score['Test']['time_limit'].' mins',
-					round($score['Score']['score']*100,0).'%'
+					$score['Test']['time_limit'].' '.__('mins'),
+					(round($score['Score']['score']/$score['Test']['number_questions'], 2)*100).'%'
 					));
 			}
 		}

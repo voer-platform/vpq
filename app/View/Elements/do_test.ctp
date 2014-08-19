@@ -1,6 +1,6 @@
 <div class='doTest'>
 	<h2><?php echo 'Do your Test'?></h2>
-	<?php echo ucfirst($subject). ' test. Timelimit: ', $duration, ' minutes, questions: ',	$numberOfQuestions?>
+	<?php echo __('Test').': '.ucfirst($subject).' '.__('Timelimit').': ', $duration, ' '.__('minutes'), __('questions').': ',	$numberOfQuestions?>
 
 	<?php echo $this->Form->create('TestAnswers', array( 'url' => 'score')); ?>
 		<?php foreach ($questions as $index => $question): ?>
@@ -41,6 +41,6 @@
 				'value' => $numberOfQuestions,
 				'type' => 'hidden'
 				));?>		 			
-	<?php echo $this->Form->end(__('Submit your answers')); ?>
+	<?php echo $this->Form->end(array('label' => __('Submit your answers'), 'class' => 'btn btn-primary btn-lg')); ?>
 
 </div>

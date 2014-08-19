@@ -1,4 +1,9 @@
 <?php echo $this->Html->css('score'); ?>
+<ol class="breadcrumb">
+  <li><?php echo $this->Html->link(__('Dashboard'), array('controller' => 'People', 'action' => 'dashboard')); ?></li>
+  <li class="active"><?php echo __('View Score'); ?></li>
+</ol>
+
 <div id = 'score'>
 	<h2><?php echo __('Your result'); ?></h2>
 
@@ -30,12 +35,15 @@
 	?>
 	</div>
 	</br>
-
-	<?php echo $this->Html->link(__('Return to Dashboard'), array('controller' => 'people', 'action' => 'dashboard'), array('class' => 'btn btn-primary btn-sm') ); ?>
+	<center>
+	<?php echo $this->Html->link(__('Return to Dashboard'), array('controller' => 'people', 'action' => 'dashboard'), array('class' => 'btn btn-primary btn-md') ); ?>
+	</center>
 	<hr>
+
 	<h2><?php echo __('Details'); ?></h2>
 	<?php echo $this->element('score_view'); ?>
 	<hr>
-
-	<?php echo $this->Html->link(__('Return to Dashboard'), array('controller' => 'people', 'action' => 'dashboard'), array('class' => 'btn btn-primary btn-sm') ); ?>
+	<center>
+	<?php echo $this->Html->link(__('Return to Dashboard'), array('controller' => 'people', 'action' => 'dashboard'), array('class' => 'btn btn-primary btn-md') ); ?>
+	</center>
 </div>

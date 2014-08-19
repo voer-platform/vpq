@@ -1,6 +1,10 @@
 <?php echo $this->Html->css('dashboard.css');?>
 <?php echo $this->Html->css('tree.css'); ?>
 
+<ol class="breadcrumb">
+  <li class="active"><?php echo __('Dashboard'); ?></li>
+</ol>
+
 <div class='dashboard'>
     <div class ='head'>  
         <h2><?php echo __('Your subjects'); ?></h2>
@@ -19,7 +23,7 @@
                     </div>
                 </div>
                 <div class='col-lg-1 col-md-1 col-sm-1 col-xs-1'>
-                    <?php echo $this->Html->link(__('Take a Physics test'), array('controller' => 'tests', 'action' => 'chooseTest', 2), array('class' => 'btn btn-primary btn-sm')); ?>
+                    <?php echo $this->Html->link(__('Take a Physics test'), array('controller' => 'tests', 'action' => 'chooseTest', 2), array('class' => 'btn btn-primary btn-md')); ?>
                 </div>
             </div>
             <div class = 'row row-2'>
@@ -39,7 +43,7 @@
                     </div>
                 </div>
                 <div class='col-lg-1 col-md-1 col-sm-1 col-xs-1'>
-                    <?php echo $this->Html->link(__('Take a Maths test'), array('controller' => 'tests', 'action' => 'chooseTest', 'maths'), array('class' => 'btn btn-primary btn-sm')); ?>
+                    <?php echo $this->Html->link(__('Take a Maths test'), array('controller' => 'tests', 'action' => 'chooseTest', 'maths'), array('class' => 'btn btn-primary btn-md')); ?>
                 </div>
             </div>
             <div class = 'row row-2'>
@@ -56,7 +60,7 @@
                     </div>
                 </div>
                 <div class='col-lg-1 col-md-1 col-sm-1 col-xs-1'>
-                    <?php echo $this->Html->link(__('Take a Chemist test'), array('controller' => 'tests', 'action' => 'chooseTest', 'chemist'), array('class' => 'btn btn-primary btn-sm')); ?>
+                    <?php echo $this->Html->link(__('Take a Chemist test'), array('controller' => 'tests', 'action' => 'chooseTest', 'chemist'), array('class' => 'btn btn-primary btn-md')); ?>
                 </div>
             </div>
             <div class = 'row row-2'>

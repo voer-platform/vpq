@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2014-08-19 11:30+0700\n"
+"POT-Creation-Date: 2014-08-19 21:51+0700\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -284,6 +284,21 @@ msgstr ""
 
 #: Controller/TestsSubjectsController.php:106
 msgid "The tests subject could not be deleted. Please, try again."
+msgstr ""
+
+#: Model/Score.php:213
+#: View/People/progress.ctp:7
+msgid "Date"
+msgstr ""
+
+#: Model/Score.php:213
+#: View/Answers/view.ctp:47
+#: View/People/history.ctp:7
+#: View/People/view.ctp:98
+#: View/Scores/view.ctp:2;19
+#: View/ScoresQuestions/view.ctp:9
+#: View/Tests/view.ctp:44
+msgid "Score"
 msgstr ""
 
 #: View/Admin/index.ctp:5
@@ -737,14 +752,6 @@ msgstr ""
 msgid "Person Id"
 msgstr ""
 
-#: View/Answers/view.ctp:47
-#: View/People/view.ctp:98
-#: View/Scores/view.ctp:2;19
-#: View/ScoresQuestions/view.ctp:9
-#: View/Tests/view.ctp:44
-msgid "Score"
-msgstr ""
-
 #: View/Answers/view.ctp:48
 #: View/People/view.ctp:99
 #: View/Scores/view.ctp:24
@@ -903,6 +910,27 @@ msgstr ""
 msgid "Category Id"
 msgstr ""
 
+#: View/Elements/do_test.ctp:3
+#: View/Scores/view.ctp:9
+#: View/Tests/choose_test.ctp:10
+#: View/Tests/view.ctp:2
+#: View/TestsQuestions/view.ctp:9
+#: View/TestsSubjects/view.ctp:9
+msgid "Test"
+msgstr ""
+
+#: View/Elements/do_test.ctp:3
+msgid "Timelimit"
+msgstr ""
+
+#: View/Elements/do_test.ctp:3
+msgid "minutes"
+msgstr ""
+
+#: View/Elements/do_test.ctp:3
+msgid "questions"
+msgstr ""
+
 #: View/Elements/do_test.ctp:44
 msgid "Submit your answers"
 msgstr ""
@@ -920,6 +948,12 @@ msgid "CLose"
 msgstr ""
 
 #: View/Elements/menu.ctp:22;44
+#: View/People/cover_details.ctp:2
+#: View/People/dashboard.ctp:5
+#: View/People/performance_details.ctp:7
+#: View/Scores/view_details.ctp:3
+#: View/Tests/choose_test.ctp:4
+#: View/Tests/do_test.ctp:2
 msgid "Dashboard"
 msgstr ""
 
@@ -928,6 +962,7 @@ msgid "History"
 msgstr ""
 
 #: View/Elements/menu.ctp:24
+#: View/People/progress.ctp:7
 #: View/People/view.ctp:66
 #: View/Progresses/view.ctp:2;14
 msgid "Progress"
@@ -986,6 +1021,7 @@ msgid "New Grade"
 msgstr ""
 
 #: View/Grades/view.ctp:2
+#: View/People/cover_details.ctp:13
 msgid "Grade"
 msgstr ""
 
@@ -1050,31 +1086,32 @@ msgstr ""
 msgid "New Progress"
 msgstr ""
 
-#: View/People/dashboard.ctp:6
-msgid "Your subjects"
-msgstr ""
-
-#: View/People/dashboard.ctp:17
+#: View/People/cover_details.ctp:3
+#: View/People/dashboard.ctp:21
 msgid "Covered"
 msgstr ""
 
-#: View/People/dashboard.ctp:22
+#: View/People/dashboard.ctp:10
+msgid "Your subjects"
+msgstr ""
+
+#: View/People/dashboard.ctp:26
 msgid "Take a Physics test"
 msgstr ""
 
-#: View/People/dashboard.ctp:27
+#: View/People/dashboard.ctp:31
 msgid "Performance:"
 msgstr ""
 
-#: View/People/dashboard.ctp:29
+#: View/People/dashboard.ctp:33
 msgid "(latest 10 tests)."
 msgstr ""
 
-#: View/People/dashboard.ctp:42
+#: View/People/dashboard.ctp:46
 msgid "Take a Maths test"
 msgstr ""
 
-#: View/People/dashboard.ctp:59
+#: View/People/dashboard.ctp:63
 msgid "Take a Chemist test"
 msgstr ""
 
@@ -1085,6 +1122,23 @@ msgstr ""
 
 #: View/People/history.ctp:3
 msgid "Your tests history"
+msgstr ""
+
+#: View/People/history.ctp:7
+msgid "Test ID"
+msgstr ""
+
+#: View/People/history.ctp:7
+msgid "Time taken"
+msgstr ""
+
+#: View/People/history.ctp:7
+msgid "Time limit"
+msgstr ""
+
+#: View/People/history.ctp:12
+#: View/Tests/choose_test.ctp:15
+msgid "mins"
 msgstr ""
 
 #: View/People/history.ctp:18
@@ -1108,8 +1162,22 @@ msgstr ""
 msgid "New Person"
 msgstr ""
 
+#: View/People/performance_details.ctp:8
+#: View/Scores/view_details.ctp:43
+#: View/Tests/score.ctp:37
+msgid "Details"
+msgstr ""
+
+#: View/People/performance_details.ctp:12
+msgid "Latest performance on"
+msgstr ""
+
 #: View/People/progress.ctp:3
 msgid "Your performance"
+msgstr ""
+
+#: View/People/progress.ctp:7
+msgid "SubCategory"
 msgstr ""
 
 #: View/People/progress.ctp:17
@@ -1335,59 +1403,51 @@ msgstr ""
 msgid "Scores"
 msgstr ""
 
-#: View/Scores/view.ctp:9
-#: View/Tests/view.ctp:2
-#: View/TestsQuestions/view.ctp:9
-#: View/TestsSubjects/view.ctp:9
-msgid "Test"
-msgstr ""
-
 #: View/Scores/view.ctp:40
 msgid "Delete Score"
 msgstr ""
 
-#: View/Scores/view_details.ctp:3
+#: View/Scores/view_details.ctp:4
+msgid "View Score"
+msgstr ""
+
+#: View/Scores/view_details.ctp:8
 #: View/Tests/score.ctp:4
 msgid "Your result"
 msgstr ""
 
-#: View/Scores/view_details.ctp:6
+#: View/Scores/view_details.ctp:11
 #: View/Tests/score.ctp:7
 msgid "Your score for this test:"
 msgstr ""
 
-#: View/Scores/view_details.ctp:10
+#: View/Scores/view_details.ctp:15
 #: View/Tests/score.ctp:11
 msgid "questions correct."
 msgstr ""
 
-#: View/Scores/view_details.ctp:16
+#: View/Scores/view_details.ctp:21
 msgid "Exellent, perfect!"
 msgstr ""
 
-#: View/Scores/view_details.ctp:19
+#: View/Scores/view_details.ctp:24
 msgid "Good job!"
 msgstr ""
 
-#: View/Scores/view_details.ctp:22
+#: View/Scores/view_details.ctp:27
 msgid "Keep going."
 msgstr ""
 
-#: View/Scores/view_details.ctp:25
+#: View/Scores/view_details.ctp:30
 msgid "Try harder."
 msgstr ""
 
-#: View/Scores/view_details.ctp:28
+#: View/Scores/view_details.ctp:33
 msgid "Do you need a tutor?"
 msgstr ""
 
-#: View/Scores/view_details.ctp:34;40
+#: View/Scores/view_details.ctp:39;47
 msgid "Return to Dashboard"
-msgstr ""
-
-#: View/Scores/view_details.ctp:36
-#: View/Tests/score.ctp:37
-msgid "Details"
 msgstr ""
 
 #: View/ScoresQuestions/add.ctp:4
@@ -1450,6 +1510,18 @@ msgstr ""
 
 #: View/Tests/add.ctp:4
 msgid "Add Test"
+msgstr ""
+
+#: View/Tests/choose_test.ctp:5
+msgid "Choose Test"
+msgstr ""
+
+#: View/Tests/choose_test.ctp:9
+msgid "Choose time for the test"
+msgstr ""
+
+#: View/Tests/do_test.ctp:3
+msgid "Do test"
 msgstr ""
 
 #: View/Tests/edit.ctp:4

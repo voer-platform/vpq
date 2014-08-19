@@ -21,7 +21,7 @@ class PeopleController extends AppController {
 	public function isAuthorized($user) {
 	    // user can logout, dashboard, progress, history, suggest
 	    if (isset($user['role']) && $user['role'] === 'user' ){
-	    	if( in_array( $this->request->action, array('progress', 'logout', 'history', 'dashboard','suggest', 'coverDetails', 'performanceDetails'))){
+	    	if( in_array( $this->request->action, array('view','progress', 'login', 'logout', 'history', 'dashboard','suggest', 'coverDetails', 'performanceDetails'))){
 	    		return true;
 	    	}
 	    }
@@ -213,9 +213,9 @@ class PeopleController extends AppController {
         $this->layout = 'question_bank';
         $this->set('title_for_layout',"Dashboard");
 
-        $this->loadModel('Progress');
+        $this->loadModel('Score');
         $performance = array();
-        $performance['physics'] = $this->Progress->overall($this->Session->read('Auth.User')['id'], 'physics');
+        $performance['physics'] = $this->Score->overall($this->Session->read('Auth.User')['id'], 2);
         $this->set('performance', $performance);
     }
 
@@ -250,22 +250,40 @@ class PeopleController extends AppController {
  * performance details
  */
 	public function performanceDetails($subject){
-		$this->loadModel('Progress');
+		
+		$ajax = false;
+		if( $this->request->is('POST')){
+        
+            $this->layout = null;
+            $this->loadModel('Score');
+			$user = $this->Session->read('Auth.User');
+			$result = $this->Score->getScoresForChart($user['id'], $subject);
+            $this->set('result',$result);
+        
+            $ajax = true;
+        }
+        else if( $this->request->is('GET')){
+        	$this->layout = 'question_bank';
 
-		// set to view
-		$this->set('subject', $subject);
+			// set to view
+			$this->set('subject', $subject);
+        }
+        $this->set('ajax',$ajax);
 	}
 /**
  *	coverage details
  */	
 	public function coverDetails($subject){
+		$this->layout = 'question_bank';
 
 		// set to view
 		$this->set('subject', $subject);
 
 		$this->loadModel('Category');
 		$categories = $this->Category->find('all');
-
+		$this->loadModel('Grade');
+		$grades = $this->Grade->find('all', array('recursive' => -1));
+		$this->set('grades', $grades);
 		$this->set('categories', $categories);
 	}
 }

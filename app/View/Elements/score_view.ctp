@@ -12,9 +12,9 @@
 				<?php else: ?>
 					<div class='score-answer-normal'>
 				<?php endif; ?>
-
+				
 				<!-- answer of user -->
-				<?php if(empty( $data['ScoresQuestion']['answer'] ) ): ?>
+				<?php if($data['ScoresQuestion']['answer'] == '' ): ?>
 					<input type='radio' name='<?php echo $data['ScoresQuestion']['question_id']; ?>' id='<?php echo "TestAnswer".$answerId; ?>' disabled >
 				<?php elseif( $data['ScoresQuestion']['answer'] == $answerId): ?>
 					<input type='radio' name='<?php echo $data['ScoresQuestion']['question_id']; ?>' id='<?php echo "TestAnswer".$answerId; ?>' checked='checked' disabled >

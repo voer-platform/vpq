@@ -76,15 +76,11 @@ class Score extends AppModel {
  * get all user
  */
 	public function getAllScores($personId){
+		$this->unBindModel(array ('hasAndBelongsToMany' => 'Question', 'belongsTo' => 'Person'));
+
 		return $this->find('all', array(
 				'conditions' => array(
-					'Score.person_id' => $personId,
-				),
-				'fields' => array(
-					'Score.score',
-					'Score.time_taken',
-					'Score.test_id',
-					'Test.time_limit'	
+					'Score.person_id' => $personId,	
 				),
 				'order' => array('time_taken' => 'desc')
 			));
@@ -195,4 +191,63 @@ class Score extends AppModel {
 
         return $scoreId;
 	}
+
+/**
+ * chart Google
+ *	@param user id
+ *	@return json_encode string
+ */
+	public function getScoresForChart($person_id, $subject_id){
+		$this->unBindModel(array ('hasAndBelongsToMany' => 'Question'));
+		$results = $this->query(
+			'select * from scores Score
+			 join tests Test
+			   on Test.id = Score.test_id
+			 join tests_subjects TestsSubject
+			   on TestsSubject.test_id = Score.test_id
+			 where Score.person_id = '.$person_id.' '.
+			 'and TestsSubject.subject_id = '.$subject_id.' '.
+			 'order by Score.time_taken asc
+			  limit 10;');
+		$json = array();
+		$json[] = array(__('Date'), __('Score'));
+		if($results){
+			foreach ($results as $result) {
+				$json[] = array($result['Score']['time_taken'], round($result['Score']['score']/$result['Test']['number_questions'], 2));
+			}
+		}
+
+		return json_encode($json);
+	}
+/**
+ * get average performance curret 10 tests
+ * @param: personId
+ * @return: overall
+ */
+    public function overall($person_id, $subject_id){
+        //query
+        $results = $this->query(
+			'select * from scores Score
+			 join tests Test
+			   on Test.id = Score.test_id
+			 join tests_subjects TestsSubject
+			   on TestsSubject.test_id = Score.test_id
+			 where Score.person_id = '.$person_id.' '.
+			 'and TestsSubject.subject_id = '.$subject_id.' '.
+			 'order by Score.time_taken asc
+			  limit 10;');
+
+        $score = 0;
+        $total = 0;
+        if($results){
+			foreach ($results as $result) {
+				$score += $result['Score']['score'];
+				$total += $result['Test']['number_questions'];
+			}
+			return round($score/$total, 2)*100;
+		}
+        else{
+        	return 0;
+        }
+    }	
 }

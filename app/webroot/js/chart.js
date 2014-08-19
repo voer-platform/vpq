@@ -3,7 +3,8 @@ google.setOnLoadCallback(drawChart);
 
 var ajaxData = null;
 var subject = $('#js-subject').text();
-var URL = '../../progresses/ajax';
+// var URL = '../Progresses/ajax';
+var URL = "<?php echo Router::url(array('controller'=>'Progresses','action'=>'ajax'));?>";
 
 // get chart data from ajax call
 $.ajax({
