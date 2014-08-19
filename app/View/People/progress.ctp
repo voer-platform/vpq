@@ -1,6 +1,6 @@
 <div class='container'>
 
-	<h2>Your performance</h2>
+	<h2><?php echo __('Your performance'); ?></h2>
 	<table class = 'table table-striped table-condensed table-hover table-bordered'>
 	<?php
 		if( !empty($progresses) ){
@@ -14,7 +14,7 @@
 			}
 		}
 		else{
-			echo 'Oops... It looks like you have no progresses at all....', '<br>';
+			echo __('Oops... It looks like you have no progresses at all....'), '<br>';
 		}
 	?>
 	</table>

@@ -21,7 +21,7 @@ class PeopleController extends AppController {
 	public function isAuthorized($user) {
 	    // user can logout, dashboard, progress, history, suggest
 	    if (isset($user['role']) && $user['role'] === 'user' ){
-	    	if( in_array( $this->request->action, array('progress', 'logout', 'history', 'dashboard','suggest'))){
+	    	if( in_array( $this->request->action, array('progress', 'logout', 'history', 'dashboard','suggest', 'coverDetails', 'performanceDetails'))){
 	    		return true;
 	    	}
 	    }
@@ -149,9 +149,7 @@ class PeopleController extends AppController {
 	        if ($fb_user){
 	            $fb_user = $this->Facebook->api('/me');     # Returns user information
 	            $picture = $this->Facebook->api('/me/picture?height=200&width=200&redirect=false');		# FB picture
-	            
-	            echo '<script>'.pr($fb_user).'</script>';
-	            echo '<script>'.pr($picture).'</script>';
+	
 	            // We will varify if a local user exists first
 	            $local_user = $this->Person->find('first', array(
 	                'conditions' => array('facebook' => $fb_user['id'])

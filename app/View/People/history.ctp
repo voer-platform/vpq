@@ -1,6 +1,6 @@
 <div class='container'>
 
-	<h2>Your tests history</h2>
+	<h2><?php echo __('Your tests history'); ?></h2>
 	<table class = 'table table-striped table-condensed table-hover table-bordered'>
 	<?php
 		if( !empty($scores) ){
@@ -15,7 +15,7 @@
 			}
 		}
 		else{
-			echo 'Oops... It looks like you have no history....', '<br>';
+			echo __('Oops... It looks like you have no history....'), '<br>';
 		}
 	?>
 	</table>

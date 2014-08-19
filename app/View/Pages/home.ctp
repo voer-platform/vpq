@@ -8,7 +8,7 @@
             <?php echo $this->Html->link(__('Join us!'), '#', array('data-toggle' => 'modal', 'data-target' => '#modal-login', 'class' => "btn btn-lg btn-primary")); ?>
         <?php else: ?>
             <h1><?php echo __('How is your study?'); ?></h1>
-        	<p class="lead"><?php  echo 'Do not let your profile die...'; ?></p>
+        	<p class="lead"><?php  echo __('Do not let your profile die...'); ?></p>
             <?php echo $this->Html->link(__('Take a look'), array('controller' => 'people', 'action' => 'dashboard'), array('class' => "btn btn-lg btn-primary")); ?>
         <?php endif; ?>    
     </div>

@@ -14,7 +14,20 @@ class ScoresController extends AppController {
  * @var array
  */
 	public $components = array('Paginator');
+/**
+ * authorization
+ * 
+ */
+	public function isAuthorized($user) {
+	    // user can logout, dashboard, progress, history, suggest
+	    if (isset($user['role']) && $user['role'] === 'user' ){
+	    	if( in_array( $this->request->action, array('viewDetails'))){
+	    		return true;
+	    	}
+	    }
 
+	    return parent::isAuthorized($user);
+	}
 /**
  * index method
  *
