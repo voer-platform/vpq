@@ -22,9 +22,8 @@
           <li><?php echo $this->HTML->link(__('Dashboard'), array('controller' => 'people', 'action' => 'dashboard')); ?></li>
           <li><?php echo $this->HTML->link(__('History'), array('controller' => 'people', 'action' => 'history')); ?></li>
           <li><?php echo $this->HTML->link(__('Progress'), array('controller' => 'people', 'action' => 'progress')); ?></li>
-        <?php else: ?>
+        <?php endif; ?>
           <li><?php echo $this->HTML->link(__('About'), '/about'); ?></li>
-        <?php endif; ?>    
 
         <!-- if is admin -->
         <?php if($user['role'] === 'admin'): ?>

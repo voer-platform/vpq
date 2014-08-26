@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2014-08-19 21:51+0700\n"
+"POT-Creation-Date: 2014-08-25 23:15+0700\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -78,31 +78,31 @@ msgstr ""
 msgid "The grade could not be deleted. Please, try again."
 msgstr ""
 
-#: Controller/PeopleController.php:61;93;118
+#: Controller/PeopleController.php:67;99;124
 msgid "Invalid person"
 msgstr ""
 
-#: Controller/PeopleController.php:76;97
+#: Controller/PeopleController.php:82;103
 msgid "The person has been saved."
 msgstr ""
 
-#: Controller/PeopleController.php:79;100
+#: Controller/PeopleController.php:85;106
 msgid "The person could not be saved. Please, try again."
 msgstr ""
 
-#: Controller/PeopleController.php:122
+#: Controller/PeopleController.php:128
 msgid "The person has been deleted."
 msgstr ""
 
-#: Controller/PeopleController.php:124
+#: Controller/PeopleController.php:130
 msgid "The person could not be deleted. Please, try again."
 msgstr ""
 
-#: Controller/PeopleController.php:140
+#: Controller/PeopleController.php:146
 msgid "Invalid Username or password. Try again."
 msgstr ""
 
-#: Controller/PeopleController.php:198
+#: Controller/PeopleController.php:204
 msgid "Something wrong, cannot log in. Please try again!"
 msgstr ""
 
@@ -910,7 +910,27 @@ msgstr ""
 msgid "Category Id"
 msgstr ""
 
+#: View/Elements/clock.ctp:5
+msgid "Time remains"
+msgstr ""
+
+#: View/Elements/clock.ctp:6
+msgid "Minutes"
+msgstr ""
+
+#: View/Elements/clock.ctp:7
+msgid "Seconds"
+msgstr ""
+
+#: View/Elements/clock.ctp:26
+msgid "Time's up!"
+msgstr ""
+
 #: View/Elements/do_test.ctp:3
+msgid "Do your Test"
+msgstr ""
+
+#: View/Elements/do_test.ctp:6
 #: View/Scores/view.ctp:9
 #: View/Tests/choose_test.ctp:10
 #: View/Tests/view.ctp:2
@@ -919,19 +939,19 @@ msgstr ""
 msgid "Test"
 msgstr ""
 
-#: View/Elements/do_test.ctp:3
+#: View/Elements/do_test.ctp:7
 msgid "Timelimit"
 msgstr ""
 
-#: View/Elements/do_test.ctp:3
+#: View/Elements/do_test.ctp:7
 msgid "minutes"
 msgstr ""
 
-#: View/Elements/do_test.ctp:3
-msgid "questions"
+#: View/Elements/do_test.ctp:8
+msgid "Number of questions"
 msgstr ""
 
-#: View/Elements/do_test.ctp:44
+#: View/Elements/do_test.ctp:51
 msgid "Submit your answers"
 msgstr ""
 
@@ -947,7 +967,7 @@ msgstr ""
 msgid "CLose"
 msgstr ""
 
-#: View/Elements/menu.ctp:22;44
+#: View/Elements/menu.ctp:22;43
 #: View/People/cover_details.ctp:2
 #: View/People/dashboard.ctp:5
 #: View/People/performance_details.ctp:7
@@ -972,19 +992,19 @@ msgstr ""
 msgid "About"
 msgstr ""
 
-#: View/Elements/menu.ctp:31
+#: View/Elements/menu.ctp:30
 msgid "Admin"
 msgstr ""
 
-#: View/Elements/menu.ctp:43
+#: View/Elements/menu.ctp:42
 msgid "Account info"
 msgstr ""
 
-#: View/Elements/menu.ctp:46
+#: View/Elements/menu.ctp:45
 msgid "Logout"
 msgstr ""
 
-#: View/Elements/menu.ctp:50
+#: View/Elements/menu.ctp:49
 msgid "Login"
 msgstr ""
 
@@ -1021,12 +1041,48 @@ msgid "New Grade"
 msgstr ""
 
 #: View/Grades/view.ctp:2
-#: View/People/cover_details.ctp:13
+#: View/People/cover_details.ctp:17
 msgid "Grade"
 msgstr ""
 
 #: View/Grades/view.ctp:20
 msgid "Delete Grade"
+msgstr ""
+
+#: View/Pages/about_us.ctp:3
+msgid "About us"
+msgstr ""
+
+#: View/Pages/about_us.ctp:7
+msgid "What is PLS?"
+msgstr ""
+
+#: View/Pages/about_us.ctp:8
+msgid "PLS - Personal Learning System, is a system help you review your knowledge by doing tests. System will help you keep track of your study and know what, where needs improvement. "
+msgstr ""
+
+#: View/Pages/about_us.ctp:10
+msgid "What kind of knowledge?"
+msgstr ""
+
+#: View/Pages/about_us.ctp:11
+msgid "Any kind, it could be school subjects, language, IT, industry, soft-skills, etc. anything. However, currently the system only support high school physics at the moment. "
+msgstr ""
+
+#: View/Pages/about_us.ctp:13
+msgid "Who should use PLS?"
+msgstr ""
+
+#: View/Pages/about_us.ctp:14
+msgid "Anyone is welcome."
+msgstr ""
+
+#: View/Pages/about_us.ctp:16
+msgid "Contacts"
+msgstr ""
+
+#: View/Pages/about_us.ctp:18
+msgid "For any questions, email us at: "
 msgstr ""
 
 #: View/Pages/home.ctp:7
@@ -1087,31 +1143,47 @@ msgid "New Progress"
 msgstr ""
 
 #: View/People/cover_details.ctp:3
-#: View/People/dashboard.ctp:21
+#: View/People/dashboard.ctp:24
 msgid "Covered"
+msgstr ""
+
+#: View/People/cover_details.ctp:8
+msgid "Your coverage for"
 msgstr ""
 
 #: View/People/dashboard.ctp:10
 msgid "Your subjects"
 msgstr ""
 
-#: View/People/dashboard.ctp:26
+#: View/People/dashboard.ctp:19
+msgid "Physics"
+msgstr ""
+
+#: View/People/dashboard.ctp:29
 msgid "Take a Physics test"
 msgstr ""
 
-#: View/People/dashboard.ctp:31
+#: View/People/dashboard.ctp:34
 msgid "Performance:"
 msgstr ""
 
-#: View/People/dashboard.ctp:33
+#: View/People/dashboard.ctp:36
 msgid "(latest 10 tests)."
 msgstr ""
 
-#: View/People/dashboard.ctp:46
+#: View/People/dashboard.ctp:43
+msgid "Maths"
+msgstr ""
+
+#: View/People/dashboard.ctp:52
 msgid "Take a Maths test"
 msgstr ""
 
 #: View/People/dashboard.ctp:63
+msgid "Chemist"
+msgstr ""
+
+#: View/People/dashboard.ctp:72
 msgid "Take a Chemist test"
 msgstr ""
 
@@ -1163,7 +1235,7 @@ msgid "New Person"
 msgstr ""
 
 #: View/People/performance_details.ctp:8
-#: View/Scores/view_details.ctp:43
+#: View/Scores/view_details.ctp:46
 #: View/Tests/score.ctp:37
 msgid "Details"
 msgstr ""
@@ -1411,42 +1483,42 @@ msgstr ""
 msgid "View Score"
 msgstr ""
 
-#: View/Scores/view_details.ctp:8
+#: View/Scores/view_details.ctp:9
 #: View/Tests/score.ctp:4
 msgid "Your result"
 msgstr ""
 
-#: View/Scores/view_details.ctp:11
+#: View/Scores/view_details.ctp:12
 #: View/Tests/score.ctp:7
 msgid "Your score for this test:"
 msgstr ""
 
-#: View/Scores/view_details.ctp:15
+#: View/Scores/view_details.ctp:16
 #: View/Tests/score.ctp:11
 msgid "questions correct."
 msgstr ""
 
-#: View/Scores/view_details.ctp:21
+#: View/Scores/view_details.ctp:22
 msgid "Exellent, perfect!"
 msgstr ""
 
-#: View/Scores/view_details.ctp:24
+#: View/Scores/view_details.ctp:25
 msgid "Good job!"
 msgstr ""
 
-#: View/Scores/view_details.ctp:27
+#: View/Scores/view_details.ctp:28
 msgid "Keep going."
 msgstr ""
 
-#: View/Scores/view_details.ctp:30
+#: View/Scores/view_details.ctp:31
 msgid "Try harder."
 msgstr ""
 
-#: View/Scores/view_details.ctp:33
+#: View/Scores/view_details.ctp:34
 msgid "Do you need a tutor?"
 msgstr ""
 
-#: View/Scores/view_details.ctp:39;47
+#: View/Scores/view_details.ctp:41;52
 msgid "Return to Dashboard"
 msgstr ""
 

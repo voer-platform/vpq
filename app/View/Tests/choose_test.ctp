@@ -7,7 +7,7 @@
 
 <div class="chooseTest">
 	<h2><?php echo __('Choose time for the test')?></h2>
-	<?php echo __('Test').': '.$subject; ?>
+	<?php echo __('Test').': '.$this->Name->subjectToName($subject); ?>
 	<div class='btn-groups'>
 		<?php
 			$times = array(5, 10, 15, 30, 60);

@@ -9,7 +9,7 @@
 </ol>
 
 <div class='performance'>
-	<h2><?php echo __('Latest performance on').' '.$subject; ?></h2>
+	<h2><?php echo __('Latest performance on').' '.$this->Name->subjectToName($subject); ?></h2>
 	<div id='chart'></div>
 
 </div>

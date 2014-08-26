@@ -207,8 +207,10 @@ class Score extends AppModel {
 			   on TestsSubject.test_id = Score.test_id
 			 where Score.person_id = '.$person_id.' '.
 			 'and TestsSubject.subject_id = '.$subject_id.' '.
-			 'order by Score.time_taken asc
+			 'order by Score.time_taken desc
 			  limit 10;');
+		$results = array_reverse($results);
+		
 		$json = array();
 		$json[] = array(__('Date'), __('Score'));
 		if($results){
@@ -234,7 +236,7 @@ class Score extends AppModel {
 			   on TestsSubject.test_id = Score.test_id
 			 where Score.person_id = '.$person_id.' '.
 			 'and TestsSubject.subject_id = '.$subject_id.' '.
-			 'order by Score.time_taken asc
+			 'order by Score.time_taken desc
 			  limit 10;');
 
         $score = 0;

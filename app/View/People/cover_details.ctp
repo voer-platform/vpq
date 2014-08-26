@@ -4,6 +4,10 @@
 </ol>
 <div class='cover'>
 
+  <center>
+    <h2><?php echo __('Your coverage for').' '.$this->Name->subjectToName($subject); ?></h2>
+  </center>
+
   <div class = 'row'>
     <!-- first -->
     <div class='col-lg-4 col-lg-offset-2'>

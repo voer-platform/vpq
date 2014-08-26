@@ -21,3 +21,26 @@
 body {
 	margin-bottom: 60px;
 }
+
+/* navbar */
+.navbar-default {
+    background-color: #428bca;
+    border-color: #428bca;
+}
+/* title */
+.navbar-default .navbar-brand {
+    color: white;
+}
+.navbar-default .navbar-brand:hover {
+    color: yellow;
+}
+/* link */
+.navbar-default .navbar-nav > li > a {
+    color: white;
+}
+.navbar-default .navbar-nav > li > a:hover {
+    color: yellow;
+}
+.navbar-default .navbar-toggle .icon-bar {
+	background-color: white;
+}

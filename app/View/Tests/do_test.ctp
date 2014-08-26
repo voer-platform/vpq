@@ -3,4 +3,7 @@
   <li class="active"><?php echo __('Do test'); ?></li>
 </ol>
 
+<p id='clock-time' style='display:none;'><?php echo $duration; ?></p>
+
+<?php echo $this->element('clock'); ?>
 <?php echo $this->element('do_test');?>

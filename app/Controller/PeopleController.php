@@ -13,7 +13,13 @@ class PeopleController extends AppController {
  * @var array
  */
 	public $components = array('Paginator');
-	/*
+
+/**
+ * Helpers
+ * 
+ * @var array
+ */
+	public $helpers = array('Name');
 /*
  * authorization
  * 
@@ -276,13 +282,13 @@ class PeopleController extends AppController {
 	public function coverDetails($subject){
 		$this->layout = 'question_bank';
 
-		// set to view
-		$this->set('subject', $subject);
-
 		$this->loadModel('Category');
 		$categories = $this->Category->find('all');
 		$this->loadModel('Grade');
 		$grades = $this->Grade->find('all', array('recursive' => -1));
+
+		// set to view
+		$this->set('subject', $subject);
 		$this->set('grades', $grades);
 		$this->set('categories', $categories);
 	}

@@ -5,6 +5,7 @@
 </ol>
 
 <div id = 'score'>
+	<center>
 	<h2><?php echo __('Your result'); ?></h2>
 
 	<div class='score-result'>
@@ -34,13 +35,17 @@
 		}
 	?>
 	</div>
+	</center>
 	</br>
 	<center>
 	<?php echo $this->Html->link(__('Return to Dashboard'), array('controller' => 'people', 'action' => 'dashboard'), array('class' => 'btn btn-primary btn-md') ); ?>
 	</center>
 	<hr>
 
+	<center>
 	<h2><?php echo __('Details'); ?></h2>
+	</center>
+	
 	<?php echo $this->element('score_view'); ?>
 	<hr>
 	<center>

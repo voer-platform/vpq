@@ -1,7 +1,13 @@
 <div class='doTest'>
-	<h2><?php echo 'Do your Test'?></h2>
-	<?php echo __('Test').': '.ucfirst($subject).' '.__('Timelimit').': ', $duration, ' '.__('minutes'), __('questions').': ',	$numberOfQuestions?>
+	<center>
+	<h2><?php echo __('Do your Test')?></h2>
+	</center>
 
+	<?php echo '<b>'.__('Test').'</b>: '.$this->Name->subjectToName($subject); ?> </br>
+	<?php echo ' <b>'.__('Timelimit').'</b>: '.$duration.' '.__('minutes'); ?> </br>
+	<?php echo ' <b>'.__('Number of questions').'</b>: '.$numberOfQuestions; ?> </br>
+	<hr>
+	
 	<?php echo $this->Form->create('TestAnswers', array( 'url' => 'score')); ?>
 		<?php foreach ($questions as $index => $question): ?>
 			<div id = 'dotestQuestions'>
@@ -40,7 +46,8 @@
 				'name' => 'numberOfQuestions',
 				'value' => $numberOfQuestions,
 				'type' => 'hidden'
-				));?>		 			
-	<?php echo $this->Form->end(array('label' => __('Submit your answers'), 'class' => 'btn btn-primary btn-lg')); ?>
-
+				));?>		 
+	<center>
+	<?php echo $this->Form->end(array('label' => __('Submit your answers'), 'class' => 'btn btn-primary btn-lg', 'id' => 'btn-submit')); ?>
+	</center>			
 </div>
