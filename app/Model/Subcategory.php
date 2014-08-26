@@ -1,5 +1,7 @@
 <?php
 App::uses('AppModel', 'Model');
+App::import('Model', 'Progress');
+
 /**
  * Subcategory Model
  *
@@ -73,5 +75,25 @@ class Subcategory extends AppModel {
 			'finderQuery' => '',
 		)
 	);
+/**
+ * calculate coverage
+ * 
+ * @param int subject_id
+ *		  int person_id
+ * 
+ * @return float cover
+ */
+	public function coverage($person_id, $subject_id){
+		$all = $this->find('count', array(
+			'conditions' => array('subject_id' => $subject_id)
+			));
 
+		$Progress = new Progress();
+		$done = $Progress->find('count', array(
+			'conditions' => array('person_id' => $person_id),
+			'group' => array('sub_category_id')
+			));
+
+		return round($done/$all, 2) * 100;
+	}
 }

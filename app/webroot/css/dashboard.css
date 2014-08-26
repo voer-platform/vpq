@@ -23,9 +23,10 @@
     padding: 0;
 }
 .progress-container .progress a{
+    position: absolute;
+    left: 40%;
     font-size: 18px;
-    color: white;
-    margin: 3px 3px 3px 3px;
+    color: black;
 }
 .btn {
     width: 100px;

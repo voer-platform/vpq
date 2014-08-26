@@ -19,9 +19,9 @@
                 </div>
                 <div class='col-lg-5 col-md-8 col-sm-8 col-xs-9 '>
                     <div class="progress">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="63" aria-valuemin="0" aria-valuemax="100" style='width:63%;'>
-                        <?php echo $this->Html->link(__('Covered').':'.'63%', array('controller' => 'people', 'action' => 'coverDetails', 2)); ?>
+                        <div class="progress-bar" role="progressbar" aria-valuenow="63" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $coverage['physics'];?>%;">
                         </div>
+                        <?php echo $this->Html->link(__('Covered').':'.$coverage['physics'].'%', array('controller' => 'people', 'action' => 'coverDetails', 2)); ?>
                     </div>
                 </div>
                 <div class='col-lg-1 col-md-1 col-sm-1 col-xs-1'>
