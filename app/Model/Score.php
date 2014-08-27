@@ -126,7 +126,9 @@ class Score extends AppModel {
 		 	// remove with int(0)
 		 	return ($var !== '') || ($var == '0');
 		}
-		 
+		
+		pr($answers);
+		$duration = $answers['duration'];
 
 		// array after filter empty
 		$filteredArray = array_filter($answers,'emptyAnswerFilter');
@@ -170,7 +172,7 @@ class Score extends AppModel {
 		if(!empty($user)){
 			// save score to db
 			$scoreId = $this->getNextScoreId();
-			$this->saveScore($scoreId, $testId, $user['id'], $correctCounter, -1, date("Y-m-d H:i:s"));
+			$this->saveScore($scoreId, $testId, $user['id'], $correctCounter, $duration, date("Y-m-d H:i:s"));
 		}
 
 		// save score_question

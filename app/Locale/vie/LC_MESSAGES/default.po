@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "POT-Creation-Date: 2014-08-25 23:15+0700\n"
-"PO-Revision-Date: 2014-08-25 23:27+0700\n"
+"PO-Revision-Date: 2014-08-26 11:54+0700\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "Language: vi\n"
@@ -866,7 +866,7 @@ msgstr "Đừng để điểm số của bạn tụt tiếp..."
 
 #: View/Pages/home.ctp:12
 msgid "Take a look"
-msgstr "Xem qua"
+msgstr "Đến trang cá nhân"
 
 #: View/People/add.ctp:4
 msgid "Add Person"

@@ -42,11 +42,16 @@
 				'value' => $testID,
 				'type' => 'hidden'
 				));?>
-		<?php echo $this->Form->input( 'test_id', array(
+		<?php echo $this->Form->input( 'number_of_questions', array(
 				'name' => 'numberOfQuestions',
 				'value' => $numberOfQuestions,
 				'type' => 'hidden'
-				));?>		 
+				));?>
+		<?php echo $this->Form->input( 'duration', array(
+				'name' => 'duration',
+				'value' => 0,
+				'type' => 'hidden'
+				));?>				 
 	<center>
 	<?php echo $this->Form->end(array('label' => __('Submit your answers'), 'class' => 'btn btn-primary btn-lg', 'id' => 'btn-submit')); ?>
 	</center>			

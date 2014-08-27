@@ -67,7 +67,7 @@ class DATABASE_CONFIG {
 		'host' => 'localhost',
 		'login' => 'vpq',
 		'password' => 'vpq',
-		'database' => 'questionbank',
+		'database' => 'plseduvn_questionbank',
 		'prefix' => '',
 		'encoding' => 'utf8',
 	);

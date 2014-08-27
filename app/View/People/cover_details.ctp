@@ -38,7 +38,7 @@
       <ul class="list-group" id='third-col'>
         <?php foreach($categories as $key => $category): ?>
           <?php foreach($category['Subcategory'] as $subcategory): ?>
-            <li class="list-group-item subcategory subcategory-<?php echo $category['Category']['id']?>" id="subcategory-<?php echo $subcategory['Subcategory']['id'] ?>">
+            <li class="list-group-item subcategory subcategory-<?php echo $category['Category']['id']?>" id="subcategory-<?php echo $subcategory['id'] ?>">
               <?php echo $subcategory['name']; ?> 
             </li>
           <?php endforeach; ?>
