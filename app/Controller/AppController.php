@@ -46,8 +46,8 @@ class AppController extends Controller {
             ),
             //action login
         	'loginAction' => array(
-        		'controller' => 'People',
-                'action' => 'login'
+        		'controller' => 'Pages',
+                'action' => 'display'
         	),
             //redirect after logged in
         	'loginRedirect' => array(
@@ -71,7 +71,10 @@ class AppController extends Controller {
     public function beforeFilter() {
         // load sdk
         Configure::load('facebook');
-        App::import('Vendor', 'facebook-php-sdk-master/src/facebook');
+        // this is not recommended by CakePHP, just for backward compatiblity
+        // App::import('Vendor', 'facebook-php-sdk-master/src/facebook'); 
+        require(APP. 'Vendor'. DS . 'facebook-php-sdk-master'. DS. 'src'. DS. 'facebook.php');
+
         $this->Facebook = new Facebook(array(
             'appId'     =>  Configure::read('Facebook.AppID'),
             'secret'    =>  Configure::read('Facebook.AppSecret')
