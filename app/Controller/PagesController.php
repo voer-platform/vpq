@@ -49,11 +49,13 @@ public function beforeFilter(){
 	public function display() {
 		$path = func_get_args();
         $this->layout = 'question_bank';
+
 		$count = count($path);
 		if (!$count) {
 			return $this->redirect('/');
 		}
-		$page = $subpage = $title_for_layout = 'VPQ';
+		$page = $subpage = $title_for_layout =__("PLS");
+		$this->set('title_for_layout',__("Home"));
 
 		if (!empty($path[0])) {
 			$page = $path[0];
@@ -78,5 +80,6 @@ public function beforeFilter(){
 
     public function aboutUs(){
         $this->layout = 'question_bank';
+        $this->set('title_for_layout',__("About us"));
     }
 }

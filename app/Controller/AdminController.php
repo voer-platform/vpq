@@ -41,6 +41,8 @@ class AdminController extends AppController {
  */
 	public function index(){
 		$this->layout = 'question_bank';
+
+		$this->set('title_for_layout',__("Admin"));
 		
 	}
 
@@ -50,7 +52,8 @@ class AdminController extends AppController {
  * @return void
  */
 	public function insertQuestions(){
-		$this->layout = 'question_bank';		
+		$this->layout = 'question_bank';
+		$this->set('title_for_layout',__("Add questions"));		
 
 		if($this->request->is('post')){
 			pr($this->request->data);

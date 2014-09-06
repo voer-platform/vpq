@@ -217,7 +217,7 @@ class PeopleController extends AppController {
   */
     public function dashboard(){
         $this->layout = 'question_bank';
-        $this->set('title_for_layout',"Dashboard");
+        $this->set('title_for_layout',__("Dashboard"));
 
         $this->loadModel('Score');
         $performance = array();
@@ -236,6 +236,8 @@ class PeopleController extends AppController {
  */
 	public function history(){
 		$this->layout = 'question_bank';
+		$this->set('title_for_layout',__("History"));
+
 		$this->loadModel('Score');
 		$result = $this->Score->getAllScores($this->Session->read('Auth.User')['id']);
 		$this->set('scores', $result);
@@ -246,6 +248,7 @@ class PeopleController extends AppController {
  */
 	public function suggestion(){
 		$this->layout = 'question_bank';
+		$this->set('title_for_layout',__("Suggestion"));
 	}
 
 /**
@@ -253,6 +256,8 @@ class PeopleController extends AppController {
  */	
 	public function progress(){
 		$this->layout = 'question_bank';
+		$this->set('title_for_layout',__("Progress"));
+
 		$this->loadModel('Progress');
 		$progresses = $this->Progress->getProgresses($this->Session->read('Auth.User')['id']);
 		$this->set('progresses', $progresses);
@@ -286,6 +291,7 @@ class PeopleController extends AppController {
  *	coverage details
  */	
 	public function coverDetails($subject){
+		$this->set('title_for_layout',__("Cover details"));
 		$this->layout = 'question_bank';
 
 		$this->loadModel('Category');
