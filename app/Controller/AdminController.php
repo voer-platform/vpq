@@ -8,8 +8,11 @@ App::uses('AppController', 'Controller');
  */
 class AdminController extends AppController {
 
-// do not use model
+	// do not use model
 	var $uses = false;
+
+	public $helpers = array('TinymceElfinder.TinymceElfinder');
+	public $components = array('TinymceElfinder.TinymceElfinder');
 	
 /*
  * authorization
@@ -39,10 +42,39 @@ class AdminController extends AppController {
 	public function index(){
 		$this->layout = 'question_bank';
 		
+	}
+
+/**
+ * insert questions
+ *
+ * @return void
+ */
+	public function insertQuestions(){
+		$this->layout = 'question_bank';		
+
 		if($this->request->is('post')){
-			pr($this->data);
+			pr($this->request->data);
 		}
 	}
+/**
+ * upload file
+ *
+ * @return void
+ */
+	public function uploadFile(){
+		$this->autoRender = false();
+		if( $this->request->is('post')){
+			pr($this->data);
+			return 'hi';
+		}
+	}	
+
+	public function elfinder() {
+        $this->TinymceElfinder->elfinder();
+    }
+    public function connector() {
+        $this->TinymceElfinder->connector();
+    }	
 
 }
 ?>

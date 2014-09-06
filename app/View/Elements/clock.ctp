@@ -26,6 +26,7 @@
 			alert("<?php echo __('Time\'s up!'); ?>");
 
 			$('#TestAnswersDuration').val(seconds);
+			alert($('#TestAnswersDuration'));
 			$('#btn-submit').click()
 		}
 	}, 1000); 

@@ -73,7 +73,7 @@ class AppController extends Controller {
         Configure::load('facebook');
         // this is not recommended by CakePHP, just for backward compatiblity
         // App::import('Vendor', 'facebook-php-sdk-master/src/facebook'); 
-        require(APP. 'Vendor'. DS . 'facebook-php-sdk-master'. DS. 'src'. DS. 'facebook.php');
+        require_once(APP. 'Vendor'. DS . 'facebook-php-sdk-master'. DS. 'src'. DS. 'facebook.php');
 
         $this->Facebook = new Facebook(array(
             'appId'     =>  Configure::read('Facebook.AppID'),

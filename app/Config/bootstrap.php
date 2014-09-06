@@ -110,24 +110,23 @@ CakeLog::config('error', array(
  * TinyMCE
  */
 
-CakePlugin::load('TinyMCE');
-Configure::write('TinyMCE.editorOptions', array(
-	'width' => '500px',
-	'height'=> '250px'
-));
-Configure::write('TinyMCE.configs', array(
-    'vinagro' => array(
-        'mode' => 'textareas',
-        'theme' => 'advanced',
-        'editor_selector' => 'mceSimple',
-        'width' => 790,
-        'height' => 880,
-        'content' => "asdf",
-        'skin' => "o2k7",
-        'theme_advanced_toolbar_location' => "top",
-        'theme_advanced_buttons1' => 'fontselect,separator,bold,italic,underline,separator,justifyleft,justifycenter,justifyright,separator,bullist,numlist,separator,link,image,separator,undo,redo',
-        'theme_advanced_buttons2' => '',
-        'theme_advanced_buttons3' => '',
-        //'plugins' => 'pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,wordcount,advlist,autosave'
-    ),
-    ));
+// CakePlugin::load('TinyMCE');
+// Configure::write('TinyMCE.configs', array(
+// 'advanced' => array(
+//     'mode' => 'textareas',
+//     'theme' => 'advanced',
+//     'plugins' => 'emotions,spellchecker,advhr,insertdatetime,preview',
+//     'theme_advanced_buttons1' => 'newdocument,|,bold,italic,underline,|,justifyleft,justifycenter,justifyright,fontselect,fontsizeselect,formatselect',
+//     'theme_advanced_buttons2' => 'cut,copy,paste,|,bullist,numlist,|,outdent,indent,|,undo,redo,|,link,unlink,anchor,image,|,code,preview,|,forecolor,backcolor',
+//     'theme_advanced_buttons3' => 'insertdate,inserttime,|,spellchecker,advhr,,removeformat,|,sub,sup,|,charmap,emotions',
+//     'width' => '700',
+//     'theme_advanced_toolbar_location' => 'top',
+//     'theme_advanced_toolbar_align' => 'left',
+//     'theme_advanced_statusbar_location' => 'bottom',
+//     'theme_advanced_resizing' => 'true',
+//     'file_browser_callback' => 'elFinderBrowser'
+//     )
+//   )
+// );
+
+CakePlugin::load('TinymceElfinder');
