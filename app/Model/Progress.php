@@ -5,7 +5,7 @@ App::import('Model', 'QuestionsSubcategory');
  * Progress Model
  *
  * @property Person $Person
- * @property SubCategory $SubCategory
+ * @property Subcategory $Subcategory
  */
 class Progress extends AppModel {
 
@@ -25,8 +25,8 @@ class Progress extends AppModel {
 			'fields' => '',
 			'order' => ''
 		),
-		'SubCategory' => array(
-			'className' => 'SubCategory',
+		'Subcategory' => array(
+			'className' => 'Subcategory',
 			'foreignKey' => 'sub_category_id',
 			'conditions' => '',
 			'fields' => '',
@@ -149,12 +149,12 @@ class Progress extends AppModel {
 	public function ajaxD3($personId){
 		// query
 		$results =  $this->query(
-			'select Category.name, SubCategory.name as name, sum(Progress.progress) as progress, sum(Progress.total) as total
+			'select Category.name, Subcategory.name as name, sum(Progress.progress) as progress, sum(Progress.total) as total
 			from progresses Progress
-			join subcategories SubCategory
-				on Progress.sub_category_id = SubCategory.id
+			join subcategories Subcategory
+				on Progress.sub_category_id = Subcategory.id
 			join categories Category
-				on SubCategory.category_id = Category.id
+				on Subcategory.category_id = Category.id
 			where Progress.person_id = '.$personId. 
 			' group by sub_category_id '
 			
@@ -168,7 +168,7 @@ class Progress extends AppModel {
         if(!empty($results)){
             foreach($results as $result){
                 $row = array();
-                $row['name'] = $result['SubCategory']['name'];
+                $row['name'] = $result['Subcategory']['name'];
                 $row['parent'] = $result['Category']['name'];
                 $row['value'] = round($result[0]['progress']/$result[0]['total']*100,2);
                 $json[] = $row;

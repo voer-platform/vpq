@@ -127,7 +127,6 @@ class Score extends AppModel {
 		 	return ($var !== '') || ($var == '0');
 		}
 		
-		pr($answers);
 		$duration = $answers['duration'];
 
 		// array after filter empty

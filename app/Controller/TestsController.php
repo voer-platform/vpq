@@ -217,7 +217,7 @@ public function beforeFilter(){
 			$this->loadModel('Progress');
 			$this->Progress->calculateProgress($user['id'], $scoreData);
 			
-			//$this->redirect(array('controller' => 'Scores', 'action' => 'viewDetails', $scoreId));
+			$this->redirect(array('controller' => 'Scores', 'action' => 'viewDetails', $scoreId));
 		}
 		else {
 			$this->redirect('chooseTest');
