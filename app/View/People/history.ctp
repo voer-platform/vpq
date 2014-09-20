@@ -1,5 +1,5 @@
 <div class='container'>
-
+	
 	<h2><?php echo __('Your tests history'); ?></h2>
 	<table class = 'table table-striped table-condensed table-hover table-bordered'>
 	<?php

@@ -223,9 +223,9 @@ class PeopleController extends AppController {
         $performance = array();
         $performance['physics'] = $this->Score->overall($this->Session->read('Auth.User')['id'], 2);
 
-        $this->loadModel('SubCategory');
+        $this->loadModel('Subcategory');
         $coverage = array();
-        $coverage['physics'] = $this->SubCategory->coverage($this->Session->read('Auth.User')['id'], 2);
+        $coverage['physics'] = $this->Subcategory->coverage($this->Session->read('Auth.User')['id'], 2);
 
         $this->set('performance', $performance);
         $this->set('coverage', $coverage);
