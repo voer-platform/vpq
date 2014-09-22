@@ -51,10 +51,19 @@ class Progress extends AppModel {
  * @param: personId
  */
 	public function getProgresses($personId){
+		$this->unBindModel(array('belongsTo' => array('Person')));
+
 		return $this->find('all', array(
 			'recursive' => 0,
+			'fields' => array(
+				'Subcategory.id',
+				'Subcategory.name',
+				"SUM(Progress.total) as 'total'",
+				"SUM(Progress.progress) as 'progress'",
+				'Progress.date'),
 			'conditions' => array(
-				'person_id' => $personId)
+				'person_id' => $personId),
+			'group' => array('Progress.sub_category_id')
 			));
 	}
 /*

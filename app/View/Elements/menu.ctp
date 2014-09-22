@@ -22,9 +22,9 @@
           <li><?php echo $this->HTML->link(__('Dashboard'), array('controller' => 'people', 'action' => 'dashboard')); ?></li>
           <li><?php echo $this->HTML->link(__('History'), array('controller' => 'people', 'action' => 'history')); ?></li>
           <li><?php echo $this->HTML->link(__('Progress'), array('controller' => 'people', 'action' => 'progress')); ?></li>
-        <?php endif; ?>
           <li><?php echo $this->HTML->link(__('About'), '/about'); ?></li>
-
+        <?php endif; ?>
+       
         <!-- if is admin -->
         <?php if($user['role'] === 'admin'): ?>
           <li><?php echo $this->HTML->link(__('Admin'), array('controller' => 'Admin', 'action' => 'index')); ?></li>
@@ -46,7 +46,7 @@
             </ul>
           </li>
         <?php else: ?>
-          <li><?php echo $this->Html->link(__('Login'), '#', array('data-toggle' => 'modal', 'data-target' => '#modal-login')); ?></li>
+          <li><?php //echo $this->Html->link(__('Login'), '#', array('data-toggle' => 'modal', 'data-target' => '#modal-login')); ?></li>
       	<?php endif; ?>
       </ul>
     </div><!--/.nav-collapse -->

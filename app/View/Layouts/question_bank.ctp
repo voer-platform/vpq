@@ -27,7 +27,7 @@
 
 </head>
 <body>
-    <?php echo $this->element('login'); ?>
+    <?php //echo $this->element('login'); ?>
     <div class = "header">
         <div id = "menu">
             <?php echo $this->element('menu');?>

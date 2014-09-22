@@ -134,7 +134,6 @@ class ScoresController extends AppController {
 
 		$this->Score->unbindModel(array('belongsTo' => array('Person')));
 		$score = $this->Score->find('first', array('conditions' => array('Score.id' => $id), 'recursive' => 0) );
-
 		$scoreData = $this->ScoresQuestion->find('all', array(
 			'recursive' => -1,
 			'conditions' => array(

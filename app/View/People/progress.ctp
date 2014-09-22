@@ -7,8 +7,8 @@
 			echo $this->Html->tableHeaders(array(__('Subcategory'), __('Progress'), __('Date')));
 			foreach($progresses as $progress){
 				echo $this->Html->tableCells(array(
-					$progress['Subcategory']['name'],
-					round($progress['Progress']['progress'] / $progress['Progress']['total']*100, 2).'%',
+					$this->Html->link($progress['Subcategory']['name'], array('controller' => 'Subcategories', 'action' => 'viewScoresSubcategory', $progress['Subcategory']['id'])),
+					round($progress['0']['progress'] / $progress['0']['total']*100, 2).'%',
 					$progress['Progress']['date']	
 					));
 			}

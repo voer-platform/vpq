@@ -74,10 +74,13 @@ class Test extends AppModel {
 	 * @return: a test correspond to input parameters
 	 */
 	public function genTest($numberOfQuestions, $timeLimit, $subjectId){
-		return $this->Question->find('all', array(
+		$this->Question->unBindModel( array('hasMany' => array('Score')) );
+		$_results = $this->Question->find('all', array(
 					'limit' => $numberOfQuestions,
 					'order' => 'rand()'
 				));
+		$results = Set::sort($_results, '{n}.Question.id', 'asc');
+		return $results;
 	}
 
 	/*

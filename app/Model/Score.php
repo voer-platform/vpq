@@ -85,6 +85,35 @@ class Score extends AppModel {
 				'order' => array('time_taken' => 'desc')
 			));
 	}
+
+/*
+ * get score for one subcategory
+ */
+	public function getScoresForSubcategory($personId, $subcategory_id){
+		$this->unBindModel(array ('hasAndBelongsToMany' => 'Question', 'belongsTo' => 'Person'));
+
+		$_scoreIDs = $this->query("select ScoresQuestion.score_id
+			from scores_questions as ScoresQuestion
+			join questions_subcategories as QuestionsSubcategory
+				on ScoresQuestion.question_id = QuestionsSubcategory.question_id
+			where QuestionsSubcategory.subcategory_id = ".$subcategory_id.
+			" "
+			);	
+
+		$scoreIDs = array();
+		foreach ($_scoreIDs as $score) {
+			$scoreIDs[] = $score['ScoresQuestion']['score_id'];
+		};
+
+		return $this->find('all', array(
+				'conditions' => array(
+					'Score.person_id' => $personId,
+					'Score.id' => $scoreIDs	
+				),
+				'order' => array('time_taken' => 'desc')
+			));
+	}
+
 /**
  * get next ScoreID
  * @return: scoreID

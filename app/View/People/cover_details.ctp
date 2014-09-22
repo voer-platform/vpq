@@ -39,7 +39,7 @@
         <?php foreach($categories as $key => $category): ?>
           <?php foreach($category['Subcategory'] as $subcategory): ?>
             <li class="list-group-item subcategory subcategory-<?php echo $category['Category']['id']?>" id="subcategory-<?php echo $subcategory['id'] ?>">
-              <?php echo $subcategory['name']; ?> 
+              <?php echo $this->Html->link($subcategory['name'], array('controller' => 'Subcategories', 'action' => 'viewScoresSubcategory', $subcategory['id'])); ?>
             </li>
           <?php endforeach; ?>
         <?php endforeach; ?>

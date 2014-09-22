@@ -15,6 +15,17 @@ class SubcategoriesController extends AppController {
  */
 	public $components = array('Paginator');
 
+/*
+ * beforeFilter
+ */
+    public function beforeFilter(){
+        parent::beforeFilter();
+        // Allow users to
+        $this->Auth->allow('viewScoresSubcategory');
+
+        Security::setHash('md5');
+    }	
+
 /**
  * index method
  *
@@ -108,4 +119,22 @@ class SubcategoriesController extends AppController {
 			$this->Session->setFlash(__('The subcategory could not be deleted. Please, try again.'));
 		}
 		return $this->redirect(array('action' => 'index'));
-	}}
+	}
+
+/**
+ * view scores on one subcategories
+ *
+ * @param string $id
+ * @return void
+ */
+	public function viewScoresSubcategory($id) {
+		$this->layout = 'question_bank';
+		$this->set('title_for_layout',__("History"));
+
+		$this->loadModel('Score');
+		$result = $this->Score->getScoresForSubcategory($this->Session->read('Auth.User')['id'], $id);
+		$this->set('scores', $result);
+		$this->set('subcategory_id', $id);
+	}
+
+}
