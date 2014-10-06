@@ -128,8 +128,6 @@ class ScoresController extends AppController {
  *	@return void
  */
 	public function viewDetails($id){
-		$this->layout = 'question_bank';
-
 		$this->loadModel('ScoresQuestion');
 
 		$this->Score->unbindModel(array('belongsTo' => array('Person')));

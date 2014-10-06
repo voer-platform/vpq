@@ -8,7 +8,7 @@
 		</dd>
 		<dt><?php echo __('Content'); ?></dt>
 		<dd>
-			<?php echo h($question['Question']['content']); ?>
+			<?php echo html_entity_decode($question['Question']['content']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Difficulty'); ?></dt>

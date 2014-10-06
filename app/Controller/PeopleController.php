@@ -163,17 +163,18 @@ class PeopleController extends AppController {
 
 	            // If exists, we will log them in
 	            if ($local_user){
-	                $this->Auth->login($local_user['Person']);            # Manual Login
-
-	                // update data after login.
+					// update data after login.
 	                $this->Person->updateAll(
 	                	array(
 			                'first_name'=> '\''.$fb_user['first_name'].'\'',
 			                'last_name'=> '\''.$fb_user['last_name'].'\'',
 			                'image'=> '\''.$picture['data']['url'].'\'',
+			                'date_modified' => '\''.date("Y-m-d H:i:s").'\'',
 						),
-	                	array( 'id' => $fb_user['id'])
+	                	array( 'facebook' => $fb_user['id'])
 	                );
+
+	                $this->Auth->login($local_user['Person']);            # Manual Login
 
 	                $this->redirect($this->Auth->redirect());
 	            }
@@ -187,7 +188,8 @@ class PeopleController extends AppController {
 	                    'first_name'	=> $fb_user['first_name'],
 	                    'last_name'		=> $fb_user['last_name'],
 	                    'role'          => 'user',
-	                    'date_created'	=> date("Y-m-d H:i:s"),
+	                    'date_created'	=> '\''.date("Y-m-d H:i:s").'\'',
+	                    'date_modified' => '\''.date("Y-m-d H:i:s").'\'',
 	                    'image'			=> $picture['data']['url']
 	                );
 
@@ -216,8 +218,6 @@ class PeopleController extends AppController {
   * dashboard.ctp
   */
     public function dashboard(){
-        $this->layout = 'question_bank';
-        $this->set('title_for_layout',__("Dashboard"));
 
         $this->loadModel('Score');
         $performance = array();
@@ -235,7 +235,6 @@ class PeopleController extends AppController {
  * history
  */
 	public function history(){
-		$this->layout = 'question_bank';
 		$this->set('title_for_layout',__("History"));
 
 		$this->loadModel('Score');
@@ -247,7 +246,6 @@ class PeopleController extends AppController {
  * suggestion
  */
 	public function suggestion(){
-		$this->layout = 'question_bank';
 		$this->set('title_for_layout',__("Suggestion"));
 	}
 
@@ -255,7 +253,6 @@ class PeopleController extends AppController {
  * progress
  */	
 	public function progress(){
-		$this->layout = 'question_bank';
 		$this->set('title_for_layout',__("Progress"));
 
 		$this->loadModel('Progress');
@@ -280,7 +277,6 @@ class PeopleController extends AppController {
             $ajax = true;
         }
         else if( $this->request->is('GET')){
-        	$this->layout = 'question_bank';
 
 			// set to view
 			$this->set('subject', $subject);
@@ -292,7 +288,6 @@ class PeopleController extends AppController {
  */	
 	public function coverDetails($subject){
 		$this->set('title_for_layout',__("Cover details"));
-		$this->layout = 'question_bank';
 
 		$this->loadModel('Category');
 		$categories = $this->Category->find('all');

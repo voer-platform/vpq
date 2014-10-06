@@ -40,8 +40,6 @@ class AdminController extends AppController {
  * @return void
  */
 	public function index(){
-		$this->layout = 'question_bank';
-
 		$this->set('title_for_layout',__("Admin"));
 		
 	}
@@ -52,32 +50,56 @@ class AdminController extends AppController {
  * @return void
  */
 	public function insertQuestions(){
-		$this->layout = 'question_bank';
-		$this->set('title_for_layout',__("Add questions"));		
+		$this->set('title_for_layout',__("Add questions"));
+
+		$this->loadModel('Question');
 
 		if($this->request->is('post')){
-			pr($this->request->data);
+			$this->Question->create();
+			if ($this->Question->saveAll($this->request->data)) {
+				$this->Session->setFlash(__('The question has been saved.'));
+				return $this->redirect(array('action' => 'index'));
+			} else {
+				$this->Session->setFlash(__('The question could not be saved. Please, try again.'));
+			}
 		}
+		
+		$subcategories = $this->Question->Subcategory->find('list');
+		$tests = $this->Question->Test->find('list');
+		$this->set(compact('subcategories', 'tests'));
 	}
+
 /**
- * upload file
+ * elfinder
  *
  * @return void
  */
-	public function uploadFile(){
-		$this->autoRender = false();
-		if( $this->request->is('post')){
-			pr($this->data);
-			return 'hi';
-		}
-	}	
-
 	public function elfinder() {
         $this->TinymceElfinder->elfinder();
     }
+
+/**
+ * connector for elfindier
+ *
+ * @return void
+ */ 
     public function connector() {
         $this->TinymceElfinder->connector();
-    }	
+    }
+
+    /**
+ * insert multiple questions
+ *
+ * @return void
+ */
+	public function insertMultipleQuestions(){
+		$this->set('title_for_layout',__("Add multiple questions"));
+
+		if($this->request->is('post')){
+			$fileName = $this->data['MultipleQuestion']['file']['tmp_name'];
+
+			
+		}
+	}	
 
 }
-?>

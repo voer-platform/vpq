@@ -48,7 +48,6 @@ public function beforeFilter(){
  */
 	public function display() {
 		$path = func_get_args();
-        $this->layout = 'question_bank';
 
 		$count = count($path);
 		if (!$count) {
@@ -79,7 +78,6 @@ public function beforeFilter(){
 	}
 
     public function aboutUs(){
-        $this->layout = 'question_bank';
         $this->set('title_for_layout',__("About us"));
     }
 }

@@ -128,7 +128,6 @@ class SubcategoriesController extends AppController {
  * @return void
  */
 	public function viewScoresSubcategory($id) {
-		$this->layout = 'question_bank';
 		$this->set('title_for_layout',__("History"));
 
 		$this->loadModel('Score');

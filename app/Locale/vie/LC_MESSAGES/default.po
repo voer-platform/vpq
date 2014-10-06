@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2014-09-22 21:16+0700\n"
-"PO-Revision-Date: 2014-09-22 21:16+0700\n"
+"POT-Creation-Date: 2014-10-06 23:31+0700\n"
+"PO-Revision-Date: 2014-10-06 23:34+0700\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "Language: vi\n"
@@ -19,13 +19,25 @@ msgstr ""
 msgid "Elfinder File Manager"
 msgstr "Trang quản lý file Elfinder"
 
-#: Controller/AdminController.php:45 View/Elements/menu.ctp:30
+#: Controller/AdminController.php:43 View/Elements/menu.ctp:30
 msgid "Admin"
 msgstr "Quản trị"
 
-#: Controller/AdminController.php:56
+#: Controller/AdminController.php:53
 msgid "Add questions"
 msgstr "Thêm câu hỏi"
+
+#: Controller/AdminController.php:60 Controller/QuestionsController.php:52;76
+msgid "The question has been saved."
+msgstr ""
+
+#: Controller/AdminController.php:63 Controller/QuestionsController.php:55;79
+msgid "The question could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/AdminController.php:96
+msgid "Add multiple questions"
+msgstr "Thêm nhiều câu hỏi"
 
 #: Controller/AnswersController.php:37;71;98
 msgid "Invalid answer"
@@ -91,15 +103,15 @@ msgstr ""
 msgid "The grade could not be deleted. Please, try again."
 msgstr ""
 
-#: Controller/PagesController.php:57
+#: Controller/PagesController.php:56
 msgid "PLS"
 msgstr "PLS"
 
-#: Controller/PagesController.php:58
+#: Controller/PagesController.php:57
 msgid "Home"
 msgstr "Trang chủ"
 
-#: Controller/PagesController.php:83 View/Elements/about_us.ctp:3
+#: Controller/PagesController.php:81 View/Elements/about_us.ctp:3
 msgid "About us"
 msgstr "Giới thiệu"
 
@@ -127,33 +139,26 @@ msgstr ""
 msgid "Invalid Username or password. Try again."
 msgstr ""
 
-#: Controller/PeopleController.php:204
+#: Controller/PeopleController.php:206
 msgid "Something wrong, cannot log in. Please try again!"
 msgstr "Không thể đăng nhập. Xin hay thử lại!"
 
-#: Controller/PeopleController.php:220 View/Elements/menu.ctp:22;43
-#: View/People/cover_details.ctp:2 View/People/dashboard.ctp:4
-#: View/People/performance_details.ctp:7 View/Scores/view_details.ctp:3
-#: View/Tests/choose_test.ctp:4 View/Tests/do_test.ctp:2
-msgid "Dashboard"
-msgstr "Trang cá nhân"
-
-#: Controller/PeopleController.php:239
-#: Controller/SubcategoriesController.php:132 View/Elements/menu.ctp:23
+#: Controller/PeopleController.php:238
+#: Controller/SubcategoriesController.php:131 View/Elements/menu.ctp:23
 msgid "History"
-msgstr "Lich sử"
+msgstr "Lịch sử"
 
-#: Controller/PeopleController.php:251
+#: Controller/PeopleController.php:249
 msgid "Suggestion"
 msgstr ""
 
-#: Controller/PeopleController.php:259 View/Elements/menu.ctp:24
+#: Controller/PeopleController.php:256 View/Elements/menu.ctp:24
 #: View/People/progress.ctp:7 View/People/view.ctp:66
 #: View/Progresses/view.ctp:2;14
 msgid "Progress"
 msgstr "Tiến độ"
 
-#: Controller/PeopleController.php:294
+#: Controller/PeopleController.php:290
 msgid "Cover details"
 msgstr "Chi tiết môn học"
 
@@ -179,14 +184,6 @@ msgstr ""
 
 #: Controller/QuestionsController.php:37;72;100
 msgid "Invalid question"
-msgstr ""
-
-#: Controller/QuestionsController.php:52;76
-msgid "The question has been saved."
-msgstr ""
-
-#: Controller/QuestionsController.php:55;79
-msgid "The question could not be saved. Please, try again."
 msgstr ""
 
 #: Controller/QuestionsController.php:104
@@ -348,31 +345,16 @@ msgstr "Thời gian"
 msgid "Score"
 msgstr "Điểm"
 
-#: View/Admin/index.ctp:6 View/Admin/insert_questions.ctp:5
-msgid "Add Questions"
-msgstr ""
-
-#: View/Admin/index.ctp:7 View/Admin/insert_questions.ctp:6
-msgid "Add Subcategories"
-msgstr "Thêm chru đề con"
-
-#: View/Admin/index.ctp:8 View/Admin/insert_questions.ctp:7
-msgid "Add Categories"
-msgstr ""
-
-#: View/Admin/index.ctp:9 View/Admin/insert_questions.ctp:8
-msgid "Add Subjects"
-msgstr "Thêm môn học"
-
-#: View/Admin/index.ctp:15
+#: View/Admin/index.ctp:8
 msgid "Select one of functions on the left"
 msgstr "Chọn một chức năng bên trái"
 
-#: View/Admin/insert_questions.ctp:16
-msgid "Content of questions"
-msgstr "Nội dung câu hỏi"
+#: View/Admin/insert_multiple_questions.ctp:6
+msgid "File contains questions"
+msgstr "File chứa nội dung câu hỏi"
 
-#: View/Admin/insert_questions.ctp:17 View/Answers/add.ctp:12
+#: View/Admin/insert_multiple_questions.ctp:7
+#: View/Admin/insert_questions.ctp:33 View/Answers/add.ctp:12
 #: View/Answers/edit.ctp:13 View/Categories/add.ctp:11
 #: View/Categories/edit.ctp:12 View/Grades/add.ctp:9 View/Grades/edit.ctp:10
 #: View/People/add.ctp:15 View/People/edit.ctp:16 View/Progresses/add.ctp:11
@@ -387,9 +369,33 @@ msgstr "Nội dung câu hỏi"
 msgid "Submit"
 msgstr "Gửi"
 
+#: View/Admin/insert_questions.ctp:14
+msgid "Add question content"
+msgstr "Thêm nội dung câu hỏi"
+
+#: View/Admin/insert_questions.ctp:15;19;26 View/Answers/view.ctp:14
+#: View/Questions/view.ctp:9;43 View/Subcategories/view.ctp:42
+#: View/Tests/view.ctp:108
+msgid "Content"
+msgstr "Nội dung"
+
+#: View/Admin/insert_questions.ctp:18 View/Questions/view.ctp:14
+#: View/Subcategories/view.ctp:43 View/Tests/view.ctp:109
+msgid "Difficulty"
+msgstr "Độ khó"
+
+#: View/Admin/insert_questions.ctp:22
+msgid "Add answers for question"
+msgstr "Thêm câu trả lời cho câu hỏi"
+
+#: View/Admin/insert_questions.ctp:29 View/Answers/view.ctp:19
+#: View/Questions/view.ctp:44
+msgid "Correctness"
+msgstr "Đúng/Sai"
+
 #: View/Answers/add.ctp:4
 msgid "Add Answer"
-msgstr ""
+msgstr "Thêm câu trả lời"
 
 #: View/Answers/add.ctp:15 View/Answers/edit.ctp:16
 #: View/Answers/index.ctp:9;42 View/Answers/view.ctp:27;50
@@ -502,7 +508,7 @@ msgstr ""
 #: View/TestsQuestions/index.ctp:25 View/TestsSubjects/edit.ctp:17
 #: View/TestsSubjects/index.ctp:25
 msgid "Delete"
-msgstr ""
+msgstr "Xóa"
 
 #: View/Answers/edit.ctp:19 View/Answers/index.ctp:22
 #: View/Answers/view.ctp:30;63 View/Categories/edit.ctp:18
@@ -530,7 +536,7 @@ msgstr "Bạn có chắc muốn xóa # %s"
 
 #: View/Answers/index.ctp:2
 msgid "Answers"
-msgstr ""
+msgstr "Các câu trả lời"
 
 #: View/Answers/index.ctp:20 View/Answers/view.ctp:61
 #: View/Categories/index.ctp:20 View/Categories/view.ctp:55
@@ -543,7 +549,7 @@ msgstr ""
 #: View/Tests/view.ctp:58;87;118 View/TestsQuestions/index.ctp:23
 #: View/TestsSubjects/index.ctp:23
 msgid "View"
-msgstr ""
+msgstr "Xem"
 
 #: View/Answers/index.ctp:21 View/Answers/view.ctp:62
 #: View/Categories/index.ctp:21 View/Categories/view.ctp:56
@@ -556,7 +562,7 @@ msgstr ""
 #: View/Tests/view.ctp:59;88;119 View/TestsQuestions/index.ctp:24
 #: View/TestsSubjects/index.ctp:24
 msgid "Edit"
-msgstr ""
+msgstr "Sửa"
 
 #: View/Answers/index.ctp:30 View/Categories/index.ctp:30
 #: View/Grades/index.ctp:24 View/People/index.ctp:36
@@ -580,7 +586,7 @@ msgstr ""
 #: View/Tests/index.ctp:31 View/TestsQuestions/index.ctp:39
 #: View/TestsSubjects/index.ctp:39
 msgid "previous"
-msgstr ""
+msgstr "trước"
 
 #: View/Answers/index.ctp:37 View/Categories/index.ctp:37
 #: View/Grades/index.ctp:31 View/People/index.ctp:43
@@ -590,17 +596,17 @@ msgstr ""
 #: View/Tests/index.ctp:33 View/TestsQuestions/index.ctp:41
 #: View/TestsSubjects/index.ctp:41
 msgid "next"
-msgstr ""
+msgstr "sau"
 
 #: View/Answers/index.ctp:44 View/Answers/view.ctp:32
 #: View/Questions/add.ctp:20 View/Questions/edit.ctp:22
 #: View/Questions/index.ctp:46 View/Questions/view.ctp:29;65
 msgid "New Answer"
-msgstr ""
+msgstr "Câu trả lời mới"
 
 #: View/Answers/view.ctp:2
 msgid "Answer"
-msgstr ""
+msgstr "Câu trả lời"
 
 #: View/Answers/view.ctp:4;44 View/Categories/view.ctp:4;44
 #: View/Grades/view.ctp:4;32 View/People/view.ctp:4;95
@@ -615,15 +621,6 @@ msgstr ""
 #: View/QuestionsSubcategories/view.ctp:4 View/ScoresQuestions/view.ctp:14
 #: View/TestsQuestions/view.ctp:14
 msgid "Question"
-msgstr ""
-
-#: View/Answers/view.ctp:14 View/Questions/view.ctp:9;43
-#: View/Subcategories/view.ctp:42 View/Tests/view.ctp:108
-msgid "Content"
-msgstr ""
-
-#: View/Answers/view.ctp:19 View/Questions/view.ctp:44
-msgid "Correctness"
 msgstr ""
 
 #: View/Answers/view.ctp:30
@@ -795,6 +792,22 @@ msgstr "Liên hệ"
 msgid "For any questions, email us at: "
 msgstr "Nếu có bất kỳ câu hỏi nào, xin liên hệ chúng tôi tại địa chỉ: "
 
+#: View/Elements/admin-left-nav.ctp:3
+msgid "Add Questions"
+msgstr "Thêm câu hỏi"
+
+#: View/Elements/admin-left-nav.ctp:4
+msgid "Add Mutiple Questions"
+msgstr "Thêm nhiều câu hỏi"
+
+#: View/Elements/admin-left-nav.ctp:5
+msgid "Add Categories"
+msgstr "Thêm chủ đề"
+
+#: View/Elements/admin-left-nav.ctp:6
+msgid "Add Subjects"
+msgstr "Thêm môn học"
+
 #: View/Elements/clock.ctp:5
 msgid "Time remains"
 msgstr "Thời gian còn lại"
@@ -848,6 +861,13 @@ msgstr "Đăng nhập với Facebook"
 #: View/Elements/login.ctp:15
 msgid "CLose"
 msgstr "Đóng"
+
+#: View/Elements/menu.ctp:22;43 View/People/cover_details.ctp:2
+#: View/People/dashboard.ctp:4 View/People/performance_details.ctp:7
+#: View/Scores/view_details.ctp:3 View/Tests/choose_test.ctp:4
+#: View/Tests/do_test.ctp:2
+msgid "Dashboard"
+msgstr "Trang cá nhân"
 
 #: View/Elements/menu.ctp:25
 msgid "About"
@@ -958,7 +978,7 @@ msgstr ""
 msgid "New Progress"
 msgstr ""
 
-#: View/People/cover_details.ctp:3 View/People/dashboard.ctp:24
+#: View/People/cover_details.ctp:3 View/People/dashboard.ctp:25
 msgid "Covered"
 msgstr "Tiến độ"
 
@@ -970,37 +990,41 @@ msgstr "Cover cho"
 msgid "Your subjects"
 msgstr "Các môn học"
 
-#: View/People/dashboard.ctp:18
+#: View/People/dashboard.ctp:19
 msgid "Physics"
 msgstr "Vật lý"
 
-#: View/People/dashboard.ctp:28
-msgid "Take a Physics test"
+#: View/People/dashboard.ctp:29
+msgid "Physics test"
 msgstr "Test Vật lý"
 
-#: View/People/dashboard.ctp:33
+#: View/People/dashboard.ctp:34
 msgid "Performance:"
 msgstr "Điểm trung bình"
 
-#: View/People/dashboard.ctp:35
+#: View/People/dashboard.ctp:36
 msgid "(latest 10 tests)."
 msgstr "(trên 10 bài test gần nhất)."
 
-#: View/People/dashboard.ctp:42
+#: View/People/dashboard.ctp:44
 msgid "Maths"
 msgstr "Toán"
 
-#: View/People/dashboard.ctp:51
-msgid "Take a Maths test"
+#: View/People/dashboard.ctp:53
+msgid "Maths test"
 msgstr "Test Toán"
 
-#: View/People/dashboard.ctp:62
+#: View/People/dashboard.ctp:65;86
 msgid "Chemist"
 msgstr "Hóa"
 
-#: View/People/dashboard.ctp:71
-msgid "Take a Chemist test"
+#: View/People/dashboard.ctp:74
+msgid "Chemist test"
 msgstr "Test Hóa học"
+
+#: View/People/dashboard.ctp:95
+msgid "Bio test"
+msgstr "Làm bài kiểm tra"
 
 #: View/People/edit.ctp:4 View/People/view.ctp:49
 msgid "Edit Person"
@@ -1012,7 +1036,7 @@ msgstr "Lịch sử test của bạn"
 
 #: View/People/index.ctp:2
 msgid "People"
-msgstr ""
+msgstr "User"
 
 #: View/People/index.ctp:50 View/People/view.ctp:52 View/Progresses/add.ctp:19
 #: View/Progresses/edit.ctp:20 View/Progresses/index.ctp:46
@@ -1150,11 +1174,6 @@ msgstr ""
 
 #: View/Questions/index.ctp:2
 msgid "Questions"
-msgstr ""
-
-#: View/Questions/view.ctp:14 View/Subcategories/view.ctp:43
-#: View/Tests/view.ctp:109
-msgid "Difficulty"
 msgstr ""
 
 #: View/Questions/view.ctp:25
@@ -1447,6 +1466,12 @@ msgstr "Họ là bắt buộc"
 #: Model/Person.php:validation for field role
 msgid "Role is not correct, must be: {'admin', 'user'}"
 msgstr "Vai trò không đúng, phải là: {'admin', 'user'}"
+
+#~ msgid "Add Subcategories"
+#~ msgstr "Thêm chủ đề con"
+
+#~ msgid "content"
+#~ msgstr "Nội dung"
 
 #~ msgid "Do not let your profile die..."
 #~ msgstr "Đừng để điểm số của bạn tụt tiếp..."

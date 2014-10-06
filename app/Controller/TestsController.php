@@ -135,7 +135,6 @@ public function beforeFilter(){
  * @return void
  */
 	public function chooseTest($subject = null) {
-		$this->layout = 'question_bank';
 		$this->set('subject', $subject);
 	}
 
@@ -148,7 +147,6 @@ public function beforeFilter(){
 		// process if request is post
 		if( isset($time) && isset($subject) ){
 
-			$this->layout = 'question_bank';
 
 	        // retrieve request data
 			$numberOfQuestions = $time;

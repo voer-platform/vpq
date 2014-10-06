@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2014-09-22 21:16+0700\n"
+"POT-Creation-Date: 2014-10-06 23:31+0700\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -18,13 +18,27 @@ msgstr ""
 msgid "Elfinder File Manager"
 msgstr ""
 
-#: Controller/AdminController.php:45
+#: Controller/AdminController.php:43
 #: View/Elements/menu.ctp:30
 msgid "Admin"
 msgstr ""
 
-#: Controller/AdminController.php:56
+#: Controller/AdminController.php:53
 msgid "Add questions"
+msgstr ""
+
+#: Controller/AdminController.php:60
+#: Controller/QuestionsController.php:52;76
+msgid "The question has been saved."
+msgstr ""
+
+#: Controller/AdminController.php:63
+#: Controller/QuestionsController.php:55;79
+msgid "The question could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/AdminController.php:96
+msgid "Add multiple questions"
 msgstr ""
 
 #: Controller/AnswersController.php:37;71;98
@@ -91,15 +105,15 @@ msgstr ""
 msgid "The grade could not be deleted. Please, try again."
 msgstr ""
 
-#: Controller/PagesController.php:57
+#: Controller/PagesController.php:56
 msgid "PLS"
 msgstr ""
 
-#: Controller/PagesController.php:58
+#: Controller/PagesController.php:57
 msgid "Home"
 msgstr ""
 
-#: Controller/PagesController.php:83
+#: Controller/PagesController.php:81
 #: View/Elements/about_us.ctp:3
 msgid "About us"
 msgstr ""
@@ -128,32 +142,21 @@ msgstr ""
 msgid "Invalid Username or password. Try again."
 msgstr ""
 
-#: Controller/PeopleController.php:204
+#: Controller/PeopleController.php:206
 msgid "Something wrong, cannot log in. Please try again!"
 msgstr ""
 
-#: Controller/PeopleController.php:220
-#: View/Elements/menu.ctp:22;43
-#: View/People/cover_details.ctp:2
-#: View/People/dashboard.ctp:4
-#: View/People/performance_details.ctp:7
-#: View/Scores/view_details.ctp:3
-#: View/Tests/choose_test.ctp:4
-#: View/Tests/do_test.ctp:2
-msgid "Dashboard"
-msgstr ""
-
-#: Controller/PeopleController.php:239
-#: Controller/SubcategoriesController.php:132
+#: Controller/PeopleController.php:238
+#: Controller/SubcategoriesController.php:131
 #: View/Elements/menu.ctp:23
 msgid "History"
 msgstr ""
 
-#: Controller/PeopleController.php:251
+#: Controller/PeopleController.php:249
 msgid "Suggestion"
 msgstr ""
 
-#: Controller/PeopleController.php:259
+#: Controller/PeopleController.php:256
 #: View/Elements/menu.ctp:24
 #: View/People/progress.ctp:7
 #: View/People/view.ctp:66
@@ -161,7 +164,7 @@ msgstr ""
 msgid "Progress"
 msgstr ""
 
-#: Controller/PeopleController.php:294
+#: Controller/PeopleController.php:290
 msgid "Cover details"
 msgstr ""
 
@@ -187,14 +190,6 @@ msgstr ""
 
 #: Controller/QuestionsController.php:37;72;100
 msgid "Invalid question"
-msgstr ""
-
-#: Controller/QuestionsController.php:52;76
-msgid "The question has been saved."
-msgstr ""
-
-#: Controller/QuestionsController.php:55;79
-msgid "The question could not be saved. Please, try again."
 msgstr ""
 
 #: Controller/QuestionsController.php:104
@@ -360,35 +355,16 @@ msgstr ""
 msgid "Score"
 msgstr ""
 
-#: View/Admin/index.ctp:6
-#: View/Admin/insert_questions.ctp:5
-msgid "Add Questions"
-msgstr ""
-
-#: View/Admin/index.ctp:7
-#: View/Admin/insert_questions.ctp:6
-msgid "Add Subcategories"
-msgstr ""
-
 #: View/Admin/index.ctp:8
-#: View/Admin/insert_questions.ctp:7
-msgid "Add Categories"
-msgstr ""
-
-#: View/Admin/index.ctp:9
-#: View/Admin/insert_questions.ctp:8
-msgid "Add Subjects"
-msgstr ""
-
-#: View/Admin/index.ctp:15
 msgid "Select one of functions on the left"
 msgstr ""
 
-#: View/Admin/insert_questions.ctp:16
-msgid "Content of questions"
+#: View/Admin/insert_multiple_questions.ctp:6
+msgid "File contains questions"
 msgstr ""
 
-#: View/Admin/insert_questions.ctp:17
+#: View/Admin/insert_multiple_questions.ctp:7
+#: View/Admin/insert_questions.ctp:33
 #: View/Answers/add.ctp:12
 #: View/Answers/edit.ctp:13
 #: View/Categories/add.ctp:11
@@ -416,6 +392,35 @@ msgstr ""
 #: View/TestsSubjects/add.ctp:10
 #: View/TestsSubjects/edit.ctp:11
 msgid "Submit"
+msgstr ""
+
+#: View/Admin/insert_questions.ctp:14
+msgid "Add question content"
+msgstr ""
+
+#: View/Admin/insert_questions.ctp:15;19;26
+#: View/Answers/view.ctp:14
+#: View/Questions/view.ctp:9;43
+#: View/Subcategories/view.ctp:42
+#: View/Tests/view.ctp:108
+msgid "Content"
+msgstr ""
+
+#: View/Admin/insert_questions.ctp:18
+#: View/Questions/view.ctp:14
+#: View/Subcategories/view.ctp:43
+#: View/Tests/view.ctp:109
+msgid "Difficulty"
+msgstr ""
+
+#: View/Admin/insert_questions.ctp:22
+msgid "Add answers for question"
+msgstr ""
+
+#: View/Admin/insert_questions.ctp:29
+#: View/Answers/view.ctp:19
+#: View/Questions/view.ctp:44
+msgid "Correctness"
 msgstr ""
 
 #: View/Answers/add.ctp:4
@@ -805,18 +810,6 @@ msgstr ""
 msgid "Question"
 msgstr ""
 
-#: View/Answers/view.ctp:14
-#: View/Questions/view.ctp:9;43
-#: View/Subcategories/view.ctp:42
-#: View/Tests/view.ctp:108
-msgid "Content"
-msgstr ""
-
-#: View/Answers/view.ctp:19
-#: View/Questions/view.ctp:44
-msgid "Correctness"
-msgstr ""
-
 #: View/Answers/view.ctp:30
 msgid "Delete Answer"
 msgstr ""
@@ -1029,6 +1022,22 @@ msgstr ""
 msgid "For any questions, email us at: "
 msgstr ""
 
+#: View/Elements/admin-left-nav.ctp:3
+msgid "Add Questions"
+msgstr ""
+
+#: View/Elements/admin-left-nav.ctp:4
+msgid "Add Mutiple Questions"
+msgstr ""
+
+#: View/Elements/admin-left-nav.ctp:5
+msgid "Add Categories"
+msgstr ""
+
+#: View/Elements/admin-left-nav.ctp:6
+msgid "Add Subjects"
+msgstr ""
+
 #: View/Elements/clock.ctp:5
 msgid "Time remains"
 msgstr ""
@@ -1085,6 +1094,16 @@ msgstr ""
 
 #: View/Elements/login.ctp:15
 msgid "CLose"
+msgstr ""
+
+#: View/Elements/menu.ctp:22;43
+#: View/People/cover_details.ctp:2
+#: View/People/dashboard.ctp:4
+#: View/People/performance_details.ctp:7
+#: View/Scores/view_details.ctp:3
+#: View/Tests/choose_test.ctp:4
+#: View/Tests/do_test.ctp:2
+msgid "Dashboard"
 msgstr ""
 
 #: View/Elements/menu.ctp:25
@@ -1219,7 +1238,7 @@ msgid "New Progress"
 msgstr ""
 
 #: View/People/cover_details.ctp:3
-#: View/People/dashboard.ctp:24
+#: View/People/dashboard.ctp:25
 msgid "Covered"
 msgstr ""
 
@@ -1231,36 +1250,40 @@ msgstr ""
 msgid "Your subjects"
 msgstr ""
 
-#: View/People/dashboard.ctp:18
+#: View/People/dashboard.ctp:19
 msgid "Physics"
 msgstr ""
 
-#: View/People/dashboard.ctp:28
-msgid "Take a Physics test"
+#: View/People/dashboard.ctp:29
+msgid "Physics test"
 msgstr ""
 
-#: View/People/dashboard.ctp:33
+#: View/People/dashboard.ctp:34
 msgid "Performance:"
 msgstr ""
 
-#: View/People/dashboard.ctp:35
+#: View/People/dashboard.ctp:36
 msgid "(latest 10 tests)."
 msgstr ""
 
-#: View/People/dashboard.ctp:42
+#: View/People/dashboard.ctp:44
 msgid "Maths"
 msgstr ""
 
-#: View/People/dashboard.ctp:51
-msgid "Take a Maths test"
+#: View/People/dashboard.ctp:53
+msgid "Maths test"
 msgstr ""
 
-#: View/People/dashboard.ctp:62
+#: View/People/dashboard.ctp:65;86
 msgid "Chemist"
 msgstr ""
 
-#: View/People/dashboard.ctp:71
-msgid "Take a Chemist test"
+#: View/People/dashboard.ctp:74
+msgid "Chemist test"
+msgstr ""
+
+#: View/People/dashboard.ctp:95
+msgid "Bio test"
 msgstr ""
 
 #: View/People/edit.ctp:4
@@ -1448,12 +1471,6 @@ msgstr ""
 
 #: View/Questions/index.ctp:2
 msgid "Questions"
-msgstr ""
-
-#: View/Questions/view.ctp:14
-#: View/Subcategories/view.ctp:43
-#: View/Tests/view.ctp:109
-msgid "Difficulty"
 msgstr ""
 
 #: View/Questions/view.ctp:25
