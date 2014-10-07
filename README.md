@@ -1,18 +1,27 @@
-Questionbank
-============
+# PLS
 
-Installation
-------------
+## Installation
 
-Copy lib folder to /
-CakePHP: http://cakephp.org/
+1.clone project
+2.put project folder to webserver
+3.copy folder lib from CakePHP from CakePHP download to /
+4.Copy folder TinymceElfinder from TinymceElfinder download to /app/Plugin.
+5.create MySQL db
 
-Copy TinymceElfinder filder to /app/Plugin.
-TinyMCE uploader: https://github.com/hashmode/Tinymce-Image-Upload-Cakephp to 
+	DB name: plseduvn' 
+	username: 'vpq'
+	password: 'vqp'
 
-Follow this instruction for cakephp on Linux system:
-https://www.digitalocean.com/community/tutorials/how-to-install-cakephp-on-an-ubuntu-12-04-vps
+6.cd to /app. use command
 
-PLS, personal learning system
+	Console/cake schema create
+
+## Requirements
+
+1. [CakePHP](http://cakephp.org/)
+2. [TinyCME uploader](https://github.com/hashmode/Tinymce-Image-Upload-Cakephp to )
+
+
+PLS, Personal Learning System
 
 @vpq 2014
