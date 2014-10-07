@@ -11,7 +11,7 @@ class AdminController extends AppController {
 	// do not use model
 	var $uses = false;
 
-	public $helpers = array('TinymceElfinder.TinymceElfinder');
+	public $helpers = array('TinymceElfinder.TinymceElfinder', 'TinyMCE.TinyMCE');
 	public $components = array('TinymceElfinder.TinymceElfinder');
 	
 /*
@@ -97,8 +97,6 @@ class AdminController extends AppController {
 
 		if($this->request->is('post')){
 			$fileName = $this->data['MultipleQuestion']['file']['tmp_name'];
-
-			
 		}
 	}	
 
