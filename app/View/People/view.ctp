@@ -21,11 +21,6 @@
 			<?php echo h($person['Person']['username']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Password'); ?></dt>
-		<dd>
-			<?php echo h($person['Person']['password']); ?>
-			&nbsp;
-		</dd>
 		<dt><?php echo __('Date Created'); ?></dt>
 		<dd>
 			<?php echo h($person['Person']['date_created']); ?>

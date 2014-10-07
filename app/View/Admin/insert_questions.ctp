@@ -30,7 +30,7 @@
 						</div>
 					</div>
 				<?php endfor; ?>
-			<?php echo $this->Form->end(array('label' => __('Submit'), 'class' => 'btn btn-primary btn-lg') ); ?>
+			<?php echo $this->Form->end(array('label' => __('Submit'), 'class' => 'btn btn-primary btn-md') ); ?>
 		</div>
 	</div>
 	

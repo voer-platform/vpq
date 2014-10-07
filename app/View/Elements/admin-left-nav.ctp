@@ -2,8 +2,9 @@
 	<ul class="nav nav-pills nav-stacked" id='admin-left-nav'>
 		<li><?php echo $this->Html->link(__('Add Questions'), array('controller' => 'Admin', 'action' => 'insertQuestions')); ?></li>
 		<li><?php echo $this->Html->link(__('Add Mutiple Questions'), array('controller' => 'Admin', 'action' => 'insertMultipleQuestions')); ?></li>
-		<li><?php echo $this->Html->link(__('Add Categories'), '#'); ?></li>
-		<li><?php echo $this->Html->link(__('Add Subjects'), '#'); ?></li>
+		<li><?php echo $this->Html->link(__('Manage People'), array('controller' => 'people', 'action' => 'index')); ?></li>
+		<li><?php echo $this->Html->link(__('Manage Questions'), array('questioons' => 'questions', 'action' => 'index')); ?></li>
+		<li><?php echo $this->Html->link(__('Manage Categories'), array('controller' => 'subcategories', 'action' => 'index')); ?></li>
 	</ul>
 </div>
 
