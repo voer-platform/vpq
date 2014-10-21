@@ -14,7 +14,7 @@
 4. Copy folder TinymceElfinder from TinymceElfinder download to /app/Plugin.
 5. create MySQL db
 
-		DB name: plseduvn' 
+		DB name: 'plseduvn' 
 		username: 'vpq'
 		password: 'vqp'
 
