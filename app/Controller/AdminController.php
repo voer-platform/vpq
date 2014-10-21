@@ -11,7 +11,7 @@ class AdminController extends AppController {
 	// do not use model
 	var $uses = false;
 
-	public $helpers = array('TinymceElfinder.TinymceElfinder', 'TinyMCE.TinyMCE');
+	public $helpers = array('TinymceElfinder.TinymceElfinder');
 	public $components = array('TinymceElfinder.TinymceElfinder');
 	
 /*
@@ -55,6 +55,14 @@ class AdminController extends AppController {
 		$this->loadModel('Question');
 
 		if($this->request->is('post')){
+			$path = WWW_ROOT. DS . 'files';
+			foreach($this->request->data['Attachment'] as $key => $value){
+				$newName = date('YmdHisu').'-'.$key.'.jpg';
+				move_uploaded_file($value['tmp_name'], $path.DS.$newName);
+				$this->request->data['Attachment'][$key] = array(
+					'path' => Router::url('/', true).'files'.DS.$newName
+					);
+			}
 			$this->Question->create();
 			if ($this->Question->saveAll($this->request->data)) {
 				$this->Session->setFlash(__('The question has been saved.'));
@@ -87,7 +95,7 @@ class AdminController extends AppController {
         $this->TinymceElfinder->connector();
     }
 
-    /**
+/**
  * insert multiple questions
  *
  * @return void
@@ -96,8 +104,35 @@ class AdminController extends AppController {
 		$this->set('title_for_layout',__("Add multiple questions"));
 
 		if($this->request->is('post')){
-			$fileName = $this->data['MultipleQuestion']['file']['tmp_name'];
+			// unzip file
+			$file = $this->request->data['Import']['file']['tmp_name'];
+			$filename = $this->request->data['Import']['file']['name'];
+			$filename = substr($filename, 0, strrpos($filename, '.'));
+
+			$path = pathinfo(realpath($file), PATHINFO_DIRNAME).DS.microtime(true);
+
+			$zip = new ZipArchive;
+			$res = $zip->open($file);
+
+			// open OK
+			if ($res === TRUE) {
+				// extract it to the path we determined above
+				$zip->extractTo($path);
+				$zip->close();
+
+				// read data file extract at path/filename
+				$data = file_get_contents($path.DS.$filename.DS.'data.txt');
+
+				// process data
+				$this->loadModel('Attachment');
+				$this->Attachment->processMassImport($data, $path.DS.$filename);
+
+			} else {
+				$this->Session->setFlash(__('The imported data could not be process, please try again later.'));
+			}
+
+			
 		}
-	}	
+	}
 
 }

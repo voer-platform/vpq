@@ -1,4 +1,4 @@
-<table class = 'table table-striped table-condensed table-hover table-bordered'>
+<table>
 	<?php
 		if( !empty($scores) ){
 			echo $this->Html->tableHeaders(array(__('Test ID'), __('Time taken'), __('Time limit'),__('Score')));

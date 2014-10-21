@@ -1,6 +1,6 @@
 <div class="questions index">
 	<h2><?php echo __('Questions'); ?></h2>
-	<table cellpadding="0" cellspacing="0" class='table'>
+	<table cellpadding="0" cellspacing="0">
 	<thead>
 	<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>

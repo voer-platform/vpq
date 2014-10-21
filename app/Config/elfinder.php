@@ -49,7 +49,7 @@ $config = array (
 							'hidden' => true
 						)
 					),
-					'tmbPath' => 'tumbnails',
+					'tmbPath' => 'thumbnails',
 					'uploadOverwrite' => false,
 				)
 			)

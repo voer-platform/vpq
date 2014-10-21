@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2014-10-06 23:31+0700\n"
+"POT-Creation-Date: 2014-10-22 01:01+0700\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -27,18 +27,23 @@ msgstr ""
 msgid "Add questions"
 msgstr ""
 
-#: Controller/AdminController.php:60
+#: Controller/AdminController.php:68
 #: Controller/QuestionsController.php:52;76
 msgid "The question has been saved."
 msgstr ""
 
-#: Controller/AdminController.php:63
+#: Controller/AdminController.php:71
 #: Controller/QuestionsController.php:55;79
 msgid "The question could not be saved. Please, try again."
 msgstr ""
 
-#: Controller/AdminController.php:96
+#: Controller/AdminController.php:104
+#: View/Admin/insert_multiple_questions.ctp:5
 msgid "Add multiple questions"
+msgstr ""
+
+#: Controller/AdminController.php:131
+msgid "The imported data could not be process, please try again later."
 msgstr ""
 
 #: Controller/AnswersController.php:37;71;98
@@ -63,6 +68,26 @@ msgstr ""
 
 #: Controller/AppController.php:118
 msgid "You are not authorized for that pages"
+msgstr ""
+
+#: Controller/AttachmentsController.php:37;71;98
+msgid "Invalid attachment"
+msgstr ""
+
+#: Controller/AttachmentsController.php:52;75
+msgid "The attachment has been saved."
+msgstr ""
+
+#: Controller/AttachmentsController.php:55;78
+msgid "The attachment could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/AttachmentsController.php:102
+msgid "The attachment has been deleted."
+msgstr ""
+
+#: Controller/AttachmentsController.php:104
+msgid "The attachment could not be deleted. Please, try again."
 msgstr ""
 
 #: Controller/CategoriesController.php:37;71;98
@@ -159,7 +184,7 @@ msgstr ""
 #: Controller/PeopleController.php:256
 #: View/Elements/menu.ctp:24
 #: View/People/progress.ctp:7
-#: View/People/view.ctp:66
+#: View/People/view.ctp:61
 #: View/Progresses/view.ctp:2;14
 msgid "Progress"
 msgstr ""
@@ -348,7 +373,7 @@ msgstr ""
 #: Model/Score.php:245
 #: View/Answers/view.ctp:47
 #: View/Elements/table_score.ctp:4
-#: View/People/view.ctp:98
+#: View/People/view.ctp:93
 #: View/Scores/view.ctp:2;19
 #: View/ScoresQuestions/view.ctp:9
 #: View/Tests/view.ctp:44
@@ -359,14 +384,16 @@ msgstr ""
 msgid "Select one of functions on the left"
 msgstr ""
 
-#: View/Admin/insert_multiple_questions.ctp:6
-msgid "File contains questions"
+#: View/Admin/insert_multiple_questions.ctp:8
+msgid "Zip file contains questions"
 msgstr ""
 
-#: View/Admin/insert_multiple_questions.ctp:7
-#: View/Admin/insert_questions.ctp:33
+#: View/Admin/insert_multiple_questions.ctp:9
+#: View/Admin/insert_questions.ctp:46
 #: View/Answers/add.ctp:12
 #: View/Answers/edit.ctp:13
+#: View/Attachments/add.ctp:10
+#: View/Attachments/edit.ctp:11
 #: View/Categories/add.ctp:11
 #: View/Categories/edit.ctp:12
 #: View/Grades/add.ctp:9
@@ -394,11 +421,39 @@ msgstr ""
 msgid "Submit"
 msgstr ""
 
-#: View/Admin/insert_questions.ctp:14
+#: View/Admin/insert_multiple_questions.ctp:11
+msgid "Info"
+msgstr ""
+
+#: View/Admin/insert_multiple_questions.ctp:12
+msgid "Import a pre-formatted zip file contains"
+msgstr ""
+
+#: View/Admin/insert_multiple_questions.ctp:14
+msgid "Text file contains question text"
+msgstr ""
+
+#: View/Admin/insert_multiple_questions.ctp:15
+msgid "Attachment files for each questions"
+msgstr ""
+
+#: View/Admin/insert_multiple_questions.ctp:17
+msgid "Format for zip file"
+msgstr ""
+
+#: View/Admin/insert_multiple_questions.ctp:18
+msgid "Zip file should follow this format"
+msgstr ""
+
+#: View/Admin/insert_questions.ctp:11
 msgid "Add question content"
 msgstr ""
 
-#: View/Admin/insert_questions.ctp:15;19;26
+#: View/Admin/insert_questions.ctp:15
+msgid "Type in content of question, if there is a math equation. Click on '<>' icon and paste in MathML code."
+msgstr ""
+
+#: View/Admin/insert_questions.ctp:17;21
 #: View/Answers/view.ctp:14
 #: View/Questions/view.ctp:9;43
 #: View/Subcategories/view.ctp:42
@@ -406,21 +461,51 @@ msgstr ""
 msgid "Content"
 msgstr ""
 
-#: View/Admin/insert_questions.ctp:18
+#: View/Admin/insert_questions.ctp:20
 #: View/Questions/view.ctp:14
 #: View/Subcategories/view.ctp:43
 #: View/Tests/view.ctp:109
 msgid "Difficulty"
 msgstr ""
 
-#: View/Admin/insert_questions.ctp:22
+#: View/Admin/insert_questions.ctp:24
 msgid "Add answers for question"
 msgstr ""
 
+#: View/Admin/insert_questions.ctp:25
+msgid "4 answers for each question. Check the checkbox on the right if the answer is correct"
+msgstr ""
+
 #: View/Admin/insert_questions.ctp:29
+#: View/Answers/view.ctp:2
+msgid "Answer"
+msgstr ""
+
+#: View/Admin/insert_questions.ctp:32
 #: View/Answers/view.ctp:19
 #: View/Questions/view.ctp:44
 msgid "Correctness"
+msgstr ""
+
+#: View/Admin/insert_questions.ctp:39
+#: View/Attachments/index.ctp:2
+msgid "Attachments"
+msgstr ""
+
+#: View/Admin/insert_questions.ctp:40
+msgid "Attachments file for the question. Click on the button to add"
+msgstr ""
+
+#: View/Admin/insert_questions.ctp:43
+msgid "Add attachments"
+msgstr ""
+
+#: View/Admin/insert_questions.ctp:85
+msgid "More attachments"
+msgstr ""
+
+#: View/Admin/insert_questions.ctp:86
+msgid "Click button to add more"
 msgstr ""
 
 #: View/Answers/add.ctp:4
@@ -431,6 +516,10 @@ msgstr ""
 #: View/Answers/edit.ctp:16
 #: View/Answers/index.ctp:9;42
 #: View/Answers/view.ctp:27;50
+#: View/Attachments/add.ctp:13
+#: View/Attachments/edit.ctp:14
+#: View/Attachments/index.ctp:9;44
+#: View/Attachments/view.ctp:22
 #: View/Categories/add.ctp:14
 #: View/Categories/edit.ctp:15
 #: View/Categories/index.ctp:9;42
@@ -442,7 +531,7 @@ msgstr ""
 #: View/People/add.ctp:18
 #: View/People/edit.ctp:19
 #: View/People/index.ctp:13;48
-#: View/People/view.ctp:47;67;101
+#: View/People/view.ctp:42;62;96
 #: View/Progresses/add.ctp:14
 #: View/Progresses/edit.ctp:14
 #: View/Progresses/index.ctp:8;42
@@ -496,6 +585,10 @@ msgstr ""
 #: View/Answers/edit.ctp:21
 #: View/Answers/index.ctp:45
 #: View/Answers/view.ctp:33
+#: View/Attachments/add.ctp:17
+#: View/Attachments/edit.ctp:19
+#: View/Attachments/index.ctp:47
+#: View/Attachments/view.ctp:28
 #: View/Questions/add.ctp:18
 #: View/Questions/edit.ctp:20
 #: View/Questions/view.ctp:26
@@ -526,6 +619,10 @@ msgstr ""
 #: View/Answers/edit.ctp:22
 #: View/Answers/index.ctp:46
 #: View/Answers/view.ctp:34
+#: View/Attachments/add.ctp:18
+#: View/Attachments/edit.ctp:20
+#: View/Attachments/index.ctp:48
+#: View/Attachments/view.ctp:29
 #: View/Questions/index.ctp:44
 #: View/Questions/view.ctp:27
 #: View/QuestionsSubcategories/add.ctp:18
@@ -558,7 +655,7 @@ msgstr ""
 #: View/People/add.ctp:24
 #: View/People/edit.ctp:26
 #: View/People/index.ctp:53
-#: View/People/view.ctp:55
+#: View/People/view.ctp:50
 #: View/Scores/add.ctp:19
 #: View/Scores/edit.ctp:21
 #: View/Scores/view.ctp:41
@@ -580,7 +677,7 @@ msgstr ""
 #: View/People/add.ctp:25
 #: View/People/edit.ctp:27
 #: View/People/index.ctp:54
-#: View/People/view.ctp:56;123
+#: View/People/view.ctp:51;118
 #: View/Scores/index.ctp:54
 #: View/Scores/view.ctp:42
 #: View/ScoresQuestions/add.ctp:19
@@ -602,6 +699,8 @@ msgstr ""
 #: View/Answers/edit.ctp:19
 #: View/Answers/index.ctp:22
 #: View/Answers/view.ctp:63
+#: View/Attachments/edit.ctp:17
+#: View/Attachments/index.ctp:23
 #: View/Categories/edit.ctp:18
 #: View/Categories/index.ctp:22
 #: View/Categories/view.ctp:57
@@ -610,7 +709,7 @@ msgstr ""
 #: View/Grades/view.ctp:47
 #: View/People/edit.ctp:22
 #: View/People/index.ctp:28
-#: View/People/view.ctp:77;114
+#: View/People/view.ctp:72;109
 #: View/Progresses/edit.ctp:17
 #: View/Progresses/index.ctp:22
 #: View/Questions/edit.ctp:19
@@ -638,6 +737,9 @@ msgstr ""
 #: View/Answers/edit.ctp:19
 #: View/Answers/index.ctp:22
 #: View/Answers/view.ctp:30;63
+#: View/Attachments/edit.ctp:17
+#: View/Attachments/index.ctp:23
+#: View/Attachments/view.ctp:25
 #: View/Categories/edit.ctp:18
 #: View/Categories/index.ctp:22
 #: View/Categories/view.ctp:30;57
@@ -646,7 +748,7 @@ msgstr ""
 #: View/Grades/view.ctp:20;47
 #: View/People/edit.ctp:22
 #: View/People/index.ctp:28
-#: View/People/view.ctp:50;77;114
+#: View/People/view.ctp:45;72;109
 #: View/Progresses/edit.ctp:17
 #: View/Progresses/index.ctp:22
 #: View/Progresses/view.ctp:25
@@ -683,12 +785,13 @@ msgstr ""
 
 #: View/Answers/index.ctp:20
 #: View/Answers/view.ctp:61
+#: View/Attachments/index.ctp:21
 #: View/Categories/index.ctp:20
 #: View/Categories/view.ctp:55
 #: View/Grades/index.ctp:14
 #: View/Grades/view.ctp:45
 #: View/People/index.ctp:26
-#: View/People/view.ctp:75;112
+#: View/People/view.ctp:70;107
 #: View/Progresses/index.ctp:20
 #: View/Questions/index.ctp:19
 #: View/Questions/view.ctp:54;85;116
@@ -706,12 +809,13 @@ msgstr ""
 
 #: View/Answers/index.ctp:21
 #: View/Answers/view.ctp:62
+#: View/Attachments/index.ctp:22
 #: View/Categories/index.ctp:21
 #: View/Categories/view.ctp:56
 #: View/Grades/index.ctp:15
 #: View/Grades/view.ctp:46
 #: View/People/index.ctp:27
-#: View/People/view.ctp:76;113
+#: View/People/view.ctp:71;108
 #: View/Progresses/index.ctp:21
 #: View/Questions/index.ctp:20
 #: View/Questions/view.ctp:55;86;117
@@ -728,6 +832,7 @@ msgid "Edit"
 msgstr ""
 
 #: View/Answers/index.ctp:30
+#: View/Attachments/index.ctp:32
 #: View/Categories/index.ctp:30
 #: View/Grades/index.ctp:24
 #: View/People/index.ctp:36
@@ -744,6 +849,7 @@ msgid "Page {:page} of {:pages}, showing {:current} records out of {:count} tota
 msgstr ""
 
 #: View/Answers/index.ctp:35
+#: View/Attachments/index.ctp:37
 #: View/Categories/index.ctp:35
 #: View/Grades/index.ctp:29
 #: View/People/index.ctp:41
@@ -760,6 +866,7 @@ msgid "previous"
 msgstr ""
 
 #: View/Answers/index.ctp:37
+#: View/Attachments/index.ctp:39
 #: View/Categories/index.ctp:37
 #: View/Grades/index.ctp:31
 #: View/People/index.ctp:43
@@ -784,14 +891,11 @@ msgstr ""
 msgid "New Answer"
 msgstr ""
 
-#: View/Answers/view.ctp:2
-msgid "Answer"
-msgstr ""
-
 #: View/Answers/view.ctp:4;44
+#: View/Attachments/view.ctp:4
 #: View/Categories/view.ctp:4;44
 #: View/Grades/view.ctp:4;32
-#: View/People/view.ctp:4;95
+#: View/People/view.ctp:4;90
 #: View/Questions/view.ctp:4;41;74;105
 #: View/Scores/view.ctp:4
 #: View/ScoresQuestions/view.ctp:4
@@ -803,6 +907,7 @@ msgid "Id"
 msgstr ""
 
 #: View/Answers/view.ctp:9
+#: View/Attachments/view.ctp:14
 #: View/Questions/view.ctp:2
 #: View/QuestionsSubcategories/view.ctp:4
 #: View/ScoresQuestions/view.ctp:14
@@ -815,35 +920,67 @@ msgid "Delete Answer"
 msgstr ""
 
 #: View/Answers/view.ctp:40
-#: View/People/view.ctp:91
+#: View/People/view.ctp:86
 #: View/Tests/view.ctp:37
 msgid "Related Scores"
 msgstr ""
 
 #: View/Answers/view.ctp:45
-#: View/People/view.ctp:96
+#: View/People/view.ctp:91
 #: View/Tests/view.ctp:42
 msgid "Test Id"
 msgstr ""
 
 #: View/Answers/view.ctp:46
-#: View/People/view.ctp:64;97
+#: View/People/view.ctp:59;92
 #: View/Tests/view.ctp:43
 msgid "Person Id"
 msgstr ""
 
 #: View/Answers/view.ctp:48
-#: View/People/view.ctp:99
+#: View/People/view.ctp:94
 #: View/Scores/view.ctp:24
 #: View/Tests/view.ctp:45
 msgid "Duration"
 msgstr ""
 
 #: View/Answers/view.ctp:49
-#: View/People/view.ctp:100
+#: View/People/view.ctp:95
 #: View/Scores/view.ctp:29
 #: View/Tests/view.ctp:46
 msgid "Time Taken"
+msgstr ""
+
+#: View/Attachments/add.ctp:4
+msgid "Add Attachment"
+msgstr ""
+
+#: View/Attachments/add.ctp:16
+#: View/Attachments/edit.ctp:18
+#: View/Attachments/view.ctp:26
+msgid "List Attachments"
+msgstr ""
+
+#: View/Attachments/edit.ctp:4
+#: View/Attachments/view.ctp:24
+msgid "Edit Attachment"
+msgstr ""
+
+#: View/Attachments/index.ctp:46
+#: View/Attachments/view.ctp:27
+msgid "New Attachment"
+msgstr ""
+
+#: View/Attachments/view.ctp:2
+msgid "Attachment"
+msgstr ""
+
+#: View/Attachments/view.ctp:9
+msgid "Path"
+msgstr ""
+
+#: View/Attachments/view.ctp:25
+msgid "Delete Attachment"
 msgstr ""
 
 #: View/Categories/add.ctp:4
@@ -1031,11 +1168,15 @@ msgid "Add Mutiple Questions"
 msgstr ""
 
 #: View/Elements/admin-left-nav.ctp:5
-msgid "Add Categories"
+msgid "Manage People"
 msgstr ""
 
 #: View/Elements/admin-left-nav.ctp:6
-msgid "Add Subjects"
+msgid "Manage Questions"
+msgstr ""
+
+#: View/Elements/admin-left-nav.ctp:7
+msgid "Manage SubCategories"
 msgstr ""
 
 #: View/Elements/clock.ctp:5
@@ -1206,7 +1347,7 @@ msgstr ""
 
 #: View/People/add.ctp:21
 #: View/People/edit.ctp:23
-#: View/People/view.ctp:51
+#: View/People/view.ctp:46
 #: View/Progresses/add.ctp:18
 #: View/Progresses/edit.ctp:19
 #: View/Progresses/index.ctp:45
@@ -1221,7 +1362,7 @@ msgstr ""
 #: View/People/add.ctp:22
 #: View/People/edit.ctp:24
 #: View/People/index.ctp:51
-#: View/People/view.ctp:53
+#: View/People/view.ctp:48
 #: View/Progresses/add.ctp:17
 #: View/Progresses/edit.ctp:18
 #: View/Progresses/view.ctp:26
@@ -1231,7 +1372,7 @@ msgstr ""
 #: View/People/add.ctp:23
 #: View/People/edit.ctp:25
 #: View/People/index.ctp:52
-#: View/People/view.ctp:54;86
+#: View/People/view.ctp:49;81
 #: View/Progresses/index.ctp:44
 #: View/Progresses/view.ctp:27
 msgid "New Progress"
@@ -1287,7 +1428,7 @@ msgid "Bio test"
 msgstr ""
 
 #: View/People/edit.ctp:4
-#: View/People/view.ctp:49
+#: View/People/view.ctp:44
 msgid "Edit Person"
 msgstr ""
 
@@ -1300,7 +1441,7 @@ msgid "People"
 msgstr ""
 
 #: View/People/index.ctp:50
-#: View/People/view.ctp:52
+#: View/People/view.ctp:47
 #: View/Progresses/add.ctp:19
 #: View/Progresses/edit.ctp:20
 #: View/Progresses/index.ctp:46
@@ -1355,30 +1496,26 @@ msgid "User Name"
 msgstr ""
 
 #: View/People/view.ctp:24
-msgid "Password"
-msgstr ""
-
-#: View/People/view.ctp:29
 msgid "Date Created"
 msgstr ""
 
-#: View/People/view.ctp:34
+#: View/People/view.ctp:29
 msgid "Role"
 msgstr ""
 
-#: View/People/view.ctp:39
+#: View/People/view.ctp:34
 msgid "Facebook"
 msgstr ""
 
-#: View/People/view.ctp:50
+#: View/People/view.ctp:45
 msgid "Delete Person"
 msgstr ""
 
-#: View/People/view.ctp:60
+#: View/People/view.ctp:55
 msgid "Related Progresses"
 msgstr ""
 
-#: View/People/view.ctp:65
+#: View/People/view.ctp:60
 msgid "Sub Category Id"
 msgstr ""
 

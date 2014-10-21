@@ -24,6 +24,7 @@
     <!-- javascript -->
     <?php echo $this->Html->script('https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js');?>
     <?php echo $this->Html->script('bootstrap.min.js');?>
+    <?php echo $this->Html->script('global.js'); ?>
 
 </head>
 <body>
@@ -41,6 +42,6 @@
 
     <?php echo $this->element('footer');?>
     <?php //echo $this->element('sql_dump'); ?>
-    
+
 </body>
 </Html>
