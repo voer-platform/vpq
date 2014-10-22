@@ -25,6 +25,19 @@ class ProgressesController extends AppController {
 		$this->set('progresses', $this->Paginator->paginate());
 	}
 
+/*
+ * authorization
+ * 
+ */
+	public function isAuthorized($user) {
+	    // only admin can do 
+	    if (isset($user['role']) && $user['role'] === 'editor' ){
+	    	return true;
+	    }
+
+	    return parent::isAuthorized($user);
+	}
+
 /**
  * view method
  *

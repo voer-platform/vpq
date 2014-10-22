@@ -25,3 +25,7 @@
 		<li><?php echo $this->Html->link(__('New Question'), array('controller' => 'questions', 'action' => 'add')); ?> </li>
 	</ul>
 </div>
+
+<script type="text/javascript">
+	$('input').addClass('form-control');	
+</script>

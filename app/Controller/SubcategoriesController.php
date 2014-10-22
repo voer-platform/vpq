@@ -24,7 +24,20 @@ class SubcategoriesController extends AppController {
         $this->Auth->allow('viewScoresSubcategory');
 
         Security::setHash('md5');
-    }	
+    }
+
+/*
+ * authorization
+ * 
+ */
+	public function isAuthorized($user) {
+	    // only admin can do 
+	    if (isset($user['role']) && $user['role'] === 'editor' ){
+	    	return true;
+	    }
+
+	    return parent::isAuthorized($user);
+	}    	
 
 /**
  * index method
@@ -68,8 +81,9 @@ class SubcategoriesController extends AppController {
 		}
 		$grades = $this->Subcategory->Grade->find('list');
 		$categories = $this->Subcategory->Category->find('list');
-		$questions = $this->Subcategory->Question->find('list');
-		$this->set(compact('grades', 'categories', 'questions'));
+		// $questions = $this->Subcategory->Question->find('list');
+		// $this->set(compact('grades', 'categories', 'questions'));
+		$this->set(compact('grades', 'categories'));
 	}
 
 /**

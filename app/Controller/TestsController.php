@@ -17,6 +17,8 @@ class TestsController extends AppController {
 	    	if( in_array( $this->request->action, array('chooseTest', 'doTest', 'score'))){
 	    		return true;
 	    	}
+	    } elseif (isset($user['role']) && $user['role'] === 'editor' ){
+	    	return true;
 	    }
 
 	    return parent::isAuthorized($user);

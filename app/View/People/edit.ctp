@@ -9,7 +9,9 @@
 		echo $this->Form->input('username');
 		echo $this->Form->input('password');
 		echo $this->Form->input('date_created');
-		echo $this->Form->input('role');
+		echo $this->Form->input('role', array(
+			'type' => 'select', 
+			'options' => array('admin', 'user', 'editor')));
 		echo $this->Form->input('facebook');
 	?>
 	</fieldset>
@@ -27,3 +29,7 @@
 		<li><?php echo $this->Html->link(__('New Score'), array('controller' => 'scores', 'action' => 'add')); ?> </li>
 	</ul>
 </div>
+
+<script type="text/javascript">
+	$('input').addClass('form-control');	
+</script>

@@ -30,7 +30,10 @@ class PeopleController extends AppController {
 	    	if( in_array( $this->request->action, array('view','progress', 'login', 'logout', 'history', 'dashboard','suggest', 'coverDetails', 'performanceDetails'))){
 	    		return true;
 	    	}
-	    }
+	    } elseif (isset($user['role']) && $user['role'] === 'editor') {
+            return true;
+        }
+
 
 	    return parent::isAuthorized($user);
 	}

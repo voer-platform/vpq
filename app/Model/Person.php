@@ -89,8 +89,8 @@ class Person extends AppModel {
         ),
         'role' => array(
             'required' => array(
-                'rule' => array('inList', array('admin', 'editor', 'answerer')),
-                'message' => 'Role is not correct, must be: {\'admin\', \'user\'}'
+                'rule' => array('inList', array('admin', 'user', 'editor')),
+                'message' => 'Role is not correct, must be: {\'admin\', \'user\', \'editor\'}'
                 )
             )
 

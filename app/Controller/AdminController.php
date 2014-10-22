@@ -20,7 +20,7 @@ class AdminController extends AppController {
  */
 	public function isAuthorized($user) {
 	    // only admin can do 
-	    if (isset($user['role']) && $user['role'] === 'admin' ){
+	    if (isset($user['role']) && $user['role'] === 'editor' ){
 	    	return true;
 	    }
 

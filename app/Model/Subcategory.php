@@ -52,7 +52,15 @@ class Subcategory extends AppModel {
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
+		),
+		'Grade' => array(
+			'className' => 'Grade',
+			'foreignKey' => 'grade_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
 		)
+
 	);
 
 /**

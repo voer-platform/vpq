@@ -5,7 +5,7 @@
 	<?php
 		echo $this->Form->input('name');
 		echo $this->Form->input('category_id');
-		echo $this->Form->input('Question');
+		// echo $this->Form->input('Question');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>
@@ -23,3 +23,7 @@
 		<li><?php echo $this->Html->link(__('New Question'), array('controller' => 'questions', 'action' => 'add')); ?> </li>
 	</ul>
 </div>
+
+<script type="text/javascript">
+	$('input').addClass('form-control');	
+</script>
