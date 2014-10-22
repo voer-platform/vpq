@@ -79,11 +79,10 @@ class SubcategoriesController extends AppController {
 				$this->Session->setFlash(__('The subcategory could not be saved. Please, try again.'));
 			}
 		}
-		$grades = $this->Subcategory->Grade->find('list');
 		$categories = $this->Subcategory->Category->find('list');
 		// $questions = $this->Subcategory->Question->find('list');
 		// $this->set(compact('grades', 'categories', 'questions'));
-		$this->set(compact('grades', 'categories'));
+		$this->set(compact('categories'));
 	}
 
 /**
