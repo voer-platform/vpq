@@ -125,7 +125,11 @@ class AdminController extends AppController {
 
 				// process data
 				$this->loadModel('Attachment');
-				$this->Attachment->processMassImport($data, $path.DS.$filename);
+				$result = $this->Attachment->processMassImport($data, $path.DS.$filename);
+
+				if($result){
+					$this->Session->setFlash(__('Import success Please verify in manage question list.'));
+				}
 
 			} else {
 				$this->Session->setFlash(__('The imported data could not be process, please try again later.'));

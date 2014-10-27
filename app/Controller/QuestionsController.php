@@ -51,6 +51,7 @@ class QuestionsController extends AppController {
 		}
 		$options = array('conditions' => array('Question.' . $this->Question->primaryKey => $id));
 		$this->set('question', $this->Question->find('first', $options));
+
 	}
 
 /**

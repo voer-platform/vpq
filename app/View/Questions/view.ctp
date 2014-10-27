@@ -67,6 +67,28 @@
 	</div>
 </div>
 <div class="related">
+	<h3><?php echo __('Related Attachments'); ?></h3>
+	<?php if (!empty($question['Attachment'])): ?>
+		<table cellpadding = "0" cellspacing = "0">
+		<tr>
+			<th><?php echo __('Id'); ?></th>
+			<th><?php echo __('Question Id'); ?></th>
+			<th><?php echo __('Path'); ?></th>
+		</tr>
+		<?php foreach ($question['Answer'] as $answer): ?>
+			<tr>
+				<td><?php echo $answer['id']; ?></td>
+				<td><?php echo $answer['question_id']; ?></td>
+				<td><?php echo $answer['path']; ?></td>
+			</tr>
+		<?php endforeach; ?>
+		</table>
+	<?php else:?>
+		<?php echo __('None attachments'); ?>
+	<?php endif; ?>
+</div>
+
+<div class="related">
 	<h3><?php echo __('Related Subcategories'); ?></h3>
 	<?php if (!empty($question['Subcategory'])): ?>
 	<table cellpadding = "0" cellspacing = "0">

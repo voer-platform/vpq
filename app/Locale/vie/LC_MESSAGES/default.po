@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2014-10-22 01:01+0700\n"
-"PO-Revision-Date: 2014-10-22 01:02+0700\n"
+"POT-Creation-Date: 2014-10-27 07:38+0700\n"
+"PO-Revision-Date: 2014-10-27 07:44+0700\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "Language: vi\n"
@@ -27,13 +27,13 @@ msgstr "Quản trị"
 msgid "Add questions"
 msgstr "Thêm câu hỏi"
 
-#: Controller/AdminController.php:68 Controller/QuestionsController.php:52;76
+#: Controller/AdminController.php:68 Controller/QuestionsController.php:66;90
 msgid "The question has been saved."
-msgstr ""
+msgstr "Câu hỏi đã được lưu"
 
-#: Controller/AdminController.php:71 Controller/QuestionsController.php:55;79
+#: Controller/AdminController.php:71 Controller/QuestionsController.php:69;93
 msgid "The question could not be saved. Please, try again."
-msgstr ""
+msgstr "Câu hỏi không lưu được. Xin thử lại."
 
 #: Controller/AdminController.php:104
 #: View/Admin/insert_multiple_questions.ctp:5
@@ -41,26 +41,30 @@ msgid "Add multiple questions"
 msgstr "Thêm nhiều câu hỏi"
 
 #: Controller/AdminController.php:131
+msgid "Import success Please verify in manage question list."
+msgstr "Nhập thành công, xin kiểm tra lại trong danh sách câu hỏi."
+
+#: Controller/AdminController.php:135
 msgid "The imported data could not be process, please try again later."
 msgstr "Không thể nhập dữ liệu, xin hãy thử lại"
 
-#: Controller/AnswersController.php:37;71;98
+#: Controller/AnswersController.php:50;84;111
 msgid "Invalid answer"
 msgstr "Câu trả lời không hợp lệ"
 
-#: Controller/AnswersController.php:52;75
+#: Controller/AnswersController.php:65;88
 msgid "The answer has been saved."
 msgstr "Câu trả lời đã được lưu."
 
-#: Controller/AnswersController.php:55;78
+#: Controller/AnswersController.php:68;91
 msgid "The answer could not be saved. Please, try again."
 msgstr "Câu tả lời không thể lưu, xin hay thử lại"
 
-#: Controller/AnswersController.php:102
+#: Controller/AnswersController.php:115
 msgid "The answer has been deleted."
 msgstr "Câu trả lời đã được xóa"
 
-#: Controller/AnswersController.php:104
+#: Controller/AnswersController.php:117
 msgid "The answer could not be deleted. Please, try again."
 msgstr "Câu tả lời không thể xóa xin hay thử lại"
 
@@ -68,65 +72,65 @@ msgstr "Câu tả lời không thể xóa xin hay thử lại"
 msgid "You are not authorized for that pages"
 msgstr "Bạn không có quyền truy cập trang này"
 
-#: Controller/AttachmentsController.php:37;71;98
+#: Controller/AttachmentsController.php:50;84;111
 msgid "Invalid attachment"
 msgstr "File đính kèm không hợp lệ"
 
-#: Controller/AttachmentsController.php:52;75
+#: Controller/AttachmentsController.php:65;88
 msgid "The attachment has been saved."
 msgstr "File đính kèm đã được lưu"
 
-#: Controller/AttachmentsController.php:55;78
+#: Controller/AttachmentsController.php:68;91
 msgid "The attachment could not be saved. Please, try again."
 msgstr "File đính kèm không thể lưu. Xin hay thử lại."
 
-#: Controller/AttachmentsController.php:102
+#: Controller/AttachmentsController.php:115
 msgid "The attachment has been deleted."
 msgstr "File đính kèm đã được xóa"
 
-#: Controller/AttachmentsController.php:104
+#: Controller/AttachmentsController.php:117
 msgid "The attachment could not be deleted. Please, try again."
 msgstr "File đính kèm không được xóa. Xin hãy thử lại."
 
-#: Controller/CategoriesController.php:37;71;98
+#: Controller/CategoriesController.php:50;84;111
 msgid "Invalid category"
 msgstr "Chủ đề không hợp lệ"
 
-#: Controller/CategoriesController.php:52;75
+#: Controller/CategoriesController.php:65;88
 msgid "The category has been saved."
 msgstr "Chủ đề đã được lưu"
 
-#: Controller/CategoriesController.php:55;78
+#: Controller/CategoriesController.php:68;91
 msgid "The category could not be saved. Please, try again."
 msgstr "Không thể lưu chủ đề, xin hay thử lại"
 
-#: Controller/CategoriesController.php:102
+#: Controller/CategoriesController.php:115
 msgid "The category has been deleted."
 msgstr "Chủ đề đã được xóa"
 
-#: Controller/CategoriesController.php:104
+#: Controller/CategoriesController.php:117
 msgid "The category could not be deleted. Please, try again."
 msgstr "Không thể xóa chủ đề, xin hay thử lại"
 
-#: Controller/GradesController.php:37;69;94
+#: Controller/GradesController.php:50;82;107
 msgid "Invalid grade"
 msgstr "Điểm không hợp lệ"
 
-#: Controller/GradesController.php:52;73
+#: Controller/GradesController.php:65;86
 msgid "The grade has been saved."
 msgstr "Điểm đã được lưu"
 
-#: Controller/GradesController.php:55;76
+#: Controller/GradesController.php:68;89
 msgid "The grade could not be saved. Please, try again."
 msgstr "Lớp không được lưu, xin hay thử lại."
 
-#: Controller/GradesController.php:98
+#: Controller/GradesController.php:111
 msgid "The grade has been deleted."
-msgstr ""
+msgstr "Điểm đã được xóa."
 
-#: Controller/GradesController.php:100
+#: Controller/GradesController.php:113
 msgid "The grade could not be deleted. Please, try again."
-msgstr ""
+msgstr "Không thể xóa điểm, xin hãy thử lại."
 
 #: Controller/PagesController.php:56
 msgid "PLS"
@@ -140,102 +144,102 @@ msgstr "Trang chủ"
 msgid "About us"
 msgstr "Giới thiệu"
 
-#: Controller/PeopleController.php:67;99;124
+#: Controller/PeopleController.php:70;102;127
 msgid "Invalid person"
-msgstr ""
+msgstr "Người dùng không hợp lệ."
 
-#: Controller/PeopleController.php:82;103
+#: Controller/PeopleController.php:85;106
 msgid "The person has been saved."
 msgstr ""
 
-#: Controller/PeopleController.php:85;106
+#: Controller/PeopleController.php:88;109
 msgid "The person could not be saved. Please, try again."
 msgstr ""
 
-#: Controller/PeopleController.php:128
+#: Controller/PeopleController.php:131
 msgid "The person has been deleted."
 msgstr ""
 
-#: Controller/PeopleController.php:130
+#: Controller/PeopleController.php:133
 msgid "The person could not be deleted. Please, try again."
 msgstr ""
 
-#: Controller/PeopleController.php:146
+#: Controller/PeopleController.php:149
 msgid "Invalid Username or password. Try again."
 msgstr ""
 
-#: Controller/PeopleController.php:206
+#: Controller/PeopleController.php:209
 msgid "Something wrong, cannot log in. Please try again!"
 msgstr "Không thể đăng nhập. Xin hay thử lại!"
 
-#: Controller/PeopleController.php:238
-#: Controller/SubcategoriesController.php:131 View/Elements/menu.ctp:23
+#: Controller/PeopleController.php:241
+#: Controller/SubcategoriesController.php:144 View/Elements/menu.ctp:23
 msgid "History"
 msgstr "Lịch sử"
 
-#: Controller/PeopleController.php:249
+#: Controller/PeopleController.php:252
 msgid "Suggestion"
 msgstr ""
 
-#: Controller/PeopleController.php:256 View/Elements/menu.ctp:24
+#: Controller/PeopleController.php:259 View/Elements/menu.ctp:24
 #: View/People/progress.ctp:7 View/People/view.ctp:61
 #: View/Progresses/view.ctp:2;14
 msgid "Progress"
 msgstr "Tiến độ"
 
-#: Controller/PeopleController.php:290
+#: Controller/PeopleController.php:293
 msgid "Cover details"
 msgstr "Chi tiết môn học"
 
-#: Controller/ProgressesController.php:37;72;100
+#: Controller/ProgressesController.php:50;85;113
 msgid "Invalid progress"
 msgstr ""
 
-#: Controller/ProgressesController.php:52;76
+#: Controller/ProgressesController.php:65;89
 msgid "The progress has been saved."
 msgstr ""
 
-#: Controller/ProgressesController.php:55;79
+#: Controller/ProgressesController.php:68;92
 msgid "The progress could not be saved. Please, try again."
 msgstr ""
 
-#: Controller/ProgressesController.php:104
+#: Controller/ProgressesController.php:117
 msgid "The progress has been deleted."
 msgstr ""
 
-#: Controller/ProgressesController.php:106
+#: Controller/ProgressesController.php:119
 msgid "The progress could not be deleted. Please, try again."
 msgstr ""
 
-#: Controller/QuestionsController.php:37;72;100
+#: Controller/QuestionsController.php:50;86;114
 msgid "Invalid question"
 msgstr ""
 
-#: Controller/QuestionsController.php:104
+#: Controller/QuestionsController.php:118
 msgid "The question has been deleted."
 msgstr ""
 
-#: Controller/QuestionsController.php:106
+#: Controller/QuestionsController.php:120
 msgid "The question could not be deleted. Please, try again."
 msgstr ""
 
-#: Controller/QuestionsSubcategoriesController.php:37;69;94
+#: Controller/QuestionsSubcategoriesController.php:50;82;107
 msgid "Invalid questions subcategory"
 msgstr ""
 
-#: Controller/QuestionsSubcategoriesController.php:52;73
+#: Controller/QuestionsSubcategoriesController.php:65;86
 msgid "The questions subcategory has been saved."
 msgstr ""
 
-#: Controller/QuestionsSubcategoriesController.php:55;76
+#: Controller/QuestionsSubcategoriesController.php:68;89
 msgid "The questions subcategory could not be saved. Please, try again."
 msgstr ""
 
-#: Controller/QuestionsSubcategoriesController.php:98
+#: Controller/QuestionsSubcategoriesController.php:111
 msgid "The questions subcategory has been deleted."
 msgstr ""
 
-#: Controller/QuestionsSubcategoriesController.php:100
+#: Controller/QuestionsSubcategoriesController.php:113
 msgid "The questions subcategory could not be deleted. Please, try again."
 msgstr ""
 
@@ -259,103 +263,103 @@ msgstr ""
 msgid "The score could not be deleted. Please, try again."
 msgstr ""
 
-#: Controller/ScoresQuestionsController.php:37;72;100
+#: Controller/ScoresQuestionsController.php:50;85;113
 msgid "Invalid scores question"
 msgstr ""
 
-#: Controller/ScoresQuestionsController.php:52;76
+#: Controller/ScoresQuestionsController.php:65;89
 msgid "The scores question has been saved."
 msgstr ""
 
-#: Controller/ScoresQuestionsController.php:55;79
+#: Controller/ScoresQuestionsController.php:68;92
 msgid "The scores question could not be saved. Please, try again."
 msgstr ""
 
-#: Controller/ScoresQuestionsController.php:104
+#: Controller/ScoresQuestionsController.php:117
 msgid "The scores question has been deleted."
 msgstr ""
 
-#: Controller/ScoresQuestionsController.php:106
+#: Controller/ScoresQuestionsController.php:119
 msgid "The scores question could not be deleted. Please, try again."
 msgstr ""
 
-#: Controller/SubcategoriesController.php:48;84;113
+#: Controller/SubcategoriesController.php:61;97;126
 msgid "Invalid subcategory"
 msgstr ""
 
-#: Controller/SubcategoriesController.php:63;88
+#: Controller/SubcategoriesController.php:76;101
 msgid "The subcategory has been saved."
 msgstr ""
 
-#: Controller/SubcategoriesController.php:66;91
+#: Controller/SubcategoriesController.php:79;104
 msgid "The subcategory could not be saved. Please, try again."
 msgstr ""
 
-#: Controller/SubcategoriesController.php:117
+#: Controller/SubcategoriesController.php:130
 msgid "The subcategory has been deleted."
 msgstr ""
 
-#: Controller/SubcategoriesController.php:119
+#: Controller/SubcategoriesController.php:132
 msgid "The subcategory could not be deleted. Please, try again."
 msgstr ""
 
-#: Controller/TestsController.php:59;94;122
+#: Controller/TestsController.php:61;96;124
 msgid "Invalid test"
 msgstr ""
 
-#: Controller/TestsController.php:74;98
+#: Controller/TestsController.php:76;100
 msgid "The test has been saved."
 msgstr ""
 
-#: Controller/TestsController.php:77;101
+#: Controller/TestsController.php:79;103
 msgid "The test could not be saved. Please, try again."
 msgstr ""
 
-#: Controller/TestsController.php:126
+#: Controller/TestsController.php:128
 msgid "The test has been deleted."
 msgstr ""
 
-#: Controller/TestsController.php:128
+#: Controller/TestsController.php:130
 msgid "The test could not be deleted. Please, try again."
 msgstr ""
 
-#: Controller/TestsQuestionsController.php:37;72;100
+#: Controller/TestsQuestionsController.php:50;85;113
 msgid "Invalid tests question"
 msgstr ""
 
-#: Controller/TestsQuestionsController.php:52;76
+#: Controller/TestsQuestionsController.php:65;89
 msgid "The tests question has been saved."
 msgstr ""
 
-#: Controller/TestsQuestionsController.php:55;79
+#: Controller/TestsQuestionsController.php:68;92
 msgid "The tests question could not be saved. Please, try again."
 msgstr ""
 
-#: Controller/TestsQuestionsController.php:104
+#: Controller/TestsQuestionsController.php:117
 msgid "The tests question has been deleted."
 msgstr ""
 
-#: Controller/TestsQuestionsController.php:106
+#: Controller/TestsQuestionsController.php:119
 msgid "The tests question could not be deleted. Please, try again."
 msgstr ""
 
-#: Controller/TestsSubjectsController.php:37;72;100
+#: Controller/TestsSubjectsController.php:50;85;113
 msgid "Invalid tests subject"
 msgstr ""
 
-#: Controller/TestsSubjectsController.php:52;76
+#: Controller/TestsSubjectsController.php:65;89
 msgid "The tests subject has been saved."
 msgstr ""
 
-#: Controller/TestsSubjectsController.php:55;79
+#: Controller/TestsSubjectsController.php:68;92
 msgid "The tests subject could not be saved. Please, try again."
 msgstr ""
 
-#: Controller/TestsSubjectsController.php:104
+#: Controller/TestsSubjectsController.php:117
 msgid "The tests subject has been deleted."
 msgstr ""
 
-#: Controller/TestsSubjectsController.php:106
+#: Controller/TestsSubjectsController.php:119
 msgid "The tests subject could not be deleted. Please, try again."
 msgstr ""
 
@@ -383,7 +387,7 @@ msgstr "File chứa các câu hỏi"
 #: View/Answers/edit.ctp:13 View/Attachments/add.ctp:10
 #: View/Attachments/edit.ctp:11 View/Categories/add.ctp:11
 #: View/Categories/edit.ctp:12 View/Grades/add.ctp:9 View/Grades/edit.ctp:10
-#: View/People/add.ctp:15 View/People/edit.ctp:16 View/Progresses/add.ctp:11
+#: View/People/add.ctp:15 View/People/edit.ctp:18 View/Progresses/add.ctp:11
 #: View/Progresses/edit.ctp:11 View/Questions/add.ctp:12
 #: View/Questions/edit.ctp:13 View/QuestionsSubcategories/add.ctp:10
 #: View/QuestionsSubcategories/edit.ctp:10 View/Scores/add.ctp:13
@@ -494,12 +498,12 @@ msgstr "Thêm câu trả lời"
 #: View/Categories/add.ctp:14 View/Categories/edit.ctp:15
 #: View/Categories/index.ctp:9;42 View/Categories/view.ctp:27;47
 #: View/Grades/add.ctp:12 View/Grades/edit.ctp:13 View/Grades/index.ctp:7;36
-#: View/Grades/view.ctp:17;36 View/People/add.ctp:18 View/People/edit.ctp:19
+#: View/Grades/view.ctp:17;36 View/People/add.ctp:18 View/People/edit.ctp:21
 #: View/People/index.ctp:13;48 View/People/view.ctp:42;62;96
 #: View/Progresses/add.ctp:14 View/Progresses/edit.ctp:14
 #: View/Progresses/index.ctp:8;42 View/Progresses/view.ctp:22
 #: View/Questions/add.ctp:15 View/Questions/edit.ctp:16
-#: View/Questions/index.ctp:9;42 View/Questions/view.ctp:22;45;77;108
+#: View/Questions/index.ctp:9;42 View/Questions/view.ctp:22;45;99;130
 #: View/QuestionsSubcategories/add.ctp:13
 #: View/QuestionsSubcategories/edit.ctp:13
 #: View/QuestionsSubcategories/index.ctp:7;40
@@ -562,7 +566,7 @@ msgid "New Question"
 msgstr ""
 
 #: View/Answers/add.ctp:21 View/Answers/edit.ctp:23 View/Answers/index.ctp:47
-#: View/Answers/view.ctp:35 View/People/add.ctp:24 View/People/edit.ctp:26
+#: View/Answers/view.ctp:35 View/People/add.ctp:24 View/People/edit.ctp:28
 #: View/People/index.ctp:53 View/People/view.ctp:50 View/Scores/add.ctp:19
 #: View/Scores/edit.ctp:21 View/Scores/view.ctp:41
 #: View/ScoresQuestions/add.ctp:18 View/ScoresQuestions/edit.ctp:20
@@ -573,7 +577,7 @@ msgid "List Scores"
 msgstr ""
 
 #: View/Answers/add.ctp:22 View/Answers/edit.ctp:24 View/Answers/index.ctp:48
-#: View/Answers/view.ctp:36;72 View/People/add.ctp:25 View/People/edit.ctp:27
+#: View/Answers/view.ctp:36;72 View/People/add.ctp:25 View/People/edit.ctp:29
 #: View/People/index.ctp:54 View/People/view.ctp:51;118
 #: View/Scores/index.ctp:54 View/Scores/view.ctp:42
 #: View/ScoresQuestions/add.ctp:19 View/ScoresQuestions/edit.ctp:21
@@ -591,11 +595,11 @@ msgstr ""
 #: View/Attachments/edit.ctp:17 View/Attachments/index.ctp:23
 #: View/Categories/edit.ctp:18 View/Categories/index.ctp:22
 #: View/Categories/view.ctp:57 View/Grades/edit.ctp:16
-#: View/Grades/index.ctp:16 View/Grades/view.ctp:47 View/People/edit.ctp:22
+#: View/Grades/index.ctp:16 View/Grades/view.ctp:47 View/People/edit.ctp:24
 #: View/People/index.ctp:28 View/People/view.ctp:72;109
 #: View/Progresses/edit.ctp:17 View/Progresses/index.ctp:22
 #: View/Questions/edit.ctp:19 View/Questions/index.ctp:21
-#: View/Questions/view.ctp:56;87;118 View/QuestionsSubcategories/edit.ctp:16
+#: View/Questions/view.ctp:56;109;140 View/QuestionsSubcategories/edit.ctp:16
 #: View/QuestionsSubcategories/index.ctp:20 View/Scores/edit.ctp:20
 #: View/Scores/index.ctp:31 View/ScoresQuestions/edit.ctp:18
 #: View/ScoresQuestions/index.ctp:27 View/Subcategories/edit.ctp:18
@@ -612,11 +616,11 @@ msgstr "Xóa"
 #: View/Attachments/index.ctp:23 View/Attachments/view.ctp:25
 #: View/Categories/edit.ctp:18 View/Categories/index.ctp:22
 #: View/Categories/view.ctp:30;57 View/Grades/edit.ctp:16
-#: View/Grades/index.ctp:16 View/Grades/view.ctp:20;47 View/People/edit.ctp:22
+#: View/Grades/index.ctp:16 View/Grades/view.ctp:20;47 View/People/edit.ctp:24
 #: View/People/index.ctp:28 View/People/view.ctp:45;72;109
 #: View/Progresses/edit.ctp:17 View/Progresses/index.ctp:22
 #: View/Progresses/view.ctp:25 View/Questions/edit.ctp:19
-#: View/Questions/index.ctp:21 View/Questions/view.ctp:25;56;87;118
+#: View/Questions/index.ctp:21 View/Questions/view.ctp:25;56;109;140
 #: View/QuestionsSubcategories/edit.ctp:16
 #: View/QuestionsSubcategories/index.ctp:20
 #: View/QuestionsSubcategories/view.ctp:20 View/Scores/edit.ctp:20
@@ -641,7 +645,7 @@ msgstr "Các câu trả lời"
 #: View/Categories/view.ctp:55 View/Grades/index.ctp:14
 #: View/Grades/view.ctp:45 View/People/index.ctp:26
 #: View/People/view.ctp:70;107 View/Progresses/index.ctp:20
-#: View/Questions/index.ctp:19 View/Questions/view.ctp:54;85;116
+#: View/Questions/index.ctp:19 View/Questions/view.ctp:54;107;138
 #: View/QuestionsSubcategories/index.ctp:18 View/Scores/index.ctp:29
 #: View/ScoresQuestions/index.ctp:25 View/Subcategories/index.ctp:18
 #: View/Subcategories/view.ctp:52 View/Tests/index.ctp:16
@@ -655,7 +659,7 @@ msgstr "Xem"
 #: View/Categories/view.ctp:56 View/Grades/index.ctp:15
 #: View/Grades/view.ctp:46 View/People/index.ctp:27
 #: View/People/view.ctp:71;108 View/Progresses/index.ctp:21
-#: View/Questions/index.ctp:20 View/Questions/view.ctp:55;86;117
+#: View/Questions/index.ctp:20 View/Questions/view.ctp:55;108;139
 #: View/QuestionsSubcategories/index.ctp:19 View/Scores/index.ctp:30
 #: View/ScoresQuestions/index.ctp:26 View/Subcategories/index.ctp:19
 #: View/Subcategories/view.ctp:53 View/Tests/index.ctp:17
@@ -706,7 +710,7 @@ msgstr "Câu trả lời mới"
 
 #: View/Answers/view.ctp:4;44 View/Attachments/view.ctp:4
 #: View/Categories/view.ctp:4;44 View/Grades/view.ctp:4;32
-#: View/People/view.ctp:4;90 View/Questions/view.ctp:4;41;74;105
+#: View/People/view.ctp:4;90 View/Questions/view.ctp:4;41;74;96;127
 #: View/Scores/view.ctp:4 View/ScoresQuestions/view.ctp:4
 #: View/Subcategories/view.ctp:4;41 View/Tests/view.ctp:4;41;78;107
 #: View/TestsQuestions/view.ctp:4 View/TestsSubjects/view.ctp:4
@@ -766,7 +770,7 @@ msgstr ""
 msgid "Attachment"
 msgstr ""
 
-#: View/Attachments/view.ctp:9
+#: View/Attachments/view.ctp:9 View/Questions/view.ctp:76
 msgid "Path"
 msgstr ""
 
@@ -818,7 +822,7 @@ msgstr ""
 #: View/Grades/add.ctp:17 View/Grades/edit.ctp:19 View/Grades/index.ctp:40
 #: View/Grades/view.ctp:24;56 View/Questions/add.ctp:22
 #: View/Questions/edit.ctp:24 View/Questions/index.ctp:48
-#: View/Questions/view.ctp:31;96 View/QuestionsSubcategories/add.ctp:20
+#: View/Questions/view.ctp:31;118 View/QuestionsSubcategories/add.ctp:20
 #: View/QuestionsSubcategories/edit.ctp:21
 #: View/QuestionsSubcategories/index.ctp:46
 #: View/QuestionsSubcategories/view.ctp:26 View/Subcategories/index.ctp:42
@@ -847,7 +851,7 @@ msgid "Category"
 msgstr ""
 
 #: View/Categories/view.ctp:9;45 View/Grades/view.ctp:9;33
-#: View/Questions/view.ctp:75 View/Subcategories/view.ctp:9
+#: View/Questions/view.ctp:97 View/Subcategories/view.ctp:9
 #: View/Tests/view.ctp:79
 msgid "Name"
 msgstr ""
@@ -865,12 +869,12 @@ msgid "Delete Category"
 msgstr ""
 
 #: View/Categories/view.ctp:40 View/Grades/view.ctp:28
-#: View/Questions/view.ctp:70
+#: View/Questions/view.ctp:92
 msgid "Related Subcategories"
 msgstr ""
 
 #: View/Categories/view.ctp:46 View/Grades/view.ctp:35
-#: View/Questions/view.ctp:76
+#: View/Questions/view.ctp:98
 msgid "Category Id"
 msgstr ""
 
@@ -1087,7 +1091,7 @@ msgstr "Đến trang cá nhân"
 msgid "Add Person"
 msgstr ""
 
-#: View/People/add.ctp:21 View/People/edit.ctp:23 View/People/view.ctp:46
+#: View/People/add.ctp:21 View/People/edit.ctp:25 View/People/view.ctp:46
 #: View/Progresses/add.ctp:18 View/Progresses/edit.ctp:19
 #: View/Progresses/index.ctp:45 View/Progresses/view.ctp:28
 #: View/Scores/add.ctp:22 View/Scores/edit.ctp:24 View/Scores/index.ctp:57
@@ -1095,13 +1099,13 @@ msgstr ""
 msgid "List People"
 msgstr ""
 
-#: View/People/add.ctp:22 View/People/edit.ctp:24 View/People/index.ctp:51
+#: View/People/add.ctp:22 View/People/edit.ctp:26 View/People/index.ctp:51
 #: View/People/view.ctp:48 View/Progresses/add.ctp:17
 #: View/Progresses/edit.ctp:18 View/Progresses/view.ctp:26
 msgid "List Progresses"
 msgstr ""
 
-#: View/People/add.ctp:23 View/People/edit.ctp:25 View/People/index.ctp:52
+#: View/People/add.ctp:23 View/People/edit.ctp:27 View/People/index.ctp:52
 #: View/People/view.ctp:49;81 View/Progresses/index.ctp:44
 #: View/Progresses/view.ctp:27
 msgid "New Progress"
@@ -1283,7 +1287,7 @@ msgid "List Tests"
 msgstr ""
 
 #: View/Questions/add.ctp:24 View/Questions/edit.ctp:26
-#: View/Questions/index.ctp:50 View/Questions/view.ctp:33;127
+#: View/Questions/index.ctp:50 View/Questions/view.ctp:33;149
 #: View/Scores/add.ctp:21 View/Scores/edit.ctp:23 View/Scores/index.ctp:56
 #: View/Scores/view.ctp:44 View/Tests/index.ctp:40 View/Tests/view.ctp:27
 #: View/TestsQuestions/add.ctp:18 View/TestsQuestions/edit.ctp:20
@@ -1309,19 +1313,27 @@ msgstr ""
 msgid "Related Answers"
 msgstr ""
 
-#: View/Questions/view.ctp:42
+#: View/Questions/view.ctp:42;75
 msgid "Question Id"
 msgstr ""
 
-#: View/Questions/view.ctp:101
+#: View/Questions/view.ctp:70
+msgid "Related Attachments"
+msgstr "File đính kèm"
+
+#: View/Questions/view.ctp:87
+msgid "None attachments"
+msgstr "Không có file đính kèm"
+
+#: View/Questions/view.ctp:123
 msgid "Related Tests"
 msgstr ""
 
-#: View/Questions/view.ctp:106 View/Tests/view.ctp:9
+#: View/Questions/view.ctp:128 View/Tests/view.ctp:9
 msgid "Time Limit"
 msgstr ""
 
-#: View/Questions/view.ctp:107 View/Tests/view.ctp:14
+#: View/Questions/view.ctp:129 View/Tests/view.ctp:14
 msgid "Allow Attemps"
 msgstr ""
 
@@ -1589,8 +1601,8 @@ msgid "Last name is required"
 msgstr "Họ là bắt buộc"
 
 #: Model/Person.php:validation for field role
-msgid "Role is not correct, must be: {'admin', 'user'}"
-msgstr "Vai trò không đúng, phải là: {'admin', 'user'}"
+msgid "Role is not correct, must be: {'admin', 'user', 'editor'}"
+msgstr "Vai trò không đúng, phải là: {'admin', 'user', 'editor'}"
 
 #~ msgid "Add Categories"
 #~ msgstr "Thêm chủ đề"
