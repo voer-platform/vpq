@@ -75,11 +75,11 @@
 			<th><?php echo __('Question Id'); ?></th>
 			<th><?php echo __('Path'); ?></th>
 		</tr>
-		<?php foreach ($question['Answer'] as $answer): ?>
+		<?php foreach ($question['Attachment'] as $attachment): ?>
 			<tr>
-				<td><?php echo $answer['id']; ?></td>
-				<td><?php echo $answer['question_id']; ?></td>
-				<td><?php echo $answer['path']; ?></td>
+				<td><?php echo $attachment['id']; ?></td>
+				<td><?php echo $attachment['question_id']; ?></td>
+				<td><?php echo $attachment['path']; ?></td>
 			</tr>
 		<?php endforeach; ?>
 		</table>
