@@ -94,6 +94,6 @@ class Subcategory extends AppModel {
 			'group' => array('sub_category_id')
 			));
 
-		return round($done/$all, 2) * 100;
+		return $all == 0? 0 :round($done/$all, 2) * 100;
 	}
 }

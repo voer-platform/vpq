@@ -16,7 +16,7 @@
 
 		DB name: 'plseduvn' 
 		username: 'vpq'
-		password: 'vqp'
+		password: 'vpq'
 
 6. cd to /app. use command
 

@@ -124,11 +124,14 @@ class AdminController extends AppController {
 				$data = file_get_contents($path.DS.$filename.DS.'data.txt');
 
 				// process data
-				$this->loadModel('Attachment');
-				$result = $this->Attachment->processMassImport($data, $path.DS.$filename);
+				$this->loadModel('Question');
+				$result = $this->Question->processMassImport($data, $path.DS.$filename);
 
 				if($result){
-					$this->Session->setFlash(__('Import success Please verify in manage question list.'));
+					$this->Session->setFlash(__('Import success. Please verify in manage question list.'));
+				}
+				else{
+					$this->Session->setFlash(__('Import Fail. Please verify in manage question list.'));
 				}
 
 			} else {

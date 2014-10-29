@@ -11,7 +11,7 @@
 		echo $this->Form->input('date_created');
 		echo $this->Form->input('role', array(
 			'type' => 'select', 
-			'options' => array('admin', 'user', 'editor')));
+			'options' => array('admin' => 'admin', 'user' => 'user', 'editor' => 'editor')));
 		echo $this->Form->input('facebook');
 	?>
 	</fieldset>
