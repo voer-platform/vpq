@@ -1,0 +1,70 @@
+/*message, flashMessage*/
+.message{
+	background-color: rgb(238, 238, 238);
+	border-bottom-left-radius: 6px;
+	border-bottom-right-radius: 6px;
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+	box-sizing: border-box;
+	color: rgb(51, 51, 51);
+	display: block;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font-size: 14px;
+	line-height: 20px;
+	margin-bottom: 0px;
+	padding-bottom: 12px;
+	padding-left: 60px;
+	padding-right: 60px;
+	padding-top: 12px;
+}
+
+/* navbar */
+.navbar-default {
+    background-color: #428bca;
+    border-color: #428bca;
+}
+.navbar-brand {
+  padding: 0px 15px; 
+}
+ul.navbar-nav li > a {
+  text-transform: uppercase;
+  color: #ddd;
+}
+.header .navbar {
+  margin-bottom: 1px;
+  border-bottom: 1px solid white;
+  box-shadow: 0px 1px 2px #aaa;
+}
+.header .navbar-left {
+  margin-left: 20px;
+}
+/* title */
+.navbar-default .navbar-brand {
+    color: white;
+}
+.navbar-default .navbar-brand:hover {
+    color: yellow;
+}
+/* link */
+.navbar-default .navbar-nav > li > a {
+    color: white;
+}
+.navbar-default .navbar-nav > li > a:hover {
+    color: yellow;
+}
+.navbar-default .navbar-toggle .icon-bar {
+	background-color: white;
+}
+.heading {
+  color: #888;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+  margin-top: 30px;
+}
+.page-heading span {
+  padding-top: 10px;
+  border-top: 3px solid #9090FF;
+}
+.form-content {
+  border: 1px solid #aaa; 
+}
