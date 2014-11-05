@@ -1,0 +1,16 @@
+.jumbotron {
+	text-align: center;
+	background-color: transparent;
+}
+
+#name{
+	font-size: 80px;
+}
+
+#slogan{
+	font-size: 18px;
+}
+
+.facebook-btn, .google-btn {
+  max-width: 300px;
+}

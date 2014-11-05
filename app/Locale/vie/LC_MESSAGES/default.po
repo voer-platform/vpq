@@ -1,0 +1,1626 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2014-10-27 07:38+0700\n"
+"PO-Revision-Date: 2014-10-27 07:44+0700\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"Language: vi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 1.6.7\n"
+
+#: Config/elfinder.php:4
+msgid "Elfinder File Manager"
+msgstr "Trang quản lý file Elfinder"
+
+#: Controller/AdminController.php:43 View/Elements/menu.ctp:30
+msgid "Admin"
+msgstr "Quản trị"
+
+#: Controller/AdminController.php:53
+msgid "Add questions"
+msgstr "Thêm câu hỏi"
+
+#: Controller/AdminController.php:68 Controller/QuestionsController.php:66;90
+msgid "The question has been saved."
+msgstr "Câu hỏi đã được lưu"
+
+#: Controller/AdminController.php:71 Controller/QuestionsController.php:69;93
+msgid "The question could not be saved. Please, try again."
+msgstr "Câu hỏi không lưu được. Xin thử lại."
+
+#: Controller/AdminController.php:104
+#: View/Admin/insert_multiple_questions.ctp:5
+msgid "Add multiple questions"
+msgstr "Thêm nhiều câu hỏi"
+
+#: Controller/AdminController.php:131
+msgid "Import success Please verify in manage question list."
+msgstr "Nhập thành công, xin kiểm tra lại trong danh sách câu hỏi."
+
+#: Controller/AdminController.php:135
+msgid "The imported data could not be process, please try again later."
+msgstr "Không thể nhập dữ liệu, xin hãy thử lại"
+
+#: Controller/AnswersController.php:50;84;111
+msgid "Invalid answer"
+msgstr "Câu trả lời không hợp lệ"
+
+#: Controller/AnswersController.php:65;88
+msgid "The answer has been saved."
+msgstr "Câu trả lời đã được lưu."
+
+#: Controller/AnswersController.php:68;91
+msgid "The answer could not be saved. Please, try again."
+msgstr "Câu tả lời không thể lưu, xin hay thử lại"
+
+#: Controller/AnswersController.php:115
+msgid "The answer has been deleted."
+msgstr "Câu trả lời đã được xóa"
+
+#: Controller/AnswersController.php:117
+msgid "The answer could not be deleted. Please, try again."
+msgstr "Câu tả lời không thể xóa xin hay thử lại"
+
+#: Controller/AppController.php:118
+msgid "You are not authorized for that pages"
+msgstr "Bạn không có quyền truy cập trang này"
+
+#: Controller/AttachmentsController.php:50;84;111
+msgid "Invalid attachment"
+msgstr "File đính kèm không hợp lệ"
+
+#: Controller/AttachmentsController.php:65;88
+msgid "The attachment has been saved."
+msgstr "File đính kèm đã được lưu"
+
+#: Controller/AttachmentsController.php:68;91
+msgid "The attachment could not be saved. Please, try again."
+msgstr "File đính kèm không thể lưu. Xin hay thử lại."
+
+#: Controller/AttachmentsController.php:115
+msgid "The attachment has been deleted."
+msgstr "File đính kèm đã được xóa"
+
+#: Controller/AttachmentsController.php:117
+msgid "The attachment could not be deleted. Please, try again."
+msgstr "File đính kèm không được xóa. Xin hãy thử lại."
+
+#: Controller/CategoriesController.php:50;84;111
+msgid "Invalid category"
+msgstr "Chủ đề không hợp lệ"
+
+#: Controller/CategoriesController.php:65;88
+msgid "The category has been saved."
+msgstr "Chủ đề đã được lưu"
+
+#: Controller/CategoriesController.php:68;91
+msgid "The category could not be saved. Please, try again."
+msgstr "Không thể lưu chủ đề, xin hay thử lại"
+
+#: Controller/CategoriesController.php:115
+msgid "The category has been deleted."
+msgstr "Chủ đề đã được xóa"
+
+#: Controller/CategoriesController.php:117
+msgid "The category could not be deleted. Please, try again."
+msgstr "Không thể xóa chủ đề, xin hay thử lại"
+
+#: Controller/GradesController.php:50;82;107
+msgid "Invalid grade"
+msgstr "Điểm không hợp lệ"
+
+#: Controller/GradesController.php:65;86
+msgid "The grade has been saved."
+msgstr "Điểm đã được lưu"
+
+#: Controller/GradesController.php:68;89
+msgid "The grade could not be saved. Please, try again."
+msgstr "Lớp không được lưu, xin hay thử lại."
+
+#: Controller/GradesController.php:111
+msgid "The grade has been deleted."
+msgstr "Điểm đã được xóa."
+
+#: Controller/GradesController.php:113
+msgid "The grade could not be deleted. Please, try again."
+msgstr "Không thể xóa điểm, xin hãy thử lại."
+
+#: Controller/PagesController.php:56
+msgid "PLS"
+msgstr "PLS"
+
+#: Controller/PagesController.php:57
+msgid "Home"
+msgstr "Trang chủ"
+
+#: Controller/PagesController.php:81 View/Elements/about_us.ctp:3
+msgid "About us"
+msgstr "Giới thiệu"
+
+#: Controller/PeopleController.php:70;102;127
+msgid "Invalid person"
+msgstr "Người dùng không hợp lệ."
+
+#: Controller/PeopleController.php:85;106
+msgid "The person has been saved."
+msgstr ""
+
+#: Controller/PeopleController.php:88;109
+msgid "The person could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/PeopleController.php:131
+msgid "The person has been deleted."
+msgstr ""
+
+#: Controller/PeopleController.php:133
+msgid "The person could not be deleted. Please, try again."
+msgstr ""
+
+#: Controller/PeopleController.php:149
+msgid "Invalid Username or password. Try again."
+msgstr ""
+
+#: Controller/PeopleController.php:209
+msgid "Something wrong, cannot log in. Please try again!"
+msgstr "Không thể đăng nhập. Xin hay thử lại!"
+
+#: Controller/PeopleController.php:241
+#: Controller/SubcategoriesController.php:144 View/Elements/menu.ctp:23
+msgid "History"
+msgstr "Lịch sử"
+
+#: Controller/PeopleController.php:252
+msgid "Suggestion"
+msgstr ""
+
+#: Controller/PeopleController.php:259 View/Elements/menu.ctp:24
+#: View/People/progress.ctp:7 View/People/view.ctp:61
+#: View/Progresses/view.ctp:2;14
+msgid "Progress"
+msgstr "Tiến độ"
+
+#: Controller/PeopleController.php:293
+msgid "Cover details"
+msgstr "Chi tiết môn học"
+
+#: Controller/ProgressesController.php:50;85;113
+msgid "Invalid progress"
+msgstr ""
+
+#: Controller/ProgressesController.php:65;89
+msgid "The progress has been saved."
+msgstr ""
+
+#: Controller/ProgressesController.php:68;92
+msgid "The progress could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/ProgressesController.php:117
+msgid "The progress has been deleted."
+msgstr ""
+
+#: Controller/ProgressesController.php:119
+msgid "The progress could not be deleted. Please, try again."
+msgstr ""
+
+#: Controller/QuestionsController.php:50;86;114
+msgid "Invalid question"
+msgstr ""
+
+#: Controller/QuestionsController.php:118
+msgid "The question has been deleted."
+msgstr ""
+
+#: Controller/QuestionsController.php:120
+msgid "The question could not be deleted. Please, try again."
+msgstr ""
+
+#: Controller/QuestionsSubcategoriesController.php:50;82;107
+msgid "Invalid questions subcategory"
+msgstr ""
+
+#: Controller/QuestionsSubcategoriesController.php:65;86
+msgid "The questions subcategory has been saved."
+msgstr ""
+
+#: Controller/QuestionsSubcategoriesController.php:68;89
+msgid "The questions subcategory could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/QuestionsSubcategoriesController.php:111
+msgid "The questions subcategory has been deleted."
+msgstr ""
+
+#: Controller/QuestionsSubcategoriesController.php:113
+msgid "The questions subcategory could not be deleted. Please, try again."
+msgstr ""
+
+#: Controller/ScoresController.php:50;85;113
+msgid "Invalid score"
+msgstr ""
+
+#: Controller/ScoresController.php:65;89
+msgid "The score has been saved."
+msgstr ""
+
+#: Controller/ScoresController.php:68;92
+msgid "The score could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/ScoresController.php:117
+msgid "The score has been deleted."
+msgstr ""
+
+#: Controller/ScoresController.php:119
+msgid "The score could not be deleted. Please, try again."
+msgstr ""
+
+#: Controller/ScoresQuestionsController.php:50;85;113
+msgid "Invalid scores question"
+msgstr ""
+
+#: Controller/ScoresQuestionsController.php:65;89
+msgid "The scores question has been saved."
+msgstr ""
+
+#: Controller/ScoresQuestionsController.php:68;92
+msgid "The scores question could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/ScoresQuestionsController.php:117
+msgid "The scores question has been deleted."
+msgstr ""
+
+#: Controller/ScoresQuestionsController.php:119
+msgid "The scores question could not be deleted. Please, try again."
+msgstr ""
+
+#: Controller/SubcategoriesController.php:61;97;126
+msgid "Invalid subcategory"
+msgstr ""
+
+#: Controller/SubcategoriesController.php:76;101
+msgid "The subcategory has been saved."
+msgstr ""
+
+#: Controller/SubcategoriesController.php:79;104
+msgid "The subcategory could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/SubcategoriesController.php:130
+msgid "The subcategory has been deleted."
+msgstr ""
+
+#: Controller/SubcategoriesController.php:132
+msgid "The subcategory could not be deleted. Please, try again."
+msgstr ""
+
+#: Controller/TestsController.php:61;96;124
+msgid "Invalid test"
+msgstr ""
+
+#: Controller/TestsController.php:76;100
+msgid "The test has been saved."
+msgstr ""
+
+#: Controller/TestsController.php:79;103
+msgid "The test could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/TestsController.php:128
+msgid "The test has been deleted."
+msgstr ""
+
+#: Controller/TestsController.php:130
+msgid "The test could not be deleted. Please, try again."
+msgstr ""
+
+#: Controller/TestsQuestionsController.php:50;85;113
+msgid "Invalid tests question"
+msgstr ""
+
+#: Controller/TestsQuestionsController.php:65;89
+msgid "The tests question has been saved."
+msgstr ""
+
+#: Controller/TestsQuestionsController.php:68;92
+msgid "The tests question could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/TestsQuestionsController.php:117
+msgid "The tests question has been deleted."
+msgstr ""
+
+#: Controller/TestsQuestionsController.php:119
+msgid "The tests question could not be deleted. Please, try again."
+msgstr ""
+
+#: Controller/TestsSubjectsController.php:50;85;113
+msgid "Invalid tests subject"
+msgstr ""
+
+#: Controller/TestsSubjectsController.php:65;89
+msgid "The tests subject has been saved."
+msgstr ""
+
+#: Controller/TestsSubjectsController.php:68;92
+msgid "The tests subject could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/TestsSubjectsController.php:117
+msgid "The tests subject has been deleted."
+msgstr ""
+
+#: Controller/TestsSubjectsController.php:119
+msgid "The tests subject could not be deleted. Please, try again."
+msgstr ""
+
+#: Model/Score.php:245 View/People/progress.ctp:7
+msgid "Date"
+msgstr "Thời gian"
+
+#: Model/Score.php:245 View/Answers/view.ctp:47
+#: View/Elements/table_score.ctp:4 View/People/view.ctp:93
+#: View/Scores/view.ctp:2;19 View/ScoresQuestions/view.ctp:9
+#: View/Tests/view.ctp:44
+msgid "Score"
+msgstr "Điểm"
+
+#: View/Admin/index.ctp:8
+msgid "Select one of functions on the left"
+msgstr "Chọn một chức năng bên trái"
+
+#: View/Admin/insert_multiple_questions.ctp:8
+msgid "Zip file contains questions"
+msgstr "File chứa các câu hỏi"
+
+#: View/Admin/insert_multiple_questions.ctp:9
+#: View/Admin/insert_questions.ctp:46 View/Answers/add.ctp:12
+#: View/Answers/edit.ctp:13 View/Attachments/add.ctp:10
+#: View/Attachments/edit.ctp:11 View/Categories/add.ctp:11
+#: View/Categories/edit.ctp:12 View/Grades/add.ctp:9 View/Grades/edit.ctp:10
+#: View/People/add.ctp:15 View/People/edit.ctp:18 View/Progresses/add.ctp:11
+#: View/Progresses/edit.ctp:11 View/Questions/add.ctp:12
+#: View/Questions/edit.ctp:13 View/QuestionsSubcategories/add.ctp:10
+#: View/QuestionsSubcategories/edit.ctp:10 View/Scores/add.ctp:13
+#: View/Scores/edit.ctp:14 View/ScoresQuestions/add.ctp:11
+#: View/ScoresQuestions/edit.ctp:12 View/Subcategories/add.ctp:11
+#: View/Subcategories/edit.ctp:12 View/Tests/add.ctp:12 View/Tests/edit.ctp:13
+#: View/TestsQuestions/add.ctp:10 View/TestsQuestions/edit.ctp:11
+#: View/TestsSubjects/add.ctp:10 View/TestsSubjects/edit.ctp:11
+msgid "Submit"
+msgstr "Gửi"
+
+#: View/Admin/insert_multiple_questions.ctp:11
+msgid "Info"
+msgstr "Thông tin"
+
+#: View/Admin/insert_multiple_questions.ctp:12
+msgid "Import a pre-formatted zip file contains"
+msgstr "Nhập một file được format sẵn chưa các câu hỏi"
+
+#: View/Admin/insert_multiple_questions.ctp:14
+msgid "Text file contains question text"
+msgstr "File text chứa nội dung câu hỏi"
+
+#: View/Admin/insert_multiple_questions.ctp:15
+msgid "Attachment files for each questions"
+msgstr "File đính kèm cho từng câu hỏi"
+
+#: View/Admin/insert_multiple_questions.ctp:17
+msgid "Format for zip file"
+msgstr "Định dạng cho file zip"
+
+#: View/Admin/insert_multiple_questions.ctp:18
+msgid "Zip file should follow this format"
+msgstr "File zip cần theo định dạng như mẫu này"
+
+#: View/Admin/insert_questions.ctp:11
+msgid "Add question content"
+msgstr "Thêm nội dung câu hỏi"
+
+#: View/Admin/insert_questions.ctp:15
+msgid ""
+"Type in content of question, if there is a math equation. Click on '<>' icon "
+"and paste in MathML code."
+msgstr ""
+"Nhập nội dung của câu hỏi. Nếu có biểu thức toán học, click vào '<>' và điền "
+"vào mã MathML"
+
+#: View/Admin/insert_questions.ctp:17;21 View/Answers/view.ctp:14
+#: View/Questions/view.ctp:9;43 View/Subcategories/view.ctp:42
+#: View/Tests/view.ctp:108
+msgid "Content"
+msgstr "Nội dung"
+
+#: View/Admin/insert_questions.ctp:20 View/Questions/view.ctp:14
+#: View/Subcategories/view.ctp:43 View/Tests/view.ctp:109
+msgid "Difficulty"
+msgstr "Độ khó"
+
+#: View/Admin/insert_questions.ctp:24
+msgid "Add answers for question"
+msgstr "Thêm câu trả lời cho câu hỏi"
+
+#: View/Admin/insert_questions.ctp:25
+msgid ""
+"4 answers for each question. Check the checkbox on the right if the answer "
+"is correct"
+msgstr ""
+"Nhập 4 câu trả lời cho câu hỏi. Chọn ô checkbox bên phải nếu câu trả lời là "
+"đúng"
+
+#: View/Admin/insert_questions.ctp:29 View/Answers/view.ctp:2
+msgid "Answer"
+msgstr "Câu trả lời"
+
+#: View/Admin/insert_questions.ctp:32 View/Answers/view.ctp:19
+#: View/Questions/view.ctp:44
+msgid "Correctness"
+msgstr "Đúng/Sai"
+
+#: View/Admin/insert_questions.ctp:39 View/Attachments/index.ctp:2
+msgid "Attachments"
+msgstr "File đính kèm"
+
+#: View/Admin/insert_questions.ctp:40
+msgid "Attachments file for the question. Click on the button to add"
+msgstr "File đính kèm cho từng câu hỏi. Ấn vào nút để them."
+
+#: View/Admin/insert_questions.ctp:43
+msgid "Add attachments"
+msgstr "Nhập file đính kèm"
+
+#: View/Admin/insert_questions.ctp:85
+msgid "More attachments"
+msgstr "More"
+
+#: View/Admin/insert_questions.ctp:86
+msgid "Click button to add more"
+msgstr "Ấn nút để thêm"
+
+#: View/Answers/add.ctp:4
+msgid "Add Answer"
+msgstr "Thêm câu trả lời"
+
+#: View/Answers/add.ctp:15 View/Answers/edit.ctp:16
+#: View/Answers/index.ctp:9;42 View/Answers/view.ctp:27;50
+#: View/Attachments/add.ctp:13 View/Attachments/edit.ctp:14
+#: View/Attachments/index.ctp:9;44 View/Attachments/view.ctp:22
+#: View/Categories/add.ctp:14 View/Categories/edit.ctp:15
+#: View/Categories/index.ctp:9;42 View/Categories/view.ctp:27;47
+#: View/Grades/add.ctp:12 View/Grades/edit.ctp:13 View/Grades/index.ctp:7;36
+#: View/Grades/view.ctp:17;36 View/People/add.ctp:18 View/People/edit.ctp:21
+#: View/People/index.ctp:13;48 View/People/view.ctp:42;62;96
+#: View/Progresses/add.ctp:14 View/Progresses/edit.ctp:14
+#: View/Progresses/index.ctp:8;42 View/Progresses/view.ctp:22
+#: View/Questions/add.ctp:15 View/Questions/edit.ctp:16
+#: View/Questions/index.ctp:9;42 View/Questions/view.ctp:22;45;99;130
+#: View/QuestionsSubcategories/add.ctp:13
+#: View/QuestionsSubcategories/edit.ctp:13
+#: View/QuestionsSubcategories/index.ctp:7;40
+#: View/QuestionsSubcategories/view.ctp:17 View/Scores/add.ctp:16
+#: View/Scores/edit.ctp:17 View/Scores/index.ctp:12;52 View/Scores/view.ctp:37
+#: View/ScoresQuestions/add.ctp:14 View/ScoresQuestions/edit.ctp:15
+#: View/ScoresQuestions/index.ctp:10;48 View/ScoresQuestions/view.ctp:27
+#: View/Subcategories/add.ctp:14 View/Subcategories/edit.ctp:15
+#: View/Subcategories/index.ctp:8;40 View/Subcategories/view.ctp:22;44
+#: View/Tests/add.ctp:15 View/Tests/edit.ctp:16 View/Tests/index.ctp:8;38
+#: View/Tests/view.ctp:22;47;80;110 View/TestsQuestions/add.ctp:13
+#: View/TestsQuestions/edit.ctp:14 View/TestsQuestions/index.ctp:9;46
+#: View/TestsQuestions/view.ctp:22 View/TestsSubjects/add.ctp:13
+#: View/TestsSubjects/edit.ctp:14 View/TestsSubjects/index.ctp:9;46
+#: View/TestsSubjects/view.ctp:22
+msgid "Actions"
+msgstr ""
+
+#: View/Answers/add.ctp:18 View/Answers/edit.ctp:20 View/Answers/view.ctp:31
+#: View/Questions/add.ctp:19 View/Questions/edit.ctp:21
+#: View/Questions/index.ctp:45 View/Questions/view.ctp:28
+msgid "List Answers"
+msgstr ""
+
+#: View/Answers/add.ctp:19 View/Answers/edit.ctp:21 View/Answers/index.ctp:45
+#: View/Answers/view.ctp:33 View/Attachments/add.ctp:17
+#: View/Attachments/edit.ctp:19 View/Attachments/index.ctp:47
+#: View/Attachments/view.ctp:28 View/Questions/add.ctp:18
+#: View/Questions/edit.ctp:20 View/Questions/view.ctp:26
+#: View/QuestionsSubcategories/add.ctp:17
+#: View/QuestionsSubcategories/edit.ctp:18
+#: View/QuestionsSubcategories/index.ctp:43
+#: View/QuestionsSubcategories/view.ctp:23 View/ScoresQuestions/add.ctp:20
+#: View/ScoresQuestions/edit.ctp:22 View/ScoresQuestions/index.ctp:53
+#: View/ScoresQuestions/view.ctp:35 View/Subcategories/add.ctp:22
+#: View/Subcategories/edit.ctp:24 View/Subcategories/index.ctp:47
+#: View/Subcategories/view.ctp:32 View/Tests/add.ctp:23 View/Tests/edit.ctp:25
+#: View/Tests/index.ctp:45 View/Tests/view.ctp:32
+#: View/TestsQuestions/add.ctp:19 View/TestsQuestions/edit.ctp:21
+#: View/TestsQuestions/index.ctp:51 View/TestsQuestions/view.ctp:30
+msgid "List Questions"
+msgstr ""
+
+#: View/Answers/add.ctp:20 View/Answers/edit.ctp:22 View/Answers/index.ctp:46
+#: View/Answers/view.ctp:34 View/Attachments/add.ctp:18
+#: View/Attachments/edit.ctp:20 View/Attachments/index.ctp:48
+#: View/Attachments/view.ctp:29 View/Questions/index.ctp:44
+#: View/Questions/view.ctp:27 View/QuestionsSubcategories/add.ctp:18
+#: View/QuestionsSubcategories/edit.ctp:19
+#: View/QuestionsSubcategories/index.ctp:44
+#: View/QuestionsSubcategories/view.ctp:24 View/ScoresQuestions/add.ctp:21
+#: View/ScoresQuestions/edit.ctp:23 View/ScoresQuestions/index.ctp:54
+#: View/ScoresQuestions/view.ctp:36 View/Subcategories/add.ctp:23
+#: View/Subcategories/edit.ctp:25 View/Subcategories/index.ctp:48
+#: View/Subcategories/view.ctp:33;63 View/Tests/add.ctp:24
+#: View/Tests/edit.ctp:26 View/Tests/index.ctp:46 View/Tests/view.ctp:33;129
+#: View/TestsQuestions/add.ctp:20 View/TestsQuestions/edit.ctp:22
+#: View/TestsQuestions/index.ctp:52 View/TestsQuestions/view.ctp:31
+msgid "New Question"
+msgstr ""
+
+#: View/Answers/add.ctp:21 View/Answers/edit.ctp:23 View/Answers/index.ctp:47
+#: View/Answers/view.ctp:35 View/People/add.ctp:24 View/People/edit.ctp:28
+#: View/People/index.ctp:53 View/People/view.ctp:50 View/Scores/add.ctp:19
+#: View/Scores/edit.ctp:21 View/Scores/view.ctp:41
+#: View/ScoresQuestions/add.ctp:18 View/ScoresQuestions/edit.ctp:20
+#: View/ScoresQuestions/index.ctp:51 View/ScoresQuestions/view.ctp:33
+#: View/Tests/add.ctp:19 View/Tests/edit.ctp:21 View/Tests/index.ctp:41
+#: View/Tests/view.ctp:28
+msgid "List Scores"
+msgstr ""
+
+#: View/Answers/add.ctp:22 View/Answers/edit.ctp:24 View/Answers/index.ctp:48
+#: View/Answers/view.ctp:36;72 View/People/add.ctp:25 View/People/edit.ctp:29
+#: View/People/index.ctp:54 View/People/view.ctp:51;118
+#: View/Scores/index.ctp:54 View/Scores/view.ctp:42
+#: View/ScoresQuestions/add.ctp:19 View/ScoresQuestions/edit.ctp:21
+#: View/ScoresQuestions/index.ctp:52 View/ScoresQuestions/view.ctp:34
+#: View/Tests/add.ctp:20 View/Tests/edit.ctp:22 View/Tests/index.ctp:42
+#: View/Tests/view.ctp:29;69
+msgid "New Score"
+msgstr ""
+
+#: View/Answers/edit.ctp:4 View/Answers/view.ctp:29
+msgid "Edit Answer"
+msgstr ""
+
+#: View/Answers/edit.ctp:19 View/Answers/index.ctp:22 View/Answers/view.ctp:63
+#: View/Attachments/edit.ctp:17 View/Attachments/index.ctp:23
+#: View/Categories/edit.ctp:18 View/Categories/index.ctp:22
+#: View/Categories/view.ctp:57 View/Grades/edit.ctp:16
+#: View/Grades/index.ctp:16 View/Grades/view.ctp:47 View/People/edit.ctp:24
+#: View/People/index.ctp:28 View/People/view.ctp:72;109
+#: View/Progresses/edit.ctp:17 View/Progresses/index.ctp:22
+#: View/Questions/edit.ctp:19 View/Questions/index.ctp:21
+#: View/Questions/view.ctp:56;109;140 View/QuestionsSubcategories/edit.ctp:16
+#: View/QuestionsSubcategories/index.ctp:20 View/Scores/edit.ctp:20
+#: View/Scores/index.ctp:31 View/ScoresQuestions/edit.ctp:18
+#: View/ScoresQuestions/index.ctp:27 View/Subcategories/edit.ctp:18
+#: View/Subcategories/index.ctp:20 View/Subcategories/view.ctp:54
+#: View/Tests/edit.ctp:19 View/Tests/index.ctp:18
+#: View/Tests/view.ctp:60;89;120 View/TestsQuestions/edit.ctp:17
+#: View/TestsQuestions/index.ctp:25 View/TestsSubjects/edit.ctp:17
+#: View/TestsSubjects/index.ctp:25
+msgid "Delete"
+msgstr "Xóa"
+
+#: View/Answers/edit.ctp:19 View/Answers/index.ctp:22
+#: View/Answers/view.ctp:30;63 View/Attachments/edit.ctp:17
+#: View/Attachments/index.ctp:23 View/Attachments/view.ctp:25
+#: View/Categories/edit.ctp:18 View/Categories/index.ctp:22
+#: View/Categories/view.ctp:30;57 View/Grades/edit.ctp:16
+#: View/Grades/index.ctp:16 View/Grades/view.ctp:20;47 View/People/edit.ctp:24
+#: View/People/index.ctp:28 View/People/view.ctp:45;72;109
+#: View/Progresses/edit.ctp:17 View/Progresses/index.ctp:22
+#: View/Progresses/view.ctp:25 View/Questions/edit.ctp:19
+#: View/Questions/index.ctp:21 View/Questions/view.ctp:25;56;109;140
+#: View/QuestionsSubcategories/edit.ctp:16
+#: View/QuestionsSubcategories/index.ctp:20
+#: View/QuestionsSubcategories/view.ctp:20 View/Scores/edit.ctp:20
+#: View/Scores/index.ctp:31 View/Scores/view.ctp:40
+#: View/ScoresQuestions/edit.ctp:18 View/ScoresQuestions/index.ctp:27
+#: View/ScoresQuestions/view.ctp:30 View/Subcategories/edit.ctp:18
+#: View/Subcategories/index.ctp:20 View/Subcategories/view.ctp:25;54
+#: View/Tests/edit.ctp:19 View/Tests/index.ctp:18
+#: View/Tests/view.ctp:25;60;89;120 View/TestsQuestions/edit.ctp:17
+#: View/TestsQuestions/index.ctp:25 View/TestsQuestions/view.ctp:25
+#: View/TestsSubjects/edit.ctp:17 View/TestsSubjects/index.ctp:25
+#: View/TestsSubjects/view.ctp:25
+msgid "Are you sure you want to delete # %s?"
+msgstr "Bạn có chắc muốn xóa # %s"
+
+#: View/Answers/index.ctp:2
+msgid "Answers"
+msgstr "Các câu trả lời"
+
+#: View/Answers/index.ctp:20 View/Answers/view.ctp:61
+#: View/Attachments/index.ctp:21 View/Categories/index.ctp:20
+#: View/Categories/view.ctp:55 View/Grades/index.ctp:14
+#: View/Grades/view.ctp:45 View/People/index.ctp:26
+#: View/People/view.ctp:70;107 View/Progresses/index.ctp:20
+#: View/Questions/index.ctp:19 View/Questions/view.ctp:54;107;138
+#: View/QuestionsSubcategories/index.ctp:18 View/Scores/index.ctp:29
+#: View/ScoresQuestions/index.ctp:25 View/Subcategories/index.ctp:18
+#: View/Subcategories/view.ctp:52 View/Tests/index.ctp:16
+#: View/Tests/view.ctp:58;87;118 View/TestsQuestions/index.ctp:23
+#: View/TestsSubjects/index.ctp:23
+msgid "View"
+msgstr "Xem"
+
+#: View/Answers/index.ctp:21 View/Answers/view.ctp:62
+#: View/Attachments/index.ctp:22 View/Categories/index.ctp:21
+#: View/Categories/view.ctp:56 View/Grades/index.ctp:15
+#: View/Grades/view.ctp:46 View/People/index.ctp:27
+#: View/People/view.ctp:71;108 View/Progresses/index.ctp:21
+#: View/Questions/index.ctp:20 View/Questions/view.ctp:55;108;139
+#: View/QuestionsSubcategories/index.ctp:19 View/Scores/index.ctp:30
+#: View/ScoresQuestions/index.ctp:26 View/Subcategories/index.ctp:19
+#: View/Subcategories/view.ctp:53 View/Tests/index.ctp:17
+#: View/Tests/view.ctp:59;88;119 View/TestsQuestions/index.ctp:24
+#: View/TestsSubjects/index.ctp:24
+msgid "Edit"
+msgstr "Sửa"
+
+#: View/Answers/index.ctp:30 View/Attachments/index.ctp:32
+#: View/Categories/index.ctp:30 View/Grades/index.ctp:24
+#: View/People/index.ctp:36 View/Progresses/index.ctp:30
+#: View/Questions/index.ctp:30 View/QuestionsSubcategories/index.ctp:28
+#: View/Scores/index.ctp:40 View/ScoresQuestions/index.ctp:36
+#: View/Subcategories/index.ctp:28 View/Tests/index.ctp:26
+#: View/TestsQuestions/index.ctp:34 View/TestsSubjects/index.ctp:34
+msgid ""
+"Page {:page} of {:pages}, showing {:current} records out of {:count} total, "
+"starting on record {:start}, ending on {:end}"
+msgstr ""
+"Trang {:page} của {:pages}, {:current} bản ghi trên tổng số {:count}, bắt "
+"đầu từ {:start}, kết thúc ở {:end}"
+
+#: View/Answers/index.ctp:35 View/Attachments/index.ctp:37
+#: View/Categories/index.ctp:35 View/Grades/index.ctp:29
+#: View/People/index.ctp:41 View/Progresses/index.ctp:35
+#: View/Questions/index.ctp:35 View/QuestionsSubcategories/index.ctp:33
+#: View/Scores/index.ctp:45 View/ScoresQuestions/index.ctp:41
+#: View/Subcategories/index.ctp:33 View/Tests/index.ctp:31
+#: View/TestsQuestions/index.ctp:39 View/TestsSubjects/index.ctp:39
+msgid "previous"
+msgstr "trước"
+
+#: View/Answers/index.ctp:37 View/Attachments/index.ctp:39
+#: View/Categories/index.ctp:37 View/Grades/index.ctp:31
+#: View/People/index.ctp:43 View/Progresses/index.ctp:37
+#: View/Questions/index.ctp:37 View/QuestionsSubcategories/index.ctp:35
+#: View/Scores/index.ctp:47 View/ScoresQuestions/index.ctp:43
+#: View/Subcategories/index.ctp:35 View/Tests/index.ctp:33
+#: View/TestsQuestions/index.ctp:41 View/TestsSubjects/index.ctp:41
+msgid "next"
+msgstr "sau"
+
+#: View/Answers/index.ctp:44 View/Answers/view.ctp:32
+#: View/Questions/add.ctp:20 View/Questions/edit.ctp:22
+#: View/Questions/index.ctp:46 View/Questions/view.ctp:29;65
+msgid "New Answer"
+msgstr "Câu trả lời mới"
+
+#: View/Answers/view.ctp:4;44 View/Attachments/view.ctp:4
+#: View/Categories/view.ctp:4;44 View/Grades/view.ctp:4;32
+#: View/People/view.ctp:4;90 View/Questions/view.ctp:4;41;74;96;127
+#: View/Scores/view.ctp:4 View/ScoresQuestions/view.ctp:4
+#: View/Subcategories/view.ctp:4;41 View/Tests/view.ctp:4;41;78;107
+#: View/TestsQuestions/view.ctp:4 View/TestsSubjects/view.ctp:4
+msgid "Id"
+msgstr ""
+
+#: View/Answers/view.ctp:9 View/Attachments/view.ctp:14
+#: View/Questions/view.ctp:2 View/QuestionsSubcategories/view.ctp:4
+#: View/ScoresQuestions/view.ctp:14 View/TestsQuestions/view.ctp:14
+msgid "Question"
+msgstr ""
+
+#: View/Answers/view.ctp:30
+msgid "Delete Answer"
+msgstr ""
+
+#: View/Answers/view.ctp:40 View/People/view.ctp:86 View/Tests/view.ctp:37
+msgid "Related Scores"
+msgstr ""
+
+#: View/Answers/view.ctp:45 View/People/view.ctp:91 View/Tests/view.ctp:42
+msgid "Test Id"
+msgstr ""
+
+#: View/Answers/view.ctp:46 View/People/view.ctp:59;92 View/Tests/view.ctp:43
+msgid "Person Id"
+msgstr ""
+
+#: View/Answers/view.ctp:48 View/People/view.ctp:94 View/Scores/view.ctp:24
+#: View/Tests/view.ctp:45
+msgid "Duration"
+msgstr ""
+
+#: View/Answers/view.ctp:49 View/People/view.ctp:95 View/Scores/view.ctp:29
+#: View/Tests/view.ctp:46
+msgid "Time Taken"
+msgstr ""
+
+#: View/Attachments/add.ctp:4
+msgid "Add Attachment"
+msgstr ""
+
+#: View/Attachments/add.ctp:16 View/Attachments/edit.ctp:18
+#: View/Attachments/view.ctp:26
+msgid "List Attachments"
+msgstr ""
+
+#: View/Attachments/edit.ctp:4 View/Attachments/view.ctp:24
+msgid "Edit Attachment"
+msgstr ""
+
+#: View/Attachments/index.ctp:46 View/Attachments/view.ctp:27
+msgid "New Attachment"
+msgstr ""
+
+#: View/Attachments/view.ctp:2
+msgid "Attachment"
+msgstr ""
+
+#: View/Attachments/view.ctp:9 View/Questions/view.ctp:76
+msgid "Path"
+msgstr ""
+
+#: View/Attachments/view.ctp:25
+msgid "Delete Attachment"
+msgstr ""
+
+#: View/Categories/add.ctp:4
+msgid "Add Category"
+msgstr ""
+
+#: View/Categories/add.ctp:17 View/Categories/edit.ctp:19
+#: View/Categories/view.ctp:31 View/Subcategories/add.ctp:20
+#: View/Subcategories/edit.ctp:22 View/Subcategories/index.ctp:45
+#: View/Subcategories/view.ctp:30 View/Tests/add.ctp:21 View/Tests/edit.ctp:23
+#: View/Tests/index.ctp:43 View/Tests/view.ctp:30
+msgid "List Categories"
+msgstr ""
+
+#: View/Categories/add.ctp:18 View/Categories/edit.ctp:20
+#: View/Categories/index.ctp:45 View/Categories/view.ctp:33
+#: View/TestsSubjects/add.ctp:19 View/TestsSubjects/edit.ctp:21
+#: View/TestsSubjects/index.ctp:51 View/TestsSubjects/view.ctp:30
+msgid "List Subjects"
+msgstr ""
+
+#: View/Categories/add.ctp:19 View/Categories/edit.ctp:21
+#: View/Categories/index.ctp:46 View/Categories/view.ctp:34
+#: View/TestsSubjects/add.ctp:20 View/TestsSubjects/edit.ctp:22
+#: View/TestsSubjects/index.ctp:52 View/TestsSubjects/view.ctp:31
+msgid "New Subject"
+msgstr ""
+
+#: View/Categories/add.ctp:20 View/Categories/edit.ctp:22
+#: View/Categories/index.ctp:47 View/Categories/view.ctp:35
+#: View/Grades/add.ctp:16 View/Grades/edit.ctp:18 View/Grades/index.ctp:39
+#: View/Grades/view.ctp:23 View/Questions/add.ctp:21
+#: View/Questions/edit.ctp:23 View/Questions/index.ctp:47
+#: View/Questions/view.ctp:30 View/QuestionsSubcategories/add.ctp:19
+#: View/QuestionsSubcategories/edit.ctp:20
+#: View/QuestionsSubcategories/index.ctp:45
+#: View/QuestionsSubcategories/view.ctp:25 View/Subcategories/add.ctp:17
+#: View/Subcategories/edit.ctp:19 View/Subcategories/view.ctp:26
+msgid "List Subcategories"
+msgstr ""
+
+#: View/Categories/add.ctp:21 View/Categories/edit.ctp:23
+#: View/Categories/index.ctp:48 View/Categories/view.ctp:36;66
+#: View/Grades/add.ctp:17 View/Grades/edit.ctp:19 View/Grades/index.ctp:40
+#: View/Grades/view.ctp:24;56 View/Questions/add.ctp:22
+#: View/Questions/edit.ctp:24 View/Questions/index.ctp:48
+#: View/Questions/view.ctp:31;118 View/QuestionsSubcategories/add.ctp:20
+#: View/QuestionsSubcategories/edit.ctp:21
+#: View/QuestionsSubcategories/index.ctp:46
+#: View/QuestionsSubcategories/view.ctp:26 View/Subcategories/index.ctp:42
+#: View/Subcategories/view.ctp:27
+msgid "New Subcategory"
+msgstr ""
+
+#: View/Categories/edit.ctp:4 View/Categories/view.ctp:29
+msgid "Edit Category"
+msgstr ""
+
+#: View/Categories/index.ctp:2
+msgid "Categories"
+msgstr ""
+
+#: View/Categories/index.ctp:44 View/Categories/view.ctp:32
+#: View/Subcategories/add.ctp:21 View/Subcategories/edit.ctp:23
+#: View/Subcategories/index.ctp:46 View/Subcategories/view.ctp:31
+#: View/Tests/add.ctp:22 View/Tests/edit.ctp:24 View/Tests/index.ctp:44
+#: View/Tests/view.ctp:31;98
+msgid "New Category"
+msgstr ""
+
+#: View/Categories/view.ctp:2 View/Subcategories/view.ctp:14
+msgid "Category"
+msgstr ""
+
+#: View/Categories/view.ctp:9;45 View/Grades/view.ctp:9;33
+#: View/Questions/view.ctp:97 View/Subcategories/view.ctp:9
+#: View/Tests/view.ctp:79
+msgid "Name"
+msgstr ""
+
+#: View/Categories/view.ctp:14 View/TestsSubjects/view.ctp:14
+msgid "Subject"
+msgstr ""
+
+#: View/Categories/view.ctp:19 View/Grades/view.ctp:34
+msgid "Grade Id"
+msgstr ""
+
+#: View/Categories/view.ctp:30
+msgid "Delete Category"
+msgstr ""
+
+#: View/Categories/view.ctp:40 View/Grades/view.ctp:28
+#: View/Questions/view.ctp:92
+msgid "Related Subcategories"
+msgstr ""
+
+#: View/Categories/view.ctp:46 View/Grades/view.ctp:35
+#: View/Questions/view.ctp:98
+msgid "Category Id"
+msgstr ""
+
+#: View/Elements/about_us.ctp:7
+msgid "What is PLS?"
+msgstr "PLS là gì?"
+
+#: View/Elements/about_us.ctp:8
+msgid ""
+"PLS - Personal Learning System, is a system help you review your knowledge "
+"by doing tests. System will help you keep track of your study and know what, "
+"where needs improvement. "
+msgstr ""
+"PLS - Personal Learning System - Hệ thống hỗ trợ học trực tuyến. Hệ thống sẽ "
+"giúp bạn theo dõi quá trình học, từ đó quyết định cần bổ sung kiến thức ở "
+"phần nào."
+
+#: View/Elements/about_us.ctp:10
+msgid "What kind of knowledge?"
+msgstr "Những loại kiến thức gì?"
+
+#: View/Elements/about_us.ctp:11
+msgid ""
+"Any kind, it could be school subjects, language, IT, industry, soft-skills, "
+"etc. anything. However, currently the system only support high school "
+"physics at the moment. "
+msgstr ""
+"Bất kỳ lĩnh vực nào: gkiến thức ở trường, ngôn ngữ, IT, công nghiệp, kỹ năng "
+"mềm, v.v. Nhưng hiện tại, hệ thống chỉ hỗ trợ lĩnh vực Vật lý, THPT."
+
+#: View/Elements/about_us.ctp:13
+msgid "Who should use PLS?"
+msgstr "Ai có thể dùng PLS?"
+
+#: View/Elements/about_us.ctp:14
+msgid "Anyone is welcome."
+msgstr "Mọi người đều có thể dùng và được chào đón."
+
+#: View/Elements/about_us.ctp:16
+msgid "Contacts"
+msgstr "Liên hệ"
+
+#: View/Elements/about_us.ctp:18
+msgid "For any questions, email us at: "
+msgstr "Nếu có bất kỳ câu hỏi nào, xin liên hệ chúng tôi tại địa chỉ: "
+
+#: View/Elements/admin-left-nav.ctp:3
+msgid "Add Questions"
+msgstr "Thêm câu hỏi"
+
+#: View/Elements/admin-left-nav.ctp:4
+msgid "Add Mutiple Questions"
+msgstr "Thêm nhiều câu hỏi"
+
+#: View/Elements/admin-left-nav.ctp:5
+msgid "Manage People"
+msgstr "Quản lý người dùng"
+
+#: View/Elements/admin-left-nav.ctp:6
+msgid "Manage Questions"
+msgstr "Quản lý câu hỏi"
+
+#: View/Elements/admin-left-nav.ctp:7
+msgid "Manage SubCategories"
+msgstr "Quản lý chủ đề con"
+
+#: View/Elements/clock.ctp:5
+msgid "Time remains"
+msgstr "Thời gian còn lại"
+
+#: View/Elements/clock.ctp:6
+msgid "Minutes"
+msgstr "Phút"
+
+#: View/Elements/clock.ctp:7
+msgid "Seconds"
+msgstr "Giây"
+
+#: View/Elements/clock.ctp:26
+msgid "Time's up!"
+msgstr "Hết thời gian!"
+
+#: View/Elements/do_test.ctp:3
+msgid "Do your Test"
+msgstr "Làm bài test"
+
+#: View/Elements/do_test.ctp:6 View/Scores/view.ctp:9
+#: View/Tests/choose_test.ctp:10 View/Tests/view.ctp:2
+#: View/TestsQuestions/view.ctp:9 View/TestsSubjects/view.ctp:9
+msgid "Test"
+msgstr "Kiểm tra"
+
+#: View/Elements/do_test.ctp:7
+msgid "Timelimit"
+msgstr "Thời gian"
+
+#: View/Elements/do_test.ctp:7
+msgid "minutes"
+msgstr "phút"
+
+#: View/Elements/do_test.ctp:8
+msgid "Number of questions"
+msgstr "Số câu hỏi"
+
+#: View/Elements/do_test.ctp:56
+msgid "Submit your answers"
+msgstr "Gửi đáp án"
+
+#: View/Elements/login.ctp:8
+msgid "Please Login using..."
+msgstr "Đăng nhập sử dụng"
+
+#: View/Elements/login.ctp:11 View/Pages/home.ctp:19
+msgid "Login with Facebook"
+msgstr "Đăng nhập với Facebook"
+
+#: View/Elements/login.ctp:15
+msgid "CLose"
+msgstr "Đóng"
+
+#: View/Elements/menu.ctp:22;43 View/People/cover_details.ctp:2
+#: View/People/dashboard.ctp:4 View/People/performance_details.ctp:7
+#: View/Scores/view_details.ctp:3 View/Tests/choose_test.ctp:4
+#: View/Tests/do_test.ctp:2
+msgid "Dashboard"
+msgstr "Trang cá nhân"
+
+#: View/Elements/menu.ctp:25
+msgid "About"
+msgstr "Giới thiệu"
+
+#: View/Elements/menu.ctp:42
+msgid "Account info"
+msgstr "Thông tin tài khoản"
+
+#: View/Elements/menu.ctp:45
+msgid "Logout"
+msgstr "Đăng xuất"
+
+#: View/Elements/table_score.ctp:4
+msgid "Test ID"
+msgstr "ID bài kiểm tra"
+
+#: View/Elements/table_score.ctp:4
+msgid "Time taken"
+msgstr "Thời gian làm"
+
+#: View/Elements/table_score.ctp:4
+msgid "Time limit"
+msgstr "Thời gian giới hạn"
+
+#: View/Elements/table_score.ctp:9 View/Tests/choose_test.ctp:15
+msgid "mins"
+msgstr "phút"
+
+#: View/Elements/table_score.ctp:15
+msgid "Oops... It looks like you have no history on this...."
+msgstr "Oops... Bạn chưa có lịch sử học tập trong mục này..."
+
+#: View/Grades/add.ctp:4
+msgid "Add Grade"
+msgstr ""
+
+#: View/Grades/add.ctp:15 View/Grades/edit.ctp:17 View/Grades/view.ctp:21
+#: View/Subcategories/add.ctp:18 View/Subcategories/edit.ctp:20
+#: View/Subcategories/index.ctp:43 View/Subcategories/view.ctp:28
+msgid "List Grades"
+msgstr ""
+
+#: View/Grades/edit.ctp:4 View/Grades/view.ctp:19
+msgid "Edit Grade"
+msgstr ""
+
+#: View/Grades/index.ctp:2
+msgid "Grades"
+msgstr ""
+
+#: View/Grades/index.ctp:38 View/Grades/view.ctp:22
+#: View/Subcategories/add.ctp:19 View/Subcategories/edit.ctp:21
+#: View/Subcategories/index.ctp:44 View/Subcategories/view.ctp:29
+msgid "New Grade"
+msgstr ""
+
+#: View/Grades/view.ctp:2 View/People/cover_details.ctp:17
+msgid "Grade"
+msgstr ""
+
+#: View/Grades/view.ctp:20
+msgid "Delete Grade"
+msgstr ""
+
+#: View/Pages/home.ctp:8
+msgid "Join us to access Open, Free, Huge pool of questions in many categories"
+msgstr ""
+"Tham gia vào hệ thống để truy cập lương lớn câu hỏi trên nhiều lĩnh vực"
+
+#: View/Pages/home.ctp:15
+msgid "Login Using"
+msgstr "Đăng nhập sử dụng"
+
+#: View/Pages/home.ctp:30
+msgid "How is your study?"
+msgstr "Việc học thế nào rồi?"
+
+#: View/Pages/home.ctp:31
+msgid "Keep it up!"
+msgstr "Tiếp tục cố gắng!"
+
+#: View/Pages/home.ctp:32
+msgid "Take a look"
+msgstr "Đến trang cá nhân"
+
+#: View/People/add.ctp:4
+msgid "Add Person"
+msgstr ""
+
+#: View/People/add.ctp:21 View/People/edit.ctp:25 View/People/view.ctp:46
+#: View/Progresses/add.ctp:18 View/Progresses/edit.ctp:19
+#: View/Progresses/index.ctp:45 View/Progresses/view.ctp:28
+#: View/Scores/add.ctp:22 View/Scores/edit.ctp:24 View/Scores/index.ctp:57
+#: View/Scores/view.ctp:45
+msgid "List People"
+msgstr ""
+
+#: View/People/add.ctp:22 View/People/edit.ctp:26 View/People/index.ctp:51
+#: View/People/view.ctp:48 View/Progresses/add.ctp:17
+#: View/Progresses/edit.ctp:18 View/Progresses/view.ctp:26
+msgid "List Progresses"
+msgstr ""
+
+#: View/People/add.ctp:23 View/People/edit.ctp:27 View/People/index.ctp:52
+#: View/People/view.ctp:49;81 View/Progresses/index.ctp:44
+#: View/Progresses/view.ctp:27
+msgid "New Progress"
+msgstr ""
+
+#: View/People/cover_details.ctp:3 View/People/dashboard.ctp:25
+msgid "Covered"
+msgstr "Tiến độ"
+
+#: View/People/cover_details.ctp:8
+msgid "Your coverage for"
+msgstr "Cover cho"
+
+#: View/People/dashboard.ctp:9
+msgid "Your subjects"
+msgstr "Các môn học"
+
+#: View/People/dashboard.ctp:19
+msgid "Physics"
+msgstr "Vật lý"
+
+#: View/People/dashboard.ctp:29
+msgid "Physics test"
+msgstr "Test Vật lý"
+
+#: View/People/dashboard.ctp:34
+msgid "Performance:"
+msgstr "Điểm trung bình"
+
+#: View/People/dashboard.ctp:36
+msgid "(latest 10 tests)."
+msgstr "(trên 10 bài test gần nhất)."
+
+#: View/People/dashboard.ctp:44
+msgid "Maths"
+msgstr "Toán"
+
+#: View/People/dashboard.ctp:53
+msgid "Maths test"
+msgstr "Test Toán"
+
+#: View/People/dashboard.ctp:65;86
+msgid "Chemist"
+msgstr "Hóa"
+
+#: View/People/dashboard.ctp:74
+msgid "Chemist test"
+msgstr "Test Hóa học"
+
+#: View/People/dashboard.ctp:95
+msgid "Bio test"
+msgstr "Làm bài kiểm tra"
+
+#: View/People/edit.ctp:4 View/People/view.ctp:44
+msgid "Edit Person"
+msgstr ""
+
+#: View/People/history.ctp:3
+msgid "Your tests history"
+msgstr "Lịch sử test của bạn"
+
+#: View/People/index.ctp:2
+msgid "People"
+msgstr "User"
+
+#: View/People/index.ctp:50 View/People/view.ctp:47 View/Progresses/add.ctp:19
+#: View/Progresses/edit.ctp:20 View/Progresses/index.ctp:46
+#: View/Progresses/view.ctp:29 View/Scores/add.ctp:23 View/Scores/edit.ctp:25
+#: View/Scores/index.ctp:58 View/Scores/view.ctp:46
+msgid "New Person"
+msgstr ""
+
+#: View/People/performance_details.ctp:8 View/Scores/view_details.ctp:46
+#: View/Tests/score.ctp:37
+msgid "Details"
+msgstr "Chi tiết"
+
+#: View/People/performance_details.ctp:12
+msgid "Latest performance on"
+msgstr "Điểm gần đây nhất môn"
+
+#: View/People/progress.ctp:3
+msgid "Your performance"
+msgstr "Điểm trung bình"
+
+#: View/People/progress.ctp:7 View/QuestionsSubcategories/view.ctp:9
+#: View/Subcategories/view.ctp:2
+msgid "Subcategory"
+msgstr ""
+
+#: View/People/progress.ctp:17
+msgid "Oops... It looks like you have no progresses at all...."
+msgstr "Oops... Bạn chưa có điểm..."
+
+#: View/People/view.ctp:2 View/Progresses/view.ctp:4 View/Scores/view.ctp:14
+msgid "Person"
+msgstr ""
+
+#: View/People/view.ctp:9
+msgid "First Name"
+msgstr ""
+
+#: View/People/view.ctp:14
+msgid "Last Name"
+msgstr ""
+
+#: View/People/view.ctp:19
+msgid "User Name"
+msgstr ""
+
+#: View/People/view.ctp:24
+msgid "Date Created"
+msgstr "Ngày tạo"
+
+#: View/People/view.ctp:29
+msgid "Role"
+msgstr ""
+
+#: View/People/view.ctp:34
+msgid "Facebook"
+msgstr "Facebook"
+
+#: View/People/view.ctp:45
+msgid "Delete Person"
+msgstr ""
+
+#: View/People/view.ctp:55
+msgid "Related Progresses"
+msgstr ""
+
+#: View/People/view.ctp:60
+msgid "Sub Category Id"
+msgstr ""
+
+#: View/Progresses/add.ctp:4
+msgid "Add Progress"
+msgstr ""
+
+#: View/Progresses/add.ctp:20 View/Progresses/edit.ctp:21
+#: View/Progresses/index.ctp:47 View/Progresses/view.ctp:30
+msgid "List Sub Categories"
+msgstr ""
+
+#: View/Progresses/add.ctp:21 View/Progresses/edit.ctp:22
+#: View/Progresses/index.ctp:48 View/Progresses/view.ctp:31
+msgid "New Sub Category"
+msgstr ""
+
+#: View/Progresses/edit.ctp:4 View/Progresses/view.ctp:24
+msgid "Edit Progress"
+msgstr ""
+
+#: View/Progresses/index.ctp:2
+msgid "Progresses"
+msgstr ""
+
+#: View/Progresses/view.ctp:9
+msgid "Sub Category"
+msgstr ""
+
+#: View/Progresses/view.ctp:25
+msgid "Delete Progress"
+msgstr ""
+
+#: View/Questions/add.ctp:4
+msgid "Add Question"
+msgstr ""
+
+#: View/Questions/add.ctp:23 View/Questions/edit.ctp:25
+#: View/Questions/index.ctp:49 View/Questions/view.ctp:32
+#: View/Scores/add.ctp:20 View/Scores/edit.ctp:22 View/Scores/index.ctp:55
+#: View/Scores/view.ctp:43 View/Tests/add.ctp:18 View/Tests/edit.ctp:20
+#: View/Tests/view.ctp:26 View/TestsQuestions/add.ctp:17
+#: View/TestsQuestions/edit.ctp:19 View/TestsQuestions/index.ctp:49
+#: View/TestsQuestions/view.ctp:28 View/TestsSubjects/add.ctp:17
+#: View/TestsSubjects/edit.ctp:19 View/TestsSubjects/index.ctp:49
+#: View/TestsSubjects/view.ctp:28
+msgid "List Tests"
+msgstr ""
+
+#: View/Questions/add.ctp:24 View/Questions/edit.ctp:26
+#: View/Questions/index.ctp:50 View/Questions/view.ctp:33;149
+#: View/Scores/add.ctp:21 View/Scores/edit.ctp:23 View/Scores/index.ctp:56
+#: View/Scores/view.ctp:44 View/Tests/index.ctp:40 View/Tests/view.ctp:27
+#: View/TestsQuestions/add.ctp:18 View/TestsQuestions/edit.ctp:20
+#: View/TestsQuestions/index.ctp:50 View/TestsQuestions/view.ctp:29
+#: View/TestsSubjects/add.ctp:18 View/TestsSubjects/edit.ctp:20
+#: View/TestsSubjects/index.ctp:50 View/TestsSubjects/view.ctp:29
+msgid "New Test"
+msgstr ""
+
+#: View/Questions/edit.ctp:4 View/Questions/view.ctp:24
+msgid "Edit Question"
+msgstr ""
+
+#: View/Questions/index.ctp:2
+msgid "Questions"
+msgstr ""
+
+#: View/Questions/view.ctp:25
+msgid "Delete Question"
+msgstr ""
+
+#: View/Questions/view.ctp:37
+msgid "Related Answers"
+msgstr ""
+
+#: View/Questions/view.ctp:42;75
+msgid "Question Id"
+msgstr ""
+
+#: View/Questions/view.ctp:70
+msgid "Related Attachments"
+msgstr "File đính kèm"
+
+#: View/Questions/view.ctp:87
+msgid "None attachments"
+msgstr "Không có file đính kèm"
+
+#: View/Questions/view.ctp:123
+msgid "Related Tests"
+msgstr ""
+
+#: View/Questions/view.ctp:128 View/Tests/view.ctp:9
+msgid "Time Limit"
+msgstr ""
+
+#: View/Questions/view.ctp:129 View/Tests/view.ctp:14
+msgid "Allow Attemps"
+msgstr ""
+
+#: View/QuestionsSubcategories/add.ctp:4
+msgid "Add Questions Subcategory"
+msgstr ""
+
+#: View/QuestionsSubcategories/add.ctp:16
+#: View/QuestionsSubcategories/edit.ctp:17
+#: View/QuestionsSubcategories/view.ctp:21
+msgid "List Questions Subcategories"
+msgstr ""
+
+#: View/QuestionsSubcategories/edit.ctp:4
+#: View/QuestionsSubcategories/view.ctp:19
+msgid "Edit Questions Subcategory"
+msgstr ""
+
+#: View/QuestionsSubcategories/index.ctp:2
+msgid "Questions Subcategories"
+msgstr ""
+
+#: View/QuestionsSubcategories/index.ctp:42
+#: View/QuestionsSubcategories/view.ctp:22
+msgid "New Questions Subcategory"
+msgstr ""
+
+#: View/QuestionsSubcategories/view.ctp:2
+msgid "Questions Subcategory"
+msgstr ""
+
+#: View/QuestionsSubcategories/view.ctp:20
+msgid "Delete Questions Subcategory"
+msgstr ""
+
+#: View/Scores/add.ctp:4
+msgid "Add Score"
+msgstr ""
+
+#: View/Scores/edit.ctp:4 View/Scores/view.ctp:39
+msgid "Edit Score"
+msgstr ""
+
+#: View/Scores/index.ctp:2
+msgid "Scores"
+msgstr "Điểm"
+
+#: View/Scores/view.ctp:40
+msgid "Delete Score"
+msgstr ""
+
+#: View/Scores/view_details.ctp:4
+msgid "View Score"
+msgstr "Xem điểm"
+
+#: View/Scores/view_details.ctp:9 View/Tests/score.ctp:4
+msgid "Your result"
+msgstr "Kết quả"
+
+#: View/Scores/view_details.ctp:12 View/Tests/score.ctp:7
+msgid "Your score for this test:"
+msgstr "Điểm của bạn trong bài kiểm tra này:"
+
+#: View/Scores/view_details.ctp:16 View/Tests/score.ctp:11
+msgid "questions correct."
+msgstr "câu trả lời đúng."
+
+#: View/Scores/view_details.ctp:22
+msgid "Exellent, perfect!"
+msgstr "Hoàn hảo! "
+
+#: View/Scores/view_details.ctp:25
+msgid "Good job!"
+msgstr "Tốt lắm."
+
+#: View/Scores/view_details.ctp:28
+msgid "Keep going."
+msgstr "Tiếp tục cố gắng!"
+
+#: View/Scores/view_details.ctp:31
+msgid "Try harder."
+msgstr "Cố gắng hơn nữa"
+
+#: View/Scores/view_details.ctp:34
+msgid "Do you need a tutor?"
+msgstr "Bạn cần ai giúp đỡ về việc học không?"
+
+#: View/Scores/view_details.ctp:41;52
+msgid "Return to Dashboard"
+msgstr "Đến trang cá nhân"
+
+#: View/ScoresQuestions/add.ctp:4
+msgid "Add Scores Question"
+msgstr ""
+
+#: View/ScoresQuestions/add.ctp:17 View/ScoresQuestions/edit.ctp:19
+#: View/ScoresQuestions/view.ctp:31
+msgid "List Scores Questions"
+msgstr ""
+
+#: View/ScoresQuestions/edit.ctp:4 View/ScoresQuestions/view.ctp:29
+msgid "Edit Scores Question"
+msgstr ""
+
+#: View/ScoresQuestions/index.ctp:2
+msgid "Scores Questions"
+msgstr ""
+
+#: View/ScoresQuestions/index.ctp:50 View/ScoresQuestions/view.ctp:32
+msgid "New Scores Question"
+msgstr ""
+
+#: View/ScoresQuestions/view.ctp:2
+msgid "Scores Question"
+msgstr ""
+
+#: View/ScoresQuestions/view.ctp:19
+msgid "Answer Id"
+msgstr ""
+
+#: View/ScoresQuestions/view.ctp:30
+msgid "Delete Scores Question"
+msgstr ""
+
+#: View/Subcategories/add.ctp:4
+msgid "Add Subcategory"
+msgstr ""
+
+#: View/Subcategories/edit.ctp:4 View/Subcategories/view.ctp:24
+msgid "Edit Subcategory"
+msgstr ""
+
+#: View/Subcategories/index.ctp:2
+msgid "Subcategories"
+msgstr ""
+
+#: View/Subcategories/view.ctp:25
+msgid "Delete Subcategory"
+msgstr ""
+
+#: View/Subcategories/view.ctp:37 View/Tests/view.ctp:103
+msgid "Related Questions"
+msgstr ""
+
+#: View/Subcategories/view_scores_subcategory.ctp:2
+msgid "Your scores on "
+msgstr "Các bài làm của bạn cho: "
+
+#: View/Tests/add.ctp:4
+msgid "Add Test"
+msgstr ""
+
+#: View/Tests/choose_test.ctp:5
+msgid "Choose Test"
+msgstr "Chọn bài kiểm tra"
+
+#: View/Tests/choose_test.ctp:9
+msgid "Choose time for the test"
+msgstr "Chọn thời gian"
+
+#: View/Tests/do_test.ctp:3
+msgid "Do test"
+msgstr "Làm bài kiểm tra"
+
+#: View/Tests/edit.ctp:4 View/Tests/view.ctp:24
+msgid "Edit Test"
+msgstr ""
+
+#: View/Tests/index.ctp:2
+msgid "Tests"
+msgstr ""
+
+#: View/Tests/view.ctp:25
+msgid "Delete Test"
+msgstr ""
+
+#: View/Tests/view.ctp:74
+msgid "Related Categories"
+msgstr ""
+
+#: View/TestsQuestions/add.ctp:4
+msgid "Add Tests Question"
+msgstr ""
+
+#: View/TestsQuestions/add.ctp:16 View/TestsQuestions/edit.ctp:18
+#: View/TestsQuestions/view.ctp:26
+msgid "List Tests Questions"
+msgstr ""
+
+#: View/TestsQuestions/edit.ctp:4 View/TestsQuestions/view.ctp:24
+msgid "Edit Tests Question"
+msgstr ""
+
+#: View/TestsQuestions/index.ctp:2
+msgid "Tests Questions"
+msgstr ""
+
+#: View/TestsQuestions/index.ctp:48 View/TestsQuestions/view.ctp:27
+msgid "New Tests Question"
+msgstr ""
+
+#: View/TestsQuestions/view.ctp:2
+msgid "Tests Question"
+msgstr ""
+
+#: View/TestsQuestions/view.ctp:25
+msgid "Delete Tests Question"
+msgstr ""
+
+#: View/TestsSubjects/add.ctp:4
+msgid "Add Tests Subject"
+msgstr ""
+
+#: View/TestsSubjects/add.ctp:16 View/TestsSubjects/edit.ctp:18
+#: View/TestsSubjects/view.ctp:26
+msgid "List Tests Subjects"
+msgstr ""
+
+#: View/TestsSubjects/edit.ctp:4 View/TestsSubjects/view.ctp:24
+msgid "Edit Tests Subject"
+msgstr ""
+
+#: View/TestsSubjects/index.ctp:2
+msgid "Tests Subjects"
+msgstr ""
+
+#: View/TestsSubjects/index.ctp:48 View/TestsSubjects/view.ctp:27
+msgid "New Tests Subject"
+msgstr ""
+
+#: View/TestsSubjects/view.ctp:2
+msgid "Tests Subject"
+msgstr ""
+
+#: View/TestsSubjects/view.ctp:25
+msgid "Delete Tests Subject"
+msgstr ""
+
+#: Model/Answer.php:validation for field question_id
+#: Model/Category.php:validation subject_id Model/Subcategory.php:validation
+#: category_id Model/TestsQuestion.php:validation test_id;validation
+#: Model/TestsSubject.php:validation
+msgid "numeric"
+msgstr "số"
+
+#: Model/Answer.php:validation for field content Model/Category.php:validation
+#: name Model/Subcategory.php:validation Model/Subject.php:validation
+msgid "notEmpty"
+msgstr "không trống"
+
+#: Model/Person.php:validation for field username
+msgid "Username is required"
+msgstr ""
+
+#: Model/Person.php:validation for field password
+msgid "Password is required"
+msgstr ""
+
+#: Model/Person.php:validation for field first_name
+msgid "First name is required"
+msgstr ""
+
+#: Model/Person.php:validation for field last_name
+msgid "Last name is required"
+msgstr "Họ là bắt buộc"
+
+#: Model/Person.php:validation for field role
+msgid "Role is not correct, must be: {'admin', 'user', 'editor'}"
+msgstr "Vai trò không đúng, phải là: {'admin', 'user', 'editor'}"
+
+#~ msgid "Add Categories"
+#~ msgstr "Thêm chủ đề"
+
+#~ msgid "Add Subjects"
+#~ msgstr "Thêm môn học"
+
+#~ msgid "content"
+#~ msgstr "Nội dung"
+
+#~ msgid "Do not let your profile die..."
+#~ msgstr "Đừng để điểm số của bạn tụt tiếp..."
+
+#~ msgid "Login"
+#~ msgstr "Đăng nhập"
+
+#~ msgid "Join us!"
+#~ msgstr "Tham gia!"
+
+#~ msgid "You are not authorized to access that location."
+#~ msgstr "Bạn không có quyền truy cập vào trang này."

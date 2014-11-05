@@ -1,0 +1,33 @@
+.progress-container{
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+.progress {
+    margin-bottom: 0;
+    margin-top: 0;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    height: 30px;
+}
+.progress-container .row{
+    padding: 5px 5px 5px 5px;
+}
+.dashboard .head {
+    text-align: center;
+}
+.row-2 , .row-1{
+    margin: 0;
+    padding: 0;
+}
+.progress-container .progress a{
+    position: absolute;
+    left: 40%;
+    font-size: 18px;
+    color: black;
+}
+.btn {
+    width: 100px;
+}
