@@ -13,7 +13,7 @@
 			<div id = 'dotestQuestions'>
 				<fieldset>
 					<?php echo "<b>",$index+1, "</b>  "; ?>
-					<?php echo h($question['Question']['content']); ?>
+					<?php echo html_entity_decode($question['Question']['content']); ?>
 
 					<!-- debug -->
 					<?php echo '=='.$question['Question']['id'].'=='; ?>

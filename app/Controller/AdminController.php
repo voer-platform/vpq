@@ -56,12 +56,14 @@ class AdminController extends AppController {
 
 		if($this->request->is('post')){
 			$path = WWW_ROOT. DS . 'files';
-			foreach($this->request->data['Attachment'] as $key => $value){
-				$newName = date('YmdHisu').'-'.$key.'.jpg';
-				move_uploaded_file($value['tmp_name'], $path.DS.$newName);
-				$this->request->data['Attachment'][$key] = array(
-					'path' => Router::url('/', true).'files'.DS.$newName
-					);
+			if(isset($this->request->data['Attachment'])){
+				foreach($this->request->data['Attachment'] as $key => $value){
+					$newName = date('YmdHisu').'-'.$key.'.jpg';
+					move_uploaded_file($value['tmp_name'], $path.DS.$newName);
+					$this->request->data['Attachment'][$key] = array(
+						'path' => Router::url('/', true).'files'.DS.$newName
+						);
+				}
 			}
 			$this->Question->create();
 			if ($this->Question->saveAll($this->request->data)) {

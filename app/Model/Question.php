@@ -181,7 +181,7 @@ class Question extends AppModel {
 			$saveData[] = $_saveData;
 
 		} // end foreach
-		pr($saveData);
+		// pr($saveData);
 		// save data
 		$this->create();
 		if($this->saveAll($saveData)){
@@ -189,6 +189,5 @@ class Question extends AppModel {
 		}
 		else
 			return false;
-
 	}
 }
