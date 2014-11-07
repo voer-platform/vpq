@@ -10,16 +10,22 @@
 		<div>	
 			<legend><?php echo __('Add question content'); ?></legend>
 			<?php echo $this->Form->create('Question', array('type' => 'file')); ?>
-				
-				<!-- question content -->
-				<p><?php echo __('Type in content of question, if there is a math equation. Click on \'<>\' icon and paste in MathML code.'); ?></p>
+				<div class='row'>
+					<p><?php echo __('Type in content of question, if there is a math equation. Click on \'<>\' icon and paste in MathML code.'); ?></p>
+					<div class='col-lg-8'>
+						<!-- question content -->
+						
+						<?php echo $this->Form->input('content', array('label' => __('Content'), 'type' => 'textarea', 'class' => 'tinymce-content')); ?>
+					</div>
+					<div class='col-lg-4'>
 
-				<?php echo $this->Form->input('content', array('label' => __('Content'), 'type' => 'textarea', 'class' => 'tinymce-content')); ?>
-				<?php
-					$diff_oftions = array(1,2,3,4,5); 
-					echo $this->Form->input('difficulty', array ('label' => __('Difficulty'), 'class'=> 'form-control', 'options' => $diff_oftions)); ?>
-				<?php echo $this->Form->input('Subcategory', array ('label' => __('Content'), 'class'=> 'form-control'));?>
-
+						<!-- difficulty and subcategories -->
+						<?php
+							$diff_oftions = array(1,2,3,4,5); 
+							echo $this->Form->input('difficulty', array ('label' => __('Difficulty'), 'class'=> 'form-control', 'options' => $diff_oftions)); ?>
+						<?php echo $this->Form->input('Subcategory', array ('label' => __('Content'), 'class'=> 'form-control', 'id' => 'select-subcategory'));?>
+					</div>
+				</div>
 				<!-- add answers for the questions -->
 				<legend><?php echo __('Add answers for question'); ?></legend>
 				<p><?php echo __('4 answers for each question. Check the checkbox on the right if the answer is correct'); ?></p>
@@ -59,9 +65,7 @@
 	// tinyMCE
     tinymce.init({
     	selector : '.tinymce-content',
-    	height: 200,
-    	width: 960,
-    	plugins : 'image code',
+    	plugins : 'code',
     	relative_urls: false,
     	toolbar: 'code image',
     	menubar : '',
@@ -78,6 +82,16 @@
     	menubar : ''
     });
 
+    // disable multiple correct question
+    $(".answer-correct").each(function()
+	{
+	    $(this).change(function()
+	    {
+	        $(".answer-correct").prop('checked',false);
+	        $(this).prop('checked',true);
+	    });
+	});
+
     // add more attachments
     $('#btn-add-attachments').click(function(){
     	i++;
@@ -85,4 +99,5 @@
     	$('#btn-add-attachments').text("<?php echo __('More attachments'); ?>");
     	$('#attachments-description').text("<?php echo __('Click button to add more'); ?>");
     });
+
 </script>
