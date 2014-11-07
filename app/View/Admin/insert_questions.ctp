@@ -11,10 +11,9 @@
 			<legend><?php echo __('Add question content'); ?></legend>
 			<?php echo $this->Form->create('Question', array('type' => 'file')); ?>
 				<div class='row'>
-					<p><?php echo __('Type in content of question, if there is a math equation. Click on \'<>\' icon and paste in MathML code.'); ?></p>
 					<div class='col-lg-8'>
 						<!-- question content -->
-						
+						<p><?php echo __('Type in content of question, if there is a math equation. Click on \'<>\' icon and paste in MathML code.'); ?></p>
 						<?php echo $this->Form->input('content', array('label' => __('Content'), 'type' => 'textarea', 'class' => 'tinymce-content')); ?>
 					</div>
 					<div class='col-lg-4'>
