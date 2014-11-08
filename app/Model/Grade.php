@@ -16,8 +16,8 @@ class Grade extends AppModel {
  * @var array
  */
 	public $hasMany = array(
-		'Subcategory' => array(
-			'className' => 'Subcategory',
+		'Category' => array(
+			'className' => 'Category',
 			'foreignKey' => 'grade_id',
 			'dependent' => false,
 			'conditions' => '',

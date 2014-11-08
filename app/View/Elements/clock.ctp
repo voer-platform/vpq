@@ -1,33 +1,39 @@
 <?php echo $this->Html->css('clock'); ?>
 
 <div id='clock-container' class='panel panel-default'>
-	<div class="panel-body">
-		<h4><?php echo __('Time remains').': '; ?></h4>
-		<span id='clock-minutes'></span> <?php echo ' '.__('Minutes'); ?>
-		<span id='clock-seconds'></span> <?php echo ' '.__('Seconds'); ?>
-	</div>
+    <div class="panel-body">
+        <!--<h4><?php echo __('Time remains').': '; ?></h4> -->
+        <span id='clock-minutes'></span>:<span id='clock-seconds'></span>
+    </div>
 </div>
 
 <script type="text/javascript">
-	var seconds = parseInt($('#clock-time').text()) * 60;
-	var clockMinutes = $("#clock-minutes");
-	var clockSeconds = $('#clock-seconds');
-	  
-	clockMinutes.html(Math.floor(seconds/60));
-	clockSeconds.html(seconds%60);
+    function zeroPad(num, places) {
+        var zero = places - num.toString().length + 1;
+        return Array(+(zero > 0 && zero)).join("0") + num;
+    };
 
-	setInterval(function(){
-		seconds -= 1;
-		clockMinutes.html(Math.floor(seconds/60));
-		clockSeconds.html(seconds%60);
+    var seconds = parseInt($('#clock-time').text()) * 60;
+    var clockMinutes = $("#clock-minutes");
+    var clockSeconds = $('#clock-seconds');
 
-		if(seconds == 0){
-			window.clearInterval();
-			alert("<?php echo __('Time\'s up!'); ?>");
+    clockMinutes.html(zeroPad(Math.floor(seconds/60),2));
+    clockSeconds.html(zeroPad(seconds%60, 2));
 
-			$('#TestAnswersDuration').val(seconds);
-			alert($('#TestAnswersDuration'));
-			$('#btn-submit').click()
-		}
-	}, 1000); 
+    setInterval(function(){
+        seconds -= 1;
+        clockMinutes.html(zeroPad(Math.floor(seconds/60), 2));
+        clockSeconds.html(zeroPad(seconds%60, 2));
+
+        if(seconds == 0){
+            window.clearInterval();
+            alert("<?php echo __('Time\'s up!'); ?>");
+
+            $('#TestAnswersDuration').val(seconds);
+            alert($('#TestAnswersDuration'));
+            $('#btn-submit').click()
+        }
+    }, 1000);
+
+
 </script>
