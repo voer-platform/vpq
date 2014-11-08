@@ -16,13 +16,13 @@ class PeopleController extends AppController {
 
 /**
  * Helpers
- * 
+ *
  * @var array
  */
 	public $helpers = array('Name');
 /*
  * authorization
- * 
+ *
  */
 	public function isAuthorized($user) {
 	    // user can logout, dashboard, progress, history, suggest
@@ -150,7 +150,7 @@ class PeopleController extends AppController {
 	        } else {
 	            $this->Session->setFlash(__('Invalid Username or password. Try again.'));
 	        }
-	    } 
+	    }
 
 	    // When facebook login is used, facebook always returns $_GET['code'].
 	    elseif($this->request->query('code')){
@@ -160,7 +160,7 @@ class PeopleController extends AppController {
 	        if ($fb_user){
 	            $fb_user = $this->Facebook->api('/me');     # Returns user information
 	            $picture = $this->Facebook->api('/me/picture?height=200&width=200&redirect=false');		# FB picture
-	
+
 	            // We will varify if a local user exists first
 	            $local_user = $this->Person->find('first', array(
 	                'conditions' => array('facebook' => $fb_user['id'])
@@ -193,8 +193,8 @@ class PeopleController extends AppController {
 	                    'first_name'	=> $fb_user['first_name'],
 	                    'last_name'		=> $fb_user['last_name'],
 	                    'role'          => 'user',
-	                    'date_created'	=> '\''.date("Y-m-d H:i:s").'\'',
-	                    'date_modified' => '\''.date("Y-m-d H:i:s").'\'',
+	                    'date_created'	=> date("Y-m-d H:i:s"),
+	                    'date_modified' => date("Y-m-d H:i:s"),
 	                    'image'			=> $picture['data']['url']
 	                );
 
@@ -256,7 +256,7 @@ class PeopleController extends AppController {
 
 /**
  * progress
- */	
+ */
 	public function progress(){
 		$this->set('title_for_layout',__("Progress"));
 
@@ -269,16 +269,16 @@ class PeopleController extends AppController {
  * performance details
  */
 	public function performanceDetails($subject){
-		
+
 		$ajax = false;
 		if( $this->request->is('POST')){
-        
+
             $this->layout = null;
             $this->loadModel('Score');
 			$user = $this->Session->read('Auth.User');
 			$result = $this->Score->getScoresForChart($user['id'], $subject);
             $this->set('result',$result);
-        
+
             $ajax = true;
         }
         else if( $this->request->is('GET')){
@@ -290,7 +290,7 @@ class PeopleController extends AppController {
 	}
 /**
  *	coverage details
- */	
+ */
 	public function coverDetails($subject){
 		$this->set('title_for_layout',__("Cover details"));
 

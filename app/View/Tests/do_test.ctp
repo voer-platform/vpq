@@ -7,3 +7,10 @@
 
 <?php echo $this->element('clock'); ?>
 <?php echo $this->element('do_test');?>
+<script>
+$(document).ready(function(){
+    $("ul#questions").quickPagination({
+        pageSize:"1"
+    });
+})
+</script>
