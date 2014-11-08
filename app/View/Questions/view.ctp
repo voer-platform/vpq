@@ -79,7 +79,7 @@
 			<tr>
 				<td><?php echo $attachment['id']; ?></td>
 				<td><?php echo $attachment['question_id']; ?></td>
-				<td><?php echo $attachment['path']; ?></td>
+				<td><?php echo $this->Html->link($attachment['path'],$attachment['path']); ?></td>
 			</tr>
 		<?php endforeach; ?>
 		</table>
