@@ -3,7 +3,7 @@
 <div class='container'>
     <?php if(empty($user)): ?>
         <div id="middle-tagline"><span id="slogan">Tham gia vào hệ thống để truy cập lương lớn câu hỏi trên nhiều lĩnh vực!</span></div>
-        <div id="register-methods" class="row">
+        <div id="register-methods">
             <div class="col-md-6">
                 <?php echo $this->Html->link($this->Html->image('facebook-login-button.png', array('class' => 'facebook-btn', 'alt' => __('Login with Facebook'))), $fb_login_url, array('escape' => false)); ?>
             </div>
@@ -11,7 +11,7 @@
                 <?php echo $this->Html->link($this->Html->image('google-login-button.png', array('class' => 'google-btn', 'alt' => 'Login with Google')), '#', array('escape' => false)); ?>
              </div>
         </div>
-        <div class="row">
+        <div>
             <div class="col-lg-6">
               <div class="about-pls">
                 <h5>PLS là gì?</h5>
