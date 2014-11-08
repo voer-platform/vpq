@@ -5,6 +5,7 @@
 
 1. [CakePHP](http://cakephp.org/)
 2. [TinyMCE uploader](https://github.com/hashmode/Tinymce-Image-Upload-Cakephp)
+3. php5-curl (for Facebook SDK)
 
 ## Installation
 
@@ -17,6 +18,19 @@
 		DB name: 'plseduvn' 
 		username: 'vpq'
 		password: 'vpq'
+
+## Server configuration
+
+1. Enable mod rewrite
+	
+		a2enmod rewrite
+
+2. Allow Override. Make sure Apache configuration looks like this:
+
+		Options Indexes FollowSymLinks MultiViews
+		AllowOverride All
+		Order allow,deny
+		allow from all		
 
 ## About
 
