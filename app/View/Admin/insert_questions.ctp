@@ -13,7 +13,10 @@
 				<div class='row'>
 					<div class='col-lg-8'>
 						<!-- question content -->
-						<p><?php echo __('Type in content of question, if there is a math equation. Click on \'<>\' icon and paste in MathML code.'); ?></p>
+						<p>
+							<?php echo __('Type in content of question, if there is a math equation. Click on \'<>\' icon and paste in MathML code.'); ?>
+							<?php echo __('Using this online editor to get mathml code:').' '.$this->Html->link(__('Editor'), 'http://www.wiris.com/editor/demo/en/mathml-latex.html', array('target' => '_blank')); ?>
+						</p>
 						<?php echo $this->Form->input('content', array('label' => __('Content'), 'type' => 'textarea', 'class' => 'tinymce-content')); ?>
 					</div>
 					<div class='col-lg-4'>
@@ -56,6 +59,7 @@
 
 <!-- elf file manager -->
 <?php $this->TinymceElfinder->defineElfinderBrowser()?>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
 <!-- script -->
 <script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>
@@ -68,6 +72,7 @@
     	relative_urls: false,
     	toolbar: 'code image',
     	menubar : '',
+    	extended_valid_elements: 'figure,figcaption,maction,maligngroup,malignmark,math,menclose,merror,mfenced,mfrac,mglyph,mi,mlabeledtr,mlongdiv,mmultiscripts,mn,mo,mover,mpadded,mphantom,mroot,mrow,ms,mscarries,mscarry,msgroup,msline,mspace,msqrt,msrow,mstack,mstyle,msubsup,msup,mtable,mtd,mtext,mtr,munder,munderover,semantics,sub,mfrac,sup,annotation', 
     	file_browser_callback : elFinderBrowser
     });
 
@@ -78,6 +83,7 @@
     	plugins : 'code',
     	relative_urls: false,
     	toolbar: 'code',
+    	extended_valid_elements: 'figure,figcaption,maction,maligngroup,malignmark,math,menclose,merror,mfenced,mfrac,mglyph,mi,mlabeledtr,mlongdiv,mmultiscripts,mn,mo,mover,mpadded,mphantom,mroot,mrow,ms,mscarries,mscarry,msgroup,msline,mspace,msqrt,msrow,mstack,mstyle,msubsup,msup,mtable,mtd,mtext,mtr,munder,munderover,semantics,sub,mfrac,sup,annotation', 
     	menubar : ''
     });
 

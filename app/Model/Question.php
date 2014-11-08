@@ -144,7 +144,9 @@ class Question extends AppModel {
 
             //get content
             $_content = explode($patternAttachment, $_id[1]);
-            $_saveData['Question']['content'] = $_content[0]; 
+            $_saveData['Question']['content'] = $_content[0];
+
+            $_saveData['QuestionsSubcategory']['subcategory_id'] = '';
 
             // get attachments
             $_attachments = explode($patternAnswers, $_content[1]);
@@ -181,7 +183,7 @@ class Question extends AppModel {
             $saveData[] = $_saveData;
 
         } // end foreach
-        
+        pr($saveData);
         $check = true;
         foreach ($saveData as $key => $question) {
             $this->create();
