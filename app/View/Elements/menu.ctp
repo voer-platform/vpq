@@ -10,10 +10,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <?php echo $this->HTML->link(
-      			__(Configure::read('PLS.Name')), 
-      			'/', 
-      			array('class'=>'navbar-brand')); ?>
+      <?php echo $this->HTML->link($this->Html->image('logo-small.png', array('alt' => 'PLS')), '/', array('class'=>'navbar-brand', 'escape' => false)); ?>
     </div>
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
@@ -24,18 +21,18 @@
           <li><?php echo $this->HTML->link(__('Progress'), array('controller' => 'people', 'action' => 'progress')); ?></li>
           <li><?php echo $this->HTML->link(__('About'), '/about'); ?></li>
         <?php endif; ?>
-       
+
         <!-- if is admin -->
         <?php if($user['role'] === 'admin' || $user['role'] === 'editor'): ?>
           <li><?php echo $this->HTML->link(__('Admin'), array('controller' => 'Admin', 'action' => 'index')); ?></li>
-        <?php endif; ?> 
-       
+        <?php endif; ?>
+
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <?php if(!empty($user)): ?>
           <li><?php echo $this->Html->link($this->Html->image($user['image'], array('class' => 'profile-img')), array('controller' => 'people', 'action' => 'dashboard'), array('escape' => false, 'class' => 'profile-img') ); ?></li>
-          <li><?php echo $this->Html->link($user['first_name']." ".$user['last_name'],array('controller' => 'people', 'action' => 'dashboard')); ?></li> 
-          
+          <li><?php echo $this->Html->link($user['first_name']." ".$user['last_name'],array('controller' => 'people', 'action' => 'dashboard')); ?></li>
+
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">

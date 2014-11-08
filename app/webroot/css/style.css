@@ -184,10 +184,8 @@ fieldset {
   margin: 10px 0;
 }
 .navbar-brand {
-  background: url(../img/logo-small.png) no-repeat 2px 10px;
-  text-indent: -999px;
-  width: 100px;
 }
+
 ul.navbar-nav li > a {
   text-transform: uppercase;
   color: #ddd;
