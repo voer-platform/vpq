@@ -1,5 +1,6 @@
 # PLS
 
+PLS, Personal Learning System
 
 ## Requirements
 
@@ -12,7 +13,7 @@
 1. clone project
 2. put project folder to webserver
 3. copy folder CakePHP/lib to /
-4. Copy folder TinymceElfinder/ to /app/Plugin.
+4. Copy folder TinymceElfinder/ to /app/Plugin
 5. create MySQL db follows:
 
 		DB name: 'plseduvn' 
@@ -20,6 +21,7 @@
 		password: 'vpq'
 
 ## Server configuration
+CakePHP will not work without these configuration on the web server
 
 1. Enable mod rewrite
 	
@@ -33,5 +35,3 @@
 		allow from all		
 
 ## About
-
-PLS, Personal Learning System

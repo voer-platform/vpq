@@ -61,10 +61,10 @@
  */
 class DATABASE_CONFIG {
 
-	public $default = array(
+	public $production = array(
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
-		'host' => 'localhost',
+		'host' => '127.0.0.1',
 		'login' => 'vpq',
 		'password' => 'vpq',
 		'database' => 'plseduvn',
