@@ -183,7 +183,7 @@ class Question extends AppModel {
             $saveData[] = $_saveData;
 
         } // end foreach
-        pr($saveData);
+
         $check = true;
         foreach ($saveData as $key => $question) {
             $this->create();
@@ -201,5 +201,90 @@ class Question extends AppModel {
         }
         else
             return false;
+    }
+
+    /**
+     * get cover for a person on a subject/grade
+     * @param:  id of user
+     *          grade
+     *          subject
+     * @return: array of [done, total]
+     */
+    public function cover($person_id, $grade_id=0, $subject_id=0){
+
+        // no option declared
+        // return all subjects and grades
+        if($grade_id == 0 && $subject_id == 0){
+            $count = $this->query(
+                'select count(*) as count from 
+                    (select count(*) from questions Question
+                        join scores_questions ScoresQuestion
+                            on Question.id = ScoresQuestion.question_id
+                        join scores Score
+                            on Score.id = ScoresQuestion.score_id
+                        where Score.person_id = '.$person_id.' '.
+                        'group by Question.id) as t');
+        }
+        // if subject is given, not grade
+         // return all grades, specific subject
+        else if($grade_id == 0 && $subject_id != 0){
+            $count = $this->query(
+                'select count(*) as count from 
+                    (select count(*) from questions Question
+                        join scores_questions ScoresQuestion
+                            on Question.id = ScoresQuestion.question_id
+                        join scores Score
+                            on Score.id = ScoresQuestion.score_id
+                        join tests_subjects TestsSubject
+                            on TestsSubject.test_id = Score.test_id
+                        where Score.person_id = '.$person_id.' '.
+                            'and TestsSubject.subject_id = '.$subject_id.' '.
+                        'group by Question.id) as t');
+        }
+        // if grade is given, not subject
+        // return all grades, specific subject
+        else if($grade_id != 0 && $subject_id == 0){
+            $count = $this->query(
+                'select count(*) as count from 
+                    (select count(*) from questions Question
+                        join scores_questions ScoresQuestion
+                            on Question.id = ScoresQuestion.question_id
+                        join scores Score
+                            on Score.id = ScoresQuestion.score_id
+                        join questions_subcategories QuestionsSubcategory
+                            on ScoresQuestion.question_id = QuestionsSubcategory.question_id
+                        join subcategories Subcategory
+                            on Subcategory.id = QuestionsSubcategory.subcategory_id
+                        join categories Category
+                            on Category.id = Subcategory.category_id
+                        where Score.person_id = '.$person_id.' '.
+                            'and Category.grade_id = '.$grade_id.' '.
+                        'group by Question.id) as t');
+        }
+        // both declared
+        // given both grade and subject
+        else {
+            $count = $this->query(
+                'select count(*) as count from 
+                    (select count(*) from questions Question
+                        join scores_questions ScoresQuestion
+                            on Question.id = ScoresQuestion.question_id
+                        join scores Score
+                            on Score.id = ScoresQuestion.score_id
+                        join questions_subcategories QuestionsSubcategory
+                            on ScoresQuestion.question_id = QuestionsSubcategory.question_id
+                        join subcategories Subcategory
+                            on Subcategory.id = QuestionsSubcategory.subcategory_id
+                        join categories Category
+                            on Category.id = Subcategory.category_id
+                        where Score.person_id = '.$person_id.' '.
+                            'and Category.grade_id = '.$grade_id.' '.
+                            'and Category.subject_id = '.$subject_id.' '.
+                        'group by Question.id) as t');
+        }
+        
+        $total = $this->find('count');
+
+        return array($count[0][0]['count'], $total);
     }
 }
