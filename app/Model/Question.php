@@ -159,7 +159,7 @@ class Question extends AppModel {
                     $filename = date('YmdHisu').'-'.$key.'.jpg';
                     $re = rename($path.DS.trim($q_attachment).'.jpg', $storePath.DS.$filename);
                     $_saveData['Attachment'][] = array(
-                        'path' => Router::url('/', true).'files'.DS.$filename
+                        'path' => Router::url('/', true).'files'.'/'.$filename
                     );
                 }
             }

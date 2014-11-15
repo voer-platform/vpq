@@ -61,7 +61,7 @@ class AdminController extends AppController {
 					$newName = date('YmdHisu').'-'.$key.'.jpg';
 					move_uploaded_file($value['tmp_name'], $path.DS.$newName);
 					$this->request->data['Attachment'][$key] = array(
-						'path' => Router::url('/', true).'files'.DS.$newName
+						'path' => Router::url('/', true).'files'.'/'.$newName
 						);
 				}
 			}
