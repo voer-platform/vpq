@@ -37,16 +37,23 @@
     </div>
 </div>
 <script>
-$( document ).ready(function() {
+$(document).ready(function() {
     $('#selectGrade').change(function(e){
         var url = '<?php echo Router::url(array('controller'=>'categories','action'=>'byGrade'));?>/' + $(this).val() + '/' + <?php echo $subject; ?>;
+
         $.getJSON(url, function( data ) {
-            var items = [];
+            var optgroups = [];
             $.each( data, function( key, val ) {
-                items.push( "<option value='" + key + "'>" + val + "</option>" );
+                var category = val['Category'];
+                var subcategories = val['Subcategory'];
+                var items = [];
+                $.each(subcategories, function(k, v){
+                    items.push( "<option value='" + v['id'] + "'>" + v['name'] + "</option>" );
+                });
+                optgroups.push("<optgroup label='" + category['name'] + "'>" + items.join("") + "</optgroup>");
             });
             $("#selectCategory").empty();
-            $("#selectCategory").append(items.join(""));
+            $("#selectCategory").append(optgroups.join(""));
         });
     });
 

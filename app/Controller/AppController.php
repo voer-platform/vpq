@@ -72,7 +72,7 @@ class AppController extends Controller {
         // load sdk
         Configure::load('facebook');
         // this is not recommended by CakePHP, just for backward compatiblity
-        // App::import('Vendor', 'facebook-php-sdk-master/src/facebook'); 
+        // App::import('Vendor', 'facebook-php-sdk-master/src/facebook');
         require_once(APP. 'Vendor'. DS . 'facebook-php-sdk-master'. DS. 'src'. DS. 'facebook.php');
 
         // if is production server
@@ -84,6 +84,12 @@ class AppController extends Controller {
         }
         // else if is local dev
         else if( parse_url(Router::url('/', true))['host'] == 'localhost'){
+            $this->Facebook = new Facebook(array(
+                'appId'     =>  Configure::read('Facebook-dev.AppID'),
+                'secret'    =>  Configure::read('Facebook-dev.AppSecret')
+            ));
+        }
+        else if( parse_url(Router::url('/', true))['host'] == 'pls.local'){
             $this->Facebook = new Facebook(array(
                 'appId'     =>  Configure::read('Facebook-dev.AppID'),
                 'secret'    =>  Configure::read('Facebook-dev.AppSecret')
@@ -107,9 +113,9 @@ class AppController extends Controller {
         $this->set('user', $this->Auth->user());
     }
 
-    /* 
+    /*
      * controll access
-     */ 
+     */
     public function isAuthorized($user) {
         // Admin can access every action
         if (isset($user['role']) && $user['role'] === 'admin') {
