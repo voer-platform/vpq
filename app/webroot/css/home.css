@@ -90,9 +90,6 @@
 .home-login p {
   margin: 10px 0;
 }
-.navbar-brand {
-  padding: 10px 15px;
-}
 ul.navbar-nav li > a {
   text-transform: uppercase;
   color: #ddd;

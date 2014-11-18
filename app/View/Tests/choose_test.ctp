@@ -22,7 +22,7 @@
         <div class="form-group">
             <label for="" class="col-sm-3 control-label"><?php echo __('Category'); ?></label>
             <div class="col-sm-7">
-                <select class="form-control" id="selectCategory">
+                <select class="form-control" id="selectCategory" multiple="multiple">
                 </select>
             </div>
         </div>
@@ -38,6 +38,8 @@
 </div>
 <script>
 $(document).ready(function() {
+    $('#selectCategory').multiselect();
+
     $('#selectGrade').change(function(e){
         var url = '<?php echo Router::url(array('controller'=>'categories','action'=>'byGrade'));?>/' + $(this).val() + '/' + <?php echo $subject; ?>;
 
@@ -54,9 +56,12 @@ $(document).ready(function() {
             });
             $("#selectCategory").empty();
             $("#selectCategory").append(optgroups.join(""));
+            $('#selectCategory').multiselect('refresh');
+
         });
     });
 
     $('#selectGrade').trigger("change");
+
 });
 </script>

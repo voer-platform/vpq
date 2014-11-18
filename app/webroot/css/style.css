@@ -184,7 +184,7 @@ fieldset {
   margin: 10px 0;
 }
 .navbar-brand {
-  padding: 10px 15px;
+  padding: 0 15px;
 }
 
 ul.navbar-nav li > a {

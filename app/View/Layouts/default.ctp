@@ -19,6 +19,8 @@
 
     <!-- css -->
 	<?php echo $this->Html->css('bootstrap.min.css'); ?>
+    <?php echo $this->HTML->css('jquery-ui.css'); ?>
+    <?php echo $this->HTML->css('jquery.multiselect.css'); ?>
     <?php echo $this->HTML->css('global.css'); ?>
     <?php echo $this->HTML->css('style.css'); ?>
 
@@ -26,6 +28,8 @@
     <?php echo $this->Html->script('jquery.min.js');?>
     <?php echo $this->Html->script('jquery.quick.pagination.min.js');?>
     <?php echo $this->Html->script('bootstrap.min.js');?>
+    <?php echo $this->Html->script('jquery-ui.min.js');?>
+    <?php echo $this->Html->script('jquery.multiselect.js');?>
 
 </head>
 <body>
