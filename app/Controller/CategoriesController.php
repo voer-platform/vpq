@@ -134,14 +134,20 @@ class CategoriesController extends AppController {
         $this->autoLayout = false;
         $this->autoRender = false;
 
-        $categories = $this->Category->find('list', array(
-                'recursive' => 0,
+        $this->Category->unbindModel(array(
+            'belongsTo' => array('Subject', 'Grade')
+            ));
+
+        $categories = $this->Category->find('all', array(
+                'recursive' => 1,
                 'conditions' => array(
                     'Category.grade_id = ' => $grade,
                     'Category.subject_id = ' => $subject
                     ),
                 'fields' => array('Category.id', 'Category.name')
             ));
+
+        // print_r($categories);
 
         $this->header('Content-Type: application/json');
         echo json_encode($categories);
