@@ -91,7 +91,7 @@ class Score extends AppModel {
                     'Score.person_id' => $personId,    
                 ),
                 'order' => array('time_taken' => 'desc'),
-                'limit' => $limit == 0? -1 : $limit
+                'limit' => $limit == 0? 10 : $limit
             ));
     }
 
@@ -179,18 +179,12 @@ class Score extends AppModel {
             if(!is_numeric($question))
                 continue;
 
-            // evaluate answerId by 1 becase:
-            //         answer is return from 0-3
-            //         db has answer id 1-4
-            // SKIP this, we will use range of data in 0-3, it sounds more appropriate
-            // $answerId++;
-
             $Answer = new Answer();
             $result = $Answer->find('first', array(
                 'recursive' => -1,
                 'conditions' => array(
                     'question_id' => $question,
-                    'Answer.id' => $answerId
+                    'Answer.order' => $answerId         // the answer has order(0 to 3) corresspond to question
                     )
                 ));
             // count correct questions
@@ -240,28 +234,44 @@ class Score extends AppModel {
  */
     public function getScoresForChart($person_id, $subject_id){
         $this->unBindModel(array ('hasAndBelongsToMany' => 'Question'));
-        $results = $this->query(
-            'select * from scores Score
-             join tests Test
-               on Test.id = Score.test_id
-             join tests_subjects TestsSubject
-               on TestsSubject.test_id = Score.test_id
-             where Score.person_id = '.$person_id.' '.
-             'and TestsSubject.subject_id = '.$subject_id.' '.
-             'order by Score.time_taken desc
-              limit 10;');
+        // specific subject
+        if($subject_id != 0 ){
+             $results = $this->query(
+                'select * from scores Score
+                 join tests Test
+                   on Test.id = Score.test_id
+                 join tests_subjects TestsSubject
+                   on TestsSubject.test_id = Score.test_id
+                 where Score.person_id = '.$person_id.' '.
+                 'and TestsSubject.subject_id = '.$subject_id.' '.
+                 'order by Score.time_taken desc
+                  limit 10;');
+        }
+        // all subject
+        else{
+            $results = $this->query(
+                'select * from scores Score
+                 join tests Test
+                   on Test.id = Score.test_id
+                 join tests_subjects TestsSubject
+                   on TestsSubject.test_id = Score.test_id
+                 where Score.person_id = '.$person_id.' '.
+                 'order by Score.time_taken desc
+                  limit 10;');
+        }
         $results = array_reverse($results);
         
         $json = array();
         $json[] = array(__('Date'), __('Score'));
         if($results){
             foreach ($results as $result) {
-                $json[] = array(date('M d, h:m', strtotime($result['Score']['time_taken'])), round($result['Score']['score']/$result['Test']['number_questions'], 2));
+                $json[] = array(date('d/m/y h:i', strtotime($result['Score']['time_taken'])), round($result['Score']['score']/$result['Test']['number_questions'], 2));
             }
         }
 
         return json_encode($json);
     }
+
 /**
  * get average performance latest 10 tests
  * @param:  id of user

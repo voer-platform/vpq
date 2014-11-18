@@ -120,26 +120,4 @@ class ProgressesController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
-/**
- * performance details
- * ajax call
- */
-    public function performanceDetails(){
-        $this->layout = 'ajax';
-        $this->autoLayout = false;
-        $this->autoRender = false;
-        
-        if( $this->request->is('POST')){
-            if(isset($_POST['subject'])){
-                $this->loadModel('Score');
-                $user = $this->Session->read('Auth.User');
-                $result = $this->Score->getScoresForChart($user['id'], $this->request->data('subject'));
-                echo $result;
-            }
-        }
-        else {
-            $this->redirect('/');
-        }
-    }
-
 }

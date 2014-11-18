@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2014-11-11 21:33+0700\n"
-"PO-Revision-Date: 2014-11-11 21:39+0700\n"
+"POT-Creation-Date: 2014-11-18 16:16+0700\n"
+"PO-Revision-Date: 2014-11-18 16:17+0700\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "Language: vi\n"
@@ -178,27 +178,27 @@ msgstr "Không thể đăng nhập. Xin hay thử lại!"
 
 #: Controller/PeopleController.php:226 View/Elements/menu.ctp:19;40
 #: View/People/cover_details.ctp:2 View/People/dashboard.ctp:3
-#: View/People/performance_details.ctp:7 View/Scores/view_details.ctp:3
-#: View/Tests/choose_test.ctp:4 View/Tests/do_test.ctp:2
+#: View/Scores/view_details.ctp:3 View/Tests/choose_test.ctp:4
+#: View/Tests/do_test.ctp:2
 msgid "Dashboard"
 msgstr "Trang cá nhân"
 
-#: Controller/PeopleController.php:244
+#: Controller/PeopleController.php:247
 #: Controller/SubcategoriesController.php:144 View/Elements/menu.ctp:20
 msgid "History"
 msgstr "Lịch sử"
 
-#: Controller/PeopleController.php:255
+#: Controller/PeopleController.php:258
 msgid "Suggestion"
 msgstr ""
 
-#: Controller/PeopleController.php:262 View/Elements/menu.ctp:21
+#: Controller/PeopleController.php:265 View/Elements/menu.ctp:21
 #: View/People/progress.ctp:7 View/People/view.ctp:61
 #: View/Progresses/view.ctp:2;14
 msgid "Progress"
 msgstr "Tiến độ"
 
-#: Controller/PeopleController.php:296
+#: Controller/PeopleController.php:276
 msgid "Cover details"
 msgstr "Chi tiết môn học"
 
@@ -374,11 +374,11 @@ msgstr ""
 msgid "The tests subject could not be deleted. Please, try again."
 msgstr ""
 
-#: Model/Score.php:255 View/People/progress.ctp:7
+#: Model/Score.php:271 View/People/progress.ctp:7
 msgid "Date"
 msgstr "Thời gian"
 
-#: Model/Score.php:255 View/Answers/view.ctp:47
+#: Model/Score.php:271 View/Answers/view.ctp:47
 #: View/Elements/table_score.ctp:4 View/People/view.ctp:93
 #: View/Scores/view.ctp:2;19 View/ScoresQuestions/view.ctp:9
 #: View/Tests/view.ctp:44
@@ -994,7 +994,7 @@ msgstr "Hết thời gian!"
 msgid "Your status on "
 msgstr "Trạng thái của bạn cho : "
 
-#: View/Elements/dashboard-progress.ctp:9
+#: View/Elements/dashboard-progress.ctp:9 View/People/dashboard.ctp:53
 msgid "Physics"
 msgstr "Vật lý"
 
@@ -1014,7 +1014,7 @@ msgstr "Điểm trung bình"
 msgid "(latest 10 tests)."
 msgstr "(trên 10 bài test gần nhất)."
 
-#: View/Elements/dashboard-progress.ctp:34
+#: View/Elements/dashboard-progress.ctp:34 View/People/dashboard.ctp:52
 msgid "Maths"
 msgstr "Toán"
 
@@ -1032,7 +1032,7 @@ msgstr "Test Hóa học"
 
 #: View/Elements/dashboard-progress.ctp:85
 msgid "Bio test"
-msgstr "Làm bài kiểm tra"
+msgstr "Test sinh học"
 
 #: View/Elements/do_test.ctp:3
 msgid "Do your Test"
@@ -1106,9 +1106,9 @@ msgstr ""
 msgid "Edit Grade"
 msgstr ""
 
-#: View/Grades/index.ctp:2
+#: View/Grades/index.ctp:2 View/People/dashboard.ctp:42
 msgid "Grades"
-msgstr ""
+msgstr "Lớp"
 
 #: View/Grades/index.ctp:38 View/Grades/view.ctp:22
 #: View/Subcategories/add.ctp:19 View/Subcategories/edit.ctp:21
@@ -1117,9 +1117,10 @@ msgid "New Grade"
 msgstr ""
 
 #: View/Grades/view.ctp:2 View/Helper/NameHelper.php:48
-#: View/People/cover_details.ctp:17 View/Tests/choose_test.ctp:13
+#: View/People/cover_details.ctp:17 View/People/dashboard.ctp:44;45;46
+#: View/Tests/choose_test.ctp:13
 msgid "Grade"
-msgstr ""
+msgstr "Lớp"
 
 #: View/Grades/view.ctp:20
 msgid "Delete Grade"
@@ -1181,9 +1182,50 @@ msgstr "Chỉnh sửa thông tin tài khoản"
 msgid "Completeness"
 msgstr "Độ hoàn thành"
 
-#: View/People/dashboard.ctp:24
+#: View/People/dashboard.ctp:25
 msgid "Rating"
 msgstr "Đánh giá"
+
+#: View/People/dashboard.ctp:33
+msgid "Custom"
+msgstr "Tùy chọn"
+
+#: View/People/dashboard.ctp:34
+msgid "1 Week"
+msgstr "1 tuần"
+
+#: View/People/dashboard.ctp:35
+msgid "1 Month"
+msgstr "1 tháng"
+
+#: View/People/dashboard.ctp:36
+msgid "All time"
+msgstr "Tất cả"
+
+#: View/People/dashboard.ctp:37
+msgid "Time range"
+msgstr "Thời gian"
+
+#: View/People/dashboard.ctp:50
+msgid "Subjects"
+msgstr "Môn học"
+
+#: View/People/dashboard.ctp:54
+msgid "Chemists"
+msgstr "Hóa học"
+
+#: View/People/dashboard.ctp:55
+msgid "Biology"
+msgstr "Sinh học"
+
+#: View/People/dashboard.ctp:60
+#, fuzzy
+msgid "Your Performance"
+msgstr "Điểm trung bình"
+
+#: View/People/dashboard.ctp:64
+msgid "Exams Took"
+msgstr "Các bài kiểm tra đã làm"
 
 #: View/People/edit.ctp:4 View/People/view.ctp:44
 msgid "Edit Person"
@@ -1203,15 +1245,6 @@ msgstr "User"
 #: View/Scores/index.ctp:58 View/Scores/view.ctp:46
 msgid "New Person"
 msgstr ""
-
-#: View/People/performance_details.ctp:8 View/Scores/view_details.ctp:46
-#: View/Tests/score.ctp:37
-msgid "Details"
-msgstr "Chi tiết"
-
-#: View/People/performance_details.ctp:12
-msgid "Latest performance on"
-msgstr "Điểm gần đây nhất môn"
 
 #: View/People/progress.ctp:3
 msgid "Your performance"
@@ -1451,6 +1484,10 @@ msgstr "Bạn cần ai giúp đỡ về việc học không?"
 msgid "Return to Dashboard"
 msgstr "Đến trang cá nhân"
 
+#: View/Scores/view_details.ctp:46 View/Tests/score.ctp:37
+msgid "Details"
+msgstr "Chi tiết"
+
 #: View/ScoresQuestions/add.ctp:4
 msgid "Add Scores Question"
 msgstr ""
@@ -1634,6 +1671,9 @@ msgstr "Họ là bắt buộc"
 msgid "Role is not correct, must be: {'admin', 'user', 'editor'}"
 msgstr "Vai trò không đúng, phải là: {'admin', 'user', 'editor'}"
 
+#~ msgid "Latest performance on"
+#~ msgstr "Điểm gần đây nhất môn"
+
 #~ msgid "Minutes"
 #~ msgstr "Phút"
 
@@ -1659,9 +1699,6 @@ msgstr "Vai trò không đúng, phải là: {'admin', 'user', 'editor'}"
 
 #~ msgid "Add Categories"
 #~ msgstr "Thêm chủ đề"
-
-#~ msgid "Add Subjects"
-#~ msgstr "Thêm môn học"
 
 #~ msgid "content"
 #~ msgstr "Nội dung"

@@ -169,13 +169,14 @@ class Question extends AppModel {
             $q_answers = explode($patternAnswer,$_answers[0]);            // list of answer
             unset($q_answers[0]);        // first element is empty
             $_saveData['Answer'] = array();
-            foreach($q_answers as $q_answer){
+            foreach($q_answers as $key => $q_answer){
                 $_saveData['Answer'][] = array(
+                    'order' => $key - 1,       // id in [0-n], key will start at 1 
                     'content' => $q_answer,
                     'correctness' => 0
                     );
             }
-
+            
             // correct answer remains
             $q_correct = (int)$_answers[1];
             $_saveData['Answer'][$q_correct - 1]['correctness'] = 1;
@@ -187,6 +188,7 @@ class Question extends AppModel {
         $check = true;
         foreach ($saveData as $key => $question) {
             $this->create();
+            pr($question);
             // pr($question);
             if($this->saveAll($question)){
                 $check = true;

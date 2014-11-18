@@ -151,4 +151,49 @@ class ScoresController extends AppController {
 		$this->set('correct', $score['Score']['score']);
 		$this->set('numberOfQuestions', $score['Test']['number_questions']);
 	}
+
+/**
+ * performance details
+ * ajax call
+ */
+    public function performanceDetails(){
+        $this->layout = 'ajax';
+        $this->autoLayout = false;
+        $this->autoRender = false;
+        
+        if( $this->request->is('POST')){
+            if(isset($_POST['subject'])){
+                $user = $this->Session->read('Auth.User');
+                $result = $this->Score->getScoresForChart($user['id'], $this->request->data('subject'));
+                echo $result;
+            }
+        }
+        else {
+            $this->redirect('/');
+        }
+    }
+
+/**
+ * ajax call for overall
+ * ajax call
+ */
+	public function ajaxOverall(){
+		$this->layout = 'ajax';
+        $this->autoLayout = false;
+        $this->autoRender = false;
+        
+        if( $this->request->is('POST')){
+            if(isset($_POST['subject']) && isset($_POST['grade'])){
+                $grade_id = $this->request->data['grade'];
+                $subject_id = $this->request->data['subject'];
+                $user = $this->Session->read('Auth.User');
+                $result = $this->Score->overall($user['id'], $grade_id, $subject_id);
+                echo json_encode($result);
+            }
+        }
+        else {
+            $this->redirect('/');
+        }
+	}
+
 }

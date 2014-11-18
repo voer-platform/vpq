@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2014-11-11 21:33+0700\n"
+"POT-Creation-Date: 2014-11-18 16:16+0700\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -183,24 +183,23 @@ msgstr ""
 #: View/Elements/menu.ctp:19;40
 #: View/People/cover_details.ctp:2
 #: View/People/dashboard.ctp:3
-#: View/People/performance_details.ctp:7
 #: View/Scores/view_details.ctp:3
 #: View/Tests/choose_test.ctp:4
 #: View/Tests/do_test.ctp:2
 msgid "Dashboard"
 msgstr ""
 
-#: Controller/PeopleController.php:244
+#: Controller/PeopleController.php:247
 #: Controller/SubcategoriesController.php:144
 #: View/Elements/menu.ctp:20
 msgid "History"
 msgstr ""
 
-#: Controller/PeopleController.php:255
+#: Controller/PeopleController.php:258
 msgid "Suggestion"
 msgstr ""
 
-#: Controller/PeopleController.php:262
+#: Controller/PeopleController.php:265
 #: View/Elements/menu.ctp:21
 #: View/People/progress.ctp:7
 #: View/People/view.ctp:61
@@ -208,7 +207,7 @@ msgstr ""
 msgid "Progress"
 msgstr ""
 
-#: Controller/PeopleController.php:296
+#: Controller/PeopleController.php:276
 msgid "Cover details"
 msgstr ""
 
@@ -384,12 +383,12 @@ msgstr ""
 msgid "The tests subject could not be deleted. Please, try again."
 msgstr ""
 
-#: Model/Score.php:255
+#: Model/Score.php:271
 #: View/People/progress.ctp:7
 msgid "Date"
 msgstr ""
 
-#: Model/Score.php:255
+#: Model/Score.php:271
 #: View/Answers/view.ctp:47
 #: View/Elements/table_score.ctp:4
 #: View/People/view.ctp:93
@@ -1242,6 +1241,7 @@ msgid "Your status on "
 msgstr ""
 
 #: View/Elements/dashboard-progress.ctp:9
+#: View/People/dashboard.ctp:53
 msgid "Physics"
 msgstr ""
 
@@ -1263,6 +1263,7 @@ msgid "(latest 10 tests)."
 msgstr ""
 
 #: View/Elements/dashboard-progress.ctp:34
+#: View/People/dashboard.ctp:52
 msgid "Maths"
 msgstr ""
 
@@ -1364,6 +1365,7 @@ msgid "Edit Grade"
 msgstr ""
 
 #: View/Grades/index.ctp:2
+#: View/People/dashboard.ctp:42
 msgid "Grades"
 msgstr ""
 
@@ -1379,6 +1381,7 @@ msgstr ""
 #: View/Grades/view.ctp:2
 #: View/Helper/NameHelper.php:48
 #: View/People/cover_details.ctp:17
+#: View/People/dashboard.ctp:44;45;46
 #: View/Tests/choose_test.ctp:13
 msgid "Grade"
 msgstr ""
@@ -1456,8 +1459,48 @@ msgstr ""
 msgid "Completeness"
 msgstr ""
 
-#: View/People/dashboard.ctp:24
+#: View/People/dashboard.ctp:25
 msgid "Rating"
+msgstr ""
+
+#: View/People/dashboard.ctp:33
+msgid "Custom"
+msgstr ""
+
+#: View/People/dashboard.ctp:34
+msgid "1 Week"
+msgstr ""
+
+#: View/People/dashboard.ctp:35
+msgid "1 Month"
+msgstr ""
+
+#: View/People/dashboard.ctp:36
+msgid "All time"
+msgstr ""
+
+#: View/People/dashboard.ctp:37
+msgid "Time range"
+msgstr ""
+
+#: View/People/dashboard.ctp:50
+msgid "Subjects"
+msgstr ""
+
+#: View/People/dashboard.ctp:54
+msgid "Chemists"
+msgstr ""
+
+#: View/People/dashboard.ctp:55
+msgid "Biology"
+msgstr ""
+
+#: View/People/dashboard.ctp:60
+msgid "Your Performance"
+msgstr ""
+
+#: View/People/dashboard.ctp:64
+msgid "Exams Took"
 msgstr ""
 
 #: View/People/edit.ctp:4
@@ -1484,16 +1527,6 @@ msgstr ""
 #: View/Scores/index.ctp:58
 #: View/Scores/view.ctp:46
 msgid "New Person"
-msgstr ""
-
-#: View/People/performance_details.ctp:8
-#: View/Scores/view_details.ctp:46
-#: View/Tests/score.ctp:37
-msgid "Details"
-msgstr ""
-
-#: View/People/performance_details.ctp:12
-msgid "Latest performance on"
 msgstr ""
 
 #: View/People/progress.ctp:3
@@ -1767,6 +1800,11 @@ msgstr ""
 
 #: View/Scores/view_details.ctp:41;52
 msgid "Return to Dashboard"
+msgstr ""
+
+#: View/Scores/view_details.ctp:46
+#: View/Tests/score.ctp:37
+msgid "Details"
 msgstr ""
 
 #: View/ScoresQuestions/add.ctp:4

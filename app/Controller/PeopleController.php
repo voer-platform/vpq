@@ -233,7 +233,7 @@ class PeopleController extends AppController {
         $cover = array();
         $cover = $this->Question->cover($this->Session->read('Auth.User')['id']);
 
-        $history = $this->Score->getAllScores($this->Session->read('Auth.User')['id'], 10);
+        $history = $this->Score->getAllScores($this->Session->read('Auth.User')['id']);
 
 		$this->set('history', $history);
         $this->set('scores', $scores);

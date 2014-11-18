@@ -31,3 +31,6 @@
 .btn {
     width: 100px;
 }
+.progress-bar {
+  min-width: 30%;
+}
