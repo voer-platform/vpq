@@ -61,12 +61,12 @@ class AdminController extends AppController {
 					$newName = date('YmdHisu').'-'.$key.'.jpg';
 					move_uploaded_file($value['tmp_name'], $path.DS.$newName);
 					$this->request->data['Attachment'][$key] = array(
-						'path' => Router::url('/', true).'files'.DS.$newName
+						'path' => Router::url('/', true).'files'.'/'.$newName
 						);
 				}
 			}
 			$this->Question->create();
-			if ($this->Question->saveAll($this->request->data)) {
+			if ($this->Question->saveAll(array_map('trim',$this->request->data))) {
 				$this->Session->setFlash(__('The question has been saved.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
@@ -74,7 +74,7 @@ class AdminController extends AppController {
 			}
 		}
 		
-		$subcategories = $this->Question->Subcategory->find('list');
+		$subcategories = $this->Question->Subcategory->find('list', array('order' => array('Subcategory.id ASC')));
 		$tests = $this->Question->Test->find('list');
 		$this->set(compact('subcategories', 'tests'));
 	}

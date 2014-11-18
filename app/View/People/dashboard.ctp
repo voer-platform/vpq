@@ -1,104 +1,120 @@
 <?php echo $this->Html->css('dashboard.css');?>
-
-<ol class="breadcrumb">
-  <li class="active"><?php echo __('Dashboard'); ?></li>
-</ol>
-
 <div class='dashboard'>
-    <div class ='head'>  
-        <h2><?php echo __('Your subjects'); ?></h2>
+    <h2 class="page-heading heading"><?php echo __('Dashboard');?></h2>
+    <div class="dashboard-header clearfix">
+        <div class="pull-left clearfix">
+            <div class="avatar pull-left">
+                <?php echo $this->Html->image($user['image'], array('width' => '60px', 'height' => '60px')); ?>
+            </div>
+            <div class="user-name pull-right">
+                <h4><?php echo $user['first_name'].' '.$user['last_name'] ?></h4>
+                <div>
+                    <?php echo $this->Html->link(__('Edit Profile'),array('controller'=> 'people','action'=> 'view', $user['id'])); ?>
+                </div>
+            </div>
+        </div>
+        <div class="overall-rating clearfix pull-right">
+            <div class="pull-left">
+                <div><?php echo __('Completeness'); ?></div>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped" style="width: <?php echo $cover[1] == 0? 0 : round($cover[0]/$cover[1]*100); ?>%;" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                    <?php echo $cover[0].'/'.$cover[1]; ?>
+                </div>
+            </div>
+            <div class="pull-left">
+                <div><?php echo __('Rating'); ?></div>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-warning" style="width: <?php echo $scores[1] == 0? 0 : round($scores[0]/$scores[1]*100); ?>%;" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                    <?php echo $scores[0].'/'.$scores[1]; ?>
+                </div>
+            </div>
+        </div>
     </div>
-  
-    <!-- Progress -->
-    <div class='progress-container'>
-        <!-- physics -->
-        <div class ='row'>
-            <div class ='row'>
-            <div class = 'row row-1'>
-                <div class='col-lg-1 col-lg-offset-2'>
-                    <h4><?php echo __('Physics'); ?></h4>
-                </div>
-                <div class='col-lg-5 col-md-8 col-sm-8 col-xs-9 '>
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="63" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $coverage['physics'];?>%;">
-                        </div>
-                        <?php echo $this->Html->link(__('Covered').':'.$coverage['physics'].'%', array('controller' => 'people', 'action' => 'coverDetails', 2)); ?>
-                    </div>
-                </div>
-                <div class='col-lg-1 col-md-1 col-sm-1 col-xs-1'>
-                    <?php echo $this->Html->link(__('Physics test'), array('controller' => 'tests', 'action' => 'chooseTest', 2), array('class' => 'btn btn-primary btn-md')); ?>
-                </div>
+    <div class="time-range clearfix">
+        <a class="pull-right btn btn-default btn-xs"><?php echo __('Custom'); ?></a>
+        <a class="pull-right btn btn-primary btn-xs"><?php echo __('1 Week'); ?></a>
+        <a class="pull-right btn btn-default  btn-xs"><?php echo __('1 Month'); ?></a>
+        <a class="pull-right btn btn-default btn-xs"><?php echo __('All time'); ?></a>
+        <h5 class="pull-right"><?php echo __('Time range'); ?></h5>
+    </div>
+    <div class="row">
+        <div class="col-md-2 filters">
+            <div class="well well-sm">
+                <label for=""><?php echo __('Grades'); ?></label>
+                <ul class="list-unstyled">
+                    <li><input type="checkbox" name="checkbox-grade-10" id="checkbox-grade-10" value="" /><label for="checkbox-grade-10"><?php echo __('Grade').' '.'10'; ?></label></li>
+                    <li><input type="checkbox" name="checkbox-grade-11" id="checkbox-grade-11" value="" /><label for="checkbox-grade-11"><?php echo __('Grade').' '.'11'; ?></label></li>
+                    <li><input type="checkbox" name="checkbox-grade-12" id="checkbox-grade-12" value="" /><label for="checkbox-grade-12"><?php echo __('Grade').' '.'12'; ?></label></li>
+                </ul>
             </div>
-            <div class = 'row row-2'>
-                <div class='col-lg-5 col-md-8 col-sm-8 col-xs-9 col-lg-5 col-lg-offset-3'>
-                    <?php echo __('Performance:'); ?>
-                    <?php echo $this->Html->link($performance['physics'].'%', array('controller' => 'People', 'action' => 'performanceDetails', 2) ) ?>
-                    <?php echo __('(latest 10 tests).'); ?>
-                </div>
+            <div class="well well-sm">
+                <label for=""><?php echo __('Subjects') ?></label>
+                <ul class="list-unstyled">
+                    <li><input type="checkbox" name="checkbox-subject-maths" id="checkbox-subject-maths" value="" /><label for="checkbox-subject-maths"><?php echo __('Maths'); ?></label></li>
+                    <li><input type="checkbox" name="checkbox-subject-physics" id="checkbox-subject-physics" value="" /><label for="checkbox-subject-physics"><?php echo __('Physics'); ?></label></li>
+                    <li><input type="checkbox" name="checkbox-subject-chemists" id="checkbox-subject-chemists" value="" /><label for="checkbox-subject-chemists"><?php echo __('Chemists'); ?></label></li>
+                    <li><input type="checkbox" name="checkbox-subject-biology" id="checkbox-subject-biology" value="" /><label for="checkbox-subject-biology"><?php echo __('Biology'); ?></label></li>
+                </ul>
             </div>
         </div>
-        <!-- maths -->
-        <div class ='row'>
-            <div class = 'row row-1'>
-                <div class='col-lg-1 col-lg-offset-2'>
-                    <h4><?php echo __('Maths'); ?></h4>
-                </div>
-                <div class='col-lg-5 col-md-8 col-sm-8 col-xs-9'>
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style='width:0%;'>
-                        </div>
-                    </div>
-                </div>
-                <div class='col-lg-1 col-md-1 col-sm-1 col-xs-1'>
-                    <?php echo $this->Html->link(__('Maths test'), array('controller' => 'tests', 'action' => 'chooseTest', 'maths'), array('class' => 'btn btn-primary btn-md', 'disabled' => 'disabled')); ?>
-                </div>
+        <div class="col-md-10 dashboard-content">
+            <label>Your Performance</label>
+            <div id = 'chart'>
             </div>
-            <div class = 'row row-2'>
-                <div class='col-lg-6 col-md-8 col-sm- col-xs-9 col-lg-offset-3 col-md-offset-3' id='physics-performace'>
-                </div>
-            </div>
-        </div>
-        <!-- chemists -->
-        <div class ='row'>
-            <div class = 'row row-1'>
-                <div class='col-lg-1 col-lg-offset-2'>
-                    <h4><?php echo __('Chemist'); ?></h4>
-                </div>
-                <div class='col-lg-5 col-md-8 col-sm- col-xs-9'>
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style='width:0%;'>
-                        </div>
-                    </div>
-                </div>
-                <div class='col-lg-1 col-md-1 col-sm-1 col-xs-1'>
-                    <?php echo $this->Html->link(__('Chemist test'), array('controller' => 'tests', 'action' => 'chooseTest', 'chemist'), array('class' => 'btn btn-primary btn-md', 'disabled' => 'disabled')); ?>
-                </div>
-            </div>
-            <div class = 'row row-2'>
-                <div class='col-lg-6 col-md-8 col-sm-8 col-xs-9 col-lg-offset-3 col-md-offset-3'>
-                </div>
-            </div>
-        </div>
-        <!-- bio -->
-        <div class ='row'>
-            <div class = 'row row-1'>
-                <div class='col-lg-1 col-lg-offset-2'>
-                    <h4><?php echo __('Chemist'); ?></h4>
-                </div>
-                <div class='col-lg-5 col-md-8 col-sm- col-xs-9'>
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style='width:0%;'>
-                        </div>
-                    </div>
-                </div>
-                <div class='col-lg-1 col-md-1 col-sm-1 col-xs-1'>
-                    <?php echo $this->Html->link(__('Bio test'), array('controller' => 'tests', 'action' => 'chooseTest', 'chemist'), array('class' => 'btn btn-primary btn-md', 'disabled' => 'disabled')); ?>
-                </div>
-            </div>
-            <div class = 'row row-2'>
-                <div class='col-lg-6 col-md-8 col-sm-8 col-xs-9 col-lg-offset-3 col-md-offset-3'>
-                </div>
+            <hr />
+            <label>Exams Took</label>
+            <?php echo $this->element('table_score'); ?>
+            <div>
             </div>
         </div>
     </div>
 </div>
+<?php echo $this->HTML->script('https://www.google.com/jsapi'); ?>
+
+<script type="text/javascript">
+    google.load("visualization", "1", {packages:["corechart"]});
+    google.setOnLoadCallback(drawChart);
+
+    var ajaxData = null;
+    var URL = "<?php echo Router::url(array('controller'=>'progresses','action'=>'performanceDetails'));?>"
+    console.log();
+    // get chart data from ajax call
+    $.ajax({
+        type: 'POST',
+        url : URL,
+        async : false,
+        data: {
+            'chartType' : 'ggChart',
+            'subject'  : 2
+        },
+        success : function (msg) {
+            if(msg != ''){
+                ajaxData = JSON.parse(msg);
+            }
+            else {
+                ajaxData = [];
+            }
+        }
+    });
+
+    // draw the data
+    function drawChart(id){
+        var data = google.visualization.arrayToDataTable(ajaxData);
+
+        var options = {
+            title : '',
+            vAxis:{
+                format: '##%',
+                maxValue: 1,
+                minValue: 0
+            },
+            hAxis:{
+                format: "MM/dd/yy"
+            }
+        };
+        data.addColumn({type: 'string', role: 'annotation'});
+
+        var chart = new google.visualization.LineChart(document.getElementById('chart'));
+        chart.draw(data, options);
+    }
+</script>

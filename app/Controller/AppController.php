@@ -85,6 +85,13 @@ class AppController extends Controller {
         // else if is local dev
         else if( parse_url(Router::url('/', true))['host'] == 'localhost'){
             $this->Facebook = new Facebook(array(
+                'appId'     =>  Configure::read('Facebook-local.AppID'),
+                'secret'    =>  Configure::read('Facebook-local.AppSecret')
+            ));
+        }
+        // if is dev server
+        else if(parse_url(Router::url('/', true))['host'] == 'dev.pls.edu.vn'){
+            $this->Facebook = new Facebook(array(
                 'appId'     =>  Configure::read('Facebook-dev.AppID'),
                 'secret'    =>  Configure::read('Facebook-dev.AppSecret')
             ));
@@ -96,7 +103,7 @@ class AppController extends Controller {
             ));
         }
         // this should never happen
-        else {
+        else{
 
         }
 
