@@ -23,7 +23,7 @@
     <?php echo $this->HTML->css('style.css'); ?>
 
     <!-- javascript -->
-    <?php echo $this->Html->script('https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js');?>
+    <?php echo $this->Html->script('jquery.min.js');?>
     <?php echo $this->Html->script('jquery.quick.pagination.min.js');?>
     <?php echo $this->Html->script('bootstrap.min.js');?>
 
