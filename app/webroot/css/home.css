@@ -1,0 +1,104 @@
+.jumbotron {
+	text-align: center;
+	background-color: transparent;
+}
+
+#name{
+	font-size: 80px;
+}
+
+#slogan{
+	font-size: 18px;
+}
+
+.facebook-btn, .google-btn {
+  max-width: 300px;
+}
+
+.jumbotron {
+    text-align: center;
+    background-color: transparent;
+}
+.content {
+}
+.content .container {
+  padding-bottom: 20px;
+}
+#name{
+    font-size: 80px;
+}
+
+#slogan{
+    font-size: 20px;
+    font-family: tahoma;
+}
+
+.facebook-btn, .google-btn {
+  max-width: 300px;
+}
+.home-banner img {
+  width: 100%;
+}
+.home-banner {
+  border-bottom: 1px solid gray;
+}
+.header .navbar {
+  margin-bottom: 1px;
+  border-bottom: 1px solid white;
+}
+.header .navbar-left {
+  margin-left: 20px;
+}
+#middle-logo {
+  margin-top: -20px;
+  margin-left: -5px;
+}
+#middle-tagline {
+  margin-top: 20px;
+  color: orange;
+  padding-bottom: 20px;
+  border-bottom: 1px dashed #ccc;
+}
+.middle-banner {
+  padding-bottom: 15px;
+  border-bottom: 1px dashed #ccc;
+}
+.about-pls {
+  padding-left: 15px;
+  padding-right: 20px;
+  margin-top: 30px;
+  font-size: 15px;
+  font-family: verdana;
+}
+.about-pls h5 {
+  color: rgba(0, 173, 39, 1);
+  margin: 20px 0 15px;
+  font-weight: bold;
+}
+.about-pls div {
+  margin-bottom: 20px;
+}
+.home-login {
+  padding-top: 40px;
+  font-family: verdana;
+  text-align: center;
+}
+.home-login h4 {
+  color: gray;
+  margin-bottom: 20px;
+}
+.home-login p {
+  margin: 10px 0;
+}
+.navbar-brand {
+  padding: 10px 15px;
+}
+ul.navbar-nav li > a {
+  text-transform: uppercase;
+  color: #ddd;
+}
+#register-methods > div {
+  padding: 20px 0;
+  text-align: center;
+  border-bottom: 1px dashed #ccc;
+}

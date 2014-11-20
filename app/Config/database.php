@@ -64,10 +64,10 @@ class DATABASE_CONFIG {
 	public $default = array(
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
-		'host' => '127.0.0.1',
-		'login' => 'pls',
-		'password' => 'pls',
-		'database' => 'pls',
+		'host' => 'localhost',
+		'login' => 'vpq',
+		'password' => 'vpq',
+		'database' => 'plseduvn',
 		'prefix' => '',
 		'encoding' => 'utf8',
 	);
@@ -76,9 +76,9 @@ class DATABASE_CONFIG {
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
 		'host' => 'localhost',
-		'login' => 'pls',
-		'password' => 'pls',
-		'database' => 'pls',
+		'login' => 'vpq',
+		'password' => 'vpq',
+		'database' => 'plseduvn',
 		'prefix' => '',
 		'encoding' => 'utf8',
 	);

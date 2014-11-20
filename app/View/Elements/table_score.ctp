@@ -7,7 +7,7 @@
 					$score['Score']['test_id'],
 					$this->Html->link($score['Score']['time_taken'], array('controller' => 'scores', 'action' => 'viewDetails', $score['Score']['id'])),
 					$score['Test']['time_limit'].' '.__('mins'),
-					(round($score['Score']['score']/$score['Test']['number_questions'], 2)*100).'%'
+					$score['Test']['number_questions'] != 0? round($score['Score']['score']/$score['Test']['number_questions'], 2)*100 : 0
 					));
 			}
 		}
