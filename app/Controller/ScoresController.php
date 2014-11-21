@@ -21,9 +21,12 @@ class ScoresController extends AppController {
 	public function isAuthorized($user) {
 	    // user can logout, dashboard, progress, history, suggest
 	    if (isset($user['role']) && $user['role'] === 'user' ){
-	    	if( in_array( $this->request->action, array('viewDetails'))){
+	    	if( in_array( $this->request->action, array('viewDetails', 'ajaxOverall'))){
 	    		return true;
 	    	}
+	    }
+	    else if (isset($user['role']) && $user['role'] === 'editor' ){
+	    	return true;
 	    }
 
 	    return parent::isAuthorized($user);
@@ -141,6 +144,7 @@ class ScoresController extends AppController {
 
 		$questionsIds = array();
 		foreach($scoreData as $data){$questionIds[] = $data['ScoresQuestion']['question_id'];}
+		pr($questionIds);
 
 		$this->loadModel('Question');
 		$questions = $this->Question->getQuestionsFromIds($questionIds);
@@ -150,6 +154,7 @@ class ScoresController extends AppController {
 		$this->set('scoreData', $scoreData);
 		$this->set('correct', $score['Score']['score']);
 		$this->set('numberOfQuestions', $score['Test']['number_questions']);
+		pr($score);
 	}
 
 /**

@@ -188,8 +188,6 @@ class Question extends AppModel {
         $check = true;
         foreach ($saveData as $key => $question) {
             $this->create();
-            pr($question);
-            // pr($question);
             if($this->saveAll($question)){
                 $check = true;
             }

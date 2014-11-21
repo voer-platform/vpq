@@ -96,12 +96,6 @@ class AppController extends Controller {
                 'secret'    =>  Configure::read('Facebook-dev.AppSecret')
             ));
         }
-        else if( parse_url(Router::url('/', true))['host'] == 'pls.local'){
-            $this->Facebook = new Facebook(array(
-                'appId'     =>  Configure::read('Facebook-dev.AppID'),
-                'secret'    =>  Configure::read('Facebook-dev.AppSecret')
-            ));
-        }
         // this should never happen
         else{
 

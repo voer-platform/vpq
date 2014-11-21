@@ -30,9 +30,14 @@ class QuestionsController extends AppController {
  * 
  */
 	public function isAuthorized($user) {
-	    // only admin can do 
+	    // only editor can can do 
 	    if (isset($user['role']) && $user['role'] === 'editor' ){
 	    	return true;
+	    }
+	    else if (isset($user['role']) && $user['role'] === 'user' ){
+	    	if( in_array( $this->request->action, array('ajaxCover'))){
+	    		return true;
+	    	}
 	    }
 
 	    return parent::isAuthorized($user);
