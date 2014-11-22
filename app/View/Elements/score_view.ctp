@@ -28,6 +28,9 @@
 				</div>
 			<?php endforeach;?>
 		</div>
+                <div id="ask-for-help">
+                    <a href="<?php echo '/ask4Help/index/'.$questionsData[$index]['Question']['id']; ?>">Ask for help</a>
+                </div>
 		<?php $index++; ?>
 	<?php endforeach;?>
 </div>
