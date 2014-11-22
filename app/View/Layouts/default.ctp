@@ -16,6 +16,7 @@
 
     <!-- meta -->
     <?php echo $this->Html->meta('viewport', 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no');?>
+    <?php echo $this->fetch('meta'); ?>
 
     <!-- css -->
 	<?php echo $this->Html->css('bootstrap.min.css'); ?>
@@ -34,6 +35,8 @@
 
 </head>
 <body>
+    <?php echo $this->Html->script('facebook.js'); ?>
+
     <?php //echo $this->element('login'); ?>
     <div class = "header">
         <div id = "menu">
