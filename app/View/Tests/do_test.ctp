@@ -9,8 +9,13 @@
 <?php echo $this->element('do_test');?>
 <script>
 $(document).ready(function(){
-    $("ul#questions").quickPagination({
-        pageSize:"1"
+    $('ul#questions').simplePaging({pageSize: "1"});
+
+    $('ul#questions').find('input[type="radio"]').on('click', function(){
+        setTimeout(function() {
+            $('ul#questions').data('simplePaging').nextPage();      
+        }, 500);
     });
+
 })
 </script>
