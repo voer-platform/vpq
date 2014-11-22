@@ -1,0 +1,7 @@
+#clock-container {
+    position: fixed;
+    top: 100px;
+    right: 10px;
+    font-size: 14px;
+    font-weight: bold;
+}

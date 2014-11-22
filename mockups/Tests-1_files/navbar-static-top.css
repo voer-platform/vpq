@@ -1,0 +1,15 @@
+body {
+  /*min-height: 2000px;*/
+}
+
+.navbar-static-top {
+  margin-bottom: 19px;
+}
+
+.nav>li>a>img.profile-img{
+	max-width: 60px;
+}
+
+.navbar-nav>li>a.profile-img{
+	padding: 0;
+}

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<!-- saved from url=(0039)http://dev.pls.edu.vn/Tests/doTest/10/2 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <!-- charset -->
+		<title>Tests</title>
+
+    <!-- meta -->
+    <link href="http://dev.pls.edu.vn/width%3Ddevice-width%2C%20initial-scale%3D1%2C%20maximum-scale%3D1%2C%20user-scalable%3Dno" type="application/rss+xml" rel="alternate" title="viewport">
+    <!-- css -->
+	<link rel="stylesheet" type="text/css" href="./Tests-1_files/bootstrap.min.css">    <link rel="stylesheet" type="text/css" href="./Tests-1_files/jquery-ui.css">    <link rel="stylesheet" type="text/css" href="./Tests-1_files/jquery.multiselect.css">    <link rel="stylesheet" type="text/css" href="./Tests-1_files/global.css">    <link rel="stylesheet" type="text/css" href="./Tests-1_files/style.css">
+    <!-- javascript -->
+    <script type="text/javascript" src="./Tests-1_files/jquery.min.js"></script>    <script type="text/javascript" src="./Tests-1_files/jquery.quick.pagination.min.js"></script>    <script type="text/javascript" src="./Tests-1_files/bootstrap.min.js"></script>    <script type="text/javascript" src="./Tests-1_files/jquery-ui.min.js"></script>    <script type="text/javascript" src="./Tests-1_files/jquery.multiselect.js"></script>
+</head>
+<body data-feedly-mini="yes">
+        <div class="header">
+        <div id="menu">
+            <link rel="stylesheet" type="text/css" href="./Tests-1_files/navbar-static-top.css">
+<div class="navbar navbar-default navbar-static-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="http://dev.pls.edu.vn/" class="navbar-brand"><img src="./Tests-1_files/logo-small.png" alt="PLS"></a>    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <!-- if logged in user -->
+                  <li><a href="http://dev.pls.edu.vn/people/dashboard">Trang cá nhân</a></li>
+          <li><a href="http://dev.pls.edu.vn/people/history">Lịch sử</a></li>
+          <li><a href="http://dev.pls.edu.vn/people/progress">Tiến độ</a></li>
+          <li><a href="http://dev.pls.edu.vn/about">Giới thiệu</a></li>
+        
+        <!-- if is admin -->
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+                  <li><a href="http://dev.pls.edu.vn/people/dashboard" class="profile-img"><img src="./Tests-1_files/997042_274608149413342_9012628188745032807_n.jpg" class="profile-img" alt=""></a></li>
+          <li><a href="http://dev.pls.edu.vn/people/dashboard">Mike Burner</a></li>
+
+          <li class="dropdown">
+            <a href="http://dev.pls.edu.vn/Tests/doTest/10/2#" class="dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="http://dev.pls.edu.vn/people/view/4">Thông tin tài khoản</a></li>
+              <li><a href="http://dev.pls.edu.vn/people/dashboard">Trang cá nhân</a></li>
+              <li class="divider"></li>
+              <li><a href="http://dev.pls.edu.vn/people/logout">Đăng xuất</a></li>
+            </ul>
+          </li>
+              </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</div>
+        </div>
+    </div>
+
+    <div class="home-banner">
+        <img src="./Tests-1_files/banner.png" alt="PLS">    </div>
+
+    <div class="content container">
+                <ol class="breadcrumb">
+  <li><a href="http://dev.pls.edu.vn/People/dashboard">Trang cá nhân</a></li>
+  <li class="active">Làm bài kiểm tra</li>
+</ol>
+
+<p id="clock-time" style="display:none;">10</p>
+
+<link rel="stylesheet" type="text/css" href="./Tests-1_files/clock.css">
+<div id="clock-container" class="panel panel-default">
+    <div class="panel-body">
+        <!--<h4>Thời gian còn lại: </h4> -->
+        <span id="clock-minutes">06</span>:<span id="clock-seconds">34</span>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function zeroPad(num, places) {
+        var zero = places - num.toString().length + 1;
+        return Array(+(zero > 0 && zero)).join("0") + num;
+    };
+
+    var seconds = parseInt($('#clock-time').text()) * 60;
+    var clockMinutes = $("#clock-minutes");
+    var clockSeconds = $('#clock-seconds');
+
+    clockMinutes.html(zeroPad(Math.floor(seconds/60),2));
+    clockSeconds.html(zeroPad(seconds%60, 2));
+
+    setInterval(function(){
+        seconds -= 1;
+        clockMinutes.html(zeroPad(Math.floor(seconds/60), 2));
+        clockSeconds.html(zeroPad(seconds%60, 2));
+
+        if(seconds == 0){
+            window.clearInterval();
+            alert("Hết thời gian!");
+
+            $('#TestAnswersDuration').val(seconds);
+            alert($('#TestAnswersDuration'));
+            $('#btn-submit').click()
+        }
+    }, 1000);
+
+
+</script>
+<div class="doTest">
+
+    <center><h1>Đang Kiểm Tra...</h1></center>
+    <hr>
+    <div class="test-info row">
+      <div class="col-md-6">
+        <b>Kiểm Tra</b>: Vật Lý<br>
+        <b>Thời gian</b>: 10 phút (Số câu hỏi: 10)
+      </div>
+      <div class="col-md-6">
+        <b>Chủ Đề</b>: Động lực học chất điểm, Ma sát<br>
+      </div>
+    </div>
+    <hr>
+    <form action="http://dev.pls.edu.vn/tests/score" id="TestAnswersDoTestForm" method="post" accept-charset="utf-8"><div style="display:none;"><input type="hidden" name="_method" value="POST"></div>        <div class="simplePagerContainer"><ul id="questions">
+                    <li id="dotestQuestions" class="simplePagerPage1" style="display: list-item;">
+                <fieldset>
+                    <div class="question">
+                      <b>Câu 1:</b><br />                          Phân tích lực <math xmlns="http://www.w3.org/1998/Math/MathML"><mover><mi>F</mi><mo>→</mo></mover></math> thành hai lực <math xmlns="http://www.w3.org/1998/Math/MathML"><mover><msub><mi>F</mi><mn>1</mn></msub><mo>→</mo></mover></math> và <math xmlns="http://www.w3.org/1998/Math/MathML"><mover><msub><mi>F</mi><mrow></mrow></msub><mo>→</mo></mover></math> hai lực này vuông góc nhau. Biết độ lớn của lực F = 100N ; <math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>F</mi><mn>1</mn></msub></math> = 60N thì độ lớn của lực <math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>F</mi><mn>2</mn></msub></math> là:
+                    </div>
+                    <div class="answer-heading">
+                      <h5>Đáp án:</h5>
+                    </div>
+                                                                                                                                                                                                                        
+                    <div class="choices well well-sm">
+                    <div class="input radio"><input type="hidden" name="12" id="TestAnswers0_" value=""><input type="radio" name="12" id="TestAnswers00" value="0"><label for="TestAnswers00"><math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>F</mi><mn>2</mn></msub></math> = 40N.	            
+</label><br><input type="radio" name="12" id="TestAnswers01" value="1"><label for="TestAnswers01"><math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>F</mi><mn>2</mn></msub></math> = <math xmlns="http://www.w3.org/1998/Math/MathML"><msqrt><mn>13600</mn></msqrt></math> N           
+</label><br><input type="radio" name="12" id="TestAnswers02" value="2"><label for="TestAnswers02"><math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>F</mi><mn>2</mn></msub></math> = 80N.              
+</label><br><input type="radio" name="12" id="TestAnswers03" value="3"><label for="TestAnswers03"><math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>F</mi><mn>2</mn></msub></math> = 640N.
+</label>
+                    </div>               
+                    </div>
+                    </fieldset>
+            </li>
+                    <li id="dotestQuestions" class="simplePagerPage2" style="display: none;">
+                <fieldset>
+                    <div class="question">
+                        <b>Question 2:</b>                          Vật nào sau đây chuyển động theo quán tính ?
+                    </div>
+                                                                                                                                                                                                                        
+                    <div class="input radio"><input type="hidden" name="18" id="TestAnswers1_" value=""><input type="radio" name="18" id="TestAnswers10" value="0"><label for="TestAnswers10">Vật chuyển động tròn đều .         
+</label><br><input type="radio" name="18" id="TestAnswers11" value="1"><label for="TestAnswers11">Vật chuyển động trên một đường thẳng.
+</label><br><input type="radio" name="18" id="TestAnswers12" value="2"><label for="TestAnswers12">Vật rơi tự do từ trên cao xuống không ma sát.
+</label><br><input type="radio" name="18" id="TestAnswers13" value="3"><label for="TestAnswers13">Vật chuyển động khi tất cả các lực tác dụng lên vật mất đi.
+</label></div>                </fieldset>
+            </li>
+                    <li id="dotestQuestions" class="simplePagerPage3" style="display: none;">
+                <fieldset>
+                    <div class="question">
+                        <b>Question 3:</b>                          Chọn phát biểu đúng nhất về hợp lực tác dụng lên vật
+                    </div>
+                                                                                                                                                                                                                        
+                    <div class="input radio"><input type="hidden" name="32" id="TestAnswers2_" value=""><input type="radio" name="32" id="TestAnswers20" value="0"><label for="TestAnswers20">có hướng trùng với hướng chuyển động của vật.
+</label><br><input type="radio" name="32" id="TestAnswers21" value="1"><label for="TestAnswers21">có hướng không trùng với hướng chuyển động của vật.
+</label><br><input type="radio" name="32" id="TestAnswers22" value="2"><label for="TestAnswers22">có hướng trùng với hướng của gia tốc của vật
+</label><br><input type="radio" name="32" id="TestAnswers23" value="3"><label for="TestAnswers23">Khi vật chuyển động thẳng đều có độ lớn thay đổi.
+</label></div>                </fieldset>
+            </li>
+                    <li id="dotestQuestions" class="simplePagerPage4" style="display: none;">
+                <fieldset>
+                    <div class="question">
+                        <b>Question 4:</b>                            Phát biểu nào sau đây là không chính xác 
+                    </div>
+                                                                                                                                                                                                                        
+                    <div class="input radio"><input type="hidden" name="59" id="TestAnswers3_" value=""><input type="radio" name="59" id="TestAnswers30" value="0"><label for="TestAnswers30">Lực ma sát nghỉ cực đại lớn hơn lực ma sát trượt.
+</label><br><input type="radio" name="59" id="TestAnswers31" value="1"><label for="TestAnswers31">Lực ma sát nghỉ luôn luôn trực đối với lực đặt vào vật.
+</label><br><input type="radio" name="59" id="TestAnswers32" value="2"><label for="TestAnswers32">Lực ma sát xuất hiện thành từng cặp trực đối đặt vào hai vật tiếp xúc.
+</label><br><input type="radio" name="59" id="TestAnswers33" value="3"><label for="TestAnswers33">Khi vật chuyển động hoặc có xu hướng chuyển động đối với mặt tiếp xúc với nó thì phát sinh lực ma sát.
+</label></div>                </fieldset>
+            </li>
+                    <li id="dotestQuestions" class="simplePagerPage5" style="display: none;">
+                <fieldset>
+                    <div class="question">
+                        <b>Question 5:</b>                          Ôtô chuyển động thẳng đều mặc dù có lực kéo vì
+                    </div>
+                                                                                                                                                                                                                        
+                    <div class="input radio"><input type="hidden" name="63" id="TestAnswers4_" value=""><input type="radio" name="63" id="TestAnswers40" value="0"><label for="TestAnswers40">Trọng lực cân bằng với phản lực 
+</label><br><input type="radio" name="63" id="TestAnswers41" value="1"><label for="TestAnswers41">Lực kéo cân bằng với lực ma sát với mặt đường
+</label><br><input type="radio" name="63" id="TestAnswers42" value="2"><label for="TestAnswers42">Các lực tác dụng vào ôtô cân bằng nhau 
+</label><br><input type="radio" name="63" id="TestAnswers43" value="3"><label for="TestAnswers43">Trọng lực cân bằng với lực kéo
+</label></div>                </fieldset>
+            </li>
+                    <li id="dotestQuestions" class="simplePagerPage6" style="display: none;">
+                <fieldset>
+                    <div class="question">
+                        <b>Question 6:</b>                          Chọn câu đúng. Chiều của lực ma sát nghỉ
+                    </div>
+                                                                                                                                                                                                                        
+                    <div class="input radio"><input type="hidden" name="65" id="TestAnswers5_" value=""><input type="radio" name="65" id="TestAnswers50" value="0"><label for="TestAnswers50">ngược chiều với vận tốc của vật.
+</label><br><input type="radio" name="65" id="TestAnswers51" value="1"><label for="TestAnswers51">ngược chiều với gia tốc của vật.
+</label><br><input type="radio" name="65" id="TestAnswers52" value="2"><label for="TestAnswers52">tiếp tuyến với mặt tiếp xúc.  
+</label><br><input type="radio" name="65" id="TestAnswers53" value="3"><label for="TestAnswers53">vuông góc với mặt tiếp xúc.
+</label></div>                </fieldset>
+            </li>
+                    <li id="dotestQuestions" class="simplePagerPage7" style="display: none;">
+                <fieldset>
+                    <div class="question">
+                        <b>Question 7:</b>                          Một người đẩy một vật trượt thẳng đều trên sàn nhà nằm ngang với một lực nằm ngang có độ lớn 300N. Khi đó, độ lớn của lực ma sát trượt tác dụng lên vật sẽ
+                    </div>
+                                                                                                                                                                                                                        
+                    <div class="input radio"><input type="hidden" name="71" id="TestAnswers6_" value=""><input type="radio" name="71" id="TestAnswers60" value="0"><label for="TestAnswers60">lớn hơn 300N.
+</label><br><input type="radio" name="71" id="TestAnswers61" value="1"><label for="TestAnswers61">nhỏ hơn 300N  
+</label><br><input type="radio" name="71" id="TestAnswers62" value="2"><label for="TestAnswers62">bằng 300N.  
+</label><br><input type="radio" name="71" id="TestAnswers63" value="3"><label for="TestAnswers63">bằng trọng lượng của vật
+</label></div>                </fieldset>
+            </li>
+                    <li id="dotestQuestions" class="simplePagerPage8" style="display: none;">
+                <fieldset>
+                    <div class="question">
+                        <b>Question 8:</b>                          Chọn câu sai
+                    </div>
+                                                                                                                                                                                                                        
+                    <div class="input radio"><input type="hidden" name="76" id="TestAnswers7_" value=""><input type="radio" name="76" id="TestAnswers70" value="0"><label for="TestAnswers70">Lực nén của ôtô khi qua cầu phẳng luôn cùng hướng với trọng lực
+</label><br><input type="radio" name="76" id="TestAnswers71" value="1"><label for="TestAnswers71">khi ôtô qua cầu cong thì lực nén của ôtô lên mặt cầu luôn cùng hướng với trọng lực
+</label><br><input type="radio" name="76" id="TestAnswers72" value="2"><label for="TestAnswers72">Khi ôtô qua khúc quanh, ngoại lực tác dụng lên ôtô gồm trọng lực, phản lực của mặt đường và lực ma sát nghỉ
+</label><br><input type="radio" name="76" id="TestAnswers73" value="3"><label for="TestAnswers73">Lực hướng tâm giúp cho ôtô qua khúc quanh an toàn 
+</label></div>                </fieldset>
+            </li>
+                    <li id="dotestQuestions" class="simplePagerPage9" style="display: none;">
+                <fieldset>
+                    <div class="question">
+                        <b>Question 9:</b>                          Chọn câu trả lời đúng.Vì sao nói vận tốc của 1vật có tính tương đối?
+                    </div>
+                                                                                                                                                                                                                        
+                    <div class="input radio"><input type="hidden" name="102" id="TestAnswers8_" value=""><input type="radio" name="102" id="TestAnswers80" value="0"><label for="TestAnswers80">Vì vật có vận tốc biến đổi. 
+</label><br><input type="radio" name="102" id="TestAnswers81" value="1"><label for="TestAnswers81">Vì vận tốc của vật phụ thuộc vào vật được chọn làm mốc.
+</label><br><input type="radio" name="102" id="TestAnswers82" value="2"><label for="TestAnswers82">Vì các vật khác nhau chuyển động có vận tốc khác nhau. 
+</label><br><input type="radio" name="102" id="TestAnswers83" value="3"><label for="TestAnswers83">Vì ta có thể đổi đơn vị đo của nó.
+</label></div>                </fieldset>
+            </li>
+                    <li id="dotestQuestions" class="simplePagerPage10" style="display: none;">
+                <fieldset>
+                    <div class="question">
+                        <b>Question 10:</b>                          Chọn câu trả lời đúng .1 đoàn tàu rời ga chuyển động thẳng nhanh dần đều,sau 1 phút đạt tốc độ 40Km/h.Quãng đường tàu đi được trong 1 phút đó là
+                    </div>
+                                                                                                                                                                                                                        
+                    <div class="input radio"><input type="hidden" name="111" id="TestAnswers9_" value=""><input type="radio" name="111" id="TestAnswers90" value="0"><label for="TestAnswers90">1200m. 
+</label><br><input type="radio" name="111" id="TestAnswers91" value="1"><label for="TestAnswers91">333,3m. 
+</label><br><input type="radio" name="111" id="TestAnswers92" value="2"><label for="TestAnswers92">666,6m. 
+</label><br><input type="radio" name="111" id="TestAnswers93" value="3"><label for="TestAnswers93">500m.
+</label></div>                </fieldset>
+            </li>
+                </ul>
+                <ul class="simplePagerNav pagination"><li class="active simplePageNav1"><a rel="1" href="http://dev.pls.edu.vn/Tests/doTest/10/2#">1</a></li><li class="simplePageNav2"><a rel="2" href="http://dev.pls.edu.vn/Tests/doTest/10/2#">2</a></li><li class="simplePageNav3"><a rel="3" href="http://dev.pls.edu.vn/Tests/doTest/10/2#">3</a></li><li class="simplePageNav4"><a rel="4" href="http://dev.pls.edu.vn/Tests/doTest/10/2#">4</a></li><li class="simplePageNav5"><a rel="5" href="http://dev.pls.edu.vn/Tests/doTest/10/2#">5</a></li><li class="simplePageNav6"><a rel="6" href="http://dev.pls.edu.vn/Tests/doTest/10/2#">6</a></li><li class="simplePageNav7"><a rel="7" href="http://dev.pls.edu.vn/Tests/doTest/10/2#">7</a></li><li class="simplePageNav8"><a rel="8" href="http://dev.pls.edu.vn/Tests/doTest/10/2#">8</a></li><li class="simplePageNav9"><a rel="9" href="http://dev.pls.edu.vn/Tests/doTest/10/2#">9</a></li><li class="simplePageNav10"><a rel="10" href="http://dev.pls.edu.vn/Tests/doTest/10/2#">10</a></li>
+                </ul>
+              </div>
+        <input type="hidden" name="testID" value="5" id="TestAnswersTestId">        <input type="hidden" name="numberOfQuestions" value="10" id="TestAnswersNumberOfQuestions">        <input type="hidden" name="duration" value="0" id="TestAnswersDuration">    <center>
+        <hr />
+    <div class="submit submit-answer">
+      <label for="">Bạn có thể click nút bên cạnh nếu muốn kết thúc bài kiểm tra &nbsp;</label>
+      <input class="btn btn-warning btn-lg" id="btn-submit" type="submit" value="Gửi đáp án"></div>    </center></form>
+</div>
+<script>
+$(document).ready(function(){
+    $("ul#questions").quickPagination({
+        pageSize:"1"
+    });
+})
+</script>
+    </div>
+
+    <link rel="stylesheet" type="text/css" href="./Tests-1_files/footer.css">
+<div id="footer">
+	<div class="container">
+		<p class="text-muted">Copyright VPQ @2015</p>
+	</div>
+</div>    <script type="text/javascript" src="./Tests-1_files/global.js"></script>
+
+
+<div id="feedly-mini" title="feedly Mini tookit"></div></body></html>
