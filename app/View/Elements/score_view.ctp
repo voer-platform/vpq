@@ -1,7 +1,7 @@
 <div class='score-view'>
 	<?php foreach($scoreData as $index => $data): ?>
 		<?php echo '<b>'.($index+1).'</b>'; ?>
-		<?php echo $questionsData[$index]['Question']['content'] ?>
+		<?php echo $questionsData[$index]['Question']['content']; ?>
 		</br>
 		<div class='input radio'>
 			<?php foreach($questionsData[$index]['Answer'] as $answerId => $answer): ?>
@@ -28,6 +28,9 @@
 				</div>
 			<?php endforeach;?>
 		</div>
+                <div id="ask-for-help">
+                    <a href="<?php echo '/ask4Help/index/'.$questionsData[$index]['Question']['id']; ?>">Ask for help</a>
+                </div>
 		<?php $index++; ?>
 	<?php endforeach;?>
 </div>

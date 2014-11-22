@@ -223,17 +223,21 @@ class PeopleController extends AppController {
   * dashboard.ctp
   */
     public function dashboard(){
+    	$this->set('title_for_layout',__("Dashboard"));
 
         $this->loadModel('Score');
-        $performance = array();
-        $performance['physics'] = $this->Score->overall($this->Session->read('Auth.User')['id'], 2);
+        $scores = array();
+        $scores = $this->Score->overall($this->Session->read('Auth.User')['id']);
 
-        $this->loadModel('Subcategory');
-        $coverage = array();
-        $coverage['physics'] = $this->Subcategory->coverage($this->Session->read('Auth.User')['id'], 2);
+        $this->loadModel('Question');
+        $cover = array();
+        $cover = $this->Question->cover($this->Session->read('Auth.User')['id']);
 
-        $this->set('performance', $performance);
-        $this->set('coverage', $coverage);
+        $history = $this->Score->getAllScores($this->Session->read('Auth.User')['id']);
+
+		$this->set('history', $history);
+        $this->set('scores', $scores);
+        $this->set('cover', $cover);
     }
 
 /**
@@ -243,8 +247,8 @@ class PeopleController extends AppController {
 		$this->set('title_for_layout',__("History"));
 
 		$this->loadModel('Score');
-		$result = $this->Score->getAllScores($this->Session->read('Auth.User')['id']);
-		$this->set('scores', $result);
+		$history = $this->Score->getAllScores($this->Session->read('Auth.User')['id'], 10);
+		$this->set('scores', $history);
 	}
 
 /**
@@ -265,29 +269,6 @@ class PeopleController extends AppController {
 		$this->set('progresses', $progresses);
 	}
 
-/**
- * performance details
- */
-	public function performanceDetails($subject){
-
-		$ajax = false;
-		if( $this->request->is('POST')){
-
-            $this->layout = null;
-            $this->loadModel('Score');
-			$user = $this->Session->read('Auth.User');
-			$result = $this->Score->getScoresForChart($user['id'], $subject);
-            $this->set('result',$result);
-
-            $ajax = true;
-        }
-        else if( $this->request->is('GET')){
-
-			// set to view
-			$this->set('subject', $subject);
-        }
-        $this->set('ajax',$ajax);
-	}
 /**
  *	coverage details
  */

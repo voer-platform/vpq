@@ -120,37 +120,4 @@ class ProgressesController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
-/**
- * ajax call
- *
- * @return: void
- */
-	public function ajax(){
-        
-        /**
-         * return corresponding data for each request
-         */
-        // if it is POST
-        // if( $this->request->is('POST')){
-        //     $this->layout = null;
-        //     if( $this->request->data['chartType'] == 'd3'){
-        //         $result = $this->Progress->ajaxD3($this->Session->read('Auth.User')['id']);
-        //         $this->set('result', $result);
-        //     }
-        //     else if($this->request->data['chartType'] == 'ggChart'){
-        //         $this->layout = null;
-        //         $result = $this->Progress->chartGoogle($this->Session->read('Auth.User')['id'], $this->request->data['subject']);
-        //         $this->set('result',$result);
-        //     }
-        //     else if($this->request->data['chartType'] == 'overall'){
-        //         $this->layout = null;
-        //         $result = $this->Progress->overall($this->Session->read('Auth.User')['id']);
-        //         $this->set('result',$result);
-        //     }
-        // }
-        // else if( $this->request->is('GET')){
-        //     $this->redirect('/');
-        // }
-	}
-
 }

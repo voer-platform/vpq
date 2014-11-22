@@ -61,20 +61,22 @@ class AdminController extends AppController {
 					$newName = date('YmdHisu').'-'.$key.'.jpg';
 					move_uploaded_file($value['tmp_name'], $path.DS.$newName);
 					$this->request->data['Attachment'][$key] = array(
-						'path' => Router::url('/', true).'files'.DS.$newName
+						'path' => Router::url('/', true).'files'.'/'.$newName
 						);
 				}
+			}
+			foreach ($this->request->data['Answer'] as $key => $answer) {
+				$this->request->data['Answer'][$key]['order'] = $key;
 			}
 			$this->Question->create();
 			if ($this->Question->saveAll($this->request->data)) {
 				$this->Session->setFlash(__('The question has been saved.'));
-				return $this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The question could not be saved. Please, try again.'));
 			}
 		}
 		
-		$subcategories = $this->Question->Subcategory->find('list');
+		$subcategories = $this->Question->Subcategory->find('list', array('order' => array('Subcategory.id ASC')));
 		$tests = $this->Question->Test->find('list');
 		$this->set(compact('subcategories', 'tests'));
 	}

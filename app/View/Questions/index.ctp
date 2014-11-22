@@ -13,7 +13,7 @@
 	<?php foreach ($questions as $question): ?>
 	<tr>
 		<td><?php echo h($question['Question']['id']); ?>&nbsp;</td>
-		<td><?php echo h($question['Question']['content']); ?>&nbsp;</td>
+		<td><?php echo html_entity_decode($question['Question']['content']); ?>&nbsp;</td>
 		<td><?php echo h($question['Question']['difficulty']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $question['Question']['id'])); ?>

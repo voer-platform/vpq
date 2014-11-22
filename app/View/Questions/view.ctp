@@ -8,7 +8,7 @@
 		</dd>
 		<dt><?php echo __('Content'); ?></dt>
 		<dd>
-			<?php echo html_entity_decode($question['Question']['content']); ?>
+			<?php echo html_entity_decode(trim($question['Question']['content'])); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Difficulty'); ?></dt>
@@ -40,6 +40,7 @@
 	<tr>
 		<th><?php echo __('Id'); ?></th>
 		<th><?php echo __('Question Id'); ?></th>
+		<th><?php echo __('Order'); ?></th>
 		<th><?php echo __('Content'); ?></th>
 		<th><?php echo __('Correctness'); ?></th>
 		<th class="actions"><?php echo __('Actions'); ?></th>
@@ -48,6 +49,7 @@
 		<tr>
 			<td><?php echo $answer['id']; ?></td>
 			<td><?php echo $answer['question_id']; ?></td>
+			<td><?php echo $answer['order']; ?></td>
 			<td><?php echo $answer['content']; ?></td>
 			<td><?php echo $answer['correctness']; ?></td>
 			<td class="actions">

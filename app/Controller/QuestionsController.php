@@ -30,9 +30,14 @@ class QuestionsController extends AppController {
  * 
  */
 	public function isAuthorized($user) {
-	    // only admin can do 
+	    // only editor can can do 
 	    if (isset($user['role']) && $user['role'] === 'editor' ){
 	    	return true;
+	    }
+	    else if (isset($user['role']) && $user['role'] === 'user' ){
+	    	if( in_array( $this->request->action, array('ajaxCover'))){
+	    		return true;
+	    	}
 	    }
 
 	    return parent::isAuthorized($user);
@@ -121,4 +126,27 @@ class QuestionsController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
+
+/**
+ * ajax call for cover
+ * ajax call
+ */
+	public function ajaxCover(){
+		$this->layout = 'ajax';
+        $this->autoLayout = false;
+        $this->autoRender = false;
+        
+        if( $this->request->is('POST')){
+            if(isset($_POST['subject']) && isset($_POST['grade'])){
+                $grade_id = $this->request->data['grade'];
+                $subject_id = $this->request->data['subject'];
+                $user = $this->Session->read('Auth.User');
+                $result = $this->Question->cover($user['id'], $grade_id, $subject_id);
+                echo json_encode($result);
+            }
+        }
+        else {
+            $this->redirect('/');
+        }
+	}		
 }

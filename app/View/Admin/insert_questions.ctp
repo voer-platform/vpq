@@ -23,9 +23,9 @@
 
 						<!-- difficulty and subcategories -->
 						<?php
-							$diff_oftions = array(1,2,3,4,5); 
-							echo $this->Form->input('difficulty', array ('label' => __('Difficulty'), 'class'=> 'form-control', 'options' => $diff_oftions)); ?>
-						<?php echo $this->Form->input('Subcategory', array ('label' => __('Content'), 'class'=> 'form-control', 'id' => 'select-subcategory'));?>
+							$diff_oftions = array(1 => __('Easy'), 2 => __('Quite easy'), 3 => __('Normal'), 4 => __('Hard'), 5 => __('Insane'), ); 
+							echo $this->Form->input('difficulty', array ('label' => __('Difficulty'), 'class'=> 'form-control', 'options' => $diff_oftions, 'selected' => 3)); ?>
+						<?php echo $this->Form->input('Subcategory', array ('label' => __('Content'), 'class'=> 'form-control', 'id' => 'select-subcategory', 'selected' => 0));?>
 					</div>
 				</div>
 				<!-- add answers for the questions -->

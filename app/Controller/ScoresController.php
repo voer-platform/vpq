@@ -21,9 +21,12 @@ class ScoresController extends AppController {
 	public function isAuthorized($user) {
 	    // user can logout, dashboard, progress, history, suggest
 	    if (isset($user['role']) && $user['role'] === 'user' ){
-	    	if( in_array( $this->request->action, array('viewDetails'))){
+	    	if( in_array( $this->request->action, array('viewDetails', 'ajaxOverall'))){
 	    		return true;
 	    	}
+	    }
+	    else if (isset($user['role']) && $user['role'] === 'editor' ){
+	    	return true;
 	    }
 
 	    return parent::isAuthorized($user);
@@ -141,6 +144,7 @@ class ScoresController extends AppController {
 
 		$questionsIds = array();
 		foreach($scoreData as $data){$questionIds[] = $data['ScoresQuestion']['question_id'];}
+		pr($questionIds);
 
 		$this->loadModel('Question');
 		$questions = $this->Question->getQuestionsFromIds($questionIds);
@@ -150,5 +154,51 @@ class ScoresController extends AppController {
 		$this->set('scoreData', $scoreData);
 		$this->set('correct', $score['Score']['score']);
 		$this->set('numberOfQuestions', $score['Test']['number_questions']);
+		pr($score);
 	}
+
+/**
+ * performance details
+ * ajax call
+ */
+    public function performanceDetails(){
+        $this->layout = 'ajax';
+        $this->autoLayout = false;
+        $this->autoRender = false;
+        
+        if( $this->request->is('POST')){
+            if(isset($_POST['subject'])){
+                $user = $this->Session->read('Auth.User');
+                $result = $this->Score->getScoresForChart($user['id'], $this->request->data('subject'));
+                echo $result;
+            }
+        }
+        else {
+            $this->redirect('/');
+        }
+    }
+
+/**
+ * ajax call for overall
+ * ajax call
+ */
+	public function ajaxOverall(){
+		$this->layout = 'ajax';
+        $this->autoLayout = false;
+        $this->autoRender = false;
+        
+        if( $this->request->is('POST')){
+            if(isset($_POST['subject']) && isset($_POST['grade'])){
+                $grade_id = $this->request->data['grade'];
+                $subject_id = $this->request->data['subject'];
+                $user = $this->Session->read('Auth.User');
+                $result = $this->Score->overall($user['id'], $grade_id, $subject_id);
+                echo json_encode($result);
+            }
+        }
+        else {
+            $this->redirect('/');
+        }
+	}
+
 }
