@@ -1,6 +1,6 @@
 <div class='doTest'>
     <center>
-    <h1><?php echo __('Do your Test')?></h1>
+    <h1>Đang Kiểm Tra...<?php //echo __('Do your Test')?></h1>
     </center>
 
     <div class="test-info">
@@ -17,19 +17,25 @@
                 <fieldset>
                     <div class="question">
                         <?php echo "<b>", __('Question'), ' ', $index+1, ":</b>  "; ?>
+                        <br />
                         <?php echo html_entity_decode($question['Question']['content']); ?>
                     </div>
                     <?php $option = array(); ?>
                     <?php foreach ($question['Answer'] as $aindex => $answer): ?>
                         <?php $option[$aindex] = $answer['content']; //.'--'.$answer['correctness']; ?>
                     <?php endforeach; ?>
-
+                    <div class="answer-heading">
+                        <h5>Đáp án:</h5>
+                    </div>
                     <?php echo $this->Form->input( $index, array(
-                        'name' => $question['Question']['id'],
-                        'legend' => false,
-                        'options' => $option,
-                        'separator' => '</br>',
-                        'type' => 'radio',
+                            'name' => $question['Question']['id'],
+                            'legend' => false,
+                            'options' => $option,
+                            'separator' => '</br>',
+                            'type' => 'radio',
+                            'div' => array(
+                                'class' => 'choices well well-sm'
+                            )
                         ));
                     ?>
                 </fieldset>
@@ -52,6 +58,11 @@
                 'type' => 'hidden'
                 ));?>
     <center>
-    <?php echo $this->Form->end(array('label' => __('Submit your answers'), 'class' => 'btn btn-primary btn-lg', 'id' => 'btn-submit')); ?>
+        <hr />
+        <label for="">Bạn có thể click nút bên cạnh nếu muốn kết thúc bài kiểm tra &nbsp;</label>
+        <?php echo $this->Form->end(array(
+            'label' => __('Submit your answers'), 
+            'class' => 'btn btn-warning btn-lg', 
+            'id' => 'btn-submit')); ?>
     </center>
 </div>

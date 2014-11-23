@@ -90,14 +90,27 @@ class Test extends AppModel {
      * @param  [type] $categoryId        [description]
      * @return [type]                    [description]
      */
-    public function generateTest($numberOfQuestions, $categoryId){
-        $this->Question->unBindModel( array('hasMany' => array('Score')) );
+    public function generateTest($numberOfQuestions, $categories){
+        $this->Question->unBindModel( array('hasAndBelongsToMany' => array('Score', 'Test')) );
+
         $_results = $this->Question->find('all', array(
                     'limit' => $numberOfQuestions,
-                    'order' => 'rand()'
+                    'order' => 'rand()',
+                    'conditions' => array('Subcategory.subcategory_id' => $categories),
+                    'joins'=>array(
+                        array(
+                            'type'=>'inner',
+                            'table'=>'questions_subcategories',
+                            'alias'=>'Subcategory',
+                            'conditions'=>array(
+                                'Question.id = Subcategory.question_id'
+                            )
+                        )
+                    )
                 ));
+        // pr($_results);
         $results = Set::sort($_results, '{n}.Question.id', 'asc');
-        return $results;
+        return $_results;
     }
 
     /*

@@ -222,4 +222,17 @@ div.test-info{
 
 ul#questions li div.question{
   font-size: 20px;
+  color: brown;
+}
+.answer-heading {
+    border-top: 1px dashed #ccc;
+    margin-top: 15px;
+    padding-top: 10px;
+}
+div.choices{
+
+}
+div.choices label{
+  margin-left: 10px;
+  font-weight: normal;
 }

@@ -165,7 +165,7 @@ class TestsController extends AppController {
             $timeLimit = $time;
 
             // query <number of questions> from db, random ID
-            $questions = $this->Test->generateTest($numberOfQuestions, -1);
+            $questions = $this->Test->generateTest($numberOfQuestions, array(1,2,3,4,5,6));
 
             // create tests in database
             $testID = $this->Test->nextTestId();
