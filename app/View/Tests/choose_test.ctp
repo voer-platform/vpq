@@ -8,7 +8,7 @@
 <div class="chooseTest">
     <h2><?php echo __('Choose time for the test')?></h2>
     <?php echo __('Test').': '.$this->Name->subjectToName($subject); ?>
-    <form role="form" class="form-horizontal">
+    <form role="form" class="form-horizontal" id="preDoTest" method="POST">
         <div class="form-group">
             <label for="" class="col-sm-3 control-label"><?php echo __('Grade'); ?></label>
             <div class="col-sm-7">
@@ -30,18 +30,33 @@
                 </div>
             </div>
         </div>
+        <div class='btn-groups'>
+            <?php
+                $times = array(5, 10, 15, 30, 60);
+                foreach($times as $time){
+                    echo '<button class="btn btn-primary btn-lg" type="button" onclick="javascript:doTest(' . $time . ')">' . $time . ' ' . __('mins') . '</button>';
+                }
+            ?>
+            <input type="hidden" name="level" id="level" />
+            <input type="hidden" name="categories" id="categories" />
+        </div>
     </form>
-    <div class='btn-groups'>
-        <?php
-            $times = array(5, 10, 15, 30, 60);
-            foreach($times as $time){
-                echo $this->Html->link($time . ' '. __('mins'), array('controller' => 'Tests', 'action' => 'doTest', $time, $subject), array('class' => 'btn btn btn-primary btn-lg'));
-            }
-        ?>
-    </div>
 </div>
 
 <script type="text/javascript">
+function doTest(t){
+    $subject = <?php echo $subject; ?>;
+    $str = $('#selectedCategories>ul')
+                .find('li')
+                .map(function() {
+                    return $(this).attr('rel');
+                }).get().join(',');
+    $('#categories').val($str);
+    $("#preDoTest").attr("action", "/Tests/doTest/" + t + "/" + $subject + "/");
+    // alert($str);
+    $('#preDoTest').submit();
+};
+
 $(document).ready(function() {
     var $selectedCategories = $('#selectedCategories>ul');
     var $selectGrade = $('#selectGrade');

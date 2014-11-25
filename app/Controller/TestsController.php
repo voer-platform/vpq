@@ -163,29 +163,37 @@ class TestsController extends AppController {
             // retrieve request data
             $numberOfQuestions = $time;
             $timeLimit = $time;
+            $strCategories = $this->request->data['categories'];
+            $categories = split(",", $strCategories);
 
             // query <number of questions> from db, random ID
-            $questions = $this->Test->generateTest($numberOfQuestions, array(1,2,3,4,5,6));
+            $questions = $this->Test->generateTest($numberOfQuestions, $categories);
 
-            // create tests in database
-            $testID = $this->Test->nextTestId();
+            if (count($questions) > 0){            
+                // create tests in database
+                $testID = $this->Test->nextTestId();
 
-            // save test: id, timeLimit, allow attemps, subject(currently df is 2)
-            $this->Test->saveTest($testID, $timeLimit, $numberOfQuestions,-1, $subject);
+                // save test: id, timeLimit, allow attemps, subject(currently df is 2)
+                $this->Test->saveTest($testID, $timeLimit, $numberOfQuestions,-1, $subject);
 
-            $dataTest = array();
-            foreach($questions as $question){
-                $dataTest[] = array('test_id' => $testID, 'question_id' => $question['Question']['id']);
+                $dataTest = array();
+                foreach($questions as $question){
+                    $dataTest[] = array('test_id' => $testID, 'question_id' => $question['Question']['id']);
+                }
+                $this->loadModel('TestsQuestion');
+                $this->TestsQuestion->saveAll($dataTest);
+
+                // set to view
+                $this->set('questions', $questions);
+                $this->set('subject', $subject);
+                $this->set('testID', $testID);
+                $this->set('duration', $timeLimit);
+                $this->set('numberOfQuestions', $numberOfQuestions);
+            }else{
+                // Thong bao khong tim thay cau hoi
+                $this->Session->setFlash('Không tìm thấy dữ liệu.');
+                $this->redirect(array('controller' => 'tests', 'action' => 'chooseTest', $subject));
             }
-            $this->loadModel('TestsQuestion');
-            $this->TestsQuestion->saveAll($dataTest);
-
-            // set to view
-            $this->set('questions', $questions);
-            $this->set('subject', $subject);
-            $this->set('testID', $testID);
-            $this->set('duration', $timeLimit);
-            $this->set('numberOfQuestions', $numberOfQuestions);
         }
         else{
             $this->redirect(array('controller' => 'people', 'action' => 'dashboard'));
