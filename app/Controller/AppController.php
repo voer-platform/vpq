@@ -75,31 +75,10 @@ class AppController extends Controller {
         // App::import('Vendor', 'facebook-php-sdk-master/src/facebook');
         require_once(APP. 'Vendor'. DS . 'facebook-php-sdk-master'. DS. 'src'. DS. 'facebook.php');
 
-        // if is production server
-        if( parse_url(Router::url('/', true))['host'] == 'pls.edu.vn'){
-            $this->Facebook = new Facebook(array(
-                'appId'     =>  Configure::read('Facebook.AppID'),
-                'secret'    =>  Configure::read('Facebook.AppSecret')
+        $this->Facebook = new Facebook(array(
+            'appId'     =>  Configure::read('Facebook.AppID'),
+            'secret'    =>  Configure::read('Facebook.AppSecret')
             ));
-        }
-        // else if is local dev
-        else if( parse_url(Router::url('/', true))['host'] == 'localhost'){
-            $this->Facebook = new Facebook(array(
-                'appId'     =>  Configure::read('Facebook-local.AppID'),
-                'secret'    =>  Configure::read('Facebook-local.AppSecret')
-            ));
-        }
-        // if is dev server
-        else if(parse_url(Router::url('/', true))['host'] == 'dev.pls.edu.vn'){
-            $this->Facebook = new Facebook(array(
-                'appId'     =>  Configure::read('Facebook-dev.AppID'),
-                'secret'    =>  Configure::read('Facebook-dev.AppSecret')
-            ));
-        }
-        // this should never happen
-        else{
-
-        }
 
         // set default language is Vietnamese
         Configure::write('Config.language', 'vie');

@@ -28,9 +28,7 @@
         if(seconds == 0){
             window.clearInterval();
             alert("<?php echo __('Time\'s up!'); ?>");
-
-            $('#TestAnswersDuration').val(seconds);
-            alert($('#TestAnswersDuration'));
+            $('#clock-time').val(seconds);
             $('#btn-submit').click()
         }
     }, 1000);

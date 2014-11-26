@@ -144,7 +144,6 @@ class ScoresController extends AppController {
 
 		$questionsIds = array();
 		foreach($scoreData as $data){$questionIds[] = $data['ScoresQuestion']['question_id'];}
-		pr($questionIds);
 
 		$this->loadModel('Question');
 		$questions = $this->Question->getQuestionsFromIds($questionIds);
@@ -154,7 +153,6 @@ class ScoresController extends AppController {
 		$this->set('scoreData', $scoreData);
 		$this->set('correct', $score['Score']['score']);
 		$this->set('numberOfQuestions', $score['Test']['number_questions']);
-		pr($score);
 	}
 
 /**

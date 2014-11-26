@@ -65,4 +65,16 @@
             'class' => 'btn btn-warning btn-lg', 
             'id' => 'btn-submit')); ?>
     </center>
+
 </div>
+<script type="text/javascript">
+
+    // add duration to form, when user submit score early
+    // if timeout, it is 0 by default
+    $('#TestAnswersDoTestForm').submit(function(){
+        var clockMinutes = parseInt($("#clock-minutes").text());
+        var clockSeconds = parseInt($('#clock-seconds').text());
+        console.log(clockMinutes* 60 + clockSeconds);
+        $('#TestAnswersDuration').val(clockMinutes* 60 + clockSeconds);
+    });
+</script>
