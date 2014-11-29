@@ -2,10 +2,10 @@
 App::uses('AppController', 'Controller');
 
 class Ask4HelpController extends AppController {
-    //public function beforeFilter(){
-    //      parent::beforeFilter();
-    //      $this->Auth->allow('display', 'index');
-    //}
+    public function beforeFilter(){
+          parent::beforeFilter();
+          $this->Auth->allow('display', 'index');
+    }
 
     public function isAuthorized($user) {
         // user can logout, dashboard, progress, history, suggest
