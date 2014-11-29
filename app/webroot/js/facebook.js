@@ -1,4 +1,4 @@
-var appID = '273389062833254';
+var appID = '494801563995465';
 
 /*
  * load face book SDK
@@ -8,7 +8,7 @@ window.fbAsyncInit = function() {
   FB.init({
     appId      : appID,
     xfbml      : true,
-    version    : 'v2.0'
+    version    : 'v2.2'
   });
 };
 
