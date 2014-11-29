@@ -1,19 +1,9 @@
 <?php $this->start('meta'); ?>
-<meta property="og:url" content="http://samples.ogp.me/136756249803614" /> 
+<meta property="og:url" content="<?php echo Router::url( $this->here, true ); ?>" /> 
 <meta property="og:title" content="Chocolate Pecan Pie" />
 <meta property="og:description" content="This pie is delicious!" /> 
 <meta property="og:image" content="https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-prn1/851565_496755187057665_544240989_n.jpg" />
 <?php $this->end(); ?>
-
-<script type="text/javascript">
-  var FBShare = function () {
-      FB.ui({
-        method: 'share',
-        href: 'http://pls.edu.vn/',
-        //href: '<?php echo Router::url( $this->here, true ); ?>',
-      }, function(response){});
-  };
-</script>
 
 <h2 class="page-heading heading">Ask for help</h2>
 
@@ -48,8 +38,8 @@
     var FBShare = function () {
       FB.ui({
         method: 'share',
-        href: 'http://pls.edu.vn/',
-        //href: '<?php echo Router::url( $this->here, true ); ?>',
+        //href: 'http://pls.edu.vn/',
+        href: '<?php echo Router::url( $this->here, true ); ?>',
       }, function(response){});
     };
     <?php if ( count($explanationsData) < 1 ): ?>
