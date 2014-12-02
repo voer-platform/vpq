@@ -56,6 +56,7 @@
                 return;
             }
             var pageNav = "<ul class='simplePagerNav pagination'>";
+            pageNav += "<li class='previous'><a href='#' rel='previous'>«</a></li>";
             for (i = 1; i <= pageCounter; i++) {
                 if (i == plugin.settings.currentPage) {
                     pageNav += "<li class='active simplePageNav" + i + "'><a rel='" + i + "' href='#'>" + i + "</a></li>";
@@ -63,6 +64,7 @@
                     pageNav += "<li class='simplePageNav" + i + "'><a rel='" + i + "' href='#'>" + i + "</a></li>";
                 }
             }
+            pageNav += "<li class='next'><a href='#' rel='next'>»</a></li>";
             pageNav += "</ul>";
             if (!plugin.settings.holder) {
                 switch (plugin.settings.pagerLocation) {
@@ -81,16 +83,26 @@
             }
             selector.parent().find(".simplePagerNav a").click(function() {
                 var clickedLink = $(this).attr("rel");
-                plugin.settings.currentPage = parseInt(clickedLink);
+                var iNextPage = 0;
+                if (clickedLink == 'previous' || clickedLink == 'next'){
+                    if (clickedLink == 'next'){
+                        iNextPage = plugin.settings.currentPage < pageCounter ? plugin.settings.currentPage + 1 : plugin.settings.currentPage;
+                    }else{
+                        iNextPage = plugin.settings.currentPage > 1 ? plugin.settings.currentPage - 1 : plugin.settings.currentPage;
+                    }
+                }else{
+                    iNextPage = parseInt(clickedLink);
+                }
+                plugin.settings.currentPage = parseInt(iNextPage);
                 if (plugin.settings.holder) {
                     $(this).parent("li").parent("ul").parent(plugin.settings.holder).find("li.active").removeClass("active");
-                    $(this).parent("li").parent("ul").parent(plugin.settings.holder).find("a[rel='" + clickedLink + "']").parent("li").addClass("active");
+                    $(this).parent("li").parent("ul").parent(plugin.settings.holder).find("a[rel='" + iNextPage + "']").parent("li").addClass("active");
                 } else {
                     $(this).parent("li").parent("ul").parent(".simplePagerContainer").find("li.active").removeClass("active");
-                    $(this).parent("li").parent("ul").parent(".simplePagerContainer").find("a[rel='" + clickedLink + "']").parent("li").addClass("active");
+                    $(this).parent("li").parent("ul").parent(".simplePagerContainer").find("a[rel='" + iNextPage + "']").parent("li").addClass("active");
                 }
                 selector.children().hide();
-                selector.find(".simplePagerPage" + clickedLink).show();
+                selector.find(".simplePagerPage" + iNextPage).show();
                 return false;
             });
         }

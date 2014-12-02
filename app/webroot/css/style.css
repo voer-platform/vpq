@@ -240,3 +240,32 @@ div.choices label{
   max-width: 50px;
 }
 
+.class10{
+
+}
+
+.class11{
+  background-color: #f0ad4e;
+}
+
+.class12{
+  background-color: #5bc0de;
+}
+
+div#selectedCategories{
+  margin-top: 10px;
+}
+
+div#selectedCategories ul{
+  list-style: none;
+  padding-left: 10px;
+}
+
+div#selectedCategories ul .glyphicon{
+  top: 3px;
+}
+
+div#selectedCategories ul li{
+  margin-bottom: 2px;
+}
+
