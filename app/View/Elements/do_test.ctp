@@ -16,7 +16,7 @@
             <li id='dotestQuestions'>
                 <fieldset>
                     <div class="question">
-                        <?php echo "<b>", __('Question'), ' ', $index+1, ":</b>  "; ?>
+                        <?php echo "<b>", __('Question'), ' ', $index+1, "/", $numberOfQuestions, ":</b>  "; ?>
                         <br />
                         <?php echo html_entity_decode($question['Question']['content']); ?>
                     </div>

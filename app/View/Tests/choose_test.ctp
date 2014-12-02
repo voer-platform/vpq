@@ -6,7 +6,8 @@
 </ol>
 
 <div class="chooseTest">
-    <h2><?php echo __('Choose time for the test')?></h2>
+    <h2>CHUẨN BỊ KIỂM TRA<?php //echo __('Choose time for the test')?></h2>
+    <hr />
     <?php echo __('Test').': '.$this->Name->subjectToName($subject); ?>
     <form role="form" class="form-horizontal" id="preDoTest" method="POST">
         <div class="form-group">
@@ -65,7 +66,7 @@ $(document).ready(function() {
             var s = "Class " +  $selectGrade.find(':selected').text() + " / " + ui.text.trim();
             var v = ui.value;
             if (ui.checked){
-                $selectedCategories.append("<li rel='" + v + "'><span class='glyphicon glyphicon-remove remove' aria-hidden='true'></span><span class='label label-primary'>" + s + "</span></li>");
+                $selectedCategories.append("<li rel='" + v + "'><span class='glyphicon glyphicon-remove remove' aria-hidden='true'></span><span class='label label-primary class" + $selectGrade.find(':selected').text() + "'>" + s + "</span></li>");
             }else{
                 $selectedCategories.find('li[rel="' + v + '"]').remove();
             }
