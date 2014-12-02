@@ -53,9 +53,28 @@
 
 <div id="explanation-listing">
 <?php foreach($explanationsData as $eid => $explanation): ?>
-  <div class="expanation">
+  <div class="expanation clearfix">
     <div class="content">
       <?php echo $explanation['Explanation']['content']; ?>
+    </div>
+    <div class="user-info dashboard-header clearfix pull-right">
+      <?php $person = $this->Person->getById($explanation['Explanation']['person_id']); ?>
+      <div class="avatar pull-left">
+        <a class="profile-img" href="/people/dashboard">
+          <img width="60px" height="60px" class="profile-img" src="<?php echo $person['image']; ?>" />
+        </a>
+      </div>
+      <div class="user-name pull-left">
+        <a href="/people/dashboard">
+          <h4><?php echo $person['first_name'].' '.$person['last_name']; ?></h4>
+        </a>
+        <div class="user-action-time">
+          answered
+          <span class="relativetime">
+            <?php echo $explanation['Explanation']['created']; ?>
+          </span>
+        </div>
+      </div>
     </div>
   </div>
 <?php endforeach;?>
