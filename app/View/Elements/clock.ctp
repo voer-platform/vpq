@@ -7,6 +7,22 @@
     </div>
 </div>
 
+<div id="msgTimeout" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Hết giờ</h4>
+            </div>
+            <div class="modal-body">
+                Thời gian làm bài đã hết!
+            </div>
+            <div class="modal-footer">
+                <button id="autoSubmit" type="button" class="btn btn-default" data-dismiss="modal">Xem kết quả</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script type="text/javascript">
     function zeroPad(num, places) {
         var zero = places - num.toString().length + 1;
@@ -27,11 +43,18 @@
 
         if(seconds == 0){
             window.clearInterval();
-            alert("<?php echo __('Time\'s up!'); ?>");
+            $('#msgTimeout').modal({
+                backdrop: "static"
+            });
             $('#clock-time').val(seconds);
-            $('#btn-submit').click()
         }
     }, 1000);
+
+    $(document).ready(function() {
+        $('#autoSubmit').click(function(){
+            $('#btn-submit').click();
+        });
+    });
 
 
 </script>
