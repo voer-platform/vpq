@@ -1,11 +1,6 @@
-<?php echo $this->Html->css('clock'); ?>
 
-<div id='clock-container' class='panel panel-default'>
-    <div class="panel-body">
-        <!--<h4><?php echo __('Time remains').': '; ?></h4> -->
-        <span id='clock-minutes'></span>:<span id='clock-seconds'></span>
-    </div>
-</div>
+<div><?php echo __('Time remains').': '; ?></div>
+<div id="countdown"><span id='clock-minutes'></span>:<span id='clock-seconds'></span></div>
 
 <div id="msgTimeout" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-sm">

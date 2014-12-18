@@ -1,32 +1,18 @@
-<div class='doTest'>
-    <center>
-    <h1>Đang Kiểm Tra...<?php //echo __('Do your Test')?></h1>
-    </center>
-
-    <div class="test-info">
-        <?php echo '<b>'.__('Test').'</b>: '.$this->Name->subjectToName($subject); ?> </br>
-        <?php echo ' <b>'.__('Timelimit').'</b>: '.$duration.' '.__('minutes'); ?> </br>
-        <?php echo ' <b>'.__('Number of questions').'</b>: '.$numberOfQuestions; ?> </br>
-    </div>
-    <hr>
-
+<div id='doTest'>
     <?php echo $this->Form->create('TestAnswers', array( 'url' => 'score')); ?>
+    <div id="left">
         <ul id="questions">
         <?php foreach ($questions as $index => $question): ?>
             <li id='dotestQuestions'>
                 <fieldset>
                     <div class="question">
-                        <?php echo "<b>", __('Question'), ' ', $index+1, "/", $numberOfQuestions, ":</b>  "; ?>
-                        <br />
-                        <?php echo html_entity_decode($question['Question']['content']); ?>
+                        <div class="title"><?php echo "<b>", __('Question'), ' ', $index+1, "/", $numberOfQuestions, ":</b>  "; ?></div>
+                        <div class="question-content"><?php echo html_entity_decode($question['Question']['content']); ?></div>
                     </div>
                     <?php $option = array(); ?>
                     <?php foreach ($question['Answer'] as $aindex => $answer): ?>
                         <?php $option[$aindex] = $answer['content']; //.'--'.$answer['correctness']; ?>
                     <?php endforeach; ?>
-                    <div class="answer-heading">
-                        <h5>Đáp án:</h5>
-                    </div>
                     <?php echo $this->Form->input( $index, array(
                             'name' => $question['Question']['id'],
                             'legend' => false,
@@ -57,15 +43,35 @@
                 'value' => 0,
                 'type' => 'hidden'
                 ));?>
-    <center>
-        <hr />
-        <label for="">Bạn có thể click nút bên cạnh nếu muốn kết thúc bài kiểm tra &nbsp;</label>
-        <?php echo $this->Form->end(array(
-            'label' => __('Submit your answers'), 
-            'class' => 'btn btn-warning btn-lg', 
-            'id' => 'btn-submit')); ?>
-    </center>
-
+    </div>
+    <div id="right">
+        <div class="test-info">
+            <div class="title">Thông tin</div>
+            <table>
+                <tr>
+                    <td class="first"><?php echo __('Test'); ?>:</td>
+                    <td><?php echo $this->Name->subjectToName($subject); ?> </td>
+                </tr>
+                <tr>
+                    <td class="first"><?php echo __('Timelimit'); ?>:</td>
+                    <td><?php echo $duration.' '.__('minutes'); ?></td>
+                </tr>
+                <tr>
+                    <td class="first"><?php echo __('Number of questions'); ?>:</td>
+                    <td><?php echo $numberOfQuestions; ?></td>
+                </tr>
+            </table>
+        </div> 
+        <div class="clock">
+            <?php echo $this->element('clock'); ?>
+        </div>
+        <div id="submitTest">
+            <?php echo $this->Form->end(array(
+                'label' => 'Nộp bài',//__('Submit your answers'), 
+                'class' => 'btn btn-warning btn-lg', 
+                'id' => 'btn-submit')); ?>
+        </div>   
+    </div>
 </div>
 <script type="text/javascript">
 
