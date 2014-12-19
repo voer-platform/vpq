@@ -198,7 +198,7 @@ ul.navbar-nav li > a {
 }
 /* Huy add */
 form#TestAnswersDoTestForm {
-
+  margin-bottom: 30px;
 }
 form#TestAnswersDoTestForm div.simplePagerContainer{
   max-width: 780px;
@@ -276,7 +276,7 @@ div.question .question-content{
   margin: 0 20px;
 }
 
-input#btn-submit{
+button#btn-submit{
   background-image: -webkit-linear-gradient(#d9534f, #d9534f);
   background-image: -o-linear-gradient(#d9534f, #d9534f);
   background-image: linear-gradient(#d9534f, #d9534f);
@@ -305,7 +305,7 @@ div#left{
   border: 1px solid #ccc;
   border-radius: 4px;
   box-shadow: 0 0 15px #ccc;
-  min-height: 450px;
+  min-height: 400px;
   padding: 0 1px 20px;
   width: 710px;
   float: left;
@@ -374,4 +374,23 @@ div.test-info table tr td.first{
 
 div#submitTest{
   margin-left: 15px;
+}
+
+/* Select */
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default{
+  font-weight: normal;
+  color: #333;
+  border: 1px solid #ccc;
+}
+
+.ui-widget{
+  font-family:  "Helvetica Neue",​Helvetica,​Arial,​sans-serif
+}
+
+.ui-widget label{
+  font-weight: normal;
+}
+
+.ui-widget .ui-state-hover{
+  font-weight: normal;
 }

@@ -66,12 +66,14 @@
             <?php echo $this->element('clock'); ?>
         </div>
         <div id="submitTest">
-            <?php echo $this->Form->end(array(
-                'label' => 'Nộp bài',//__('Submit your answers'), 
+            <?php echo $this->Form->button("Nộp bài", array(
+                'type' => 'submit',//__('Submit your answers'), 
                 'class' => 'btn btn-warning btn-lg', 
                 'id' => 'btn-submit')); ?>
         </div>   
     </div>
+    <div style="clear:both;"></div>
+    <?php echo $this->Form->end(); ?>
 </div>
 <script type="text/javascript">
 
