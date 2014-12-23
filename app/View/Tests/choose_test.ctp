@@ -13,24 +13,13 @@
         <div class="form-group">
             <label for="" class="col-sm-3 control-label"><?php echo __('Grade'); ?></label>
             <div class="col-sm-7">
-                <select class="form-control" id="selectGrade">
-                    <?php foreach ($grades as $index => $grade): ?>
-                    <option value="<?php echo $grade['Grade']['id']; ?>"><?php echo $grade['Grade']['name']; ?></option>
-                    <?php endforeach; ?>
-                </select>
-                <!--
                 <div class="btn-group" data-toggle="buttons">
-                    <label class="btn btn-primary active">
-                        <input type="radio" name="options" id="option1" autocomplete="off" checked> Radio 1 (preselected)
+                    <?php foreach ($grades as $index => $grade): ?>
+                    <label class="btn btn-default">
+                        <input type="radio" name="selectGrade" value="<?php echo $grade['Grade']['id']; ?>" autocomplete="off" > <?php echo __('Grade'); ?> <?php echo $grade['Grade']['name']; ?>
                     </label>
-                    <label class="btn btn-primary">
-                        <input type="radio" name="options" id="option2" autocomplete="off"> Radio 2
-                    </label>
-                    <label class="btn btn-primary">
-                        <input type="radio" name="options" id="option3" autocomplete="off"> Radio 3
-                    </label>
+                    <?php endforeach; ?>
                 </div>   
-                -->             
             </div>
         </div>
         <div class="form-group">
@@ -44,15 +33,18 @@
                 </div>
             </div>
         </div>
-        <div class='btn-groups'>
-            <?php
-                $times = array(5, 10, 15, 30, 60);
-                foreach($times as $time){
-                    echo '<button class="btn btn-primary btn-lg" type="button" onclick="javascript:doTest(' . $time . ')">' . $time . ' ' . __('mins') . '</button>';
-                }
-            ?>
-            <input type="hidden" name="level" id="level" />
-            <input type="hidden" name="categories" id="categories" />
+        <div class='form-group'>
+            <label for="" class="col-sm-3 control-label"></label>
+            <div class="col-sm-7">
+                <?php
+                    $times = array(5, 10, 15, 30, 60);
+                    foreach($times as $time){
+                        echo '<button class="btn btn-primary btn-lg1 btn-test" type="button" onclick="javascript:doTest(' . $time . ')">' . $time . ' ' . __('mins') . '</button>';
+                    }
+                ?>
+                <input type="hidden" name="level" id="level" />
+                <input type="hidden" name="categories" id="categories" />
+            </div>
         </div>
     </form>
 </div>
@@ -101,7 +93,7 @@ $(document).ready(function() {
         $('#selectCategory').multiselect('refresh');
     });
 
-    $('#selectGrade').change(function(e){
+    $("input:radio[name='selectGrade']").change(function(e){
         var url = '<?php echo Router::url(array('controller'=>'categories','action'=>'byGrade'));?>/' + $(this).val() + '/' + <?php echo $subject; ?>;
 
         $.getJSON(url, function( data ) {
