@@ -394,3 +394,11 @@ div#submitTest{
 .ui-widget .ui-state-hover{
   font-weight: normal;
 }
+
+#preDoTest .col-sm-7{
+  text-align: left;
+}
+
+button.btn-test{
+  margin-right: 5px;
+}
