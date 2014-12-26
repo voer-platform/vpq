@@ -2,7 +2,7 @@
 <div><?php echo __('Time remains').': '; ?></div>
 <div id="countdown"><span id='clock-minutes'></span>:<span id='clock-seconds'></span></div>
 
-<div id="msgTimeout" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+<div id="msgTimeout" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-header">
@@ -31,15 +31,15 @@
     clockMinutes.html(zeroPad(Math.floor(seconds/60),2));
     clockSeconds.html(zeroPad(seconds%60, 2));
 
-    setInterval(function(){
+    var countdown = setInterval(function(){
         seconds -= 1;
         clockMinutes.html(zeroPad(Math.floor(seconds/60), 2));
         clockSeconds.html(zeroPad(seconds%60, 2));
 
         if(seconds == 0){
-            window.clearInterval();
+            window.clearInterval(countdown);
             $('#msgTimeout').modal({
-                backdrop: "static"
+                backdrop: false
             });
             $('#clock-time').val(seconds);
         }

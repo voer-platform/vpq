@@ -16,7 +16,7 @@
                 <div class="btn-group" data-toggle="buttons">
                     <?php foreach ($grades as $index => $grade): ?>
                     <label class="btn btn-default">
-                        <input type="radio" name="selectGrade" value="<?php echo $grade['Grade']['id']; ?>" autocomplete="off" > <?php echo __('Grade'); ?> <?php echo $grade['Grade']['name']; ?>
+                        <input type="radio" name="selectGrade" value="<?php echo $grade['Grade']['id']; ?>" autocomplete="off" tag='<?php echo $grade['Grade']['name']; ?>' > <?php echo __('Grade'); ?> <?php echo $grade['Grade']['name']; ?>
                     </label>
                     <?php endforeach; ?>
                 </div>   
@@ -65,13 +65,13 @@ function doTest(t){
 
 $(document).ready(function() {
     var $selectedCategories = $('#selectedCategories>ul');
-    var $selectGrade = $('#selectGrade');
     $('#selectCategory').multiselect({
         click: function(e, ui){
-            var s = "Class " +  $selectGrade.find(':selected').text() + " / " + ui.text.trim();
+            var grade = $("input:radio[name=selectGrade]:checked").attr('tag');
+            var s = "Class " +  grade + " / " + ui.text.trim();
             var v = ui.value;
             if (ui.checked){
-                $selectedCategories.append("<li rel='" + v + "'><span class='glyphicon glyphicon-remove remove' aria-hidden='true'></span><span class='label label-primary class" + $selectGrade.find(':selected').text() + "'>" + s + "</span></li>");
+                $selectedCategories.append("<li rel='" + v + "'><span class='glyphicon glyphicon-remove remove' aria-hidden='true'></span><span class='label label-primary class" + grade + "'>" + s + "</span></li>");
             }else{
                 $selectedCategories.find('li[rel="' + v + '"]').remove();
             }
