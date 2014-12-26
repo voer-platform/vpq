@@ -66,6 +66,7 @@ function doTest(t){
 $(document).ready(function() {
     var $selectedCategories = $('#selectedCategories>ul');
     $('#selectCategory').multiselect({
+        selectedText: '# được chọn',
         click: function(e, ui){
             var grade = $("input:radio[name=selectGrade]:checked").attr('tag');
             var s = "Class " +  grade + " / " + ui.text.trim();
