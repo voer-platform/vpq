@@ -402,3 +402,55 @@ div#submitTest{
 button.btn-test{
   margin-right: 5px;
 }
+
+/* Ask for Help */
+#ask-for-help {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.ask-4-help.score-view,
+#explanation-listing .explanation {
+  border-bottom: 1px solid #aaa;
+}
+#explanation-listing .explanation {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.explanation .vote {
+  text-align: center;
+  width: 60px;
+}
+.explanation .vote .vote-up,
+.explanation .vote .vote-down {
+  display: block;
+  height: 25px;
+  margin: 0 auto;
+  width: 41px;
+  font-size: 1px;
+  text-indent: -9999em;
+  cursor: pointer;
+  background-image: url("/img/sprites.png");
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+.explanation .vote .vote-up {
+  background-position: 0 -265px;
+}
+.explanation .vote .vote-down {
+  background-position: 0 -300px;
+}
+.vote-count-post {
+  color: #555;
+  padding-top: 2px;
+  display: block;
+  font-size: 24px;
+}
+#ExplanationIndexForm .submit {
+  padding-top: 10px;
+}
+#ExplanationIndexForm .submit input {
+  background-color: #428bca;
+  border-color: #357ebd;
+  color: #fff;
+}
