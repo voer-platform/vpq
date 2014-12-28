@@ -534,6 +534,12 @@ div.incorrect{
   margin-top: 10px;
   margin-bottom: 20px;
 }
+#dotestQuestions #ask-for-help {
+  text-align: center;
+}
+#dotestQuestions #ask-for-help a {
+  color: #047006;
+}
 
 .ask-4-help.score-view,
 #explanation-listing .explanation {
@@ -574,6 +580,7 @@ div.incorrect{
 }
 #ExplanationIndexForm .submit {
   padding-top: 10px;
+  padding-bottom: 20px;
 }
 #ExplanationIndexForm .submit input {
   background-color: #428bca;
