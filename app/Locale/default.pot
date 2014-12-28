@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2014-11-18 16:16+0700\n"
+"POT-Creation-Date: 2014-12-28 17:04+0700\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -18,64 +18,72 @@ msgstr ""
 msgid "Elfinder File Manager"
 msgstr ""
 
-#: Controller/AdminController.php:43
+#: Controller/AdminController.php:57
 #: View/Elements/menu.ctp:27
 msgid "Admin"
 msgstr ""
 
-#: Controller/AdminController.php:53
+#: Controller/AdminController.php:66
 msgid "Add questions"
 msgstr ""
 
-#: Controller/AdminController.php:70
-#: Controller/QuestionsController.php:66;90
+#: Controller/AdminController.php:86
+#: Controller/QuestionsController.php:71;95
 msgid "The question has been saved."
 msgstr ""
 
-#: Controller/AdminController.php:73
-#: Controller/QuestionsController.php:69;93
+#: Controller/AdminController.php:88
+#: Controller/QuestionsController.php:74;98
 msgid "The question could not be saved. Please, try again."
 msgstr ""
 
-#: Controller/AdminController.php:106
+#: Controller/AdminController.php:121
 #: View/Admin/insert_multiple_questions.ctp:5
 msgid "Add multiple questions"
 msgstr ""
 
-#: Controller/AdminController.php:133
+#: Controller/AdminController.php:152
 msgid "Import success. Please verify in manage question list."
 msgstr ""
 
-#: Controller/AdminController.php:136
+#: Controller/AdminController.php:155
 msgid "Import Fail. Please verify in manage question list."
 msgstr ""
 
-#: Controller/AdminController.php:140
+#: Controller/AdminController.php:159
 msgid "The imported data could not be process, please try again later."
 msgstr ""
 
-#: Controller/AnswersController.php:50;84;111
+#: Controller/AnswersController.php:37;71;98
 msgid "Invalid answer"
 msgstr ""
 
-#: Controller/AnswersController.php:65;88
+#: Controller/AnswersController.php:52;75
 msgid "The answer has been saved."
 msgstr ""
 
-#: Controller/AnswersController.php:68;91
+#: Controller/AnswersController.php:55;78
 msgid "The answer could not be saved. Please, try again."
 msgstr ""
 
-#: Controller/AnswersController.php:115
+#: Controller/AnswersController.php:102
 msgid "The answer has been deleted."
 msgstr ""
 
-#: Controller/AnswersController.php:117
+#: Controller/AnswersController.php:104
 msgid "The answer could not be deleted. Please, try again."
 msgstr ""
 
-#: Controller/AppController.php:125
+#: Controller/AppController.php:102
 msgid "You are not authorized for that pages"
+msgstr ""
+
+#: Controller/Ask4HelpController.php:28
+msgid "Your answer has been saved."
+msgstr ""
+
+#: Controller/Ask4HelpController.php:32
+msgid "Unable to add your answer."
 msgstr ""
 
 #: Controller/AttachmentsController.php:50;84;111
@@ -175,11 +183,11 @@ msgstr ""
 msgid "Invalid Username or password. Try again."
 msgstr ""
 
-#: Controller/PeopleController.php:211
+#: Controller/PeopleController.php:211;216
 msgid "Something wrong, cannot log in. Please try again!"
 msgstr ""
 
-#: Controller/PeopleController.php:226
+#: Controller/PeopleController.php:232
 #: View/Elements/menu.ctp:19;40
 #: View/People/cover_details.ctp:2
 #: View/People/dashboard.ctp:3
@@ -189,17 +197,17 @@ msgstr ""
 msgid "Dashboard"
 msgstr ""
 
-#: Controller/PeopleController.php:247
+#: Controller/PeopleController.php:255
 #: Controller/SubcategoriesController.php:144
 #: View/Elements/menu.ctp:20
 msgid "History"
 msgstr ""
 
-#: Controller/PeopleController.php:258
+#: Controller/PeopleController.php:266
 msgid "Suggestion"
 msgstr ""
 
-#: Controller/PeopleController.php:265
+#: Controller/PeopleController.php:273
 #: View/Elements/menu.ctp:21
 #: View/People/progress.ctp:7
 #: View/People/view.ctp:61
@@ -207,7 +215,7 @@ msgstr ""
 msgid "Progress"
 msgstr ""
 
-#: Controller/PeopleController.php:276
+#: Controller/PeopleController.php:284
 msgid "Cover details"
 msgstr ""
 
@@ -231,15 +239,15 @@ msgstr ""
 msgid "The progress could not be deleted. Please, try again."
 msgstr ""
 
-#: Controller/QuestionsController.php:50;86;114
+#: Controller/QuestionsController.php:55;91;119
 msgid "Invalid question"
 msgstr ""
 
-#: Controller/QuestionsController.php:118
+#: Controller/QuestionsController.php:123
 msgid "The question has been deleted."
 msgstr ""
 
-#: Controller/QuestionsController.php:120
+#: Controller/QuestionsController.php:125
 msgid "The question could not be deleted. Please, try again."
 msgstr ""
 
@@ -263,23 +271,23 @@ msgstr ""
 msgid "The questions subcategory could not be deleted. Please, try again."
 msgstr ""
 
-#: Controller/ScoresController.php:50;85;113
+#: Controller/ScoresController.php:53;88;116
 msgid "Invalid score"
 msgstr ""
 
-#: Controller/ScoresController.php:65;89
+#: Controller/ScoresController.php:68;92
 msgid "The score has been saved."
 msgstr ""
 
-#: Controller/ScoresController.php:68;92
+#: Controller/ScoresController.php:71;95
 msgid "The score could not be saved. Please, try again."
 msgstr ""
 
-#: Controller/ScoresController.php:117
+#: Controller/ScoresController.php:120
 msgid "The score has been deleted."
 msgstr ""
 
-#: Controller/ScoresController.php:119
+#: Controller/ScoresController.php:122
 msgid "The score could not be deleted. Please, try again."
 msgstr ""
 
@@ -383,19 +391,51 @@ msgstr ""
 msgid "The tests subject could not be deleted. Please, try again."
 msgstr ""
 
-#: Model/Score.php:271
+#: Model/Score.php:265
 #: View/People/progress.ctp:7
 msgid "Date"
 msgstr ""
 
-#: Model/Score.php:271
-#: View/Answers/view.ctp:47
+#: Model/Score.php:265
+#: View/Elements/table_progress.ctp:4
 #: View/Elements/table_score.ctp:4
 #: View/People/view.ctp:93
 #: View/Scores/view.ctp:2;19
 #: View/ScoresQuestions/view.ctp:9
 #: View/Tests/view.ctp:44
 msgid "Score"
+msgstr ""
+
+#: Model/Score.php:279
+msgid "Sunday"
+msgstr ""
+
+#: Model/Score.php:282
+msgid "Monday"
+msgstr ""
+
+#: Model/Score.php:285
+msgid "Tuesday"
+msgstr ""
+
+#: Model/Score.php:288
+msgid "Wednesday"
+msgstr ""
+
+#: Model/Score.php:291
+msgid "Thursday"
+msgstr ""
+
+#: Model/Score.php:294
+msgid "Friday"
+msgstr ""
+
+#: Model/Score.php:297
+msgid "Saturday"
+msgstr ""
+
+#: Model/Score.php:301
+msgid "None"
 msgstr ""
 
 #: View/Admin/index.ctp:8
@@ -480,8 +520,10 @@ msgid "Editor"
 msgstr ""
 
 #: View/Admin/insert_questions.ctp:20;28
-#: View/Answers/view.ctp:14
-#: View/Questions/view.ctp:9;43
+#: View/Admin/manual_categorized.ctp:23
+#: View/Answers/view.ctp:19
+#: View/Questions/manual_categorized.ctp:23
+#: View/Questions/view.ctp:9;44
 #: View/Subcategories/view.ctp:42
 #: View/Tests/view.ctp:108
 msgid "Content"
@@ -528,8 +570,8 @@ msgid "Answer"
 msgstr ""
 
 #: View/Admin/insert_questions.ctp:40
-#: View/Answers/view.ctp:19
-#: View/Questions/view.ctp:44
+#: View/Answers/view.ctp:24
+#: View/Questions/view.ctp:45
 msgid "Correctness"
 msgstr ""
 
@@ -554,14 +596,96 @@ msgstr ""
 msgid "Click button to add more"
 msgstr ""
 
+#: View/Admin/manual_categorized.ctp:3
+#: View/Elements/admin-left-nav.ctp:8
+#: View/Questions/manual_categorized.ctp:3
+msgid "Categorize"
+msgstr ""
+
+#: View/Admin/manual_categorized.ctp:9;59
+#: View/Answers/index.ctp:36
+#: View/Attachments/index.ctp:32
+#: View/Categories/index.ctp:30
+#: View/Grades/index.ctp:24
+#: View/People/index.ctp:36
+#: View/Progresses/index.ctp:30
+#: View/Questions/index.ctp:30
+#: View/Questions/manual_categorized.ctp:9;59
+#: View/QuestionsSubcategories/index.ctp:28
+#: View/Scores/index.ctp:40
+#: View/ScoresQuestions/index.ctp:36
+#: View/Subcategories/index.ctp:28
+#: View/Tests/index.ctp:26
+#: View/TestsQuestions/index.ctp:34
+#: View/TestsSubjects/index.ctp:34
+msgid "Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}"
+msgstr ""
+
+#: View/Admin/manual_categorized.ctp:13;63
+#: View/Answers/index.ctp:41
+#: View/Attachments/index.ctp:37
+#: View/Categories/index.ctp:35
+#: View/Grades/index.ctp:29
+#: View/People/index.ctp:41
+#: View/Progresses/index.ctp:35
+#: View/Questions/index.ctp:35
+#: View/Questions/manual_categorized.ctp:13;63
+#: View/QuestionsSubcategories/index.ctp:33
+#: View/Scores/index.ctp:45
+#: View/ScoresQuestions/index.ctp:41
+#: View/Subcategories/index.ctp:33
+#: View/Tests/index.ctp:31
+#: View/TestsQuestions/index.ctp:39
+#: View/TestsSubjects/index.ctp:39
+msgid "previous"
+msgstr ""
+
+#: View/Admin/manual_categorized.ctp:15;65
+#: View/Answers/index.ctp:43
+#: View/Attachments/index.ctp:39
+#: View/Categories/index.ctp:37
+#: View/Grades/index.ctp:31
+#: View/People/index.ctp:43
+#: View/Progresses/index.ctp:37
+#: View/Questions/index.ctp:37
+#: View/Questions/manual_categorized.ctp:15;65
+#: View/QuestionsSubcategories/index.ctp:35
+#: View/Scores/index.ctp:47
+#: View/ScoresQuestions/index.ctp:43
+#: View/Subcategories/index.ctp:35
+#: View/Tests/index.ctp:33
+#: View/TestsQuestions/index.ctp:41
+#: View/TestsSubjects/index.ctp:41
+msgid "next"
+msgstr ""
+
+#: View/Admin/manual_categorized.ctp:22
+#: View/Questions/manual_categorized.ctp:22
+msgid "id"
+msgstr ""
+
+#: View/Admin/manual_categorized.ctp:24
+#: View/Elements/table_progress.ctp:4
+#: View/People/progress.ctp:7
+#: View/Questions/manual_categorized.ctp:24
+#: View/QuestionsSubcategories/view.ctp:9
+#: View/Subcategories/view.ctp:2
+msgid "Subcategory"
+msgstr ""
+
+#: View/Admin/manual_categorized.ctp:25
+#: View/Questions/manual_categorized.ctp:25
+msgid "Action"
+msgstr ""
+
 #: View/Answers/add.ctp:4
 msgid "Add Answer"
 msgstr ""
 
 #: View/Answers/add.ctp:15
 #: View/Answers/edit.ctp:16
-#: View/Answers/index.ctp:9;42
-#: View/Answers/view.ctp:27;50
+#: View/Answers/index.ctp:11;48
+#: View/Answers/view.ctp:32
 #: View/Attachments/add.ctp:13
 #: View/Attachments/edit.ctp:14
 #: View/Attachments/index.ctp:9;44
@@ -585,7 +709,7 @@ msgstr ""
 #: View/Questions/add.ctp:15
 #: View/Questions/edit.ctp:16
 #: View/Questions/index.ctp:9;42
-#: View/Questions/view.ctp:22;45;99;130
+#: View/Questions/view.ctp:22;46;101;132
 #: View/QuestionsSubcategories/add.ctp:13
 #: View/QuestionsSubcategories/edit.ctp:13
 #: View/QuestionsSubcategories/index.ctp:7;40
@@ -619,7 +743,7 @@ msgstr ""
 
 #: View/Answers/add.ctp:18
 #: View/Answers/edit.ctp:20
-#: View/Answers/view.ctp:31
+#: View/Answers/view.ctp:36
 #: View/Questions/add.ctp:19
 #: View/Questions/edit.ctp:21
 #: View/Questions/index.ctp:45
@@ -629,8 +753,8 @@ msgstr ""
 
 #: View/Answers/add.ctp:19
 #: View/Answers/edit.ctp:21
-#: View/Answers/index.ctp:45
-#: View/Answers/view.ctp:33
+#: View/Answers/index.ctp:51
+#: View/Answers/view.ctp:38
 #: View/Attachments/add.ctp:17
 #: View/Attachments/edit.ctp:19
 #: View/Attachments/index.ctp:47
@@ -663,8 +787,8 @@ msgstr ""
 
 #: View/Answers/add.ctp:20
 #: View/Answers/edit.ctp:22
-#: View/Answers/index.ctp:46
-#: View/Answers/view.ctp:34
+#: View/Answers/index.ctp:52
+#: View/Answers/view.ctp:39
 #: View/Attachments/add.ctp:18
 #: View/Attachments/edit.ctp:20
 #: View/Attachments/index.ctp:48
@@ -694,57 +818,13 @@ msgstr ""
 msgid "New Question"
 msgstr ""
 
-#: View/Answers/add.ctp:21
-#: View/Answers/edit.ctp:23
-#: View/Answers/index.ctp:47
-#: View/Answers/view.ctp:35
-#: View/People/add.ctp:24
-#: View/People/edit.ctp:28
-#: View/People/index.ctp:53
-#: View/People/view.ctp:50
-#: View/Scores/add.ctp:19
-#: View/Scores/edit.ctp:21
-#: View/Scores/view.ctp:41
-#: View/ScoresQuestions/add.ctp:18
-#: View/ScoresQuestions/edit.ctp:20
-#: View/ScoresQuestions/index.ctp:51
-#: View/ScoresQuestions/view.ctp:33
-#: View/Tests/add.ctp:19
-#: View/Tests/edit.ctp:21
-#: View/Tests/index.ctp:41
-#: View/Tests/view.ctp:28
-msgid "List Scores"
-msgstr ""
-
-#: View/Answers/add.ctp:22
-#: View/Answers/edit.ctp:24
-#: View/Answers/index.ctp:48
-#: View/Answers/view.ctp:36;72
-#: View/People/add.ctp:25
-#: View/People/edit.ctp:29
-#: View/People/index.ctp:54
-#: View/People/view.ctp:51;118
-#: View/Scores/index.ctp:54
-#: View/Scores/view.ctp:42
-#: View/ScoresQuestions/add.ctp:19
-#: View/ScoresQuestions/edit.ctp:21
-#: View/ScoresQuestions/index.ctp:52
-#: View/ScoresQuestions/view.ctp:34
-#: View/Tests/add.ctp:20
-#: View/Tests/edit.ctp:22
-#: View/Tests/index.ctp:42
-#: View/Tests/view.ctp:29;69
-msgid "New Score"
-msgstr ""
-
 #: View/Answers/edit.ctp:4
-#: View/Answers/view.ctp:29
+#: View/Answers/view.ctp:34
 msgid "Edit Answer"
 msgstr ""
 
 #: View/Answers/edit.ctp:19
-#: View/Answers/index.ctp:22
-#: View/Answers/view.ctp:63
+#: View/Answers/index.ctp:27
 #: View/Attachments/edit.ctp:17
 #: View/Attachments/index.ctp:23
 #: View/Categories/edit.ctp:18
@@ -760,7 +840,7 @@ msgstr ""
 #: View/Progresses/index.ctp:22
 #: View/Questions/edit.ctp:19
 #: View/Questions/index.ctp:21
-#: View/Questions/view.ctp:56;109;140
+#: View/Questions/view.ctp:58;111;142
 #: View/QuestionsSubcategories/edit.ctp:16
 #: View/QuestionsSubcategories/index.ctp:20
 #: View/Scores/edit.ctp:20
@@ -781,8 +861,8 @@ msgid "Delete"
 msgstr ""
 
 #: View/Answers/edit.ctp:19
-#: View/Answers/index.ctp:22
-#: View/Answers/view.ctp:30;63
+#: View/Answers/index.ctp:27
+#: View/Answers/view.ctp:35
 #: View/Attachments/edit.ctp:17
 #: View/Attachments/index.ctp:23
 #: View/Attachments/view.ctp:25
@@ -800,7 +880,7 @@ msgstr ""
 #: View/Progresses/view.ctp:25
 #: View/Questions/edit.ctp:19
 #: View/Questions/index.ctp:21
-#: View/Questions/view.ctp:25;56;109;140
+#: View/Questions/view.ctp:25;58;111;142
 #: View/QuestionsSubcategories/edit.ctp:16
 #: View/QuestionsSubcategories/index.ctp:20
 #: View/QuestionsSubcategories/view.ctp:20
@@ -829,8 +909,7 @@ msgstr ""
 msgid "Answers"
 msgstr ""
 
-#: View/Answers/index.ctp:20
-#: View/Answers/view.ctp:61
+#: View/Answers/index.ctp:25
 #: View/Attachments/index.ctp:21
 #: View/Categories/index.ctp:20
 #: View/Categories/view.ctp:55
@@ -840,7 +919,7 @@ msgstr ""
 #: View/People/view.ctp:70;107
 #: View/Progresses/index.ctp:20
 #: View/Questions/index.ctp:19
-#: View/Questions/view.ctp:54;107;138
+#: View/Questions/view.ctp:56;109;140
 #: View/QuestionsSubcategories/index.ctp:18
 #: View/Scores/index.ctp:29
 #: View/ScoresQuestions/index.ctp:25
@@ -853,8 +932,7 @@ msgstr ""
 msgid "View"
 msgstr ""
 
-#: View/Answers/index.ctp:21
-#: View/Answers/view.ctp:62
+#: View/Answers/index.ctp:26
 #: View/Attachments/index.ctp:22
 #: View/Categories/index.ctp:21
 #: View/Categories/view.ctp:56
@@ -864,7 +942,7 @@ msgstr ""
 #: View/People/view.ctp:71;108
 #: View/Progresses/index.ctp:21
 #: View/Questions/index.ctp:20
-#: View/Questions/view.ctp:55;108;139
+#: View/Questions/view.ctp:57;110;141
 #: View/QuestionsSubcategories/index.ctp:19
 #: View/Scores/index.ctp:30
 #: View/ScoresQuestions/index.ctp:26
@@ -877,72 +955,21 @@ msgstr ""
 msgid "Edit"
 msgstr ""
 
-#: View/Answers/index.ctp:30
-#: View/Attachments/index.ctp:32
-#: View/Categories/index.ctp:30
-#: View/Grades/index.ctp:24
-#: View/People/index.ctp:36
-#: View/Progresses/index.ctp:30
-#: View/Questions/index.ctp:30
-#: View/QuestionsSubcategories/index.ctp:28
-#: View/Scores/index.ctp:40
-#: View/ScoresQuestions/index.ctp:36
-#: View/Subcategories/index.ctp:28
-#: View/Tests/index.ctp:26
-#: View/TestsQuestions/index.ctp:34
-#: View/TestsSubjects/index.ctp:34
-msgid "Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}"
-msgstr ""
-
-#: View/Answers/index.ctp:35
-#: View/Attachments/index.ctp:37
-#: View/Categories/index.ctp:35
-#: View/Grades/index.ctp:29
-#: View/People/index.ctp:41
-#: View/Progresses/index.ctp:35
-#: View/Questions/index.ctp:35
-#: View/QuestionsSubcategories/index.ctp:33
-#: View/Scores/index.ctp:45
-#: View/ScoresQuestions/index.ctp:41
-#: View/Subcategories/index.ctp:33
-#: View/Tests/index.ctp:31
-#: View/TestsQuestions/index.ctp:39
-#: View/TestsSubjects/index.ctp:39
-msgid "previous"
-msgstr ""
-
-#: View/Answers/index.ctp:37
-#: View/Attachments/index.ctp:39
-#: View/Categories/index.ctp:37
-#: View/Grades/index.ctp:31
-#: View/People/index.ctp:43
-#: View/Progresses/index.ctp:37
-#: View/Questions/index.ctp:37
-#: View/QuestionsSubcategories/index.ctp:35
-#: View/Scores/index.ctp:47
-#: View/ScoresQuestions/index.ctp:43
-#: View/Subcategories/index.ctp:35
-#: View/Tests/index.ctp:33
-#: View/TestsQuestions/index.ctp:41
-#: View/TestsSubjects/index.ctp:41
-msgid "next"
-msgstr ""
-
-#: View/Answers/index.ctp:44
-#: View/Answers/view.ctp:32
+#: View/Answers/index.ctp:50
+#: View/Answers/view.ctp:37
 #: View/Questions/add.ctp:20
 #: View/Questions/edit.ctp:22
 #: View/Questions/index.ctp:46
-#: View/Questions/view.ctp:29;65
+#: View/Questions/view.ctp:29;67
 msgid "New Answer"
 msgstr ""
 
-#: View/Answers/view.ctp:4;44
+#: View/Answers/view.ctp:4
 #: View/Attachments/view.ctp:4
 #: View/Categories/view.ctp:4;44
 #: View/Grades/view.ctp:4;32
 #: View/People/view.ctp:4;90
-#: View/Questions/view.ctp:4;41;74;96;127
+#: View/Questions/view.ctp:4;41;76;98;129
 #: View/Scores/view.ctp:4
 #: View/ScoresQuestions/view.ctp:4
 #: View/Subcategories/view.ctp:4;41
@@ -954,7 +981,6 @@ msgstr ""
 
 #: View/Answers/view.ctp:9
 #: View/Attachments/view.ctp:14
-#: View/Elements/do_test.ctp:19
 #: View/Questions/view.ctp:2
 #: View/QuestionsSubcategories/view.ctp:4
 #: View/ScoresQuestions/view.ctp:14
@@ -962,40 +988,13 @@ msgstr ""
 msgid "Question"
 msgstr ""
 
-#: View/Answers/view.ctp:30
+#: View/Answers/view.ctp:14
+#: View/Questions/view.ctp:43
+msgid "Order"
+msgstr ""
+
+#: View/Answers/view.ctp:35
 msgid "Delete Answer"
-msgstr ""
-
-#: View/Answers/view.ctp:40
-#: View/People/view.ctp:86
-#: View/Tests/view.ctp:37
-msgid "Related Scores"
-msgstr ""
-
-#: View/Answers/view.ctp:45
-#: View/People/view.ctp:91
-#: View/Tests/view.ctp:42
-msgid "Test Id"
-msgstr ""
-
-#: View/Answers/view.ctp:46
-#: View/People/view.ctp:59;92
-#: View/Tests/view.ctp:43
-msgid "Person Id"
-msgstr ""
-
-#: View/Answers/view.ctp:48
-#: View/People/view.ctp:94
-#: View/Scores/view.ctp:24
-#: View/Tests/view.ctp:45
-msgid "Duration"
-msgstr ""
-
-#: View/Answers/view.ctp:49
-#: View/People/view.ctp:95
-#: View/Scores/view.ctp:29
-#: View/Tests/view.ctp:46
-msgid "Time Taken"
 msgstr ""
 
 #: View/Attachments/add.ctp:4
@@ -1023,7 +1022,7 @@ msgid "Attachment"
 msgstr ""
 
 #: View/Attachments/view.ctp:9
-#: View/Questions/view.ctp:76
+#: View/Questions/view.ctp:78
 msgid "Path"
 msgstr ""
 
@@ -1104,7 +1103,7 @@ msgstr ""
 #: View/Questions/add.ctp:22
 #: View/Questions/edit.ctp:24
 #: View/Questions/index.ctp:48
-#: View/Questions/view.ctp:31;118
+#: View/Questions/view.ctp:31;120
 #: View/QuestionsSubcategories/add.ctp:20
 #: View/QuestionsSubcategories/edit.ctp:21
 #: View/QuestionsSubcategories/index.ctp:46
@@ -1138,13 +1137,12 @@ msgstr ""
 
 #: View/Categories/view.ctp:2
 #: View/Subcategories/view.ctp:14
-#: View/Tests/choose_test.ctp:23
 msgid "Category"
 msgstr ""
 
 #: View/Categories/view.ctp:9;45
 #: View/Grades/view.ctp:9;33
-#: View/Questions/view.ctp:97
+#: View/Questions/view.ctp:99
 #: View/Subcategories/view.ctp:9
 #: View/Tests/view.ctp:79
 msgid "Name"
@@ -1166,13 +1164,13 @@ msgstr ""
 
 #: View/Categories/view.ctp:40
 #: View/Grades/view.ctp:28
-#: View/Questions/view.ctp:92
+#: View/Questions/view.ctp:94
 msgid "Related Subcategories"
 msgstr ""
 
 #: View/Categories/view.ctp:46
 #: View/Grades/view.ctp:35
-#: View/Questions/view.ctp:98
+#: View/Questions/view.ctp:100
 msgid "Category Id"
 msgstr ""
 
@@ -1228,12 +1226,8 @@ msgstr ""
 msgid "Manage SubCategories"
 msgstr ""
 
-#: View/Elements/clock.ctp:5
+#: View/Elements/clock.ctp:2
 msgid "Time remains"
-msgstr ""
-
-#: View/Elements/clock.ctp:30
-msgid "Time's up!"
 msgstr ""
 
 #: View/Elements/dashboard-progress.ctp:2
@@ -1241,7 +1235,7 @@ msgid "Your status on "
 msgstr ""
 
 #: View/Elements/dashboard-progress.ctp:9
-#: View/People/dashboard.ctp:53
+#: View/People/dashboard.ctp:54
 msgid "Physics"
 msgstr ""
 
@@ -1263,7 +1257,7 @@ msgid "(latest 10 tests)."
 msgstr ""
 
 #: View/Elements/dashboard-progress.ctp:34
-#: View/People/dashboard.ctp:52
+#: View/People/dashboard.ctp:53
 msgid "Maths"
 msgstr ""
 
@@ -1283,33 +1277,26 @@ msgstr ""
 msgid "Bio test"
 msgstr ""
 
-#: View/Elements/do_test.ctp:3
-msgid "Do your Test"
-msgstr ""
-
-#: View/Elements/do_test.ctp:7
+#: View/Elements/do_test.ctp:62
+#: View/People/dashboard.ctp:40
 #: View/Scores/view.ctp:9
-#: View/Tests/choose_test.ctp:10
+#: View/Tests/choose_test.ctp:11
 #: View/Tests/view.ctp:2
 #: View/TestsQuestions/view.ctp:9
 #: View/TestsSubjects/view.ctp:9
 msgid "Test"
 msgstr ""
 
-#: View/Elements/do_test.ctp:8
+#: View/Elements/do_test.ctp:66
 msgid "Timelimit"
 msgstr ""
 
-#: View/Elements/do_test.ctp:8
+#: View/Elements/do_test.ctp:67
 msgid "minutes"
 msgstr ""
 
-#: View/Elements/do_test.ctp:9
+#: View/Elements/do_test.ctp:70
 msgid "Number of questions"
-msgstr ""
-
-#: View/Elements/do_test.ctp:55
-msgid "Submit your answers"
 msgstr ""
 
 #: View/Elements/menu.ctp:22
@@ -1322,6 +1309,31 @@ msgstr ""
 
 #: View/Elements/menu.ctp:42
 msgid "Logout"
+msgstr ""
+
+#: View/Elements/table_progress.ctp:4
+msgid "Correct"
+msgstr ""
+
+#: View/Elements/table_progress.ctp:4
+msgid "Wrong"
+msgstr ""
+
+#: View/Elements/table_progress.ctp:4
+msgid "Total"
+msgstr ""
+
+#: View/Elements/table_progress.ctp:4
+msgid "Rank"
+msgstr ""
+
+#: View/Elements/table_progress.ctp:4
+msgid "Last tried"
+msgstr ""
+
+#: View/Elements/table_progress.ctp:19
+#: View/People/progress.ctp:17
+msgid "Oops... It looks like you have no progresses at all...."
 msgstr ""
 
 #: View/Elements/table_score.ctp:4
@@ -1337,7 +1349,7 @@ msgid "Time limit"
 msgstr ""
 
 #: View/Elements/table_score.ctp:9
-#: View/Tests/choose_test.ctp:34
+#: View/Tests/choose_test.ctp:42
 msgid "mins"
 msgstr ""
 
@@ -1365,7 +1377,7 @@ msgid "Edit Grade"
 msgstr ""
 
 #: View/Grades/index.ctp:2
-#: View/People/dashboard.ctp:42
+#: View/People/dashboard.ctp:43
 msgid "Grades"
 msgstr ""
 
@@ -1381,8 +1393,8 @@ msgstr ""
 #: View/Grades/view.ctp:2
 #: View/Helper/NameHelper.php:48
 #: View/People/cover_details.ctp:17
-#: View/People/dashboard.ctp:44;45;46
-#: View/Tests/choose_test.ctp:13
+#: View/People/dashboard.ctp:45;46;47
+#: View/Tests/choose_test.ctp:14;19
 msgid "Grade"
 msgstr ""
 
@@ -1392,6 +1404,26 @@ msgstr ""
 
 #: View/Helper/NameHelper.php:42
 msgid "All Grade"
+msgstr ""
+
+#: View/Helper/NameHelper.php:58
+msgid "Excellent"
+msgstr ""
+
+#: View/Helper/NameHelper.php:61
+msgid "Good"
+msgstr ""
+
+#: View/Helper/NameHelper.php:64
+msgid "Fair"
+msgstr ""
+
+#: View/Helper/NameHelper.php:67
+msgid "Bad"
+msgstr ""
+
+#: View/Helper/NameHelper.php:70
+msgid "Failed"
 msgstr ""
 
 #: View/Pages/home.ctp:8
@@ -1447,6 +1479,41 @@ msgstr ""
 msgid "New Progress"
 msgstr ""
 
+#: View/People/add.ctp:24
+#: View/People/edit.ctp:28
+#: View/People/index.ctp:53
+#: View/People/view.ctp:50
+#: View/Scores/add.ctp:19
+#: View/Scores/edit.ctp:21
+#: View/Scores/view.ctp:41
+#: View/ScoresQuestions/add.ctp:18
+#: View/ScoresQuestions/edit.ctp:20
+#: View/ScoresQuestions/index.ctp:51
+#: View/ScoresQuestions/view.ctp:33
+#: View/Tests/add.ctp:19
+#: View/Tests/edit.ctp:21
+#: View/Tests/index.ctp:41
+#: View/Tests/view.ctp:28
+msgid "List Scores"
+msgstr ""
+
+#: View/People/add.ctp:25
+#: View/People/edit.ctp:29
+#: View/People/index.ctp:54
+#: View/People/view.ctp:51;118
+#: View/Scores/index.ctp:54
+#: View/Scores/view.ctp:42
+#: View/ScoresQuestions/add.ctp:19
+#: View/ScoresQuestions/edit.ctp:21
+#: View/ScoresQuestions/index.ctp:52
+#: View/ScoresQuestions/view.ctp:34
+#: View/Tests/add.ctp:20
+#: View/Tests/edit.ctp:22
+#: View/Tests/index.ctp:42
+#: View/Tests/view.ctp:29;69
+msgid "New Score"
+msgstr ""
+
 #: View/People/cover_details.ctp:8
 msgid "Your coverage for"
 msgstr ""
@@ -1483,24 +1550,25 @@ msgstr ""
 msgid "Time range"
 msgstr ""
 
-#: View/People/dashboard.ctp:50
+#: View/People/dashboard.ctp:51
 msgid "Subjects"
 msgstr ""
 
-#: View/People/dashboard.ctp:54
+#: View/People/dashboard.ctp:55
 msgid "Chemists"
 msgstr ""
 
-#: View/People/dashboard.ctp:55
+#: View/People/dashboard.ctp:56
 msgid "Biology"
 msgstr ""
 
-#: View/People/dashboard.ctp:60
+#: View/People/dashboard.ctp:61
 msgid "Your Performance"
 msgstr ""
 
-#: View/People/dashboard.ctp:64
-msgid "Exams Took"
+#: View/People/dashboard.ctp:65
+#: View/Subcategories/index.ctp:2
+msgid "Subcategories"
 msgstr ""
 
 #: View/People/edit.ctp:4
@@ -1531,16 +1599,6 @@ msgstr ""
 
 #: View/People/progress.ctp:3
 msgid "Your performance"
-msgstr ""
-
-#: View/People/progress.ctp:7
-#: View/QuestionsSubcategories/view.ctp:9
-#: View/Subcategories/view.ctp:2
-msgid "Subcategory"
-msgstr ""
-
-#: View/People/progress.ctp:17
-msgid "Oops... It looks like you have no progresses at all...."
 msgstr ""
 
 #: View/People/view.ctp:2
@@ -1581,8 +1639,35 @@ msgstr ""
 msgid "Related Progresses"
 msgstr ""
 
+#: View/People/view.ctp:59;92
+#: View/Tests/view.ctp:43
+msgid "Person Id"
+msgstr ""
+
 #: View/People/view.ctp:60
 msgid "Sub Category Id"
+msgstr ""
+
+#: View/People/view.ctp:86
+#: View/Tests/view.ctp:37
+msgid "Related Scores"
+msgstr ""
+
+#: View/People/view.ctp:91
+#: View/Tests/view.ctp:42
+msgid "Test Id"
+msgstr ""
+
+#: View/People/view.ctp:94
+#: View/Scores/view.ctp:24
+#: View/Tests/view.ctp:45
+msgid "Duration"
+msgstr ""
+
+#: View/People/view.ctp:95
+#: View/Scores/view.ctp:29
+#: View/Tests/view.ctp:46
+msgid "Time Taken"
 msgstr ""
 
 #: View/Progresses/add.ctp:4
@@ -1649,7 +1734,7 @@ msgstr ""
 #: View/Questions/add.ctp:24
 #: View/Questions/edit.ctp:26
 #: View/Questions/index.ctp:50
-#: View/Questions/view.ctp:33;149
+#: View/Questions/view.ctp:33;151
 #: View/Scores/add.ctp:21
 #: View/Scores/edit.ctp:23
 #: View/Scores/index.ctp:56
@@ -1684,28 +1769,28 @@ msgstr ""
 msgid "Related Answers"
 msgstr ""
 
-#: View/Questions/view.ctp:42;75
+#: View/Questions/view.ctp:42;77
 msgid "Question Id"
 msgstr ""
 
-#: View/Questions/view.ctp:70
+#: View/Questions/view.ctp:72
 msgid "Related Attachments"
 msgstr ""
 
-#: View/Questions/view.ctp:87
+#: View/Questions/view.ctp:89
 msgid "None attachments"
 msgstr ""
 
-#: View/Questions/view.ctp:123
+#: View/Questions/view.ctp:125
 msgid "Related Tests"
 msgstr ""
 
-#: View/Questions/view.ctp:128
+#: View/Questions/view.ctp:130
 #: View/Tests/view.ctp:9
 msgid "Time Limit"
 msgstr ""
 
-#: View/Questions/view.ctp:129
+#: View/Questions/view.ctp:131
 #: View/Tests/view.ctp:14
 msgid "Allow Attemps"
 msgstr ""
@@ -1852,10 +1937,6 @@ msgstr ""
 msgid "Edit Subcategory"
 msgstr ""
 
-#: View/Subcategories/index.ctp:2
-msgid "Subcategories"
-msgstr ""
-
 #: View/Subcategories/view.ctp:25
 msgid "Delete Subcategory"
 msgstr ""
@@ -1875,14 +1956,6 @@ msgstr ""
 
 #: View/Tests/choose_test.ctp:5
 msgid "Choose Test"
-msgstr ""
-
-#: View/Tests/choose_test.ctp:9
-msgid "Choose time for the test"
-msgstr ""
-
-#: View/Tests/choose_test.ctp:17
-msgid "Class"
 msgstr ""
 
 #: View/Tests/do_test.ctp:3
@@ -2003,5 +2076,242 @@ msgstr ""
 
 #: Model/Person.php:validation for field role
 msgid "Role is not correct, must be: {'admin', 'user', 'editor'}"
+msgstr ""
+
+#: View/Errors/error400.ctp:22
+#: View/Errors/error500.ctp:21
+msgid "Error"
+msgstr ""
+
+#: View/Errors/error400.ctp:24
+msgid "The requested address %s was not found on this server."
+msgstr ""
+
+#: View/Errors/error500.ctp:22
+msgid "An Internal Error Has Occurred."
+msgstr ""
+
+#: View/Pages/home_default.ctp:16
+msgid "Release Notes for CakePHP %s."
+msgstr ""
+
+#: View/Pages/home_default.ctp:18
+msgid "Read the changelog"
+msgstr ""
+
+#: View/Pages/home_default.ctp:29
+msgid "URL rewriting is not properly configured on your server."
+msgstr ""
+
+#: View/Pages/home_default.ctp:40
+msgid "Your version of PHP is 5.2.8 or higher."
+msgstr ""
+
+#: View/Pages/home_default.ctp:44
+msgid "Your version of PHP is too low. You need PHP 5.2.8 or higher to use CakePHP."
+msgstr ""
+
+#: View/Pages/home_default.ctp:53
+msgid "Your tmp directory is writable."
+msgstr ""
+
+#: View/Pages/home_default.ctp:57
+msgid "Your tmp directory is NOT writable."
+msgstr ""
+
+#: View/Pages/home_default.ctp:67
+msgid "The %s is being used for core caching. To change the config edit %s"
+msgstr ""
+
+#: View/Pages/home_default.ctp:71
+msgid "Your cache is NOT working. Please check the settings in %s"
+msgstr ""
+
+#: View/Pages/home_default.ctp:81
+msgid "Your database configuration file is present."
+msgstr ""
+
+#: View/Pages/home_default.ctp:86
+msgid "Your database configuration file is NOT present."
+msgstr ""
+
+#: View/Pages/home_default.ctp:88
+msgid "Rename %s to %s"
+msgstr ""
+
+#: View/Pages/home_default.ctp:113
+msgid "CakePHP is able to connect to the database."
+msgstr ""
+
+#: View/Pages/home_default.ctp:117
+msgid "CakePHP is NOT able to connect to the database."
+msgstr ""
+
+#: View/Pages/home_default.ctp:129
+msgid "PCRE has not been compiled with Unicode support."
+msgstr ""
+
+#: View/Pages/home_default.ctp:131
+msgid "Recompile PCRE with Unicode support by adding <code>--enable-unicode-properties</code> when configuring"
+msgstr ""
+
+#: View/Pages/home_default.ctp:140
+msgid "DebugKit plugin is present"
+msgstr ""
+
+#: View/Pages/home_default.ctp:144
+msgid "DebugKit is not installed. It will help you inspect and debug different aspects of your application."
+msgstr ""
+
+#: View/Pages/home_default.ctp:146
+msgid "You can install it from %s"
+msgstr ""
+
+#: View/Pages/home_default.ctp:152
+msgid "Editing this Page"
+msgstr ""
+
+#: View/Pages/home_default.ctp:155
+msgid "To change the content of this page, edit: %s.<br />\nTo change its layout, edit: %s.<br />\nYou can also add some CSS styles for your pages at: %s."
+msgstr ""
+
+#: View/Pages/home_default.ctp:162
+msgid "Getting Started"
+msgstr ""
+
+#: View/Pages/home_default.ctp:166
+msgid "New"
+msgstr ""
+
+#: View/Pages/home_default.ctp:166
+msgid "CakePHP 2.0 Docs"
+msgstr ""
+
+#: View/Pages/home_default.ctp:175
+msgid "The 15 min Blog Tutorial"
+msgstr ""
+
+#: View/Pages/home_default.ctp:182
+msgid "Official Plugins"
+msgstr ""
+
+#: View/Pages/home_default.ctp:187
+msgid "provides a debugging toolbar and enhanced debugging tools for CakePHP applications."
+msgstr ""
+
+#: View/Pages/home_default.ctp:191
+msgid "contains various localized validation classes and translations for specific countries"
+msgstr ""
+
+#: View/Pages/home_default.ctp:196
+msgid "More about CakePHP"
+msgstr ""
+
+#: View/Pages/home_default.ctp:198
+msgid "CakePHP is a rapid development framework for PHP which uses commonly known design patterns like Active Record, Association Data Mapping, Front Controller and MVC."
+msgstr ""
+
+#: View/Pages/home_default.ctp:201
+msgid "Our primary goal is to provide a structured framework that enables PHP users at all levels to rapidly develop robust web applications, without any loss to flexibility."
+msgstr ""
+
+#: View/Pages/home_default.ctp:206
+msgid "The Rapid Development Framework"
+msgstr ""
+
+#: View/Pages/home_default.ctp:207
+msgid "CakePHP Documentation"
+msgstr ""
+
+#: View/Pages/home_default.ctp:208
+msgid "Your Rapid Development Cookbook"
+msgstr ""
+
+#: View/Pages/home_default.ctp:209
+msgid "CakePHP API"
+msgstr ""
+
+#: View/Pages/home_default.ctp:210
+msgid "Quick API Reference"
+msgstr ""
+
+#: View/Pages/home_default.ctp:211
+msgid "The Bakery"
+msgstr ""
+
+#: View/Pages/home_default.ctp:212
+msgid "Everything CakePHP"
+msgstr ""
+
+#: View/Pages/home_default.ctp:213
+msgid "CakePHP Plugins"
+msgstr ""
+
+#: View/Pages/home_default.ctp:214
+msgid "A comprehensive list of all CakePHP plugins created by the community"
+msgstr ""
+
+#: View/Pages/home_default.ctp:215
+msgid "CakePHP Community Center"
+msgstr ""
+
+#: View/Pages/home_default.ctp:216
+msgid "Everything related to the CakePHP community in one place"
+msgstr ""
+
+#: View/Pages/home_default.ctp:217
+msgid "CakePHP Google Group"
+msgstr ""
+
+#: View/Pages/home_default.ctp:218
+msgid "Community mailing list"
+msgstr ""
+
+#: View/Pages/home_default.ctp:220
+msgid "Live chat about CakePHP"
+msgstr ""
+
+#: View/Pages/home_default.ctp:221
+msgid "CakePHP Code"
+msgstr ""
+
+#: View/Pages/home_default.ctp:222
+msgid "Find the CakePHP code on GitHub and contribute to the framework"
+msgstr ""
+
+#: View/Pages/home_default.ctp:223;224
+msgid "CakePHP Issues"
+msgstr ""
+
+#: View/Pages/home_default.ctp:225;226
+msgid "CakePHP Roadmaps"
+msgstr ""
+
+#: View/Pages/home_default.ctp:227
+msgid "Training"
+msgstr ""
+
+#: View/Pages/home_default.ctp:228
+msgid "Join a live session and get skilled with the framework"
+msgstr ""
+
+#: View/Pages/home_default.ctp:229
+msgid "CakeFest"
+msgstr ""
+
+#: View/Pages/home_default.ctp:230
+msgid "Don't miss our annual CakePHP conference"
+msgstr ""
+
+#: View/Pages/home_default.ctp:231
+msgid "Cake Software Foundation"
+msgstr ""
+
+#: View/Pages/home_default.ctp:232
+msgid "Promoting development related to CakePHP"
+msgstr ""
+
+#: webroot/test.php:93
+msgid "Debug setting does not allow access to this url."
 msgstr ""
 

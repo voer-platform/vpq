@@ -13,7 +13,6 @@ div .dashboard #chart_per{
 }
 /*dashboard.chart div*/
 div .dashboard #chart{
-    float: left;
     text-align: center;
     width: 800px;
     height: 450px;
