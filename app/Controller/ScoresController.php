@@ -131,6 +131,9 @@ class ScoresController extends AppController {
  *	@return void
  */
 	public function viewDetails($id){
+        $this->layout = 'test';
+        $this->set('title_for_layout', __('Testing'));
+
 		$this->loadModel('ScoresQuestion');
 
 		$this->Score->unbindModel(array('belongsTo' => array('Person')));
@@ -141,6 +144,7 @@ class ScoresController extends AppController {
 				'score_id' => $id
 			)
 		));
+        pr($scoreData);
 
 		$questionsIds = array();
 		foreach($scoreData as $data){$questionIds[] = $data['ScoresQuestion']['question_id'];}
