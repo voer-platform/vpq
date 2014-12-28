@@ -54,9 +54,17 @@
 <div id="explanation-listing">
 <?php foreach($explanationsData as $eid => $explanation): ?>
   <div class="expanation clearfix">
-    <div class="content">
+    <div class="vote pull-left">
+      <a title="This answer is useful" class="vote-up">up vote</a>
+      <span class="vote-count-post" itemprop="upvoteCount">
+        <?php echo $explanation['Explanation']['likes']; ?>
+      </span>
+      <a title="This answer is not useful" class="vote-down">down vote</a>
+    </div>
+    <div class="content pull-left">
       <?php echo $explanation['Explanation']['content']; ?>
     </div>
+    <div class="clearfix"></div>
     <div class="user-info dashboard-header clearfix pull-right">
       <?php $person = $this->Person->getById($explanation['Explanation']['person_id']); ?>
       <div class="avatar pull-left">
