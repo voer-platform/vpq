@@ -7,7 +7,7 @@
 
 <h2 class="page-heading heading">Ask for help</h2>
 
-<div class='score-view'>
+<div class='ask-4-help score-view'>
   <?php echo $questionData['Question']['content']; ?>
   <div class='input radio'>
     <?php foreach($questionData['Answer'] as $answerId => $answer): ?>
@@ -53,10 +53,18 @@
 
 <div id="explanation-listing">
 <?php foreach($explanationsData as $eid => $explanation): ?>
-  <div class="expanation clearfix">
-    <div class="content">
+  <div class="explanation clearfix">
+    <div class="vote pull-left">
+      <a title="This answer is useful" class="vote-up">up vote</a>
+      <span class="vote-count-post" itemprop="upvoteCount">
+        <?php echo $explanation['Explanation']['likes']; ?>
+      </span>
+      <a title="This answer is not useful" class="vote-down">down vote</a>
+    </div>
+    <div class="content pull-left">
       <?php echo $explanation['Explanation']['content']; ?>
     </div>
+    <div class="clearfix"></div>
     <div class="user-info dashboard-header clearfix pull-right">
       <?php $person = $this->Person->getById($explanation['Explanation']['person_id']); ?>
       <div class="avatar pull-left">
@@ -83,7 +91,7 @@
 <?php endif; ?>
 </div>
 
-<div id="ask-for-help">
+<div id="ask-for-help" style="padding-top: 10px;">
   <a class="fb-share" style="cursor: pointer;">Still not find your answer? Share this on Facebook to get help from your friends.</a>
 </div>
 
@@ -97,7 +105,8 @@ echo $this->Form->create('Explanation', array(
 ));
 echo $this->Form->input('content', array(
     'rows' => '3',
-    'label' => false
+    'label' => false,
+    'type' => 'textarea', 'class' => 'tinymce-content'
 ));
 echo $this->Form->input('question_id', array(
     'type' => 'hidden',
@@ -109,3 +118,16 @@ echo $this->Form->input('person_id', array(
 ));
 echo $this->Form->end('Post Your Answer');
 ?>
+
+<script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>
+<script>
+        var i = 0;
+        // tinyMCE
+    tinymce.init({
+        selector : '.tinymce-content',
+        plugins : 'code image link',
+        relative_urls: false,
+        toolbar: 'bold italic | link blockquote code image | numlist bullist | undo redo',
+        menubar : '',
+    });
+</script>
