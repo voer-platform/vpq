@@ -141,6 +141,9 @@ class TestsController extends AppController {
      * @return void
      */
     public function chooseTest($subject = null) {
+        $this->layout = 'test';
+        $this->set('title_for_layout', __('Choose test'));
+
         $allGrades = $this->Grade->find('all');
         $this->set('grades', $allGrades);
         $this->set('subject', $subject);
@@ -156,6 +159,9 @@ class TestsController extends AppController {
      * @return void
      */
     public function doTest($time, $subject) {
+        $this->layout = 'test';
+        $this->set('title_for_layout', __('Testing'));
+
         // process if request is post
         if( isset($time) && isset($subject) ){
 

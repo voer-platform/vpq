@@ -144,7 +144,6 @@ class ScoresController extends AppController {
 				'score_id' => $id
 			)
 		));
-        pr($scoreData);
 
 		$questionsIds = array();
 		foreach($scoreData as $data){$questionIds[] = $data['ScoresQuestion']['question_id'];}

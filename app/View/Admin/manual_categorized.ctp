@@ -1,4 +1,3 @@
-<?php pr($questions); ?>
 <div class='manual-categorize'>
     <h1><?php echo __("Categorize"); ?></h1>
 
