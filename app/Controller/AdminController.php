@@ -12,8 +12,22 @@ class AdminController extends AppController {
 	var $uses = false;
 
 	public $helpers = array('TinymceElfinder.TinymceElfinder');
-	public $components = array('TinymceElfinder.TinymceElfinder');
-	
+	public $components = array('Paginator','TinymceElfinder.TinymceElfinder');
+
+/**
+ * paginate
+ *
+ */
+ 	public $paginate = array(
+		'Question' => array(
+	        'limit' => 10, 
+	        'recursive' => 2, 
+	        'model' => 'Question', 
+	        // 'joins' => aray(),n
+	        'order' => array('Question.id' => 'ASC')
+    		),
+	);	
+
 /*
  * authorization
  * 
@@ -41,7 +55,6 @@ class AdminController extends AppController {
  */
 	public function index(){
 		$this->set('title_for_layout',__("Admin"));
-		
 	}
 
 /**
@@ -125,11 +138,15 @@ class AdminController extends AppController {
 				$zip->close();
 
 				// read data file extract at path/filename
-				$data = file_get_contents($path.DS.$filename.DS.'data.txt');
+				if( file_exists($path.DS.$filename.DS.'data.txt'))
+					$data_path = $path.DS.$filename;
+				else
+					$data_path = $path.DS;
 
+				$data = file_get_contents($data_path.DS.'data.txt');
 				// process data
 				$this->loadModel('Question');
-				$result = $this->Question->processMassImport($data, $path.DS.$filename);
+				$result = $this->Question->processMassImport($data, $data_path);
 
 				if($result){
 					$this->Session->setFlash(__('Import success. Please verify in manage question list.'));
@@ -146,4 +163,21 @@ class AdminController extends AppController {
 		}
 	}
 
+/**
+ * manual categorized question
+ * 
+ *
+ */
+	public function manualCategorized(){
+		$this->set('title_for_layout', 'Categorize');
+
+		$this->loadModel('Question');
+		$this->Question->unBindModel(array(
+			'hasMany' => array('Answer', 'Attachment'),
+			'hasAndBelongsToMany' => array('Score', 'Test')
+			));
+
+		$this->Paginator->settings = $this->paginate;
+		$this->set('questions', $this->Paginator->paginate('Question'));
+	}
 }

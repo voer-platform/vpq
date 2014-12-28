@@ -148,5 +148,6 @@ class QuestionsController extends AppController {
         else {
             $this->redirect('/');
         }
-	}		
+	}	
+
 }

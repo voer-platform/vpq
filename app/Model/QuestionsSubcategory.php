@@ -24,9 +24,40 @@ class QuestionsSubcategory extends AppModel {
 			'fields' => '',
 			'order' => ''
 		),
+	);
+
+	public $hasMany = array(
 		'Subcategory' => array(
 			'className' => 'Subcategory',
 			'foreignKey' => 'subcategory_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
+		'Subcategory1' => array(
+			'className' => 'Subcategory',
+			'foreignKey' => 'subcategory1_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
+		'Subcategory2' => array(
+			'className' => 'Subcategory',
+			'foreignKey' => 'subcategory2_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
+		'User1' => array(
+			'className' => 'Person',
+			'foreignKey' => 'person1_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
+		'User2' => array(
+			'className' => 'Person',
+			'foreignKey' => 'person2_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''

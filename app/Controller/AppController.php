@@ -51,13 +51,11 @@ class AppController extends Controller {
         	),
             //redirect after logged in
         	'loginRedirect' => array(
-                'controller' => 'People',
-                'action' => 'dashboard',
+                'controller' => 'people', 'action'=>'login'
             ),
             //redirect after logged out
             'logoutRedirect' => array(
-                'controller' => 'Pages',
-                'action' => 'display',
+                'controller' => 'people', 'action'=>'login'
             ),
             'authError' => 'You are not authorized for this page',
             'authorize' => array('Controller')
