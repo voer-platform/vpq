@@ -1,8 +1,8 @@
 <table>
 	<?php
-		if( !empty($history) ){
+		if( !empty($scores) ){
 			echo $this->Html->tableHeaders(array(__('Test ID'), __('Time taken'), __('Time limit'),__('Score')));
-			foreach($history as $score){
+			foreach($scores as $score){
 				echo $this->Html->tableCells(array(
 					$score['Score']['test_id'],
 					$this->Html->link($score['Score']['time_taken'], array('controller' => 'scores', 'action' => 'viewDetails', $score['Score']['id'])),
@@ -12,7 +12,7 @@
 			}
 		}
 		else{
-			echo __('Oops... It looks like you have no history on this....'), '<br>';
+			echo __('Oops... It looks like you have no scores on this....'), '<br>';
 		}
 	?>
 </table>

@@ -67,6 +67,19 @@ class Question extends AppModel {
             'offset' => '',
             'finderQuery' => '',
         ),
+         'Subcategory2' => array(
+            'className' => 'Subcategory',
+            'joinTable' => 'questions_subcategories',
+            'foreignKey' => 'question_id',
+            'associationForeignKey' => 'subcategory2_id',
+            'unique' => 'keepExisting',
+            'conditions' => '',
+            'fields' => '',
+            'order' => '',
+            'limit' => '',
+            'offset' => '',
+            'finderQuery' => '',
+        ),
         'Score' => array(
             'className' => 'Score',
             'joinTable' => 'scores_questions',
@@ -154,9 +167,9 @@ class Question extends AppModel {
             if(trim($_attachments[0]) !== '' ){ 
                 $q_attachments = explode(',', $_attachments[0]);
                 $_saveData['Attachment'] = array();
-                $storePath = WWW_ROOT. DS . 'files';                    // path to files folder
+                $storePath = WWW_ROOT. 'files';                    // path to files folder
                 foreach($q_attachments as $key => $q_attachment){
-                    $filename = date('YmdHisu').'-'.$key.'.jpg';
+                    $filename = date('YmdHis').'-'.rand(1000, 100000).'.jpg';
                     $re = rename($path.DS.trim($q_attachment).'.jpg', $storePath.DS.$filename);
                     $_saveData['Attachment'][] = array(
                         'path' => Router::url('/', true).'files'.'/'.$filename

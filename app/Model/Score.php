@@ -265,11 +265,42 @@ class Score extends AppModel {
         $json[] = array(__('Date'), __('Score'));
         if($results){
             foreach ($results as $result) {
-                $json[] = array(date('d/m/y h:i', strtotime($result['Score']['time_taken'])), round($result['Score']['score']/$result['Test']['number_questions'], 2));
+                $date = $this->translateDate(date('D', strtotime($result['Score']['time_taken'])));
+                $json[] = array($date, round($result['Score']['score']/$result['Test']['number_questions'], 2));
             }
         }
 
         return json_encode($json);
+    }
+
+    public function translateDate($date){
+        switch ($date) {
+            case 'Sun':
+                return __('Sunday');
+                break;
+            case 'Mon':
+                return __('Monday');
+                break;
+            case 'Tue':
+                return __('Tuesday');
+                break;
+            case 'Wed':
+                return __('Wednesday');
+                break;
+            case 'Thu':
+                return __('Thursday');
+                break;
+            case 'Fri':
+                return __('Friday');
+                break;
+            case 'Sat':
+                return __('Saturday');
+                break;
+            
+            default:
+                return __("None");
+                break;
+        }
     }
 
 /**

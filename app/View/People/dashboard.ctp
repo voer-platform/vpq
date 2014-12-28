@@ -62,8 +62,8 @@
             <div id = 'chart'>
             </div>
             <hr/>
-            <label><?php echo __("Exams Took"); ?></label>
-            <?php echo $this->element('table_score'); ?>
+            <label><?php echo __("Subcategories"); ?></label>
+            <?php echo $this->element('table_progress'); ?>
         </div>
     </div>
 </div>
