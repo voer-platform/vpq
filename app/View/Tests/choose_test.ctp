@@ -71,7 +71,7 @@ $(document).ready(function() {
         selectedText: '# được chọn',
         click: function(e, ui){
             var grade = $("input:radio[name=selectGrade]:checked").attr('tag');
-            var s = "Class " +  grade + " / " + ui.text.trim();
+            var s = "Lớp " +  grade + " / " + ui.text.trim();
             var v = ui.value;
             if (ui.checked){
                 $selectedCategories.append("<li rel='" + v + "'><span class='glyphicon glyphicon-remove remove' aria-hidden='true'></span><span class='label label-primary class" + grade + "'>" + s + "</span></li>");

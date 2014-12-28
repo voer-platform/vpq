@@ -156,6 +156,7 @@ class ScoresController extends AppController {
 		$this->set('scoreData', $scoreData);
 		$this->set('correct', $score['Score']['score']);
 		$this->set('numberOfQuestions', $score['Test']['number_questions']);
+		$this->set('duration', $score['Test']['time_limit']);
 	}
 
 /**

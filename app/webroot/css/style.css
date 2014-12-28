@@ -203,7 +203,7 @@ form#TestAnswersDoTestForm div.simplePagerContainer{
   max-width: 780px;
   margin: 0 auto;
 }
-form#TestAnswersDoTestForm div.simplePagerContainer ul#questions {
+ul#questions {
   text-align: left;
   padding: 0px;
 }
@@ -483,6 +483,7 @@ div.answer label.btn-answer{
   padding: 8px 10px;  
   margin: 10px 0;
   line-height: 30px;
+  font-weight: normal;
 }
 
 div.answer label.btn-answer:hover{
@@ -522,6 +523,10 @@ div.choose-answer{
   padding: 10px 5px 5px;
   text-align: center;
   text-shadow: 1px 1px 1px #fff;  
+}
+
+div.incorrect{
+  color: #cc1111 !important;
 }
 
 /* Ask for Help */
