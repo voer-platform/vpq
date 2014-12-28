@@ -23,7 +23,7 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="" class="col-sm-3 control-label"><?php echo __('Category'); ?></label>
+            <label for="" class="col-sm-3 control-label">Chủ đề</label>
             <div class="col-sm-7">
                 <select class="form-control" id="selectCategory" multiple="multiple">
                 </select>
@@ -66,6 +66,8 @@ function doTest(t){
 $(document).ready(function() {
     var $selectedCategories = $('#selectedCategories>ul');
     $('#selectCategory').multiselect({
+        header: false,
+        noneSelectedText: 'Chọn chủ đề',
         selectedText: '# được chọn',
         click: function(e, ui){
             var grade = $("input:radio[name=selectGrade]:checked").attr('tag');
