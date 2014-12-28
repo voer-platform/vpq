@@ -8,6 +8,8 @@ body {
 
 .nav>li>a>img.profile-img{
 	max-width: 50px;
+    padding: 2px;
+    border-radius: 10px;
 }
 
 .navbar-nav>li>a.profile-img{
