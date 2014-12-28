@@ -14,7 +14,7 @@
                             <?php //if( $answer['correctness'] == 1): ?>
                                 <!-- <label class='btn btn-answer active'> -->
                             <!-- else -->
-                            <?php if( $data['ScoresQuestion']['answer'] == $answerId): ?>
+                            <?php if( $data['ScoresQuestion']['answer'] == $answerId && !empty($data['ScoresQuestion']['answer'])): ?>
                                 <label class='btn-answer active'>
                             <?php else: ?>
                                 <label class='btn-answer'>
@@ -26,14 +26,19 @@
                 </fieldset>
                 <?php
                     $a = $data['ScoresQuestion']['answer'];
-                    $r = "Bạn đã chọn đáp án " . chr($a + 97) . ". ";
-                    $true = $questionsData[$index]['Answer'][$a]['correctness'];
                     $class = "";
-                    if ($true == 1){
-                        $r .= "Đây là đáp án đúng.";
+                    if (empty($a)){
+                        $class = "incorrect";                        
+                        $r = "Bạn không chọn đáp án.";
                     }else{
-                        $r .= "Đây là đáp án sai.";
-                        $class = "incorrect";
+                        $r = "Bạn đã chọn đáp án " . chr($a + 97) . ". ";
+                        $true = $questionsData[$index]['Answer'][$a]['correctness'];
+                        if ($true == 1){
+                            $r .= "Đây là đáp án đúng.";
+                        }else{
+                            $r .= "Đây là đáp án sai.";
+                            $class = "incorrect";
+                        }
                     }
                 ?>
                 <div class="choose-answer <?php echo $class; ?>"><?php echo $r; ?></div>
