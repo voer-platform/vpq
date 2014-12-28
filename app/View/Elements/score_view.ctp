@@ -38,7 +38,7 @@
                 ?>
                 <div class="choose-answer <?php echo $class; ?>"><?php echo $r; ?></div>
                 <div id="ask-for-help">
-                    <a href="<?php echo '/ask4Help/index/'.$questionsData[$index]['Question']['id']; ?>">Ask for help</a>
+                    <a href="<?php echo '/ask4Help/index/'.$questionsData[$index]['Question']['id']; ?>"><?php echo __('Ask for help'); ?></a>
                 </div>
                 <div class="nav">
                     <button class="btn pull-left prev" type="button">Câu hỏi trước</button>

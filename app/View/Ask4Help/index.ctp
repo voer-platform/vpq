@@ -5,7 +5,7 @@
 <meta property="og:image" content="https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-prn1/851565_496755187057665_544240989_n.jpg" />
 <?php $this->end(); ?>
 
-<h2 class="page-heading heading">Ask for help</h2>
+<h2 class="page-heading heading"><?php echo __('Ask for help'); ?></h2>
 
 <div class='ask-4-help score-view'>
   <?php echo $questionData['Question']['content']; ?>
@@ -77,7 +77,7 @@
           <h4><?php echo $person['first_name'].' '.$person['last_name']; ?></h4>
         </a>
         <div class="user-action-time">
-          answered
+          <?php echo __('answered'); ?>
           <span class="relativetime">
             <?php echo $explanation['Explanation']['created']; ?>
           </span>
@@ -87,15 +87,15 @@
   </div>
 <?php endforeach;?>
 <?php if ( count($explanationsData) < 1 ): ?>
-  <p>No explanations found!</p>
+  <p><?php echo __('No explanations found!'); ?></p>
 <?php endif; ?>
 </div>
 
 <div id="ask-for-help" style="padding-top: 10px;">
-  <a class="fb-share" style="cursor: pointer;">Still not find your answer? Share this on Facebook to get help from your friends.</a>
+  <a class="fb-share" style="cursor: pointer;"><?php echo __('Still not find your answer? Share this on Facebook to get help from your friends.'); ?></a>
 </div>
 
-<h3>Your Answer</h3>
+<h3><?php echo __('Your Answer'); ?></h3>
 <?php
 echo $this->Form->create('Explanation', array(
     'url' => array(
@@ -116,7 +116,7 @@ echo $this->Form->input('person_id', array(
     'type' => 'hidden',
     'value' => $user['id']
 ));
-echo $this->Form->end('Post Your Answer');
+echo $this->Form->end(__('Post Your Answer'));
 ?>
 
 <script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>
