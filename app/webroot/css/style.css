@@ -203,7 +203,6 @@ form#TestAnswersDoTestForm {
 form#TestAnswersDoTestForm div.simplePagerContainer{
   max-width: 780px;
   margin: 0 auto;
-  text-align: center;
 }
 form#TestAnswersDoTestForm div.simplePagerContainer ul#questions {
   text-align: left;
@@ -401,4 +400,179 @@ div#submitTest{
 
 button.btn-test{
   margin-right: 5px;
+}
+
+div.nav{
+  padding: 10px 20px;
+}
+div.nav button{
+  background-image: -webkit-linear-gradient(#fff, #e7e7e7);
+  background-image: -o-linear-gradient(#fff, #e7e7e7);
+  background-image: linear-gradient(#fff, #e7e7e7);
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  color: #555;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: bold;
+  max-width: 120px;
+  padding: 8px 11px 6px 10px;
+  text-align: center;
+  text-shadow: 1px 1px 1px #fff;  
+}
+div.nav button:hover{
+  background-image: -webkit-linear-gradient(#2299dd, #1589cb);
+  background-image: -o-linear-gradient(#2299dd, #1589cb);
+  background-image: linear-gradient(#2299dd, #1589cb);
+  border: 1px solid #0d7bba;
+  color: #fff;
+  text-shadow: 1px 1px 1px #0d7bba;  
+}
+ul.simplePagerNav{
+  margin: 0 20px;
+  padding: 10px;
+  display: block;
+  overflow: hidden;
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+}
+
+ul.simplePagerNav li a{
+  background: url("http://static.thionline.vn/image/v2/question.bg.png") repeat-x scroll center center transparent;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  color: #333;
+  cursor: pointer;
+  font-family: arial;
+  font-size: 11px;
+  font-weight: bold;
+  margin: 6px;
+  min-width: 36px;
+  padding: 6px 7px;
+  text-align: center;
+  text-shadow: 1px 1px 1px #fff;  
+}
+ul.simplePagerNav li.active a{
+  background-image: -webkit-linear-gradient(#0c940f, #047006);
+  background-image: -o-linear-gradient(#0c940f, #047006);
+  background-image: linear-gradient(#0c940f, #047006);
+  border: 1px solid #005f04;
+  color: #edf0ed;
+  text-shadow: 1px 1px 1px #005f04;  
+}
+ul.simplePagerNav li.chose a{
+  background-image: -webkit-linear-gradient(#2299dd, #1589cb);
+  background-image: -o-linear-gradient(#2299dd, #1589cb);
+  background-image: linear-gradient(#2299dd, #1589cb);
+  border: 1px solid #0d7bba;
+  color: #fff;
+  text-shadow: 1px 1px 1px #0d7bba;  
+}
+div.answer{
+  margin: 30px 20px 10px;
+  display: block;
+}
+div.answer label.btn-answer{
+  display:block;
+  text-align: left;
+  float: none;
+  background-color: #f3f3f3;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 8px 10px;  
+  margin: 10px 0;
+  line-height: 30px;
+}
+
+div.answer label.btn-answer:hover{
+  border: 1px solid #ccc;
+  background-color: #fff;
+}  
+
+div.answer label.active{
+  background-color: #fff;
+  border: 1px solid #2299dd;
+  border-radius: 4px;
+  color: #2299dd;
+  box-shadow: none;
+}
+
+div.answer label span{
+  background: none repeat scroll 0 0 #ddd;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  color: #111;
+  font-weight: bold;
+  padding: 4px 10px 5px;
+  text-align: center; 
+  margin-right: 10px;
+}
+
+div.answer label.active span{
+  background: none repeat scroll 0 0 #2299dd;
+  color: #fff;
+  text-shadow: 1px 1px 1px transparent;  
+}
+
+div.choose-answer{
+  color: #1288cc;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 10px 5px 5px;
+  text-align: center;
+  text-shadow: 1px 1px 1px #fff;  
+}
+
+/* Ask for Help */
+#ask-for-help {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.ask-4-help.score-view,
+#explanation-listing .explanation {
+  border-bottom: 1px solid #aaa;
+}
+#explanation-listing .explanation {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.explanation .vote {
+  text-align: center;
+  width: 60px;
+}
+.explanation .vote .vote-up,
+.explanation .vote .vote-down {
+  display: block;
+  height: 25px;
+  margin: 0 auto;
+  width: 41px;
+  font-size: 1px;
+  text-indent: -9999em;
+  cursor: pointer;
+  background-image: url("/img/sprites.png");
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+.explanation .vote .vote-up {
+  background-position: 0 -265px;
+}
+.explanation .vote .vote-down {
+  background-position: 0 -300px;
+}
+.vote-count-post {
+  color: #555;
+  padding-top: 2px;
+  display: block;
+  font-size: 24px;
+}
+#ExplanationIndexForm .submit {
+  padding-top: 10px;
+}
+#ExplanationIndexForm .submit input {
+  background-color: #428bca;
+  border-color: #357ebd;
+  color: #fff;
 }

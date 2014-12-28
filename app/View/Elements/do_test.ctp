@@ -3,28 +3,38 @@
     <div id="left">
         <ul id="questions">
         <?php foreach ($questions as $index => $question): ?>
-            <li id='dotestQuestions'>
+            <li id='dotestQuestions' rel="<?php echo $index+1;?>">
                 <fieldset>
                     <div class="question">
-                        <div class="title"><?php echo "<b>", 'Câu ', $index+1, "/", $numberOfQuestions, ":</b>  "; ?></div>
+                        <div class="title"><?php echo "<b>", 'Câu ', $index+1, ":</b>  "; ?></div>
                         <div class="question-content"><?php echo html_entity_decode($question['Question']['content']); ?></div>
                     </div>
                     <?php $option = array(); ?>
                     <?php foreach ($question['Answer'] as $aindex => $answer): ?>
-                        <?php $option[$aindex] = $answer['content']; //.'--'.$answer['correctness']; ?>
+                        <?php $option[$aindex] = "<span>" . chr(97 + $aindex) . "</span>" . $answer['content']; //.'--'.$answer['correctness']; ?>
                     <?php endforeach; ?>
                     <?php echo $this->Form->input( $index, array(
                             'name' => $question['Question']['id'],
+                            'label' => false,
                             'legend' => false,
                             'options' => $option,
-                            'separator' => '</br>',
+                            'before' => '<label class="btn btn-answer">',
+                            'after' => '</label>',
+                            'separator' => '</label><label class="btn btn-answer">',
                             'type' => 'radio',
+                            'hiddenField' => false,
                             'div' => array(
-                                'class' => 'choices well well-sm'
+                                'class' => "btn-group answer",
+                                'data-toggle' => "buttons"
                             )
                         ));
                     ?>
                 </fieldset>
+                <div class="choose-answer">&nbsp;</div>
+                <div class="nav">
+                    <button class="btn pull-left prev" type="button">Câu hỏi trước</button>
+                    <button class="btn pull-right next" type="button">Câu hỏi sau</button>
+                </div>
             </li>
         <?php endforeach; ?>
         </ul>
@@ -85,4 +95,29 @@
         console.log(clockMinutes* 60 + clockSeconds);
         $('#TestAnswersDuration').val(clockMinutes* 60 + clockSeconds);
     });
+
+    $(document).ready(function(){
+        $('ul#questions').simplePaging({pageSize: "1"});
+
+        $('ul#questions .answer').find('label.btn').on('click', function(){
+            var li = $(this).closest('li');
+            var q = li.attr('rel');
+            var answer = 97 + parseInt($(this).find('input').val());
+            li.find('.choose-answer').text("Bạn chọn phương án " + String.fromCharCode(answer)).show();
+            $('ul.pagination').find('li:nth-child(' + q + ')').addClass('chose');
+            setTimeout(function() {
+                $('ul#questions').data('simplePaging').nextPage();      
+            }, 500);
+        });
+
+        $('div.nav button.prev').on('click', function(){
+            $('ul#questions').data('simplePaging').prevPage(); 
+        });
+
+        $('div.nav button.next').on('click', function(){
+            $('ul#questions').data('simplePaging').nextPage(); 
+        });
+    })
+
 </script>
+

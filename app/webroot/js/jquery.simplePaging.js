@@ -56,15 +56,15 @@
                 return;
             }
             var pageNav = "<ul class='simplePagerNav pagination'>";
-            pageNav += "<li class='previous'><a href='#' rel='previous'>«</a></li>";
+            // pageNav += "<li class='previous'><a href='#' rel='previous'>«</a></li>";
             for (i = 1; i <= pageCounter; i++) {
                 if (i == plugin.settings.currentPage) {
-                    pageNav += "<li class='active simplePageNav" + i + "'><a rel='" + i + "' href='#'>" + i + "</a></li>";
+                    pageNav += "<li class='active simplePageNav" + i + "'><a rel='" + i + "' href='#'>Câu " + i + "</a></li>";
                 } else {
-                    pageNav += "<li class='simplePageNav" + i + "'><a rel='" + i + "' href='#'>" + i + "</a></li>";
+                    pageNav += "<li class='simplePageNav" + i + "'><a rel='" + i + "' href='#'> Câu " + i + "</a></li>";
                 }
             }
-            pageNav += "<li class='next'><a href='#' rel='next'>»</a></li>";
+            // pageNav += "<li class='next'><a href='#' rel='next'>»</a></li>";
             pageNav += "</ul>";
             if (!plugin.settings.holder) {
                 switch (plugin.settings.pagerLocation) {
@@ -115,6 +115,22 @@
         plugin.nextPage = function() {
             var selector = $element;
             var iNextPage = plugin.settings.currentPage < pageCounter ? plugin.settings.currentPage + 1 : plugin.settings.currentPage;
+            plugin.settings.currentPage = iNextPage;
+            if (plugin.settings.holder) {
+                $(plugin.settings.holder).find("li.active").removeClass("active");
+                $(plugin.settings.holder).find("a[rel='" + iNextPage + "']").parent("li").addClass("active");
+            } else {
+                $(".simplePagerContainer").find("li.active").removeClass("active");
+                $(".simplePagerContainer").find("a[rel='" + iNextPage + "']").parent("li").addClass("active");
+            }
+            selector.children().hide();
+            selector.find(".simplePagerPage" + iNextPage).show();
+            return false;
+        }
+
+        plugin.prevPage = function() {
+            var selector = $element;
+            var iNextPage = plugin.settings.currentPage > 1 ? plugin.settings.currentPage - 1 : plugin.settings.currentPage;
             plugin.settings.currentPage = iNextPage;
             if (plugin.settings.holder) {
                 $(plugin.settings.holder).find("li.active").removeClass("active");
