@@ -5,12 +5,13 @@ class Ask4HelpController extends AppController {
     public function beforeFilter(){
           parent::beforeFilter();
           $this->Auth->allow('display', 'index');
+          $this->Auth->allow('display', 'vote');
     }
 
     public function isAuthorized($user) {
         // user can logout, dashboard, progress, history, suggest
         if (isset($user['role']) && $user['role'] === 'user' ){
-            if( in_array( $this->request->action, array('index'))){
+            if( in_array( $this->request->action, array('index', 'vote'))){
                     return true;
             }
         }
@@ -42,5 +43,14 @@ class Ask4HelpController extends AppController {
   
         $this->set('questionData', $question);
         $this->set('explanationsData', $explanations);
+    }
+
+    public function vote($id, $key='up') {
+        $this->layout = 'ajax';
+        $this->autoLayout = false;
+        $this->autoRender = false;
+
+        $result = array('id' => $id, 'vote' => $key);
+        echo json_encode($result);
     }
 }
