@@ -58,7 +58,7 @@
 </div>
 
 <!-- elf file manager -->
-<?php $this->TinymceElfinder->defineElfinderBrowser()?>
+<?php //$this->TinymceElfinder->defineElfinderBrowser()?>
 <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
 <!-- script -->
