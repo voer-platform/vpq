@@ -153,6 +153,24 @@ class TestsController extends AppController {
         $allGrades = $this->Grade->find('all');
         $this->set('grades', $allGrades);
         $this->set('subject', $subject);
+
+        // Du tinh trinh do hoc van
+        $user = $this->Session->read('Auth.User');
+        $gradeUser = $user['grade'];
+
+        if ($gradeUser == 0){
+            $birthday = $user['birthday'];
+            $time = strtotime($birthday);
+            $date = getdate($time);
+            $year = $date['year'];
+
+            $now = getdate();
+            $current_year = $now['year'];
+
+            $gradeUser = $current_year - $year - 5; //Du doan lop hoc theo tuoi 
+
+        }
+        $this->set('gradeUser', $gradeUser);
     }
 
     public function getCategories($grade = null){

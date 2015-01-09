@@ -13,6 +13,8 @@
                     <?php foreach ($question['Answer'] as $aindex => $answer): ?>
                         <?php $option[$aindex] = "<span>" . chr(97 + $aindex) . "</span>" . $answer['content']; //.'--'.$answer['correctness']; ?>
                     <?php endforeach; ?>
+                    <div class="btn-group answer" data-toggle='buttons'>
+                        <input type="hidden" value="" name="<?php echo $question['Question']['id']; ?>">
                     <?php echo $this->Form->input( $index, array(
                             'name' => $question['Question']['id'],
                             'label' => false,
@@ -23,12 +25,10 @@
                             'separator' => '</label><label class="btn btn-answer">',
                             'type' => 'radio',
                             'hiddenField' => false,
-                            'div' => array(
-                                'class' => "btn-group answer",
-                                'data-toggle' => "buttons"
-                            )
+                            'div' => ''
                         ));
                     ?>
+                    </div>
                 </fieldset>
                 <div class="choose-answer">&nbsp;</div>
                 <div class="nav">

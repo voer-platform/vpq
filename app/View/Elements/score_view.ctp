@@ -14,7 +14,7 @@
                             <?php //if( $answer['correctness'] == 1): ?>
                                 <!-- <label class='btn btn-answer active'> -->
                             <!-- else -->
-                            <?php if( $data['ScoresQuestion']['answer'] == $answerId && !empty($data['ScoresQuestion']['answer'])): ?>
+                            <?php if( $data['ScoresQuestion']['answer'] == $answerId && isset($data['ScoresQuestion']['answer'])): ?>
                                 <label class='btn-answer active'>
                             <?php else: ?>
                                 <label class='btn-answer'>
@@ -27,7 +27,7 @@
                 <?php
                     $a = $data['ScoresQuestion']['answer'];
                     $class = "";
-                    if (empty($a)){
+                    if (!isset($a)){
                         $class = "incorrect";                        
                         $r = "Bạn không chọn đáp án.";
                     }else{

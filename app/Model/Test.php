@@ -108,9 +108,8 @@ class Test extends AppModel {
                         )
                     )
                 ));
-        // pr($_results);
         $results = Set::sort($_results, '{n}.Question.id', 'asc');
-        return $_results;
+        return $results;
     }
 
     /*

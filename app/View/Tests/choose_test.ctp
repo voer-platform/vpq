@@ -15,8 +15,8 @@
             <div class="col-sm-7">
                 <div class="btn-group" data-toggle="buttons">
                     <?php foreach ($grades as $index => $grade): ?>
-                    <label class="btn btn-default">
-                        <input type="radio" name="selectGrade" value="<?php echo $grade['Grade']['id']; ?>" autocomplete="off" tag='<?php echo $grade['Grade']['name']; ?>' > <?php echo __('Grade'); ?> <?php echo $grade['Grade']['name']; ?>
+                    <label class="btn btn-default <?php echo ($gradeUser == $grade['Grade']['name'] ? "active" : ""); ?> ">
+                        <input type="radio" name="selectGrade" value="<?php echo $grade['Grade']['id']; ?>" autocomplete="off" tag='<?php echo $grade['Grade']['name']; ?>' <?php echo ($gradeUser == $grade['Grade']['name'] ? "checked" : ""); ?> > <?php echo __('Grade'); ?> <?php echo $grade['Grade']['name']; ?>
                     </label>
                     <?php endforeach; ?>
                 </div>   
@@ -63,6 +63,18 @@ function doTest(t){
     $('#preDoTest').submit();
 };
 
+function choice(e){
+    var $selectedCategories = $('#selectedCategories>ul');
+    var grade = $("input:radio[name=selectGrade]:checked").attr('tag');
+    var s = "Lớp " +  grade + " / " + e.text.trim();
+    var v = e.value;
+    if (e.checked){
+        $selectedCategories.append("<li rel='" + v + "'><span class='glyphicon glyphicon-remove remove' aria-hidden='true'></span><span class='label label-primary class" + grade + "'>" + s + "</span></li>");
+    }else{
+        $selectedCategories.find('li[rel="' + v + '"]').remove();
+    }    
+}
+
 $(document).ready(function() {
     var $selectedCategories = $('#selectedCategories>ul');
     $('#selectCategory').multiselect({
@@ -70,21 +82,15 @@ $(document).ready(function() {
         noneSelectedText: 'Chọn chủ đề',
         selectedText: '# được chọn',
         click: function(e, ui){
-            var grade = $("input:radio[name=selectGrade]:checked").attr('tag');
-            var s = "Lớp " +  grade + " / " + ui.text.trim();
-            var v = ui.value;
-            if (ui.checked){
-                $selectedCategories.append("<li rel='" + v + "'><span class='glyphicon glyphicon-remove remove' aria-hidden='true'></span><span class='label label-primary class" + grade + "'>" + s + "</span></li>");
-            }else{
-                $selectedCategories.find('li[rel="' + v + '"]').remove();
-            }
+            choice(ui);
         },
         optgrouptoggle: function(event, ui){
             var values = $.map(ui.inputs, function(checkbox){
-             return checkbox.value;
+                // $(checkbox).trigger('click');
+                choice($(checkbox));
             }).join(", ");
 
-            $callback.html("Checkboxes " + (ui.checked ? "checked" : "unchecked") + ": " + values);
+            // $callback.html("Checkboxes " + (ui.checked ? "checked" : "unchecked") + ": " + values);
         }
 
     });
@@ -122,7 +128,9 @@ $(document).ready(function() {
         });
     });
 
-    $('#selectGrade').trigger("change");
+    // $('#selectGrade').trigger("change");
+    $("input:radio[name='selectGrade']:checked").trigger('change');
+
 
 });
 </script>
