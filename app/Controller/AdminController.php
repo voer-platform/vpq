@@ -11,8 +11,10 @@ class AdminController extends AppController {
 	// do not use model
 	var $uses = false;
 
-	public $helpers = array('TinymceElfinder.TinymceElfinder');
-	public $components = array('Paginator','TinymceElfinder.TinymceElfinder');
+	// public $helpers = array('TinymceElfinder.TinymceElfinder');
+	// public $components = array('Paginator','TinymceElfinder.TinymceElfinder');
+	public $helpers = array();
+	public $components = array('Paginator');
 
 /**
  * paginate

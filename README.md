@@ -4,17 +4,19 @@ PLS, Personal Learning System
 
 ## Requirements
 
-1. [CakePHP](http://cakephp.org/)
-2. [TinyMCE uploader](https://github.com/hashmode/Tinymce-Image-Upload-Cakephp)
-3. php5-curl (for Facebook SDK)
+1. Apache/Ngnix
+2. MySQL Server
+3. php >= 5.2
+4. [CakePHP](http://cakephp.org/)
+5. php5-curl (for Facebook SDK)
+6. php5-mysql (CakePHP use PDO)
 
 ## Installation
 
 1. clone project
 2. put project folder to webserver
 3. copy folder CakePHP/lib to /
-4. Copy folder TinymceElfinder/ to /app/Plugin
-5. create MySQL db follows:
+4. create MySQL db, user with password follows:
 
 		DB name: 'plseduvn' 
 		username: 'vpq'
@@ -32,6 +34,4 @@ CakePHP will not work without these configuration on the web server
 		Options Indexes FollowSymLinks MultiViews
 		AllowOverride All
 		Order allow,deny
-		allow from all		
-
-## About
+		allow from all

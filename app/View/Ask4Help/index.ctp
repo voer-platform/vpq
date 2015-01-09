@@ -38,7 +38,6 @@
     var FBShare = function () {
       FB.ui({
         method: 'share',
-        //href: 'http://pls.edu.vn/',
         href: '<?php echo Router::url( $this->here, true ); ?>',
       }, function(response){});
     };
@@ -48,6 +47,16 @@
     $('.fb-share').click(function() {
         FBShare();
     });
+
+    // voting
+    $('.vote-up, .vote-down').click(function(e) {
+        e.preventDefault();
+        console.log('voting ..');
+        $.getJSON( $(this).attr('href'), function( data ) {
+            console.log('finishing ..');
+            $('.vote-count-post').text(data['id']);
+        });
+    });
   });
 </script>
 
@@ -55,11 +64,13 @@
 <?php foreach($explanationsData as $eid => $explanation): ?>
   <div class="explanation clearfix">
     <div class="vote pull-left">
-      <a title="This answer is useful" class="vote-up">up vote</a>
+      <a title="This answer is useful" class="vote-up"
+         href="<?php echo "/ask4Help/vote/{$explanation['Explanation']['id']}/up"; ?>">up vote</a>
       <span class="vote-count-post" itemprop="upvoteCount">
         <?php echo $explanation['Explanation']['likes']; ?>
       </span>
-      <a title="This answer is not useful" class="vote-down">down vote</a>
+      <a title="This answer is not useful" class="vote-down"
+         href="<?php echo "/ask4Help/vote/{$explanation['Explanation']['id']}/down"; ?>">down vote</a>
     </div>
     <div class="content pull-left">
       <?php echo $explanation['Explanation']['content']; ?>

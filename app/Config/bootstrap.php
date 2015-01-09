@@ -130,4 +130,4 @@ CakeLog::config('error', array(
 // );
 
 /* TinyMCE file manager */
-CakePlugin::load('TinymceElfinder');
+// CakePlugin::load('TinymceElfinder');
