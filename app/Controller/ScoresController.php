@@ -184,7 +184,7 @@ class ScoresController extends AppController {
  * ajax call for overall
  * ajax call
  */
-	public function ajaxOverall(){
+	public function ajaxCallHandler(){
 		$this->layout = 'ajax';
         $this->autoLayout = false;
         $this->autoRender = false;
@@ -194,7 +194,7 @@ class ScoresController extends AppController {
                 $grade_id = $this->request->data['grade'];
                 $subject_id = $this->request->data['subject'];
                 $user = $this->Session->read('Auth.User');
-                $result = $this->Score->overall($user['id'], $grade_id, $subject_id);
+                $result = $this->ajaxCall($user['id'], $grade_id, $subject_id);
                 echo json_encode($result);
             }
         }

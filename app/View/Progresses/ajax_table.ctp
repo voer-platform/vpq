@@ -1,0 +1,1 @@
+<?php echo $this->element('progress_'.$type); ?>

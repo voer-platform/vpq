@@ -17,7 +17,12 @@ class NameHelper extends AppHelper {
         $subject = $Subject->find('first', array(
             'conditions' => array('Subject.id' => $subject_id)
             ));
-        return $subject['Subject']['name'];
+        if($subject){
+            return $subject['Subject']['name'];    
+        }
+        else{
+            return '';
+        }
     }
 
     /**
@@ -55,19 +60,40 @@ class NameHelper extends AppHelper {
      */ 
     public function determineRank($score){
         if(90 <= $score && $score <= 100){
-            return __("Excellent");
+            return array(
+                "color" => "danger",
+                "rank" => __("Excellent")
+            );
         }
-        else if(80 <= $score && $score < 90){
-            return __("Good");
+        else if( 80 <= $score && $score < 90){
+            return array(
+                "color" => "warning",
+                "rank" => __("Good")
+            );
         }
-        else if(70 <= $score && $score < 80){
-            return __("Fair");
+        else if(65 <= $score && $score < 80){
+            return array(
+                "color" => "success",
+                "rank" => __("Fair")
+            );
         }
-        else if(50 <= $score && $score < 70){
-            return __("Bad");
+        else if(50 <= $score && $score < 65){
+            return array(
+                "color" => "info",
+                "rank" => __("Bad")
+            );
+        }
+        else if(35 <= $score && $score < 50){
+            return array(
+                "color" => "primary",
+                "rank" => __("Very bad")
+            );
         }
         else{
-            return __("Failed");
+            return array(
+                "color" => "default",
+                "rank" => __("Failed")
+            );
         }
     }
 }

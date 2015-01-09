@@ -217,13 +217,13 @@ class Question extends AppModel {
     }
 
     /**
-     * get cover for a person on a subject/grade
+     * get cover(answered & total questions) for a person on a subject/grade
      * @param:  id of user
      *          grade
      *          subject
      * @return: array of [done, total]
      */
-    public function cover($person_id, $grade_id=0, $subject_id=0){
+    public function getCover($person_id, $grade_id=0, $subject_id=0){
 
         // no option declared
         // return all subjects and grades

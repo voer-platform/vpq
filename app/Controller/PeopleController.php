@@ -27,15 +27,14 @@ class PeopleController extends AppController {
     public function isAuthorized($user) {
         // user can logout, dashboard, progress, history, suggest
         if (isset($user['role']) && $user['role'] === 'user' ){
-            if( in_array( $this->request->action, array('view','progress', 'login', 'logout', 'history', 'dashboard','suggest', 'coverDetails', 'performanceDetails'))){
+            if( in_array( $this->request->action, array('view','progress', 'login', 'logout', 'history', 'dashboard','suggest'))){
                 return true;
             }
         } elseif (isset($user['role']) && $user['role'] === 'editor') {
-            if( in_array( $this->request->action, array('view','progress', 'login', 'logout', 'history', 'dashboard','suggest', 'coverDetails', 'performanceDetails'))){
+            if( in_array( $this->request->action, array('view','progress', 'login', 'logout', 'history', 'dashboard','suggest'))){
                 return true;
             }
         }
-
 
         return parent::isAuthorized($user);
     }
@@ -148,7 +147,7 @@ class PeopleController extends AppController {
             if ($this->Auth->login()){
                 $this->redirect($this->Auth->redirectUrl());
             } else {
-                $this->Session->setFlash(__('Invalid Username or password. Try again.'));
+                $this->Session->setFlash(__('Invalid login. Please try again.'));
             }
         }
 
@@ -174,10 +173,14 @@ class PeopleController extends AppController {
                             'first_name'=> '\''.$fb_user['first_name'].'\'',
                             'last_name'=> '\''.$fb_user['last_name'].'\'',
                             'image'=> '\''.$picture['data']['url'].'\'',
+                            'birthday' => '\''.date('Y-m-d', strtotime($fb_user['birthday'])).'\'',
                             'date_modified' => '\''.date("Y-m-d H:i:s").'\'',
                         ),
                         array( 'facebook' => $fb_user['id'])
                     );
+
+                    // $log = $this->Person->getDataSource()->getLog(false, false);
+                    // debug($log);
 
                     $this->Auth->login($local_user['Person']);            # Manual Login
 
@@ -187,15 +190,15 @@ class PeopleController extends AppController {
                 // Otherwise we ll add a new user (Registration)
                 else {
                     $data['Person'] = array(
-                        'username'      => $fb_user['id'],                                   # Normally Unique
-                        'facebook'        => $fb_user['id'],
-                        'password'      => AuthComponent::password(uniqid(md5(mt_rand()))), # Set random password
-                        'first_name'    => $fb_user['first_name'],
-                        'last_name'        => $fb_user['last_name'],
-                        'role'          => 'user',
-                        'date_created'    => date("Y-m-d H:i:s"),
-                        'date_modified' => date("Y-m-d H:i:s"),
-                        'image'            => $picture['data']['url']
+                        'facebook'          => $fb_user['id'],
+                        'password'          => AuthComponent::password(uniqid(md5(mt_rand()))), # Set random password
+                        'first_name'        => $fb_user['first_name'],
+                        // 'birthday'          =>
+                        'last_name'         => $fb_user['last_name'],
+                        'role'              => 'user',
+                        'date_created'      => date("Y-m-d H:i:s"),
+                        'date_modified'     => date("Y-m-d H:i:s"),
+                        'image'             => $picture['data']['url']
                     );
 
                     // You should change this part to include data validation
@@ -230,17 +233,21 @@ class PeopleController extends AppController {
   */
     public function dashboard(){
         $this->set('title_for_layout',__("Dashboard"));
+        $user_id = $this->Session->read('Auth.User')['id'];
 
+        // get scores for 2 progress bars
         $this->loadModel('Score');
         $scores = array();
-        $scores = $this->Score->overall($this->Session->read('Auth.User')['id']);
+        $scores = $this->Score->getOverAll($user_id);
 
+        // get cover for bar
         $this->loadModel('Question');
         $cover = array();
-        $cover = $this->Question->cover($this->Session->read('Auth.User')['id']);
+        $cover = $this->Question->getCover($user_id);
 
+        // get progress table
         $this->loadModel('Progress');
-        $progresses = $this->Progress->getProgresses($this->Session->read('Auth.User')['id']);
+        $progresses = $this->Progress->progressOnSubject($user_id);
         $this->set('progresses', $progresses);
 
         $this->set('progresses', $progresses);

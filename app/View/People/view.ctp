@@ -16,9 +16,14 @@
 			<?php echo h($person['Person']['last_name']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('User Name'); ?></dt>
+		<dt><?php echo __('Grade'); ?></dt>
 		<dd>
-			<?php echo h($person['Person']['username']); ?>
+			<?php echo h($person['Person']['grade']); ?>
+			&nbsp;
+		</dd>
+		<dt><?php echo __('Birthday'); ?></dt>
+		<dd>
+			<?php echo h($person['Person']['birthday']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Date Created'); ?></dt>

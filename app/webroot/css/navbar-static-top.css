@@ -15,3 +15,7 @@ body {
 .navbar-nav>li>a.profile-img{
 	padding: 0;
 }
+
+.navbar-nav>li{
+    white-space: nowrap;
+}

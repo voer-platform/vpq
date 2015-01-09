@@ -195,8 +195,8 @@ class Progress extends AppModel {
     
 /**
  * get data for chart google
- * @param: personId
- * @return: json after encoded
+ * @param personId
+ * @return json after encoded
  */
     public function chartGoogle($personId){
         //query
@@ -235,5 +235,125 @@ class Progress extends AppModel {
         }
         
         return json_encode($json);        
-    }	
+    }
+
+/**
+ * get progress on subjects for a person
+ * @param   person_id
+ * @return  progresses of subjects
+ */
+    public function progressOnSubject($person_id){
+
+        // virtual fields sum of progress and total
+        $this->virtualFields['sum_progress'] = 'SUM(Progress.progress)';
+        $this->virtualFields['sum_total'] = 'SUM(Progress.total)';
+
+        $results = $this->find('all',array(
+            'joins' => array(
+                array(
+                    'type' => 'inner',
+                    'table' => 'categories',
+                    'alias' => 'Category',
+                    'conditions' => array(
+                        'Subcategory.category_id = Category.id' 
+                    )
+                ),
+                array(
+                    'type' => 'inner',
+                    'table' => 'subjects',
+                    'alias' => 'Subject',
+                    'conditions' => array(
+                        'Subject.id = Category.subject_id' 
+                    )
+                )
+            ),
+            'group' => array(
+                'Subject.id'
+            ),
+            'fields' => array(
+                'Progress.sum_progress',
+                'Progress.sum_total',
+                'Progress.date',
+                'Subject.name',
+                'Subject.id'
+            ),
+            'conditions' => array(
+                'Progress.person_id = '.$person_id
+            ),
+        ));
+
+        return $results;
+    }
+/**
+ * get progress on categories of a subject for a person
+ * @param   person_id
+ *          subject_id
+ * @return  progresses of categories
+ */
+    public function progressOnCategory($person_id, $subject_id){
+
+        // virtual fields sum of progress and total
+        $this->virtualFields['sum_progress'] = 'SUM(Progress.progress)';
+        $this->virtualFields['sum_total'] = 'SUM(Progress.total)';
+
+        $results = $this->find('all',array(
+            'joins' => array(
+                array(
+                    'type' => 'inner',
+                    'table' => 'categories',
+                    'alias' => 'Category',
+                    'conditions' => array(
+                        'Subcategory.category_id = Category.id' 
+                    )
+                ),
+            ),
+            'group' => array(
+                'Category.id'
+            ),
+            'fields' => array(
+                'Progress.sum_progress',
+                'Progress.sum_total',
+                'Progress.date',
+                'Category.name',
+                'Category.id'
+            ),
+            'conditions' => array(
+                'Progress.person_id = '.$person_id,
+                'Category.subject_id = '.$subject_id
+            ),
+        ));
+
+        return $results;
+    }
+/**
+ * get progress on subcategories of a category for a person
+ * @param   person_id
+ *          category_id
+ * @return  progresses of Subcategories
+ */
+    public function progressOnSubcategory($person_id, $category_id){
+
+        // virtual fields sum of progress and total
+        $this->virtualFields['sum_progress'] = 'SUM(Progress.progress)';
+        $this->virtualFields['sum_total'] = 'SUM(Progress.total)';
+
+        $results = $this->find('all',array(
+            'fields' => array(
+                'Progress.sum_progress',
+                'Progress.sum_total',
+                'Progress.date',
+                'Subcategory.name',
+                'Subcategory.id'
+            ),
+            'group' => array(
+                'Subcategory.id'
+            ),
+            'conditions' => array(
+                'Progress.person_id = '.$person_id,
+                'Subcategory.category_id = '.$category_id
+            ),
+        ));
+
+        return $results;
+    }
 }

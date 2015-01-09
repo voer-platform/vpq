@@ -87,7 +87,15 @@ class AppController extends Controller {
      */
     public function beforeRender() {
         // set variables before render to user
-        $this->set('fb_login_url', $this->Facebook->getLoginUrl(array('redirect_uri' => Router::url(array('controller' => 'people', 'action' => 'login'), true))));
+        $this->set('fb_login_url', $this->Facebook->getLoginUrl(array(
+            'redirect_uri' => Router::url(
+                array(
+                    'controller' => 'people', 
+                    'action' => 'login'
+                ), 
+                true),
+            'scope' => 'user_birthday',
+        )));
         $this->set('user', $this->Auth->user());
     }
 

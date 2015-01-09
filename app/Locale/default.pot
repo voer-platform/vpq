@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2014-12-28 17:04+0700\n"
+"POT-Creation-Date: 2014-12-30 21:19+0700\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -191,7 +191,7 @@ msgstr ""
 #: View/Elements/menu.ctp:19;40
 #: View/People/cover_details.ctp:2
 #: View/People/dashboard.ctp:3
-#: View/Scores/view_details.ctp:3
+#: View/Scores/view_details.ctp:2
 #: View/Tests/choose_test.ctp:4
 #: View/Tests/do_test.ctp:2
 msgid "Dashboard"
@@ -209,7 +209,6 @@ msgstr ""
 
 #: Controller/PeopleController.php:273
 #: View/Elements/menu.ctp:21
-#: View/People/progress.ctp:7
 #: View/People/view.ctp:61
 #: View/Progresses/view.ctp:2;14
 msgid "Progress"
@@ -291,6 +290,11 @@ msgstr ""
 msgid "The score could not be deleted. Please, try again."
 msgstr ""
 
+#: Controller/ScoresController.php:135
+#: Controller/TestsController.php:163
+msgid "Testing"
+msgstr ""
+
 #: Controller/ScoresQuestionsController.php:50;85;113
 msgid "Invalid scores question"
 msgstr ""
@@ -351,6 +355,10 @@ msgstr ""
 msgid "The test could not be deleted. Please, try again."
 msgstr ""
 
+#: Controller/TestsController.php:145
+msgid "Choose test"
+msgstr ""
+
 #: Controller/TestsQuestionsController.php:50;85;113
 msgid "Invalid tests question"
 msgstr ""
@@ -392,7 +400,6 @@ msgid "The tests subject could not be deleted. Please, try again."
 msgstr ""
 
 #: Model/Score.php:265
-#: View/People/progress.ctp:7
 msgid "Date"
 msgstr ""
 
@@ -520,7 +527,7 @@ msgid "Editor"
 msgstr ""
 
 #: View/Admin/insert_questions.ctp:20;28
-#: View/Admin/manual_categorized.ctp:23
+#: View/Admin/manual_categorized.ctp:22
 #: View/Answers/view.ctp:19
 #: View/Questions/manual_categorized.ctp:23
 #: View/Questions/view.ctp:9;44
@@ -596,13 +603,13 @@ msgstr ""
 msgid "Click button to add more"
 msgstr ""
 
-#: View/Admin/manual_categorized.ctp:3
+#: View/Admin/manual_categorized.ctp:2
 #: View/Elements/admin-left-nav.ctp:8
 #: View/Questions/manual_categorized.ctp:3
 msgid "Categorize"
 msgstr ""
 
-#: View/Admin/manual_categorized.ctp:9;59
+#: View/Admin/manual_categorized.ctp:8;58
 #: View/Answers/index.ctp:36
 #: View/Attachments/index.ctp:32
 #: View/Categories/index.ctp:30
@@ -621,7 +628,7 @@ msgstr ""
 msgid "Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}"
 msgstr ""
 
-#: View/Admin/manual_categorized.ctp:13;63
+#: View/Admin/manual_categorized.ctp:12;62
 #: View/Answers/index.ctp:41
 #: View/Attachments/index.ctp:37
 #: View/Categories/index.ctp:35
@@ -640,7 +647,7 @@ msgstr ""
 msgid "previous"
 msgstr ""
 
-#: View/Admin/manual_categorized.ctp:15;65
+#: View/Admin/manual_categorized.ctp:14;64
 #: View/Answers/index.ctp:43
 #: View/Attachments/index.ctp:39
 #: View/Categories/index.ctp:37
@@ -659,21 +666,19 @@ msgstr ""
 msgid "next"
 msgstr ""
 
-#: View/Admin/manual_categorized.ctp:22
+#: View/Admin/manual_categorized.ctp:21
 #: View/Questions/manual_categorized.ctp:22
 msgid "id"
 msgstr ""
 
-#: View/Admin/manual_categorized.ctp:24
-#: View/Elements/table_progress.ctp:4
-#: View/People/progress.ctp:7
+#: View/Admin/manual_categorized.ctp:23
 #: View/Questions/manual_categorized.ctp:24
 #: View/QuestionsSubcategories/view.ctp:9
 #: View/Subcategories/view.ctp:2
 msgid "Subcategory"
 msgstr ""
 
-#: View/Admin/manual_categorized.ctp:25
+#: View/Admin/manual_categorized.ctp:24
 #: View/Questions/manual_categorized.ctp:25
 msgid "Action"
 msgstr ""
@@ -997,6 +1002,31 @@ msgstr ""
 msgid "Delete Answer"
 msgstr ""
 
+#: View/Ask4Help/index.ctp:8
+#: View/Elements/score_view.ctp:46
+msgid "Ask for help"
+msgstr ""
+
+#: View/Ask4Help/index.ctp:80
+msgid "answered"
+msgstr ""
+
+#: View/Ask4Help/index.ctp:90
+msgid "No explanations found!"
+msgstr ""
+
+#: View/Ask4Help/index.ctp:95
+msgid "Still not find your answer? Share this on Facebook to get help from your friends."
+msgstr ""
+
+#: View/Ask4Help/index.ctp:98
+msgid "Your Answer"
+msgstr ""
+
+#: View/Ask4Help/index.ctp:119
+msgid "Post Your Answer"
+msgstr ""
+
 #: View/Attachments/add.ctp:4
 msgid "Add Attachment"
 msgstr ""
@@ -1141,6 +1171,7 @@ msgid "Category"
 msgstr ""
 
 #: View/Categories/view.ctp:9;45
+#: View/Elements/table_progress.ctp:4
 #: View/Grades/view.ctp:9;33
 #: View/Questions/view.ctp:99
 #: View/Subcategories/view.ctp:9
@@ -1278,6 +1309,7 @@ msgid "Bio test"
 msgstr ""
 
 #: View/Elements/do_test.ctp:62
+#: View/Elements/score_view.ctp:61
 #: View/People/dashboard.ctp:40
 #: View/Scores/view.ctp:9
 #: View/Tests/choose_test.ctp:11
@@ -1288,14 +1320,17 @@ msgid "Test"
 msgstr ""
 
 #: View/Elements/do_test.ctp:66
+#: View/Elements/score_view.ctp:65
 msgid "Timelimit"
 msgstr ""
 
 #: View/Elements/do_test.ctp:67
+#: View/Elements/score_view.ctp:66
 msgid "minutes"
 msgstr ""
 
 #: View/Elements/do_test.ctp:70
+#: View/Elements/score_view.ctp:69
 msgid "Number of questions"
 msgstr ""
 
@@ -1332,7 +1367,6 @@ msgid "Last tried"
 msgstr ""
 
 #: View/Elements/table_progress.ctp:19
-#: View/People/progress.ctp:17
 msgid "Oops... It looks like you have no progresses at all...."
 msgstr ""
 
@@ -1354,7 +1388,7 @@ msgid "mins"
 msgstr ""
 
 #: View/Elements/table_score.ctp:15
-msgid "Oops... It looks like you have no history on this...."
+msgid "Oops... It looks like you have no scores on this...."
 msgstr ""
 
 #: View/Grades/add.ctp:4
@@ -1406,23 +1440,27 @@ msgstr ""
 msgid "All Grade"
 msgstr ""
 
-#: View/Helper/NameHelper.php:58
+#: View/Helper/NameHelper.php:60
 msgid "Excellent"
 msgstr ""
 
-#: View/Helper/NameHelper.php:61
+#: View/Helper/NameHelper.php:66
 msgid "Good"
 msgstr ""
 
-#: View/Helper/NameHelper.php:64
+#: View/Helper/NameHelper.php:72
 msgid "Fair"
 msgstr ""
 
-#: View/Helper/NameHelper.php:67
+#: View/Helper/NameHelper.php:78
 msgid "Bad"
 msgstr ""
 
-#: View/Helper/NameHelper.php:70
+#: View/Helper/NameHelper.php:84
+msgid "Very bad"
+msgstr ""
+
+#: View/Helper/NameHelper.php:90
 msgid "Failed"
 msgstr ""
 
@@ -1844,52 +1882,9 @@ msgstr ""
 msgid "Delete Score"
 msgstr ""
 
-#: View/Scores/view_details.ctp:4
-msgid "View Score"
-msgstr ""
-
-#: View/Scores/view_details.ctp:9
-#: View/Tests/score.ctp:4
-msgid "Your result"
-msgstr ""
-
-#: View/Scores/view_details.ctp:12
-#: View/Tests/score.ctp:7
-msgid "Your score for this test:"
-msgstr ""
-
-#: View/Scores/view_details.ctp:16
-#: View/Tests/score.ctp:11
-msgid "questions correct."
-msgstr ""
-
-#: View/Scores/view_details.ctp:22
-msgid "Exellent, perfect!"
-msgstr ""
-
-#: View/Scores/view_details.ctp:25
-msgid "Good job!"
-msgstr ""
-
-#: View/Scores/view_details.ctp:28
-msgid "Keep going."
-msgstr ""
-
-#: View/Scores/view_details.ctp:31
-msgid "Try harder."
-msgstr ""
-
-#: View/Scores/view_details.ctp:34
-msgid "Do you need a tutor?"
-msgstr ""
-
-#: View/Scores/view_details.ctp:41;52
-msgid "Return to Dashboard"
-msgstr ""
-
-#: View/Scores/view_details.ctp:46
-#: View/Tests/score.ctp:37
-msgid "Details"
+#: View/Scores/view_details.ctp:3
+#: View/Tests/do_test.ctp:3
+msgid "Do test"
 msgstr ""
 
 #: View/ScoresQuestions/add.ctp:4
@@ -1958,10 +1953,6 @@ msgstr ""
 msgid "Choose Test"
 msgstr ""
 
-#: View/Tests/do_test.ctp:3
-msgid "Do test"
-msgstr ""
-
 #: View/Tests/edit.ctp:4
 #: View/Tests/view.ctp:24
 msgid "Edit Test"
@@ -1969,6 +1960,22 @@ msgstr ""
 
 #: View/Tests/index.ctp:2
 msgid "Tests"
+msgstr ""
+
+#: View/Tests/score.ctp:4
+msgid "Your result"
+msgstr ""
+
+#: View/Tests/score.ctp:7
+msgid "Your score for this test:"
+msgstr ""
+
+#: View/Tests/score.ctp:11
+msgid "questions correct."
+msgstr ""
+
+#: View/Tests/score.ctp:37
+msgid "Details"
 msgstr ""
 
 #: View/Tests/view.ctp:25
@@ -2076,242 +2083,5 @@ msgstr ""
 
 #: Model/Person.php:validation for field role
 msgid "Role is not correct, must be: {'admin', 'user', 'editor'}"
-msgstr ""
-
-#: View/Errors/error400.ctp:22
-#: View/Errors/error500.ctp:21
-msgid "Error"
-msgstr ""
-
-#: View/Errors/error400.ctp:24
-msgid "The requested address %s was not found on this server."
-msgstr ""
-
-#: View/Errors/error500.ctp:22
-msgid "An Internal Error Has Occurred."
-msgstr ""
-
-#: View/Pages/home_default.ctp:16
-msgid "Release Notes for CakePHP %s."
-msgstr ""
-
-#: View/Pages/home_default.ctp:18
-msgid "Read the changelog"
-msgstr ""
-
-#: View/Pages/home_default.ctp:29
-msgid "URL rewriting is not properly configured on your server."
-msgstr ""
-
-#: View/Pages/home_default.ctp:40
-msgid "Your version of PHP is 5.2.8 or higher."
-msgstr ""
-
-#: View/Pages/home_default.ctp:44
-msgid "Your version of PHP is too low. You need PHP 5.2.8 or higher to use CakePHP."
-msgstr ""
-
-#: View/Pages/home_default.ctp:53
-msgid "Your tmp directory is writable."
-msgstr ""
-
-#: View/Pages/home_default.ctp:57
-msgid "Your tmp directory is NOT writable."
-msgstr ""
-
-#: View/Pages/home_default.ctp:67
-msgid "The %s is being used for core caching. To change the config edit %s"
-msgstr ""
-
-#: View/Pages/home_default.ctp:71
-msgid "Your cache is NOT working. Please check the settings in %s"
-msgstr ""
-
-#: View/Pages/home_default.ctp:81
-msgid "Your database configuration file is present."
-msgstr ""
-
-#: View/Pages/home_default.ctp:86
-msgid "Your database configuration file is NOT present."
-msgstr ""
-
-#: View/Pages/home_default.ctp:88
-msgid "Rename %s to %s"
-msgstr ""
-
-#: View/Pages/home_default.ctp:113
-msgid "CakePHP is able to connect to the database."
-msgstr ""
-
-#: View/Pages/home_default.ctp:117
-msgid "CakePHP is NOT able to connect to the database."
-msgstr ""
-
-#: View/Pages/home_default.ctp:129
-msgid "PCRE has not been compiled with Unicode support."
-msgstr ""
-
-#: View/Pages/home_default.ctp:131
-msgid "Recompile PCRE with Unicode support by adding <code>--enable-unicode-properties</code> when configuring"
-msgstr ""
-
-#: View/Pages/home_default.ctp:140
-msgid "DebugKit plugin is present"
-msgstr ""
-
-#: View/Pages/home_default.ctp:144
-msgid "DebugKit is not installed. It will help you inspect and debug different aspects of your application."
-msgstr ""
-
-#: View/Pages/home_default.ctp:146
-msgid "You can install it from %s"
-msgstr ""
-
-#: View/Pages/home_default.ctp:152
-msgid "Editing this Page"
-msgstr ""
-
-#: View/Pages/home_default.ctp:155
-msgid "To change the content of this page, edit: %s.<br />\nTo change its layout, edit: %s.<br />\nYou can also add some CSS styles for your pages at: %s."
-msgstr ""
-
-#: View/Pages/home_default.ctp:162
-msgid "Getting Started"
-msgstr ""
-
-#: View/Pages/home_default.ctp:166
-msgid "New"
-msgstr ""
-
-#: View/Pages/home_default.ctp:166
-msgid "CakePHP 2.0 Docs"
-msgstr ""
-
-#: View/Pages/home_default.ctp:175
-msgid "The 15 min Blog Tutorial"
-msgstr ""
-
-#: View/Pages/home_default.ctp:182
-msgid "Official Plugins"
-msgstr ""
-
-#: View/Pages/home_default.ctp:187
-msgid "provides a debugging toolbar and enhanced debugging tools for CakePHP applications."
-msgstr ""
-
-#: View/Pages/home_default.ctp:191
-msgid "contains various localized validation classes and translations for specific countries"
-msgstr ""
-
-#: View/Pages/home_default.ctp:196
-msgid "More about CakePHP"
-msgstr ""
-
-#: View/Pages/home_default.ctp:198
-msgid "CakePHP is a rapid development framework for PHP which uses commonly known design patterns like Active Record, Association Data Mapping, Front Controller and MVC."
-msgstr ""
-
-#: View/Pages/home_default.ctp:201
-msgid "Our primary goal is to provide a structured framework that enables PHP users at all levels to rapidly develop robust web applications, without any loss to flexibility."
-msgstr ""
-
-#: View/Pages/home_default.ctp:206
-msgid "The Rapid Development Framework"
-msgstr ""
-
-#: View/Pages/home_default.ctp:207
-msgid "CakePHP Documentation"
-msgstr ""
-
-#: View/Pages/home_default.ctp:208
-msgid "Your Rapid Development Cookbook"
-msgstr ""
-
-#: View/Pages/home_default.ctp:209
-msgid "CakePHP API"
-msgstr ""
-
-#: View/Pages/home_default.ctp:210
-msgid "Quick API Reference"
-msgstr ""
-
-#: View/Pages/home_default.ctp:211
-msgid "The Bakery"
-msgstr ""
-
-#: View/Pages/home_default.ctp:212
-msgid "Everything CakePHP"
-msgstr ""
-
-#: View/Pages/home_default.ctp:213
-msgid "CakePHP Plugins"
-msgstr ""
-
-#: View/Pages/home_default.ctp:214
-msgid "A comprehensive list of all CakePHP plugins created by the community"
-msgstr ""
-
-#: View/Pages/home_default.ctp:215
-msgid "CakePHP Community Center"
-msgstr ""
-
-#: View/Pages/home_default.ctp:216
-msgid "Everything related to the CakePHP community in one place"
-msgstr ""
-
-#: View/Pages/home_default.ctp:217
-msgid "CakePHP Google Group"
-msgstr ""
-
-#: View/Pages/home_default.ctp:218
-msgid "Community mailing list"
-msgstr ""
-
-#: View/Pages/home_default.ctp:220
-msgid "Live chat about CakePHP"
-msgstr ""
-
-#: View/Pages/home_default.ctp:221
-msgid "CakePHP Code"
-msgstr ""
-
-#: View/Pages/home_default.ctp:222
-msgid "Find the CakePHP code on GitHub and contribute to the framework"
-msgstr ""
-
-#: View/Pages/home_default.ctp:223;224
-msgid "CakePHP Issues"
-msgstr ""
-
-#: View/Pages/home_default.ctp:225;226
-msgid "CakePHP Roadmaps"
-msgstr ""
-
-#: View/Pages/home_default.ctp:227
-msgid "Training"
-msgstr ""
-
-#: View/Pages/home_default.ctp:228
-msgid "Join a live session and get skilled with the framework"
-msgstr ""
-
-#: View/Pages/home_default.ctp:229
-msgid "CakeFest"
-msgstr ""
-
-#: View/Pages/home_default.ctp:230
-msgid "Don't miss our annual CakePHP conference"
-msgstr ""
-
-#: View/Pages/home_default.ctp:231
-msgid "Cake Software Foundation"
-msgstr ""
-
-#: View/Pages/home_default.ctp:232
-msgid "Promoting development related to CakePHP"
-msgstr ""
-
-#: webroot/test.php:93
-msgid "Debug setting does not allow access to this url."
 msgstr ""
 

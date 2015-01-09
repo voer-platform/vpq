@@ -47,6 +47,8 @@ class TestsController extends AppController {
      * @return void
      */
     public function index() {
+        $this->set('title_for_layout', __('List testes'));
+
         $this->Test->recursive = 0;
         $this->set('tests', $this->Paginator->paginate());
     }
@@ -59,6 +61,8 @@ class TestsController extends AppController {
      * @return void
      */
     public function view($id = null) {
+        $this->set('title_for_layout', __('Test number').' '.$id);
+
         if (!$this->Test->exists($id)) {
             throw new NotFoundException(__('Invalid test'));
         }
@@ -72,6 +76,7 @@ class TestsController extends AppController {
      * @return void
      */
     public function add() {
+        $this->set('title_for_layout', __('Add test'));
         if ($this->request->is('post')) {
             $this->Test->create();
             if ($this->Test->save($this->request->data)) {
@@ -94,6 +99,7 @@ class TestsController extends AppController {
      * @return void
      */
     public function edit($id = null) {
+        $this->set('title_for_layout', __('Edit test number').' '.$id);
         if (!$this->Test->exists($id)) {
             throw new NotFoundException(__('Invalid test'));
         }
@@ -165,7 +171,6 @@ class TestsController extends AppController {
         // process if request is post
         if( isset($time) && isset($subject) ){
 
-
             // retrieve request data
             $numberOfQuestions = $time;
             $timeLimit = $time;
@@ -196,8 +201,8 @@ class TestsController extends AppController {
                 $this->set('duration', $timeLimit);
                 $this->set('numberOfQuestions', $numberOfQuestions);
             }else{
-                // Thong bao khong tim thay cau hoi
-                $this->Session->setFlash('Không tìm thấy dữ liệu.');
+                // warn that no data found
+                $this->Session->setFlash(__('No data found'));
                 $this->redirect(array('controller' => 'tests', 'action' => 'chooseTest', $subject));
             }
         }

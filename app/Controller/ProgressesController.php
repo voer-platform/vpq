@@ -120,4 +120,44 @@ class ProgressesController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
+/**
+ *  ajax, change table view
+ */    
+    public function ajaxTable(){
+        $this->layout = 'ajax';
+
+        if($this->request->is('get')){
+            $type = $this->params->query['type'];
+            $user_id = $this->Session->read('Auth.User')['id'];
+            switch ($type) {
+            	// category
+            	case 1:
+					$results = $this->Progress->progressOnSubject($user_id);
+					$this->set('progresses', $results);            	
+            		$this->set('type', 'subject');
+            		$this->header('Content-Type: application/json');
+            		break;
+            	// subcategory
+            	case 2:
+            		$subject_id = $this->params->query['id'];
+            		$results = $this->Progress->progressOnCategory($user_id, $subject_id);
+					$this->set('progresses', $results);            	
+            		$this->set('type', 'category');
+            		break;
+            	case 3:
+            		$category_id = $this->params->query['id'];
+            		$results = $this->Progress->progressOnSubcategory($user_id, $category_id);
+					$this->set('progresses', $results);            	
+            		$this->set('type', 'subcategory');
+            		break;	
+            	// default
+            	default:
+            		break;
+            }
+        }
+        else{
+            echo '';
+            return;
+        }
+    }
 }

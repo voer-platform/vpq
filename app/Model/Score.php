@@ -272,7 +272,11 @@ class Score extends AppModel {
 
         return json_encode($json);
     }
-
+/**
+ * translate day of week short into full and translated string
+ *    @param    dow(Sun, Mon, etc.)
+ *    @return   dow(__('Sunday'), __('Monday'))
+ */
     public function translateDate($date){
         switch ($date) {
             case 'Sun':
@@ -298,20 +302,20 @@ class Score extends AppModel {
                 break;
             
             default:
-                return __("None");
+                return __('None');
                 break;
         }
     }
 
 /**
- * get average performance latest 10 tests
+ * get average performance for a person on latest 10 tests
  * @param:  id of user
- *            grade
- *            subject
- *            number of tests
+ *          grade
+ *          subject
+ *          number of tests
  * @return: array of [correct, total]
  */
-    public function overall($person_id, $grade_id=0, $subject_id=0, $tests=10){
+    public function getOverAll($person_id, $grade_id=0, $subject_id=0, $tests=10){
         
         // no option declared
         // return all subjects and grades
@@ -374,9 +378,11 @@ class Score extends AppModel {
                     on Subcategory.id = QuestionsSubcategory.subcategory_id
                 join categories Category
                     on Category.id = Subcategory.category_id
+                join tests_subjects TestSubject
+                    on Test.id = TestSubject.test_id
                 where Score.person_id = '.$person_id.' '.
                     'and Category.grade_id = '.$grade_id.' '.
-                    'and Test.subject_id = '.$subject_id.' '.
+                    'and TestSubject.subject_id = '.$subject_id.' '.
                 'group by Score.id
                 order by Score.time_taken desc
                 limit '.$tests.';');
@@ -392,7 +398,16 @@ class Score extends AppModel {
             return array($score, $total);
         }
         else{
-            return 0;
+            return array(0,0);
         }
-    }    
+    }
+/**
+ * return ajax call for user
+ * @param:  id of user
+ *          grade
+ *          subject
+ * @return: array of [correct, total]
+ *          array of []
+ */
+
 }

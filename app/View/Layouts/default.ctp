@@ -28,7 +28,7 @@
     <!-- javascript -->
     <?php echo $this->Html->script('jquery.min.js');?>
     <?php echo $this->Html->script('jquery.simplePaging.js');?>
-    <?php echo $this->Html->script('jquery.quick.pagination.min.js');?>
+    <?php //echo $this->Html->script('jquery.quick.pagination.min.js');?>
     <?php echo $this->Html->script('bootstrap.min.js');?>
     <?php echo $this->Html->script('jquery-ui.min.js');?>
     <?php echo $this->Html->script('jquery.multiselect.js');?>

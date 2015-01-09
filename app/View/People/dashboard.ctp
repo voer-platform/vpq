@@ -18,7 +18,6 @@
                 <div><?php echo __('Completeness'); ?></div>
                 <div class="progress">
                     <div class="progress-bar progress-bar-striped" style="width: <?php echo $cover[1] == 0? 0 : round($cover[0]/$cover[1]*100); ?>%;" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" id="preogressbar-cover"><?php echo $cover[0].'/'.$cover[1]; ?></div>
-                    
                 </div>
             </div>
             <div class="pull-left">
@@ -47,7 +46,7 @@
                     <li><input type="checkbox" name="checkbox-grade-12" id="checkbox-grade-12" value="3" class="checkbox-grade"/><label for="checkbox-grade-12"><?php echo __('Grade').' '.'12'; ?></label></li>
                 </ul>
             </div>
-            <div class="well well-sm">
+            <!-- <div class="well well-sm">
                 <label for=""><?php echo __('Subjects') ?></label>
                 <ul class="list-unstyled">
                     <li><input type="checkbox" name="checkbox-subject-maths" id="checkbox-subject-maths" value="1" class="checkbox-subject"/><label for="checkbox-subject-maths"><?php echo __('Maths'); ?></label></li>
@@ -55,15 +54,21 @@
                     <li><input type="checkbox" name="checkbox-subject-chemists" id="checkbox-subject-chemists" value="3" class="checkbox-subject"/><label for="checkbox-subject-chemists"><?php echo __('Chemists'); ?></label></li>
                     <li><input type="checkbox" name="checkbox-subject-biology" id="checkbox-subject-biology" value="4" class="checkbox-subject"/><label for="checkbox-subject-biology"><?php echo __('Biology'); ?></label></li>
                 </ul>
-            </div>
+            </div> -->
         </div>
         <div class="col-md-10 dashboard-content">
-            <label><?php echo __("Your Performance"); ?></label>
+            <label><?php echo __("Your Performance chart"); ?></label>
             <div id = 'chart'>
             </div>
             <hr/>
-            <label><?php echo __("Subcategories"); ?></label>
-            <?php echo $this->element('table_progress'); ?>
+            <div class='row'>
+                <ol class="breadcrumb" id="breadcrumb-list">
+                  <li class='active'><?php echo __("Subjects"); ?></li>
+                </ol>    
+            </div>
+            <div id ='dashboard-table'>
+                <?php echo $this->element('progress_subject'); ?>                   
+            </div>
         </div>
     </div>
 </div>
@@ -71,12 +76,12 @@
 
 <script type="text/javascript">
 
-    var ajaxData = null;
-    var chart = null;
-    var currentGrade = 0;      //current grade, 0 = all
-    var currentSubject = 0;     // current grade, 0 = all
-    var cover = [];             // current cover
-    var rating = [];            // current rating
+    var ajaxData        = null;
+    var chart           = null;
+    var currentGrade    = 0;       //current grade, 0 = all
+    // var currentSubject = 0;     // current subject, 0 = all
+    var cover           = [];             // current cover
+    var rating          = [];            // current rating
 
     //
     // Draw chart
@@ -143,25 +148,27 @@
     {
         $(this).change(function()
         {
-            $(".checkbox-subject").prop('checked',false);
-            $(this).prop('checked',true);
+            $(".checkbox-subject").attr('checked',false);
+            $(this).attr('checked',true);
             currentSubject = this.value;
+            console.log(currentSubject, currentGrade);
             ajaxLoadChange(currentSubject, currentGrade);
             drawChart();
         });
     });
     
-    $(".checkbox-grade").each(function()
-    {
-        $(this).change(function()
-        {
-            $(".checkbox-grade").prop('checked',false);
-            $(this).prop('checked',true);
-            currrentGrade = this.value;
-            ajaxLoadChange(currentSubject, currentGrade);
-            drawChart();
-        });
-    });
+    // $(".checkbox-grade").each(function()
+    // {
+    //     $(this).change(function()
+    //     {
+    //         $(".checkbox-grade").attr('checked',false);
+    //         $(this).attr('checked',true);
+    //         currentGrade = this.value;
+    //         console.log(currentSubject, currentGrade);
+    //         ajaxLoadChange(currentSubject, currentGrade);
+    //         drawChart();
+    //     });
+    // });
 
     // ajax load
     // whenever user change options, call ajax and change content
@@ -205,6 +212,96 @@
                 else {
                     ajaxData = [];
                 }
+            }
+        });
+    }
+
+    /**
+     * get data from ajax for table
+     */
+    var currentSubject      = null;
+    var currentSubjectID    = null
+    var currentCategory     = null;
+    var currentCategoryID   = null;
+    var tableData           = null;
+
+    function tableClick(){
+        var type = parseInt(this.type);
+        // subject
+        if(type == 1){
+            currentSubject      = null;
+            currentSubjectID    = null;
+            currentCategory     = null;
+            currentCategoryID   = null;
+
+            // breadcrumb
+            $('#breadcrumb-list').html("<li class='active'><?php echo __('Subjects'); ?></li>");
+
+            // chart
+
+            // table
+            ajaxTable(1);
+            $('#dashboard-table').html(tableData);
+            $('.progress-table').click(tableClick);
+            $('.breadcrumb-link').click(tableClick);
+        }
+        // category
+        else if (type == 2){
+            currentSubject      = this.text;
+            currentSubjectID    = $(this).attr('subject');
+            currentCategory     = null;
+            currentCategoryID   = null;
+
+            // breadcrumb
+            $('#breadcrumb-list').html(
+                "<li><a href='javascript:void(0);' class='breadcrumb-link' type='1'><?php echo __('Subjects'); ?></a></li>" + 
+                "<li class='active'>" + currentSubject + "</li>");
+
+            // chart
+
+            // table
+            ajaxTable(2, $(this).attr('subject'));
+            $('#dashboard-table').html(tableData);
+            $('.progress-table').click(tableClick);
+            $('.breadcrumb-link').click(tableClick);
+        }
+        // subcategory
+        else if(type == 3){
+            currentCategory     = this.text;
+            currentCategoryID   = $(this).attr('category')
+
+            // breadcrumb
+            $('#breadcrumb-list').html(
+                "<li><a href='javascript:void(0);' class='breadcrumb-link' type='1'><?php echo __('Subjects'); ?></a></li>" +
+                "<li><a href='javascript:void(0);' class='breadcrumb-link' type='2' subject="+currentSubjectID+">" + currentSubject + "</a></li>" + 
+                "<li class='active'>"+ currentCategory + "</li>");
+
+            // chart
+
+            // table
+            ajaxTable(3, $(this).attr('category'));
+            $('#dashboard-table').html(tableData);
+            $('.progress-table').click(tableClick);
+            $('.breadcrumb-link').click(tableClick);
+        }
+    }
+    
+    $('.progress-table').click(tableClick);
+            $('.breadcrumb-link').click(tableClick);
+
+    // get table from ajax
+    function ajaxTable(type, id){
+        var url = "<?php echo Router::url(array('controller'=>'progresses','action'=>'ajaxTable'));?>"
+        $.ajax({
+            type : 'GET',
+            url : url,
+            data : {
+                type : type,
+                id : id
+            },
+            async : false,
+            success : function(msg){
+                tableData = msg;
             }
         });
     }
