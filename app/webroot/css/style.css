@@ -484,6 +484,7 @@ div.answer label.btn-answer{
   margin: 10px 0;
   line-height: 30px;
   font-weight: normal;
+  white-space: normal;
 }
 
 div.answer label.btn-answer:hover{
