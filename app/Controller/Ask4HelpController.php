@@ -50,7 +50,16 @@ class Ask4HelpController extends AppController {
         $this->autoLayout = false;
         $this->autoRender = false;
 
-        $result = array('id' => $id, 'vote' => $key);
-        echo json_encode($result);
+        $this->loadModel('Explanation');
+
+        $likes = 0;
+        $explanation = $this->Explanation->findById($id);
+        if ( $explanation ) $likes = $explanation['Explanation']['likes'];
+        if ( $key == 'up' ) 
+          $likes += 1;
+        else if ( $likes > 0 )
+          $likes -= 1;
+        $this->Explanation->save(array('id' => $id, 'likes' => $likes));
+        echo json_encode($likes);
     }
 }

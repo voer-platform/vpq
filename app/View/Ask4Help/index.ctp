@@ -54,7 +54,7 @@
         console.log('voting ..');
         $.getJSON( $(this).attr('href'), function( data ) {
             console.log('finishing ..');
-            $('.vote-count-post').text(data['id']);
+            $('.vote-count-post').text(data);
         });
     });
   });
