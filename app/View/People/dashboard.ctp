@@ -37,9 +37,20 @@
     </div>
     <div class="row">
         <?php echo $this->Html->link(__("Test"), array("controller" => "tests", "action" => "chooseTest", 2), array("class" => "btn btn-lg btn-primary")) ?>
-        <div class="col-md-2 filters">
-            <div class="well well-sm">
-                <label for=""><?php echo __('Grades'); ?></label>
+        <label><?php echo __("Your Performance chart"); ?></label>
+        <center>
+            <div id = 'chart'>
+            </div>
+        </center>
+        <hr/>
+        <div class='row'>
+            <ol class="breadcrumb" id="breadcrumb-list">
+              <li class='active'><?php echo __("Subjects"); ?></li>
+            </ol>    
+        </div>
+        <div id ='dashboard-table'>
+            <div class="filter well well-sm">
+                <!-- <label for=""><?php echo __('Grades'); ?></label> -->
                 <ul class="list-unstyled">
                     <li><input type="checkbox" name="checkbox-grade-10" id="checkbox-grade-10" value="1" class="checkbox-grade"/><label for="checkbox-grade-10"><?php echo __('Grade').' '.'10'; ?></label></li>
                     <li><input type="checkbox" name="checkbox-grade-11" id="checkbox-grade-11" value="2" class="checkbox-grade"/><label for="checkbox-grade-11"><?php echo __('Grade').' '.'11'; ?></label></li>
@@ -55,20 +66,7 @@
                     <li><input type="checkbox" name="checkbox-subject-biology" id="checkbox-subject-biology" value="4" class="checkbox-subject"/><label for="checkbox-subject-biology"><?php echo __('Biology'); ?></label></li>
                 </ul>
             </div> -->
-        </div>
-        <div class="col-md-10 dashboard-content">
-            <label><?php echo __("Your Performance chart"); ?></label>
-            <div id = 'chart'>
-            </div>
-            <hr/>
-            <div class='row'>
-                <ol class="breadcrumb" id="breadcrumb-list">
-                  <li class='active'><?php echo __("Subjects"); ?></li>
-                </ol>    
-            </div>
-            <div id ='dashboard-table'>
-                <?php echo $this->element('progress_subject'); ?>                   
-            </div>
+            <?php echo $this->element('progress_subject'); ?>                   
         </div>
     </div>
 </div>
@@ -223,7 +221,6 @@
     var currentSubjectID    = null
     var currentCategory     = null;
     var currentCategoryID   = null;
-    var tableData           = null;
 
     function tableClick(){
         var type = parseInt(this.type);
@@ -241,9 +238,6 @@
 
             // table
             ajaxTable(1);
-            $('#dashboard-table').html(tableData);
-            $('.progress-table').click(tableClick);
-            $('.breadcrumb-link').click(tableClick);
         }
         // category
         else if (type == 2){
@@ -261,9 +255,6 @@
 
             // table
             ajaxTable(2, $(this).attr('subject'));
-            $('#dashboard-table').html(tableData);
-            $('.progress-table').click(tableClick);
-            $('.breadcrumb-link').click(tableClick);
         }
         // subcategory
         else if(type == 3){
@@ -280,9 +271,6 @@
 
             // table
             ajaxTable(3, $(this).attr('category'));
-            $('#dashboard-table').html(tableData);
-            $('.progress-table').click(tableClick);
-            $('.breadcrumb-link').click(tableClick);
         }
     }
     
@@ -301,7 +289,9 @@
             },
             async : false,
             success : function(msg){
-                tableData = msg;
+                $('#dashboard-table').html(msg);
+                $('.progress-table').click(tableClick);
+                $('.breadcrumb-link').click(tableClick);   
             }
         });
     }

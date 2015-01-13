@@ -62,37 +62,43 @@ class NameHelper extends AppHelper {
         if(90 <= $score && $score <= 100){
             return array(
                 "color" => "danger",
-                "rank" => __("Excellent")
+                "rank" => __("Excellent"),
+                "description" => __("Score from 90/100 to 100/100")
             );
         }
         else if( 80 <= $score && $score < 90){
             return array(
                 "color" => "warning",
-                "rank" => __("Good")
+                "rank" => __("Good"),
+                "description" => __("Score from 80/100 to 90/100")
             );
         }
         else if(65 <= $score && $score < 80){
             return array(
                 "color" => "success",
-                "rank" => __("Fair")
+                "rank" => __("Fair"),
+                "description" => __("Score from 65/100 to 80/100")
             );
         }
         else if(50 <= $score && $score < 65){
             return array(
                 "color" => "info",
-                "rank" => __("Bad")
+                "rank" => __("Bad"),
+                "description" => __("Score from 65/100 to 50/100")
             );
         }
         else if(35 <= $score && $score < 50){
             return array(
                 "color" => "primary",
-                "rank" => __("Very bad")
+                "rank" => __("Very bad"),
+                "description" => __("Score from 35/100 to 50/100")
             );
         }
         else{
             return array(
                 "color" => "default",
-                "rank" => __("Failed")
+                "rank" => __("Failed"),
+                "description" => __("Score from 0/100 to 35/100")
             );
         }
     }

@@ -6,7 +6,7 @@
             $score = round($progress['0']['progress']/$progress['0']['total']*100,0);
             echo $this->Html->tableCells(array(
                 $this->Html->link($progress['Subcategory']['name'], array('controller' => 'Subcategories', 'action' => 'viewScoresSubcategory', $progress['Subcategory']['id'])),
-                $score,
+                "<span title='".__('Score based on latest 10 tests on the subject')."'>".$score.'/100'."</span>",
                 $progress['0']['progress'],
                 $progress['0']['total'] - $progress['0']['progress'],
                 $progress['0']['total'],

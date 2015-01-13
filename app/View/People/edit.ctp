@@ -7,7 +7,8 @@
 		echo $this->Form->input('first_name');
 		echo $this->Form->input('last_name');
 		echo $this->Form->input('password');
-		echo $this->Form->input('grade');
+		echo $this->Form->input('grade', 'type' => 'select', 
+			'options' => array('10' => '10', '11' => '11', '12' => '12')));
 		echo $this->Form->input('date_created');
 		echo $this->Form->input('role', array(
 			'type' => 'select', 

@@ -159,6 +159,12 @@ class PeopleController extends AppController {
             if ($fb_user){
                 $fb_user = $this->Facebook->api('/me');     # Returns user information
                 $picture = $this->Facebook->api('/me/picture?height=200&width=200&redirect=false');        # FB picture
+                if(isset($fb_user['birthday'])){
+                    $birthday = '\''.date('Y-m-d', strtotime($fb_user['birthday'])).'\'';
+                }
+                else {
+                    $birthday = '2000-01-01';
+                }
 
                 // We will varify if a local user exists first
                 $local_user = $this->Person->find('first', array(
@@ -173,7 +179,7 @@ class PeopleController extends AppController {
                             'first_name'=> '\''.$fb_user['first_name'].'\'',
                             'last_name'=> '\''.$fb_user['last_name'].'\'',
                             'image'=> '\''.$picture['data']['url'].'\'',
-                            'birthday' => '\''.date('Y-m-d', strtotime($fb_user['birthday'])).'\'',
+                            'birthday' => $birthday,
                             'date_modified' => '\''.date("Y-m-d H:i:s").'\'',
                         ),
                         array( 'facebook' => $fb_user['id'])
@@ -193,7 +199,7 @@ class PeopleController extends AppController {
                         'facebook'          => $fb_user['id'],
                         'password'          => AuthComponent::password(uniqid(md5(mt_rand()))), # Set random password
                         'first_name'        => $fb_user['first_name'],
-                        // 'birthday'          =>
+                        'birthday'          => $birthday,
                         'last_name'         => $fb_user['last_name'],
                         'role'              => 'user',
                         'date_created'      => date("Y-m-d H:i:s"),
@@ -253,6 +259,7 @@ class PeopleController extends AppController {
         $this->set('progresses', $progresses);
         $this->set('scores', $scores);
         $this->set('cover', $cover);
+
     }
 
 /**

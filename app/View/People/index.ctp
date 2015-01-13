@@ -5,7 +5,7 @@
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
 			<th><?php echo $this->Paginator->sort('first_name'); ?></th>
 			<th><?php echo $this->Paginator->sort('last_name'); ?></th>
-			<th><?php echo $this->Paginator->sort('username'); ?></th>
+			<th><?php echo $this->Paginator->sort('birthday'); ?></th>
 			<th><?php echo $this->Paginator->sort('password'); ?></th>
 			<th><?php echo $this->Paginator->sort('date_created'); ?></th>
 			<th><?php echo $this->Paginator->sort('role'); ?> </th>
@@ -17,7 +17,7 @@
 		<td><?php echo h($person['Person']['id']); ?>&nbsp;</td>
 		<td><?php echo h($person['Person']['first_name']); ?>&nbsp;</td>
 		<td><?php echo h($person['Person']['last_name']); ?>&nbsp;</td>
-		<td><?php echo h($person['Person']['username']); ?>&nbsp;</td>
+		<td><?php echo h($person['Person']['birthday']); ?>&nbsp;</td>
 		<td><?php echo h($person['Person']['password']); ?>&nbsp;</td>
 		<td><?php echo h($person['Person']['date_created']); ?>&nbsp;</td>
 		<td><?php echo h($person['Person']['role']); ?></td>
