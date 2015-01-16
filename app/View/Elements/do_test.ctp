@@ -93,7 +93,7 @@
         var clockMinutes = parseInt($("#clock-minutes").text());
         var clockSeconds = parseInt($('#clock-seconds').text());
         console.log(clockMinutes* 60 + clockSeconds);
-        $('#TestAnswersDuration').val(clockMinutes* 60 + clockSeconds);
+        $('#TestAnswersDuration').val(parseInt("<?php echo $duration; ?>")*60 - clockMinutes* 60 - clockSeconds);
     });
 
     $(document).ready(function(){

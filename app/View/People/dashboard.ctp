@@ -36,7 +36,9 @@
         <h5 class="pull-right"><?php echo __('Time range'); ?></h5>
     </div>
     <div class="row">
-        <?php echo $this->Html->link(__("Test"), array("controller" => "tests", "action" => "chooseTest", 2), array("class" => "btn btn-lg btn-primary")) ?>
+        <center>
+            <?php echo $this->Html->link(__("Test"), array("controller" => "tests", "action" => "chooseTest", 2), array("class" => "btn btn-lg btn-primary")) ?>
+        </center>
         <label><?php echo __("Your Performance chart"); ?></label>
         <center>
             <div id = 'chart'>
@@ -48,10 +50,11 @@
               <li class='active'><?php echo __("Subjects"); ?></li>
             </ol>    
         </div>
-        <div id ='dashboard-table'>
-            <div class="filter well well-sm">
+        <div>
+            <div class="filter well well-md">
                 <!-- <label for=""><?php echo __('Grades'); ?></label> -->
                 <ul class="list-unstyled">
+                    <li><button class='progess-table btn btn-sm btn-primary btn-test' id='load-all-progress' type='0'><?php echo __('Load All'); ?></button></li>
                     <li><input type="checkbox" name="checkbox-grade-10" id="checkbox-grade-10" value="1" class="checkbox-grade"/><label for="checkbox-grade-10"><?php echo __('Grade').' '.'10'; ?></label></li>
                     <li><input type="checkbox" name="checkbox-grade-11" id="checkbox-grade-11" value="2" class="checkbox-grade"/><label for="checkbox-grade-11"><?php echo __('Grade').' '.'11'; ?></label></li>
                     <li><input type="checkbox" name="checkbox-grade-12" id="checkbox-grade-12" value="3" class="checkbox-grade"/><label for="checkbox-grade-12"><?php echo __('Grade').' '.'12'; ?></label></li>
@@ -66,81 +69,18 @@
                     <li><input type="checkbox" name="checkbox-subject-biology" id="checkbox-subject-biology" value="4" class="checkbox-subject"/><label for="checkbox-subject-biology"><?php echo __('Biology'); ?></label></li>
                 </ul>
             </div> -->
-            <?php echo $this->element('progress_subject'); ?>                   
+            <div id ='dashboard-table'>
+                <?php echo $this->element('progress_subject'); ?>                   
+            </div>
         </div>
+        <div class='hiddenRow accordion-body collapse' id='demo1' style='padding:0; !important'>Demo1</div>
     </div>
 </div>
-<?php echo $this->HTML->script('https://www.google.com/jsapi'); ?>
 
 <script type="text/javascript">
-
-    var ajaxData        = null;
-    var chart           = null;
-    var currentGrade    = 0;       //current grade, 0 = all
-    // var currentSubject = 0;     // current subject, 0 = all
-    var cover           = [];             // current cover
-    var rating          = [];            // current rating
-
-    //
-    // Draw chart
-    //
-    google.load("visualization", "1", {packages:["corechart"]});
-    google.setOnLoadCallback(loadData);
-
-    function loadData(){
-        ajaxLoad(0);
-        drawChart();
-    }
-
-    function ajaxLoad(subject_id){
-        var URL = "<?php echo Router::url(array('controller'=>'scores','action'=>'performanceDetails'));?>"
-        // get chart data from ajax call
-        $.ajax({
-            type: 'POST',
-            url : URL,
-            async : false,
-            data: {
-                'chartType' : 'ggChart',
-                'subject'  : subject_id,
-                // 'grade' : grade_id
-            },
-            success : function (msg) {
-                if(msg != ''){
-                    ajaxData = JSON.parse(msg);
-
-                    // if empty, create a fake object, to void fault
-                    if( ajaxData.length == 1){
-                        ajaxData.push([0,0]);
-                    }
-                }
-                else {
-                    ajaxData = [];
-                }
-            }
-        });
-    }
-
-    // draw the data
-    function drawChart(){
-        var data = google.visualization.arrayToDataTable(ajaxData);
-
-        var options = {
-            title : '',
-            vAxis:{
-                format: '##%',
-                maxValue: 1,
-                minValue: 0
-            },
-            hAxis:{
-                format: "MM/dd/yy"
-            }
-        };
-        data.addColumn({type: 'string', role: 'annotation'});
-
-        chart = new google.visualization.LineChart(document.getElementById('chart'));
-        chart.draw(data, options);
-    }
-
+    /**
+     * Ajax data on table
+     */
     // listener
     $(".checkbox-subject").each(function()
     {
@@ -223,9 +163,23 @@
     var currentCategoryID   = null;
 
     function tableClick(){
-        var type = parseInt(this.type);
+        var type = parseInt($(this).attr('type'));
         // subject
-        if(type == 1){
+        if(type == 0){
+            ajaxTable(0);
+            currentSubject      = null;
+            currentSubjectID    = null;
+            currentCategory     = null;
+            currentCategoryID   = null;
+
+            // chart
+
+            // breadcrumb
+            $('#breadcrumb-list').html("<li class='active'><?php echo __('Subjects'); ?></li>");
+            $('#load-all-progress').attr('type', '1');
+            $('#load-all-progress').text("<?php echo __('Load Subjects'); ?>");
+        }
+        else if(type == 1){
             currentSubject      = null;
             currentSubjectID    = null;
             currentCategory     = null;
@@ -275,7 +229,8 @@
     }
     
     $('.progress-table').click(tableClick);
-            $('.breadcrumb-link').click(tableClick);
+    $('#load-all-progress').click(tableClick);
+    $('.breadcrumb-link').click(tableClick);
 
     // get table from ajax
     function ajaxTable(type, id){
@@ -287,7 +242,6 @@
                 type : type,
                 id : id
             },
-            async : false,
             success : function(msg){
                 $('#dashboard-table').html(msg);
                 $('.progress-table').click(tableClick);
@@ -296,4 +250,79 @@
         });
     }
 
+</script>
+
+<?php echo $this->HTML->script('http://www.google.com/jsapi'); ?>
+<script type="text/javascript">
+    /**
+     * Ajax on chart data
+     *
+     */
+    var ajaxData        = null;
+    var chart           = null;
+    var currentGrade    = 0;                //current grade, 0 = all
+    // var currentSubject = 0;              // current subject, 0 = all
+    var cover           = [];               // current cover
+    var rating          = [];               // current rating
+
+    //
+    // Draw chart
+    //
+    google.load("visualization", "1", {packages:["corechart"]});
+    google.setOnLoadCallback(loadAndDraw);
+
+    // load data for draw chart and draw
+    function loadAndDraw(){
+        ajaxLoad(0);
+    }
+
+    function ajaxLoad(subject_id){
+        // load chart data by ajax
+        var URL = "<?php echo Router::url(array('controller'=>'scores','action'=>'performanceDetails'));?>"
+        // get chart data from ajax call
+        $.ajax({
+            type: 'POST',
+            url : URL,
+            data: {
+                'chartType' : 'ggChart',
+                'subject'  : subject_id,
+                // 'grade' : grade_id
+            },
+            success : function (msg) {
+                if(msg != ''){
+                    ajaxData = JSON.parse(msg);
+
+                    // if empty, create a fake object, to void fault
+                    if( ajaxData.length == 1){
+                        ajaxData.push([0,0]);
+                    }
+                    drawChart();
+                }
+                else {
+                    ajaxData = [];
+                }
+            }
+        });
+    }
+
+    // draw the data
+    function drawChart(){
+        var data = google.visualization.arrayToDataTable(ajaxData);
+
+        var options = {
+            title : '',
+            vAxis:{
+                format: '#.#',
+                maxValue: 10,
+                minValue: 0
+            },
+            hAxis:{
+                format: "MM/dd/yy"
+            }
+        };
+        data.addColumn({type: 'string', role: 'annotation'});
+
+        chart = new google.visualization.LineChart(document.getElementById('chart'));
+        chart.draw(data, options);
+    }
 </script>

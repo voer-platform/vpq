@@ -6,7 +6,7 @@
 </ol>
 
 <div class="chooseTest">
-    <h2>CHUẨN BỊ KIỂM TRA<?php //echo __('Choose time for the test')?></h2>
+    <h2><?php echo __('Choose test')?></h2>
     <hr />
     <?php echo __('Test').': '.$this->Name->subjectToName($subject); ?>
     <form role="form" class="form-horizontal" id="preDoTest" method="POST">

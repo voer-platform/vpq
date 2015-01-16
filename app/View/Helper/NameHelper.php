@@ -59,46 +59,53 @@ class NameHelper extends AppHelper {
      * @return rank in string
      */ 
     public function determineRank($score){
-        if(90 <= $score && $score <= 100){
+        if(9 <= $score && $score <= 10){
             return array(
                 "color" => "danger",
                 "rank" => __("Excellent"),
-                "description" => __("Score from 90/100 to 100/100")
+                "description" => __("Score from 9/10 to 10/10")
             );
         }
-        else if( 80 <= $score && $score < 90){
+        else if( 8 <= $score && $score < 9){
             return array(
                 "color" => "warning",
                 "rank" => __("Good"),
-                "description" => __("Score from 80/100 to 90/100")
+                "description" => __("Score from 8/10 to 9/10")
             );
         }
-        else if(65 <= $score && $score < 80){
+        else if(6.5 <= $score && $score < 8){
             return array(
                 "color" => "success",
                 "rank" => __("Fair"),
-                "description" => __("Score from 65/100 to 80/100")
+                "description" => __("Score from 6.5/10 to 8/10")
             );
         }
-        else if(50 <= $score && $score < 65){
+        else if(5 <= $score && $score < 6.5){
             return array(
                 "color" => "info",
                 "rank" => __("Bad"),
-                "description" => __("Score from 65/100 to 50/100")
+                "description" => __("Score from 6.5/10 to 5/10")
             );
         }
-        else if(35 <= $score && $score < 50){
+        else if(3.5 <= $score && $score < 5){
             return array(
                 "color" => "primary",
                 "rank" => __("Very bad"),
-                "description" => __("Score from 35/100 to 50/100")
+                "description" => __("Score from 3.5/10 to 5/10")
             );
         }
-        else{
+        else if (0 <= $score && $score < 3.5){
             return array(
                 "color" => "default",
                 "rank" => __("Failed"),
-                "description" => __("Score from 0/100 to 35/100")
+                "description" => __("Score from 0/10 to 3.5/10")
+            );
+        }
+        else {
+            return array(
+                "color" => "default",
+                "rank" => '',
+                "description" => __("Score from ... to ...")
             );
         }
     }

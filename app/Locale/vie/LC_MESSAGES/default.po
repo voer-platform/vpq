@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2014-12-30 21:19+0700\n"
-"PO-Revision-Date: 2014-12-30 21:24+0700\n"
+"POT-Creation-Date: 2015-01-16 20:14+0700\n"
+"PO-Revision-Date: 2015-01-16 20:15+0700\n"
 "Last-Translator: Viet Vu <vietvudanh@gmail.com>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "Language: vi\n"
@@ -19,36 +19,36 @@ msgstr ""
 msgid "Elfinder File Manager"
 msgstr "Trang quản lý file Elfinder"
 
-#: Controller/AdminController.php:57 View/Elements/menu.ctp:27
+#: Controller/AdminController.php:59 View/Elements/menu.ctp:27
 msgid "Admin"
 msgstr "Quản trị"
 
-#: Controller/AdminController.php:66
+#: Controller/AdminController.php:68
 msgid "Add questions"
 msgstr "Thêm câu hỏi"
 
-#: Controller/AdminController.php:86 Controller/QuestionsController.php:71;95
+#: Controller/AdminController.php:88 Controller/QuestionsController.php:71;95
 msgid "The question has been saved."
 msgstr "Câu hỏi đã được lưu"
 
-#: Controller/AdminController.php:88 Controller/QuestionsController.php:74;98
+#: Controller/AdminController.php:90 Controller/QuestionsController.php:74;98
 msgid "The question could not be saved. Please, try again."
 msgstr "Câu hỏi không lưu được. Xin thử lại."
 
-#: Controller/AdminController.php:121
+#: Controller/AdminController.php:123
 #: View/Admin/insert_multiple_questions.ctp:5
 msgid "Add multiple questions"
 msgstr "Thêm nhiều câu hỏi"
 
-#: Controller/AdminController.php:152
+#: Controller/AdminController.php:154
 msgid "Import success. Please verify in manage question list."
 msgstr "Nhập thành công, xin kiểm tra lại trong danh sách câu hỏi."
 
-#: Controller/AdminController.php:155
+#: Controller/AdminController.php:157
 msgid "Import Fail. Please verify in manage question list."
 msgstr "Nhập thành công, xin kiểm tra lại trong danh sách câu hỏi."
 
-#: Controller/AdminController.php:159
+#: Controller/AdminController.php:161
 msgid "The imported data could not be process, please try again later."
 msgstr "Không thể nhập dữ liệu, xin hãy thử lại"
 
@@ -72,15 +72,15 @@ msgstr "Câu trả lời đã được xóa"
 msgid "The answer could not be deleted. Please, try again."
 msgstr "Câu tả lời không thể xóa xin hay thử lại"
 
-#: Controller/AppController.php:102
+#: Controller/AppController.php:110
 msgid "You are not authorized for that pages"
 msgstr "Bạn không có quyền truy cập trang này"
 
-#: Controller/Ask4HelpController.php:28
+#: Controller/Ask4HelpController.php:29
 msgid "Your answer has been saved."
 msgstr "Câu trả lời đã được lưu"
 
-#: Controller/Ask4HelpController.php:32
+#: Controller/Ask4HelpController.php:33
 msgid "Unable to add your answer."
 msgstr "Không thể them câu trả lời"
 
@@ -156,90 +156,89 @@ msgstr "Trang chủ"
 msgid "About us"
 msgstr "Giới thiệu"
 
-#: Controller/PeopleController.php:72;104;129
+#: Controller/PeopleController.php:71;103;128
 msgid "Invalid person"
 msgstr "Người dùng không hợp lệ."
 
-#: Controller/PeopleController.php:87;108
+#: Controller/PeopleController.php:86;107
 msgid "The person has been saved."
 msgstr "Người dùng đã được lưu"
 
-#: Controller/PeopleController.php:90;111
+#: Controller/PeopleController.php:89;110
 msgid "The person could not be saved. Please, try again."
-msgstr ""
+msgstr "Không thể lưu người dùng, xin hãy thử lại."
 
-#: Controller/PeopleController.php:133
+#: Controller/PeopleController.php:132
 msgid "The person has been deleted."
-msgstr ""
+msgstr "Đã xóa người dùng."
 
-#: Controller/PeopleController.php:135
+#: Controller/PeopleController.php:134
 msgid "The person could not be deleted. Please, try again."
-msgstr ""
+msgstr "Không thể xóa người dùng, xin hãy thử lại"
 
-#: Controller/PeopleController.php:151
-msgid "Invalid Username or password. Try again."
-msgstr ""
+#: Controller/PeopleController.php:150
+msgid "Invalid login. Please try again."
+msgstr "Không thể đăng nhập, xin hãy thử lại"
 
-#: Controller/PeopleController.php:211;216
+#: Controller/PeopleController.php:220;225
 msgid "Something wrong, cannot log in. Please try again!"
 msgstr "Không thể đăng nhập. Xin hay thử lại!"
 
-#: Controller/PeopleController.php:232 View/Elements/menu.ctp:19;40
-#: View/People/cover_details.ctp:2 View/People/dashboard.ctp:3
-#: View/Scores/view_details.ctp:2 View/Tests/choose_test.ctp:4
-#: View/Tests/do_test.ctp:2
+#: Controller/PeopleController.php:241 View/Elements/menu.ctp:19;40
+#: View/People/dashboard.ctp:3 View/Scores/view_details.ctp:2
+#: View/Tests/choose_test.ctp:4 View/Tests/do_test.ctp:2
 msgid "Dashboard"
 msgstr "Trang cá nhân"
 
-#: Controller/PeopleController.php:255
+#: Controller/PeopleController.php:269
 #: Controller/SubcategoriesController.php:144 View/Elements/menu.ctp:20
 msgid "History"
 msgstr "Lịch sử"
 
-#: Controller/PeopleController.php:266
+#: Controller/PeopleController.php:280
 msgid "Suggestion"
 msgstr "Gợi ý"
 
-#: Controller/PeopleController.php:273 View/Elements/menu.ctp:21
-#: View/People/view.ctp:61 View/Progresses/view.ctp:2;14
+#: Controller/PeopleController.php:287 View/Elements/menu.ctp:21
+#: View/People/view.ctp:66 View/Progresses/view.ctp:2;14
 msgid "Progress"
 msgstr "Tiến độ"
 
-#: Controller/PeopleController.php:284
+#: Controller/PeopleController.php:298
 msgid "Cover details"
 msgstr "Chi tiết môn học"
 
 #: Controller/ProgressesController.php:50;85;113
 msgid "Invalid progress"
-msgstr ""
+msgstr "Tiến độ không hợp lệ"
 
 #: Controller/ProgressesController.php:65;89
 msgid "The progress has been saved."
-msgstr ""
+msgstr "Tiến độ đã được lưu."
 
 #: Controller/ProgressesController.php:68;92
 msgid "The progress could not be saved. Please, try again."
-msgstr ""
+msgstr "Không thể lưu tiến độ, xin hãy thử lại."
 
 #: Controller/ProgressesController.php:117
 msgid "The progress has been deleted."
-msgstr ""
+msgstr "Đã xóa tiến độ."
 
 #: Controller/ProgressesController.php:119
 msgid "The progress could not be deleted. Please, try again."
-msgstr ""
+msgstr "Không thể xóa tiến độ, xin hãy thử lại."
 
 #: Controller/QuestionsController.php:55;91;119
 msgid "Invalid question"
-msgstr ""
+msgstr "Câu hỏi không hợp lệ"
 
 #: Controller/QuestionsController.php:123
 msgid "The question has been deleted."
-msgstr ""
+msgstr "Đã xóa câu hỏi."
 
 #: Controller/QuestionsController.php:125
 msgid "The question could not be deleted. Please, try again."
-msgstr ""
+msgstr "Không thể xóa câu hỏi, xin hãy thử lại."
 
 #: Controller/QuestionsSubcategoriesController.php:50;82;107
 msgid "Invalid questions subcategory"
@@ -281,9 +280,9 @@ msgstr ""
 msgid "The score could not be deleted. Please, try again."
 msgstr ""
 
-#: Controller/ScoresController.php:135 Controller/TestsController.php:163
+#: Controller/ScoresController.php:135 Controller/TestsController.php:187
 msgid "Testing"
-msgstr ""
+msgstr "Đang kiểm tra"
 
 #: Controller/ScoresQuestionsController.php:50;85;113
 msgid "Invalid scores question"
@@ -325,29 +324,49 @@ msgstr ""
 msgid "The subcategory could not be deleted. Please, try again."
 msgstr ""
 
-#: Controller/TestsController.php:63;98;126
+#: Controller/TestsController.php:50
+msgid "List testes"
+msgstr "Danh sách bài kiểm tra"
+
+#: Controller/TestsController.php:64
+msgid "Test number"
+msgstr "Số kiểm tra"
+
+#: Controller/TestsController.php:67;104;132
 msgid "Invalid test"
 msgstr ""
 
-#: Controller/TestsController.php:78;102
+#: Controller/TestsController.php:79
+msgid "Add test"
+msgstr "Thêm bài kiểm tra"
+
+#: Controller/TestsController.php:83;108
 msgid "The test has been saved."
-msgstr ""
+msgstr "Bài kiểm tra đã được lưu"
 
-#: Controller/TestsController.php:81;105
+#: Controller/TestsController.php:86;111
 msgid "The test could not be saved. Please, try again."
+msgstr "Không thể lưu bài kiểm tra, xin hãy thử lại."
+
+#: Controller/TestsController.php:102
+msgid "Edit test number"
 msgstr ""
 
-#: Controller/TestsController.php:130
+#: Controller/TestsController.php:136
 msgid "The test has been deleted."
 msgstr ""
 
-#: Controller/TestsController.php:132
+#: Controller/TestsController.php:138
 msgid "The test could not be deleted. Please, try again."
 msgstr ""
 
-#: Controller/TestsController.php:145
+#: Controller/TestsController.php:151 View/Tests/choose_test.ctp:9
 msgid "Choose test"
-msgstr ""
+msgstr "Chọn bài kiểm tra"
+
+#: Controller/TestsController.php:223
+msgid "No data found"
+msgstr "Không tìm thấy dữ liệu"
 
 #: Controller/TestsQuestionsController.php:50;85;113
 msgid "Invalid tests question"
@@ -389,46 +408,48 @@ msgstr ""
 msgid "The tests subject could not be deleted. Please, try again."
 msgstr ""
 
-#: Model/Score.php:265
+#: Model/Score.php:289
 msgid "Date"
 msgstr "Thời gian"
 
-#: Model/Score.php:265 View/Elements/table_progress.ctp:4
-#: View/Elements/table_score.ctp:4 View/People/view.ctp:93
-#: View/Scores/view.ctp:2;19 View/ScoresQuestions/view.ctp:9
-#: View/Tests/view.ctp:44
+#: Model/Score.php:289 View/Elements/progress_all.ctp:4
+#: View/Elements/progress_category.ctp:4
+#: View/Elements/progress_subcategory.ctp:4
+#: View/Elements/progress_subject.ctp:4 View/Elements/table_score.ctp:4
+#: View/People/view.ctp:98 View/Scores/view.ctp:2;19
+#: View/ScoresQuestions/view.ctp:9 View/Tests/view.ctp:44
 msgid "Score"
 msgstr "Điểm"
 
-#: Model/Score.php:279
+#: Model/Score.php:307
 msgid "Sunday"
-msgstr "Chủ Nhật"
+msgstr "CN"
 
-#: Model/Score.php:282
+#: Model/Score.php:310
 msgid "Monday"
-msgstr "Thứ 2"
+msgstr "T2"
 
-#: Model/Score.php:285
+#: Model/Score.php:313
 msgid "Tuesday"
-msgstr "Thứ 3"
+msgstr "T2"
 
-#: Model/Score.php:288
+#: Model/Score.php:316
 msgid "Wednesday"
-msgstr "Thứ 4"
+msgstr "T4"
 
-#: Model/Score.php:291
+#: Model/Score.php:319
 msgid "Thursday"
-msgstr "Thứ 5"
+msgstr "T5"
 
-#: Model/Score.php:294
+#: Model/Score.php:322
 msgid "Friday"
-msgstr "Thứ 6"
+msgstr "T6"
 
-#: Model/Score.php:297
+#: Model/Score.php:325
 msgid "Saturday"
-msgstr "Thứ 7"
+msgstr "T7"
 
-#: Model/Score.php:301
+#: Model/Score.php:329
 msgid "None"
 msgstr "Không có"
 
@@ -445,7 +466,7 @@ msgstr "File chứa các câu hỏi"
 #: View/Answers/edit.ctp:13 View/Attachments/add.ctp:10
 #: View/Attachments/edit.ctp:11 View/Categories/add.ctp:11
 #: View/Categories/edit.ctp:12 View/Grades/add.ctp:9 View/Grades/edit.ctp:10
-#: View/People/add.ctp:15 View/People/edit.ctp:18 View/Progresses/add.ctp:11
+#: View/People/add.ctp:14 View/People/edit.ctp:19 View/Progresses/add.ctp:11
 #: View/Progresses/edit.ctp:11 View/Questions/add.ctp:12
 #: View/Questions/edit.ctp:13 View/QuestionsSubcategories/add.ctp:10
 #: View/QuestionsSubcategories/edit.ctp:10 View/Scores/add.ctp:13
@@ -646,8 +667,8 @@ msgstr "Thêm câu trả lời"
 #: View/Categories/add.ctp:14 View/Categories/edit.ctp:15
 #: View/Categories/index.ctp:9;42 View/Categories/view.ctp:27;47
 #: View/Grades/add.ctp:12 View/Grades/edit.ctp:13 View/Grades/index.ctp:7;36
-#: View/Grades/view.ctp:17;36 View/People/add.ctp:18 View/People/edit.ctp:21
-#: View/People/index.ctp:13;48 View/People/view.ctp:42;62;96
+#: View/Grades/view.ctp:17;36 View/People/add.ctp:17 View/People/edit.ctp:22
+#: View/People/index.ctp:13;48 View/People/view.ctp:47;67;101
 #: View/Progresses/add.ctp:14 View/Progresses/edit.ctp:14
 #: View/Progresses/index.ctp:8;42 View/Progresses/view.ctp:22
 #: View/Questions/add.ctp:15 View/Questions/edit.ctp:16
@@ -721,8 +742,8 @@ msgstr "Sửa câu hỏi"
 #: View/Attachments/edit.ctp:17 View/Attachments/index.ctp:23
 #: View/Categories/edit.ctp:18 View/Categories/index.ctp:22
 #: View/Categories/view.ctp:57 View/Grades/edit.ctp:16
-#: View/Grades/index.ctp:16 View/Grades/view.ctp:47 View/People/edit.ctp:24
-#: View/People/index.ctp:28 View/People/view.ctp:72;109
+#: View/Grades/index.ctp:16 View/Grades/view.ctp:47 View/People/edit.ctp:25
+#: View/People/index.ctp:28 View/People/view.ctp:77;114
 #: View/Progresses/edit.ctp:17 View/Progresses/index.ctp:22
 #: View/Questions/edit.ctp:19 View/Questions/index.ctp:21
 #: View/Questions/view.ctp:58;111;142 View/QuestionsSubcategories/edit.ctp:16
@@ -742,8 +763,8 @@ msgstr "Xóa"
 #: View/Attachments/view.ctp:25 View/Categories/edit.ctp:18
 #: View/Categories/index.ctp:22 View/Categories/view.ctp:30;57
 #: View/Grades/edit.ctp:16 View/Grades/index.ctp:16 View/Grades/view.ctp:20;47
-#: View/People/edit.ctp:24 View/People/index.ctp:28
-#: View/People/view.ctp:45;72;109 View/Progresses/edit.ctp:17
+#: View/People/edit.ctp:25 View/People/index.ctp:28
+#: View/People/view.ctp:50;77;114 View/Progresses/edit.ctp:17
 #: View/Progresses/index.ctp:22 View/Progresses/view.ctp:25
 #: View/Questions/edit.ctp:19 View/Questions/index.ctp:21
 #: View/Questions/view.ctp:25;58;111;142
@@ -769,7 +790,7 @@ msgstr "Các câu trả lời"
 #: View/Answers/index.ctp:25 View/Attachments/index.ctp:21
 #: View/Categories/index.ctp:20 View/Categories/view.ctp:55
 #: View/Grades/index.ctp:14 View/Grades/view.ctp:45 View/People/index.ctp:26
-#: View/People/view.ctp:70;107 View/Progresses/index.ctp:20
+#: View/People/view.ctp:75;112 View/Progresses/index.ctp:20
 #: View/Questions/index.ctp:19 View/Questions/view.ctp:56;109;140
 #: View/QuestionsSubcategories/index.ctp:18 View/Scores/index.ctp:29
 #: View/ScoresQuestions/index.ctp:25 View/Subcategories/index.ctp:18
@@ -782,7 +803,7 @@ msgstr "Xem"
 #: View/Answers/index.ctp:26 View/Attachments/index.ctp:22
 #: View/Categories/index.ctp:21 View/Categories/view.ctp:56
 #: View/Grades/index.ctp:15 View/Grades/view.ctp:46 View/People/index.ctp:27
-#: View/People/view.ctp:71;108 View/Progresses/index.ctp:21
+#: View/People/view.ctp:76;113 View/Progresses/index.ctp:21
 #: View/Questions/index.ctp:20 View/Questions/view.ctp:57;110;141
 #: View/QuestionsSubcategories/index.ctp:19 View/Scores/index.ctp:30
 #: View/ScoresQuestions/index.ctp:26 View/Subcategories/index.ctp:19
@@ -800,7 +821,7 @@ msgstr "Câu trả lời mới"
 
 #: View/Answers/view.ctp:4 View/Attachments/view.ctp:4
 #: View/Categories/view.ctp:4;44 View/Grades/view.ctp:4;32
-#: View/People/view.ctp:4;90 View/Questions/view.ctp:4;41;76;98;129
+#: View/People/view.ctp:4;95 View/Questions/view.ctp:4;41;76;98;129
 #: View/Scores/view.ctp:4 View/ScoresQuestions/view.ctp:4
 #: View/Subcategories/view.ctp:4;41 View/Tests/view.ctp:4;41;78;107
 #: View/TestsQuestions/view.ctp:4 View/TestsSubjects/view.ctp:4
@@ -825,15 +846,15 @@ msgstr ""
 msgid "Ask for help"
 msgstr "Nhờ trợ giúp"
 
-#: View/Ask4Help/index.ctp:80
+#: View/Ask4Help/index.ctp:91
 msgid "answered"
 msgstr "Câu trả lời"
 
-#: View/Ask4Help/index.ctp:90
+#: View/Ask4Help/index.ctp:101
 msgid "No explanations found!"
 msgstr "Không có giải đáp nào!"
 
-#: View/Ask4Help/index.ctp:95
+#: View/Ask4Help/index.ctp:106
 msgid ""
 "Still not find your answer? Share this on Facebook to get help from your "
 "friends."
@@ -841,11 +862,11 @@ msgstr ""
 "Vẫn không tìm thấy câu trả lời mong muốn? Chia sẻ trên Facebook để nhận trợ "
 "giúp từ bạn bè của bạn."
 
-#: View/Ask4Help/index.ctp:98
+#: View/Ask4Help/index.ctp:109
 msgid "Your Answer"
 msgstr "Câu trả lời"
 
-#: View/Ask4Help/index.ctp:119
+#: View/Ask4Help/index.ctp:130
 msgid "Post Your Answer"
 msgstr "Đăng câu trả lời"
 
@@ -950,9 +971,12 @@ msgstr ""
 msgid "Category"
 msgstr ""
 
-#: View/Categories/view.ctp:9;45 View/Elements/table_progress.ctp:4
-#: View/Grades/view.ctp:9;33 View/Questions/view.ctp:99
-#: View/Subcategories/view.ctp:9 View/Tests/view.ctp:79
+#: View/Categories/view.ctp:9;45 View/Elements/progress_all.ctp:4
+#: View/Elements/progress_category.ctp:4
+#: View/Elements/progress_subcategory.ctp:4
+#: View/Elements/progress_subject.ctp:4 View/Grades/view.ctp:9;33
+#: View/Questions/view.ctp:99 View/Subcategories/view.ctp:9
+#: View/Tests/view.ctp:79
 msgid "Name"
 msgstr ""
 
@@ -1045,52 +1069,8 @@ msgstr "Quản lý chủ đề con"
 msgid "Time remains"
 msgstr "Thời gian còn lại"
 
-#: View/Elements/dashboard-progress.ctp:2
-msgid "Your status on "
-msgstr "Trạng thái của bạn cho : "
-
-#: View/Elements/dashboard-progress.ctp:9 View/People/dashboard.ctp:54
-msgid "Physics"
-msgstr "Vật lý"
-
-#: View/Elements/dashboard-progress.ctp:15 View/People/cover_details.ctp:3
-msgid "Covered"
-msgstr "Tiến độ"
-
-#: View/Elements/dashboard-progress.ctp:19
-msgid "Physics test"
-msgstr "Test Vật lý"
-
-#: View/Elements/dashboard-progress.ctp:24
-msgid "Performance:"
-msgstr "Điểm trung bình"
-
-#: View/Elements/dashboard-progress.ctp:26
-msgid "(latest 10 tests)."
-msgstr "(trên 10 bài test gần nhất)."
-
-#: View/Elements/dashboard-progress.ctp:34 View/People/dashboard.ctp:53
-msgid "Maths"
-msgstr "Toán"
-
-#: View/Elements/dashboard-progress.ctp:43
-msgid "Maths test"
-msgstr "Test Toán"
-
-#: View/Elements/dashboard-progress.ctp:55;76
-msgid "Chemist"
-msgstr "Hóa"
-
-#: View/Elements/dashboard-progress.ctp:64
-msgid "Chemist test"
-msgstr "Test Hóa học"
-
-#: View/Elements/dashboard-progress.ctp:85
-msgid "Bio test"
-msgstr "Test sinh học"
-
 #: View/Elements/do_test.ctp:62 View/Elements/score_view.ctp:61
-#: View/People/dashboard.ctp:40 View/Scores/view.ctp:9
+#: View/People/dashboard.ctp:39 View/Scores/view.ctp:9
 #: View/Tests/choose_test.ctp:11 View/Tests/view.ctp:2
 #: View/TestsQuestions/view.ctp:9 View/TestsSubjects/view.ctp:9
 msgid "Test"
@@ -1120,29 +1100,53 @@ msgstr "Thông tin tài khoản"
 msgid "Logout"
 msgstr "Đăng xuất"
 
-#: View/Elements/table_progress.ctp:4
+#: View/Elements/progress_all.ctp:4 View/Elements/progress_category.ctp:4
+#: View/Elements/progress_subcategory.ctp:4
+#: View/Elements/progress_subject.ctp:4
 msgid "Correct"
 msgstr "Đúng"
 
-#: View/Elements/table_progress.ctp:4
+#: View/Elements/progress_all.ctp:4 View/Elements/progress_category.ctp:4
+#: View/Elements/progress_subcategory.ctp:4
+#: View/Elements/progress_subject.ctp:4
 msgid "Wrong"
 msgstr "Sai"
 
-#: View/Elements/table_progress.ctp:4
+#: View/Elements/progress_all.ctp:4 View/Elements/progress_category.ctp:4
+#: View/Elements/progress_subcategory.ctp:4
+#: View/Elements/progress_subject.ctp:4
 msgid "Total"
 msgstr "Tổng số"
 
-#: View/Elements/table_progress.ctp:4
+#: View/Elements/progress_all.ctp:4 View/Elements/progress_category.ctp:4
+#: View/Elements/progress_subcategory.ctp:4
+#: View/Elements/progress_subject.ctp:4
 msgid "Rank"
 msgstr "Xếp hạng"
 
-#: View/Elements/table_progress.ctp:4
+#: View/Elements/progress_all.ctp:4 View/Elements/progress_category.ctp:4
+#: View/Elements/progress_subcategory.ctp:4
+#: View/Elements/progress_subject.ctp:4
 msgid "Last tried"
 msgstr "Lần cuối thực hiện"
 
-#: View/Elements/table_progress.ctp:19
+#: View/Elements/progress_all.ctp:9 View/Elements/progress_category.ctp:15
+#: View/Elements/progress_subcategory.ctp:10
+#: View/Elements/progress_subject.ctp:16
+msgid "Score based on latest 10 tests on the subject"
+msgstr "Điểm dựa trên 10 bài kiểm tra gần nhất."
+
+#: View/Elements/progress_all.ctp:15 View/Elements/progress_category.ctp:21
+#: View/Elements/progress_subcategory.ctp:16
+#: View/Elements/progress_subject.ctp:22
+msgid "Do test on this"
+msgstr "Kiểm tra trên phần này"
+
+#: View/Elements/progress_all.ctp:26 View/Elements/progress_category.ctp:32
+#: View/Elements/progress_subcategory.ctp:27
+#: View/Elements/progress_subject.ctp:32
 msgid "Oops... It looks like you have no progresses at all...."
-msgstr "Oops... Bạn chưa có điểm..."
+msgstr "Oops... Bạn chưa có tiến độ môn học..."
 
 #: View/Elements/table_score.ctp:4
 msgid "Test ID"
@@ -1162,7 +1166,7 @@ msgstr "phút"
 
 #: View/Elements/table_score.ctp:15
 msgid "Oops... It looks like you have no scores on this...."
-msgstr ""
+msgstr "Oops... bạn chưa có điểm cho phần này...."
 
 #: View/Grades/add.ctp:4
 msgid "Add Grade"
@@ -1178,7 +1182,7 @@ msgstr "Liệt kê lớp"
 msgid "Edit Grade"
 msgstr "Sửa lớp"
 
-#: View/Grades/index.ctp:2 View/People/dashboard.ctp:43
+#: View/Grades/index.ctp:2 View/People/dashboard.ctp:53
 msgid "Grades"
 msgstr "Lớp"
 
@@ -1188,8 +1192,8 @@ msgstr "Lớp"
 msgid "New Grade"
 msgstr "Lớp mới"
 
-#: View/Grades/view.ctp:2 View/Helper/NameHelper.php:48
-#: View/People/cover_details.ctp:17 View/People/dashboard.ctp:45;46;47
+#: View/Grades/view.ctp:2 View/Helper/NameHelper.php:53
+#: View/People/dashboard.ctp:56;57;58 View/People/view.ctp:19
 #: View/Tests/choose_test.ctp:14;19
 msgid "Grade"
 msgstr "Lớp"
@@ -1198,33 +1202,61 @@ msgstr "Lớp"
 msgid "Delete Grade"
 msgstr "Xóa lớp"
 
-#: View/Helper/NameHelper.php:42
+#: View/Helper/NameHelper.php:47
 msgid "All Grade"
 msgstr "Tất cả các lớp"
 
-#: View/Helper/NameHelper.php:60
+#: View/Helper/NameHelper.php:65
 msgid "Excellent"
 msgstr "Xuất sắc"
 
 #: View/Helper/NameHelper.php:66
+msgid "Score from 9/10 to 10/10"
+msgstr ""
+
+#: View/Helper/NameHelper.php:72
 msgid "Good"
 msgstr "Giỏi"
 
-#: View/Helper/NameHelper.php:72
+#: View/Helper/NameHelper.php:73
+msgid "Score from 8/10 to 9/10"
+msgstr ""
+
+#: View/Helper/NameHelper.php:79
 msgid "Fair"
 msgstr "Khá"
 
-#: View/Helper/NameHelper.php:78
+#: View/Helper/NameHelper.php:80
+msgid "Score from 6.5/10 to 8/10"
+msgstr ""
+
+#: View/Helper/NameHelper.php:86
 msgid "Bad"
 msgstr "Trung bình"
 
-#: View/Helper/NameHelper.php:84
+#: View/Helper/NameHelper.php:87
+msgid "Score from 6.5/10 to 5/10"
+msgstr ""
+
+#: View/Helper/NameHelper.php:93
 msgid "Very bad"
 msgstr "Yếu"
 
-#: View/Helper/NameHelper.php:90
+#: View/Helper/NameHelper.php:94
+msgid "Score from 3.5/10 to 5/10"
+msgstr ""
+
+#: View/Helper/NameHelper.php:100
 msgid "Failed"
 msgstr "Kém"
+
+#: View/Helper/NameHelper.php:101
+msgid "Score from 0/10 to 3.5/10"
+msgstr ""
+
+#: View/Helper/NameHelper.php:108
+msgid "Score from ... to ..."
+msgstr ""
 
 #: View/Pages/home.ctp:8
 msgid "Login with Facebook"
@@ -1246,7 +1278,7 @@ msgstr "Đến trang cá nhân"
 msgid "Add Person"
 msgstr ""
 
-#: View/People/add.ctp:21 View/People/edit.ctp:25 View/People/view.ctp:46
+#: View/People/add.ctp:20 View/People/edit.ctp:26 View/People/view.ctp:51
 #: View/Progresses/add.ctp:18 View/Progresses/edit.ctp:19
 #: View/Progresses/index.ctp:45 View/Progresses/view.ctp:28
 #: View/Scores/add.ctp:22 View/Scores/edit.ctp:24 View/Scores/index.ctp:57
@@ -1254,20 +1286,20 @@ msgstr ""
 msgid "List People"
 msgstr ""
 
-#: View/People/add.ctp:22 View/People/edit.ctp:26 View/People/index.ctp:51
-#: View/People/view.ctp:48 View/Progresses/add.ctp:17
+#: View/People/add.ctp:21 View/People/edit.ctp:27 View/People/index.ctp:51
+#: View/People/view.ctp:53 View/Progresses/add.ctp:17
 #: View/Progresses/edit.ctp:18 View/Progresses/view.ctp:26
 msgid "List Progresses"
 msgstr ""
 
-#: View/People/add.ctp:23 View/People/edit.ctp:27 View/People/index.ctp:52
-#: View/People/view.ctp:49;81 View/Progresses/index.ctp:44
+#: View/People/add.ctp:22 View/People/edit.ctp:28 View/People/index.ctp:52
+#: View/People/view.ctp:54;86 View/Progresses/index.ctp:44
 #: View/Progresses/view.ctp:27
 msgid "New Progress"
 msgstr ""
 
-#: View/People/add.ctp:24 View/People/edit.ctp:28 View/People/index.ctp:53
-#: View/People/view.ctp:50 View/Scores/add.ctp:19 View/Scores/edit.ctp:21
+#: View/People/add.ctp:23 View/People/edit.ctp:29 View/People/index.ctp:53
+#: View/People/view.ctp:55 View/Scores/add.ctp:19 View/Scores/edit.ctp:21
 #: View/Scores/view.ctp:41 View/ScoresQuestions/add.ctp:18
 #: View/ScoresQuestions/edit.ctp:20 View/ScoresQuestions/index.ctp:51
 #: View/ScoresQuestions/view.ctp:33 View/Tests/add.ctp:19
@@ -1275,18 +1307,14 @@ msgstr ""
 msgid "List Scores"
 msgstr ""
 
-#: View/People/add.ctp:25 View/People/edit.ctp:29 View/People/index.ctp:54
-#: View/People/view.ctp:51;118 View/Scores/index.ctp:54
+#: View/People/add.ctp:24 View/People/edit.ctp:30 View/People/index.ctp:54
+#: View/People/view.ctp:56;123 View/Scores/index.ctp:54
 #: View/Scores/view.ctp:42 View/ScoresQuestions/add.ctp:19
 #: View/ScoresQuestions/edit.ctp:21 View/ScoresQuestions/index.ctp:52
 #: View/ScoresQuestions/view.ctp:34 View/Tests/add.ctp:20
 #: View/Tests/edit.ctp:22 View/Tests/index.ctp:42 View/Tests/view.ctp:29;69
 msgid "New Score"
 msgstr ""
-
-#: View/People/cover_details.ctp:8
-msgid "Your coverage for"
-msgstr "Cover cho"
 
 #: View/People/dashboard.ctp:12
 msgid "Edit Profile"
@@ -1296,51 +1324,63 @@ msgstr "Chỉnh sửa thông tin tài khoản"
 msgid "Completeness"
 msgstr "Độ hoàn thành"
 
-#: View/People/dashboard.ctp:25
+#: View/People/dashboard.ctp:24
 msgid "Rating"
 msgstr "Đánh giá"
 
-#: View/People/dashboard.ctp:33
+#: View/People/dashboard.ctp:32
 msgid "Custom"
 msgstr "Tùy chọn"
 
-#: View/People/dashboard.ctp:34
+#: View/People/dashboard.ctp:33
 msgid "1 Week"
 msgstr "1 tuần"
 
-#: View/People/dashboard.ctp:35
+#: View/People/dashboard.ctp:34
 msgid "1 Month"
 msgstr "1 tháng"
 
-#: View/People/dashboard.ctp:36
+#: View/People/dashboard.ctp:35
 msgid "All time"
 msgstr "Tất cả"
 
-#: View/People/dashboard.ctp:37
+#: View/People/dashboard.ctp:36
 msgid "Time range"
 msgstr "Thời gian"
 
-#: View/People/dashboard.ctp:51
+#: View/People/dashboard.ctp:40
+msgid "Your Performance chart"
+msgstr "Biểu đồ điểm kiểm tra"
+
+#: View/People/dashboard.ctp:48;62;176;187;203;218
 msgid "Subjects"
 msgstr "Môn học"
 
 #: View/People/dashboard.ctp:55
+msgid "Load All"
+msgstr "Xem toàn bộ"
+
+#: View/People/dashboard.ctp:64
+msgid "Maths"
+msgstr "Toán"
+
+#: View/People/dashboard.ctp:65
+msgid "Physics"
+msgstr "Vật lý"
+
+#: View/People/dashboard.ctp:66
 msgid "Chemists"
 msgstr "Hóa học"
 
-#: View/People/dashboard.ctp:56
+#: View/People/dashboard.ctp:67
 msgid "Biology"
 msgstr "Sinh học"
 
-#: View/People/dashboard.ctp:61
-msgid "Your Performance"
-msgstr "Điểm trung bình"
+#: View/People/dashboard.ctp:178
+msgid "Load Subjects"
+msgstr "Xem các môn học"
 
-#: View/People/dashboard.ctp:65 View/Subcategories/index.ctp:2
-msgid "Subcategories"
-msgstr "Các chủ đề"
-
-#: View/People/edit.ctp:4 View/People/view.ctp:44
+#: View/People/edit.ctp:4 View/People/view.ctp:49
 msgid "Edit Person"
 msgstr ""
 
@@ -1352,7 +1392,7 @@ msgstr "Lịch sử test của bạn"
 msgid "People"
 msgstr "User"
 
-#: View/People/index.ctp:50 View/People/view.ctp:47 View/Progresses/add.ctp:19
+#: View/People/index.ctp:50 View/People/view.ctp:52 View/Progresses/add.ctp:19
 #: View/Progresses/edit.ctp:20 View/Progresses/index.ctp:46
 #: View/Progresses/view.ctp:29 View/Scores/add.ctp:23 View/Scores/edit.ctp:25
 #: View/Scores/index.ctp:58 View/Scores/view.ctp:46
@@ -1375,53 +1415,53 @@ msgstr ""
 msgid "Last Name"
 msgstr ""
 
-#: View/People/view.ctp:19
-msgid "User Name"
-msgstr ""
-
 #: View/People/view.ctp:24
+msgid "Birthday"
+msgstr "Ngày sinh"
+
+#: View/People/view.ctp:29
 msgid "Date Created"
 msgstr "Ngày tạo"
 
-#: View/People/view.ctp:29
-msgid "Role"
-msgstr ""
-
 #: View/People/view.ctp:34
+msgid "Role"
+msgstr "Role"
+
+#: View/People/view.ctp:39
 msgid "Facebook"
 msgstr "Facebook"
 
-#: View/People/view.ctp:45
+#: View/People/view.ctp:50
 msgid "Delete Person"
 msgstr ""
 
-#: View/People/view.ctp:55
+#: View/People/view.ctp:60
 msgid "Related Progresses"
 msgstr ""
 
-#: View/People/view.ctp:59;92 View/Tests/view.ctp:43
+#: View/People/view.ctp:64;97 View/Tests/view.ctp:43
 msgid "Person Id"
 msgstr ""
 
-#: View/People/view.ctp:60
+#: View/People/view.ctp:65
 msgid "Sub Category Id"
 msgstr ""
 
-#: View/People/view.ctp:86 View/Tests/view.ctp:37
+#: View/People/view.ctp:91 View/Tests/view.ctp:37
 msgid "Related Scores"
 msgstr ""
 
-#: View/People/view.ctp:91 View/Tests/view.ctp:42
+#: View/People/view.ctp:96 View/Tests/view.ctp:42
 msgid "Test Id"
 msgstr ""
 
-#: View/People/view.ctp:94 View/Scores/view.ctp:24 View/Tests/view.ctp:45
+#: View/People/view.ctp:99 View/Scores/view.ctp:24 View/Tests/view.ctp:45
 msgid "Duration"
-msgstr ""
+msgstr "Thời gian làm bài"
 
-#: View/People/view.ctp:95 View/Scores/view.ctp:29 View/Tests/view.ctp:46
+#: View/People/view.ctp:100 View/Scores/view.ctp:29 View/Tests/view.ctp:46
 msgid "Time Taken"
-msgstr ""
+msgstr "Thời gian thực hiện"
 
 #: View/Progresses/add.ctp:4
 msgid "Add Progress"
@@ -1613,6 +1653,10 @@ msgstr ""
 msgid "Edit Subcategory"
 msgstr ""
 
+#: View/Subcategories/index.ctp:2
+msgid "Subcategories"
+msgstr "Các chủ đề"
+
 #: View/Subcategories/view.ctp:25
 msgid "Delete Subcategory"
 msgstr ""
@@ -1639,7 +1683,7 @@ msgstr ""
 
 #: View/Tests/index.ctp:2
 msgid "Tests"
-msgstr ""
+msgstr "Các bài kiểm tra"
 
 #: View/Tests/score.ctp:4
 msgid "Your result"
@@ -1754,6 +1798,57 @@ msgstr "Họ là bắt buộc"
 #: Model/Person.php:validation for field role
 msgid "Role is not correct, must be: {'admin', 'user', 'editor'}"
 msgstr "Vai trò không đúng, phải là: {'admin', 'user', 'editor'}"
+
+#~ msgid "Score from 90/100 to 100/100"
+#~ msgstr "Điểm từ 90/100 đến 100/100"
+
+#~ msgid "Score from 80/100 to 90/100"
+#~ msgstr "Điểm từ 80/100 đến 90/100"
+
+#~ msgid "Score from 65/100 to 80/100"
+#~ msgstr "Điểm từ 65/100 đến 80/100"
+
+#~ msgid "Score from 65/100 to 50/100"
+#~ msgstr "Điểm từ 50/100 đến 65/100"
+
+#~ msgid "Score from 35/100 to 50/100"
+#~ msgstr "Điểm từ 35/100 đến 50/100"
+
+#~ msgid "Score from 0/100 to 35/100"
+#~ msgstr "Điểm từ 0/100 đến 35/100"
+
+#~ msgid "Your status on "
+#~ msgstr "Trạng thái của bạn cho : "
+
+#~ msgid "Covered"
+#~ msgstr "Tiến độ"
+
+#~ msgid "Physics test"
+#~ msgstr "Test Vật lý"
+
+#~ msgid "Performance:"
+#~ msgstr "Điểm trung bình"
+
+#~ msgid "(latest 10 tests)."
+#~ msgstr "(trên 10 bài test gần nhất)."
+
+#~ msgid "Maths test"
+#~ msgstr "Test Toán"
+
+#~ msgid "Chemist"
+#~ msgstr "Hóa"
+
+#~ msgid "Chemist test"
+#~ msgstr "Test Hóa học"
+
+#~ msgid "Bio test"
+#~ msgstr "Test sinh học"
+
+#~ msgid "Your coverage for"
+#~ msgstr "Cover cho"
+
+#~ msgid "Your Performance"
+#~ msgstr "Điểm trung bình"
 
 #~ msgid "Oops... It looks like you have no history on this...."
 #~ msgstr "Oops... Bạn chưa có lịch sử học tập trong mục này..."

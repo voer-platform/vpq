@@ -47,3 +47,7 @@ div.filter li {
     margin-top: 3px;
     margin-right: 0;
 }
+
+.btn-test {
+    width: 150px;
+}
