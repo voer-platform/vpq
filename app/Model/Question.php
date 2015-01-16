@@ -135,12 +135,12 @@ class Question extends AppModel {
     public function processMassImport($data, $path){
         
         // patterns for split
-        $patternQuestionID         = '[{q]';
-        $patternQuestionContent = '[{c]'; 
-        $patternAttachment         = '<{t}';
-        $patternAnswers            = '([a])';
-        $patternAnswer             = '([a)';
-        $patternAnswerCorrect     = '([c)';
+        $patternQuestionID          = '[{q]';
+        $patternQuestionContent     = '[{c]'; 
+        $patternAttachment          = '<{t}';
+        $patternAnswers             = '([a])';
+        $patternAnswer              = '([a)';
+        $patternAnswerCorrect       = '([c)';
 
         // each is one question block
         $questions = explode($patternQuestionID, $data);

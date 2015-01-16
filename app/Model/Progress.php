@@ -256,8 +256,8 @@ class Progress extends AppModel {
                     'alias' => 'Category',
                     'conditions' => array(
                         'Subcategory.category_id = Category.id' 
-                    )
-                ),
+                        )
+                    ),
                 array(
                     'type' => 'inner',
                     'table' => 'subjects',
@@ -306,6 +306,14 @@ class Progress extends AppModel {
                         'Subcategory.category_id = Category.id' 
                     )
                 ),
+                array(
+                    'type' => 'inner',
+                    'table' => 'subjects',
+                    'alias' => 'Subject',
+                    'conditions' => array(
+                        'Category.subject_id = Subject.id' 
+                    )
+                ),
             ),
             'group' => array(
                 'Category.id'
@@ -315,7 +323,8 @@ class Progress extends AppModel {
                 'Progress.sum_total',
                 'Progress.date',
                 'Category.name',
-                'Category.id'
+                'Category.id',
+                'Subject.id'
             ),
             'conditions' => array(
                 'Progress.person_id = '.$person_id,
@@ -338,12 +347,31 @@ class Progress extends AppModel {
         $this->virtualFields['sum_total'] = 'SUM(Progress.total)';
 
         $results = $this->find('all',array(
+            'joins' => array(
+                array(
+                    'type' => 'inner',
+                    'table' => 'categories',
+                    'alias' => 'Category',
+                    'conditions' => array(
+                        'Subcategory.category_id = Category.id' 
+                    )
+                ),
+                array(
+                    'type' => 'inner',
+                    'table' => 'subjects',
+                    'alias' => 'Subject',
+                    'conditions' => array(
+                        'Category.subject_id = Subject.id' 
+                    )
+                ),
+            ),
             'fields' => array(
                 'Progress.sum_progress',
                 'Progress.sum_total',
                 'Progress.date',
                 'Subcategory.name',
-                'Subcategory.id'
+                'Subcategory.id',
+                'Subject.id'
             ),
             'group' => array(
                 'Subcategory.id'

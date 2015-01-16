@@ -6,9 +6,6 @@ App::import('Model', 'ScoresQuestion');
 /**
  * Score Model
  *
- * @property Test $Test
- * @property Person $Person
- * @property Question $Question
  */
 class Score extends AppModel {
 
@@ -78,7 +75,7 @@ class Score extends AppModel {
                 ));
         $this->save();
     }
-/*
+/**
  * get all user
  * @param id of user
  * @return list of score
@@ -95,7 +92,7 @@ class Score extends AppModel {
             ));
     }
 
-/*
+/**
  * get score for one subcategory
  * @param     id of user
  *            id of subcategory
@@ -188,7 +185,6 @@ class Score extends AppModel {
                     )
                 ));
             // count correct questions
-            // store correctness to scoreData for calculate progress
             $scoreData[$question] = array();
             $scoreData[$question]['answer'] = $answerId;
 
@@ -234,30 +230,58 @@ class Score extends AppModel {
  */
     public function getScoresForChart($person_id, $subject_id){
         $this->unBindModel(array ('hasAndBelongsToMany' => 'Question'));
+        $this->virtualFields['score'] = 'SUM(Score.score)';    
+        $this->virtualFields['number_questions'] = 'SUM(Test.number_questions)';
+        $this->virtualFields['date'] = 'DATE(Score.time_taken)';
+
         // specific subject
         if($subject_id != 0 ){
-             $results = $this->query(
-                'select * from scores Score
-                 join tests Test
-                   on Test.id = Score.test_id
-                 join tests_subjects TestsSubject
-                   on TestsSubject.test_id = Score.test_id
-                 where Score.person_id = '.$person_id.' '.
-                 'and TestsSubject.subject_id = '.$subject_id.' '.
-                 'order by Score.time_taken desc
-                  limit 10;');
+            $results = $this->find('all', array(
+                'joins' => array(
+                    array(
+                        'type' => 'inner',
+                        'table' => 'tests_subjects',
+                        'alias' => 'TestSubject',
+                        'conditions' => array(
+                            'TestSubject.test_id = Score.test_id'
+                        )
+                    ),
+                ),
+                'fields' => array(
+                        'Score.score',
+                        'Score.number_questions',
+                        'Score.time_taken'
+                ),
+                'conditions' => array(
+                    'TestSubject.subject_id = '.$subject_id,
+                    'Score.person_id = '.$person_id),
+                'order' => array(
+                    'Score.date desc'
+                ),
+                'group' => array(
+                    'Score.date'
+                ),
+                'limit' => 10
+            ));
         }
         // all subject
         else{
-            $results = $this->query(
-                'select * from scores Score
-                 join tests Test
-                   on Test.id = Score.test_id
-                 join tests_subjects TestsSubject
-                   on TestsSubject.test_id = Score.test_id
-                 where Score.person_id = '.$person_id.' '.
-                 'order by Score.time_taken desc
-                  limit 10;');
+            $results = $this->find('all', array(
+                'fields' => array(
+                        'Score.score',
+                        'Score.number_questions',
+                        'Score.date'
+                ),
+                'conditions' => array(
+                    'Score.person_id = '.$person_id),
+                'order' => array(
+                    'Score.date desc'
+                ),
+                'group' => array(
+                    'Score.date'
+                ),
+                'limit' => 10
+            ));
         }
         $results = array_reverse($results);
         
@@ -265,8 +289,8 @@ class Score extends AppModel {
         $json[] = array(__('Date'), __('Score'));
         if($results){
             foreach ($results as $result) {
-                $date = $this->translateDate(date('D', strtotime($result['Score']['time_taken'])));
-                $json[] = array($date, round($result['Score']['score']/$result['Test']['number_questions'], 2));
+                $date = $this->translateDate(date('D', strtotime($result['Score']['date'])));
+                $json[] = array($date, round($result['Score']['score']/$result['Score']['number_questions'], 2)*10);
             }
         }
 
@@ -320,72 +344,168 @@ class Score extends AppModel {
         // no option declared
         // return all subjects and grades
         if($grade_id == 0 && $subject_id == 0){
-            $results = $this->query(
-                'select Score.id, Score.score, Test.number_questions from scores Score
-                join tests Test
-                    on Test.id = Score.test_id
-                where Score.person_id = '.$person_id.' '.
-                'order by Score.time_taken desc
-                limit '.$tests.';');
+            $results = $this->find('all', array(
+                'fields' => array(
+                    'Score.score',
+                    'Test.number_questions'
+                    ),
+                'conditions' => array(
+                    'Score.person_id = '.$person_id),
+                'order' => array(
+                    'Score.time_taken desc'),
+                'limit' => $tests
+                ));
         }
         // if subject is given, not grade
          // return all grades, specific subject
         else if($grade_id == 0 && $subject_id != 0){
-            $results = $this->query(
-                'select Score.id, Score.score, Test.number_questions from scores Score
-                join tests Test
-                    on Test.id = Score.test_id
-                join tests_subjects TestsSubject
-                    on TestsSubject.test_id = Score.test_id
-                where Score.person_id = '.$person_id.' '.
-                    'and TestsSubject.subject_id = '.$subject_id.' '.
-                'order by Score.time_taken desc
-                limit '.$tests.';');
+            $results = $this->find('all', array(
+                'fields' => array(
+                    'Score.score',
+                    'Test.number_questions'
+                    ),
+                'joins' => array(
+                    array(
+                        'type' => 'inner',
+                        'table' => 'tests_subjects',
+                        'alias' => 'TestSubject',
+                        'conditions' => array(
+                            'TestSubject.id = Score.test_id' 
+                            )
+                        ),
+                    ),
+                'conditions' => array(
+                    'Score.person_id = '.$person_id,
+                    'TestSubject.subject_id = '.$subject_id),
+                'order' => array(
+                    'Score.time_taken desc'),
+                'limit' => $tests
+                ));
         }
         // if grade is given, not subject
         // return all grades, specific subject
         else if($grade_id != 0 && $subject_id == 0){
-            $results = $this->query(
-                'select Score.id, Score.score, Test.number_questions from scores Score
-                join tests Test
-                    on Test.id = Score.test_id
-                join scores_questions ScoresQuestion
-                    on Score.id = ScoresQuestion.score_id
-                join questions_subcategories QuestionsSubcategory
-                    on ScoresQuestion.question_id = QuestionsSubcategory.question_id
-                join subcategories Subcategory
-                    on Subcategory.id = QuestionsSubcategory.subcategory_id
-                join categories Category
-                    on Category.id = Subcategory.category_id
-                where Score.person_id = '.$person_id.' '.
-                    'and Category.grade_id = '.$grade_id.' '.
-                'group by Score.id
-                order by Score.time_taken desc
-                limit '.$tests.';');
+            $results = $this->find('all', array(
+                'fields' => array(
+                    'Score.score',
+                    'Test.number_questions'
+                    ),
+                'joins' => array(
+                    array(
+                        'type' => 'inner',
+                        'table' => 'tests_subjects',
+                        'alias' => 'TestSubject',
+                        'conditions' => array(
+                            'TestSubject.id = Score.test_id' 
+                            )
+                        ),
+                    array(
+                        'type' => 'inner',
+                        'table' => 'scores_questions',
+                        'alias' => 'ScoresQuestion',
+                        'conditions' => array(
+                            'Score.id = ScoresQuestion.score_id' 
+                            )
+                        ),
+                    array(
+                        'type' => 'inner',
+                        'table' => 'questions_subcategories',
+                        'alias' => 'QuestionsSubcategory',
+                        'conditions' => array(
+                            'ScoresQuestion.question_id = QuestionsSubcategory.question_id'
+                            )
+                        ),
+                    array(
+                        'type' => 'inner',
+                        'table' => 'subcategories',
+                        'alias' => 'QuestionsSubcategory',
+                        'conditions' => array(
+                            'Subcategory.id = QuestionsSubcategory.subcategory_id'
+                            )
+                        ),
+                    array(
+                        'type' => 'inner',
+                        'table' => 'categories',
+                        'alias' => 'Category',
+                        'conditions' => array(
+                            'Category.id = Subcategory.category_id'
+                            )
+                        ),
+                    ),
+                'conditions' => array(
+                    'Score.person_id = '.$person_id,
+                    'Category.grade_id = '.$grade_id),
+                'order' => array(
+                    'Score.time_taken desc'),
+                'limit' => $tests
+                ));
         }
         // both declared
         // given both grade and subject
         else {
-            $results = $this->query(
-                'select Score.id, Score.score, Test.number_questions from scores Score
-                join tests Test
-                    on Test.id = Score.test_id
-                join scores_questions ScoresQuestion
-                    on Score.id = ScoresQuestion.score_id
-                join questions_subcategories QuestionsSubcategory
-                    on ScoresQuestion.question_id = QuestionsSubcategory.question_id
-                join subcategories Subcategory
-                    on Subcategory.id = QuestionsSubcategory.subcategory_id
-                join categories Category
-                    on Category.id = Subcategory.category_id
-                join tests_subjects TestSubject
-                    on Test.id = TestSubject.test_id
-                where Score.person_id = '.$person_id.' '.
-                    'and Category.grade_id = '.$grade_id.' '.
-                    'and TestSubject.subject_id = '.$subject_id.' '.
-                'group by Score.id
-                order by Score.time_taken desc
-                limit '.$tests.';');
+            $results = $this->find('all', array(
+                'fields' => array(
+                    'Score.score',
+                    'Test.number_questions'
+                    ),
+                'joins' => array(
+                    array(
+                        'type' => 'inner',
+                        'table' => 'tests_subjects',
+                        'alias' => 'TestSubject',
+                        'conditions' => array(
+                            'TestSubject.id = Score.test_id' 
+                            )
+                        ),
+                    array(
+                        'type' => 'inner',
+                        'table' => 'tests_subjects',
+                        'alias' => 'TestSubject',
+                        'conditions' => array(
+                            'TestSubject.id = Score.test_id' 
+                            )
+                        ),
+                    array(
+                        'type' => 'inner',
+                        'table' => 'scores_questions',
+                        'alias' => 'ScoresQuestion',
+                        'conditions' => array(
+                            'Score.id = ScoresQuestion.score_id' 
+                            )
+                        ),
+                    array(
+                        'type' => 'inner',
+                        'table' => 'questions_subcategories',
+                        'alias' => 'QuestionsSubcategory',
+                        'conditions' => array(
+                            'ScoresQuestion.question_id = QuestionsSubcategory.question_id'
+                            )
+                        ),
+                    array(
+                        'type' => 'inner',
+                        'table' => 'subcategories',
+                        'alias' => 'QuestionsSubcategory',
+                        'conditions' => array(
+                            'Subcategory.id = QuestionsSubcategory.subcategory_id'
+                            )
+                        ),
+                    array(
+                        'type' => 'inner',
+                        'table' => 'categories',
+                        'alias' => 'Category',
+                        'conditions' => array(
+                            'Category.id = Subcategory.category_id'
+                            )
+                        ),
+                    ),
+                'conditions' => array(
+                    'Score.person_id = '.$person_id,
+                    'Category.grade_id = '.$grade_id,
+                    'TestSubject.subject_id = '.$subject_id),
+                'order' => array(
+                    'Score.time_taken desc'),
+                'limit' => $tests
+                ));
         }
         
         $score = 0;

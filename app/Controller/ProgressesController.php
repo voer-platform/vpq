@@ -130,12 +130,17 @@ class ProgressesController extends AppController {
             $type = $this->params->query['type'];
             $user_id = $this->Session->read('Auth.User')['id'];
             switch ($type) {
+                // load all subcategory
+                case 0:
+                    $results = $this->Progress->getProgresses($this->Session->read('Auth.User')['id']);
+                    $this->set('progresses', $results);             
+                    $this->set('type', 'all');
+                    break;
             	// category
             	case 1:
 					$results = $this->Progress->progressOnSubject($user_id);
 					$this->set('progresses', $results);            	
             		$this->set('type', 'subject');
-            		$this->header('Content-Type: application/json');
             		break;
             	// subcategory
             	case 2:
