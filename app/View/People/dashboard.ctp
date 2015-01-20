@@ -39,11 +39,24 @@
         <center>
             <?php echo $this->Html->link(__("Test"), array("controller" => "tests", "action" => "chooseTest", 2), array("class" => "btn btn-lg btn-primary")) ?>
         </center>
-        <label><?php echo __("Your Performance chart"); ?></label>
-        <center>
-            <div id = 'chart'>
+        
+        <div class='row dashboard-chart-score'>
+            <div class='col-lg-3'>
+                <div class='score-container'>
+                    <div class='title' id='title-overall'><?php echo __('Score'); ?></div>                    
+                    <div class='score' id='score-overall'><?php $score = round($scores[0]/$scores[1], 2)*10; echo $score; ?></div>
+                    <div class='description' id='descripion-overall'><?php echo __('Your overall score on all subject. Calculated on latest 10 tests.'); ?></div>
+                </div>
+                <div class='chart-description pull-right'>
+                    <?php echo __('* Score on chart shows average score latest 10 tests.'); ?>
+                </div>
+            </div>    
+            <div class='col-lg-9'>
+                <label for='chart'><?php echo __("Your Performance chart"); ?></label>
+                <div id ='chart'></div>
             </div>
-        </center>
+        </div> 
+        
         <hr/>
         <div class='row'>
             <ol class="breadcrumb" id="breadcrumb-list">
@@ -55,20 +68,11 @@
                 <!-- <label for=""><?php echo __('Grades'); ?></label> -->
                 <ul class="list-unstyled">
                     <li><button class='progess-table btn btn-sm btn-primary btn-test' id='load-all-progress' type='0'><?php echo __('Load All'); ?></button></li>
-                    <li><input type="checkbox" name="checkbox-grade-10" id="checkbox-grade-10" value="1" class="checkbox-grade"/><label for="checkbox-grade-10"><?php echo __('Grade').' '.'10'; ?></label></li>
-                    <li><input type="checkbox" name="checkbox-grade-11" id="checkbox-grade-11" value="2" class="checkbox-grade"/><label for="checkbox-grade-11"><?php echo __('Grade').' '.'11'; ?></label></li>
-                    <li><input type="checkbox" name="checkbox-grade-12" id="checkbox-grade-12" value="3" class="checkbox-grade"/><label for="checkbox-grade-12"><?php echo __('Grade').' '.'12'; ?></label></li>
+                    <li><input type="checkbox" name="checkbox-grade-10" id="checkbox-grade-10" value="1" class="checkbox-grade" grade='1' /><label for="checkbox-grade-10"><?php echo __('Grade').' '.'10'; ?></label></li>
+                    <li><input type="checkbox" name="checkbox-grade-11" id="checkbox-grade-11" value="2" class="checkbox-grade" grade='2' /><label for="checkbox-grade-11"><?php echo __('Grade').' '.'11'; ?></label></li>
+                    <li><input type="checkbox" name="checkbox-grade-12" id="checkbox-grade-12" value="3" class="checkbox-grade" grade='3' /><label for="checkbox-grade-12"><?php echo __('Grade').' '.'12'; ?></label></li>
                 </ul>
             </div>
-            <!-- <div class="well well-sm">
-                <label for=""><?php echo __('Subjects') ?></label>
-                <ul class="list-unstyled">
-                    <li><input type="checkbox" name="checkbox-subject-maths" id="checkbox-subject-maths" value="1" class="checkbox-subject"/><label for="checkbox-subject-maths"><?php echo __('Maths'); ?></label></li>
-                    <li><input type="checkbox" name="checkbox-subject-physics" id="checkbox-subject-physics" value="2" class="checkbox-subject"/><label for="checkbox-subject-physics"><?php echo __('Physics'); ?></label></li>
-                    <li><input type="checkbox" name="checkbox-subject-chemists" id="checkbox-subject-chemists" value="3" class="checkbox-subject"/><label for="checkbox-subject-chemists"><?php echo __('Chemists'); ?></label></li>
-                    <li><input type="checkbox" name="checkbox-subject-biology" id="checkbox-subject-biology" value="4" class="checkbox-subject"/><label for="checkbox-subject-biology"><?php echo __('Biology'); ?></label></li>
-                </ul>
-            </div> -->
             <div id ='dashboard-table'>
                 <?php echo $this->element('progress_subject'); ?>                   
             </div>
@@ -79,105 +83,65 @@
 
 <script type="text/javascript">
     /**
-     * Ajax data on table
-     */
-    // listener
-    $(".checkbox-subject").each(function()
-    {
-        $(this).change(function()
-        {
-            $(".checkbox-subject").attr('checked',false);
-            $(this).attr('checked',true);
-            currentSubject = this.value;
-            console.log(currentSubject, currentGrade);
-            ajaxLoadChange(currentSubject, currentGrade);
-            drawChart();
-        });
-    });
-    
-    // $(".checkbox-grade").each(function()
-    // {
-    //     $(this).change(function()
-    //     {
-    //         $(".checkbox-grade").attr('checked',false);
-    //         $(this).attr('checked',true);
-    //         currentGrade = this.value;
-    //         console.log(currentSubject, currentGrade);
-    //         ajaxLoadChange(currentSubject, currentGrade);
-    //         drawChart();
-    //     });
-    // });
-
-    // ajax load
-    // whenever user change options, call ajax and change content
-    // finally, redraw and apply changes
-    function ajaxLoadChange(subject, grade){
-        var URL1 = "<?php echo Router::url(array('controller'=>'scores','action'=>'ajaxOverall'));?>";
-        var URL2 = "<?php echo Router::url(array('controller'=>'questions','action'=>'ajaxCover'));?>";
-        // get chart data from ajax call
-        $.ajax({
-            type: 'POST',
-            url : URL1,
-            async : false,
-            data: {
-                'subject'  : subject,
-                'grade' : grade
-            },
-            success : function (msg) {
-                if(msg != ''){
-                    var data = JSON.parse(msg);
-                    rating = ajaxData;
-                }
-                else {
-                    ajaxData = [];
-                }
-            }
-        });
-        // get chart data from ajax call
-        $.ajax({
-            type: 'POST',
-            url : URL2,
-            async : false,
-            data: {
-                'subject'  : subject,
-                'grade' : grade
-            },
-            success : function (msg) {
-                if(msg != ''){
-                    var data = JSON.parse(msg);
-                    cover = ajaxData;
-                }
-                else {
-                    ajaxData = [];
-                }
-            }
-        });
-    }
-
-    /**
      * get data from ajax for table
      */
     var currentSubject      = null;
     var currentSubjectID    = null
     var currentCategory     = null;
     var currentCategoryID   = null;
+    var curerentLoadAll     = false;
+    var currentChecked      = [];
+
+    /**
+     * Filters
+     */
+
+    $('.checkbox-grade').change(function(){
+        console.log('change');
+        currentChecked = [];
+        $('.checkbox-grade:checkbox:checked').each(function(){
+            currentChecked[currentChecked.length] = $(this).attr('grade');
+        });
+
+        if(currentChecked.length == 0){
+            currentChecked = null;
+        }
+        else {
+            currentChecked = currentChecked.join();
+        }
+
+        ajaxLoad(currentSubjectID, currentChecked, currentCategoryID);
+    });
+
+    /**
+     * Tables
+     */ 
 
     function tableClick(){
         var type = parseInt($(this).attr('type'));
         // subject
         if(type == 0){
-            ajaxTable(0);
             currentSubject      = null;
             currentSubjectID    = null;
             currentCategory     = null;
             currentCategoryID   = null;
 
-            // chart
+            // ajax
+            ajaxLoad(currentSubjectID, currentChecked.join(), currentCategoryID);
 
             // breadcrumb
             $('#breadcrumb-list').html("<li class='active'><?php echo __('Subjects'); ?></li>");
-            $('#load-all-progress').attr('type', '1');
-            $('#load-all-progress').text("<?php echo __('Load Subjects'); ?>");
+            console.log('before' + curerentLoadAll);
+            if(curerentLoadAll == false){
+                ajaxTable(0);
+                $('#load-all-progress').text("<?php echo __('Load Subjects'); ?>");
+                curerentLoadAll = true;
+            }
+            else if(curerentLoadAll == true){
+                ajaxTable(1);
+                $('#load-all-progress').text("<?php echo __('Load All'); ?>");
+                curerentLoadAll = false;
+            }
         }
         else if(type == 1){
             currentSubject      = null;
@@ -188,7 +152,8 @@
             // breadcrumb
             $('#breadcrumb-list').html("<li class='active'><?php echo __('Subjects'); ?></li>");
 
-            // chart
+            // ajax
+            ajaxLoad(currentSubjectID, currentChecked.join(), currentCategoryID);
 
             // table
             ajaxTable(1);
@@ -205,7 +170,8 @@
                 "<li><a href='javascript:void(0);' class='breadcrumb-link' type='1'><?php echo __('Subjects'); ?></a></li>" + 
                 "<li class='active'>" + currentSubject + "</li>");
 
-            // chart
+            // ajax
+            ajaxLoad(currentSubjectID, currentChecked.join(), currentCategoryID);
 
             // table
             ajaxTable(2, $(this).attr('subject'));
@@ -221,7 +187,8 @@
                 "<li><a href='javascript:void(0);' class='breadcrumb-link' type='2' subject="+currentSubjectID+">" + currentSubject + "</a></li>" + 
                 "<li class='active'>"+ currentCategory + "</li>");
 
-            // chart
+            // ajax
+            ajaxLoad(currentSubjectID, currentChecked.join(), currentCategoryID);
 
             // table
             ajaxTable(3, $(this).attr('category'));
@@ -256,9 +223,7 @@
 <script type="text/javascript">
     /**
      * Ajax on chart data
-     *
      */
-    var ajaxData        = null;
     var chart           = null;
     var currentGrade    = 0;                //current grade, 0 = all
     // var currentSubject = 0;              // current subject, 0 = all
@@ -273,41 +238,40 @@
 
     // load data for draw chart and draw
     function loadAndDraw(){
-        ajaxLoad(0);
+        console.log('call load ajax');
+        ajaxLoad();
     }
 
-    function ajaxLoad(subject_id){
+    function ajaxLoad(subjectID, gradeID, categoryID){
+        console.log('gradeID : ' + gradeID);
+        console.log(gradeID);
+
         // load chart data by ajax
-        var URL = "<?php echo Router::url(array('controller'=>'scores','action'=>'performanceDetails'));?>"
+        var URL = "<?php echo Router::url(array('controller'=>'scores','action'=>'ajaxCallHandler'));?>"
         // get chart data from ajax call
         $.ajax({
             type: 'POST',
             url : URL,
             data: {
-                'chartType' : 'ggChart',
-                'subject'  : subject_id,
-                // 'grade' : grade_id
+                'subject'   : subjectID,
+                'gradeID'   : gradeID,
+                'categorydID' : categoryID
             },
             success : function (msg) {
                 if(msg != ''){
-                    ajaxData = JSON.parse(msg);
+                    var jsonData = JSON.parse(msg);
 
-                    // if empty, create a fake object, to void fault
-                    if( ajaxData.length == 1){
-                        ajaxData.push([0,0]);
-                    }
-                    drawChart();
-                }
-                else {
-                    ajaxData = [];
+                    drawChart(jsonData.chart);
+
+                    $('#score-overall').text(jsonData.score);
                 }
             }
         });
     }
 
     // draw the data
-    function drawChart(){
-        var data = google.visualization.arrayToDataTable(ajaxData);
+    function drawChart(inputData){
+        var data = google.visualization.arrayToDataTable(inputData);
 
         var options = {
             title : '',

@@ -251,7 +251,7 @@ class Progress extends AppModel {
         $results = $this->find('all',array(
             'joins' => array(
                 array(
-                    'type' => 'inner',
+                    'type' => 'LEFT',
                     'table' => 'categories',
                     'alias' => 'Category',
                     'conditions' => array(
@@ -259,7 +259,7 @@ class Progress extends AppModel {
                         )
                     ),
                 array(
-                    'type' => 'inner',
+                    'type' => 'LEFT',
                     'table' => 'subjects',
                     'alias' => 'Subject',
                     'conditions' => array(
@@ -299,7 +299,7 @@ class Progress extends AppModel {
         $results = $this->find('all',array(
             'joins' => array(
                 array(
-                    'type' => 'inner',
+                    'type' => 'LEFT',
                     'table' => 'categories',
                     'alias' => 'Category',
                     'conditions' => array(
@@ -307,7 +307,7 @@ class Progress extends AppModel {
                     )
                 ),
                 array(
-                    'type' => 'inner',
+                    'type' => 'LEFT',
                     'table' => 'subjects',
                     'alias' => 'Subject',
                     'conditions' => array(
@@ -349,7 +349,7 @@ class Progress extends AppModel {
         $results = $this->find('all',array(
             'joins' => array(
                 array(
-                    'type' => 'inner',
+                    'type' => 'LEFT',
                     'table' => 'categories',
                     'alias' => 'Category',
                     'conditions' => array(
@@ -357,7 +357,7 @@ class Progress extends AppModel {
                     )
                 ),
                 array(
-                    'type' => 'inner',
+                    'type' => 'LEFT',
                     'table' => 'subjects',
                     'alias' => 'Subject',
                     'conditions' => array(

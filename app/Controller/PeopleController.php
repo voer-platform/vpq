@@ -259,7 +259,6 @@ class PeopleController extends AppController {
         $this->set('progresses', $progresses);
         $this->set('scores', $scores);
         $this->set('cover', $cover);
-
     }
 
 /**

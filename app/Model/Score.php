@@ -239,7 +239,7 @@ class Score extends AppModel {
             $results = $this->find('all', array(
                 'joins' => array(
                     array(
-                        'type' => 'inner',
+                        'type' => 'LEFT',
                         'table' => 'tests_subjects',
                         'alias' => 'TestSubject',
                         'conditions' => array(
@@ -249,8 +249,8 @@ class Score extends AppModel {
                 ),
                 'fields' => array(
                         'Score.score',
-                        'Score.number_questions',
-                        'Score.time_taken'
+                        'Test.number_questions',
+                        'Score.date'
                 ),
                 'conditions' => array(
                     'TestSubject.subject_id = '.$subject_id,
@@ -269,7 +269,7 @@ class Score extends AppModel {
             $results = $this->find('all', array(
                 'fields' => array(
                         'Score.score',
-                        'Score.number_questions',
+                        'Test.number_questions',
                         'Score.date'
                 ),
                 'conditions' => array(
@@ -286,7 +286,7 @@ class Score extends AppModel {
         $results = array_reverse($results);
         
         $json = array();
-        $json[] = array(__('Date'), __('Score'));
+        $json[] = array(__('Date'), __('Physics'));
         if($results){
             foreach ($results as $result) {
                 $date = $this->translateDate(date('D', strtotime($result['Score']['date'])));
@@ -366,7 +366,7 @@ class Score extends AppModel {
                     ),
                 'joins' => array(
                     array(
-                        'type' => 'inner',
+                        'type' => 'LEFT',
                         'table' => 'tests_subjects',
                         'alias' => 'TestSubject',
                         'conditions' => array(
@@ -392,7 +392,7 @@ class Score extends AppModel {
                     ),
                 'joins' => array(
                     array(
-                        'type' => 'inner',
+                        'type' => 'LEFT',
                         'table' => 'tests_subjects',
                         'alias' => 'TestSubject',
                         'conditions' => array(
@@ -400,7 +400,7 @@ class Score extends AppModel {
                             )
                         ),
                     array(
-                        'type' => 'inner',
+                        'type' => 'LEFT',
                         'table' => 'scores_questions',
                         'alias' => 'ScoresQuestion',
                         'conditions' => array(
@@ -408,7 +408,7 @@ class Score extends AppModel {
                             )
                         ),
                     array(
-                        'type' => 'inner',
+                        'type' => 'LEFT',
                         'table' => 'questions_subcategories',
                         'alias' => 'QuestionsSubcategory',
                         'conditions' => array(
@@ -416,7 +416,7 @@ class Score extends AppModel {
                             )
                         ),
                     array(
-                        'type' => 'inner',
+                        'type' => 'LEFT',
                         'table' => 'subcategories',
                         'alias' => 'QuestionsSubcategory',
                         'conditions' => array(
@@ -424,7 +424,7 @@ class Score extends AppModel {
                             )
                         ),
                     array(
-                        'type' => 'inner',
+                        'type' => 'LEFT',
                         'table' => 'categories',
                         'alias' => 'Category',
                         'conditions' => array(
@@ -450,7 +450,7 @@ class Score extends AppModel {
                     ),
                 'joins' => array(
                     array(
-                        'type' => 'inner',
+                        'type' => 'LEFT',
                         'table' => 'tests_subjects',
                         'alias' => 'TestSubject',
                         'conditions' => array(
@@ -458,7 +458,7 @@ class Score extends AppModel {
                             )
                         ),
                     array(
-                        'type' => 'inner',
+                        'type' => 'LEFT',
                         'table' => 'tests_subjects',
                         'alias' => 'TestSubject',
                         'conditions' => array(
@@ -466,7 +466,7 @@ class Score extends AppModel {
                             )
                         ),
                     array(
-                        'type' => 'inner',
+                        'type' => 'LEFT',
                         'table' => 'scores_questions',
                         'alias' => 'ScoresQuestion',
                         'conditions' => array(
@@ -474,7 +474,7 @@ class Score extends AppModel {
                             )
                         ),
                     array(
-                        'type' => 'inner',
+                        'type' => 'LEFT',
                         'table' => 'questions_subcategories',
                         'alias' => 'QuestionsSubcategory',
                         'conditions' => array(
@@ -482,7 +482,7 @@ class Score extends AppModel {
                             )
                         ),
                     array(
-                        'type' => 'inner',
+                        'type' => 'LEFT',
                         'table' => 'subcategories',
                         'alias' => 'QuestionsSubcategory',
                         'conditions' => array(
@@ -490,7 +490,7 @@ class Score extends AppModel {
                             )
                         ),
                     array(
-                        'type' => 'inner',
+                        'type' => 'LEFT',
                         'table' => 'categories',
                         'alias' => 'Category',
                         'conditions' => array(
@@ -526,8 +526,125 @@ class Score extends AppModel {
  * @param:  id of user
  *          grade
  *          subject
- * @return: array of [correct, total]
- *          array of []
+ *          category
+ * @return: array of score[correct, total]
+ *          array of chart[score, date]
  */
+    public function ajaxCall($person_id, $subject_id = null, $grade_id = null, $category_id = null){
+        $this->virtualFields['sum_score'] = 'SUM(Score.score)';    
+        $this->virtualFields['sum_number_questions'] = 'SUM(Test.number_questions)';
+        $this->virtualFields['date'] = 'DATE(Score.time_taken)';
+
+        $options = array(
+            'joins' => array(
+                array(
+                    'type' => 'LEFT',
+                    'table' => 'scores_questions',
+                    'alias' => 'ScoresQuestion',
+                    'conditions' => array(
+                        'ScoresQuestion.score_id = Score.id' 
+                        )
+                    )
+            ),
+            'fields' => array(
+                'Score.sum_score',
+                'Score.sum_number_questions',
+                'Score.date'
+                ),
+            'conditions' => array(
+                'Score.person_id = '.$person_id),
+            'order' => array(
+                'Score.date desc'
+                ),
+            'group' => array(
+                'Score.date'
+                ),
+            'limit' => 10
+            );
+
+        if(!is_null($subject_id)){
+            $options['joins'][] = array(
+                'type' => 'LEFT',
+                'table' => 'tests_subjects',
+                'alias' => 'TestSubject',
+                'conditions' => array(
+                    'TestSubject.id = Score.test_id' 
+                    )
+                );
+            $options['conditions']['TestSubject.subject_id'] = $subject_id;  
+        }
+
+        if(!is_null($grade_id) || !is_null($category_id)){
+            $options['joins'][] = array(
+                'type' => 'LEFT',
+                'table' => 'questions_subcategories',
+                'alias' => 'QuestionsSubcategory',
+                'conditions' => array(
+                    'ScoresQuestion.question_id = QuestionsSubcategory.question_id' 
+                    )
+                );
+            $options['joins'][] = array(
+                'type' => 'LEFT',
+                'table' => 'subcategories',
+                'alias' => 'Subcategory',
+                'conditions' => array(
+                    'QuestionsSubcategory.subcategory_id = Subcategory.id' 
+                    )
+                );
+            $options['joins'][] = array(
+                'type' => 'LEFT',
+                'table' => 'categories',
+                'alias' => 'Category',
+                'conditions' => array(
+                    'Category.id = Subcategory.category_id' 
+                    )
+                );
+            if(!is_null($grade_id)){
+                if(is_array($grade_id)){
+                    $options['conditions']['Category.grade_id in'] = explode(',', $grade_id);
+                }
+                else{
+                    $options['conditions']['Category.grade_id'] = explode(',', $grade_id);
+                }
+            } 
+            if(!is_null($category_id)){
+                $options['conditions']['Category.id '] = $category_id;
+            }
+        }
+
+        // scores for chart
+        $charts = $this->find('all', $options);
+
+        $results['chart'] = array();
+        $score = 0;
+        $total = 0;
+
+        // iterate, get chart lines
+        $results['chart'][] = array(__('Date'), __('Score'));
+        if($charts){
+            foreach ($charts as $chart) {
+                $score  += (int)$chart['Score']['sum_score'];
+                $total  += (int)$chart['Score']['sum_number_questions'];
+                $date    = $this->translateDate(date('D', strtotime($chart['Score']['date'])));
+                $results['chart'][] = array($date, round($chart['Score']['sum_score']/$chart['Score']['sum_number_questions'], 3)*10);
+            }
+        }
+        else{
+            $results['chart'][] = array('0', 0);
+        }
+
+        // calculate score
+        if($total != 0)
+            $results['score'] = round($score/$total, 3)*10;
+        else
+            $results['score'] = 0.0;
+
+        $dbo = $this->getDatasource();
+        $logs = $dbo->getLog();
+        $lastLog = end($logs['log']);
+        $results['query'] = $lastLog['query'];
+
+        return ($results);        
+    }
 
 }

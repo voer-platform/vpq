@@ -132,7 +132,7 @@ class ScoresController extends AppController {
  */
 	public function viewDetails($id){
         $this->layout = 'test';
-        $this->set('title_for_layout', __('Testing'));
+        $this->set('title_for_layout', __('Test result'));
 
 		$this->loadModel('ScoresQuestion');
 
@@ -190,16 +190,21 @@ class ScoresController extends AppController {
         $this->autoRender = false;
         
         if( $this->request->is('POST')){
-            if(isset($_POST['subject']) && isset($_POST['grade'])){
-                $grade_id = $this->request->data['grade'];
-                $subject_id = $this->request->data['subject'];
-                $user = $this->Session->read('Auth.User');
-                $result = $this->ajaxCall($user['id'], $grade_id, $subject_id);
-                echo json_encode($result);
-            }
+            $subject_id = isset($this->request->data['subjectID']) ? $this->request->data['subjectID'] : null;
+            $grade_id = isset($this->request->data['gradeID']) || $this->request->data == '' ? $this->request->data['gradeID'] : null;
+            $category_id = isset($this->request->data['categoryID']) ? $this->request->data['categoryID'] : null;
+            $user = $this->Session->read('Auth.User');
+            $result = $this->Score->ajaxCall($user['id'], $subject_id, $grade_id, $category_id);
+
+            // echo json_encode(array($subject_id, $grade_id, $category_id));
+
+            $this->header('Content-Type: application/json');
+            echo json_encode($result);
         }
         else {
-            $this->redirect('/');
+            $this->header('Content-Type: application/json');
+            echo json_encode(array(
+                'messsage' => 'error in query message'));
         }
 	}
 

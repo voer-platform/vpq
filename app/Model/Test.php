@@ -99,7 +99,7 @@ class Test extends AppModel {
                     'conditions' => array('Subcategory.subcategory_id' => $categories),
                     'joins'=>array(
                         array(
-                            'type'=>'inner',
+                            'type'=>'LEFT',
                             'table'=>'questions_subcategories',
                             'alias'=>'Subcategory',
                             'conditions'=>array(
