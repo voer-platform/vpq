@@ -6,7 +6,7 @@
                 <fieldset>
                     <div class="question">
                         <div class="title"><?php echo "<b>", 'Câu ', $index+1, ":</b>  "; ?></div>
-                        <div class="question-content"><?php echo html_entity_decode($questionsData[$index]['Question']['content']); ?></div><?php echo $questionsData[$index]['Question']['id']; ?>
+                        <div class="question-content"><?php echo html_entity_decode($questionsData[$index]['Question']['content']); ?></div>
                     </div>
                     <div class="btn-group answer" data-toggle="buttons">
                         <?php foreach($questionsData[$index]['Answer'] as $answerId => $answer): ?>
