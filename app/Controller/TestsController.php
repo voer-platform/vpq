@@ -176,8 +176,10 @@ class TestsController extends AppController {
             'conditions' => array($this->Tracking->primaryKey => $user['id']));
         $tracking = $this->Tracking->find('first', $options);
 
-        if ($tracking['Tracking']['grade'] >= 10 && $tracking['Tracking']['grade'] <= 12){
-            $gradeUser = $tracking['Tracking']['grade'];
+        if (isset($tracking['Tracking'])){
+            if ($tracking['Tracking']['grade'] >= 10 && $tracking['Tracking']['grade'] <= 12){
+                $gradeUser = $tracking['Tracking']['grade'];
+            }            
         }
         // pr($tracking);       
 
