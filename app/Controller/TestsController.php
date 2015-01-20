@@ -8,7 +8,7 @@ App::uses('AppController', 'Controller');
  */
 class TestsController extends AppController {
 
-    public $uses = array('Test', 'Grade', 'Category', 'Subcategory');
+    public $uses = array('Test', 'Grade', 'Category', 'Subcategory', 'Tracking');
     /*
      * authorization
      *
@@ -170,6 +170,17 @@ class TestsController extends AppController {
             $gradeUser = $current_year - $year - 5; //Du doan lop hoc theo tuoi 
 
         }
+
+        $options = array(
+            'recursive' => 0,
+            'conditions' => array($this->Tracking->primaryKey => $user['id']));
+        $tracking = $this->Tracking->find('first', $options);
+
+        if ($tracking['Tracking']['grade'] >= 10 && $tracking['Tracking']['grade'] <= 12){
+            $gradeUser = $tracking['Tracking']['grade'];
+        }
+        // pr($tracking);       
+
         $this->set('gradeUser', $gradeUser);
     }
 
@@ -218,6 +229,15 @@ class TestsController extends AppController {
                 $this->set('testID', $testID);
                 $this->set('duration', $timeLimit);
                 $this->set('numberOfQuestions', $numberOfQuestions);
+                // Save data user
+                $user = $this->Session->read('Auth.User');
+                $this->Tracking->id = $user['id'];
+                $this->Tracking->save(array(
+                    'person_id' => $user['id'],
+                    'grade' => $this->request->data['level'],
+                    'subcategory' => $this->request->data['categories']
+                    ));
+
             }else{
                 // warn that no data found
                 $this->Session->setFlash(__('No data found'));

@@ -58,6 +58,8 @@ function doTest(t){
                     return $(this).attr('rel');
                 }).get().join(',');
     $('#categories').val($str);
+    var grade = $("input:radio[name=selectGrade]:checked").attr('tag');
+    $('#level').val(grade);
     $("#preDoTest").attr("action", "/Tests/doTest/" + t + "/" + $subject + "/");
     // alert($str);
     $('#preDoTest').submit();
