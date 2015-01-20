@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-01-16 20:14+0700\n"
+"POT-Creation-Date: 2015-01-20 17:06+0700\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -196,24 +196,24 @@ msgstr ""
 msgid "Dashboard"
 msgstr ""
 
-#: Controller/PeopleController.php:269
+#: Controller/PeopleController.php:268
 #: Controller/SubcategoriesController.php:144
 #: View/Elements/menu.ctp:20
 msgid "History"
 msgstr ""
 
-#: Controller/PeopleController.php:280
+#: Controller/PeopleController.php:279
 msgid "Suggestion"
 msgstr ""
 
-#: Controller/PeopleController.php:287
+#: Controller/PeopleController.php:286
 #: View/Elements/menu.ctp:21
 #: View/People/view.ctp:66
 #: View/Progresses/view.ctp:2;14
 msgid "Progress"
 msgstr ""
 
-#: Controller/PeopleController.php:298
+#: Controller/PeopleController.php:297
 msgid "Cover details"
 msgstr ""
 
@@ -290,8 +290,7 @@ msgid "The score could not be deleted. Please, try again."
 msgstr ""
 
 #: Controller/ScoresController.php:135
-#: Controller/TestsController.php:187
-msgid "Testing"
+msgid "Test result"
 msgstr ""
 
 #: Controller/ScoresQuestionsController.php:50;85;113
@@ -375,6 +374,10 @@ msgstr ""
 msgid "Choose test"
 msgstr ""
 
+#: Controller/TestsController.php:187
+msgid "Testing"
+msgstr ""
+
 #: Controller/TestsController.php:223
 msgid "No data found"
 msgstr ""
@@ -419,21 +422,12 @@ msgstr ""
 msgid "The tests subject could not be deleted. Please, try again."
 msgstr ""
 
-#: Model/Score.php:289
+#: Model/Score.php:289;623
 msgid "Date"
 msgstr ""
 
 #: Model/Score.php:289
-#: View/Elements/progress_all.ctp:4
-#: View/Elements/progress_category.ctp:4
-#: View/Elements/progress_subcategory.ctp:4
-#: View/Elements/progress_subject.ctp:4
-#: View/Elements/table_score.ctp:4
-#: View/People/view.ctp:98
-#: View/Scores/view.ctp:2;19
-#: View/ScoresQuestions/view.ctp:9
-#: View/Tests/view.ctp:44
-msgid "Score"
+msgid "Physics"
 msgstr ""
 
 #: Model/Score.php:307
@@ -466,6 +460,20 @@ msgstr ""
 
 #: Model/Score.php:329
 msgid "None"
+msgstr ""
+
+#: Model/Score.php:623
+#: View/Elements/progress_all.ctp:4
+#: View/Elements/progress_category.ctp:4
+#: View/Elements/progress_subcategory.ctp:4
+#: View/Elements/progress_subject.ctp:4
+#: View/Elements/table_score.ctp:4
+#: View/People/dashboard.ctp:46
+#: View/People/view.ctp:98
+#: View/Scores/view.ctp:2;19
+#: View/ScoresQuestions/view.ctp:9
+#: View/Tests/view.ctp:44
+msgid "Score"
 msgstr ""
 
 #: View/Admin/index.ctp:8
@@ -1289,7 +1297,7 @@ msgstr ""
 
 #: View/Elements/do_test.ctp:62
 #: View/Elements/score_view.ctp:61
-#: View/People/dashboard.ctp:39
+#: View/People/dashboard.ctp:40
 #: View/Scores/view.ctp:9
 #: View/Tests/choose_test.ctp:11
 #: View/Tests/view.ctp:2
@@ -1422,7 +1430,7 @@ msgid "Edit Grade"
 msgstr ""
 
 #: View/Grades/index.ctp:2
-#: View/People/dashboard.ctp:53
+#: View/People/dashboard.ctp:68
 msgid "Grades"
 msgstr ""
 
@@ -1437,7 +1445,7 @@ msgstr ""
 
 #: View/Grades/view.ctp:2
 #: View/Helper/NameHelper.php:53
-#: View/People/dashboard.ctp:56;57;58
+#: View/People/dashboard.ctp:71;72;73
 #: View/People/view.ctp:19
 #: View/Tests/choose_test.ctp:14;19
 msgid "Grade"
@@ -1623,35 +1631,27 @@ msgstr ""
 msgid "Time range"
 msgstr ""
 
-#: View/People/dashboard.ctp:40
-msgid "Your Performance chart"
+#: View/People/dashboard.ctp:48
+msgid "Your overall score on all subject. Calculated on latest 10 tests."
 msgstr ""
 
-#: View/People/dashboard.ctp:48;62;176;187;203;218
-msgid "Subjects"
+#: View/People/dashboard.ctp:51
+msgid "* Score on chart shows average score latest 10 tests."
 msgstr ""
 
 #: View/People/dashboard.ctp:55
+msgid "Your Performance chart"
+msgstr ""
+
+#: View/People/dashboard.ctp:63;133;153;170;186
+msgid "Subjects"
+msgstr ""
+
+#: View/People/dashboard.ctp:70;142
 msgid "Load All"
 msgstr ""
 
-#: View/People/dashboard.ctp:64
-msgid "Maths"
-msgstr ""
-
-#: View/People/dashboard.ctp:65
-msgid "Physics"
-msgstr ""
-
-#: View/People/dashboard.ctp:66
-msgid "Chemists"
-msgstr ""
-
-#: View/People/dashboard.ctp:67
-msgid "Biology"
-msgstr ""
-
-#: View/People/dashboard.ctp:178
+#: View/People/dashboard.ctp:137
 msgid "Load Subjects"
 msgstr ""
 

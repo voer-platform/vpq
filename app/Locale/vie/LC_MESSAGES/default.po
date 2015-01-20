@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-01-16 20:14+0700\n"
-"PO-Revision-Date: 2015-01-16 20:15+0700\n"
+"POT-Creation-Date: 2015-01-20 17:06+0700\n"
+"PO-Revision-Date: 2015-01-20 17:10+0700\n"
 "Last-Translator: Viet Vu <vietvudanh@gmail.com>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "Language: vi\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 1.7.1\n"
+"X-Generator: Poedit 1.7.3\n"
 
 #: Config/elfinder.php:4
 msgid "Elfinder File Manager"
@@ -190,21 +190,21 @@ msgstr "Không thể đăng nhập. Xin hay thử lại!"
 msgid "Dashboard"
 msgstr "Trang cá nhân"
 
-#: Controller/PeopleController.php:269
+#: Controller/PeopleController.php:268
 #: Controller/SubcategoriesController.php:144 View/Elements/menu.ctp:20
 msgid "History"
 msgstr "Lịch sử"
 
-#: Controller/PeopleController.php:280
+#: Controller/PeopleController.php:279
 msgid "Suggestion"
 msgstr "Gợi ý"
 
-#: Controller/PeopleController.php:287 View/Elements/menu.ctp:21
+#: Controller/PeopleController.php:286 View/Elements/menu.ctp:21
 #: View/People/view.ctp:66 View/Progresses/view.ctp:2;14
 msgid "Progress"
 msgstr "Tiến độ"
 
-#: Controller/PeopleController.php:298
+#: Controller/PeopleController.php:297
 msgid "Cover details"
 msgstr "Chi tiết môn học"
 
@@ -280,9 +280,9 @@ msgstr ""
 msgid "The score could not be deleted. Please, try again."
 msgstr ""
 
-#: Controller/ScoresController.php:135 Controller/TestsController.php:187
-msgid "Testing"
-msgstr "Đang kiểm tra"
+#: Controller/ScoresController.php:135
+msgid "Test result"
+msgstr ""
 
 #: Controller/ScoresQuestionsController.php:50;85;113
 msgid "Invalid scores question"
@@ -364,6 +364,10 @@ msgstr ""
 msgid "Choose test"
 msgstr "Chọn bài kiểm tra"
 
+#: Controller/TestsController.php:187
+msgid "Testing"
+msgstr "Đang kiểm tra"
+
 #: Controller/TestsController.php:223
 msgid "No data found"
 msgstr "Không tìm thấy dữ liệu"
@@ -408,18 +412,13 @@ msgstr ""
 msgid "The tests subject could not be deleted. Please, try again."
 msgstr ""
 
-#: Model/Score.php:289
+#: Model/Score.php:289;623
 msgid "Date"
 msgstr "Thời gian"
 
-#: Model/Score.php:289 View/Elements/progress_all.ctp:4
-#: View/Elements/progress_category.ctp:4
-#: View/Elements/progress_subcategory.ctp:4
-#: View/Elements/progress_subject.ctp:4 View/Elements/table_score.ctp:4
-#: View/People/view.ctp:98 View/Scores/view.ctp:2;19
-#: View/ScoresQuestions/view.ctp:9 View/Tests/view.ctp:44
-msgid "Score"
-msgstr "Điểm"
+#: Model/Score.php:289
+msgid "Physics"
+msgstr "Vật lý"
 
 #: Model/Score.php:307
 msgid "Sunday"
@@ -452,6 +451,16 @@ msgstr "T7"
 #: Model/Score.php:329
 msgid "None"
 msgstr "Không có"
+
+#: Model/Score.php:623 View/Elements/progress_all.ctp:4
+#: View/Elements/progress_category.ctp:4
+#: View/Elements/progress_subcategory.ctp:4
+#: View/Elements/progress_subject.ctp:4 View/Elements/table_score.ctp:4
+#: View/People/dashboard.ctp:46 View/People/view.ctp:98
+#: View/Scores/view.ctp:2;19 View/ScoresQuestions/view.ctp:9
+#: View/Tests/view.ctp:44
+msgid "Score"
+msgstr "Điểm"
 
 #: View/Admin/index.ctp:8
 msgid "Select one of functions on the left"
@@ -1070,7 +1079,7 @@ msgid "Time remains"
 msgstr "Thời gian còn lại"
 
 #: View/Elements/do_test.ctp:62 View/Elements/score_view.ctp:61
-#: View/People/dashboard.ctp:39 View/Scores/view.ctp:9
+#: View/People/dashboard.ctp:40 View/Scores/view.ctp:9
 #: View/Tests/choose_test.ctp:11 View/Tests/view.ctp:2
 #: View/TestsQuestions/view.ctp:9 View/TestsSubjects/view.ctp:9
 msgid "Test"
@@ -1182,7 +1191,7 @@ msgstr "Liệt kê lớp"
 msgid "Edit Grade"
 msgstr "Sửa lớp"
 
-#: View/Grades/index.ctp:2 View/People/dashboard.ctp:53
+#: View/Grades/index.ctp:2 View/People/dashboard.ctp:68
 msgid "Grades"
 msgstr "Lớp"
 
@@ -1193,7 +1202,7 @@ msgid "New Grade"
 msgstr "Lớp mới"
 
 #: View/Grades/view.ctp:2 View/Helper/NameHelper.php:53
-#: View/People/dashboard.ctp:56;57;58 View/People/view.ctp:19
+#: View/People/dashboard.ctp:71;72;73 View/People/view.ctp:19
 #: View/Tests/choose_test.ctp:14;19
 msgid "Grade"
 msgstr "Lớp"
@@ -1348,35 +1357,27 @@ msgstr "Tất cả"
 msgid "Time range"
 msgstr "Thời gian"
 
-#: View/People/dashboard.ctp:40
+#: View/People/dashboard.ctp:48
+msgid "Your overall score on all subject. Calculated on latest 10 tests."
+msgstr "Điểm trên các môn học, tính dựa trên 10 bài kiểm tra gần nhất"
+
+#: View/People/dashboard.ctp:51
+msgid "* Score on chart shows average score latest 10 tests."
+msgstr "* Điểm trên biểu đồ thể hiện điểm trên 10 bài gần nhất"
+
+#: View/People/dashboard.ctp:55
 msgid "Your Performance chart"
 msgstr "Biểu đồ điểm kiểm tra"
 
-#: View/People/dashboard.ctp:48;62;176;187;203;218
+#: View/People/dashboard.ctp:63;133;153;170;186
 msgid "Subjects"
 msgstr "Môn học"
 
-#: View/People/dashboard.ctp:55
+#: View/People/dashboard.ctp:70;142
 msgid "Load All"
 msgstr "Xem toàn bộ"
 
-#: View/People/dashboard.ctp:64
-msgid "Maths"
-msgstr "Toán"
-
-#: View/People/dashboard.ctp:65
-msgid "Physics"
-msgstr "Vật lý"
-
-#: View/People/dashboard.ctp:66
-msgid "Chemists"
-msgstr "Hóa học"
-
-#: View/People/dashboard.ctp:67
-msgid "Biology"
-msgstr "Sinh học"
-
-#: View/People/dashboard.ctp:178
+#: View/People/dashboard.ctp:137
 msgid "Load Subjects"
 msgstr "Xem các môn học"
 
@@ -1798,6 +1799,15 @@ msgstr "Họ là bắt buộc"
 #: Model/Person.php:validation for field role
 msgid "Role is not correct, must be: {'admin', 'user', 'editor'}"
 msgstr "Vai trò không đúng, phải là: {'admin', 'user', 'editor'}"
+
+#~ msgid "Maths"
+#~ msgstr "Toán"
+
+#~ msgid "Chemists"
+#~ msgstr "Hóa học"
+
+#~ msgid "Biology"
+#~ msgstr "Sinh học"
 
 #~ msgid "Score from 90/100 to 100/100"
 #~ msgstr "Điểm từ 90/100 đến 100/100"

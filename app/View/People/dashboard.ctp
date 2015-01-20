@@ -127,7 +127,7 @@
             currentCategoryID   = null;
 
             // ajax
-            ajaxLoad(currentSubjectID, currentChecked.join(), currentCategoryID);
+            ajaxLoad(currentSubjectID, currentChecked, currentCategoryID);
 
             // breadcrumb
             $('#breadcrumb-list').html("<li class='active'><?php echo __('Subjects'); ?></li>");
@@ -153,7 +153,7 @@
             $('#breadcrumb-list').html("<li class='active'><?php echo __('Subjects'); ?></li>");
 
             // ajax
-            ajaxLoad(currentSubjectID, currentChecked.join(), currentCategoryID);
+            ajaxLoad(currentSubjectID, currentChecked, currentCategoryID);
 
             // table
             ajaxTable(1);
@@ -171,7 +171,7 @@
                 "<li class='active'>" + currentSubject + "</li>");
 
             // ajax
-            ajaxLoad(currentSubjectID, currentChecked.join(), currentCategoryID);
+            ajaxLoad(currentSubjectID, currentChecked, currentCategoryID);
 
             // table
             ajaxTable(2, $(this).attr('subject'));
@@ -188,7 +188,7 @@
                 "<li class='active'>"+ currentCategory + "</li>");
 
             // ajax
-            ajaxLoad(currentSubjectID, currentChecked.join(), currentCategoryID);
+            ajaxLoad(currentSubjectID, currentChecked, currentCategoryID);
 
             // table
             ajaxTable(3, $(this).attr('category'));
