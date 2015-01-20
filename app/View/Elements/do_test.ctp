@@ -77,13 +77,30 @@
         </div>
         <div id="submitTest">
             <?php echo $this->Form->button("Nộp bài", array(
-                'type' => 'submit',//__('Submit your answers'), 
+                'type' => 'button',//__('Submit your answers'), 
                 'class' => 'btn btn-warning btn-lg', 
+                'onclick' => 'submitTest()',
                 'id' => 'btn-submit')); ?>
         </div>   
     </div>
     <div style="clear:both;"></div>
     <?php echo $this->Form->end(); ?>
+</div>
+<div id="msgNotice" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Chú ý</h4>
+            </div>
+            <div class="modal-body">
+                Bạn chưa trả lời hết các câu hỏi. Bạn chắc chắn muốn nộp bài không?
+            </div>
+            <div class="modal-footer">
+                <button id="autoSubmit" type="button" class="btn btn-default" data-dismiss="modal">Làm tiếp</button>
+                <button id="sureSubmit" type="button" class="btn btn-danger" data-dismiss="modal">Nộp bài</button>
+            </div>
+        </div>
+    </div>
 </div>
 <script type="text/javascript">
 
@@ -92,12 +109,28 @@
     $('#TestAnswersDoTestForm').submit(function(){
         var clockMinutes = parseInt($("#clock-minutes").text());
         var clockSeconds = parseInt($('#clock-seconds').text());
-        console.log(clockMinutes* 60 + clockSeconds);
         $('#TestAnswersDuration').val(parseInt("<?php echo $duration; ?>")*60 - clockMinutes* 60 - clockSeconds);
     });
 
+    function submitTest(){
+        $answered = $('ul.pagination').find('li.chose');
+        $count = parseInt("<?php echo $duration ?>");
+
+        if ($count == $answered.size()){
+            $('#TestAnswersDoTestForm').submit();
+        }else{
+            $('#msgNotice').modal({
+                backdrop: false
+            });
+        }
+    }
+
     $(document).ready(function(){
         $('ul#questions').simplePaging({pageSize: "1"});
+
+        $('button#sureSubmit').on('click', function(){
+            $('#TestAnswersDoTestForm').submit();
+        });
 
         $('ul#questions .answer').find('label.btn').on('click', function(){
             var li = $(this).closest('li');
@@ -105,9 +138,10 @@
             var answer = 97 + parseInt($(this).find('input').val());
             li.find('.choose-answer').text("Bạn chọn phương án " + String.fromCharCode(answer)).show();
             $('ul.pagination').find('li:nth-child(' + q + ')').addClass('chose');
-            setTimeout(function() {
-                $('ul#questions').data('simplePaging').nextPage();      
-            }, 500);
+            $('ul#questions').data('simplePaging').nextPage();  
+            // setTimeout(function() {
+            //     $('ul#questions').data('simplePaging').nextPage();      
+            // }, 0);
         });
 
         $('div.nav button.prev').on('click', function(){
