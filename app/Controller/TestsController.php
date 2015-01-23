@@ -174,12 +174,15 @@ class TestsController extends AppController {
         $options = array(
             'recursive' => 0,
             'conditions' => array($this->Tracking->primaryKey => $user['id']));
+
         $tracking = $this->Tracking->find('first', $options);
 
         if (isset($tracking['Tracking'])){
             if ($tracking['Tracking']['grade'] >= 10 && $tracking['Tracking']['grade'] <= 12){
                 $gradeUser = $tracking['Tracking']['grade'];
-            }            
+            }
+            $preSubCategories = $tracking['Tracking']['subcategory'];
+            $this->set('preSubs', $preSubCategories);          
         }
         // pr($tracking);       
 

@@ -50,6 +50,21 @@
 </div>
 
 <script type="text/javascript">
+var preSubs = '<?php echo $preSubs; ?>';
+var arraySubs = preSubs.split(",");
+
+function preSelectCategories(){
+    var $s = $('#selectCategory');
+    for (i=0;i<arraySubs.length;i++){
+        var $selectedCategories = $('#selectedCategories>ul');
+        var item = $s.find('option[value='+arraySubs[i]+']');
+        var grade = 10;
+        var s = "Lớp " +  grade + " / " + item.text();
+        var v = arraySubs[i];
+        $selectedCategories.append("<li rel='" + v + "'><span class='glyphicon glyphicon-remove remove' aria-hidden='true'></span><span class='label label-primary class" + grade + "'>" + s + "</span></li>");
+    }
+};
+
 function doTest(t){
     $subject = <?php echo $subject; ?>;
     $str = $('#selectedCategories>ul')
@@ -104,8 +119,12 @@ $(document).ready(function() {
         $('#selectCategory').multiselect('refresh');
     });
 
-    $("input:radio[name='selectGrade']").change(function(e){
+    $("input:radio[name='selectGrade']").change(function(e, sign){
         var url = '<?php echo Router::url(array('controller'=>'categories','action'=>'byGrade'));?>/' + $(this).val() + '/' + <?php echo $subject; ?>;
+
+        if (sign != 'pre-select'){
+            arraySubs = array();
+        }
 
         $.getJSON(url, function( data ) {
             var optgroups = [];
@@ -115,7 +134,7 @@ $(document).ready(function() {
                 var items = [];
                 $.each(subcategories, function(k, v){
                     var tmp = $selectedCategories.find('li[rel="' + v['id'] + '"]');
-                    if (tmp.length > 0){
+                    if (tmp.length > 0 || jQuery.inArray(v['id'], arraySubs) != -1){
                         items.push( "<option value='" + v['id'] + "' selected>" + v['name'] + "</option>" );
                     }else{
                         items.push( "<option value='" + v['id'] + "'>" + v['name'] + "</option>" );
@@ -127,12 +146,13 @@ $(document).ready(function() {
             $("#selectCategory").append(optgroups.join(""));
             $('#selectCategory').multiselect('refresh');
 
+            preSelectCategories();
+
         });
     });
 
     // $('#selectGrade').trigger("change");
-    $("input:radio[name='selectGrade']:checked").trigger('change');
-
+    $("input:radio[name='selectGrade']:checked").trigger('change',"pre-select");
 
 });
 </script>
