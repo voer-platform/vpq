@@ -97,3 +97,13 @@ div.chart-description {
     padding-right: 13px;
     color: #119013;
 }
+
+.table-header {
+    text-decoration: underline;
+}
+
+.table-header:hover{
+    cursor: pointer;
+    color: #FF00FF;
+    text-decoration: underline;
+}
