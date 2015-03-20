@@ -184,6 +184,9 @@ class TestsController extends AppController {
             $preSubCategories = $tracking['Tracking']['subcategory'];
             $this->set('preSubs', $preSubCategories);          
         }
+        else{
+            $this->set('preSubs', '');
+        }
         // pr($tracking);       
 
         $this->set('gradeUser', $gradeUser);
