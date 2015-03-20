@@ -21,7 +21,7 @@ class ScoresController extends AppController {
 	public function isAuthorized($user) {
 	    // user can logout, dashboard, progress, history, suggest
 	    if (isset($user['role']) && $user['role'] === 'user' ){
-	    	if( in_array( $this->request->action, array('viewDetails', 'ajaxOverall'))){
+	    	if( in_array( $this->request->action, array('viewDetails', 'ajaxOverall', 'ajaxCallHandler'))){
 	    		return true;
 	    	}
 	    }

@@ -44,7 +44,7 @@
             <div class='col-lg-3'>
                 <div class='score-container'>
                     <div class='title' id='title-overall'><?php echo __('Score'); ?></div>                    
-                    <div class='score' id='score-overall'><?php $score = round($scores[0]/$scores[1], 2)*10; echo $score; ?></div>
+                    <div class='score' id='score-overall'><?php $score = round($scores[1] != 0 ? $scores[0]/$scores[1] : 0, 2)*10; echo $score; ?></div>
                     <div class='description' id='descripion-overall'><?php echo __('Your overall score on all subject. Calculated on latest 10 tests.'); ?></div>
                 </div>
                 <div class='chart-description pull-right'>
