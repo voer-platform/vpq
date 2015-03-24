@@ -44,6 +44,7 @@
                 ?>
                 <input type="hidden" name="level" id="level" />
                 <input type="hidden" name="categories" id="categories" />
+				<input type="hidden" name="subcategory" id="subcategory"  value="<?php echo $subcategory ?>"/>
             </div>
         </div>
     </form>
@@ -51,17 +52,28 @@
 
 <script type="text/javascript">
 var preSubs = '<?php echo $preSubs; ?>';
+//var preSubs = '';
 var arraySubs = preSubs.split(",");
-
+var t=0;
+var cl;
 function preSelectCategories(){
+	$("#selectedCategories ul").empty();
+	t=t+1;
     var $s = $('#selectCategory');
     for (i=0;i<arraySubs.length;i++){
         var $selectedCategories = $('#selectedCategories>ul');
         var item = $s.find('option[value='+arraySubs[i]+']');
-        var grade = 10;
+        //var grade = 10;
+		var grade = $("input:radio[name=selectGrade]:checked").attr('tag');
         var s = "Lớp " +  grade + " / " + item.text();
         var v = arraySubs[i];
+		if(t==1){
+			cl=grade;
+		}		
+		if(s!='' && grade==cl){	
         $selectedCategories.append("<li rel='" + v + "'><span class='glyphicon glyphicon-remove remove' aria-hidden='true'></span><span class='label label-primary class" + grade + "'>" + s + "</span></li>");
+		}
+
     }
 };
 
@@ -76,7 +88,6 @@ function doTest(t){
     var grade = $("input:radio[name=selectGrade]:checked").attr('tag');
     $('#level').val(grade);
     $("#preDoTest").attr("action", "/Tests/doTest/" + t + "/" + $subject + "/");
-    // alert($str);
     $('#preDoTest').submit();
 };
 
@@ -112,21 +123,21 @@ $(document).ready(function() {
 
     });
 
-    $(document).on('click', '#selectedCategories span.remove', function(){
+	$(document).on('click', '#selectedCategories span.remove', function(){
         var val = $(this).parent().attr('rel');
         $(this).parent().remove();
         $('#selectCategory').find('option[value="' + val + '"]').prop('selected', false);
         $('#selectCategory').multiselect('refresh');
     });
 
-    $("input:radio[name='selectGrade']").change(function(e, sign){
+	$("input:radio[name='selectGrade']").change(function(e, sign){
         var url = '<?php echo Router::url(array('controller'=>'categories','action'=>'byGrade'));?>/' + $(this).val() + '/' + <?php echo $subject; ?>;
-
-        if (sign != 'pre-select'){
-            arraySubs = array();
-        }
-
+        //if (sign != 'pre-select'){
+        //    arraySubs = array();
+        //}
+		
         $.getJSON(url, function( data ) {
+		
             var optgroups = [];
             $.each( data, function( key, val ) {
                 var category = val['Category'];
@@ -145,13 +156,13 @@ $(document).ready(function() {
             $("#selectCategory").empty();
             $("#selectCategory").append(optgroups.join(""));
             $('#selectCategory').multiselect('refresh');
-
+			if(arraySubs!=''){
             preSelectCategories();
-
+			}
         });
     });
-
-    // $('#selectGrade').trigger("change");
+	
+    //$('#selectGrade').trigger("change");
     $("input:radio[name='selectGrade']:checked").trigger('change',"pre-select");
 
 });

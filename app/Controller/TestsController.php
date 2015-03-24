@@ -157,6 +157,13 @@ class TestsController extends AppController {
         // Du tinh trinh do hoc van
         $user = $this->Session->read('Auth.User');
         $gradeUser = $user['grade'];
+		
+		if(isset($this->request->query['subcategory'])){
+			$subcategory=$this->request->query['subcategory'];			
+		}else{
+			$subcategory='';
+		}
+		$this->set('subcategory',$subcategory);
 
         if ($gradeUser == 0){
             $birthday = $user['birthday'];
@@ -176,17 +183,17 @@ class TestsController extends AppController {
             'conditions' => array($this->Tracking->primaryKey => $user['id']));
 
         $tracking = $this->Tracking->find('first', $options);
-
-        if (isset($tracking['Tracking'])){
+		
+        if (isset($tracking['Tracking']) && !empty($tracking['Tracking'])){			
             if ($tracking['Tracking']['grade'] >= 10 && $tracking['Tracking']['grade'] <= 12){
                 $gradeUser = $tracking['Tracking']['grade'];
             }
             $preSubCategories = $tracking['Tracking']['subcategory'];
-            $this->set('preSubs', $preSubCategories);          
-        }
-        else{
-            $this->set('preSubs', '');
-        }
+                     
+        }else{
+			$preSubCategories = '';
+		}
+		$this->set('preSubs', $preSubCategories); 
         // pr($tracking);       
 
         $this->set('gradeUser', $gradeUser);
@@ -207,12 +214,18 @@ class TestsController extends AppController {
 
         // process if request is post
         if( isset($time) && isset($subject) ){
+			
 
             // retrieve request data
             $numberOfQuestions = $time;
             $timeLimit = $time;
+			if($this->request->data['subcategory']==''){
             $strCategories = $this->request->data['categories'];
+			
             $categories = split(",", $strCategories);
+			}else{
+				$categories = $this->request->data['subcategory'];
+			}
 
             // query <number of questions> from db, random ID
             $questions = $this->Test->generateTest($numberOfQuestions, $categories);
