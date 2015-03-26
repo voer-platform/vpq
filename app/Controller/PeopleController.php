@@ -272,8 +272,6 @@ class PeopleController extends AppController {
 
         $this->loadModel('Score');
         $history = $this->Score->getAllScores($this->Session->read('Auth.User')['id'], 10);
-        pr($this->Session->read('Auth.User')['id']);
-        pr($history);
         $this->set('scores', $history);
     }
 
