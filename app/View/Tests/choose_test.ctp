@@ -1,9 +1,9 @@
 <?php echo $this->Html->css('choose_test.css'); ?>
 
-<ol class="breadcrumb">
-  <li><?php echo $this->Html->link(__('Dashboard'), array('controller' => 'People', 'action' => 'dashboard')); ?></li>
+<!-- <ol class="breadcrumb">
+  <li><?php # echo $this->Html->link(__('Dashboard'), array('controller' => 'People', 'action' => 'dashboard')); ?></li>
   <li class="active"><?php echo __('Choose Test'); ?></li>
-</ol>
+</ol> -->
 
 <div class="chooseTest">
     <h2><?php echo __('Choose test')?></h2>

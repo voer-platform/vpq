@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-01-20 17:06+0700\n"
+"POT-Creation-Date: 2015-03-26 15:46+0700\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -374,11 +374,11 @@ msgstr ""
 msgid "Choose test"
 msgstr ""
 
-#: Controller/TestsController.php:187
+#: Controller/TestsController.php:213
 msgid "Testing"
 msgstr ""
 
-#: Controller/TestsController.php:223
+#: Controller/TestsController.php:264
 msgid "No data found"
 msgstr ""
 
@@ -1296,7 +1296,7 @@ msgid "Time remains"
 msgstr ""
 
 #: View/Elements/do_test.ctp:62
-#: View/Elements/score_view.ctp:61
+#: View/Elements/score_view.ctp:67
 #: View/People/dashboard.ctp:40
 #: View/Scores/view.ctp:9
 #: View/Tests/choose_test.ctp:11
@@ -1307,17 +1307,17 @@ msgid "Test"
 msgstr ""
 
 #: View/Elements/do_test.ctp:66
-#: View/Elements/score_view.ctp:65
+#: View/Elements/score_view.ctp:71
 msgid "Timelimit"
 msgstr ""
 
 #: View/Elements/do_test.ctp:67
-#: View/Elements/score_view.ctp:66
+#: View/Elements/score_view.ctp:72
 msgid "minutes"
 msgstr ""
 
 #: View/Elements/do_test.ctp:70
-#: View/Elements/score_view.ctp:69
+#: View/Elements/score_view.ctp:75
 msgid "Number of questions"
 msgstr ""
 
@@ -1387,6 +1387,10 @@ msgstr ""
 #: View/Elements/progress_subcategory.ctp:27
 #: View/Elements/progress_subject.ctp:32
 msgid "Oops... It looks like you have no progresses at all...."
+msgstr ""
+
+#: View/Elements/score_view.ctp:49
+msgid "Solution:"
 msgstr ""
 
 #: View/Elements/table_score.ctp:4
@@ -1463,52 +1467,32 @@ msgstr ""
 msgid "Excellent"
 msgstr ""
 
-#: View/Helper/NameHelper.php:66
-msgid "Score from 9/10 to 10/10"
+#: View/Helper/NameHelper.php:66;73;80;87;94;101;108
+msgid "Score from"
+msgstr ""
+
+#: View/Helper/NameHelper.php:66;73;80;87;94;101;108
+msgid "to"
 msgstr ""
 
 #: View/Helper/NameHelper.php:72
 msgid "Good"
 msgstr ""
 
-#: View/Helper/NameHelper.php:73
-msgid "Score from 8/10 to 9/10"
-msgstr ""
-
 #: View/Helper/NameHelper.php:79
 msgid "Fair"
-msgstr ""
-
-#: View/Helper/NameHelper.php:80
-msgid "Score from 6.5/10 to 8/10"
 msgstr ""
 
 #: View/Helper/NameHelper.php:86
 msgid "Bad"
 msgstr ""
 
-#: View/Helper/NameHelper.php:87
-msgid "Score from 6.5/10 to 5/10"
-msgstr ""
-
 #: View/Helper/NameHelper.php:93
 msgid "Very bad"
 msgstr ""
 
-#: View/Helper/NameHelper.php:94
-msgid "Score from 3.5/10 to 5/10"
-msgstr ""
-
 #: View/Helper/NameHelper.php:100
 msgid "Failed"
-msgstr ""
-
-#: View/Helper/NameHelper.php:101
-msgid "Score from 0/10 to 3.5/10"
-msgstr ""
-
-#: View/Helper/NameHelper.php:108
-msgid "Score from ... to ..."
 msgstr ""
 
 #: View/Pages/home.ctp:8
