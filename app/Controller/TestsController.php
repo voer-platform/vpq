@@ -16,7 +16,7 @@ class TestsController extends AppController {
     public function isAuthorized($user) {
         // user can logout, dashboard, progress, history, suggest
         if (isset($user['role']) && $user['role'] === 'user' ){
-            if( in_array( $this->request->action, array('chooseTest', 'doTest', 'score'))){
+            if( in_array( $this->request->action, array('chooseTest', 'doTest', 'score', 'byQuestion'))){
                 return true;
             }
         } elseif (isset($user['role']) && $user['role'] === 'editor' ){
@@ -147,56 +147,77 @@ class TestsController extends AppController {
      * @return void
      */
     public function chooseTest($subject = null) {
-        $this->layout = 'test';
-        $this->set('title_for_layout', __('Choose test'));
+		if($subject!=null)
+		{
+			$this->layout = 'test';
+			$this->set('title_for_layout', __('Choose test'));
 
-        $allGrades = $this->Grade->find('all');
-        $this->set('grades', $allGrades);
-        $this->set('subject', $subject);
+			$allGrades = $this->Grade->find('all');
+			$this->set('grades', $allGrades);
+			$this->set('subject', $subject);
+			
+			// Du tinh trinh do hoc van
+			$user = $this->Session->read('Auth.User');
+			$gradeUser = $user['grade'];
+			
+			if(!isset($this->request->query['subcategory']) && !isset($this->request->query['category'])){		
+				if ($gradeUser == 0){
+					$birthday = $user['birthday'];
+					$time = strtotime($birthday);
+					$date = getdate($time);
+					$year = $date['year'];
 
-        // Du tinh trinh do hoc van
-        $user = $this->Session->read('Auth.User');
-        $gradeUser = $user['grade'];
-		
-		if(isset($this->request->query['subcategory'])){
-			$subcategory=$this->request->query['subcategory'];			
+					$now = getdate();
+					$current_year = $now['year'];
+
+					$gradeUser = $current_year - $year - 5; //Du doan lop hoc theo tuoi 
+
+				}
+				$options = array(
+					'recursive' => 0,
+					'conditions' => array('person_id' => $user['id'],'subject_id'=>$subject)
+					);				
+				$tracking = $this->Tracking->find('all', $options);
+			}else{
+				if(isset($this->request->query['subcategory'])){
+					$id=$this->request->query['subcategory'];
+					
+					$tracking =$this->Subcategory->query("
+									SELECT Subcategory.id, Subcategory.name, Tracking.name as grade FROM subcategories as Subcategory
+									INNER JOIN categories ON Subcategory.category_id=categories.id
+									INNER JOIN grades as Tracking ON categories.grade_id=Tracking.id
+									WHERE Subcategory.id='$id'
+									");
+				}else{
+					$id=$this->request->query['category'];
+					
+					$tracking =$this->Subcategory->query("
+									SELECT Subcategory.id, Subcategory.name, Tracking.name as grade FROM subcategories as Subcategory
+									INNER JOIN categories ON Subcategory.category_id=categories.id
+									INNER JOIN grades as Tracking ON categories.grade_id=Tracking.id
+									WHERE categories.id='$id'
+									");
+					}
+			}
+			$preSubCategories='';
+			$this->set('tracking',$tracking);
+			foreach($tracking as $tracking)
+			{
+				if (isset($tracking['Tracking']) && !empty($tracking['Tracking'])){			
+					//if ($tracking['Tracking']['grade'] >= 10 && $tracking['Tracking']['grade'] <= 12){
+					//	$gradeUser[]= $tracking['Tracking']['grade'];
+					//}
+					$preSubCategories =$preSubCategories.",".$tracking['Subcategory']['id'];
+							 
+				}
+			}
+			
+			$this->set('preSubs', $preSubCategories); 			      
+			
+			$this->set('gradeUser', $gradeUser);
 		}else{
-			$subcategory='';
+			$this->redirect(array('controller' => 'people', 'action' => 'dashboard'));
 		}
-		$this->set('subcategory',$subcategory);
-
-        if ($gradeUser == 0){
-            $birthday = $user['birthday'];
-            $time = strtotime($birthday);
-            $date = getdate($time);
-            $year = $date['year'];
-
-            $now = getdate();
-            $current_year = $now['year'];
-
-            $gradeUser = $current_year - $year - 5; //Du doan lop hoc theo tuoi 
-
-        }
-
-        $options = array(
-            'recursive' => 0,
-            'conditions' => array($this->Tracking->primaryKey => $user['id']));
-
-        $tracking = $this->Tracking->find('first', $options);
-		
-        if (isset($tracking['Tracking']) && !empty($tracking['Tracking'])){			
-            if ($tracking['Tracking']['grade'] >= 10 && $tracking['Tracking']['grade'] <= 12){
-                $gradeUser = $tracking['Tracking']['grade'];
-            }
-            $preSubCategories = $tracking['Tracking']['subcategory'];
-                     
-        }else{
-			$preSubCategories = '';
-		}
-		$this->set('preSubs', $preSubCategories); 
-        // pr($tracking);       
-
-        $this->set('gradeUser', $gradeUser);
     }
 
     public function getCategories($grade = null){
@@ -211,26 +232,25 @@ class TestsController extends AppController {
     public function doTest($time, $subject) {
         $this->layout = 'test';
         $this->set('title_for_layout', __('Testing'));
-
+		
         // process if request is post
         if( isset($time) && isset($subject) ){
-			
-
             // retrieve request data
             $numberOfQuestions = $time;
             $timeLimit = $time;
-			if($this->request->data['subcategory']==''){
             $strCategories = $this->request->data['categories'];
-			
-            $categories = split(",", $strCategories);
-			}else{
-				$categories = $this->request->data['subcategory'];
+            //$categories = split(",", $strCategories);
+			$data = explode(",",$this->request->data['categories']);
+			$data_tracking=array();
+			$categories=array();
+			foreach($data as $dt)
+			{
+				$t=explode('-',$dt);
+				$data_tracking[]=array('grade'=>$t[0],'subcategory'=>$t[1]);
+				$categories[]=$t[1];
 			}
-
-            // query <number of questions> from db, random ID
-            $questions = $this->Test->generateTest($numberOfQuestions, $categories);
-
-            if (count($questions) > 0){            
+            $questions = $this->Test->generateTest($numberOfQuestions, $categories);			
+            if (count($questions) > 0){
                 // create tests in database
                 $testID = $this->Test->nextTestId();
 
@@ -252,13 +272,23 @@ class TestsController extends AppController {
                 $this->set('numberOfQuestions', $numberOfQuestions);
                 // Save data user
                 $user = $this->Session->read('Auth.User');
-                $this->Tracking->id = $user['id'];
-                $this->Tracking->save(array(
-                    'person_id' => $user['id'],
-                    'grade' => $this->request->data['level'],
-                    'subcategory' => $this->request->data['categories']
-                    ));
-
+				
+				foreach($data_tracking as $dt)
+				{
+					$this->Tracking->deleteAll(array('Tracking.person_id'=>$user['id']));
+				}
+				foreach($data_tracking as $dt)
+				{
+					$this->Tracking->create();
+					$this->Tracking->save(
+											array(
+												'person_id' => $user['id'],
+												'grade' => $dt['grade'],
+												'subject_id' => $subject,
+												'subcategory' => $dt['subcategory']
+											)
+										);
+				}
             }else{
                 // warn that no data found
                 $this->Session->setFlash(__('No data found'));
@@ -277,11 +307,10 @@ class TestsController extends AppController {
      * @return void
      */
     public function score() {
-
+		
         // process if request is post
         if( $this->request->is('post')){
-
-            //layout
+            //layout						
             $this->render = false;
 
             // data
@@ -300,7 +329,6 @@ class TestsController extends AppController {
             // save to db if user has logged in
             // else just calculate.
             $scoreId = $this->Score->calculateScore($testId, $this->request->data, $user, $scoreData, $numberOfQuestions);
-
             // calculate progress
             $this->loadModel('Progress');
             $this->Progress->calculateProgress($user['id'], $scoreData);
@@ -310,5 +338,23 @@ class TestsController extends AppController {
         else {
             $this->redirect('chooseTest');
         }
+    }
+	
+	public function byQuestion($numberOfQuestions = null, $categories = null){			
+        $this->layout = "ajax";
+        $this->autoLayout = false;
+        $this->autoRender = false;
+		$data = explode(",",$categories);
+		$data_tracking=array();
+		$categories=array();
+		foreach($data as $dt)
+		{	
+			$t=explode('-',$dt);
+			$categories[]=$t[1];
+		}		
+		$questions = $this->Test->generateTest($numberOfQuestions, $categories);		
+        $this->header('Content-Type: application/json');
+        echo json_encode(count($questions));
+		return;
     }
 }

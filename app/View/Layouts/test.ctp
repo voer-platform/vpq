@@ -24,13 +24,15 @@
     <?php echo $this->HTML->css('jquery.multiselect.css'); ?>
     <?php echo $this->HTML->css('global.css'); ?>
     <?php echo $this->HTML->css('style.css'); ?>
-
+	<?php echo $this->HTML->css('pnotify.custom.min.css'); ?>
     <!-- javascript -->
     <?php echo $this->Html->script('jquery.min.js');?>
     <?php echo $this->Html->script('jquery.simplePaging.js');?>
     <?php echo $this->Html->script('bootstrap.min.js');?>
     <?php echo $this->Html->script('jquery-ui.min.js');?>
     <?php echo $this->Html->script('jquery.multiselect.js');?>
+	<?php echo $this->Html->script('jquery.pnotify.min.js');?>
+	<?php echo $this->Html->script('pnotify.custom.min.js');?>
 
 </head>
 <body>
