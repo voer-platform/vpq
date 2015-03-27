@@ -509,6 +509,20 @@ div.answer label.active span{
   text-shadow: 1px 1px 1px transparent;  
 }
 
+div.answer label.wrong{
+  background-color: #fff;
+  border: 1px solid #DD2241;
+  border-radius: 4px;
+  color: #DD2241;
+  box-shadow: none;
+}
+
+div.answer label.wrong span{
+  background: none repeat scroll 0 0 #DD2241;
+  color: #fff;
+  text-shadow: 1px 1px 1px transparent;  
+}
+
 div.choose-answer{
   color: #1288cc;
   font-size: 12px;

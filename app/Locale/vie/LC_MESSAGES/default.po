@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-01-20 17:06+0700\n"
-"PO-Revision-Date: 2015-01-20 17:10+0700\n"
+"POT-Creation-Date: 2015-03-26 15:44+0700\n"
+"PO-Revision-Date: 2015-03-26 15:45+0700\n"
 "Last-Translator: Viet Vu <vietvudanh@gmail.com>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "Language: vi\n"
@@ -82,7 +82,7 @@ msgstr "Câu trả lời đã được lưu"
 
 #: Controller/Ask4HelpController.php:33
 msgid "Unable to add your answer."
-msgstr "Không thể them câu trả lời"
+msgstr "Không thể thêm câu trả lời"
 
 #: Controller/AttachmentsController.php:50;84;111
 msgid "Invalid attachment"
@@ -282,7 +282,7 @@ msgstr ""
 
 #: Controller/ScoresController.php:135
 msgid "Test result"
-msgstr ""
+msgstr "Kết quả kiểm tra"
 
 #: Controller/ScoresQuestionsController.php:50;85;113
 msgid "Invalid scores question"
@@ -334,7 +334,7 @@ msgstr "Số kiểm tra"
 
 #: Controller/TestsController.php:67;104;132
 msgid "Invalid test"
-msgstr ""
+msgstr "Bài kiểm tra không hợp lệ"
 
 #: Controller/TestsController.php:79
 msgid "Add test"
@@ -364,11 +364,11 @@ msgstr ""
 msgid "Choose test"
 msgstr "Chọn bài kiểm tra"
 
-#: Controller/TestsController.php:187
+#: Controller/TestsController.php:213
 msgid "Testing"
 msgstr "Đang kiểm tra"
 
-#: Controller/TestsController.php:223
+#: Controller/TestsController.php:264
 msgid "No data found"
 msgstr "Không tìm thấy dữ liệu"
 
@@ -835,13 +835,13 @@ msgstr "Câu trả lời mới"
 #: View/Subcategories/view.ctp:4;41 View/Tests/view.ctp:4;41;78;107
 #: View/TestsQuestions/view.ctp:4 View/TestsSubjects/view.ctp:4
 msgid "Id"
-msgstr ""
+msgstr "Thứ tự"
 
 #: View/Answers/view.ctp:9 View/Attachments/view.ctp:14
 #: View/Questions/view.ctp:2 View/QuestionsSubcategories/view.ctp:4
 #: View/ScoresQuestions/view.ctp:14 View/TestsQuestions/view.ctp:14
 msgid "Question"
-msgstr ""
+msgstr "Câu hỏi"
 
 #: View/Answers/view.ctp:14 View/Questions/view.ctp:43
 msgid "Order"
@@ -849,7 +849,7 @@ msgstr "Thứ tự"
 
 #: View/Answers/view.ctp:35
 msgid "Delete Answer"
-msgstr ""
+msgstr "Xóa câu hỏi"
 
 #: View/Ask4Help/index.ctp:8 View/Elements/score_view.ctp:46
 msgid "Ask for help"
@@ -987,11 +987,11 @@ msgstr ""
 #: View/Questions/view.ctp:99 View/Subcategories/view.ctp:9
 #: View/Tests/view.ctp:79
 msgid "Name"
-msgstr ""
+msgstr "Tên"
 
 #: View/Categories/view.ctp:14 View/TestsSubjects/view.ctp:14
 msgid "Subject"
-msgstr ""
+msgstr "Môn học"
 
 #: View/Categories/view.ctp:19 View/Grades/view.ctp:34
 msgid "Grade Id"
@@ -1004,7 +1004,7 @@ msgstr ""
 #: View/Categories/view.ctp:40 View/Grades/view.ctp:28
 #: View/Questions/view.ctp:94
 msgid "Related Subcategories"
-msgstr ""
+msgstr "Các chủ đề liên quan"
 
 #: View/Categories/view.ctp:46 View/Grades/view.ctp:35
 #: View/Questions/view.ctp:100
@@ -1078,22 +1078,22 @@ msgstr "Quản lý chủ đề con"
 msgid "Time remains"
 msgstr "Thời gian còn lại"
 
-#: View/Elements/do_test.ctp:62 View/Elements/score_view.ctp:61
+#: View/Elements/do_test.ctp:62 View/Elements/score_view.ctp:67
 #: View/People/dashboard.ctp:40 View/Scores/view.ctp:9
 #: View/Tests/choose_test.ctp:11 View/Tests/view.ctp:2
 #: View/TestsQuestions/view.ctp:9 View/TestsSubjects/view.ctp:9
 msgid "Test"
 msgstr "Kiểm tra"
 
-#: View/Elements/do_test.ctp:66 View/Elements/score_view.ctp:65
+#: View/Elements/do_test.ctp:66 View/Elements/score_view.ctp:71
 msgid "Timelimit"
 msgstr "Thời gian"
 
-#: View/Elements/do_test.ctp:67 View/Elements/score_view.ctp:66
+#: View/Elements/do_test.ctp:67 View/Elements/score_view.ctp:72
 msgid "minutes"
 msgstr "phút"
 
-#: View/Elements/do_test.ctp:70 View/Elements/score_view.ctp:69
+#: View/Elements/do_test.ctp:70 View/Elements/score_view.ctp:75
 msgid "Number of questions"
 msgstr "Số câu hỏi"
 
@@ -1156,6 +1156,10 @@ msgstr "Kiểm tra trên phần này"
 #: View/Elements/progress_subject.ctp:32
 msgid "Oops... It looks like you have no progresses at all...."
 msgstr "Oops... Bạn chưa có tiến độ môn học..."
+
+#: View/Elements/score_view.ctp:49
+msgid "Solution:"
+msgstr "Lời giải:"
 
 #: View/Elements/table_score.ctp:4
 msgid "Test ID"
@@ -1220,52 +1224,36 @@ msgid "Excellent"
 msgstr "Xuất sắc"
 
 #: View/Helper/NameHelper.php:66
-msgid "Score from 9/10 to 10/10"
+msgid "Score from) 9/10 "
 msgstr ""
+
+#: View/Helper/NameHelper.php:66;73;80;87;94;101;108
+msgid "to"
+msgstr "đến"
 
 #: View/Helper/NameHelper.php:72
 msgid "Good"
 msgstr "Giỏi"
 
-#: View/Helper/NameHelper.php:73
-msgid "Score from 8/10 to 9/10"
-msgstr ""
+#: View/Helper/NameHelper.php:73;80;87;94;101;108
+msgid "Score from"
+msgstr "Điểm từ"
 
 #: View/Helper/NameHelper.php:79
 msgid "Fair"
 msgstr "Khá"
 
-#: View/Helper/NameHelper.php:80
-msgid "Score from 6.5/10 to 8/10"
-msgstr ""
-
 #: View/Helper/NameHelper.php:86
 msgid "Bad"
 msgstr "Trung bình"
-
-#: View/Helper/NameHelper.php:87
-msgid "Score from 6.5/10 to 5/10"
-msgstr ""
 
 #: View/Helper/NameHelper.php:93
 msgid "Very bad"
 msgstr "Yếu"
 
-#: View/Helper/NameHelper.php:94
-msgid "Score from 3.5/10 to 5/10"
-msgstr ""
-
 #: View/Helper/NameHelper.php:100
 msgid "Failed"
 msgstr "Kém"
-
-#: View/Helper/NameHelper.php:101
-msgid "Score from 0/10 to 3.5/10"
-msgstr ""
-
-#: View/Helper/NameHelper.php:108
-msgid "Score from ... to ..."
-msgstr ""
 
 #: View/Pages/home.ctp:8
 msgid "Login with Facebook"

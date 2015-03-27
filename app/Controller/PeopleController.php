@@ -55,6 +55,7 @@ class PeopleController extends AppController {
  * @return void
  */
     public function index() {
+
         $this->Person->recursive = 0;
         $this->set('people', $this->Paginator->paginate());
     }
@@ -67,6 +68,8 @@ class PeopleController extends AppController {
  * @return void
  */
     public function view($id = null) {
+        $this->set('title_for_layout', __('Profile'));
+
         if (!$this->Person->exists($id)) {
             throw new NotFoundException(__('Invalid person'));
         }
