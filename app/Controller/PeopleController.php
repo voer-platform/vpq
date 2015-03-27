@@ -27,7 +27,7 @@ class PeopleController extends AppController {
     public function isAuthorized($user) {
         // user can logout, dashboard, progress, history, suggest
         if (isset($user['role']) && $user['role'] === 'user' ){
-            if( in_array( $this->request->action, array('view','progress', 'login', 'logout', 'history', 'dashboard','suggest'))){
+            if( in_array( $this->request->action, array('profile','progress', 'login', 'logout', 'history', 'dashboard','suggest'))){
                 return true;
             }
         } elseif (isset($user['role']) && $user['role'] === 'editor') {
@@ -68,7 +68,7 @@ class PeopleController extends AppController {
  * @return void
  */
     public function view($id = null) {
-        $this->set('title_for_layout', __('Profile'));
+        $this->set('title_for_layout', __('Person'));
 
         if (!$this->Person->exists($id)) {
             throw new NotFoundException(__('Invalid person'));
@@ -308,5 +308,20 @@ class PeopleController extends AppController {
         $this->set('subject', $subject);
         $this->set('grades', $grades);
         $this->set('categories', $categories);
+    }
+
+/**
+ * user profile
+ *
+ * @param: user id
+ */
+    public function profile($person_id){
+        $this->set('title_for_layout', __('Profile'));
+
+        $options = array(
+            'conditions' => array('Person.' . $this->Person->primaryKey => $person_id),
+            'recursive' => 0
+            );
+        $this->set('person', $this->Person->find('first', $options));
     }
 }

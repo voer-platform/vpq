@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-03-26 15:44+0700\n"
-"PO-Revision-Date: 2015-03-26 15:45+0700\n"
+"POT-Creation-Date: 2015-03-27 09:56+0700\n"
+"PO-Revision-Date: 2015-03-27 10:01+0700\n"
 "Last-Translator: Viet Vu <vietvudanh@gmail.com>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "Language: vi\n"
@@ -156,55 +156,58 @@ msgstr "Trang chủ"
 msgid "About us"
 msgstr "Giới thiệu"
 
-#: Controller/PeopleController.php:71;103;128
+#: Controller/PeopleController.php:71
+msgid "Profile"
+msgstr "Thông tin cá nhân"
+
+#: Controller/PeopleController.php:74;106;131
 msgid "Invalid person"
 msgstr "Người dùng không hợp lệ."
 
-#: Controller/PeopleController.php:86;107
+#: Controller/PeopleController.php:89;110
 msgid "The person has been saved."
 msgstr "Người dùng đã được lưu"
 
-#: Controller/PeopleController.php:89;110
+#: Controller/PeopleController.php:92;113
 msgid "The person could not be saved. Please, try again."
 msgstr "Không thể lưu người dùng, xin hãy thử lại."
 
-#: Controller/PeopleController.php:132
+#: Controller/PeopleController.php:135
 msgid "The person has been deleted."
 msgstr "Đã xóa người dùng."
 
-#: Controller/PeopleController.php:134
+#: Controller/PeopleController.php:137
 msgid "The person could not be deleted. Please, try again."
 msgstr "Không thể xóa người dùng, xin hãy thử lại"
 
-#: Controller/PeopleController.php:150
+#: Controller/PeopleController.php:153
 msgid "Invalid login. Please try again."
 msgstr "Không thể đăng nhập, xin hãy thử lại"
 
-#: Controller/PeopleController.php:220;225
+#: Controller/PeopleController.php:223;228
 msgid "Something wrong, cannot log in. Please try again!"
 msgstr "Không thể đăng nhập. Xin hay thử lại!"
 
-#: Controller/PeopleController.php:241 View/Elements/menu.ctp:19;40
-#: View/People/dashboard.ctp:3 View/Scores/view_details.ctp:2
-#: View/Tests/choose_test.ctp:4 View/Tests/do_test.ctp:2
+#: Controller/PeopleController.php:244 View/Elements/menu.ctp:19;40
+#: View/People/dashboard.ctp:3
 msgid "Dashboard"
 msgstr "Trang cá nhân"
 
-#: Controller/PeopleController.php:268
+#: Controller/PeopleController.php:271
 #: Controller/SubcategoriesController.php:144 View/Elements/menu.ctp:20
 msgid "History"
 msgstr "Lịch sử"
 
-#: Controller/PeopleController.php:279
+#: Controller/PeopleController.php:282
 msgid "Suggestion"
 msgstr "Gợi ý"
 
-#: Controller/PeopleController.php:286 View/Elements/menu.ctp:21
+#: Controller/PeopleController.php:289 View/Elements/menu.ctp:21
 #: View/People/view.ctp:66 View/Progresses/view.ctp:2;14
 msgid "Progress"
 msgstr "Tiến độ"
 
-#: Controller/PeopleController.php:297
+#: Controller/PeopleController.php:300
 msgid "Cover details"
 msgstr "Chi tiết môn học"
 
@@ -260,27 +263,27 @@ msgstr ""
 msgid "The questions subcategory could not be deleted. Please, try again."
 msgstr ""
 
-#: Controller/ScoresController.php:53;88;116
+#: Controller/ScoresController.php:52;87;115
 msgid "Invalid score"
 msgstr ""
 
-#: Controller/ScoresController.php:68;92
+#: Controller/ScoresController.php:67;91
 msgid "The score has been saved."
 msgstr ""
 
-#: Controller/ScoresController.php:71;95
+#: Controller/ScoresController.php:70;94
 msgid "The score could not be saved. Please, try again."
 msgstr ""
 
-#: Controller/ScoresController.php:120
+#: Controller/ScoresController.php:119
 msgid "The score has been deleted."
 msgstr ""
 
-#: Controller/ScoresController.php:122
+#: Controller/ScoresController.php:121
 msgid "The score could not be deleted. Please, try again."
 msgstr ""
 
-#: Controller/ScoresController.php:135
+#: Controller/ScoresController.php:134
 msgid "Test result"
 msgstr "Kết quả kiểm tra"
 
@@ -368,7 +371,7 @@ msgstr "Chọn bài kiểm tra"
 msgid "Testing"
 msgstr "Đang kiểm tra"
 
-#: Controller/TestsController.php:264
+#: Controller/TestsController.php:263
 msgid "No data found"
 msgstr "Không tìm thấy dữ liệu"
 
@@ -455,10 +458,10 @@ msgstr "Không có"
 #: Model/Score.php:623 View/Elements/progress_all.ctp:4
 #: View/Elements/progress_category.ctp:4
 #: View/Elements/progress_subcategory.ctp:4
-#: View/Elements/progress_subject.ctp:4 View/Elements/table_score.ctp:4
-#: View/People/dashboard.ctp:46 View/People/view.ctp:98
-#: View/Scores/view.ctp:2;19 View/ScoresQuestions/view.ctp:9
-#: View/Tests/view.ctp:44
+#: View/Elements/progress_subject.ctp:4 View/Elements/score_view.ctp:82
+#: View/Elements/table_score.ctp:4 View/People/dashboard.ctp:46
+#: View/People/view.ctp:98 View/Scores/view.ctp:2;19
+#: View/ScoresQuestions/view.ctp:9 View/Tests/view.ctp:44
 msgid "Score"
 msgstr "Điểm"
 
@@ -851,7 +854,7 @@ msgstr "Thứ tự"
 msgid "Delete Answer"
 msgstr "Xóa câu hỏi"
 
-#: View/Ask4Help/index.ctp:8 View/Elements/score_view.ctp:46
+#: View/Ask4Help/index.ctp:8 View/Elements/score_view.ctp:47
 msgid "Ask for help"
 msgstr "Nhờ trợ giúp"
 
@@ -1078,22 +1081,22 @@ msgstr "Quản lý chủ đề con"
 msgid "Time remains"
 msgstr "Thời gian còn lại"
 
-#: View/Elements/do_test.ctp:62 View/Elements/score_view.ctp:67
+#: View/Elements/do_test.ctp:62 View/Elements/score_view.ctp:68
 #: View/People/dashboard.ctp:40 View/Scores/view.ctp:9
 #: View/Tests/choose_test.ctp:11 View/Tests/view.ctp:2
 #: View/TestsQuestions/view.ctp:9 View/TestsSubjects/view.ctp:9
 msgid "Test"
 msgstr "Kiểm tra"
 
-#: View/Elements/do_test.ctp:66 View/Elements/score_view.ctp:71
+#: View/Elements/do_test.ctp:66 View/Elements/score_view.ctp:72
 msgid "Timelimit"
 msgstr "Thời gian"
 
-#: View/Elements/do_test.ctp:67 View/Elements/score_view.ctp:72
+#: View/Elements/do_test.ctp:67 View/Elements/score_view.ctp:73
 msgid "minutes"
 msgstr "phút"
 
-#: View/Elements/do_test.ctp:70 View/Elements/score_view.ctp:75
+#: View/Elements/do_test.ctp:70 View/Elements/score_view.ctp:76
 msgid "Number of questions"
 msgstr "Số câu hỏi"
 
@@ -1111,7 +1114,7 @@ msgstr "Đăng xuất"
 
 #: View/Elements/progress_all.ctp:4 View/Elements/progress_category.ctp:4
 #: View/Elements/progress_subcategory.ctp:4
-#: View/Elements/progress_subject.ctp:4
+#: View/Elements/progress_subject.ctp:4 View/Elements/score_view.ctp:84
 msgid "Correct"
 msgstr "Đúng"
 
@@ -1123,7 +1126,7 @@ msgstr "Sai"
 
 #: View/Elements/progress_all.ctp:4 View/Elements/progress_category.ctp:4
 #: View/Elements/progress_subcategory.ctp:4
-#: View/Elements/progress_subject.ctp:4
+#: View/Elements/progress_subject.ctp:4 View/Elements/score_view.ctp:84
 msgid "Total"
 msgstr "Tổng số"
 
@@ -1157,9 +1160,17 @@ msgstr "Kiểm tra trên phần này"
 msgid "Oops... It looks like you have no progresses at all...."
 msgstr "Oops... Bạn chưa có tiến độ môn học..."
 
-#: View/Elements/score_view.ctp:49
+#: View/Elements/score_view.ctp:50
 msgid "Solution:"
 msgstr "Lời giải:"
+
+#: View/Elements/score_view.ctp:84
+msgid "on"
+msgstr "trên"
+
+#: View/Elements/score_view.ctp:84
+msgid "questions"
+msgstr "câu hỏi"
 
 #: View/Elements/table_score.ctp:4
 msgid "Test ID"
@@ -1223,9 +1234,9 @@ msgstr "Tất cả các lớp"
 msgid "Excellent"
 msgstr "Xuất sắc"
 
-#: View/Helper/NameHelper.php:66
-msgid "Score from) 9/10 "
-msgstr ""
+#: View/Helper/NameHelper.php:66;73;80;87;94;101;108
+msgid "Score from"
+msgstr "Điểm từ"
 
 #: View/Helper/NameHelper.php:66;73;80;87;94;101;108
 msgid "to"
@@ -1234,10 +1245,6 @@ msgstr "đến"
 #: View/Helper/NameHelper.php:72
 msgid "Good"
 msgstr "Giỏi"
-
-#: View/Helper/NameHelper.php:73;80;87;94;101;108
-msgid "Score from"
-msgstr "Điểm từ"
 
 #: View/Helper/NameHelper.php:79
 msgid "Fair"
@@ -1394,7 +1401,7 @@ msgstr "Điểm trung bình"
 
 #: View/People/view.ctp:2 View/Progresses/view.ctp:4 View/Scores/view.ctp:14
 msgid "Person"
-msgstr ""
+msgstr "Người dùng"
 
 #: View/People/view.ctp:9
 msgid "First Name"
@@ -1597,10 +1604,6 @@ msgstr "Điểm"
 msgid "Delete Score"
 msgstr ""
 
-#: View/Scores/view_details.ctp:3 View/Tests/do_test.ctp:3
-msgid "Do test"
-msgstr "Làm bài kiểm tra"
-
 #: View/ScoresQuestions/add.ctp:4
 msgid "Add Scores Question"
 msgstr ""
@@ -1787,6 +1790,9 @@ msgstr "Họ là bắt buộc"
 #: Model/Person.php:validation for field role
 msgid "Role is not correct, must be: {'admin', 'user', 'editor'}"
 msgstr "Vai trò không đúng, phải là: {'admin', 'user', 'editor'}"
+
+#~ msgid "Do test"
+#~ msgstr "Làm bài kiểm tra"
 
 #~ msgid "Maths"
 #~ msgstr "Toán"

@@ -134,9 +134,11 @@ class ScoresController extends AppController {
         $this->set('title_for_layout', __('Test result'));
 
 		$this->loadModel('ScoresQuestion');
+        $this->loadModel('TestsSubject');
 
 		$this->Score->unbindModel(array('belongsTo' => array('Person')));
-		$score = $this->Score->find('first', array('conditions' => array('Score.id' => $id), 'recursive' => 0) );
+		$score = $this->Score->find('first', array('conditions' => array('Score.id' => $id), 'recursive' => 1) );
+        $subject = $this->TestsSubject->find('first', array('conditions' => array('Test.id' => $score['Test']['id'])));
 		$scoreData = $this->ScoresQuestion->find('all', array(
 			'recursive' => -1,
 			'conditions' => array(
@@ -153,6 +155,7 @@ class ScoresController extends AppController {
 		ksort($scoreData); // sort the data to match result from $questions
 		$this->set('questionsData', $questions);
 		$this->set('scoreData', $scoreData);
+        $this->set('subject', $subject);
 		$this->set('correct', $score['Score']['score']);
 		$this->set('numberOfQuestions', $score['Test']['number_questions']);
 		$this->set('duration', $score['Test']['time_limit']);

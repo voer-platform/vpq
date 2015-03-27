@@ -66,7 +66,7 @@
             <table>
                 <tr>
                     <td class="first"><?php echo __('Test'); ?>:</td>
-                    <td><?php //echo $this->Name->subjectToName($subject); ?> </td>
+                    <td><?php echo $subject['Subject']['name']; ?> </td>
                 </tr>
                 <tr>
                     <td class="first"><?php echo __('Timelimit'); ?>:</td>
@@ -79,8 +79,9 @@
             </table>
         </div> 
         <div class="clock">
-            <div>Tổng điểm</div>
-            <div id="countdown"><?php echo $correct.'/'.$numberOfQuestions; ?></div>
+            <div><?php echo __('Score'); ?></div>
+            <div id="countdown"><?php echo round($correct/$numberOfQuestions,2)*10; ?></div>
+            <div id="details"><?php echo __('Correct').': '.'<b>'.$correct.'</b>'.' '.__('on').' '.__('Total').': '.'<b>'.$numberOfQuestions.'</b>'.' '.__('questions').'.'; ?></div>
         </div>
     </div>
     <div style="clear:both;"></div>
