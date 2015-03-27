@@ -215,7 +215,6 @@ class TestsController extends AppController {
         // process if request is post
         if( isset($time) && isset($subject) ){
 			
-
             // retrieve request data
             $numberOfQuestions = $time;
             $timeLimit = $time;

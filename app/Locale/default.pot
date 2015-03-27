@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-03-26 15:46+0700\n"
+"POT-Creation-Date: 2015-03-27 10:44+0700\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -159,62 +159,70 @@ msgstr ""
 msgid "About us"
 msgstr ""
 
-#: Controller/PeopleController.php:71;103;128
+#: Controller/PeopleController.php:71
+#: View/People/view.ctp:2
+#: View/Progresses/view.ctp:4
+#: View/Scores/view.ctp:14
+msgid "Person"
+msgstr ""
+
+#: Controller/PeopleController.php:74;106;131
 msgid "Invalid person"
 msgstr ""
 
-#: Controller/PeopleController.php:86;107
+#: Controller/PeopleController.php:89;110
 msgid "The person has been saved."
 msgstr ""
 
-#: Controller/PeopleController.php:89;110
+#: Controller/PeopleController.php:92;113
 msgid "The person could not be saved. Please, try again."
 msgstr ""
 
-#: Controller/PeopleController.php:132
+#: Controller/PeopleController.php:135
 msgid "The person has been deleted."
 msgstr ""
 
-#: Controller/PeopleController.php:134
+#: Controller/PeopleController.php:137
 msgid "The person could not be deleted. Please, try again."
 msgstr ""
 
-#: Controller/PeopleController.php:150
+#: Controller/PeopleController.php:153
 msgid "Invalid login. Please try again."
 msgstr ""
 
-#: Controller/PeopleController.php:220;225
+#: Controller/PeopleController.php:223;228
 msgid "Something wrong, cannot log in. Please try again!"
 msgstr ""
 
-#: Controller/PeopleController.php:241
+#: Controller/PeopleController.php:244
 #: View/Elements/menu.ctp:19;40
 #: View/People/dashboard.ctp:3
-#: View/Scores/view_details.ctp:2
-#: View/Tests/choose_test.ctp:4
-#: View/Tests/do_test.ctp:2
 msgid "Dashboard"
 msgstr ""
 
-#: Controller/PeopleController.php:268
+#: Controller/PeopleController.php:271
 #: Controller/SubcategoriesController.php:144
 #: View/Elements/menu.ctp:20
 msgid "History"
 msgstr ""
 
-#: Controller/PeopleController.php:279
+#: Controller/PeopleController.php:282
 msgid "Suggestion"
 msgstr ""
 
-#: Controller/PeopleController.php:286
+#: Controller/PeopleController.php:289
 #: View/Elements/menu.ctp:21
 #: View/People/view.ctp:66
 #: View/Progresses/view.ctp:2;14
 msgid "Progress"
 msgstr ""
 
-#: Controller/PeopleController.php:297
+#: Controller/PeopleController.php:300
 msgid "Cover details"
+msgstr ""
+
+#: Controller/PeopleController.php:319
+msgid "Profile"
 msgstr ""
 
 #: Controller/ProgressesController.php:50;85;113
@@ -269,27 +277,27 @@ msgstr ""
 msgid "The questions subcategory could not be deleted. Please, try again."
 msgstr ""
 
-#: Controller/ScoresController.php:53;88;116
+#: Controller/ScoresController.php:52;87;115
 msgid "Invalid score"
 msgstr ""
 
-#: Controller/ScoresController.php:68;92
+#: Controller/ScoresController.php:67;91
 msgid "The score has been saved."
 msgstr ""
 
-#: Controller/ScoresController.php:71;95
+#: Controller/ScoresController.php:70;94
 msgid "The score could not be saved. Please, try again."
 msgstr ""
 
-#: Controller/ScoresController.php:120
+#: Controller/ScoresController.php:119
 msgid "The score has been deleted."
 msgstr ""
 
-#: Controller/ScoresController.php:122
+#: Controller/ScoresController.php:121
 msgid "The score could not be deleted. Please, try again."
 msgstr ""
 
-#: Controller/ScoresController.php:135
+#: Controller/ScoresController.php:134
 msgid "Test result"
 msgstr ""
 
@@ -378,7 +386,7 @@ msgstr ""
 msgid "Testing"
 msgstr ""
 
-#: Controller/TestsController.php:264
+#: Controller/TestsController.php:263
 msgid "No data found"
 msgstr ""
 
@@ -467,6 +475,7 @@ msgstr ""
 #: View/Elements/progress_category.ctp:4
 #: View/Elements/progress_subcategory.ctp:4
 #: View/Elements/progress_subject.ctp:4
+#: View/Elements/score_view.ctp:82
 #: View/Elements/table_score.ctp:4
 #: View/People/dashboard.ctp:46
 #: View/People/view.ctp:98
@@ -1034,7 +1043,7 @@ msgid "Delete Answer"
 msgstr ""
 
 #: View/Ask4Help/index.ctp:8
-#: View/Elements/score_view.ctp:46
+#: View/Elements/score_view.ctp:47
 msgid "Ask for help"
 msgstr ""
 
@@ -1296,7 +1305,7 @@ msgid "Time remains"
 msgstr ""
 
 #: View/Elements/do_test.ctp:62
-#: View/Elements/score_view.ctp:67
+#: View/Elements/score_view.ctp:68
 #: View/People/dashboard.ctp:40
 #: View/Scores/view.ctp:9
 #: View/Tests/choose_test.ctp:11
@@ -1307,17 +1316,17 @@ msgid "Test"
 msgstr ""
 
 #: View/Elements/do_test.ctp:66
-#: View/Elements/score_view.ctp:71
+#: View/Elements/score_view.ctp:72
 msgid "Timelimit"
 msgstr ""
 
 #: View/Elements/do_test.ctp:67
-#: View/Elements/score_view.ctp:72
+#: View/Elements/score_view.ctp:73
 msgid "minutes"
 msgstr ""
 
 #: View/Elements/do_test.ctp:70
-#: View/Elements/score_view.ctp:75
+#: View/Elements/score_view.ctp:76
 msgid "Number of questions"
 msgstr ""
 
@@ -1337,6 +1346,7 @@ msgstr ""
 #: View/Elements/progress_category.ctp:4
 #: View/Elements/progress_subcategory.ctp:4
 #: View/Elements/progress_subject.ctp:4
+#: View/Elements/score_view.ctp:84
 msgid "Correct"
 msgstr ""
 
@@ -1351,6 +1361,7 @@ msgstr ""
 #: View/Elements/progress_category.ctp:4
 #: View/Elements/progress_subcategory.ctp:4
 #: View/Elements/progress_subject.ctp:4
+#: View/Elements/score_view.ctp:84
 msgid "Total"
 msgstr ""
 
@@ -1389,8 +1400,16 @@ msgstr ""
 msgid "Oops... It looks like you have no progresses at all...."
 msgstr ""
 
-#: View/Elements/score_view.ctp:49
+#: View/Elements/score_view.ctp:50
 msgid "Solution:"
+msgstr ""
+
+#: View/Elements/score_view.ctp:84
+msgid "on"
+msgstr ""
+
+#: View/Elements/score_view.ctp:84
+msgid "questions"
 msgstr ""
 
 #: View/Elements/table_score.ctp:4
@@ -1665,14 +1684,12 @@ msgstr ""
 msgid "New Person"
 msgstr ""
 
-#: View/People/progress.ctp:3
-msgid "Your performance"
+#: View/People/profile.ctp:10
+msgid "Member since"
 msgstr ""
 
-#: View/People/view.ctp:2
-#: View/Progresses/view.ctp:4
-#: View/Scores/view.ctp:14
-msgid "Person"
+#: View/People/progress.ctp:3
+msgid "Your performance"
 msgstr ""
 
 #: View/People/view.ctp:9
@@ -1910,11 +1927,6 @@ msgstr ""
 
 #: View/Scores/view.ctp:40
 msgid "Delete Score"
-msgstr ""
-
-#: View/Scores/view_details.ctp:3
-#: View/Tests/do_test.ctp:3
-msgid "Do test"
 msgstr ""
 
 #: View/ScoresQuestions/add.ctp:4
