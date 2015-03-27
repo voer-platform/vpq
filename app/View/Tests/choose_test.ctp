@@ -1,17 +1,5 @@
 <?php echo $this->Html->css('choose_test.css'); ?>
 
-<<<<<<< HEAD
-<!--<ol class="breadcrumb">
-  <li><?php echo $this->Html->link(__('Dashboard'), array('controller' => 'People', 'action' => 'dashboard')); ?></li>
-  <li class="active"><?php echo __('Choose Test'); ?></li>
-</ol>-->
-=======
-<!-- <ol class="breadcrumb">
-  <li><?php # echo $this->Html->link(__('Dashboard'), array('controller' => 'People', 'action' => 'dashboard')); ?></li>
-  <li class="active"><?php echo __('Choose Test'); ?></li>
-</ol> -->
->>>>>>> origin/master
-
 <div class="chooseTest">
     <h2><?php echo __('Choose test')?></h2>
     <hr />

@@ -3,7 +3,7 @@
         <ul id="questions">
         <?php foreach($scoreData as $index => $data): ?>
             <li id='dotestQuestions' rel="<?php echo $index+1;?>">
-                <?php $correct = -1; ?>
+                <?php $correct_answer = -1; ?>
                 <fieldset>
                     <div class="question">
                         <div class="title"><?php echo "<b>", 'Câu ', $index+1, ":</b>  "; ?></div>
@@ -13,7 +13,7 @@
                         <?php foreach($questionsData[$index]['Answer'] as $answerId => $answer): ?>
                             <!-- correct answer -->
                             <?php if( $answer['correctness'] == 1): ?>
-                                <?php $correct = $answerId; ?>
+                                <?php $correct_answer = $answerId; ?>
                                 <label class='btn-answer active'>
                             <?php elseif( $data['ScoresQuestion']['answer'] == $answerId && isset($data['ScoresQuestion']['answer'])): ?>
                                 <label class='btn-answer wrong'>
@@ -37,7 +37,7 @@
                         if ($true == 1){
                             $r .= "Đây là đáp án đúng.";
                         }else{
-                            $r .= "Đây là đáp án sai. Đáp án đúng là ". chr($correct + 97) . ". ";
+                            $r .= "Đây là đáp án sai. Đáp án đúng là ". chr($correct_answer + 97) . ". ";
                             $class = "incorrect";
                         }
                     }
