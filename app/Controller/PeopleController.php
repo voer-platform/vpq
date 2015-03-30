@@ -27,7 +27,7 @@ class PeopleController extends AppController {
     public function isAuthorized($user) {
         // user can logout, dashboard, progress, history, suggest
         if (isset($user['role']) && $user['role'] === 'user' ){
-            if( in_array( $this->request->action, array('profile','progress', 'login', 'logout', 'history', 'dashboard','suggest'))){
+            if( in_array( $this->request->action, array('profile', 'login', 'logout', 'history', 'dashboard','suggest'))){
                 return true;
             }
         } elseif (isset($user['role']) && $user['role'] === 'editor') {

@@ -10,7 +10,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <?php echo $this->HTML->link($this->Html->image('logo-small.png', array('alt' => 'PLS')), '/', array('class'=>'navbar-brand', 'escape' => false)); ?>
+      <?php echo $this->Html->image('logo-small.png', array('alt' => 'PLS')); ?>
     </div>
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
@@ -18,7 +18,6 @@
         <?php if(!empty($user) ): ?>
           <li><?php echo $this->HTML->link(__('Dashboard'), array('controller' => 'people', 'action' => 'dashboard')); ?></li>
           <li><?php echo $this->HTML->link(__('History'), array('controller' => 'people', 'action' => 'history')); ?></li>
-          <li><?php echo $this->HTML->link(__('Progress'), array('controller' => 'people', 'action' => 'progress')); ?></li>
           <li><?php echo $this->HTML->link(__('About'), '/about'); ?></li>
         <?php endif; ?>
 

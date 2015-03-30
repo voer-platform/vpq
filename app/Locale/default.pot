@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-03-27 10:44+0700\n"
+"POT-Creation-Date: 2015-03-30 17:20+0700\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -19,7 +19,7 @@ msgid "Elfinder File Manager"
 msgstr ""
 
 #: Controller/AdminController.php:59
-#: View/Elements/menu.ctp:27
+#: View/Elements/menu.ctp:26
 msgid "Admin"
 msgstr ""
 
@@ -195,7 +195,7 @@ msgid "Something wrong, cannot log in. Please try again!"
 msgstr ""
 
 #: Controller/PeopleController.php:244
-#: View/Elements/menu.ctp:19;40
+#: View/Elements/menu.ctp:19;39
 #: View/People/dashboard.ctp:3
 msgid "Dashboard"
 msgstr ""
@@ -211,7 +211,6 @@ msgid "Suggestion"
 msgstr ""
 
 #: Controller/PeopleController.php:289
-#: View/Elements/menu.ctp:21
 #: View/People/view.ctp:66
 #: View/Progresses/view.ctp:2;14
 msgid "Progress"
@@ -377,16 +376,16 @@ msgstr ""
 msgid "The test could not be deleted. Please, try again."
 msgstr ""
 
-#: Controller/TestsController.php:151
-#: View/Tests/choose_test.ctp:9
+#: Controller/TestsController.php:153
+#: View/Tests/choose_test.ctp:4
 msgid "Choose test"
 msgstr ""
 
-#: Controller/TestsController.php:213
+#: Controller/TestsController.php:234
 msgid "Testing"
 msgstr ""
 
-#: Controller/TestsController.php:263
+#: Controller/TestsController.php:294
 msgid "No data found"
 msgstr ""
 
@@ -475,7 +474,7 @@ msgstr ""
 #: View/Elements/progress_category.ctp:4
 #: View/Elements/progress_subcategory.ctp:4
 #: View/Elements/progress_subject.ctp:4
-#: View/Elements/score_view.ctp:82
+#: View/Elements/score_view.ctp:85
 #: View/Elements/table_score.ctp:4
 #: View/People/dashboard.ctp:46
 #: View/People/view.ctp:98
@@ -1043,7 +1042,7 @@ msgid "Delete Answer"
 msgstr ""
 
 #: View/Ask4Help/index.ctp:8
-#: View/Elements/score_view.ctp:47
+#: View/Elements/score_view.ctp:50
 msgid "Ask for help"
 msgstr ""
 
@@ -1305,10 +1304,10 @@ msgid "Time remains"
 msgstr ""
 
 #: View/Elements/do_test.ctp:62
-#: View/Elements/score_view.ctp:68
+#: View/Elements/score_view.ctp:71
 #: View/People/dashboard.ctp:40
 #: View/Scores/view.ctp:9
-#: View/Tests/choose_test.ctp:11
+#: View/Tests/choose_test.ctp:6
 #: View/Tests/view.ctp:2
 #: View/TestsQuestions/view.ctp:9
 #: View/TestsSubjects/view.ctp:9
@@ -1316,29 +1315,29 @@ msgid "Test"
 msgstr ""
 
 #: View/Elements/do_test.ctp:66
-#: View/Elements/score_view.ctp:72
+#: View/Elements/score_view.ctp:75
 msgid "Timelimit"
 msgstr ""
 
 #: View/Elements/do_test.ctp:67
-#: View/Elements/score_view.ctp:73
+#: View/Elements/score_view.ctp:76
 msgid "minutes"
 msgstr ""
 
 #: View/Elements/do_test.ctp:70
-#: View/Elements/score_view.ctp:76
+#: View/Elements/score_view.ctp:79
 msgid "Number of questions"
 msgstr ""
 
-#: View/Elements/menu.ctp:22
+#: View/Elements/menu.ctp:21
 msgid "About"
 msgstr ""
 
-#: View/Elements/menu.ctp:39
+#: View/Elements/menu.ctp:38
 msgid "Account info"
 msgstr ""
 
-#: View/Elements/menu.ctp:42
+#: View/Elements/menu.ctp:41
 msgid "Logout"
 msgstr ""
 
@@ -1346,7 +1345,7 @@ msgstr ""
 #: View/Elements/progress_category.ctp:4
 #: View/Elements/progress_subcategory.ctp:4
 #: View/Elements/progress_subject.ctp:4
-#: View/Elements/score_view.ctp:84
+#: View/Elements/score_view.ctp:87
 msgid "Correct"
 msgstr ""
 
@@ -1361,7 +1360,7 @@ msgstr ""
 #: View/Elements/progress_category.ctp:4
 #: View/Elements/progress_subcategory.ctp:4
 #: View/Elements/progress_subject.ctp:4
-#: View/Elements/score_view.ctp:84
+#: View/Elements/score_view.ctp:87
 msgid "Total"
 msgstr ""
 
@@ -1400,20 +1399,36 @@ msgstr ""
 msgid "Oops... It looks like you have no progresses at all...."
 msgstr ""
 
-#: View/Elements/score_view.ctp:50
+#: View/Elements/score_view.ctp:53
 msgid "Solution:"
 msgstr ""
 
-#: View/Elements/score_view.ctp:84
+#: View/Elements/score_view.ctp:87
 msgid "on"
 msgstr ""
 
-#: View/Elements/score_view.ctp:84
+#: View/Elements/score_view.ctp:87
 msgid "questions"
 msgstr ""
 
-#: View/Elements/table_score.ctp:4
-msgid "Test ID"
+#: View/Elements/score_view.ctp:91;127
+msgid "Show Answers"
+msgstr ""
+
+#: View/Elements/score_view.ctp:92;141
+msgid "Show Solutions"
+msgstr ""
+
+#: View/Elements/score_view.ctp:95
+msgid "Go to dashboard"
+msgstr ""
+
+#: View/Elements/score_view.ctp:121
+msgid "Hide Answers"
+msgstr ""
+
+#: View/Elements/score_view.ctp:136
+msgid "Hide Solutions"
 msgstr ""
 
 #: View/Elements/table_score.ctp:4
@@ -1424,12 +1439,12 @@ msgstr ""
 msgid "Time limit"
 msgstr ""
 
-#: View/Elements/table_score.ctp:9
-#: View/Tests/choose_test.ctp:42
+#: View/Elements/table_score.ctp:8
+#: View/Tests/choose_test.ctp:41
 msgid "mins"
 msgstr ""
 
-#: View/Elements/table_score.ctp:15
+#: View/Elements/table_score.ctp:14
 msgid "Oops... It looks like you have no scores on this...."
 msgstr ""
 
@@ -1470,7 +1485,7 @@ msgstr ""
 #: View/Helper/NameHelper.php:53
 #: View/People/dashboard.ctp:71;72;73
 #: View/People/view.ctp:19
-#: View/Tests/choose_test.ctp:14;19
+#: View/Tests/choose_test.ctp:9;14
 msgid "Grade"
 msgstr ""
 
@@ -1684,8 +1699,12 @@ msgstr ""
 msgid "New Person"
 msgstr ""
 
-#: View/People/profile.ctp:10
+#: View/People/profile.ctp:9
 msgid "Member since"
+msgstr ""
+
+#: View/People/profile.ctp:10
+msgid "account"
 msgstr ""
 
 #: View/People/progress.ctp:3
@@ -1993,10 +2012,6 @@ msgstr ""
 
 #: View/Tests/add.ctp:4
 msgid "Add Test"
-msgstr ""
-
-#: View/Tests/choose_test.ctp:5
-msgid "Choose Test"
 msgstr ""
 
 #: View/Tests/edit.ctp:4

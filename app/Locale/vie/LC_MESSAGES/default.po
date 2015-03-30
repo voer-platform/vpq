@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-03-27 09:56+0700\n"
-"PO-Revision-Date: 2015-03-27 10:01+0700\n"
+"POT-Creation-Date: 2015-03-30 17:20+0700\n"
+"PO-Revision-Date: 2015-03-30 17:23+0700\n"
 "Last-Translator: Viet Vu <vietvudanh@gmail.com>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "Language: vi\n"
@@ -13,13 +13,13 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 1.7.3\n"
+"X-Generator: Poedit 1.7.5\n"
 
 #: Config/elfinder.php:4
 msgid "Elfinder File Manager"
 msgstr "Trang quản lý file Elfinder"
 
-#: Controller/AdminController.php:59 View/Elements/menu.ctp:27
+#: Controller/AdminController.php:59 View/Elements/menu.ctp:26
 msgid "Admin"
 msgstr "Quản trị"
 
@@ -156,9 +156,10 @@ msgstr "Trang chủ"
 msgid "About us"
 msgstr "Giới thiệu"
 
-#: Controller/PeopleController.php:71
-msgid "Profile"
-msgstr "Thông tin cá nhân"
+#: Controller/PeopleController.php:71 View/People/view.ctp:2
+#: View/Progresses/view.ctp:4 View/Scores/view.ctp:14
+msgid "Person"
+msgstr "Người dùng"
 
 #: Controller/PeopleController.php:74;106;131
 msgid "Invalid person"
@@ -188,7 +189,7 @@ msgstr "Không thể đăng nhập, xin hãy thử lại"
 msgid "Something wrong, cannot log in. Please try again!"
 msgstr "Không thể đăng nhập. Xin hay thử lại!"
 
-#: Controller/PeopleController.php:244 View/Elements/menu.ctp:19;40
+#: Controller/PeopleController.php:244 View/Elements/menu.ctp:19;39
 #: View/People/dashboard.ctp:3
 msgid "Dashboard"
 msgstr "Trang cá nhân"
@@ -202,14 +203,18 @@ msgstr "Lịch sử"
 msgid "Suggestion"
 msgstr "Gợi ý"
 
-#: Controller/PeopleController.php:289 View/Elements/menu.ctp:21
-#: View/People/view.ctp:66 View/Progresses/view.ctp:2;14
+#: Controller/PeopleController.php:289 View/People/view.ctp:66
+#: View/Progresses/view.ctp:2;14
 msgid "Progress"
 msgstr "Tiến độ"
 
 #: Controller/PeopleController.php:300
 msgid "Cover details"
 msgstr "Chi tiết môn học"
+
+#: Controller/PeopleController.php:319
+msgid "Profile"
+msgstr "Thông tin cá nhân"
 
 #: Controller/ProgressesController.php:50;85;113
 msgid "Invalid progress"
@@ -363,15 +368,15 @@ msgstr ""
 msgid "The test could not be deleted. Please, try again."
 msgstr ""
 
-#: Controller/TestsController.php:151 View/Tests/choose_test.ctp:9
+#: Controller/TestsController.php:153 View/Tests/choose_test.ctp:4
 msgid "Choose test"
 msgstr "Chọn bài kiểm tra"
 
-#: Controller/TestsController.php:213
+#: Controller/TestsController.php:234
 msgid "Testing"
 msgstr "Đang kiểm tra"
 
-#: Controller/TestsController.php:263
+#: Controller/TestsController.php:294
 msgid "No data found"
 msgstr "Không tìm thấy dữ liệu"
 
@@ -458,7 +463,7 @@ msgstr "Không có"
 #: Model/Score.php:623 View/Elements/progress_all.ctp:4
 #: View/Elements/progress_category.ctp:4
 #: View/Elements/progress_subcategory.ctp:4
-#: View/Elements/progress_subject.ctp:4 View/Elements/score_view.ctp:82
+#: View/Elements/progress_subject.ctp:4 View/Elements/score_view.ctp:85
 #: View/Elements/table_score.ctp:4 View/People/dashboard.ctp:46
 #: View/People/view.ctp:98 View/Scores/view.ctp:2;19
 #: View/ScoresQuestions/view.ctp:9 View/Tests/view.ctp:44
@@ -854,7 +859,7 @@ msgstr "Thứ tự"
 msgid "Delete Answer"
 msgstr "Xóa câu hỏi"
 
-#: View/Ask4Help/index.ctp:8 View/Elements/score_view.ctp:47
+#: View/Ask4Help/index.ctp:8 View/Elements/score_view.ctp:50
 msgid "Ask for help"
 msgstr "Nhờ trợ giúp"
 
@@ -1081,40 +1086,40 @@ msgstr "Quản lý chủ đề con"
 msgid "Time remains"
 msgstr "Thời gian còn lại"
 
-#: View/Elements/do_test.ctp:62 View/Elements/score_view.ctp:68
+#: View/Elements/do_test.ctp:62 View/Elements/score_view.ctp:71
 #: View/People/dashboard.ctp:40 View/Scores/view.ctp:9
-#: View/Tests/choose_test.ctp:11 View/Tests/view.ctp:2
+#: View/Tests/choose_test.ctp:6 View/Tests/view.ctp:2
 #: View/TestsQuestions/view.ctp:9 View/TestsSubjects/view.ctp:9
 msgid "Test"
 msgstr "Kiểm tra"
 
-#: View/Elements/do_test.ctp:66 View/Elements/score_view.ctp:72
+#: View/Elements/do_test.ctp:66 View/Elements/score_view.ctp:75
 msgid "Timelimit"
 msgstr "Thời gian"
 
-#: View/Elements/do_test.ctp:67 View/Elements/score_view.ctp:73
+#: View/Elements/do_test.ctp:67 View/Elements/score_view.ctp:76
 msgid "minutes"
 msgstr "phút"
 
-#: View/Elements/do_test.ctp:70 View/Elements/score_view.ctp:76
+#: View/Elements/do_test.ctp:70 View/Elements/score_view.ctp:79
 msgid "Number of questions"
 msgstr "Số câu hỏi"
 
-#: View/Elements/menu.ctp:22
+#: View/Elements/menu.ctp:21
 msgid "About"
 msgstr "Giới thiệu"
 
-#: View/Elements/menu.ctp:39
+#: View/Elements/menu.ctp:38
 msgid "Account info"
 msgstr "Thông tin tài khoản"
 
-#: View/Elements/menu.ctp:42
+#: View/Elements/menu.ctp:41
 msgid "Logout"
 msgstr "Đăng xuất"
 
 #: View/Elements/progress_all.ctp:4 View/Elements/progress_category.ctp:4
 #: View/Elements/progress_subcategory.ctp:4
-#: View/Elements/progress_subject.ctp:4 View/Elements/score_view.ctp:84
+#: View/Elements/progress_subject.ctp:4 View/Elements/score_view.ctp:87
 msgid "Correct"
 msgstr "Đúng"
 
@@ -1126,7 +1131,7 @@ msgstr "Sai"
 
 #: View/Elements/progress_all.ctp:4 View/Elements/progress_category.ctp:4
 #: View/Elements/progress_subcategory.ctp:4
-#: View/Elements/progress_subject.ctp:4 View/Elements/score_view.ctp:84
+#: View/Elements/progress_subject.ctp:4 View/Elements/score_view.ctp:87
 msgid "Total"
 msgstr "Tổng số"
 
@@ -1160,21 +1165,37 @@ msgstr "Kiểm tra trên phần này"
 msgid "Oops... It looks like you have no progresses at all...."
 msgstr "Oops... Bạn chưa có tiến độ môn học..."
 
-#: View/Elements/score_view.ctp:50
+#: View/Elements/score_view.ctp:53
 msgid "Solution:"
 msgstr "Lời giải:"
 
-#: View/Elements/score_view.ctp:84
+#: View/Elements/score_view.ctp:87
 msgid "on"
 msgstr "trên"
 
-#: View/Elements/score_view.ctp:84
+#: View/Elements/score_view.ctp:87
 msgid "questions"
 msgstr "câu hỏi"
 
-#: View/Elements/table_score.ctp:4
-msgid "Test ID"
-msgstr "ID bài kiểm tra"
+#: View/Elements/score_view.ctp:91;127
+msgid "Show Answers"
+msgstr "Xem đáp án"
+
+#: View/Elements/score_view.ctp:92;141
+msgid "Show Solutions"
+msgstr "Xem lời giải"
+
+#: View/Elements/score_view.ctp:95
+msgid "Go to dashboard"
+msgstr "Quay lại trang cá nhân"
+
+#: View/Elements/score_view.ctp:121
+msgid "Hide Answers"
+msgstr "Ẩn đáp án"
+
+#: View/Elements/score_view.ctp:136
+msgid "Hide Solutions"
+msgstr "Ẩn lời giải"
 
 #: View/Elements/table_score.ctp:4
 msgid "Time taken"
@@ -1184,11 +1205,11 @@ msgstr "Thời gian làm"
 msgid "Time limit"
 msgstr "Thời gian giới hạn"
 
-#: View/Elements/table_score.ctp:9 View/Tests/choose_test.ctp:42
+#: View/Elements/table_score.ctp:8 View/Tests/choose_test.ctp:41
 msgid "mins"
 msgstr "phút"
 
-#: View/Elements/table_score.ctp:15
+#: View/Elements/table_score.ctp:14
 msgid "Oops... It looks like you have no scores on this...."
 msgstr "Oops... bạn chưa có điểm cho phần này...."
 
@@ -1218,7 +1239,7 @@ msgstr "Lớp mới"
 
 #: View/Grades/view.ctp:2 View/Helper/NameHelper.php:53
 #: View/People/dashboard.ctp:71;72;73 View/People/view.ctp:19
-#: View/Tests/choose_test.ctp:14;19
+#: View/Tests/choose_test.ctp:9;14
 msgid "Grade"
 msgstr "Lớp"
 
@@ -1395,13 +1416,17 @@ msgstr "User"
 msgid "New Person"
 msgstr ""
 
+#: View/People/profile.ctp:9
+msgid "Member since"
+msgstr ""
+
+#: View/People/profile.ctp:10
+msgid "account"
+msgstr "tài khoản"
+
 #: View/People/progress.ctp:3
 msgid "Your performance"
 msgstr "Điểm trung bình"
-
-#: View/People/view.ctp:2 View/Progresses/view.ctp:4 View/Scores/view.ctp:14
-msgid "Person"
-msgstr "Người dùng"
 
 #: View/People/view.ctp:9
 msgid "First Name"
@@ -1665,10 +1690,6 @@ msgstr "Các bài làm của bạn cho: "
 msgid "Add Test"
 msgstr ""
 
-#: View/Tests/choose_test.ctp:5
-msgid "Choose Test"
-msgstr "Chọn bài kiểm tra"
-
 #: View/Tests/edit.ctp:4 View/Tests/view.ctp:24
 msgid "Edit Test"
 msgstr ""
@@ -1790,6 +1811,12 @@ msgstr "Họ là bắt buộc"
 #: Model/Person.php:validation for field role
 msgid "Role is not correct, must be: {'admin', 'user', 'editor'}"
 msgstr "Vai trò không đúng, phải là: {'admin', 'user', 'editor'}"
+
+#~ msgid "Test ID"
+#~ msgstr "ID bài kiểm tra"
+
+#~ msgid "Choose Test"
+#~ msgstr "Chọn bài kiểm tra"
 
 #~ msgid "Do test"
 #~ msgstr "Làm bài kiểm tra"
