@@ -10,11 +10,18 @@
                         <div class="question-content"><?php echo html_entity_decode($questionsData[$index]['Question']['content']); ?></div>
                     </div>
                     <div class="btn-group answer" data-toggle="buttons">
+                        <!-- <?php pr($data);pr($questionsData[$index]['Answer']); ?> -->
                         <?php foreach($questionsData[$index]['Answer'] as $answerId => $answer): ?>
                             <!-- correct answer -->
                             <?php if( $answer['correctness'] == 1): ?>
                                 <?php $correct_answer = $answerId; ?>
-                                <label class="btn-answer" correct="true">
+                                <!-- user choose correct answer -->
+                                <?php if($data['ScoresQuestion']['answer'] == $answerId): ?>
+                                    <label class="btn-answer active">    
+                                <?php else: ?>
+                                    <label class="btn-answer" correct="true">
+                                <?php endif; ?>
+                            <!-- user choose wrong -->
                             <?php elseif( $data['ScoresQuestion']['answer'] == $answerId && isset($data['ScoresQuestion']['answer'])): ?>
                                 <label class="btn-answer wrong">
                             <?php else: ?>
@@ -84,13 +91,15 @@
         <div class="clock">
             <div><?php echo __('Score'); ?></div>
             <div id="countdown"><?php echo round($correct/$numberOfQuestions,2)*10; ?></div>
+            <div class="fb-share-button" data-href="<?php echo Router::url('/'); ?>" data-layout="button_count"></div>
             <div id="details"><?php echo __('Correct').': '.'<b>'.$correct.'</b>'.' '.__('on').' '.__('Total').': '.'<b>'.$numberOfQuestions.'</b>'.' '.__('questions').'.'; ?></div>
-        </div>
-        <div class="options">
             <div class="btn-questions">
                <button class="btn show-answers" id="btn-show-answers"><?php echo __('Show Answers'); ?></button>
                <button class="btn show-solutions" id="btn-show-solutions"><?php echo __('Show Solutions'); ?></button>
             </div>
+        </div>
+        <div class="options">
+            
             <div class='btn-go-dashboard'>
                 <?php echo $this->Html->link(__('Go to dashboard'), array('controller' => 'people', 'action' => 'dashboard'), array('class' => 'btn')) ?>
             </div>
@@ -102,6 +111,27 @@
 <script type="text/javascript">
     
     $(document).ready(function(){
+
+        // fb share
+        var FBShare = function () {
+            FB.ui({
+                method: 'share',
+                href: '<?php echo Router::url('/'); ?>',
+            }, function(response) {
+                if (response && !response.error_code) {
+                    alert('Posting completed.');
+                } else {
+                    alert('Error while posting.');
+                }
+            });
+        };
+        <?php if ( count($explanationsData) < 1 ): ?>
+          setTimeout(FBShare, 1000);
+        <?php endif; ?>
+        $('.fb-share-button').click(function() {
+            FBShare();
+        });
+
         var showAnswer = false;
         var showSolution = false;
         $('ul#questions').simplePaging({pageSize: "1"});

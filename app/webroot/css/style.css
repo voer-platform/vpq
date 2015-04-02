@@ -344,6 +344,8 @@ div.test-info div.title {
 }
 
 div.test-info table{
+  padding: 10px;
+  margin: 0 auto;
   border-collapse: collapse;
   border-spacing: 0;
   font-size: 13px;
@@ -351,14 +353,16 @@ div.test-info table{
 }
 
 div.test-info table tr td{
+  padding: 3px;
   border: none;
   text-align: left;
   font-weight: bold;
 }
 
 div.test-info table tr td.first{
+  margin-left: 15px;
   text-align: right;
-  width: 40%;
+  width: 50%;
   font-weight: normal;
 }
 
@@ -579,4 +583,47 @@ div.incorrect{
   background-color: #428bca;
   border-color: #357ebd;
   color: #fff;
+}
+div.btn-questions button, div.options .btn{
+  background-image: linear-gradient(#fff, #e7e7e7);
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  color: #555;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: bold;
+  max-width: 120px;
+  padding: 8px 11px 6px 10px;
+  text-align: center;
+  text-shadow: 1px 1px 1px #fff;
+}
+div.btn-questions button:hover, div.options .btn:hover{
+  background-image: -webkit-linear-gradient(#2299dd, #1589cb);
+  background-image: -o-linear-gradient(#2299dd, #1589cb);
+  background-image: linear-gradient(#2299dd, #1589cb);
+  border: 1px solid #0d7bba;
+  color: #fff;
+  text-shadow: 1px 1px 1px #0d7bba;  
+}
+
+div.options {
+  background: none repeat scroll 0 0 #fcfcfc;
+  border: 1px solid #d7d7d7;
+  margin: 15px 0 15px 15px;
+  padding: 13px 10px;
+  text-align: center;
+}
+div.btn-questions,
+div.options div.btn-go-dashboard{
+  margin-top: 5px;
+}
+div.btn-questions,
+div.btn-go-dashboard .btn{
+  min-width: 100%;
+}
+div.solution{
+  display: none;
+}
+div.correct-answer{
+  display: none;
 }

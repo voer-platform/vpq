@@ -6,6 +6,7 @@
 		<li><?php echo $this->Html->link(__('Manage Questions'), array('controller' => 'questions', 'action' => 'index')); ?></li>
 		<li><?php echo $this->Html->link(__('Manage SubCategories'), array('controller' => 'subcategories', 'action' => 'index')); ?></li>
 		<li><?php echo $this->Html->link(__('Categorize'), array('controller' => 'Admin', 'action' => 'manualCategorized')); ?></li>
+		<li><?php echo $this->Html->link(__('Analystic'), array('controller' => 'Admin', 'action' => 'analystics')); ?></li>
 	</ul>
 </div>
 

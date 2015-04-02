@@ -150,8 +150,12 @@ class ScoresController extends AppController {
 
 		$this->loadModel('Question');
 		$questions = $this->Question->getQuestionsFromIds($questionIds);
-	
+	   
+        $this->loadModel('TestsSubject');
+        $subject = $this->TestsSubject->find('first', array('conditions' => array('TestsSubject.test_id' => $score['Test']['id'])));
+
 		ksort($scoreData); // sort the data to match result from $questions
+        $this->set('subject', $subject);
 		$this->set('questionsData', $questions);
 		$this->set('scoreData', $scoreData);
 		$this->set('correct', $score['Score']['score']);
