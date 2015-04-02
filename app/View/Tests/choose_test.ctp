@@ -177,6 +177,16 @@ $(document).ready(function(){
 				if(this.checked==false){
 					sl=sl+1;				
 					document.getElementById("sl").innerHTML=sl;
+					var SubID = $(this).attr('id');
+					var CatID = $('.'+SubID).attr('data-id');
+					count=$('#spcat-'+CatID).text();
+					if(count==''){
+						count=0;
+					}else{
+						count=parseInt(count);
+					}
+					count=count+1;
+					document.getElementById("spcat-"+CatID).innerHTML=count;
 					this.checked=true;
 				}								
 			});
@@ -185,6 +195,20 @@ $(document).ready(function(){
 				if(this.checked==true){					
 					sl=sl-1;
 					document.getElementById("sl").innerHTML=sl;
+					var subid = $(this).attr('data-id');
+					var SubID = $(this).attr('id');
+					var CatID = $('.'+SubID).attr('data-id');
+					count=$('#spcat-'+CatID).text();
+					if(count==''){
+						count=0;
+					}else{
+						count=parseInt(count);
+					}
+					count=count-1;
+					if(count==0){
+						count='';
+					}
+					document.getElementById("spcat-"+CatID).innerHTML=count;
 					this.checked=false;
 				}				
 			});
