@@ -30,7 +30,7 @@
 				</div>				
 			</div>
 			<div class='row'>
-				<div class="col-sm-12" style="padding:5px">
+				<div class="col-sm-12" style="padding:5px; border-left: solid 1px #ddd;border-right: solid 1px #ddd;">
 					<a style='float:right'>Số bài bạn đã chọn: <span id="sl"><?php echo $count ?></span></a>
 				</div>
 			</div>
@@ -43,20 +43,20 @@
 								<?php foreach($allcat as $item=>$ac): ?>
 								<?php if($ac['Grade']['id']==$i): ?>
 								<tr>
-									<td class="td_cat" style="padding-left:5px; width:10px;">
+									<td class="td_cat" style="padding-left:5px; width:10px;border: solid 1px #ddd;border-right:0px;">
 										<input type="checkbox" class="checkall" data-id='<?php echo $ac['Category']['id'] ?>'/>
 									</td>
-									<td colspan='2' class="cat" data-id='<?php echo $ac['Category']['id'] ?>' style="padding-left:5px">&nbsp<a><?php echo $ac['Category']['name'];?><i style="float:right;margin-top:2px" class="glyphicon glyphicon-plus-sign"></i><span id='spcat-<?php echo $ac['Category']['id'] ?>' style="float:right; margin-right:10px;" id="sl_incat"></span></a>
+									<td colspan='2' class="cat" data-id='<?php echo $ac['Category']['id'] ?>' style="padding-left:5px;border: solid 1px #ddd;border-left:0px;">&nbsp<a><?php echo $ac['Category']['name'];?><i style="float:right;margin-top:2px" class="glyphicon glyphicon-plus-sign"></i><span id='spcat-<?php echo $ac['Category']['id'] ?>' style="float:right; margin-right:10px;" id="sl_incat"></span></a>
 									</td>
 								</tr>				
 								<?php foreach($ac['Subcategory'] as $item=>$asc): ?>
 									<tr class="subcat cat-<?php echo $ac['Category']['id'] ?> sub-<?php echo $asc['id'] ?>" data-id='<?php echo $ac['Category']['id'] ?>' data-sub='<?php echo $asc['id'] ?>'>
-										<td>
+										<td style='border: solid 1px #ddd;border-right:0px;'>
 										</td>
 										<td style="width:23px;">
 											<input type="checkbox" name="sub" class='chksub chk-<?php echo $ac['Category']['id'] ?> ' id='sub-<?php echo $asc['id'] ?>' value="<?php echo $asc['id']?>" <?php echo (in_array($asc['id'],$pretracking) ? "checked" : ""); ?> />
 										</td>
-										<td class="td-subcat" data-id='<?php echo $asc['id'] ?>'><?php echo $asc['name'] ?></td>
+										<td style='border: solid 1px #ddd;border-left:0px;' class="td-subcat" data-id='<?php echo $asc['id'] ?>'><?php echo $asc['name'] ?></td>
 									</tr>
 								<?php endforeach; ?>									
 								<?php endif; ?>
