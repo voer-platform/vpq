@@ -27,7 +27,7 @@ class PeopleController extends AppController {
     public function isAuthorized($user) {
         // user can logout, dashboard, progress, history, suggest
         if (isset($user['role']) && $user['role'] === 'user' ){
-            if( in_array( $this->request->action, array('profile', 'login', 'logout', 'history', 'dashboard','suggest'))){
+            if( in_array( $this->request->action, array('view','progress', 'login', 'logout', 'history', 'dashboard','suggest'))){
                 return true;
             }
         } elseif (isset($user['role']) && $user['role'] === 'editor') {
@@ -55,7 +55,6 @@ class PeopleController extends AppController {
  * @return void
  */
     public function index() {
-
         $this->Person->recursive = 0;
         $this->set('people', $this->Paginator->paginate());
     }
@@ -68,8 +67,6 @@ class PeopleController extends AppController {
  * @return void
  */
     public function view($id = null) {
-        $this->set('title_for_layout', __('Person'));
-
         if (!$this->Person->exists($id)) {
             throw new NotFoundException(__('Invalid person'));
         }
@@ -245,23 +242,48 @@ class PeopleController extends AppController {
         $user_id = $this->Session->read('Auth.User')['id'];
 
         // get scores for 2 progress bars
-        $this->loadModel('Score');
+        /*$this->loadModel('Score');
         $scores = array();
-        $scores = $this->Score->getOverAll($user_id);
+        $scores = $this->Score->getOverAll($user_id);*/
 
-        // get cover for bar
+        // get all subject cover
         $this->loadModel('Question');
         $cover = array();
         $cover = $this->Question->getCover($user_id);
 
-        // get progress table
+        // get subject for dashboard
         $this->loadModel('Progress');
         $progresses = $this->Progress->progressOnSubject($user_id);
         $this->set('progresses', $progresses);
 
+		$this->loadModel('Grade');
+		
+		$gradeContents = $this->Grade->find('all', 
+										array(
+											//'recursive' => 2,
+											'contain'	=>	array(
+												'Category'	=>	array(
+													'conditions'=> array('Category.subject_id = 2'),
+													'Subcategory'
+												)
+											)	
+										)
+									);
+		$progressDetail = $this->Progress->progressOnGrade($user_id);
+		//pr($progressDetail);
+		
+		$this->set('progressDetail', $progressDetail);
+		$this->set('gradeContents', $gradeContents);
+		
+		$this->loadModel('Score');
+		$subject_id = 2;
+		$chart = json_encode($this->Score->getChartData($user_id, $subject_id));
+		
+		
         $this->set('progresses', $progresses);
-        $this->set('scores', $scores);
+        //$this->set('scores', $scores);
         $this->set('cover', $cover);
+		$this->set('chart', $chart);
     }
 
 /**
@@ -309,19 +331,11 @@ class PeopleController extends AppController {
         $this->set('grades', $grades);
         $this->set('categories', $categories);
     }
-
 /**
- * user profile
- *
- * @param: user id
+ *	data filters
  */
-    public function profile($person_id){
-        $this->set('title_for_layout', __('Profile'));
-
-        $options = array(
-            'conditions' => array('Person.' . $this->Person->primaryKey => $person_id),
-            'recursive' => 0
-            );
-        $this->set('person', $this->Person->find('first', $options));
-    }
+	public function dataFilters()
+	{
+	
+	}
 }

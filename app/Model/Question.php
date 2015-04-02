@@ -223,24 +223,71 @@ class Question extends AppModel {
      *          subject
      * @return: array of [done, total]
      */
-    public function getCover($person_id, $grade_id=0, $subject_id=0){
+    public function getCover($person_id, $filterOptions = null){
 
         // no option declared
         // return all subjects and grades
-        if($grade_id == 0 && $subject_id == 0){
-            $count = $this->query(
-                'select count(*) as count from 
-                    (select count(*) from questions Question
+        //if($grade_id == 0 && $subject_id == 0){
+		    $countSql = 'select count(*) as count, t.subj AS id from 
+                    (select count(*), subjects.id AS subj from questions Question
                         join scores_questions ScoresQuestion
                             on Question.id = ScoresQuestion.question_id
                         join scores Score
                             on Score.id = ScoresQuestion.score_id
-                        where Score.person_id = '.$person_id.' '.
-                        'group by Question.id) as t');
-        }
+						join tests
+                            on Score.test_id = tests.id
+						join tests_subjects
+                            on tests_subjects.test_id = tests.id	
+						join subjects
+                            on subjects.id = tests_subjects.subject_id		
+                        where Score.person_id = '.$person_id.' ';
+						
+			if(isset($filterOptions['time'])){
+				$fromTime = $toTime = null;
+
+				switch($filterOptions['time']['type']){
+					case 'week': $fromTime = date('Y-m-d h:i:s', strtotime('-1 Week')); break;
+					case 'month': $fromTime = date('Y-m-d h:i:s', strtotime('-1 Month')); break;
+					case 'custom': 
+						if(array_key_exists('start', $filterOptions['time']) && $filterOptions['time']['start']!='')
+							$fromTime = date('Y-m-d h:i:s', strtotime($filterOptions['time']['start'])); 
+						if(array_key_exists('end', $filterOptions['time']) && $filterOptions['time']['end']!='')
+							$toTime = date('Y-m-d h:i:s', strtotime($filterOptions['time']['end'])); 
+						break;
+				}
+				
+				if($fromTime)
+				{
+					$countSql.=" AND DATE(Score.time_taken) >= DATE('$fromTime')";
+				}
+				if($toTime)
+				{
+					$countSql.= " AND DATE(Score.time_taken) <= DATE('$toTime')";
+				}
+			}
+			
+			$countSql.= ' group by Question.id) as t group by t.subj';
+			
+			$count = $this->query($countSql);
+			
+			
+			$total = $this->query(
+                'select count(*) AS count, t.subj AS id from (select q.id, subjects.id AS subj from questions q
+						inner join questions_subcategories AS qs
+							on q.id = qs.question_id
+						inner join subcategories AS s
+							on s.id = qs.subcategory_id	
+						inner join categories AS c
+							on c.id = s.category_id		
+						inner join subjects
+                            on subjects.id = c.subject_id		
+                        group by q.id) AS t group by t.subj');	
+			
+       // }
+		
         // if subject is given, not grade
          // return all grades, specific subject
-        else if($grade_id == 0 && $subject_id != 0){
+        /*else if($grade_id == 0 && $subject_id != 0){
             $count = $this->query(
                 'select count(*) as count from 
                     (select count(*) from questions Question
@@ -295,9 +342,18 @@ class Question extends AppModel {
                             'and Category.subject_id = '.$subject_id.' '.
                         'group by Question.id) as t');
         }
-        
-        $total = $this->find('count');
-
-        return array($count[0][0]['count'], $total);
+        */
+		$result = array();
+		
+        foreach($count AS $item)
+		{
+			$result[$item['t']['id']]['pass'] = $item[0]['count'];
+		}
+		foreach($total AS $item)
+		{
+			$result[$item['t']['id']]['total'] = $item[0]['count'];
+		}
+		
+        return $result;
     }
 }

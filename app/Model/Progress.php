@@ -242,16 +242,16 @@ class Progress extends AppModel {
  * @param   person_id
  * @return  progresses of subjects
  */
-    public function progressOnSubject($person_id){
+    public function progressOnSubject($person_id, $filterOptions=null){
 
         // virtual fields sum of progress and total
         $this->virtualFields['sum_progress'] = 'SUM(Progress.progress)';
         $this->virtualFields['sum_total'] = 'SUM(Progress.total)';
 
-        $results = $this->find('all',array(
+		$sql = array(
             'joins' => array(
                 array(
-                    'type' => 'LEFT',
+                    'type' => 'INNER',
                     'table' => 'categories',
                     'alias' => 'Category',
                     'conditions' => array(
@@ -259,13 +259,14 @@ class Progress extends AppModel {
                         )
                     ),
                 array(
-                    'type' => 'LEFT',
+                    'type' => 'INNER',
                     'table' => 'subjects',
                     'alias' => 'Subject',
                     'conditions' => array(
                         'Subject.id = Category.subject_id' 
                     )
                 )
+                
             ),
             'group' => array(
                 'Subject.id'
@@ -279,58 +280,214 @@ class Progress extends AppModel {
             ),
             'conditions' => array(
                 'Progress.person_id = '.$person_id
-            ),
-        ));
+            )
+        );
 
+		if(isset($filterOptions['time'])){
+			$fromTime = $toTime = null;
+
+			switch($filterOptions['time']['type']){
+				case 'week': $fromTime = date('Y-m-d h:i:s', strtotime('-1 Week')); break;
+				case 'month': $fromTime = date('Y-m-d h:i:s', strtotime('-1 Month')); break;
+				case 'custom': 
+					if(array_key_exists('start', $filterOptions['time']) && $filterOptions['time']['start']!='')
+						$fromTime = date('Y-m-d h:i:s', strtotime($filterOptions['time']['start'])); 
+					if(array_key_exists('end', $filterOptions['time']) && $filterOptions['time']['end']!='')
+						$toTime = date('Y-m-d h:i:s', strtotime($filterOptions['time']['end'])); 
+					break;
+			}
+			
+			if($fromTime)
+			{
+				$sql['conditions'][] = "DATE(Progress.date) >= DATE('$fromTime')";
+			}
+			if($toTime)
+			{
+				$sql['conditions'][] = "DATE(Progress.date) <= DATE('$toTime')";
+			}
+		}
+		
+		if(isset($filterOptions['grades']))
+		{
+			$sql['joins'][] = array(
+					'type' => 'INNER',
+					'table' => 'grades',
+					'alias' => 'Grade',
+					'conditions' => array(
+						'Category.grade_id = Grade.id' 
+					)
+				);
+				
+			$sql['conditions'][] = 'Grade.id IN ('.$filterOptions['grades'].')';
+		}
+		
+        $results = $this->find('all', $sql);
+		//pr($this->getDataSource()->getLog(false, false));
         return $results;
     }
+/**
+ * get progress on categories of a subject for a person by grade
+ * @param   person_id
+ *          subject_id
+ * @return  progresses of categories
+ */	
+	public function progressOnGrade($person_id, $grades=null)
+	{
+		$progressDetail = array();
+		
+		$this->virtualFields['sum_progress'] = 'SUM(Progress.progress)';
+        $this->virtualFields['sum_total'] = 'SUM(Progress.total)';
+
+		$sql = array(
+					'joins' => array(
+						array(
+							'type' => 'INNER',
+							'table' => 'categories',
+							'alias' => 'Category',
+							'conditions' => array(
+								'Subcategory.category_id = Category.id' 
+							)
+						),
+						array(
+							'type' => 'INNER',
+							'table' => 'subjects',
+							'alias' => 'Subject',
+							'conditions' => array(
+								'Category.subject_id = Subject.id' 
+							)
+						),
+					),
+					'fields' => array(
+						'Progress.sum_progress',
+						'Progress.sum_total',
+						'Progress.date',
+						'Subcategory.name',
+						'Subcategory.id',
+						'Subject.id'
+					),
+					'group' => array(
+						'Subcategory.id'
+					),
+					'conditions' => array(
+						'Progress.person_id = '.$person_id,
+						//'Subject.id = 2'
+					),
+				);
+		$result = $this->find('all', $sql);
+
+		foreach($result AS $subcategory){
+			$progressDetail['subcategory'][$subcategory['Subcategory']['id']] = round(($subcategory['Progress']['sum_progress']/$subcategory['Progress']['sum_total'])*10, 1);
+		}
+		
+		// virtual fields sum of progress and total
+        $this->virtualFields['sum_progress'] = 'SUM(Progress.progress)';
+        $this->virtualFields['sum_total'] = 'SUM(Progress.total)';
+
+		$sql = array(
+					'joins' => array(
+						array(
+							'type' => 'INNER',
+							'table' => 'categories',
+							'alias' => 'Category',
+							'conditions' => array(
+								'Subcategory.category_id = Category.id' 
+							)
+						),
+						array(
+							'type' => 'INNER',
+							'table' => 'subjects',
+							'alias' => 'Subject',
+							'conditions' => array(
+								'Category.subject_id = Subject.id' 
+							)
+						),
+					),
+					'group' => array(
+						'Category.id'
+					),
+					'fields' => array(
+						'Progress.sum_progress',
+						'Progress.sum_total',
+						'Progress.date',
+						'Category.name',
+						'Category.id',
+						'Subject.id'
+					),
+					'conditions' => array(
+						'Progress.person_id = '.$person_id
+					),
+				);
+		$result = $this->find('all', $sql);
+
+		foreach($result AS $category){
+			$progressDetail['category'][$category['Category']['id']] = round(($category['Progress']['sum_progress']/$category['Progress']['sum_total'])*10, 1);
+		}
+		//pr($progressDetail);		
+		return $progressDetail;
+	}
 /**
  * get progress on categories of a subject for a person
  * @param   person_id
  *          subject_id
  * @return  progresses of categories
  */
-    public function progressOnCategory($person_id, $subject_id){
+    public function progressOnCategory($person_id, $subject_id, $grades = null){
 
         // virtual fields sum of progress and total
         $this->virtualFields['sum_progress'] = 'SUM(Progress.progress)';
         $this->virtualFields['sum_total'] = 'SUM(Progress.total)';
 
-        $results = $this->find('all',array(
-            'joins' => array(
-                array(
-                    'type' => 'LEFT',
-                    'table' => 'categories',
-                    'alias' => 'Category',
-                    'conditions' => array(
-                        'Subcategory.category_id = Category.id' 
-                    )
-                ),
-                array(
-                    'type' => 'LEFT',
-                    'table' => 'subjects',
-                    'alias' => 'Subject',
-                    'conditions' => array(
-                        'Category.subject_id = Subject.id' 
-                    )
-                ),
-            ),
-            'group' => array(
-                'Category.id'
-            ),
-            'fields' => array(
-                'Progress.sum_progress',
-                'Progress.sum_total',
-                'Progress.date',
-                'Category.name',
-                'Category.id',
-                'Subject.id'
-            ),
-            'conditions' => array(
-                'Progress.person_id = '.$person_id,
-                'Category.subject_id = '.$subject_id
-            ),
-        ));
+		$sql = array(
+				'joins' => array(
+					array(
+						'type' => 'LEFT',
+						'table' => 'categories',
+						'alias' => 'Category',
+						'conditions' => array(
+							'Subcategory.category_id = Category.id' 
+						)
+					),
+					array(
+						'type' => 'LEFT',
+						'table' => 'subjects',
+						'alias' => 'Subject',
+						'conditions' => array(
+							'Category.subject_id = Subject.id' 
+						)
+					),
+				),
+				'group' => array(
+					'Category.id'
+				),
+				'fields' => array(
+					'Progress.sum_progress',
+					'Progress.sum_total',
+					'Progress.date',
+					'Category.name',
+					'Category.id',
+					'Subject.id'
+				),
+				'conditions' => array(
+					'Progress.person_id = '.$person_id,
+					'Category.subject_id = '.$subject_id
+				),
+			);
+		
+		if($grades)
+		{
+			$sql['joins'][] = array(
+					'type' => 'LEFT',
+					'table' => 'grades',
+					'alias' => 'Grade',
+					'conditions' => array(
+						'Category.grade_id = Grade.id' 
+					)
+				);
+				
+			$sql['conditions'][] = 'Grade.id IN ('.$grades.')';
+		}
+		
+        $results = $this->find('all', $sql);
 
         return $results;
     }
@@ -340,47 +497,63 @@ class Progress extends AppModel {
  *          category_id
  * @return  progresses of Subcategories
  */
-    public function progressOnSubcategory($person_id, $category_id){
+    public function progressOnSubcategory($person_id, $category_id, $grades = null){
 
         // virtual fields sum of progress and total
         $this->virtualFields['sum_progress'] = 'SUM(Progress.progress)';
         $this->virtualFields['sum_total'] = 'SUM(Progress.total)';
 
-        $results = $this->find('all',array(
-            'joins' => array(
-                array(
-                    'type' => 'LEFT',
-                    'table' => 'categories',
-                    'alias' => 'Category',
-                    'conditions' => array(
-                        'Subcategory.category_id = Category.id' 
-                    )
-                ),
-                array(
-                    'type' => 'LEFT',
-                    'table' => 'subjects',
-                    'alias' => 'Subject',
-                    'conditions' => array(
-                        'Category.subject_id = Subject.id' 
-                    )
-                ),
-            ),
-            'fields' => array(
-                'Progress.sum_progress',
-                'Progress.sum_total',
-                'Progress.date',
-                'Subcategory.name',
-                'Subcategory.id',
-                'Subject.id'
-            ),
-            'group' => array(
-                'Subcategory.id'
-            ),
-            'conditions' => array(
-                'Progress.person_id = '.$person_id,
-                'Subcategory.category_id = '.$category_id
-            ),
-        ));
+		$sql = array(
+				'joins' => array(
+					array(
+						'type' => 'LEFT',
+						'table' => 'categories',
+						'alias' => 'Category',
+						'conditions' => array(
+							'Subcategory.category_id = Category.id' 
+						)
+					),
+					array(
+						'type' => 'LEFT',
+						'table' => 'subjects',
+						'alias' => 'Subject',
+						'conditions' => array(
+							'Category.subject_id = Subject.id' 
+						)
+					),
+				),
+				'fields' => array(
+					'Progress.sum_progress',
+					'Progress.sum_total',
+					'Progress.date',
+					'Subcategory.name',
+					'Subcategory.id',
+					'Subject.id'
+				),
+				'group' => array(
+					'Subcategory.id'
+				),
+				'conditions' => array(
+					'Progress.person_id = '.$person_id,
+					'Subcategory.category_id = '.$category_id
+				),
+			);
+		
+		if($grades)
+		{
+			$sql['joins'][] = array(
+					'type' => 'LEFT',
+					'table' => 'grades',
+					'alias' => 'Grade',
+					'conditions' => array(
+						'Category.grade_id = Grade.id' 
+					)
+				);
+				
+			$sql['conditions'][] = 'Grade.id IN ('.$grades.')';
+		}
+		
+        $results = $this->find('all', $sql);
 
         return $results;
     }

@@ -13,12 +13,13 @@ class ScoresController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator');
+	public $components = array('Paginator', 'Pls');
 /**
  * authorization
  * 
  */
 	public function isAuthorized($user) {
+	    // user can logout, dashboard, progress, history, suggest
 	    if (isset($user['role']) && $user['role'] === 'user' ){
 	    	if( in_array( $this->request->action, array('viewDetails', 'ajaxOverall', 'ajaxCallHandler'))){
 	    		return true;
@@ -134,11 +135,9 @@ class ScoresController extends AppController {
         $this->set('title_for_layout', __('Test result'));
 
 		$this->loadModel('ScoresQuestion');
-        $this->loadModel('TestsSubject');
 
 		$this->Score->unbindModel(array('belongsTo' => array('Person')));
-		$score = $this->Score->find('first', array('conditions' => array('Score.id' => $id), 'recursive' => 1) );
-        $subject = $this->TestsSubject->find('first', array('conditions' => array('Test.id' => $score['Test']['id'])));
+		$score = $this->Score->find('first', array('conditions' => array('Score.id' => $id), 'recursive' => 0) );
 		$scoreData = $this->ScoresQuestion->find('all', array(
 			'recursive' => -1,
 			'conditions' => array(
@@ -155,7 +154,6 @@ class ScoresController extends AppController {
 		ksort($scoreData); // sort the data to match result from $questions
 		$this->set('questionsData', $questions);
 		$this->set('scoreData', $scoreData);
-        $this->set('subject', $subject);
 		$this->set('correct', $score['Score']['score']);
 		$this->set('numberOfQuestions', $score['Test']['number_questions']);
 		$this->set('duration', $score['Test']['time_limit']);
@@ -192,14 +190,38 @@ class ScoresController extends AppController {
         $this->autoRender = false;
         
         if( $this->request->is('POST')){
-            $subject_id = isset($this->request->data['subjectID']) ? $this->request->data['subjectID'] : null;
-            $grade_id = isset($this->request->data['gradeID']) || $this->request->data == '' ? $this->request->data['gradeID'] : null;
+            $subject_id = '2';//isset($this->request->data['subjectID']) ? $this->request->data['subjectID'] : null;
+            $grade_id = isset($this->request->data['gradeID']) && $this->request->data['gradeID'] != '' ? $this->request->data['gradeID'] : null;
             $category_id = isset($this->request->data['categoryID']) ? $this->request->data['categoryID'] : null;
+			
+			$timerange_type = $this->request->data['timeRangeType'];
+			$timeOptions = array('type'=>$timerange_type);
+			if($timerange_type=='custom')
+			{
+				$timeOptions['start'] = $this->Pls->vnTimeToStandardTime($this->request->data['timeStart']);
+				$timeOptions['end'] = $this->Pls->vnTimeToStandardTime($this->request->data['timeEnd']);
+			}
+			$filterOptions = array('time'=>$timeOptions);
             $user = $this->Session->read('Auth.User');
-            $result = $this->Score->ajaxCall($user['id'], $subject_id, $grade_id, $category_id);
+            $chart = $this->Score->getChartData($user['id'], $subject_id, $timeOptions);
 
+			$this->loadModel('Question');
+			$cover = array();
+			$cover = $this->Question->getCover($user['id'], $filterOptions);
+
+			// get subject for dashboard
+			$this->loadModel('Progress');
+			$result = $this->Progress->progressOnSubject($user['id'], $filterOptions);
+			$progresses = array();
+			foreach($result AS $subject)
+			{
+				$progresses[$subject['Subject']['id']] = $subject['Progress'];
+			}
+			//pr($progresses);
+			//$this->set('progresses', $progresses);
+			//pr($progresses);
             // echo json_encode(array($subject_id, $grade_id, $category_id));
-
+			$result = array('chart'=>$chart, 'progresses'=>$progresses, 'cover'=>$cover);
             $this->header('Content-Type: application/json');
             echo json_encode($result);
         }

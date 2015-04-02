@@ -16,6 +16,7 @@ class Score extends AppModel {
  *
  * @var array
  */
+ 
     public $belongsTo = array(
         'Test' => array(
             'className' => 'Test',
@@ -340,7 +341,6 @@ class Score extends AppModel {
  * @return: array of [correct, total]
  */
     public function getOverAll($person_id, $grade_id=0, $subject_id=0, $tests=10){
-        
         // no option declared
         // return all subjects and grades
         if($grade_id == 0 && $subject_id == 0){
@@ -530,121 +530,147 @@ class Score extends AppModel {
  * @return: array of score[correct, total]
  *          array of chart[score, date]
  */
-    public function ajaxCall($person_id, $subject_id = null, $grade_id = null, $category_id = null){
-        $this->virtualFields['sum_score'] = 'SUM(Score.score)';    
-        $this->virtualFields['sum_number_questions'] = 'SUM(Test.number_questions)';
-        $this->virtualFields['date'] = 'DATE(Score.time_taken)';
+    public function getChartData($person_id, $subject_id = null, $timeOptions = null){
+		
+		
+		$this->virtualFields['sum_score'] = 'SUM(Score.score)';    
+		$this->virtualFields['sum_number_questions'] = 'SUM(Test.number_questions)';
+		$this->virtualFields['date'] = 'DATE(Score.time_taken)';
+		
+		$options = array(
+				'fields' => array(
+					'Score.sum_score',
+					'Score.sum_number_questions',
+					'Score.date',
+					'TestSubject.subject_id AS subj'
+					),
+				'conditions' => array(
+					'Score.person_id = '.$person_id
+				),
+				'order' => array(
+					'Score.time_taken asc'
+					),
+				'group' => array(
+					'Score.date',
+					'TestSubject.subject_id'
+					)
+			);
+		
+		if($timeOptions['type']=='tentimes')
+		{
+			$options['limit'] = 10;
+		}
+		else
+		{
+			$fromTime = $toTime = null;
+			switch($timeOptions['type']){
+				case 'week': $fromTime = date('Y-m-d h:i:s', strtotime('-1 Week'));  break;
+				case 'month': $fromTime = date('Y-m-d h:i:s', strtotime('-1 Month')); $this->virtualFields['date'] = 'WEEK(Score.time_taken)'; break;
+				case 'custom': 
+					if(array_key_exists('start', $timeOptions) && $timeOptions['start']!='')
+						$fromTime = date('Y-m-d h:i:s', strtotime($timeOptions['start'])); 
+					if(array_key_exists('end', $timeOptions) && $timeOptions['end']!='')
+						$toTime = date('Y-m-d h:i:s', strtotime($timeOptions['end'])); 
+					break;
+			}
+			if($fromTime)
+			{
+				$options['conditions'][] = "DATE(Score.time_taken) >= DATE('$fromTime')";
+			}
+			if($toTime)
+			{
+				$options['conditions'][] = "DATE(Score.time_taken) <= DATE('$toTime')";
+			}
+		}
+		
+		$options['joins'][] = array(
+			'type' => 'LEFT',
+			'table' => 'tests_subjects',
+			'alias' => 'TestSubject',
+			'conditions' => array(
+				'TestSubject.id = Score.test_id' 
+				)
+			);
+		$options['conditions']['TestSubject.subject_id'] = $subject_id;  
 
-        $options = array(
-            'joins' => array(
-                array(
-                    'type' => 'LEFT',
-                    'table' => 'scores_questions',
-                    'alias' => 'ScoresQuestion',
-                    'conditions' => array(
-                        'ScoresQuestion.score_id = Score.id' 
-                        )
-                    )
-            ),
-            'fields' => array(
-                'Score.sum_score',
-                'Score.sum_number_questions',
-                'Score.date'
-                ),
-            'conditions' => array(
-                'Score.person_id = '.$person_id),
-            'order' => array(
-                'Score.date desc'
-                ),
-            'group' => array(
-                'Score.date'
-                ),
-            'limit' => 10
-            );
+		// scores for chart
+		$charts = $this->find('all', $options);
 
-        if(!is_null($subject_id)){
-            $options['joins'][] = array(
-                'type' => 'LEFT',
-                'table' => 'tests_subjects',
-                'alias' => 'TestSubject',
-                'conditions' => array(
-                    'TestSubject.id = Score.test_id' 
-                    )
-                );
-            $options['conditions']['TestSubject.subject_id'] = $subject_id;  
-        }
-
-        if(!is_null($grade_id) || !is_null($category_id)){
-            $options['joins'][] = array(
-                'type' => 'LEFT',
-                'table' => 'questions_subcategories',
-                'alias' => 'QuestionsSubcategory',
-                'conditions' => array(
-                    'ScoresQuestion.question_id = QuestionsSubcategory.question_id' 
-                    )
-                );
-            $options['joins'][] = array(
-                'type' => 'LEFT',
-                'table' => 'subcategories',
-                'alias' => 'Subcategory',
-                'conditions' => array(
-                    'QuestionsSubcategory.subcategory_id = Subcategory.id' 
-                    )
-                );
-            $options['joins'][] = array(
-                'type' => 'LEFT',
-                'table' => 'categories',
-                'alias' => 'Category',
-                'conditions' => array(
-                    'Category.id = Subcategory.category_id' 
-                    )
-                );
-            if(!is_null($grade_id)){
-                if(is_array($grade_id)){
-                    $options['conditions']['Category.grade_id in'] = explode(',', $grade_id);
-                }
-                else{
-                    $options['conditions']['Category.grade_id'] = explode(',', $grade_id);
-                }
-            } 
-            if(!is_null($category_id)){
-                $options['conditions']['Category.id '] = $category_id;
-            }
-        }
-
-        // scores for chart
-        $charts = $this->find('all', $options);
-
+		//pr($this->getDataSource()->getLog(false, false));
         $results['chart'] = array();
         $score = 0;
         $total = 0;
 
         // iterate, get chart lines
-        $results['chart'][] = array(__('Date'), __('Score'));
+        $results['chart']['title'] = array(__('Date'), __('Score'));
         if($charts){
             foreach ($charts as $chart) {
-                $score  += (int)$chart['Score']['sum_score'];
-                $total  += (int)$chart['Score']['sum_number_questions'];
-                $date    = $this->translateDate(date('D', strtotime($chart['Score']['date'])));
-                $results['chart'][] = array($date, round($chart['Score']['sum_score']/$chart['Score']['sum_number_questions'], 3)*10);
+                $date    = $this->relativeTime($chart['Score']['date']);
+                $results['chart']['subject'][$chart['TestSubject']['subj']]['date'][] = $date;
+				$results['chart']['subject'][$chart['TestSubject']['subj']]['score'][] = round($chart['Score']['sum_score']/$chart['Score']['sum_number_questions'], 3)*10;
             }
         }
         else{
             $results['chart'][] = array('0', 0);
         }
 
-        // calculate score
-        if($total != 0)
-            $results['score'] = round($score/$total, 3)*10;
-        else
-            $results['score'] = 0.0;
-
-        $dbo = $this->getDatasource();
-        $logs = $dbo->getLog();
-        $lastLog = end($logs['log']);
-        $results['query'] = $lastLog['query'];
-
         return ($results);        
     }
+	
+	function relativeTime($ts) {
+		if(strlen($ts)>2){
+			if(!ctype_digit($ts)) {
+				$ts = strtotime($ts);
+			}
+			$diff = time() - $ts;
+			/*if($diff == 0) {
+				return 'now';
+			} elseif($diff > 0) */
+			if($diff >= 0){
+				$day_diff = floor($diff / 86400);
+				if($day_diff == 0) {
+					/*if($diff < 60) return 'just now';
+					if($diff < 120) return '1 minute ago';
+					if($diff < 3600) return floor($diff / 60) .__(' minutes ago');
+					if($diff < 7200) return '1 hour ago';
+					if($diff < 86400) return floor($diff / 3600) .__(' hours ago');*/
+					return __('Today');
+				}
+				if($day_diff == 1) { return __('Yesterday'); }
+				if($day_diff <= 7) { return $day_diff .__(' days ago'); }
+				//if($day_diff < 31) { return ceil($day_diff / 7) .__(' weeks ago'); }
+				//if($day_diff < 60) { return __('Last month'); }
+				return date('d/m/Y', $ts);
+			} else {
+				$diff = abs($diff);
+				$day_diff = floor($diff / 86400);
+				if($day_diff == 0) {
+					if($diff < 120) { return 'in a minute'; }
+					if($diff < 3600) { return 'in ' . floor($diff / 60) . ' minutes'; }
+					if($diff < 7200) { return 'in an hour'; }
+					if($diff < 86400) { return 'in ' . floor($diff / 3600) . ' hours'; }
+				}
+				if($day_diff == 1) { return 'Tomorrow'; }
+				if($day_diff < 4) { return date('l', $ts); }
+				if($day_diff < 7 + (7 - date('w'))) { return 'next week'; }
+				if(ceil($day_diff / 7) < 4) { return 'in ' . ceil($day_diff / 7) . ' weeks'; }
+				if(date('n', $ts) == date('n') + 1) { return 'next month'; }
+				return date('F Y', $ts);
+			}
+		}
+		else
+		{
+			$thisWeek = date('W')-1;
+			$timeStr = null;
+			if($ts==$thisWeek)
+				$timeStr = __('This week');
+			else if($ts==$thisWeek-1)
+				$timeStr = __('Last week');
+			else
+				$timeStr = ($thisWeek-$ts).__(' weeks ago');
+			
+			return $timeStr;
+		}
+	}
 
 }

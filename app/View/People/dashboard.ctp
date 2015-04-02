@@ -1,4 +1,16 @@
 <?php echo $this->Html->css('dashboard.css');?>
+<?php echo $this->HTML->css('datepicker.css'); ?>
+<?php echo $this->Html->script('bootstrap-datepicker.js');?>
+<?php echo $this->Html->script('highcharts.js');?>
+<?php echo $this->Html->script('no-data-to-display.src.js');?>
+<script>
+	$(document).ready(function(){
+		$('.time-range-select').click(function(){
+			
+		});
+	});
+	
+</script>
 <div class='dashboard'>
     <h2 class="page-heading heading"><?php echo __('Dashboard');?></h2>
     <div class="dashboard-header clearfix">
@@ -13,78 +25,25 @@
                 </div>
             </div>
         </div>
-        <div class="overall-rating clearfix pull-right">
-            <div class="pull-left">
-                <div><?php echo __('Completeness'); ?></div>
-                <div class="progress">
-                    <div class="progress-bar progress-bar-striped" style="width: <?php echo $cover[1] == 0? 0 : round($cover[0]/$cover[1]*100); ?>%;" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" id="preogressbar-cover"><?php echo $cover[0].'/'.$cover[1]; ?></div>
-                </div>
-            </div>
-            <div class="pull-left">
-                <div><?php echo __('Rating'); ?></div>
-                <div class="progress">
-                    <div class="progress-bar progress-bar-warning" style="width: <?php echo $scores[1] == 0? 0 : round($scores[0]/$scores[1]*100); ?>%;" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" id="preogressbar-rating"><?php echo $scores[0].'/'.$scores[1]; ?></div>
-                </div>
-            </div>
-        </div>
     </div>
-    <div class="time-range clearfix">
-        <a class="pull-right btn btn-default btn-xs"><?php echo __('Custom'); ?></a>
-        <a class="pull-right btn btn-primary btn-xs"><?php echo __('1 Week'); ?></a>
-        <a class="pull-right btn btn-default  btn-xs"><?php echo __('1 Month'); ?></a>
-        <a class="pull-right btn btn-default btn-xs"><?php echo __('All time'); ?></a>
-        <h5 class="pull-right"><?php echo __('Time range'); ?></h5>
-    </div>
-    <div class="row">
-        <center>
-            <?php echo $this->Html->link(__("Test"), array("controller" => "tests", "action" => "chooseTest", 2), array("class" => "btn btn-lg btn-primary")) ?>
-        </center>
-        
-        <div class='row dashboard-chart-score'>
-            <div class='col-lg-3'>
-                <div class='score-container'>
-                    <div class='title' id='title-overall'><?php echo __('Score'); ?></div>                    
-                    <div class='score' id='score-overall'><?php $score = round($scores[1] != 0 ? $scores[0]/$scores[1] : 0, 2)*10; echo $score; ?></div>
-                    <div class='description' id='descripion-overall'><?php echo __('Your overall score on all subject. Calculated on latest 10 tests.'); ?></div>
-                </div>
-                <div class='chart-description pull-right'>
-                    <?php echo __('* Score on chart shows average score latest 10 tests.'); ?>
-                </div>
-            </div>    
-            <div class='col-lg-9'>
-                <label for='chart'><?php echo __("Your Performance chart"); ?></label>
-                <div id ='chart'></div>
-            </div>
-        </div> 
-        
-        <hr/>
-        <div class='row'>
-            <ol class="breadcrumb" id="breadcrumb-list">
-              <li class='active'><?php echo __("Subjects"); ?></li>
-            </ol>    
-        </div>
-        <div>
-            <div class="filter well well-md">
-                <!-- <label for=""><?php echo __('Grades'); ?></label> -->
-                <ul class="list-unstyled">
-                    <li><button class='progess-table btn btn-sm btn-primary btn-test' id='load-all-progress' type='0'><?php echo __('Load All'); ?></button></li>
-                    <li><input type="checkbox" name="checkbox-grade-10" id="checkbox-grade-10" value="1" class="checkbox-grade" grade='1' /><label for="checkbox-grade-10"><?php echo __('Grade').' '.'10'; ?></label></li>
-                    <li><input type="checkbox" name="checkbox-grade-11" id="checkbox-grade-11" value="2" class="checkbox-grade" grade='2' /><label for="checkbox-grade-11"><?php echo __('Grade').' '.'11'; ?></label></li>
-                    <li><input type="checkbox" name="checkbox-grade-12" id="checkbox-grade-12" value="3" class="checkbox-grade" grade='3' /><label for="checkbox-grade-12"><?php echo __('Grade').' '.'12'; ?></label></li>
-                </ul>
-            </div>
-            <div id ='dashboard-table'>
-                <?php echo $this->element('progress_subject'); ?>                   
-            </div>
-        </div>
-        <div class='hiddenRow accordion-body collapse' id='demo1' style='padding:0; !important'>Demo1</div>
-    </div>
+	
+    
+	<?php echo $this->element('progress_subject'); ?>
+	<br/><br/><br/><br/><br/><br/>
 </div>
 
 <script type="text/javascript">
+	/* Mixpanel initial */
+	$('.pls-popover').mouseover(function(){
+		mixpanel.track("Show Popover", {"popover_id": $(this).attr('data-type')});
+	});
+
     /**
      * get data from ajax for table
      */
+	var currentTimeRangeType 	= 'tentimes';
+	var currentTimeStart	= null;
+	var currentTimeEnd		= null;
     var currentSubject      = null;
     var currentSubjectID    = null
     var currentCategory     = null;
@@ -111,8 +70,60 @@
         }
 
         ajaxLoad(currentSubjectID, currentChecked, currentCategoryID);
+		//console.log(currentSubjectID+'-'+currentCategoryID);
+		if(currentSubjectID!=null){
+			ajaxTable(2, currentSubjectID);
+		}
+		else if(currentCategoryID!=null){
+			ajaxTable(3, currentCategoryID);
+		}
+		else {
+			ajaxTable(1);
+		}	
     });
+	
+	
 
+	/**
+	 * Time Range Filters
+	 */
+	$('.time-range-select, #time-ranger-choose').click(function(){
+		if($(this).attr('id')=='time-ranger-choose')
+		{
+			currentTimeStart = $('#time-range-start').val();
+			currentTimeEnd	 = $('#time-range-end').val();
+			pr = $(this).parents('.dropdown-menu');
+			pr.parent().removeClass('open');
+			if(currentTimeStart.length==10 || currentTimeEnd.length==10){			
+				$('.time-range-select.btn-primary').removeClass('btn-primary').addClass('btn-default');
+				pr.siblings('.time-range-select').addClass('btn-primary').removeClass('btn-default');
+			}
+			else{
+				return false;
+			}
+			currentTimeRangeType = 'custom';
+			ajaxLoad(currentSubjectID, currentChecked, currentCategoryID);
+			mixpanel.track("Dashboard Time Filters", {"range": currentTimeRangeType});
+		}
+		else if($(this).attr('data-range')!='custom'){
+			currentTimeRangeType = $(this).attr('data-range');
+			//$(this).siblings('.btn-primary')
+			$('.time-range-select.btn-primary').removeClass('btn-primary').addClass('btn-default');
+			$(this).addClass('btn-primary').removeClass('btn-default');
+			ajaxLoad(currentSubjectID, currentChecked, currentCategoryID);
+			mixpanel.track("Dashboard Time Filters", {"time_range": currentTimeRangeType});
+		}	
+		
+	});
+	
+	$('.unclickable-dropdown').click(function(e){
+		e.stopPropagation();
+	});
+	
+	$('.datepicker').datepicker({format: "dd/mm/yyyy"}).on('changeDate', function(ev) {
+		$(this).datepicker('hide');
+	});
+	
     /**
      * Tables
      */ 
@@ -207,6 +218,7 @@
             url : url,
             data : {
                 type : type,
+				grades: currentChecked,
                 id : id
             },
             success : function(msg){
@@ -219,7 +231,7 @@
 
 </script>
 
-<?php echo $this->HTML->script('http://www.google.com/jsapi'); ?>
+
 <script type="text/javascript">
     /**
      * Ajax on chart data
@@ -233,18 +245,35 @@
     //
     // Draw chart
     //
-    google.load("visualization", "1", {packages:["corechart"]});
-    google.setOnLoadCallback(loadAndDraw);
+    //google.load("visualization", "1", {packages:["corechart"]});
+    //google.setOnLoadCallback(loadAndDraw);
 
     // load data for draw chart and draw
-    function loadAndDraw(){
+    /*function loadAndDraw(){
         console.log('call load ajax');
         ajaxLoad();
-    }
-
+    }*/
+	//ajaxLoad();
+	Highcharts.setOptions({
+		lang: {
+			noData: 'Chưa có dữ liệu'
+		}
+	});
+	
+	chartData = <?php echo $chart; ?>;
+	console.log(chartData);
+	if(chartData.chart.hasOwnProperty('subject'))
+	{
+		drawChart(chartData.chart);
+	}
+	else
+	{
+		//chart.showLoading('No data to display'); 
+	}
+	
     function ajaxLoad(subjectID, gradeID, categoryID){
-        console.log('gradeID : ' + gradeID);
-        console.log(gradeID);
+       // console.log('gradeID : ' + gradeID);
+       // console.log(gradeID);
 
         // load chart data by ajax
         var URL = "<?php echo Router::url(array('controller'=>'scores','action'=>'ajaxCallHandler'));?>"
@@ -255,22 +284,126 @@
             data: {
                 'subject'   : subjectID,
                 'gradeID'   : gradeID,
-                'categorydID' : categoryID
+                'categorydID' : categoryID,
+				'timeRangeType'	: currentTimeRangeType,
+				'timeStart'	:	currentTimeStart,
+				'timeEnd'	:	currentTimeEnd
             },
             success : function (msg) {
                 if(msg != ''){
                     var jsonData = JSON.parse(msg);
-
-                    drawChart(jsonData.chart);
-
-                    $('#score-overall').text(jsonData.score);
+                    drawChart(jsonData.chart.chart);
+					//console.log(jsonData.progresses);
+					//Loop progresses data
+					if(Object.keys(jsonData.progresses).length>0)
+					{
+						$.each(jsonData.progresses, function(subj_id, subj){
+							$('#subject-score-'+subj_id+' .subject-score-number').html(Math.round((subj.sum_progress/subj.sum_total)*100)/10);
+							$('.num-pass').html(subj.sum_progress);
+							//progressBar = $('#subject-progress-'+subj_id);
+							//progressBar.html(subj.sum_progress+'/'+subj.sum_total);
+							//progressBar.width((subj.sum_progress/subj.sum_total)*100+'%');
+						});
+					}
+					else
+					{
+						$('.subject-score-number').html('0');
+						$('.num-pass').html('0');
+					}
+					//Loop covers data
+					
+					$.each(jsonData.cover, function(subj_id, subj){
+						coverBar = $('#subject-cover-'+subj_id);
+						numPass = 0;
+						if(subj.hasOwnProperty('pass'))
+						{
+							numPass = subj.pass;
+						}
+						coverBar.html(Math.round((numPass/subj.total)*100)+'%');
+						coverBar.width(Math.round((numPass/subj.total)*100)+'%');
+					});
+                    //$('#score-overall').text(jsonData.score);
                 }
             }
         });
     }
 
+	function drawChart(inputData){
+		//console.log(inputData);
+		chartContainer = $('.chart').parent();
+		if(inputData.hasOwnProperty('subject'))
+		{
+			$.each(inputData.subject, function(subj_id, subj){
+				try{
+					$('#chart-subject-'+subj_id).highcharts({
+						chart: {
+							spacingBottom: 0,
+							width: chartContainer.width(),
+							height: 120
+						},
+						title: {
+							text: null,
+							//x: -20 //center
+						},
+						xAxis: {
+							categories: subj.date,
+							labels: {
+								autoRotation: false
+							}
+						},
+						yAxis: {
+							title: {
+								text: null
+							},
+							tickPixelInterval: 10,
+							max: 10,
+							min: 0,
+							plotLines: [{
+								value: 0,
+								width: 1,
+								color: '#808080'
+							}]
+						},
+						tooltip: {
+							valueSuffix: ''
+						},
+						credits: {
+							enabled: false
+						},
+						legend: {
+							enabled: false,
+							layout: 'vertical',
+							align: 'right',
+							verticalAlign: 'middle',
+							borderWidth: 0
+						},
+						series: [{
+							name: inputData.title[1],
+							data: subj.score
+						}]
+					});
+				}
+				catch(e)
+				{
+					chart = $('#chart-subject-'+subj_id).highcharts();
+					while( chart.series.length > 0 ) {
+						chart.series[0].remove( false );
+					}
+					chart.redraw();
+				}
+			});	
+		}
+		else
+		{
+			chart = $('.chart').highcharts();
+			while( chart.series.length > 0 ) {
+				chart.series[0].remove( false );
+			}
+			chart.redraw();
+		}
+	}
     // draw the data
-    function drawChart(inputData){
+    /*function drawChart(inputData){
         var data = google.visualization.arrayToDataTable(inputData);
 
         var options = {
@@ -288,5 +421,14 @@
 
         chart = new google.visualization.LineChart(document.getElementById('chart'));
         chart.draw(data, options);
-    }
+    }*/
+	
+	$('.category-row td:first-child').click(function(){
+		catId = $(this).parent().attr('data-id');
+		$('.subcategory-row').not('.subcategory-'+catId).hide();
+		$('.subcategory-'+catId).toggle();
+	});
+	
+	$('.hasDetail').popover();
+	
 </script>

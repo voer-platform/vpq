@@ -5,8 +5,8 @@ div .dashboard #chart_per{
 /*dashboard.chart div*/
 div .dashboard #chart{
     text-align: center;
-    width: 800px;
-    height: 400px;
+    /*width: 800px;
+    height: 400px;*/
 }
 /*dashboard.performace div*/
 div .dashboard #performance{
@@ -509,20 +509,6 @@ div.answer label.active span{
   text-shadow: 1px 1px 1px transparent;  
 }
 
-div.answer label.wrong{
-  background-color: #fff;
-  border: 1px solid #DD2241;
-  border-radius: 4px;
-  color: #DD2241;
-  box-shadow: none;
-}
-
-div.answer label.wrong span{
-  background: none repeat scroll 0 0 #DD2241;
-  color: #fff;
-  text-shadow: 1px 1px 1px transparent;  
-}
-
 div.choose-answer{
   color: #1288cc;
   font-size: 12px;
@@ -593,47 +579,4 @@ div.incorrect{
   background-color: #428bca;
   border-color: #357ebd;
   color: #fff;
-}
-div.options button, div.options .btn{
-  background-image: linear-gradient(#fff, #e7e7e7);
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  color: #555;
-  cursor: pointer;
-  font-size: 11px;
-  font-weight: bold;
-  max-width: 120px;
-  padding: 8px 11px 6px 10px;
-  text-align: center;
-  text-shadow: 1px 1px 1px #fff;
-}
-div.options button:hover, div.options .btn:hover{
-  background-image: -webkit-linear-gradient(#2299dd, #1589cb);
-  background-image: -o-linear-gradient(#2299dd, #1589cb);
-  background-image: linear-gradient(#2299dd, #1589cb);
-  border: 1px solid #0d7bba;
-  color: #fff;
-  text-shadow: 1px 1px 1px #0d7bba;  
-}
-
-div.options {
-  background: none repeat scroll 0 0 #fcfcfc;
-  border: 1px solid #d7d7d7;
-  margin: 15px 0 15px 15px;
-  padding: 13px 10px;
-  text-align: center;
-}
-div.options div.btn-questions,
-div.options div.btn-go-dashboard{
-  margin-top: 5px;
-}
-div.options div.btn-questions,
-div.btn-go-dashboard .btn{
-  min-width: 100%;
-}
-div.solution{
-  display: none;
-}
-div.correct-answer{
-  display: none;
 }

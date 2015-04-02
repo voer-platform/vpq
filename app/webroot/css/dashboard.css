@@ -10,7 +10,7 @@
     margin-left: auto;
     margin-right: auto;
     position: relative;
-    height: 30px;
+    height: 20px;
 }
 .progress-container .row{
     padding: 5px 5px 5px 5px;
@@ -32,10 +32,9 @@
     width: 100px;
 }
 .progress-bar {
-    min-width: 30%;
+    min-width: 10%;
 }
 div.filter {
-    height: 30px;
     padding: 0;
 }
 div.filter li {
@@ -49,14 +48,14 @@ div.filter li {
 }
 
 .btn-test {
-    width: 150px;
+    width: auto;
 }
 
 div.score-container{
     background-color: #fcfcfc;
     border: 1px solid #d7d7d7;
     box-shadow: 0 0 6px #ccc;
-    margin: 0px 0px 10px 15px;
+    margin: 0px 0px 10px 0;
     padding: 1px;
     text-align: center;
 }
@@ -82,12 +81,7 @@ div.score-container div.score{
 
 div.dashboard-chart-score {
     display: table;
-}
-
-[class*="col-"] {
-    float: none;
-    display: table-cell;
-    vertical-align: top;
+	padding-top:10px;
 }
 
 div.chart-description {
@@ -106,4 +100,72 @@ div.chart-description {
     cursor: pointer;
     color: #FF00FF;
     text-decoration: underline;
+}
+.btn-fw {
+	width:100%;
+	display:block;
+}
+.time-range .unclickable-dropdown {
+	width: 200px;
+	padding: 12px;
+	padding-bottom: 0;
+}
+.subject-score {
+  display: block;
+  height: 106px;
+  width: 106px;
+  border: solid 5px #5cb85c;
+  text-align: center;
+  line-height: 65px;
+  border-radius: 150px;
+  font-size: 40px;
+  box-shadow: inset 0 -1px 0 rgba(0,0,0,.15);
+  webkit-box-shadow: inset 0 -1px 0 rgba(0,0,0,.15);
+}
+.subject-score-text {
+	font-size: 15px;
+	display: block;
+	height: 26px;
+	line-height: 50px;
+	color: #3B9B3B;
+}  
+.dashboard-subject-name {
+	margin-top: 0;
+	font-size: 25px;
+}
+.dashboard-subject-name  img {
+	width: 25px;
+	vertical-align: top;
+}
+.dashboard-subject-container {
+	border-bottom:solid 1px #EFEFEF;
+	padding: 20px 0;
+}
+.row.dashboard-subject-container:last-of-type {
+	border-bottom:0;
+}
+.dashboard-subject-container:nth-child(odd) {
+	background: #F7F7F7;
+}
+.center {text-align:center;}
+.w-100 {
+	width: 100px;
+}
+.subcategory-row {
+	display:none;
+}
+.category-row {
+	cursor: pointer;
+	background: #f9f9f9;
+}
+.category-row a {
+	text-decoration: none;
+}
+.grade-tabs {
+  font-weight: bold;
+}
+.grade-tabs .active a {
+  /*background-color: #428bca!important;
+  border-color: #357ebd!important;
+  color:#fff!important;*/
 }
