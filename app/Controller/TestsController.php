@@ -154,12 +154,22 @@ class TestsController extends AppController {
 
 			$allGrades = $this->Grade->find('all');
 			$this->set('grades', $allGrades);
+			//$allsubject = $this->Subject->find('all',array('recursive'=>0));
+			//$this->set('allsubject',$allsubject);
 			$this->set('subject', $subject);
 			
 			// Du tinh trinh do hoc van
 			$user = $this->Session->read('Auth.User');
 			$gradeUser = $user['grade'];
 			
+			$options = array(
+				'recursive' => 1,
+				'conditions' => array('subject_id'=>$subject)
+				);				
+			$allcat = $this->Category->find('all', $options);
+			//pr($allcat);
+			//exit();
+			$this->set('allcat',$allcat);
 			if(!isset($this->request->query['subcategory']) && !isset($this->request->query['category'])){		
 				if ($gradeUser == 0){
 					$birthday = $user['birthday'];
@@ -175,46 +185,47 @@ class TestsController extends AppController {
 				}
 				$options = array(
 					'recursive' => 0,
-					'conditions' => array('person_id' => $user['id'],'subject_id'=>$subject)
+					'conditions' => array('person_id' => $user['id'],	)
 					);				
-				$tracking = $this->Tracking->find('all', $options);
+				$data = $this->Tracking->find('all', $options);				
+				$this->set('strtracking',$data[0]['Tracking']['subcategory']);
+				$tracking=explode(',',$data['0']['Tracking']['subcategory']);
+				
+				if($tracking[0]!=''){
+					foreach($tracking as $pre){
+						if($pre!=''){
+							$pretracking[]=$pre;
+						}
+					}
+				}else{
+					$pretracking=array();
+				}
+				
 			}else{
 				if(isset($this->request->query['subcategory'])){
 					$id=$this->request->query['subcategory'];
 					
 					$tracking =$this->Subcategory->query("
-									SELECT Subcategory.id, Subcategory.name, Tracking.name as grade FROM subcategories as Subcategory
+									SELECT Subcategory.id, Subcategory.name FROM subcategories as Subcategory
 									INNER JOIN categories ON Subcategory.category_id=categories.id
-									INNER JOIN grades as Tracking ON categories.grade_id=Tracking.id
 									WHERE Subcategory.id='$id'
 									");
 				}else{
-					$id=$this->request->query['category'];
-					
+					$id=$this->request->query['category'];					
 					$tracking =$this->Subcategory->query("
-									SELECT Subcategory.id, Subcategory.name, Tracking.name as grade FROM subcategories as Subcategory
+									SELECT Subcategory.id, Subcategory.name FROM subcategories as Subcategory
 									INNER JOIN categories ON Subcategory.category_id=categories.id
-									INNER JOIN grades as Tracking ON categories.grade_id=Tracking.id
 									WHERE categories.id='$id'
 									");
 					}
+				$pretracking=array();
+				foreach($tracking as $tracking)
+				{
+					$pretracking[]=$tracking['Subcategory']['id'];
+				}	
 			}
-			$preSubCategories='';
-			$this->set('tracking',$tracking);
-			foreach($tracking as $tracking)
-			{
-				if (isset($tracking['Tracking']) && !empty($tracking['Tracking'])){			
-					//if ($tracking['Tracking']['grade'] >= 10 && $tracking['Tracking']['grade'] <= 12){
-					//	$gradeUser[]= $tracking['Tracking']['grade'];
-					//}
-					$preSubCategories =$preSubCategories.",".$tracking['Subcategory']['id'];
-							 
-				}
-			}
-			
-			$this->set('preSubs', $preSubCategories); 			      
-			
-			$this->set('gradeUser', $gradeUser);
+			$this->set('pretracking',$pretracking);
+			$this->set('count',count($pretracking));
 		}else{
 			$this->redirect(array('controller' => 'people', 'action' => 'dashboard'));
 		}
@@ -239,17 +250,18 @@ class TestsController extends AppController {
             $numberOfQuestions = $time;
             $timeLimit = $time;
             $strCategories = $this->request->data['categories'];
+			
             //$categories = split(",", $strCategories);
 			$data = explode(",",$this->request->data['categories']);
-			$data_tracking=array();
 			$categories=array();
-			foreach($data as $dt)
-			{
-				$t=explode('-',$dt);
-				$data_tracking[]=array('grade'=>$t[0],'subcategory'=>$t[1]);
-				$categories[]=$t[1];
+			$update_sub='';
+			foreach($data as $dt){
+				if($dt!=''){
+					$categories[]=$dt;
+					$update_sub=$update_sub.','.$dt;					
+				}
 			}
-            $questions = $this->Test->generateTest($numberOfQuestions, $categories);			
+            $questions = $this->Test->generateTest($numberOfQuestions, $data);			
             if (count($questions) > 0){
                 // create tests in database
                 $testID = $this->Test->nextTestId();
@@ -273,22 +285,28 @@ class TestsController extends AppController {
                 // Save data user
                 $user = $this->Session->read('Auth.User');
 				
-				foreach($data_tracking as $dt)
-				{
-					$this->Tracking->deleteAll(array('Tracking.person_id'=>$user['id']));
-				}
-				foreach($data_tracking as $dt)
+				/*$this->Tracking->deleteAll(array('Tracking.person_id'=>$user['id']));
+				foreach($data as $dt)
 				{
 					$this->Tracking->create();
 					$this->Tracking->save(
 											array(
 												'person_id' => $user['id'],
-												'grade' => $dt['grade'],
+												'grade' => '0',
 												'subject_id' => $subject,
-												'subcategory' => $dt['subcategory']
+												'subcategory' => $dt
 											)
 										);
-				}
+				}*/
+				$this->Tracking->id=$user['id'];
+				$this->Tracking->save(
+											array(
+												'person_id' => $user['id'],
+												'grade' => '0',
+												'subject_id' => $subject,
+												'subcategory' => $update_sub
+											)
+										);
             }else{
                 // warn that no data found
                 $this->Session->setFlash(__('No data found'));
@@ -340,19 +358,12 @@ class TestsController extends AppController {
         }
     }
 	
-	public function byQuestion($numberOfQuestions = null, $categories = null){			
+	public function byQuestion($numberOfQuestions = null, $categories = null){	
         $this->layout = "ajax";
         $this->autoLayout = false;
         $this->autoRender = false;
-		$data = explode(",",$categories);
-		$data_tracking=array();
-		$categories=array();
-		foreach($data as $dt)
-		{	
-			$t=explode('-',$dt);
-			$categories[]=$t[1];
-		}		
-		$questions = $this->Test->generateTest($numberOfQuestions, $categories);		
+		$data = explode(",",$categories);	
+		$questions = $this->Test->generateTest($numberOfQuestions, $data);		
         $this->header('Content-Type: application/json');
         echo json_encode(count($questions));
 		return;

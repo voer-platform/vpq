@@ -5,3 +5,32 @@
 	text-align: center;
 }
 
+span{
+	text-align: left;
+}
+
+td{
+	text-align:left;
+}
+
+.cat{
+	background-color:#f9f9f9
+}
+
+.subcat{
+	display:none;
+}
+
+a:hover { 
+text-decoration: none; 
+} 
+
+.td_cat{
+	padding:0px;
+	background-color:#f9f9f9
+}
+
+.hiddenRow {
+    padding: 0 !important;
+}
+

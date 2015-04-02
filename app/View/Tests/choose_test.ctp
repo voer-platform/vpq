@@ -1,96 +1,152 @@
 <?php echo $this->Html->css('choose_test.css'); ?>
+<!--<ol class="breadcrumb">
+  <li><?php echo $this->Html->link(__('Dashboard'), array('controller' => 'People', 'action' => 'dashboard')); ?></li>
+  <li class="active"><?php echo __('Choose Test'); ?></li>
+</ol>-->
 
 <div class="chooseTest">
     <h2><?php echo __('Choose test')?></h2>
     <hr />
     <?php echo __('Test').': '.$this->Name->subjectToName($subject); ?>
     <form role="form" class="form-horizontal" id="preDoTest" method="POST">
-        <div class="form-group">
-            <label for="" class="col-sm-3 control-label"><?php echo __('Grade'); ?></label>
-            <div class="col-sm-7">
-                <div class="btn-group" data-toggle="buttons">
-                    <?php foreach ($grades as $index => $grade): ?>
-                    <label class="btn btn-default <?php echo ($gradeUser == $grade['Grade']['name'] ? "active" : ""); ?> ">
-                        <input type="radio" name="selectGrade" value="<?php echo $grade['Grade']['id']; ?>" autocomplete="off" tag='<?php echo $grade['Grade']['name']; ?>' <?php echo ($grade['Grade']['name']==10 ? "checked" : ""); ?> > <?php echo __('Grade'); ?> <?php echo $grade['Grade']['name']; ?>
-                    </label>
-                    <?php endforeach; ?>
-                </div>   
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="" class="col-sm-3 control-label">Chủ đề</label>
-            <div class="col-sm-7">
-                <select class="form-control" id="selectCategory" multiple="multiple">
-                </select>								
-                <div id="selectedCategories" style="text-align: left;">
-                    <ul>
-						<?php foreach($tracking as $trk): ?>
-						<li id='<?php echo $trk['Subcategory']['id']; ?>' rel='<?php echo $trk['Tracking']['grade']; ?>-<?php echo $trk['Subcategory']['id']; ?>'><span class='glyphicon glyphicon-remove remove' aria-hidden='true'></span><span class='label label-primary class<?php echo $trk['Tracking']['grade']; ?>'>Lớp&nbsp;<?php echo $trk['Tracking']['grade'];?>&nbsp/&nbsp<?php echo $trk['Subcategory']['name']; ?></span>
-						</li>
-						<?php endforeach; ?>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class='form-group'>
-            <label for="" class="col-sm-3 control-label"></label>
-            <div class="col-sm-7">
-                <?php
-                    $times = array(5, 10, 15, 30, 60);
-                    foreach($times as $time){
-                        echo '<button class="btn btn-primary btn-lg1 btn-test" type="button" onclick="javascript:doTest(' . $time . ')">' . $time . ' ' . __('mins') . '</button>';
-                    }
-                ?>
-                <!--<input type="hidden" name="level" id="level" />-->
-                <input type="hidden" name="categories" id="categories" />
-				<!--<input type="hidden" name="subcategory" id="subcategory"  value="<?php echo $subcategory ?>"/>-->
-            </div>
-        </div>
-    </form>
+	<br/>
+		
+		<div class="col-sm-6 col-sm-offset-3">
+			<div class="row">
+				<div class="col-sm-12" style="padding:0px">
+					<div class="nav-tabs-custom" style="margin-bottom: 0px; box-shadow:none;">
+						<ul class="nav nav-tabs">
+							<li class="active" >
+								<a href="#tab1" data-toggle='tab'>Lớp 10</a>
+							</li>
+							<li>
+								<a href="#tab2" data-toggle='tab'>Lớp 11</a>
+							</li>
+							<li>
+								<a href="#tab3" data-toggle='tab'>Lớp 12</a>
+							</li>
+						</ul>
+					</div>
+				</div>				
+			</div>
+			<div class='row'>
+				<div class="col-sm-12" style="padding:5px">
+					<a style='float:right'>Số bài bạn đã chọn: <span id="sl"><?php echo $count ?></span></a>
+				</div>
+			</div>
+			<div class="row">
+				<div class="tab-content col-sm-12	" style="padding:0px;">
+				<?php for($i=1;$i<=3;$i++): ?>
+					<div class="tab-pane <?php echo($i==1)?"active":""; ?> " id="tab<?php echo $i;?>">
+						<table class="table table-condensed" id="grade<?php echo $i;?>" style="border-collapse:collapse;border:0px">
+							<tbody>						
+								<?php foreach($allcat as $item=>$ac): ?>
+								<?php if($ac['Grade']['id']==$i): ?>
+								<tr>
+									<td class="td_cat" style="padding-left:5px; width:10px;">
+										<input type="checkbox" class="checkall" data-id='<?php echo $ac['Category']['id'] ?>'/>
+									</td>
+									<td colspan='2' class="cat" data-id='<?php echo $ac['Category']['id'] ?>' style="padding-left:5px">&nbsp<a><?php echo $ac['Category']['name'];?><i style="float:right;margin-top:2px" class="glyphicon glyphicon-plus-sign"></i><span id='spcat-<?php echo $ac['Category']['id'] ?>' style="float:right; margin-right:10px;" id="sl_incat"></span></a>
+									</td>
+								</tr>				
+								<?php foreach($ac['Subcategory'] as $item=>$asc): ?>
+									<tr class="subcat cat-<?php echo $ac['Category']['id'] ?> sub-<?php echo $asc['id'] ?>" data-id='<?php echo $ac['Category']['id'] ?>' data-sub='<?php echo $asc['id'] ?>'>
+										<td>
+										</td>
+										<td style="width:23px;">
+											<input type="checkbox" name="sub" class='chksub chk-<?php echo $ac['Category']['id'] ?> ' id='sub-<?php echo $asc['id'] ?>' value="<?php echo $asc['id']?>" <?php echo (in_array($asc['id'],$pretracking) ? "checked" : ""); ?> />
+										</td>
+										<td class="td-subcat" data-id='<?php echo $asc['id'] ?>'><?php echo $asc['name'] ?></td>
+									</tr>
+								<?php endforeach; ?>									
+								<?php endif; ?>
+								<?php endforeach; ?>
+							</tbody>
+						</table>
+					</div>
+				<?php endfor; ?>					
+				</div>	
+			</div>
+			
+			<div class="row">
+				<div class="tab-content col-sm-12" style="padding:0px; padding-top:10px">
+					<div class='form-group'>
+						<label for="" class="col-sm-3 control-label"></label>
+						<div class="col-sm-12 ">
+							<?php
+								$times = array(5, 10, 15, 30, 60);
+								foreach($times as $time){
+									echo '<button class="btn btn-primary btn-lg1 btn-test" type="button" onclick="javascript:doTest(' . $time . ')">' . $time . ' ' . __('mins') . '</button>';
+								}
+							?>
+							<input type="hidden" name="categories" id="categories" />
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>			
+    </form>	
 </div>
 
+<!--<div class="modal fade" id="modal_ds" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+	 aria-hidden="true" data-backdrop="static">
+	<div class="modal-dialog">
+		<div class="modal-content" style="width: 450px">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span
+						aria-hidden="true">&times;</span><span
+						class="sr-only">Close</span></button>
+				<h4 class="modal-title" id="myModalLabel">Danh sách các bài đã chọn</h4>
+			</div>
+			<div class="modal-body" style="padding:0px">
+				<form class="form-horizontal" role="form" id="frmtab10">
+					<table class="table table-condensed" id="table_modal" style="border-collapse:collapse;border:0px">
+						
+					</table>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-success" id="{$btn_qtdt}" name="{$btn_qtdt}"><span class="glyphicon glyphicon-ok-sign"></span></button>
+				<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>-->
+
 <script type="text/javascript">
-
-var preSubs = '<?php echo $preSubs; ?>';
-
-//var preSubs = '';
-var arraySubs = preSubs.split(",");
-var t=0;
-var cl;
+var sl=<?php echo $count ?>;
+var pretracking='<?php echo $strtracking ?>';
+var arraySubs = pretracking.split(",");
 function preSelectCategories(){
-	//$("#selectedCategories ul").empty();
-	//t=t+1;
-    var $s = $('#selectCategory');
-    for (i=0;i<arraySubs.length;i++){
+	for (i=0;i<arraySubs.length;i++){
 		if(arraySubs[i]!=''){
-			var $selectedCategories = $('#selectedCategories>ul');
-			var item = $s.find('option[value='+arraySubs[i]+']');
-			var grade = $("input:radio[name=selectGrade]:checked").attr('tag');
-			var s = "Lớp " +  grade + " / " + item.text();
-			var v = arraySubs[i];
-			//if(t==1){
-			//	cl=grade;
-			//}		
-			//if(s!='' && grade==cl){	
-			if(s!=''){	
-			$selectedCategories.append("<li rel='" + v + "'><span class='glyphicon glyphicon-remove remove' aria-hidden='true'></span><span class='label label-primary class" + grade + "'>" + s + "</span></li>");
+			var s = $('.sub-'+arraySubs[i]).attr('data-id');
+			var countpre = $('#spcat-'+s).text();
+			if(countpre==''){
+				countpre=0;
+				countpre=countpre+1;
+			}else{
+				countpre=parseInt(countpre);
+				countpre=countpre+1;
 			}
+			document.getElementById('spcat-'+s).innerHTML=countpre;
 		}
-    }
-};
+	}
+}
 
 function doTest(t){
     $subject = <?php echo $subject; ?>;
-    $str = $('#selectedCategories>ul')
-                .find('li')
+	var $str='';
+	for(i=1;i<=3;i++){
+		$str = 	$str+$('#grade'+i)
+                .find("input:checkbox[name=sub]:checked")
                 .map(function() {
-                    return $(this).attr('rel');
+                    return $(this).attr('value');
                 }).get().join(',');
+		$str=$str+',';
+	}
     $('#categories').val($str);
-    //var grade = $("input:radio[name=selectGrade]:checked").attr('tag');
-    //$('#level').val(grade);
 	var url = '<?php echo Router::url(array('controller'=>'tests','action'=>'byQuestion'));?>/' + t + '/'+$str;
-	//alert(url);
 	$.getJSON(url, function( data ) {
 		 if(data<t){			
 			showMessage('Không thể làm bài kiểm tra', 'Dữ liệu hiện tại không đủ để thực hiện bài kiểm tra này', 'error', 'glyphicon-remove-sign');
@@ -102,78 +158,96 @@ function doTest(t){
     
 };
 
-function choice(e){
-    var $selectedCategories = $('#selectedCategories>ul');
-    var grade = $("input:radio[name=selectGrade]:checked").attr('tag');
-    var s = "Lớp " +  grade + " / " + e.text.trim();
-    var v = e.value;
-    if (e.checked){
-        $selectedCategories.append("<li id='"+ v +"' rel='" + grade +"-" + v + "'><span class='glyphicon glyphicon-remove remove' aria-hidden='true'></span><span class='label label-primary class" + grade + "'>" + s + "</span></li>");
-    }else{
-        $selectedCategories.find('li[id="' + v + '"]').remove();
-    }    
-}
-
-$(document).ready(function() {
-    var $selectedCategories = $('#selectedCategories>ul');
-    $('#selectCategory').multiselect({
-        header: false,
-        noneSelectedText: 'Chọn chủ đề',
-        selectedText: '# được chọn',
-        click: function(e, ui){
-            choice(ui);
-        },
-        optgrouptoggle: function(event, ui){
-            var values = $.map(ui.inputs, function(checkbox){
-                // $(checkbox).trigger('click');
-                choice($(checkbox));
-            }).join(", ");
-
-            // $callback.html("Checkboxes " + (ui.checked ? "checked" : "unchecked") + ": " + values);
-        }
-
-    });
-
-	$(document).on('click', '#selectedCategories span.remove', function(){
-        var val = $(this).parent().attr('id');
-        $(this).parent().remove();
-        $('#selectCategory').find('option[value="' + val + '"]').prop('selected', false);
-        $('#selectCategory').multiselect('refresh');
-    });
-
-	$("input:radio[name='selectGrade']").change(function(e, sign){
-        var url = '<?php echo Router::url(array('controller'=>'categories','action'=>'byGrade'));?>/' + $(this).val() + '/' + <?php echo $subject; ?>;		
-        //if (sign != 'pre-select'){
-        //    arraySubs = array();
-        //}
+$(document).ready(function(){	
+	preSelectCategories();
+	$(document).on('click','.cat',function(){
+		var catId = $(this).attr('data-id');		
+		$('.cat-'+catId).toggle();		
+		var s = $('.cat-'+catId).attr('style');
+		if(s=='display: table-row;'){		
+			$(this).find("i").attr('class','glyphicon glyphicon-minus-sign');
+		}else{
+			$(this).find("i").attr('class','glyphicon glyphicon-plus-sign');
+		}		
+	});		
+	$(document).on('click','.checkall',function(){
+		var chkall=$(this).attr('data-id');
+		if(this.checked){
+			$('.chk-'+chkall).each(function(){				
+				if(this.checked==false){
+					sl=sl+1;				
+					document.getElementById("sl").innerHTML=sl;
+					this.checked=true;
+				}								
+			});
+		}else{
+			$('.chk-'+chkall).each(function(){
+				if(this.checked==true){					
+					sl=sl-1;
+					document.getElementById("sl").innerHTML=sl;
+					this.checked=false;
+				}				
+			});
+		}
+	});
+	$(document).on('click','.td-subcat',function(){
 		
-        $.getJSON(url, function( data ) {
-		
-            var optgroups = [];
-            $.each( data, function( key, val ) {
-                var category = val['Category'];
-                var subcategories = val['Subcategory'];
-                var items = [];
-                $.each(subcategories, function(k, v){
-                    var tmp = $selectedCategories.find('li[rel="' + v['id'] + '"]');
-                    if (tmp.length > 0 || jQuery.inArray(v['id'], arraySubs) != -1){
-                        items.push( "<option value='" + v['id'] + "' selected>" + v['name'] + "</option>" );
-                    }else{
-                        items.push( "<option value='" + v['id'] + "'>" + v['name'] + "</option>" );
-                    }
-                });
-                optgroups.push("<optgroup label='" + category['name'] + "'>" + items.join("") + "</optgroup>");
-            });
-            $("#selectCategory").empty();
-            $("#selectCategory").append(optgroups.join(""));
-            $('#selectCategory').multiselect('refresh');
-        });
-    });
+		var lb_id = $(this).attr('data-id');
+		if($('#sub-'+lb_id).is(':checked')==true){
+			$('#sub-'+lb_id).each(function(){
+				this.checked=false;
+				sl=sl-1;
+				document.getElementById("sl").innerHTML=sl;
+			});
+		}else{
+			$('#sub-'+lb_id).each(function(){
+				this.checked=true;
+				sl=sl+1;		
+				document.getElementById("sl").innerHTML=sl;
+			});
+
+		}
+			/*var name=$(this).text();
+			var tr="";
+			tr+="<tr><td>"+name+"</td></tr>";
+			$('#table_modal').html(tr);*/
+			
+			//Đang làm đoạn này
+	});
 	
-    //$('#selectGrade').trigger("change");
-    $("input:radio[name='selectGrade']:checked").trigger('change',"pre-select");
-
+	$(document).on('click','.chksub',function(){
+		if($(this).is(':checked')==true){
+				sl=sl+1;		
+				document.getElementById("sl").innerHTML=sl;
+		}else{
+				sl=sl-1;
+				document.getElementById("sl").innerHTML=sl;
+		}
+	});
+	
+	$(document).on('click','.subcat',function(){
+		var idsub = $(this).attr('data-sub');
+		var id = $(this).attr('data-id');
+		var s = $('#spcat-'+id).text();
+		if(s==''){
+			s=0;
+		}else{
+			s=parseInt(s);
+		}
+		if($('#sub-'+idsub).is(':checked')==true){			
+			s=s+1;			
+		}else{
+			s=s-1;
+			if(s==0){
+				s='';
+			}
+		}
+		document.getElementById('spcat-'+id).innerHTML=s;
+	});
 });
+
+
+
 function showMessage(title, text, type, icon) {
     var notice = new PNotify({
         title: title,

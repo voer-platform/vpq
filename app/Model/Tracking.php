@@ -6,13 +6,8 @@ App::uses('AppModel', 'Model');
  * @property Person $Person
  */
 class Tracking extends AppModel {
-	//public $primaryKey = 'person_id';
-	public $belongsTo = array(
-        'Subcategory' => array(
-            'className' => 'Subcategory',
-            'foreignKey' => 'Subcategory'
-        )
-    );
+	public $primaryKey = 'person_id';
+	
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
 /**
