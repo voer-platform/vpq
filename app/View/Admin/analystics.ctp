@@ -1,7 +1,7 @@
 <div class="analystic container">
     <h1><?php echo __("Anaystics page"); ?></h1>
     <p><?php echo __("Number of questions for each subcategory in database."); ?></p>
-    <table>
+    <table class="table table-striped table-condensed table-hover table-bordered">
         <?php echo $this->Html->tableHeaders(array( __('ID'), __('Name'),__('Number of questions'))); ?>
         <?php foreach($data as $id => $d): ?>
             <?php echo $this->Html->tableCells(array(

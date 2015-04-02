@@ -10,7 +10,6 @@
                         <div class="question-content"><?php echo html_entity_decode($questionsData[$index]['Question']['content']); ?></div>
                     </div>
                     <div class="btn-group answer" data-toggle="buttons">
-                        <!-- <?php pr($data);pr($questionsData[$index]['Answer']); ?> -->
                         <?php foreach($questionsData[$index]['Answer'] as $answerId => $answer): ?>
                             <!-- correct answer -->
                             <?php if( $answer['correctness'] == 1): ?>
@@ -112,7 +111,7 @@
     
     $(document).ready(function(){
 
-        // fb share
+        //fb share
         var FBShare = function () {
             FB.ui({
                 method: 'share',
@@ -125,9 +124,9 @@
                 }
             });
         };
-        <?php if ( count($explanationsData) < 1 ): ?>
-          setTimeout(FBShare, 1000);
-        <?php endif; ?>
+        <?php //if ( count($explanationsData) < 1 ): ?>
+          //setTimeout(FBShare, 1000);
+        <?php //endif; ?>
         $('.fb-share-button').click(function() {
             FBShare();
         });

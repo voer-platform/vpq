@@ -1,5 +1,13 @@
+<?php $this->start('meta'); ?>
+<meta property="og:url" content="<?php echo Router::url( $this->here, true ); ?>" /> 
+<meta property="og:title" content="<?php echo __('Personal Learning System'); ?>" />
+<meta property="og:description" content="<?php echo __('Where you can learn anything!'); ?>" /> 
+<meta property="og:image" content="<?php echo $this->Html->url(Router::url($this->here, true).'img/logo-small.png'); ?>" />
+<?php $this->end(); ?>
 <?php echo $this->Html->css('home.css');?>
-
+<div class="home-banner">
+    <?php echo $this->Html->image('banner.png', array('alt' => 'PLS')); ?>
+</div>
 <div class='container'>
     <?php if(empty($user)): ?>
         <div id="middle-tagline"><span id="slogan">Tham gia vào hệ thống để truy cập lương lớn câu hỏi trên nhiều lĩnh vực!</span></div>

@@ -43,17 +43,12 @@
         </div>
     </div>
 
-    <div class="home-banner">
-        <?php echo $this->Html->image('banner.png', array('alt' => 'PLS')); ?>
-    </div>
-
     <div class = "content container">
         <?php echo $this->Session->flash(); ?>
         <?php echo $this->fetch('content'); ?>
     </div>
 
     <?php echo $this->element('footer');?>
-    <?php echo $this->Html->script('global.js'); ?>
 
 </body>
 </Html>
