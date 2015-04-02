@@ -191,16 +191,15 @@ class TestsController extends AppController {
 				$this->set('strtracking',$data[0]['Tracking']['subcategory']);
 				$tracking=explode(',',$data['0']['Tracking']['subcategory']);
 				
-				if($tracking[0]!=''){
+				if($tracking[0]=='' && !array_key_exists('1',$tracking)){
+					$pretracking=array();					
+				}else{
 					foreach($tracking as $pre){
 						if($pre!=''){
 							$pretracking[]=$pre;
 						}
 					}
-				}else{
-					$pretracking=array();
 				}
-				
 			}else{
 				if(isset($this->request->query['subcategory'])){
 					$id=$this->request->query['subcategory'];
