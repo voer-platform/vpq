@@ -182,4 +182,17 @@ class AdminController extends AppController {
 		$this->Paginator->settings = $this->paginate;
 		$this->set('questions', $this->Paginator->paginate('Question'));
 	}
+
+/**
+ * questions number analystic
+ *
+ */
+	public function analystics(){
+		$this->set('title_for_layout', __('Analystic'));
+
+		$this->loadModel('Subcategory');
+		$data = $this->Subcategory->countQuestions();
+
+		$this->set('data', $data);
+	}
 }

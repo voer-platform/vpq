@@ -96,4 +96,17 @@ class Subcategory extends AppModel {
 
 		return $all == 0? 0 :round($done/$all, 2) * 100;
 	}
+
+/** 
+ * count number of questions in db in each subcategory
+ * @param: none
+ * @return:
+ */
+	public function countQuestions(){
+		return $this->query(
+			"select Subcategory.name, Subcategory.id, COUNT(*) as number from questions_subcategories QuestionsSubcategory
+			left join subcategories Subcategory
+				on QuestionsSubcategory.subcategory_id = Subcategory.id
+			group by QuestionsSubcategory.subcategory_id;");
+	}
 }
