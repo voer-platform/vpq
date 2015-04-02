@@ -131,7 +131,6 @@ class ScoresController extends AppController {
  *	@return void
  */
 	public function viewDetails($id){
-        $this->layout = 'test';
         $this->set('title_for_layout', __('Test result'));
 
 		$this->loadModel('ScoresQuestion');
