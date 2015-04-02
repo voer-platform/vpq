@@ -208,7 +208,7 @@ class TestsController extends AppController {
 									SELECT Subcategory.id, Subcategory.name FROM subcategories as Subcategory
 									INNER JOIN categories ON Subcategory.category_id=categories.id
 									WHERE Subcategory.id='$id'
-									");
+									");					
 				}else{
 					$id=$this->request->query['category'];					
 					$tracking =$this->Subcategory->query("
@@ -217,11 +217,14 @@ class TestsController extends AppController {
 									WHERE categories.id='$id'
 									");
 					}
+				$strtracking='';
 				$pretracking=array();
 				foreach($tracking as $tracking)
 				{
 					$pretracking[]=$tracking['Subcategory']['id'];
-				}	
+					$strtracking=$strtracking.','.$tracking['Subcategory']['id'];
+				}
+				$this->set('strtracking',$strtracking);				
 			}
 			$this->set('pretracking',$pretracking);
 			$this->set('count',count($pretracking));
