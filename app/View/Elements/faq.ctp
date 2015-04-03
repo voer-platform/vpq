@@ -13,22 +13,31 @@
     $(document).ready(function(){
         var state = false;
         $('.faq-submit-btn').click(function(){
-            $.ajax({
-                type : 'post',
-                url : "<?php echo Router::url(array('controller' => 'Faqs', 'action' => 'userAdd'), true);?>",
-                data : {
-                    'person_id' : "<?php echo $user['id']; ?>",
-                    'content' : $('.faq-content').val()
-                },
-                success : function(msg){
-                    $('.faq-response').text(msg);
-                    $('.faq-content').fadeToggle("slow", "linear");
-                    $('.faq-response').fadeToggle("slow", "linear");
+            if($('.faq-content').val() != ''){
+                $.ajax({
+                    type : 'post',
+                    url : "<?php echo Router::url(array('controller' => 'Faqs', 'action' => 'userAdd'), true);?>",
+                    data : {
+                        'person_id' : "<?php echo $user['id']; ?>",
+                        'content' : $('.faq-content').val()
+                    },
+                    success : function(msg){
+                        $('.faq-response').text(msg);
+                        setTimeout(function(){
+                            $('.faq-content').val('');
+                        },500);
+                        setTimeout(function(){
+                            $('.faq-response').text('');
+                        },1000);
+                    }
+                });
+            }
+            else{
+                $('.faq-response').text("<?php echo __('Blank content'); ?>");
+                setTimeout(function(){
                     $('.faq-response').text('');
-                    $('.faq-content').val('');
-                    
-                }
-            })
+                },1000);
+            }
         });
     });
 </script>
