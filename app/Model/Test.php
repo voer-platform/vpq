@@ -112,6 +112,31 @@ class Test extends AppModel {
         return $results;
     }
 
+    /**
+     * Generate test with test_id
+     * 
+     * @param: [int] $test_id [test id of the test]
+     * @return: [array] list of questions
+     */
+    public function generateTestId($test_id){
+        $tqs = $this->TestsQuestion->find('all', array(
+            'conditions' => array('TestsQuestion.test_id' => $test_id),
+            'recursive' => -1
+            ));
+
+        $q = [];
+        foreach ($tqs as $tq) {
+            $q[] = $tq['TestsQuestion']['question_id'];
+        }
+
+        $this->Question->unBindModel( array('hasAndBelongsToMany' => array('Score', 'Test')) );
+        $_results = $this->Question->find('all', array(
+                    'conditions' => array('Question.id' => $q),
+                ));
+        $results = Set::sort($_results, '{n}.Question.id', 'asc');
+        return $results;
+    }
+
     /*
      * nextTestID
      * @return: next Test ID

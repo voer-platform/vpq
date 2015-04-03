@@ -628,7 +628,7 @@ div.options {
   text-align: center;
 }
 div.btn-questions,
-div.options div.btn-go-dashboard{
+div.options .btn{
   margin-top: 5px;
 }
 div.btn-questions,

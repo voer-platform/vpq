@@ -49,6 +49,7 @@
     </div>
 
     <?php echo $this->element('footer');?>
+    <?php echo $this->element('faq');?>
 
 </body>
 </Html>

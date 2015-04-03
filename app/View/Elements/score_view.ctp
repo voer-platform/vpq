@@ -98,9 +98,9 @@
             </div>
         </div>
         <div class="options">
-            
             <div class='btn-go-dashboard'>
                 <?php echo $this->Html->link(__('Go to dashboard'), array('controller' => 'people', 'action' => 'dashboard'), array('class' => 'btn')) ?>
+                <?php echo $this->Html->link(__('Take this test again'), array('controller' => 'tests', 'action' => 'doTest', 0, 0, $test_id), array('class' => 'btn')) ?>
             </div>
         </div>
     </div>

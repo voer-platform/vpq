@@ -7,6 +7,7 @@
 		<li><?php echo $this->Html->link(__('Manage SubCategories'), array('controller' => 'subcategories', 'action' => 'index')); ?></li>
 		<li><?php echo $this->Html->link(__('Categorize'), array('controller' => 'Admin', 'action' => 'manualCategorized')); ?></li>
 		<li><?php echo $this->Html->link(__('Analystic'), array('controller' => 'Admin', 'action' => 'analystics')); ?></li>
+		<li><?php echo $this->Html->link(__('FAQ'), array('controller' => 'Faqs', 'action' => 'index')); ?></li>
 	</ul>
 </div>
 

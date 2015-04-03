@@ -1,0 +1,38 @@
+div.faq-container{
+    position: fixed;
+    bottom: 0px;
+    right: 25px;
+    width: 250px;
+    background: none repeat scroll 0 0 #fcfcfc;
+    border: 1px solid #d7d7d7;
+    padding: 5px 5px;
+    text-align: center;
+}
+
+div.faq-container .faq-toggle-btn{
+    width: 100%;
+}
+
+div.faq-container .collapse .faq-submit-btn{
+    width: 50%;
+    position: absolute;
+    right: 5px;
+    bottom: 0px;
+}
+
+div.faq-container .collapse .faq-response{
+    width: 30%;
+    position: absolute;
+    left: 5px;
+    bottom: 0px;
+}
+
+div.faq-container textarea{
+    width: 100%;
+    height: 125px;
+    resize: none;
+}
+
+div.faq-container #faq-popup {
+    min-height: 200px
+}

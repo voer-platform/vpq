@@ -241,11 +241,29 @@ class TestsController extends AppController {
      *
      * @return void
      */
-    public function doTest($time, $subject) {
+    public function doTest($time, $subject, $test_id=null) {
         $this->set('title_for_layout', __('Testing'));
 		
-        // process if request is post
-        if( isset($time) && isset($subject) ){
+        // if specify test_id
+        if(isset($test_id)){
+
+            $this->Test->unbindModel(array(
+                'hasMany' => array('Score'),
+                'hasAndBelongsToMany' => array('Question')));
+            $test = $this->Test->find('first', array(
+                'conditions' => array('Test.id' => $test_id),
+                'recursive' => 1
+            ));
+            $questions = $this->Test->generateTestId($test_id);
+            // set to view
+            $this->set('questions', $questions);
+            $this->set('subject', $test['Subject'][0]['id']);
+            $this->set('testID', $test_id);
+            $this->set('duration', $test['Test']['time_limit']);
+            $this->set('numberOfQuestions', $test['Test']['number_questions']);
+        }
+        // else, do normal test
+        else if( isset($time) && isset($subject) ){
             // retrieve request data
             $numberOfQuestions = $time;
             $timeLimit = $time;

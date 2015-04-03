@@ -155,6 +155,7 @@ class ScoresController extends AppController {
 
 		ksort($scoreData); // sort the data to match result from $questions
         $this->set('subject', $subject);
+        $this->set('test_id', $score['Score']['test_id']);
 		$this->set('questionsData', $questions);
 		$this->set('scoreData', $scoreData);
 		$this->set('correct', $score['Score']['score']);
