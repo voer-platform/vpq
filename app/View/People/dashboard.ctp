@@ -19,7 +19,7 @@
                 <?php echo $this->Html->image($user['image'], array('width' => '60px', 'height' => '60px')); ?>
             </div>
             <div class="user-name pull-right">
-                <h4><?php echo $user['first_name'].' '.$user['last_name'] ?></h4>
+                <h4><?php echo $user['fullname']; ?></h4>
                 <div>
                     <?php echo $this->Html->link(__('Edit Profile'),array('controller'=> 'people','action'=> 'view', $user['id'])); ?>
                 </div>

@@ -549,19 +549,25 @@ class Score extends AppModel {
 				),
 				'order' => array(
 					'Score.time_taken asc'
-					),
-				'group' => array(
-					'Score.date',
-					'TestSubject.subject_id'
 					)
 			);
 		
 		if($timeOptions['type']=='tentimes')
 		{
 			$options['limit'] = 10;
+			$options['group'] = array(
+					'Score.id'
+				);
+			$anytime = true;	
 		}
 		else
 		{
+			$anytime = null;
+			$options['group'] = array(
+					'Score.date',
+					'TestSubject.subject_id'
+				);
+				
 			$fromTime = $toTime = null;
 			switch($timeOptions['type']){
 				case 'week': $fromTime = date('Y-m-d h:i:s', strtotime('-1 Week'));  break;
@@ -605,7 +611,7 @@ class Score extends AppModel {
         $results['chart']['title'] = array(__('Date'), __('Score'));
         if($charts){
             foreach ($charts as $chart) {
-                $date    = $this->relativeTime($chart['Score']['date']);
+                $date    = $this->relativeTime($chart['Score']['date'], $anytime);
                 $results['chart']['subject'][$chart['TestSubject']['subj']]['date'][] = $date;
 				$results['chart']['subject'][$chart['TestSubject']['subj']]['score'][] = round($chart['Score']['sum_score']/$chart['Score']['sum_number_questions'], 3)*10;
             }
@@ -617,46 +623,60 @@ class Score extends AppModel {
         return ($results);        
     }
 	
-	function relativeTime($ts) {
+	function relativeTime($ts, $anytime=null) {
 		if(strlen($ts)>2){
 			if(!ctype_digit($ts)) {
 				$ts = strtotime($ts);
 			}
 			$diff = time() - $ts;
-			/*if($diff == 0) {
-				return 'now';
-			} elseif($diff > 0) */
-			if($diff >= 0){
+			
+			if($anytime){
 				$day_diff = floor($diff / 86400);
-				if($day_diff == 0) {
-					/*if($diff < 60) return 'just now';
-					if($diff < 120) return '1 minute ago';
-					if($diff < 3600) return floor($diff / 60) .__(' minutes ago');
-					if($diff < 7200) return '1 hour ago';
-					if($diff < 86400) return floor($diff / 3600) .__(' hours ago');*/
-					return __('Today');
-				}
+				if($day_diff == 0) { return __('Today'); }
 				if($day_diff == 1) { return __('Yesterday'); }
-				if($day_diff <= 7) { return $day_diff .__(' days ago'); }
-				//if($day_diff < 31) { return ceil($day_diff / 7) .__(' weeks ago'); }
-				//if($day_diff < 60) { return __('Last month'); }
-				return date('d/m/Y', $ts);
-			} else {
-				$diff = abs($diff);
-				$day_diff = floor($diff / 86400);
-				if($day_diff == 0) {
-					if($diff < 120) { return 'in a minute'; }
-					if($diff < 3600) { return 'in ' . floor($diff / 60) . ' minutes'; }
-					if($diff < 7200) { return 'in an hour'; }
-					if($diff < 86400) { return 'in ' . floor($diff / 3600) . ' hours'; }
-				}
-				if($day_diff == 1) { return 'Tomorrow'; }
-				if($day_diff < 4) { return date('l', $ts); }
-				if($day_diff < 7 + (7 - date('w'))) { return 'next week'; }
-				if(ceil($day_diff / 7) < 4) { return 'in ' . ceil($day_diff / 7) . ' weeks'; }
-				if(date('n', $ts) == date('n') + 1) { return 'next month'; }
-				return date('F Y', $ts);
+				return $day_diff .__(' days ago');
 			}
+			else
+			{
+				/*if($diff == 0) {
+					return 'now';
+				} elseif($diff > 0) */
+				if($diff >= 0){
+					$day_diff = floor($diff / 86400);
+					if($day_diff == 0) {
+						/*if($anytime){
+							if($diff < 60) return 'just now';
+							if($diff < 120) return '1 minute ago';
+							if($diff < 3600) return floor($diff / 60) .__(' minutes ago');
+							if($diff < 7200) return '1 hour ago';
+							if($diff < 86400) return floor($diff / 3600) .__(' hours ago');
+						}*/	
+						return __('Today');
+					}
+					if($day_diff == 1) { return __('Yesterday'); }
+					if($day_diff <= 7) { return $day_diff .__(' days ago'); }
+					/*if($anytime){
+						if($day_diff < 31) { return ceil($day_diff / 7) .__(' weeks ago'); }
+						if($day_diff < 60) { return __('Last month'); }
+					}*/	
+					return date('d/m/Y', $ts);
+				} else {
+					$diff = abs($diff);
+					$day_diff = floor($diff / 86400);
+					if($day_diff == 0) {
+						if($diff < 120) { return 'in a minute'; }
+						if($diff < 3600) { return 'in ' . floor($diff / 60) . ' minutes'; }
+						if($diff < 7200) { return 'in an hour'; }
+						if($diff < 86400) { return 'in ' . floor($diff / 3600) . ' hours'; }
+					}
+					if($day_diff == 1) { return 'Tomorrow'; }
+					if($day_diff < 4) { return date('l', $ts); }
+					if($day_diff < 7 + (7 - date('w'))) { return 'next week'; }
+					if(ceil($day_diff / 7) < 4) { return 'in ' . ceil($day_diff / 7) . ' weeks'; }
+					if(date('n', $ts) == date('n') + 1) { return 'next month'; }
+					return date('F Y', $ts);
+				}
+			}	
 		}
 		else
 		{

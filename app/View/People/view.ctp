@@ -1,5 +1,68 @@
-<div class="people view">
-<h2><?php echo __('Person'); ?></h2>
+<h2 class="page-heading heading">Trang cá nhân</h2>
+<div class="row">
+	<div class="col-md-12">
+		<div class="personal-page-header clearfix">
+			<div class="pull-left clearfix">
+				<div class="avatar pull-left">
+					<img src="<?php echo $person['Person']['image']; ?>" width="200px" height="200px">
+				</div>
+				<div class="user-info pull-right">
+					<h3><?php echo h($person['Person']['fullname']); ?></h3>
+					<p><span class="glyphicon glyphicon-gift"></span>&nbsp; <?php echo __('Birthday:'); ?> <?php echo h($person['Person']['birthday']); ?></p>
+					<p><span class="glyphicon glyphicon-education"></span>&nbsp; <?php echo __('Student:'); ?> <?php echo h($person['Person']['grade']); ?>, <?php echo h($person['Person']['school']); ?></p>
+					<p><span class="glyphicon glyphicon-home"></span>&nbsp; <?php echo __('Address:'); ?> <?php echo h($person['Person']['address']); ?></p>
+					<button class="btn btn-default btn-xs" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-cog"></span> Chỉnh sửa thông tin cá nhân</button></a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog w-450">
+		<form method="POST" action="<?php echo $this->Html->url(array('controller'=>'people', 'action'=>'update')); ?>">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="myModalLabel"><span class="glyphicon glyphicon-pencil"></span> Chỉnh sửa thông tin cá nhân</h4>
+			</div>
+			<div class="modal-body">
+					<div class="form-group">
+						<label class="form-label">Họ tên</label>
+						<input type="text" class="form-control" name="fullname" value="<?php echo h($person['Person']['fullname']); ?>" />
+					</div>
+					<div class="form-group">
+						<label class="form-label">Ngày sinh</label>
+						<input type="text" class="form-control" name="birthday" value="<?php echo h($person['Person']['birthday']); ?>" />
+					</div>
+					<div class="form-group">
+						<label class="form-label">Đang là</label>
+						<select name="grade" class="form-control">
+							<?php foreach($grades AS $grade){ ?>
+								<option value="<?php echo $grade; ?>" <?php if($person['Person']['grade']==$grade) echo 'selected'; ?>>Học sinh lớp <?php echo $grade; ?></option>
+							<?php } ?>
+						</select>
+					</div>
+					<div class="form-group">
+						<label class="form-label">Tại trường</label>
+						<input type="text" class="form-control" name="school" value="<?php echo h($person['Person']['school']); ?>" placeholder="Tên trường học của bạn" />
+					</div>
+					<div class="form-group">
+						<label class="form-label">Địa chỉ</label>
+						<input type="text" name="address" class="form-control" placeholder="Nơi bạn đang sống" value="<?php echo h($person['Person']['address']); ?>">
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="submit" name="update_profile" value="update_profile" class="btn btn-primary"><?php echo __('Update'); ?></button>
+				<button type="button" class="btn btn-default" data-dismiss="modal"><?php echo __('Close'); ?></button>
+			</div>
+		</div>
+		</form>
+	</div>
+</div>
+<!--<div class="people view">
+<h2></h2>
 	<dl>
 		<dt><?php echo __('Id'); ?></dt>
 		<dd>
@@ -124,3 +187,4 @@
 		</ul>
 	</div>
 </div>
+-->
