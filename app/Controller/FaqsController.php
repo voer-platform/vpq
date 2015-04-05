@@ -1,5 +1,6 @@
 <?php
 App::uses('AppController', 'Controller');
+App::uses('CakeEmail', 'Network/Email');
 /**
  * Faqs Controller
  *
@@ -154,9 +155,17 @@ class FaqsController extends AppController {
 			$this->Faq->data['Faq']['person_id'] = $this->request->data['person_id'];
 			$this->Faq->data['Faq']['content'] = $this->request->data['content'];
 			$this->Faq->data['Faq']['date_created'] = date('Y-m-d h:i:s');
+
 			if ($this->Faq->save($this->Faq->data)) {
-				// return $this->redirect(array('action' => 'index'));
 				echo __("Submit success!");
+
+				// email to notify
+				$Email = new CakeEmail('gmail');
+				$Email->from(array('pls@dev.pls.edu.vn' => 'Dev PLS'))
+				    ->to('robberviet@gmail.com')
+				    ->subject('Question submitted at PLS')
+				    ->send("A new questions has been submitted at PLS. Please answer it.\n\nThe question: ".$this->request->data['content']);
+
 			} else {
 				echo __("Submit failed. Try again leter.");
 			}

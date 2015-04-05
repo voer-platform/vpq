@@ -3,8 +3,8 @@
     <button class="faq-toggle-btn btn btn-sm btn-primary" type="button" data-toggle="collapse" data-target="#faq-popup" aria-expanded="false" aria-control="faq-popup"><?php echo __("Ask us a question"); ?></button>
     <div id="faq-popup" class="collapse">
         <div class="title"><?php echo __("Have a question for us? Wanna give some comments? Type here!"); ?></div>
+        <div class='faq-response' id='faq-response'></div>
         <textarea class='faq-content'></textarea>
-        <div class='faq-response'></div>
         <button class="faq-submit-btn btn btn-sm btn-primary"><?php echo __("Submit"); ?></button>
     </div>
 </div>
@@ -22,21 +22,21 @@
                         'content' : $('.faq-content').val()
                     },
                     success : function(msg){
-                        $('.faq-response').text(msg);
+                        $('#faq-response').fadeToggle(1500);
+                        $('#faq-response').text(msg);
+                        $('#faq-response').fadeToggle(1500);
+                        
                         setTimeout(function(){
+                            $('#faq-popup').collapse('toggle');
                             $('.faq-content').val('');
-                        },500);
-                        setTimeout(function(){
-                            $('.faq-response').text('');
-                        },1000);
+                            $('#faq-response').text('');
+                        }, 3000);
                     }
                 });
             }
             else{
                 $('.faq-response').text("<?php echo __('Blank content'); ?>");
-                setTimeout(function(){
-                    $('.faq-response').text('');
-                },1000);
+                $('.faq-response').fadeToggle(1500).fadeToggle(1500);
             }
         });
     });

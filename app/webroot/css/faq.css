@@ -17,14 +17,7 @@ div.faq-container .collapse .faq-submit-btn{
     width: 50%;
     position: absolute;
     right: 5px;
-    bottom: 0px;
-}
-
-div.faq-container .collapse .faq-response{
-    width: 30%;
-    position: absolute;
-    left: 5px;
-    bottom: 0px;
+    bottom: 5px;
 }
 
 div.faq-container textarea{
@@ -35,4 +28,21 @@ div.faq-container textarea{
 
 div.faq-container #faq-popup {
     min-height: 200px
+}
+
+div.faq-container div.faq-response {
+    display: none;
+    position: absolute;
+    top: 75px;
+    bottom: 75px;
+    left: 50px;
+    margin 0 auto;
+    background: none repeat scroll 0 0 #fcfcfc;
+    border: 1px solid #d7d7d7;
+    border-radius: 3px;
+    padding: 5px 5px;
+    text-align: center;
+    width: 150px;
+    width: 150px;
+    color: #000;
 }
