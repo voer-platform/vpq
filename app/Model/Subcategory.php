@@ -107,6 +107,7 @@ class Subcategory extends AppModel {
 			"select Subcategory.name, Subcategory.id, COUNT(*) as number from questions_subcategories QuestionsSubcategory
 			left join subcategories Subcategory
 				on QuestionsSubcategory.subcategory_id = Subcategory.id
-			group by QuestionsSubcategory.subcategory_id;");
+			group by QuestionsSubcategory.subcategory_id
+			order by number asc;");
 	}
 }

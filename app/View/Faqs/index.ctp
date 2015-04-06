@@ -22,13 +22,12 @@
 			<?php echo $this->Html->link($faq['Person']['first_name'].' '.$faq['Person']['last_name'], array('controller' => 'people', 'action' => 'view', $faq['Person']['id'])); ?>
 		</td>
 		<td><?php echo h($faq['Faq']['answer']); ?>&nbsp;</td>
-		<td><?php echo h($faq['Faq']['status']); ?>&nbsp;</td>
+		<td><?php echo h($faq['Faq']['status']); ?>&nbsp;</br><?php echo $this->Html->link(__('Answer FAQ'), array('action' => 'edit', $faq['Faq']['id']), array('class' => 'btn btn-sm btn-primary')); ?></td>
 		<td><?php echo h($faq['Faq']['date_created']); ?>&nbsp;</td>
 		<td><?php echo h($faq['Faq']['date_answered']); ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $faq['Faq']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $faq['Faq']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $faq['Faq']['id']), array(), __('Are you sure you want to delete # %s?', $faq['Faq']['id'])); ?>
+			<?php echo $this->Html->link(__('View'), array('action' => 'view', $faq['Faq']['id']), array('class' => 'btn btn-sm btn-success')); ?>
+			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $faq['Faq']['id']), array('class' => 'btn btn-sm btn-danger'), __('Are you sure you want to delete # %s?', $faq['Faq']['id'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>

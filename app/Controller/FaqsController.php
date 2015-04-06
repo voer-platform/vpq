@@ -162,7 +162,7 @@ class FaqsController extends AppController {
 				// email to notify
 				$Email = new CakeEmail('gmail');
 				$Email->from(array('pls@dev.pls.edu.vn' => 'Dev PLS'))
-				    ->to('robberviet@gmail.com')
+				    ->to('juhuvn@gmail.com')
 				    ->subject('Question submitted at PLS')
 				    ->send("A new questions has been submitted at PLS. Please answer it.\n\nThe question: ".$this->request->data['content']);
 

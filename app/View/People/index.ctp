@@ -1,6 +1,6 @@
 <div class="people index">
 	<h2><?php echo __('People'); ?></h2>
-	<table cellpadding="0" cellspacing="0">
+	<table cellpadding="0" cellspacing="0" class="table table-striped table table-bordered">
 	<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
 			<th><?php echo $this->Paginator->sort('first_name'); ?></th>

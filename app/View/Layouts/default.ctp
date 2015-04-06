@@ -8,8 +8,9 @@
 <!DOCTYPE html>
 
 <html>
-<head>
 
+<head>
+    <?php echo $this->element('mixpanel_init'); ?>
     <!-- charset -->
 	<?php echo $this->Html->charset(); ?>
 	<title><?php echo $title_for_layout; ?></title>

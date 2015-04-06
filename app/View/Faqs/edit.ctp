@@ -3,10 +3,10 @@
 	<fieldset>
 		<legend><?php echo __('Edit Faq'); ?></legend>
 	<?php
-		echo $this->Form->input('id');
 		echo $this->Form->input('content');
-		echo $this->Form->input('person_id');
 		echo $this->Form->input('answer');
+		echo $this->Form->input('id');
+		echo $this->Form->input('person_id');
 		echo $this->Form->input('status', array(
 			'type' => 'select', 
 			'options' => array('unanswered' => 'unanswered', 'answered' => 'answered', 'pending' => 'pending')));
@@ -14,7 +14,7 @@
 		echo $this->Form->input('date_answered');
 	?>
 	</fieldset>
-<?php echo $this->Form->end(__('Submit')); ?>
+<?php echo $this->Form->end(array('title' => __('Submit'), 'class' => 'btn btn-primary')); ?>
 </div>
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>

@@ -1,6 +1,7 @@
 <div id='doTest'>
     <div id="left">
         <ul id="questions">
+        <?php $wrong_list = array(); ?>
         <?php foreach($scoreData as $index => $data): ?>
             <li id='dotestQuestions' rel="<?php echo $index+1;?>">
                 <?php $correct_answer = -1; ?>
@@ -15,14 +16,16 @@
                             <?php if( $answer['correctness'] == 1): ?>
                                 <?php $correct_answer = $answerId; ?>
                                 <!-- user choose correct answer -->
-                                <?php if($data['ScoresQuestion']['answer'] == $answerId): ?>
+                                <?php if($data['ScoresQuestion']['answer'] == $answerId && isset($data['ScoresQuestion']['answer'])): ?>
                                     <label class="btn-answer active">    
                                 <?php else: ?>
                                     <label class="btn-answer" correct="true">
                                 <?php endif; ?>
+                            <!-- not correct answer -->
                             <!-- user choose wrong -->
                             <?php elseif( $data['ScoresQuestion']['answer'] == $answerId && isset($data['ScoresQuestion']['answer'])): ?>
                                 <label class="btn-answer wrong">
+                                <?php $wrong_list[] = $index;?>
                             <?php else: ?>
                                 <label class="btn-answer">
                             <?php endif; ?>          
@@ -90,7 +93,6 @@
         <div class="clock">
             <div><?php echo __('Score'); ?></div>
             <div id="countdown"><?php echo round($correct/$numberOfQuestions,2)*10; ?></div>
-            <div class="fb-share-button" data-href="<?php echo Router::url('/'); ?>" data-layout="button_count"></div>
             <div id="details"><?php echo __('Correct').': '.'<b>'.$correct.'</b>'.' '.__('on').' '.__('Total').': '.'<b>'.$numberOfQuestions.'</b>'.' '.__('questions').'.'; ?></div>
             <div class="btn-questions">
                <button class="btn show-answers" id="btn-show-answers"><?php echo __('Show Answers'); ?></button>
@@ -98,10 +100,9 @@
             </div>
         </div>
         <div class="options">
-            <div class='btn-go-dashboard'>
-                <?php echo $this->Html->link(__('Go to dashboard'), array('controller' => 'people', 'action' => 'dashboard'), array('class' => 'btn')) ?>
-                <?php echo $this->Html->link(__('Take this test again'), array('controller' => 'tests', 'action' => 'doTest', 0, 0, $test_id), array('class' => 'btn')) ?>
-            </div>
+            <?php echo $this->Html->link(__('Go to dashboard'), array('controller' => 'people', 'action' => 'dashboard'), array('class' => 'btn btn-dashboard')) ?>
+            <?php echo $this->Html->link(__('Take this test again'), array('controller' => 'tests', 'action' => 'doTest', 0, 0, $test_id), array('class' => 'btn btn-retake')) ?>
+
         </div>
     </div>
     <div style="clear:both;"></div>
@@ -171,6 +172,29 @@
                 showSolution = false;
             }
         });
+
+        // label for question suer choose wrong
+        var wrong = JSON.parse("<?php echo json_encode($wrong_list); ?>");
+        for (var i = wrong.length - 1; i >= 0; i--) {
+            $('.simplePageNav' + (wrong[i] + 1)).addClass('wrong');
+            console.log($('.simplePageNav' + (wrong[i] + 1))); 
+        };
+
+        //mixpanel
+        $('.btn-dashboard').click(function(){
+            mixpanel.track('Review.go_to_dashboard', {
+                'Test ID' : "<?php echo $test_id; ?>",
+                'user ID' : "<?php echo $user['id']; ?>"
+            });
+        });
+
+        $('.btn-retake').click(function(){
+            mixpanel.track('Review.re-test', {
+                'Test ID' : "<?php echo $test_id; ?>",
+                'user ID' : "<?php echo $user['id']; ?>"
+            });
+        });
+
     });
 
 </script>
