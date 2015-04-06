@@ -1,6 +1,5 @@
 <?php if( !empty($progresses) ){ ?>
 	<div class="time-range clearfix">
-		<a class="pull-right btn btn-primary btn-xs time-range-select" data-range="tentimes"><?php echo __('Last 10 times'); ?></a>
         <div class="btn-group pull-right">
 			<a class="btn btn-default btn-xs dropdown-toggle time-range-select" data-range="custom" data-toggle="dropdown" aria-expanded="false"><?php echo __('Custom'); ?> <span class="caret"></span></a>
 			<div class="dropdown-menu unclickable-dropdown" role="menu">
@@ -22,6 +21,7 @@
         <!--<a class="pull-right btn btn-primary btn-xs time-range-select" data-range="all"><?php echo __('All time'); ?></a>-->
 		<a class="pull-right btn btn-default  btn-xs time-range-select" data-range="month"><?php echo __('1 Month'); ?></a>
 		<a class="pull-right btn btn-default btn-xs time-range-select" data-range="week"><?php echo __('1 Week'); ?></a>
+		<a class="pull-right btn btn-primary btn-xs time-range-select" data-range="tentimes"><?php echo __('Last 10 times'); ?></a>
         <h5 class="pull-right"><?php echo __('Time range'); ?></h5>
     </div>
 	
@@ -47,7 +47,10 @@
 				</div>		
 			<div class="col-md-4" style="border-left: solid 1px #C0D0E0;">
 				<div style="display: inline-block;">
-					<span class="subject-score" id="subject-score-<?php echo $progress['Subject']['id']; ?>" title="<?php echo __('Score based on latest 10 tests on the subject'); ?>"><span class="subject-score-text"><?php echo __('Score'); ?></span><span class="subject-score-number"><?php echo $score; ?></a></span>
+					<span class="subject-score" id="subject-score-<?php echo $progress['Subject']['id']; ?>" title="<?php echo __('Score based on latest 10 tests on the subject'); ?>">
+						<span class="subject-score-number"><?php echo $score; ?></span>
+						<span class="subject-score-text"><?php echo __('Score'); ?></span>
+					</span>
 				</div>
 				<div style="display: inline-block;float:right;width: 65%;">
 					<?php echo __('Tiến trình học tập'); ?> <a href="javascript:void(0);" class="hasDetail pull-right pls-popover" data-type="Progress Popover" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="top" data-content="Được tính bằng tỷ lệ số câu hỏi đã làm trên tổng số câu hỏi của môn học này"><span class="glyphicon glyphicon-question-sign"></span></a>
@@ -94,7 +97,7 @@
 							<?php foreach($grade['Category'] AS $category){ ?>
 								<tr class="category-row" data-id="<?php echo $category['id']; ?>">
 									<td>
-										&nbsp;<a href="javascript:void(0);"><b>+</b>&nbsp; <?php echo $category['name']; ?></a>
+										<a href="javascript:void(0);"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp; <?php echo $category['name']; ?></a>
 									</td>
 									<td class="center w-100">
 										<b><?php echo (isset($progressDetail['category'][$category['id']]))?$progressDetail['category'][$category['id']]:'-'; ?></b>
@@ -106,7 +109,8 @@
 									<td class="center w-100">
 										<a href="<?php echo $this->Html->url(array('controller' => 'Tests', 
 																				'action' => 'chooseTest', 
-																				$progress['Subject']['id'])); ?>" class="pls-test-btn" data-teston="category">
+																				$progress['Subject']['id'],
+																				'?'	=>	array('category'=>$category['id']))); ?>" class="pls-test-btn" data-teston="category">
 											<button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-play"></span> <?=__('Test'); ?></button>
 										</a>
 									</td>

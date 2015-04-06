@@ -60,7 +60,8 @@ class AppController extends Controller {
             'authError' => 'You are not authorized for this page',
             'authorize' => array('Controller')
 	    ),
-        'Session'
+        'Session',
+		'Cookie'
     );
 
     /**

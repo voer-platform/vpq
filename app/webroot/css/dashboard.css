@@ -116,7 +116,7 @@ div.chart-description {
   width: 106px;
   border: solid 5px #5cb85c;
   text-align: center;
-  line-height: 65px;
+  line-height: 70px;
   border-radius: 150px;
   font-size: 40px;
   box-shadow: inset 0 -1px 0 rgba(0,0,0,.15);
@@ -125,8 +125,7 @@ div.chart-description {
 .subject-score-text {
 	font-size: 15px;
 	display: block;
-	height: 26px;
-	line-height: 50px;
+	line-height: 5px;
 	color: #3B9B3B;
 }  
 .dashboard-subject-name {

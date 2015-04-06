@@ -56,18 +56,19 @@
 }
 
 /* dashboard */
-.dashboard-header {
+.dashboard-header, .personal-page-header {
   background-color: #F8F8F8;
   border-top: 4px solid #81AFD1;
   padding: 5px;
 }
-.dashboard-header .avatar img {
+.dashboard-header .avatar img, .personal-page-header .avatar img {
   padding: 3px;
   background-color: white;
   box-shadow: 1px 1px 2px #ccc;
   -moz-box-shadow: 1px 1px 2px #ccc;
   -webkit-box-shadow: 1px 1px 2px #ccc;
 }
+
 .user-name {
   padding-left: 10px;
 }
@@ -130,3 +131,9 @@
   width: 700px;
   height: 120px;
 }
+/* Personal Page */
+.personal-page-header .user-info {
+	padding-left:20px;
+}
+.right {text-align:right;}
+.w-450 {width:450px;}

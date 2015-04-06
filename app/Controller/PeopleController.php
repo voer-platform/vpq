@@ -27,7 +27,7 @@ class PeopleController extends AppController {
     public function isAuthorized($user) {
         // user can logout, dashboard, progress, history, suggest
         if (isset($user['role']) && $user['role'] === 'user' ){
-            if( in_array( $this->request->action, array('view','progress', 'login', 'logout', 'history', 'dashboard','suggest'))){
+            if( in_array( $this->request->action, array('view', 'update','progress', 'login', 'logout', 'history', 'dashboard','suggest', 'completeProfile'))){
                 return true;
             }
         } elseif (isset($user['role']) && $user['role'] === 'editor') {
@@ -72,6 +72,9 @@ class PeopleController extends AppController {
         }
         $options = array('conditions' => array('Person.' . $this->Person->primaryKey => $id));
         $this->set('person', $this->Person->find('first', $options));
+		$this->loadModel('Grade');
+		$grades = $this->Grade->find('list');
+		$this->set('grades', $grades);
     }
 
 /**
@@ -135,7 +138,35 @@ class PeopleController extends AppController {
         }
         return $this->redirect(array('action' => 'index'));
     }
-
+/**
+ * update method
+ *
+ * @throws NotFoundException
+ * @return void
+ */
+    public function update() {
+        $user = $this->Auth->user();
+        if (!$user['id']) {
+            throw new NotFoundException(__('Invalid person'));
+        }
+        $this->request->onlyAllow('post');
+        if($this->request->data('update_profile'))
+		{
+			$this->Person->updateAll(
+				array(
+					'fullname'	=>	"'".$this->request->data('fullname')."'", 
+					'birthday'	=>	"'".$this->request->data('birthday')."'", 
+					'address'	=>	"'".$this->request->data('address')."'", 
+					'grade'		=>	"'".$this->request->data('grade')."'", 
+					'school'	=>	"'".$this->request->data('school')."'"
+				),
+				array('id' => $user['id'])
+			);
+			$this->Auth->login($user);
+			$this->Session->setFlash(__('Đã cập nhật thông tin cá nhân'));
+		}
+        return $this->redirect(array('action' => 'view', $user['id']));
+    }
 /*
  * login page
  */
@@ -174,8 +205,9 @@ class PeopleController extends AppController {
                 // If exists, we will log them in
                 if ($local_user){
                     // update data after login.
-                    $this->Person->updateAll(
+                    /*$this->Person->updateAll(
                         array(
+							'fullname'	=>	'\''.$fb_user['first_name'].' '.$fb_user['first_name'].'\'',
                             'first_name'=> '\''.$fb_user['first_name'].'\'',
                             'last_name'=> '\''.$fb_user['last_name'].'\'',
                             'image'=> '\''.$picture['data']['url'].'\'',
@@ -183,14 +215,22 @@ class PeopleController extends AppController {
                             'date_modified' => '\''.date("Y-m-d H:i:s").'\'',
                         ),
                         array( 'facebook' => $fb_user['id'])
-                    );
+                    );*/
 
                     // $log = $this->Person->getDataSource()->getLog(false, false);
                     // debug($log);
 
                     $this->Auth->login($local_user['Person']);            # Manual Login
-
-                    $this->redirect(array('controller' => 'people', 'action' => 'dashboard'));
+					
+					$firstTimeLogin = $this->request->query('code');
+					if($firstTimeLogin=='true')
+					{
+						$this->redirect(array('controller' => 'people', 'action' => 'completeProfile'));
+					}
+					else
+					{
+						$this->redirect(array('controller' => 'people', 'action' => 'dashboard'));
+					}	
                 }
 
                 // Otherwise we ll add a new user (Registration)
@@ -198,7 +238,8 @@ class PeopleController extends AppController {
                     $data['Person'] = array(
                         'facebook'          => $fb_user['id'],
                         'password'          => AuthComponent::password(uniqid(md5(mt_rand()))), # Set random password
-                        'first_name'        => $fb_user['first_name'],
+                        'fullname'			=> $fb_user['first_name'].' '.$fb_user['last_name'],
+						'first_name'        => $fb_user['first_name'],
                         'birthday'          => $birthday,
                         'last_name'         => $fb_user['last_name'],
                         'role'              => 'user',
@@ -277,7 +318,7 @@ class PeopleController extends AppController {
 		
 		$this->loadModel('Score');
 		$subject_id = 2;
-		$chart = json_encode($this->Score->getChartData($user_id, $subject_id));
+		$chart = json_encode($this->Score->getChartData($user_id, $subject_id, array('type'=>'tentimes')));
 		
 		
         $this->set('progresses', $progresses);
@@ -334,8 +375,33 @@ class PeopleController extends AppController {
 /**
  *	data filters
  */
-	public function dataFilters()
+	public function completeProfile()
 	{
-	
+		$user = $this->Auth->user();
+		
+		if($user['school'])
+		{
+			$this->redirect(array('controller' => 'people', 'action' => 'dashboard'));
+		}
+		
+		if($this->request->is('post'))
+		{
+			
+			$this->Person->updateAll(
+							array(
+								'fullname'	=>	"'".$this->request->data('fullname')."'", 
+								'birthday'	=>	"'".$this->request->data('birthday')."'", 
+								'address'	=>	"'".$this->request->data('address')."'", 
+								'grade'		=>	"'".$this->request->data('grade')."'", 
+								'school'	=>	"'".$this->request->data('school')."'"
+							),
+							array('id' => $user['id'])
+						);
+			$this->redirect(array('controller' => 'people', 'action' => 'dashboard'));
+		}
+		
+		$this->loadModel('Grade');
+		$grades = $this->Grade->find('list');
+		$this->set('grades', $grades);
 	}
 }
