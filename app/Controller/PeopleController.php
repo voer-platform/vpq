@@ -221,7 +221,8 @@ class PeopleController extends AppController {
                     // debug($log);
 
                     $this->Auth->login($local_user['Person']);            # Manual Login
-					
+					//Save user data to cookie
+					$this->Cookie->write('remember', $local_user['Person'], false, 31536000);
 					$firstTimeLogin = $this->request->query('code');
 					if($firstTimeLogin=='true')
 					{
@@ -272,6 +273,7 @@ class PeopleController extends AppController {
  */
     public function logout() {
         $this->Auth->logout();
+		$this->Cookie->delete('remember');
         return $this->redirect($this->Auth->loginAction);
     }
 
