@@ -16,7 +16,7 @@ class TestsController extends AppController {
     public function isAuthorized($user) {
         // user can logout, dashboard, progress, history, suggest
         if (isset($user['role']) && $user['role'] === 'user' ){
-            if( in_array( $this->request->action, array('chooseTest', 'doTest', 'score', 'byQuestion'))){
+            if( in_array( $this->request->action, array('chooseTest', 'doTest', 'score', 'byQuestion','timeQuestion'))){
                 return true;
             }
         } elseif (isset($user['role']) && $user['role'] === 'editor' ){
@@ -386,4 +386,23 @@ class TestsController extends AppController {
         echo json_encode(count($questions));
 		return;
     }
+	
+	public function timeQuestion($id,$t){
+		$options = array(
+				'recursive' => 0,
+				'conditions' => array('id'=>$id)
+				);				
+		$question = $this->Question->find('all', $options);
+
+		$time = $question[0]['Question']['time']+$t;
+		$count= $question[0]['Question']['count']+1;
+		$this->Question->id=$id;
+		$this->Question->save(
+									array(
+										'time' => $time,
+										'count' => $count
+									)
+								);
+		exit();
+	}
 }

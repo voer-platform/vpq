@@ -3,7 +3,7 @@
     <div id="left">
         <ul id="questions">
         <?php foreach ($questions as $index => $question): ?>
-            <li id='dotestQuestions' rel="<?php echo $index+1;?>">
+            <li id='dotestQuestions<?php echo $index+1;?>' rel="<?php echo $index+1;?>" data-id='<?php echo $question['Question']['id'];?>'>
                 <fieldset>
                     <div class="question">
                         <div class="title"><?php echo "<b>", 'Câu ', $index+1, ":</b>  "; ?></div>
@@ -17,6 +17,7 @@
                         <input type="hidden" value="" name="<?php echo $question['Question']['id']; ?>">
                     <?php echo $this->Form->input( $index, array(
                             'name' => $question['Question']['id'],
+							'class' => 'input-answer',
                             'label' => false,
                             'legend' => false,
                             'options' => $option,
@@ -102,8 +103,31 @@
         </div>
     </div>
 </div>
+<div id="msgNotice2" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Chú ý</h4>
+            </div>
+            <div class="modal-body">
+                <p id='tb'></p>
+            </div>
+            <div class="modal-footer">
+                <button id="autoSubmit2" type="button" class="btn btn-default" data-dismiss="modal">Xem lại</button>
+                <button id="sureSubmit2" type="button" class="btn btn-danger" data-dismiss="modal">Nộp bài</button>
+            </div>
+        </div>
+    </div>
+</div>
 <script type="text/javascript">
-
+	var tgc=parseInt("<?php echo $duration ?>");
+	tgc=tgc*60;
+	var datatime=[];
+	var timequestion=[];
+	var id_question,endtime=0;
+	var ht=0;
+	var starttime = tgc;
+	var $count = parseInt("<?php echo $duration ?>");
     // add duration to form, when user submit score early
     // if timeout, it is 0 by default
     $('#TestAnswersDoTestForm').submit(function(){
@@ -114,18 +138,31 @@
 
     function submitTest(){
         $answered = $('ul.pagination').find('li.chose');
-        $count = parseInt("<?php echo $duration ?>");
-
         if ($count == $answered.size()){
-            $('#TestAnswersDoTestForm').submit();
+            $('#TestAnswersDoTestForm').submit();			
         }else{
+			window.clearInterval(countdown);
             $('#msgNotice').modal({
                 backdrop: false
             });
         }
     }
+	
+	function question_data(){
+		for(i=0;i<$count;i++){
+			var s=i+1;
+			var id = $('#dotestQuestions'+s).attr('data-id');
+			timequestion={id:id,time:0};
+			datatime[i]=timequestion;
+			console.log(datatime);
+		}
+		id_question=datatime[0]['id'];
+	}
 
     $(document).ready(function(){
+	
+		question_data();
+		
         $('ul#questions').simplePaging({pageSize: "1"});
 
         $('button#sureSubmit').on('click', function(){
@@ -151,7 +188,90 @@
         $('div.nav button.next').on('click', function(){
             $('ul#questions').data('simplePaging').nextPage(); 
         });
-    })
+		
+		$(document).on('click','#autoSubmit',function(){
+			 var countdown = setInterval(function(){
+				seconds -= 1;
+				clockMinutes.html(zeroPad(Math.floor(seconds/60), 2));
+				clockSeconds.html(zeroPad(seconds%60, 2));
 
+				if(seconds == 0){
+					window.clearInterval(countdown);
+					$('#msgTimeout').modal({
+						backdrop: false
+					});
+					$('#clock-time').val(seconds);
+				}
+			}, 1000);
+		});
+		
+		$(document).on('click','.btn-answer',function(){	
+			$answered = $('ul.pagination').find('li.chose');	
+			id = $(this).find('input').attr('name');
+			var ktg=tgc-seconds;
+				tgc=seconds;
+			if ($count == $answered.size()){
+				if(ht==0){
+					mystopcountdown();
+					var Minutes=(zeroPad(Math.floor(seconds/60), 2));
+					var Seconds=(zeroPad(seconds%60, 2));
+					document.getElementById("tb").innerHTML='Bạn đã làm hết các câu hỏi. Bạn vẫn còn '+'<span style="color:red">'+Minutes+':'+Seconds+'</span> .Bạn muốn xem lại hay nộp bài luôn?';
+					$('#msgNotice2').modal({
+						backdrop: false
+					});		
+				}
+				ht+=1;
+			}
+			for(i=0;i<datatime.length;i++){
+				if(datatime[i]['id']==id){
+					datatime[i]['time']=datatime[i]['time']+ktg;
+					time=datatime[i]['time'];
+					if(i!=datatime.length-1){
+					id_question=datatime[i+1]['id'];
+					}
+				}
+			}
+			var url = '<?php echo Router::url(array('controller'=>'tests','action'=>'timeQuestion'));?>/' + id_question + '/' + time;
+			$.getJSON(url, function( data ) {
+			});
+			console.log(datatime);
+		});
+
+		$('ul.simplePagerNav li a').click(function(){			
+			tgc = seconds;
+			endtime = seconds;
+			var ktg= starttime - endtime;
+			for(i=0;i<datatime.length;i++){
+					if(datatime[i]['id']==id_question){
+						datatime[i]['time']=datatime[i]['time']+ktg;
+						time=datatime[i]['time'];
+					}
+				}
+			var url = '<?php echo Router::url(array('controller'=>'tests','action'=>'timeQuestion'));?>/' + id_question + '/' + time;
+			$.getJSON(url, function( data ) {
+			});
+			console.log(datatime);
+			starttime=endtime;
+			var rel = $(this).attr('rel');
+			id_question = $('.simplePagerPage'+rel).attr('data-id');		
+		});
+		
+		$(document).on('click','#autoSubmit2',function(){
+			 var countdown = setInterval(function(){
+				seconds -= 1;
+				clockMinutes.html(zeroPad(Math.floor(seconds/60), 2));
+				clockSeconds.html(zeroPad(seconds%60, 2));
+
+				if(seconds == 0){
+					window.clearInterval(countdown);
+					$('#msgTimeout').modal({
+						backdrop: false
+					});
+					$('#clock-time').val(seconds);
+				}
+			}, 1000);
+		});
+    });
+	
 </script>
 

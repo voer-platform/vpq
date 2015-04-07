@@ -9,10 +9,10 @@
                 <h4 class="modal-title" id="myModalLabel">Hết giờ</h4>
             </div>
             <div class="modal-body">
-                Thời gian làm bài đã hết!
+                Thời gian làm bài đã hết! Kết quả bài kiểm tra của bạn sẽ không được công nhận.
             </div>
             <div class="modal-footer">
-                <button id="autoSubmit" type="button" class="btn btn-default" data-dismiss="modal">Xem kết quả</button>
+                <?php echo $this->Html->link($this->Form->button('OK', array('type'=>'button','class'=>'btn btn-primary','id'=>'autoSubmit3')),array('controller'=> 'people','action'=> 'dashboard'),array('escape' => false)); ?>
             </div>
         </div>
     </div>
@@ -44,11 +44,15 @@
             $('#clock-time').val(seconds);
         }
     }, 1000);
+	
+	function mystopcountdown() {
+		clearInterval(countdown);
+	}
 
     $(document).ready(function() {
-        $('#autoSubmit').click(function(){
+        /*$('#autoSubmit3').click(function(){
             $('#btn-submit').click();
-        });
+        });*/
     });
 
 
