@@ -31,7 +31,7 @@
       <ul class="nav navbar-nav navbar-right">
         <?php if(!empty($user)): ?>
           <li><?php echo $this->Html->link($this->Html->image($user['image'], array('class' => 'profile-img')), array('controller' => 'people', 'action' => 'dashboard'), array('escape' => false, 'class' => 'profile-img') ); ?></li>
-          <li><?php echo $this->Html->link($user['first_name']." ".$user['last_name'],array('controller' => 'people', 'action' => 'dashboard')); ?></li>
+          <li><?php echo $this->Html->link($user['fullname'],array('controller' => 'people', 'action' => 'dashboard')); ?></li>
 
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>

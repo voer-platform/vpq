@@ -1,4 +1,4 @@
-<h2 class="page-heading heading">Trang cá nhân</h2>
+<h2 class="page-heading heading"><?php echo __('Personal Page'); ?></h2>
 <div class="row">
 	<div class="col-md-12">
 		<div class="personal-page-header clearfix">
