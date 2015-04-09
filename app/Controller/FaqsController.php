@@ -157,7 +157,7 @@ class FaqsController extends AppController {
 			$this->Faq->data['Faq']['date_created'] = date('Y-m-d h:i:s');
 
 			if ($this->Faq->save($this->Faq->data)) {
-				echo __("Submit success!");
+				echo __("Send FAQ success!");
 
 				// email to notify
 				$Email = new CakeEmail('gmail');
@@ -167,7 +167,7 @@ class FaqsController extends AppController {
 				    ->send("A new questions has been submitted at PLS. Please answer it.\n\nThe question: ".$this->request->data['content']);
 
 			} else {
-				echo __("Submit failed. Try again leter.");
+				echo __("Send FAQ failed. Try again leter.");
 			}
 		}
 	}

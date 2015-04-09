@@ -5,7 +5,7 @@
         <div class="title"><?php echo __("Have a question for us? Wanna give some comments? Type here!"); ?></div>
         <div class='faq-response' id='faq-response'></div>
         <textarea class='faq-content'></textarea>
-        <button class="faq-submit-btn btn btn-sm btn-primary"><?php echo __("Submit"); ?></button>
+        <button class="faq-submit-btn btn btn-sm btn-primary"><?php echo __("Send PLS"); ?></button>
     </div>
 </div>
 

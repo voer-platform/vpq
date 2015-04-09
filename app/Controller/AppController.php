@@ -101,7 +101,7 @@ class AppController extends Controller {
 		if(!$this->Auth->loggedIn()){
 			//if user not logged in, check cookie then auto login
 			$remember = $this->Cookie->read('remember');
-			if($remember)
+            if($remember)
 			{
 				$this->Auth->login($remember);
 			}

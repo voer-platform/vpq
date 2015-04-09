@@ -7,7 +7,7 @@ App::import('Model', 'Grade');
 
 class NameHelper extends AppHelper {
     /**
-     * subject id to name
+     * subject id"." ".__("to")." "."name
      * @param id of the subject
      * @return string reperesent name of subject
      */ 
@@ -26,7 +26,7 @@ class NameHelper extends AppHelper {
     }
 
     /**
-     * subcategory id to name
+     * subcategory id"." ".__("to")." "."name
      * @param id of the subcategory
      * @return string reperesent name of subcategory
      */ 
@@ -39,7 +39,7 @@ class NameHelper extends AppHelper {
         return $subcategory['Subcategory']['name'];
     }
     /**
-     * grade id to name
+     * grade id"." ".__("to")." "."name
      * @param id of the rade
      * @return string reperesent name of grade
      */ 
@@ -63,50 +63,84 @@ class NameHelper extends AppHelper {
             return array(
                 "color" => "success",
                 "rank" => __("Excellent"),
-                "description" => __("Score from 9/10 to 10/10")
+                "description" => __("Score from")." "."9/10"." ".__("to")." "."10/10"
             );
         }
         else if( 8 <= $score && $score < 9){
             return array(
                 "color" => "primary",
                 "rank" => __("Good"),
-                "description" => __("Score from 8/10 to 9/10")
+                "description" => __("Score from")." "."8/10"." ".__("to")." "."9/10"
             );
         }
         else if(6.5 <= $score && $score < 8){
             return array(
                 "color" => "info",
                 "rank" => __("Fair"),
-                "description" => __("Score from 6.5/10 to 8/10")
+                "description" => __("Score from")." "."6.5/10"." ".__("to")." "."8/10"
             );
         }
         else if(5 <= $score && $score < 6.5){
             return array(
                 "color" => "warning",
                 "rank" => __("Bad"),
-                "description" => __("Score from 6.5/10 to 5/10")
+                "description" => __("Score from")." "."6.5/10"." ".__("to")." "."5/10"
             );
         }
         else if(3.5 <= $score && $score < 5){
             return array(
                 "color" => "danger",
                 "rank" => __("Very bad"),
-                "description" => __("Score from 3.5/10 to 5/10")
+                "description" => __("Score from")." "."3.5/10"." ".__("to")." "."5/10"
             );
         }
         else if (0 <= $score && $score < 3.5){
             return array(
                 "color" => "default",
                 "rank" => __("Failed"),
-                "description" => __("Score from 0/10 to 3.5/10")
+                "description" => __("Score from")." "."0/10"." ".__("to")." "."3.5/10"
             );
         }
         else {
             return array(
                 "color" => "default",
                 "rank" => '',
-                "description" => __("Score from ... to ...")
+                "description" => __("Score from")." "."..."." ".__("to")." "."..."
             );
+        }
+    }
+/**
+ * translate day of week short into full and translated string
+ *    @param    dow(Sun, Mon, etc.)
+ *    @return   dow(__('Sunday'), __('Monday'))
+ */
+    public function convertDayOfWeek($date){
+        switch ($date) {
+            case 'Sun':
+                return __('Sunday');
+                break;
+            case 'Mon':
+                return __('Monday');
+                break;
+            case 'Tue':
+                return __('Tuesday');
+                break;
+            case 'Wed':
+                return __('Wednesday');
+                break;
+            case 'Thu':
+                return __('Thursday');
+                break;
+            case 'Fri':
+                return __('Friday');
+                break;
+            case 'Sat':
+                return __('Saturday');
+                break;
+            
+            default:
+                return __('None');
+                break;
         }
     }
 }
