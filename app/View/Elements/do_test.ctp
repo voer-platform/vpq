@@ -168,6 +168,10 @@
         $('button#sureSubmit').on('click', function(){
             $('#TestAnswersDoTestForm').submit();
         });
+		
+		$('button#sureSubmit2').on('click', function(){
+            $('#TestAnswersDoTestForm').submit();
+        });
 
         $('ul#questions .answer').find('label.btn').on('click', function(){
             var li = $(this).closest('li');

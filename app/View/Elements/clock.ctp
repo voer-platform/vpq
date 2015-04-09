@@ -9,10 +9,12 @@
                 <h4 class="modal-title" id="myModalLabel">Hết giờ</h4>
             </div>
             <div class="modal-body">
-                Thời gian làm bài đã hết! Kết quả bài kiểm tra của bạn sẽ không được công nhận.
+                <!--Thời gian làm bài đã hết! Kết quả bài kiểm tra của bạn sẽ không được công nhận.-->
+				Thời gian làm bài đã hết! Bạn có muốn nộp bài không?
             </div>
             <div class="modal-footer">
-                <?php echo $this->Html->link($this->Form->button('OK', array('type'=>'button','class'=>'btn btn-primary','id'=>'autoSubmit3')),array('controller'=> 'people','action'=> 'dashboard'),array('escape' => false)); ?>
+                <?php echo $this->Html->link($this->Form->button('Không', array('type'=>'button','class'=>'btn btn-danger','id'=>'autoSubmit3')),array('controller'=> 'people','action'=> 'dashboard'),array('escape' => false)); ?>
+				<button id="sureSubmit2" type="button" class="btn btn-primary" data-dismiss="modal">Có</button>
             </div>
         </div>
     </div>

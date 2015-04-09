@@ -21,7 +21,7 @@ class ScoresController extends AppController {
 	public function isAuthorized($user) {
 	    // user can logout, dashboard, progress, history, suggest
 	    if (isset($user['role']) && $user['role'] === 'user' ){
-	    	if( in_array( $this->request->action, array('viewDetails', 'ajaxOverall', 'ajaxCallHandler'))){
+	    	if( in_array( $this->request->action, array('viewDetails', 'ajaxOverall', 'ajaxCallHandler','report'))){
 	    		return true;
 	    	}
 	    }
@@ -234,6 +234,23 @@ class ScoresController extends AppController {
             echo json_encode(array(
                 'messsage' => 'error in query message'));
         }
+	}
+	
+	public function report($id){
+		$options = array(
+				'recursive' => 0,
+				'conditions' => array('id'=>$id)
+				);		
+		$this->loadModel('Question');
+		$question = $this->Question->find('all', $options);
+		$report= $question[0]['Question']['report']+1;
+		$this->Question->id=$id;
+		$this->Question->save(
+									array(
+										'report' => $report
+									)
+								);
+		exit();
 	}
 
 }

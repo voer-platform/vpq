@@ -51,6 +51,11 @@
                         }
                     }
                 ?>
+				<div style='padding:20px;'>
+					<div align='right'>
+						<button id="report" data-id='<?php echo $data['ScoresQuestion']['question_id'] ?>' type="button" class="btn btn-danger">báo đáp án sai</button>
+					</div>					
+				</div>
                 <div class="choose-answer <?php echo $class; ?>">
                     <div class="correct-answer"><?php echo "Đáp án đúng là ". chr($correct_answer + 97) . ". ".'</br>'; ?></div>
                     <?php echo $r; ?>
@@ -194,6 +199,16 @@
                 'user ID' : "<?php echo $user['id']; ?>"
             });
         });
+		
+		$(document).on('click','#report',function(){
+			$question_id = $(this).attr('data-id');
+			var url = '<?php echo Router::url(array('controller'=>'scores','action'=>'report'));?>/' + $question_id;
+			$.getJSON(url, function( data ) {
+			});
+			$('#msgNotice').modal({
+                backdrop: false
+            });
+		});
 
     });
 
