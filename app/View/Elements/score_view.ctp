@@ -182,11 +182,13 @@
 
         $('.show-solutions').on('click', function(){
             if( showSolution == false){
+				$('.report').css('display', 'block');
                 $('.solution').css('display', 'block');
                 $('#btn-show-solutions').text("<?php echo __('Hide Solutions'); ?>");
                 showSolution = true;
             }
             else{
+				$('.report').css('display', 'none');
                 $('.solution').css('display', 'none'); 
                 $('#btn-show-solutions').text("<?php echo __('Show Solutions'); ?>");
                 showSolution = false;
