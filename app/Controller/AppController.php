@@ -98,7 +98,7 @@ class AppController extends Controller {
             'scope' => 'user_birthday',
         )));
 		
-		if(empty($this->Auth->user())){
+		if(!$this->Auth->loggedIn()){
 			//if user not logged in, check cookie then auto login
 			$remember = $this->Cookie->read('remember');
 			if($remember)
