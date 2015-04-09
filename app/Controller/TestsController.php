@@ -8,7 +8,7 @@ App::uses('AppController', 'Controller');
  */
 class TestsController extends AppController {
 
-    public $uses = array('Test', 'Grade', 'Category', 'Subcategory', 'Tracking');
+    public $uses = array('Test', 'Grade', 'Category', 'Subcategory', 'Tracking','Question');
     /*
      * authorization
      *
