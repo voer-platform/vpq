@@ -30,9 +30,21 @@
 				</div>				
 			</div>
 			<div class='row'>
-				<div class="col-sm-12" style="padding:5px; border-left: solid 1px #ddd;border-right: solid 1px #ddd;">
-					<a style='float:right'>Số bài bạn đã chọn: <span id="sl"><?php echo $count ?></span></a>
-				</div>
+				<table class="table table-condensed" style="border-collapse:collapse;border:0px;margin:0px">
+					<tbody>
+						<tr>
+							<td style="padding-left:5px;border-left: solid 1px #ddd; border-top:0px; width:10px;">
+								<input type="checkbox" id="checkfull"'/>
+							</td>
+							<td style="border-top:0px;">
+								<a>Check All</a>
+							</td>
+							<td style="border-right: solid 1px #ddd;border-top:0px;">
+								<a style='float:right'>Số bài bạn đã chọn: <span id="sl"><?php echo $count ?></span></a>	
+							</td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
 			<div class="row">
 				<div class="tab-content col-sm-12	" style="padding:0px;">
@@ -44,7 +56,7 @@
 								<?php if($ac['Grade']['id']==$i): ?>
 								<tr>
 									<td class="td_cat" style="padding-left:5px; width:10px;border: solid 1px #ddd;border-right:0px;">
-										<input type="checkbox" class="checkall" data-id='<?php echo $ac['Category']['id'] ?>'/>
+										<input type="checkbox" class="checkall chk_box" data-id='<?php echo $ac['Category']['id'] ?>'/>
 									</td>
 									<td colspan='2' class="cat" data-id='<?php echo $ac['Category']['id'] ?>' style="padding-left:5px;border: solid 1px #ddd;border-left:0px;">&nbsp<a><?php echo $ac['Category']['name'];?><i style="float:right;margin-top:2px" class="glyphicon glyphicon-plus-sign"></i><span id='spcat-<?php echo $ac['Category']['id'] ?>' style="float:right; margin-right:10px;" id="sl_incat"></span></a>
 									</td>
@@ -54,7 +66,7 @@
 										<td style='border: solid 1px #ddd;border-right:0px;'>
 										</td>
 										<td style="width:23px;">
-											<input type="checkbox" name="sub" class='chksub chk-<?php echo $ac['Category']['id'] ?> ' id='sub-<?php echo $asc['id'] ?>' value="<?php echo $asc['id']?>" <?php echo (in_array($asc['id'],$pretracking) ? "checked" : ""); ?> />
+											<input type="checkbox" name="sub" class='chk_box chksub chk-<?php echo $ac['Category']['id'] ?> ' id='sub-<?php echo $asc['id'] ?>' value="<?php echo $asc['id']?>" <?php echo (in_array($asc['id'],$pretracking) ? "checked" : ""); ?> />
 										</td>
 										<td style='border: solid 1px #ddd;border-left:0px;' class="td-subcat" data-id='<?php echo $asc['id'] ?>'><?php echo $asc['name'] ?></td>
 									</tr>
@@ -114,6 +126,7 @@
 </div>-->
 
 <script type="text/javascript">
+var totalsubcat=<?php echo $totalsubcat ?>;
 var sl=<?php echo $count ?>;
 var pretracking='<?php echo $strtracking ?>';
 var arraySubs = pretracking.split(",");
@@ -161,7 +174,8 @@ function doTest(t){
 $(document).ready(function(){	
 	preSelectCategories();
 	$(document).on('click','.cat',function(){
-		var catId = $(this).attr('data-id');		
+		var catId = $(this).attr('data-id');
+		$('.subcat').not('.cat-'+catId).hide();
 		$('.cat-'+catId).toggle();		
 		var s = $('.cat-'+catId).attr('style');
 		if(s=='display: table-row;'){		
@@ -169,7 +183,20 @@ $(document).ready(function(){
 		}else{
 			$(this).find("i").attr('class','glyphicon glyphicon-plus-sign');
 		}		
-	});		
+	});
+	$(document).on('click','#checkfull',function(){
+		if(this.checked){
+			$('.chk_box').each(function(){
+				this.checked=true;
+				document.getElementById("sl").innerHTML=totalsubcat;
+			});
+		}else{
+			$('.chk_box').each(function(){
+				this.checked=false;
+				document.getElementById("sl").innerHTML=0;
+			});
+		}
+	});
 	$(document).on('click','.checkall',function(){
 		var chkall=$(this).attr('data-id');
 		if(this.checked){

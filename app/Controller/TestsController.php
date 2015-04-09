@@ -166,8 +166,11 @@ class TestsController extends AppController {
 				'conditions' => array('subject_id'=>$subject)
 				);				
 			$allcat = $this->Category->find('all', $options);
-			//pr($allcat);
-			//exit();
+			$total_subcat=0;
+			foreach($allcat as $ac){
+				$total_subcat=$total_subcat+count($ac['Subcategory']);
+			}
+			$this->set('totalsubcat',$total_subcat);
 			$this->set('allcat',$allcat);
 			if(!isset($this->request->query['subcategory']) && !isset($this->request->query['category'])){		
 				if ($gradeUser == 0){
