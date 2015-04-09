@@ -17,9 +17,11 @@
                                 <?php $correct_answer = $answerId; ?>
                                 <!-- user choose correct answer -->
                                 <?php if($data['ScoresQuestion']['answer'] == $answerId && isset($data['ScoresQuestion']['answer'])): ?>
-                                    <label class="btn-answer active">    
+                                    <label class="btn-answer active">
+									<button style='float:right;display:none;' data-id='<?php echo $data['ScoresQuestion']['question_id'] ?>' type='button' class='btn btn-danger report'>báo đáp án sai</button>
                                 <?php else: ?>
                                     <label class="btn-answer" correct="true">
+									<button style='float:right;display:none;' data-id='<?php echo $data['ScoresQuestion']['question_id'] ?>' type='button' class='btn btn-danger report'>báo đáp án sai</button>
                                 <?php endif; ?>
                             <!-- not correct answer -->
                             <!-- user choose wrong -->
@@ -113,6 +115,22 @@
     <div style="clear:both;"></div>
 </div>
 
+<div id="msgNotice" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Thông báo</h4>
+            </div>
+            <div class="modal-body" style='text-align:center'>;
+                <p id='tb'>Cảm ởn sự đóng góp của bạn!</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Xem lại</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script type="text/javascript">
     
     $(document).ready(function(){
@@ -152,16 +170,18 @@
         $('.show-answers').on('click', function(){
             if( showAnswer == false){
                 $('[correct=true]').addClass('active');
+				$('.report').css('display', 'block');
                 $('.correct-answer').css('display', 'block');
                 $('#btn-show-answers').text("<?php echo __('Hide Answers'); ?>");
                 showAnswer = true;
             }
             else{
-                $('[correct=true]').removeClass('active');
+                $('[correct=true]').removeClass('active');	
+				$('.report').css('display', 'none');
                 $('.correct-answer').css('display', 'none');
                 $('#btn-show-answers').text("<?php echo __('Show Answers'); ?>");
                 console.log($('.btn .show-answers').text());
-                showAnswer = false;
+                showAnswer = false;				
             }
         });
 
@@ -200,7 +220,7 @@
             });
         });
 		
-		$(document).on('click','#report',function(){
+		$(document).on('click','.report',function(){
 			$question_id = $(this).attr('data-id');
 			var url = '<?php echo Router::url(array('controller'=>'scores','action'=>'report'));?>/' + $question_id;
 			$.getJSON(url, function( data ) {
