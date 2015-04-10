@@ -1,9 +1,13 @@
+
 <?php $this->start('meta'); ?>
 <meta property="og:url" content="<?php echo Router::url( $this->here, true ); ?>" /> 
 <meta property="og:title" content="<?php echo __('Personal Learning System'); ?>" />
 <meta property="og:description" content="<?php echo __('Where you can learn anything!'); ?>" /> 
 <meta property="og:image" content="<?php echo $this->Html->url(Router::url($this->here, true).'img/logo-small.png'); ?>" />
 <?php $this->end(); ?>
+<!-- start Mixpanel --><script type="text/javascript">(function(f,b){if(!b.__SV){var a,e,i,g;window.mixpanel=b;b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
+for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=f.createElement("script");a.type="text/javascript";a.async=!0;a.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";e=f.getElementsByTagName("script")[0];e.parentNode.insertBefore(a,e)}})(document,window.mixpanel||[]);
+mixpanel.init("72e8272434e8893913d44a6a3a467df1");</script><!-- end Mixpanel -->
 <?php echo $this->Html->css('home.css');?>
 <style>
 	.content.container {
@@ -58,7 +62,7 @@
 	}
 	.facebook-btn {
 		max-width:350px;
-		
+		margin-left: -5px;
 	}
 	.intro-img img {
 		width:100%;
@@ -93,14 +97,14 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
-				<br/><br/>
+				<br/><br/><br/><br/><br/><br/><br/><br/>
 				<h1 style="font-size:42px;font-weight:bold;"><strong>PLS</strong> - Học theo cách của bạn</h1>
 				<p style="font-size: 20px;">Tham gia vào hệ thống để trải nghiệm nguồn kiến thức vô tận trên nhiều lĩnh vực</p>
 				<a href="<?php echo $fb_login_url; ?>" class="mix-login" data-section="home-banner">
 					<?php echo $this->Html->image('facebook-login-button.png', array('class' => 'facebook-btn', 'alt' => __('Login with Facebook'))); ?>
 				</a>
 				<br/><br/><br/><br/>
-				<p style="font-size: 16px;">
+				<!--<p style="font-size: 16px;">
 					<ul class="counter">
 						<li>
 							<b>18</b><br/>Môn Học
@@ -114,7 +118,7 @@
 							Chuyên Đề
 						</li>	
 					</ul>	
-				</p>
+				</p>-->
 			</div>
 		</div>	
 	</div>	
@@ -182,9 +186,10 @@
 	<br/>	
 	<div class="row">
 		<div class="col-md-5">
-			<h2 style="color: #D13939;">Học thỏa thích trên mọi thiết bị</h2>
+			<h2 style="color: #D13939;">Học mọi lúc mọi nơi</h2>
 			<br/>
-			<p style="font-size: 16px;line-height: 25px;">Học mọi lúc mọi nơi, không chỉ trên máy tính. Với PLS, bạn có thể luyện tập ngay trên smartphone và tablet.</p>
+			<p style="font-size: 16px;line-height: 25px;">Thời lượng bài kiểm tra đa dạng cho phép bạn làm bài cả ngày hoặc chỉ với 5 phút nghỉ giữa giờ.</p>
+			<p style="font-size: 16px;line-height: 25px;">PLS được thiết kế tương thích trên nhiều thiết bị. Không chỉ máy tính, bạn còn có thể luyện tập ngay trên smartphone và tablet.</p>
 			
 			<br/>
 			<p class="center"><a href="<?php echo $fb_login_url; ?>" class="mix-login" data-section="responsive-intro"><button class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-hand-right"></span>&nbsp; Dùng thử</button></a></p>
@@ -225,15 +230,15 @@
 	<br/>
 	<hr/>
 	<div class="row">
-		<div class="col-md-6">
+		<div class="col-md-4">
 		</div>
-		<div class="col-md-3">
+		<div class="col-md-4 right">
 			<h3 style="margin-top: 5px;font-weight: bold;">Còn chờ gì nữa?</h3>
 			<h4>Tham gia thử sức ngay thôi!</h4>
 		</div>
-		<div class="col-md-3 right">		 
+		<div class="col-md-4 right">		 
 			<a href="<?php echo $fb_login_url; ?>" class="mix-login" data-section="home-footer">
-				<?php echo $this->Html->image('facebook-login-button.png', array('class' => 'facebook-btn', 'alt' => __('Login with Facebook'))); ?>
+				<?php echo $this->Html->image('facebook-login-button.png', array('style'=> 'width:100%;','class' => 'facebook-btn', 'alt' => __('Login with Facebook'))); ?>
 			</a>			
 		</div>
     </div>
