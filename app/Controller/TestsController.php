@@ -181,30 +181,8 @@ class TestsController extends AppController {
 					$gradeUser = $current_year - $year - 5; //Du doan lop hoc theo tuoi 
 
 				}
-				$options = array(
-					'recursive' => 0,
-					'conditions' => array('person_id' => $user['id'],	)
-					);				
-				$data = $this->Tracking->find('all', $options);	
-				//pr($data);
-				//exit();
-				if($data!=null){
-					$this->set('strtracking',$data[0]['Tracking']['subcategory']);
-					$tracking=explode(',',$data['0']['Tracking']['subcategory']);
-					
-					if($tracking[0]=='' && !array_key_exists('1',$tracking)){
-						$pretracking=array();					
-					}else{
-						foreach($tracking as $pre){
-							if($pre!=''){
-								$pretracking[]=$pre;
-							}
-						}
-					}
-				}else{
 					$this->set('strtracking','');
 					$pretracking=array();
-				}
 			}else{
 				if(isset($this->request->query['subcategory'])){
 					$id=$this->request->query['subcategory'];

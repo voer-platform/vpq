@@ -58,7 +58,7 @@
 								</tr>				
 								<?php foreach($ac['Subcategory'] as $item=>$asc): ?>
 									<tr class="subcat cat-<?php echo $ac['Category']['id'] ?> sub-<?php echo $asc['id'] ?>" data-id='<?php echo $ac['Category']['id'] ?>' data-sub='<?php echo $asc['id'] ?>'>
-										<td style='border: solid 1px #ddd;border-right:0px;'>
+										<td style='border: solid 1px #ddd;border-right:0px;' class="td-subcat" data-id='<?php echo $asc['id'] ?>'>
 										</td>
 										<td style="width:23px;">
 											<input type="checkbox" name="sub" class='chkbox-<?php echo $i;?> chksub chk-<?php echo $ac['Category']['id'] ?> ' id='sub-<?php echo $asc['id'] ?>' value="<?php echo $asc['id']?>" <?php echo (in_array($asc['id'],$pretracking) ? "checked" : ""); ?> />
@@ -133,9 +133,6 @@ function preSelectCategories(){
 }
 
 function doTest(t){
-	mixpanel.track("Do Test", {
-		"test_time": t,
-	});
 	var n=0;
     $subject = <?php echo $subject; ?>;
 	var $str='';
@@ -260,12 +257,6 @@ $(document).ready(function(){
 			});
 
 		}
-			/*var name=$(this).text();
-			var tr="";
-			tr+="<tr><td>"+name+"</td></tr>";
-			$('#table_modal').html(tr);*/
-			
-			//Đang làm đoạn này
 	});
 	
 	$(document).on('click','.chksub',function(){
@@ -287,7 +278,7 @@ $(document).ready(function(){
 		}else{
 			s=parseInt(s);
 		}
-		if($('#sub-'+idsub).is(':checked')==true){			
+		if($('#sub-'+idsub).is(':checked')==true){		
 			s=s+1;			
 		}else{
 			s=s-1;
