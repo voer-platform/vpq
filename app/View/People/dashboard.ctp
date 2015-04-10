@@ -294,7 +294,10 @@
 					if(Object.keys(jsonData.progresses).length>0)
 					{
 						$.each(jsonData.progresses, function(subj_id, subj){
-							$('#subject-score-'+subj_id+' .subject-score-number').html(Math.round((subj.sum_progress/subj.sum_total)*100)/10);
+							score = Math.round((subj.sum_progress/subj.sum_total)*100)/10;
+							$('#subject-score-'+subj_id+' .subject-score-number').html(score);
+							$('#subject-score-'+subj_id+' .subject-score-text').css({'color':rankColor(score)});
+							$('#subject-score-'+subj_id).css({'border-color':rankColor(score)});
 							$('.num-pass').html(subj.sum_progress);
 							//progressBar = $('#subject-progress-'+subj_id);
 							//progressBar.html(subj.sum_progress+'/'+subj.sum_total);
@@ -324,6 +327,27 @@
         });
     }
 
+	function rankColor($score){
+		if(9 <= $score && $score <= 10){
+            return '#5CB85C';
+        }
+        else if( 8 <= $score && $score < 9){
+           return '#337AB7';
+        }
+        else if(6.5 <= $score && $score < 8){
+            return '#5BC0DE';
+        }
+        else if(5 <= $score && $score < 6.5){
+           return '#F0AD4E';
+        }
+        else if(3.5 <= $score && $score < 5){
+            return '#D9534F';
+        }
+        else if (0 <= $score && $score < 3.5){
+            return '#777';
+        }
+	}
+	
 	function drawChart(inputData){
 		//console.log(inputData);
 		chartContainer = $('.chart').parent();

@@ -200,6 +200,7 @@ mixpanel.init("72e8272434e8893913d44a6a3a467df1");</script><!-- end Mixpanel -->
 		</div>
 	</div>
 	<br/>
+	<!--
 	<hr/>
 	<br/>
 	<div class="row">
@@ -228,6 +229,7 @@ mixpanel.init("72e8272434e8893913d44a6a3a467df1");</script><!-- end Mixpanel -->
 		</div>
 	</div>
 	<br/>
+	-->
 	<hr/>
 	<div class="row">
 		<div class="col-md-4">

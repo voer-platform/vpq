@@ -143,4 +143,25 @@ class NameHelper extends AppHelper {
                 break;
         }
     }
+	/* Rank color from score */
+    public function rankColor($score){
+        if(9 <= $score && $score <= 10){
+            return '#5CB85C';
+        }
+        else if( 8 <= $score && $score < 9){
+           return '#337AB7';
+        }
+        else if(6.5 <= $score && $score < 8){
+            return '#5BC0DE';
+        }
+        else if(5 <= $score && $score < 6.5){
+           return '#F0AD4E';
+        }
+        else if(3.5 <= $score && $score < 5){
+            return '#D9534F';
+        }
+        else if (0 <= $score && $score < 3.5){
+            return '#777';
+        }
+    }
 }

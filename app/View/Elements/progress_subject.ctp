@@ -47,9 +47,9 @@
 				</div>		
 			<div class="col-md-4" style="border-left: solid 1px #C0D0E0;">
 				<div style="display: inline-block;">
-					<span class="subject-score" id="subject-score-<?php echo $progress['Subject']['id']; ?>" title="<?php echo __('Score based on latest 10 tests on the subject'); ?>">
+					<span class="subject-score" style="border-color:<?php echo $this->Name->rankColor($score); ?>" id="subject-score-<?php echo $progress['Subject']['id']; ?>" title="<?php echo __('Score based on latest 10 tests on the subject'); ?>">
 						<span class="subject-score-number"><?php echo $score; ?></span>
-						<span class="subject-score-text"><?php echo __('Score'); ?></span>
+						<span class="subject-score-text" style="color:<?php echo $this->Name->rankColor($score); ?>"><?php echo __('Score'); ?></span>
 					</span>
 				</div>
 				<div style="display: inline-block;float:right;width: 65%;">
@@ -80,13 +80,13 @@
 				  <!-- Nav tabs -->
 				  <ul class="nav nav-tabs grade-tabs" role="tablist">
 					<?php foreach($gradeContents AS $grade){ ?>
-						<li role="presentation" class="<?php if($grade['Grade']['id']==1) echo 'active'; ?>"><a href="#grade<?php echo $grade['Grade']['id']; ?>" aria-controls="grade<?php echo $grade['Grade']['id']; ?>" role="tab" data-toggle="tab"><?php echo __('Grade').' '.$grade['Grade']['name']; ?></a></li>
+						<li role="presentation" class="<?php if( $grade['Grade']['name']==$user['grade']) echo 'active'; ?>"><a href="#grade<?php echo $grade['Grade']['id']; ?>" aria-controls="grade<?php echo $grade['Grade']['id']; ?>" role="tab" data-toggle="tab"><?php echo __('Grade').' '.$grade['Grade']['name']; ?></a></li>
 					<?php } ?>
 				  </ul>
 				  <!-- Tab panes -->
 				  <div class="tab-content">
 					<?php foreach($gradeContents AS $grade){ ?>
-						<div role="tabpanel" class="tab-pane <?php if($grade['Grade']['id']==1) echo 'active'; ?>" id="grade<?php echo $grade['Grade']['id']; ?>">
+						<div role="tabpanel" class="tab-pane <?php if($grade['Grade']['name']==$user['grade']) echo 'active'; ?>" id="grade<?php echo $grade['Grade']['id']; ?>">
 							<table class="table table-bordered" style="border-top:0;">
 								<thead>
 									<th></th>
@@ -97,7 +97,7 @@
 							<?php foreach($grade['Category'] AS $category){ ?>
 								<tr class="category-row" data-id="<?php echo $category['id']; ?>">
 									<td>
-										<a href="javascript:void(0);"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp; <?php echo $category['name']; ?></a>
+										<a href="javascript:void(0);"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp; Chương: <?php echo $category['name']; ?></a>
 									</td>
 									<td class="center w-100">
 										<b><?php echo (isset($progressDetail['category'][$category['id']]))?$progressDetail['category'][$category['id']]:'-'; ?></b>
@@ -118,7 +118,7 @@
 								<?php foreach($category['Subcategory'] AS $subcategory){ ?>
 									<tr class="subcategory-row subcategory-<?php echo $category['id']; ?>">
 										<td>
-											&emsp;&emsp;<?php echo $subcategory['name']; ?>
+											&emsp;&emsp;Bài: <?php echo $subcategory['name']; ?>
 										</td>
 										<td class="center">
 											<b><?php echo (isset($progressDetail['subcategory'][$subcategory['id']]))?$progressDetail['subcategory'][$subcategory['id']]:'-'; ?></b>
@@ -163,7 +163,7 @@
 				<div class="col-md-6">
 					<a href="<?php echo $this->Html->url(array('controller' => 'Tests', 
 																'action' => 'chooseTest', 
-																2)); ?>">
+																2)); ?> "class="pls-test-btn" data-teston="first test">
 					<button class="btn btn-primary btn-test btn-lg pull-right"><span class="glyphicon glyphicon-play"></span> Kiểm tra ngay</button>
 					</a>
 				</div>

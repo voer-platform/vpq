@@ -616,12 +616,14 @@ class Score extends AppModel {
         if($charts){
 			if($timeOptions['type']=='tentimes')
 			{
+				$z = 0;
 				foreach ($charts as $k=>$chart) {
-					$charts[$chart['Score']['date']] = $chart;
+					$charts[$chart['Score']['date'].$z] = $chart;
 					unset($charts[$k]);
+					$z++;
 				}
 				ksort($charts);
-			}
+			}	
 			
             foreach ($charts as $chart) {
                 $date    = $this->relativeTime($chart['Score']['date'], $anytime);
