@@ -163,14 +163,35 @@
 	
 		question_data();
 		
+		$(document).on('click','#submitTest',function(){
+			for(i=0;i<datatime.length;i++){
+				var url = '<?php echo Router::url(array('controller'=>'tests','action'=>'timeQuestion'));?>/' + datatime[i]['id'] + '/' + datatime[i]['time'];
+				$.getJSON(url, function( data ) {
+				});
+				console.log(datatime);
+			}
+		});
+		
         $('ul#questions').simplePaging({pageSize: "1"});
 
         $('button#sureSubmit').on('click', function(){
             $('#TestAnswersDoTestForm').submit();
+			for(i=0;i<datatime.length;i++){
+				var url = '<?php echo Router::url(array('controller'=>'tests','action'=>'timeQuestion'));?>/' + datatime[i]['id'] + '/' + datatime[i]['time'];
+				$.getJSON(url, function( data ) {
+				});
+				console.log(datatime);
+			}
         });
 		
 		$('button#sureSubmit2').on('click', function(){
             $('#TestAnswersDoTestForm').submit();
+			for(i=0;i<datatime.length;i++){
+				var url = '<?php echo Router::url(array('controller'=>'tests','action'=>'timeQuestion'));?>/' + datatime[i]['id'] + '/' + datatime[i]['time'];
+				$.getJSON(url, function( data ) {
+				});
+				console.log(datatime);
+			}
         });
 
         $('ul#questions .answer').find('label.btn').on('click', function(){
@@ -235,7 +256,7 @@
 					}
 				}
 			}
-			var url = '<?php echo Router::url(array('controller'=>'tests','action'=>'timeQuestion'));?>/' + id_question + '/' + time;
+			var url = '<?php echo Router::url(array('controller'=>'tests','action'=>'timeQuestion'));?>/' + id + '/' + time;
 			$.getJSON(url, function( data ) {
 			});
 			console.log(datatime);
