@@ -3,14 +3,6 @@
 <?php echo $this->Html->script('bootstrap-datepicker.js');?>
 <?php echo $this->Html->script('highcharts.js');?>
 <?php echo $this->Html->script('no-data-to-display.src.js');?>
-<script>
-	$(document).ready(function(){
-		$('.time-range-select').click(function(){
-			
-		});
-	});
-	
-</script>
 <div class='dashboard'>
     <h2 class="page-heading heading"><?php echo __('Dashboard');?></h2>
     <div class="dashboard-header clearfix">
@@ -38,6 +30,10 @@
 		mixpanel.track("Show Popover", {"popover_id": $(this).attr('data-type')});
 	});
 
+	mixpanel.track_links(".pls-test-btn", "Dashboard Test", function(e){
+		return {"test_on": $(e).attr('data-teston')};
+	});
+	
     /**
      * get data from ajax for table
      */

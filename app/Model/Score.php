@@ -558,6 +558,10 @@ class Score extends AppModel {
 			$options['group'] = array(
 					'Score.id'
 				);
+			$options['order'] = array(
+				'Score.time_taken desc'
+			);
+
 			$anytime = true;	
 		}
 		else
@@ -610,6 +614,15 @@ class Score extends AppModel {
         // iterate, get chart lines
         $results['chart']['title'] = array(__('Date'), __('Score'));
         if($charts){
+			if($timeOptions['type']=='tentimes')
+			{
+				foreach ($charts as $k=>$chart) {
+					$charts[$chart['Score']['date']] = $chart;
+					unset($charts[$k]);
+				}
+				ksort($charts);
+			}
+			
             foreach ($charts as $chart) {
                 $date    = $this->relativeTime($chart['Score']['date'], $anytime);
                 $results['chart']['subject'][$chart['TestSubject']['subj']]['date'][] = $date;
