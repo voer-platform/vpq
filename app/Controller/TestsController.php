@@ -149,6 +149,7 @@ class TestsController extends AppController {
     public function chooseTest($subject = null) {
 		if($subject!=null)
 		{
+			$this->layout = 'test';
 			$this->set('title_for_layout', __('Choose test'));
 
 			$allGrades = $this->Grade->find('all');
@@ -166,11 +167,6 @@ class TestsController extends AppController {
 				'conditions' => array('subject_id'=>$subject)
 				);				
 			$allcat = $this->Category->find('all', $options);
-			$total_subcat=0;
-			foreach($allcat as $ac){
-				$total_subcat=$total_subcat+count($ac['Subcategory']);
-			}
-			$this->set('totalsubcat',$total_subcat);
 			$this->set('allcat',$allcat);
 			if(!isset($this->request->query['subcategory']) && !isset($this->request->query['category'])){		
 				if ($gradeUser == 0){
@@ -189,18 +185,25 @@ class TestsController extends AppController {
 					'recursive' => 0,
 					'conditions' => array('person_id' => $user['id'],	)
 					);				
-				$data = $this->Tracking->find('all', $options);				
-				$this->set('strtracking',$data[0]['Tracking']['subcategory']);
-				$tracking=explode(',',$data['0']['Tracking']['subcategory']);
-				
-				if($tracking[0]=='' && !array_key_exists('1',$tracking)){
-					$pretracking=array();					
-				}else{
-					foreach($tracking as $pre){
-						if($pre!=''){
-							$pretracking[]=$pre;
+				$data = $this->Tracking->find('all', $options);	
+				//pr($data);
+				//exit();
+				if($data!=null){
+					$this->set('strtracking',$data[0]['Tracking']['subcategory']);
+					$tracking=explode(',',$data['0']['Tracking']['subcategory']);
+					
+					if($tracking[0]=='' && !array_key_exists('1',$tracking)){
+						$pretracking=array();					
+					}else{
+						foreach($tracking as $pre){
+							if($pre!=''){
+								$pretracking[]=$pre;
+							}
 						}
 					}
+				}else{
+					$this->set('strtracking','');
+					$pretracking=array();
 				}
 			}else{
 				if(isset($this->request->query['subcategory'])){
@@ -282,7 +285,7 @@ class TestsController extends AppController {
 					$update_sub=$update_sub.','.$dt;					
 				}
 			}
-            $questions = $this->Test->generateTest($numberOfQuestions, $data);			
+            $questions = $this->Test->generateTest($numberOfQuestions, $categories);			
             if (count($questions) > 0){
                 // create tests in database
                 $testID = $this->Test->nextTestId();
