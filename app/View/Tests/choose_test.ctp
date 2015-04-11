@@ -101,7 +101,7 @@
             <div class="modal-header">
                 <h4 class="modal-title" id="myModalLabel">Thông báo</h4>
             </div>
-            <div class="modal-body" style='text-align:center'>;
+            <div class="modal-body" style='text-align:center'>
                 <p id='tb'>Bạn chưa chọn bài nào.</p>
             </div>
             <div class="modal-footer">
