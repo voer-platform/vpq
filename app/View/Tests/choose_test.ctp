@@ -16,13 +16,13 @@
 				<div class="col-sm-12" style="padding:0px">
 					<div class="nav-tabs-custom" style="margin-bottom: 0px; box-shadow:none;">
 						<ul class="nav nav-tabs">
-							<li class="active" >
+							<li <?php echo($grade_id==1)?"class='active'":""; ?>>
 								<a href="#tab1" data-toggle='tab'>Lớp 10</a>
 							</li>
-							<li>
+							<li <?php echo($grade_id==2)?"class='active'":""; ?>>
 								<a href="#tab2" data-toggle='tab'>Lớp 11</a>
 							</li>
-							<li>
+							<li <?php echo($grade_id==3)?"class='active'":""; ?>>
 								<a href="#tab3" data-toggle='tab'>Lớp 12</a>
 							</li>
 							<li style="float:right">
@@ -36,7 +36,7 @@
 			<div class="row">
 				<div class="tab-content col-sm-12" style="padding:0px;">
 				<?php for($i=1;$i<=3;$i++): ?>
-					<div class="tab-pane <?php echo($i==1)?"active":""; ?> " id="tab<?php echo $i;?>">
+					<div class="tab-pane <?php echo($i==$grade_id)?"active":""; ?> " id="tab<?php echo $i;?>">
 						<table class="table table-condensed" id="grade<?php echo $i;?>" style="border-collapse:collapse;border:0px">							
 							<tbody>			
 								<tr>
@@ -57,7 +57,7 @@
 									</td>
 								</tr>				
 								<?php foreach($ac['Subcategory'] as $item=>$asc): ?>
-									<tr class="subcat cat-<?php echo $ac['Category']['id'] ?> sub-<?php echo $asc['id'] ?>" data-id='<?php echo $ac['Category']['id'] ?>' data-sub='<?php echo $asc['id'] ?>'>
+									<tr class="subcat cat-<?php echo $ac['Category']['id'] ?> sub-<?php echo $asc['id'] ?> <?php echo ($ac['Category']['id']==$categories_id ? "pre" : ""); ?>" data-id='<?php echo $ac['Category']['id'] ?>' data-sub='<?php echo $asc['id'] ?>'>
 										<td style='border: solid 1px #ddd;border-right:0px;' class="td-subcat" data-id='<?php echo $asc['id'] ?>'>
 										</td>
 										<td style="width:23px;">
@@ -170,6 +170,7 @@ function doTest(t){
 };
 
 $(document).ready(function(){	
+	$('.pre').css('display', 'table-row');
 	preSelectCategories();
 	$(document).on('click','.cat',function(){
 		var catId = $(this).attr('data-id');

@@ -154,11 +154,9 @@ class TestsController extends AppController {
 
 			$allGrades = $this->Grade->find('all');
 			$this->set('grades', $allGrades);
-			//$allsubject = $this->Subject->find('all',array('recursive'=>0));
-			//$this->set('allsubject',$allsubject);
+
 			$this->set('subject', $subject);
 			
-			// Du tinh trinh do hoc van
 			$user = $this->Session->read('Auth.User');
 			$gradeUser = $user['grade'];
 			
@@ -181,25 +179,30 @@ class TestsController extends AppController {
 					$gradeUser = $current_year - $year - 5; //Du doan lop hoc theo tuoi 
 
 				}
-					$this->set('strtracking','');
-					$pretracking=array();
+
+				$grade_id=1;
+				$this->set('strtracking','');
+				$pretracking=array();
+				$categories_id=0;
 			}else{
 				if(isset($this->request->query['subcategory'])){
 					$id=$this->request->query['subcategory'];
 					
 					$tracking =$this->Subcategory->query("
-									SELECT Subcategory.id, Subcategory.name FROM subcategories as Subcategory
+									SELECT Subcategory.id, Subcategory.name,categories.id, categories.grade_id FROM subcategories as Subcategory
 									INNER JOIN categories ON Subcategory.category_id=categories.id
 									WHERE Subcategory.id='$id'
 									");					
 				}else{
 					$id=$this->request->query['category'];					
 					$tracking =$this->Subcategory->query("
-									SELECT Subcategory.id, Subcategory.name FROM subcategories as Subcategory
+									SELECT Subcategory.id, Subcategory.name, categories.id,categories.grade_id FROM subcategories as Subcategory
 									INNER JOIN categories ON Subcategory.category_id=categories.id
 									WHERE categories.id='$id'
 									");
 					}
+				$grade_id=$tracking[0]['categories']['grade_id'];
+				$categories_id=$tracking[0]['categories']['id'];				
 				$strtracking='';
 				$pretracking=array();
 				foreach($tracking as $tracking)
@@ -209,6 +212,8 @@ class TestsController extends AppController {
 				}
 				$this->set('strtracking',$strtracking);				
 			}
+			$this->set('categories_id',$categories_id);
+			$this->set('grade_id',$grade_id);
 			$this->set('pretracking',$pretracking);
 			$this->set('count',count($pretracking));
 		}else{
