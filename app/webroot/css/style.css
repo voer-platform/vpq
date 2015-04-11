@@ -446,23 +446,27 @@ ul.simplePagerNav li a{
   padding: 6px 7px;
   text-align: center;
   text-shadow: 1px 1px 1px #fff;  
+  width:55px;
 }
-ul.simplePagerNav li.active a{
-  background-image: -webkit-linear-gradient(#26B329, #0E9011);
-  background-image: -o-linear-gradient(#26B329, #0E9011);
-  background-image: linear-gradient(#26B329, #0E9011);
-  border: 1px solid #005f04;
-  color: #edf0ed;
-  text-shadow: 1px 1px 1px #005f04;  
-}
+
 ul.simplePagerNav li.wrong a{
-  background-image: -webkit-linear-gradient(#D34646, #D20D14);
-  background-image: -o-linear-gradient(#D34646, #D20D14);
-  background-image: linear-gradient(#D34646, #D20D14);
-  border: 1px solid #005f04;
-  color: #edf0ed;
-  text-shadow: 1px 1px 1px #005f04;  
+  background: none repeat scroll 0 0 #D34646;
+  color: #fff;
+  text-shadow: 1px 1px 1px transparent;
+  border: 1px solid #D34646;
 }
+
+ul.simplePagerNav li.true a{
+  background: none repeat scroll 0 0 #2299dd;
+  color: #fff;
+  text-shadow: 1px 1px 1px transparent;
+  border: 1px solid #2299dd;
+}
+
+ul.simplePagerNav li.active a{
+  border: 1px solid #000000;
+}
+
 ul.simplePagerNav li.chose a{
   background-image: -webkit-linear-gradient(#2299dd, #1589cb);
   background-image: -o-linear-gradient(#2299dd, #1589cb);
