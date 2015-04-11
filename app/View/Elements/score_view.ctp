@@ -2,6 +2,7 @@
     <div id="left">
         <ul id="questions">
         <?php $wrong_list = array(); ?>
+		<?php $true_list = array(); ?>
         <?php foreach($scoreData as $index => $data): ?>
             <li id='dotestQuestions' rel="<?php echo $index+1;?>">
                 <?php $correct_answer = -1; ?>
@@ -18,6 +19,7 @@
                                 <!-- user choose correct answer -->
                                 <?php if($data['ScoresQuestion']['answer'] == $answerId && isset($data['ScoresQuestion']['answer'])): ?>
                                     <label class="btn-answer active">
+									<?php $true_list[] = $index;?>
 									<button style='float:right;display:none;' data-id='<?php echo $data['ScoresQuestion']['question_id'] ?>' type='button' class='btn btn-danger report glyphicon glyphicon-bullhorn' title='Đây là nút báo đáp án sai, bạn chỉ click khi chắc chắn là đáp án sai'></button>
                                 <?php else: ?>
                                     <label class="btn-answer" correct="true">
@@ -204,6 +206,12 @@
         for (var i = wrong.length - 1; i >= 0; i--) {
             $('.simplePageNav' + (wrong[i] + 1)).addClass('wrong');
             console.log($('.simplePageNav' + (wrong[i] + 1))); 
+        };
+		
+		var truee = JSON.parse("<?php echo json_encode($true_list); ?>");
+        for (var i = truee.length - 1; i >= 0; i--) {
+            $('.simplePageNav' + (truee[i] + 1)).addClass('true');
+            console.log($('.simplePageNav' + (truee[i] + 1))); 
         };
 
         //mixpanel
