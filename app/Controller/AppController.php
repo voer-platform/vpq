@@ -104,6 +104,7 @@ class AppController extends Controller {
             if($remember)
 			{
 				$this->Auth->login($remember);
+				$this->redirect(array('controller' => 'people', 'action' => 'dashboard'));
 			}
 		}
 		

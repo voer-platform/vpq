@@ -8,7 +8,7 @@ App::uses('AppController', 'Controller');
  */
 class TestsController extends AppController {
 
-    public $uses = array('Test', 'Grade', 'Category', 'Subcategory', 'Tracking');
+    public $uses = array('Test', 'Grade', 'Category', 'Subcategory', 'Tracking','Question');
     /*
      * authorization
      *
@@ -149,15 +149,14 @@ class TestsController extends AppController {
     public function chooseTest($subject = null) {
 		if($subject!=null)
 		{
+			$this->layout = 'test';
 			$this->set('title_for_layout', __('Choose test'));
 
 			$allGrades = $this->Grade->find('all');
 			$this->set('grades', $allGrades);
-			//$allsubject = $this->Subject->find('all',array('recursive'=>0));
-			//$this->set('allsubject',$allsubject);
+
 			$this->set('subject', $subject);
 			
-			// Du tinh trinh do hoc van
 			$user = $this->Session->read('Auth.User');
 			$gradeUser = $user['grade'];
 			
@@ -166,8 +165,6 @@ class TestsController extends AppController {
 				'conditions' => array('subject_id'=>$subject)
 				);				
 			$allcat = $this->Category->find('all', $options);
-			//pr($allcat);
-			//exit();
 			$this->set('allcat',$allcat);
 			if(!isset($this->request->query['subcategory']) && !isset($this->request->query['category'])){		
 				if ($gradeUser == 0){
@@ -182,40 +179,30 @@ class TestsController extends AppController {
 					$gradeUser = $current_year - $year - 5; //Du doan lop hoc theo tuoi 
 
 				}
-				$options = array(
-					'recursive' => 0,
-					'conditions' => array('person_id' => $user['id'],	)
-					);				
-				$data = $this->Tracking->find('all', $options);				
-				$this->set('strtracking',$data[0]['Tracking']['subcategory']);
-				$tracking=explode(',',$data['0']['Tracking']['subcategory']);
-				
-				if($tracking[0]=='' && !array_key_exists('1',$tracking)){
-					$pretracking=array();					
-				}else{
-					foreach($tracking as $pre){
-						if($pre!=''){
-							$pretracking[]=$pre;
-						}
-					}
-				}
+
+				$grade_id=1;
+				$this->set('strtracking','');
+				$pretracking=array();
+				$categories_id=0;
 			}else{
 				if(isset($this->request->query['subcategory'])){
 					$id=$this->request->query['subcategory'];
 					
 					$tracking =$this->Subcategory->query("
-									SELECT Subcategory.id, Subcategory.name FROM subcategories as Subcategory
+									SELECT Subcategory.id, Subcategory.name,categories.id, categories.grade_id FROM subcategories as Subcategory
 									INNER JOIN categories ON Subcategory.category_id=categories.id
 									WHERE Subcategory.id='$id'
 									");					
 				}else{
 					$id=$this->request->query['category'];					
 					$tracking =$this->Subcategory->query("
-									SELECT Subcategory.id, Subcategory.name FROM subcategories as Subcategory
+									SELECT Subcategory.id, Subcategory.name, categories.id,categories.grade_id FROM subcategories as Subcategory
 									INNER JOIN categories ON Subcategory.category_id=categories.id
 									WHERE categories.id='$id'
 									");
 					}
+				$grade_id=$tracking[0]['categories']['grade_id'];
+				$categories_id=$tracking[0]['categories']['id'];				
 				$strtracking='';
 				$pretracking=array();
 				foreach($tracking as $tracking)
@@ -225,6 +212,8 @@ class TestsController extends AppController {
 				}
 				$this->set('strtracking',$strtracking);				
 			}
+			$this->set('categories_id',$categories_id);
+			$this->set('grade_id',$grade_id);
 			$this->set('pretracking',$pretracking);
 			$this->set('count',count($pretracking));
 		}else{
@@ -279,7 +268,7 @@ class TestsController extends AppController {
 					$update_sub=$update_sub.','.$dt;					
 				}
 			}
-            $questions = $this->Test->generateTest($numberOfQuestions, $data);			
+            $questions = $this->Test->generateTest($numberOfQuestions, $categories);			
             if (count($questions) > 0){
                 // create tests in database
                 $testID = $this->Test->nextTestId();

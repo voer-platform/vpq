@@ -16,45 +16,52 @@
 				<div class="col-sm-12" style="padding:0px">
 					<div class="nav-tabs-custom" style="margin-bottom: 0px; box-shadow:none;">
 						<ul class="nav nav-tabs">
-							<li class="active" >
+							<li <?php echo($grade_id==1)?"class='active'":""; ?>>
 								<a href="#tab1" data-toggle='tab'>Lớp 10</a>
 							</li>
-							<li>
+							<li <?php echo($grade_id==2)?"class='active'":""; ?>>
 								<a href="#tab2" data-toggle='tab'>Lớp 11</a>
 							</li>
-							<li>
+							<li <?php echo($grade_id==3)?"class='active'":""; ?>>
 								<a href="#tab3" data-toggle='tab'>Lớp 12</a>
+							</li>
+							<li style="float:right">
+								<a style='padding-right:0px;'>Số bài bạn đã chọn: <span id="sl"><?php echo $count ?></span></a>
 							</li>
 						</ul>
 					</div>
 				</div>				
 			</div>
-			<div class='row'>
-				<div class="col-sm-12" style="padding:5px; border-left: solid 1px #ddd;border-right: solid 1px #ddd;">
-					<a style='float:right'>Số bài bạn đã chọn: <span id="sl"><?php echo $count ?></span></a>
-				</div>
-			</div>
+
 			<div class="row">
-				<div class="tab-content col-sm-12	" style="padding:0px;">
+				<div class="tab-content col-sm-12" style="padding:0px;">
 				<?php for($i=1;$i<=3;$i++): ?>
-					<div class="tab-pane <?php echo($i==1)?"active":""; ?> " id="tab<?php echo $i;?>">
-						<table class="table table-condensed" id="grade<?php echo $i;?>" style="border-collapse:collapse;border:0px">
-							<tbody>						
+					<div class="tab-pane <?php echo($i==$grade_id)?"active":""; ?> " id="tab<?php echo $i;?>">
+						<table class="table table-condensed" id="grade<?php echo $i;?>" style="border-collapse:collapse;border:0px">							
+							<tbody>			
+								<tr>
+									<td style="padding-left:5px;border-left: solid 1px #ddd; border-top:0px; width:10px;">
+										<input type="checkbox" class="checkfull" data-id="<?php echo $i;?>"/>
+									</td>
+									<td colspan='2' style="border-top:0px;border-right: solid 1px #ddd;">
+										<a>Check All</a>
+									</td>
+								</tr>
 								<?php foreach($allcat as $item=>$ac): ?>
 								<?php if($ac['Grade']['id']==$i): ?>
 								<tr>
 									<td class="td_cat" style="padding-left:5px; width:10px;border: solid 1px #ddd;border-right:0px;">
-										<input type="checkbox" class="checkall" data-id='<?php echo $ac['Category']['id'] ?>'/>
+										<input type="checkbox" class="checkall chkall-<?php echo $i;?>" data-id='<?php echo $ac['Category']['id'] ?>'/>
 									</td>
 									<td colspan='2' class="cat" data-id='<?php echo $ac['Category']['id'] ?>' style="padding-left:5px;border: solid 1px #ddd;border-left:0px;">&nbsp<a><?php echo $ac['Category']['name'];?><i style="float:right;margin-top:2px" class="glyphicon glyphicon-plus-sign"></i><span id='spcat-<?php echo $ac['Category']['id'] ?>' style="float:right; margin-right:10px;" id="sl_incat"></span></a>
 									</td>
 								</tr>				
 								<?php foreach($ac['Subcategory'] as $item=>$asc): ?>
-									<tr class="subcat cat-<?php echo $ac['Category']['id'] ?> sub-<?php echo $asc['id'] ?>" data-id='<?php echo $ac['Category']['id'] ?>' data-sub='<?php echo $asc['id'] ?>'>
-										<td style='border: solid 1px #ddd;border-right:0px;'>
+									<tr class="subcat cat-<?php echo $ac['Category']['id'] ?> sub-<?php echo $asc['id'] ?> <?php echo ($ac['Category']['id']==$categories_id ? "pre" : ""); ?>" data-id='<?php echo $ac['Category']['id'] ?>' data-sub='<?php echo $asc['id'] ?>'>
+										<td style='border: solid 1px #ddd;border-right:0px;' class="td-subcat" data-id='<?php echo $asc['id'] ?>'>
 										</td>
 										<td style="width:23px;">
-											<input type="checkbox" name="sub" class='chksub chk-<?php echo $ac['Category']['id'] ?> ' id='sub-<?php echo $asc['id'] ?>' value="<?php echo $asc['id']?>" <?php echo (in_array($asc['id'],$pretracking) ? "checked" : ""); ?> />
+											<input type="checkbox" name="sub" class='chkbox-<?php echo $i;?> chksub chk-<?php echo $ac['Category']['id'] ?> ' id='sub-<?php echo $asc['id'] ?>' value="<?php echo $asc['id']?>" <?php echo (in_array($asc['id'],$pretracking) ? "checked" : ""); ?> />
 										</td>
 										<td style='border: solid 1px #ddd;border-left:0px;' class="td-subcat" data-id='<?php echo $asc['id'] ?>'><?php echo $asc['name'] ?></td>
 									</tr>
@@ -88,30 +95,21 @@
     </form>	
 </div>
 
-<!--<div class="modal fade" id="modal_ds" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-	 aria-hidden="true" data-backdrop="static">
-	<div class="modal-dialog">
-		<div class="modal-content" style="width: 450px">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal"><span
-						aria-hidden="true">&times;</span><span
-						class="sr-only">Close</span></button>
-				<h4 class="modal-title" id="myModalLabel">Danh sách các bài đã chọn</h4>
-			</div>
-			<div class="modal-body" style="padding:0px">
-				<form class="form-horizontal" role="form" id="frmtab10">
-					<table class="table table-condensed" id="table_modal" style="border-collapse:collapse;border:0px">
-						
-					</table>
-				</form>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-success" id="{$btn_qtdt}" name="{$btn_qtdt}"><span class="glyphicon glyphicon-ok-sign"></span></button>
-				<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-			</div>
-		</div>
-	</div>
-</div>-->
+<div id="msgNotice" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Thông báo</h4>
+            </div>
+            <div class="modal-body" style='text-align:center'>;
+                <p id='tb'>Bạn chưa chọn bài nào.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script type="text/javascript">
 var sl=<?php echo $count ?>;
@@ -135,6 +133,7 @@ function preSelectCategories(){
 }
 
 function doTest(t){
+	var n=0;
     $subject = <?php echo $subject; ?>;
 	var $str='';
 	for(i=1;i<=3;i++){
@@ -145,23 +144,37 @@ function doTest(t){
                 }).get().join(',');
 		$str=$str+',';
 	}
-    $('#categories').val($str);
-	var url = '<?php echo Router::url(array('controller'=>'tests','action'=>'byQuestion'));?>/' + t + '/'+$str;
-	$.getJSON(url, function( data ) {
-		 if(data<t){			
-			showMessage('Không thể làm bài kiểm tra', 'Dữ liệu hiện tại không đủ để thực hiện bài kiểm tra này', 'error', 'glyphicon-remove-sign');
-		 }else{
-			$("#preDoTest").attr("action", "/Tests/doTest/" + t + "/" + $subject + "/");
-			$('#preDoTest').submit();
-		 }
-	});
-    
+	var data = $str.split(",");
+	console.log(data);
+	for(i=0;i<data.length;i++){
+		if(data[i]!=''){
+			n=data[i];
+		}
+	}
+	if(n!=0){
+		$('#categories').val($str);	
+		var url = '<?php echo Router::url(array('controller'=>'tests','action'=>'byQuestion'));?>/' + t + '/'+$str;
+		$.getJSON(url, function( data ) {
+			 if(data<t){			
+				showMessage('Không thể làm bài kiểm tra', 'Dữ liệu hiện tại không đủ để thực hiện bài kiểm tra này', 'error', 'glyphicon-remove-sign');
+			 }else{
+				$("#preDoTest").attr("action", "/Tests/doTest/" + t + "/" + $subject + "/");
+				$('#preDoTest').submit();
+			 }
+		});
+    }else{
+		$('#msgNotice').modal({
+                backdrop: false
+            });
+	}
 };
 
 $(document).ready(function(){	
+	$('.pre').css('display', 'table-row');
 	preSelectCategories();
 	$(document).on('click','.cat',function(){
-		var catId = $(this).attr('data-id');		
+		var catId = $(this).attr('data-id');
+		$('.subcat').not('.cat-'+catId).hide();
 		$('.cat-'+catId).toggle();		
 		var s = $('.cat-'+catId).attr('style');
 		if(s=='display: table-row;'){		
@@ -169,7 +182,21 @@ $(document).ready(function(){
 		}else{
 			$(this).find("i").attr('class','glyphicon glyphicon-plus-sign');
 		}		
-	});		
+	});
+	$(document).on('click','.checkfull',function(){
+		$id = $(this).attr('data-id');	
+		if(this.checked){
+			$('.chkall-'+$id).each(function(){
+				this.checked=false;
+				this.click();
+			});
+		}else{
+			$('.chkall-'+$id).each(function(){
+				this.checked=true;
+				this.click();
+			});
+		}
+	});
 	$(document).on('click','.checkall',function(){
 		var chkall=$(this).attr('data-id');
 		if(this.checked){
@@ -231,12 +258,6 @@ $(document).ready(function(){
 			});
 
 		}
-			/*var name=$(this).text();
-			var tr="";
-			tr+="<tr><td>"+name+"</td></tr>";
-			$('#table_modal').html(tr);*/
-			
-			//Đang làm đoạn này
 	});
 	
 	$(document).on('click','.chksub',function(){
@@ -258,7 +279,7 @@ $(document).ready(function(){
 		}else{
 			s=parseInt(s);
 		}
-		if($('#sub-'+idsub).is(':checked')==true){			
+		if($('#sub-'+idsub).is(':checked')==true){		
 			s=s+1;			
 		}else{
 			s=s-1;
@@ -269,8 +290,6 @@ $(document).ready(function(){
 		document.getElementById('spcat-'+id).innerHTML=s;
 	});
 });
-
-
 
 function showMessage(title, text, type, icon) {
     var notice = new PNotify({
