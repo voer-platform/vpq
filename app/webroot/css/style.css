@@ -445,8 +445,7 @@ ul.simplePagerNav li a{
   min-width: 36px;
   padding: 6px 7px;
   text-align: center;
-  text-shadow: 1px 1px 1px #fff;  
-  width:55px;
+  text-shadow: 1px 1px 1px #fff;
 }
 
 ul.simplePagerNav li.wrong a{
