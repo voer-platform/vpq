@@ -1,13 +1,9 @@
-
 <?php $this->start('meta'); ?>
 <meta property="og:url" content="<?php echo Router::url( $this->here, true ); ?>" /> 
 <meta property="og:title" content="<?php echo __('Personal Learning System'); ?>" />
 <meta property="og:description" content="<?php echo __('Where you can learn anything!'); ?>" /> 
 <meta property="og:image" content="<?php echo $this->Html->url(Router::url($this->here, true).'img/logo-small.png'); ?>" />
 <?php $this->end(); ?>
-<!-- start Mixpanel --><script type="text/javascript">(function(f,b){if(!b.__SV){var a,e,i,g;window.mixpanel=b;b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
-for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=f.createElement("script");a.type="text/javascript";a.async=!0;a.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";e=f.getElementsByTagName("script")[0];e.parentNode.insertBefore(a,e)}})(document,window.mixpanel||[]);
-mixpanel.init("72e8272434e8893913d44a6a3a467df1");</script><!-- end Mixpanel -->
 <?php echo $this->Html->css('home.css');?>
 <style>
 	.content.container {
@@ -42,7 +38,7 @@ mixpanel.init("72e8272434e8893913d44a6a3a467df1");</script><!-- end Mixpanel -->
 		margin-bottom: 30px;
 	}	
 	#banner {
-		background: url('../img/home3.png');
+		background: url('img/home3.png');
 		height:400px;
 		color: rgb(255, 255, 255);
 		text-shadow: 3px 1px 3px #6B6B6B;

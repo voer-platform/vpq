@@ -25,14 +25,16 @@
     <?php echo $this->HTML->css('jquery.multiselect.css'); ?>
     <?php echo $this->HTML->css('global.css'); ?>
     <?php echo $this->HTML->css('style.css'); ?>
-
+	<?php echo $this->HTML->css('datepicker.css'); ?>
+	
     <!-- javascript -->
     <?php echo $this->Html->script('jquery.min.js');?>
     <?php echo $this->Html->script('jquery.simplePaging.js');?>
     <?php echo $this->Html->script('bootstrap.min.js');?>
     <?php echo $this->Html->script('jquery-ui.min.js');?>
     <?php echo $this->Html->script('jquery.multiselect.js');?>
-
+	<?php echo $this->Html->script('bootstrap-datepicker.js');?>
+	
     <!-- if production server -->
     <?php if($_SERVER['HTTP_HOST'] == 'pls.edu.vn'): ?>
         <script>

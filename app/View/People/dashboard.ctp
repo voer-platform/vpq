@@ -1,6 +1,4 @@
 <?php echo $this->Html->css('dashboard.css');?>
-<?php echo $this->HTML->css('datepicker.css'); ?>
-<?php echo $this->Html->script('bootstrap-datepicker.js');?>
 <?php echo $this->Html->script('highcharts.js');?>
 <?php echo $this->Html->script('no-data-to-display.src.js');?>
 <div class='dashboard'>

@@ -158,7 +158,8 @@ class PeopleController extends AppController {
 					'birthday'	=>	"'".$this->request->data('birthday')."'", 
 					'address'	=>	"'".$this->request->data('address')."'", 
 					'grade'		=>	"'".$this->request->data('grade')."'", 
-					'school'	=>	"'".$this->request->data('school')."'"
+					'school'	=>	"'".$this->request->data('school')."'",
+					'gender'	=>	"'".$this->request->data('gender')."'"
 				),
 				array('id' => $user['id'])
 			);
@@ -191,7 +192,7 @@ class PeopleController extends AppController {
                 $fb_user = $this->Facebook->api('/me');     # Returns user information
                 $picture = $this->Facebook->api('/me/picture?height=200&width=200&redirect=false');        # FB picture
                 if(isset($fb_user['birthday'])){
-                    $birthday = '\''.date('Y-m-d', strtotime($fb_user['birthday'])).'\'';
+                    $birthday = date('Y-m-d', strtotime($fb_user['birthday']));
                 }
                 else {
                     $birthday = '2000-01-01';
@@ -246,7 +247,8 @@ class PeopleController extends AppController {
                         'role'              => 'user',
                         'date_created'      => date("Y-m-d H:i:s"),
                         'date_modified'     => date("Y-m-d H:i:s"),
-                        'image'             => $picture['data']['url']
+                        'image'             => $picture['data']['url'],
+						'gender'			=>	($fb_user['gender']=='male')?1:0
                     );
 
                     // You should change this part to include data validation
@@ -380,7 +382,6 @@ class PeopleController extends AppController {
 	public function completeProfile()
 	{
 		$user = $this->Auth->user();
-		
 		if($user['school'])
 		{
 			$this->redirect(array('controller' => 'people', 'action' => 'dashboard'));
@@ -395,7 +396,8 @@ class PeopleController extends AppController {
 								'birthday'	=>	"'".$this->request->data('birthday')."'", 
 								'address'	=>	"'".$this->request->data('address')."'", 
 								'grade'		=>	"'".$this->request->data('grade')."'", 
-								'school'	=>	"'".$this->request->data('school')."'"
+								'school'	=>	"'".$this->request->data('school')."'",
+								'gender'	=>	"'".$this->request->data('gender')."'"
 							),
 							array('id' => $user['id'])
 						);

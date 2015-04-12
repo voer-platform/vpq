@@ -9,6 +9,7 @@
 				<div class="user-info pull-right">
 					<h3><?php echo h($person['Person']['fullname']); ?></h3>
 					<p><span class="glyphicon glyphicon-gift"></span>&nbsp; <?php echo __('Birthday:'); ?> <?php echo h($person['Person']['birthday']); ?></p>
+					<p><span class="glyphicon glyphicon glyphicon-heart"></span>&nbsp; <?php echo __('Gender:'); ?> <?php echo ($person['Person']['gender']==1)?'Nam':'Nữ'; ?></p>
 					<p><span class="glyphicon glyphicon-education"></span>&nbsp; <?php echo __('Student:'); ?> <?php echo h($person['Person']['grade']); ?><?php if($person['Person']['school']){ echo ', '.h($person['Person']['school']); } ?></p>
 					<p><span class="glyphicon glyphicon-home"></span>&nbsp; <?php echo __('Address:'); ?> <?php echo h($person['Person']['address']); ?></p>
 					<button class="btn btn-default btn-xs" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-cog"></span> Chỉnh sửa thông tin cá nhân</button></a>
@@ -34,6 +35,13 @@
 					<div class="form-group">
 						<label class="form-label">Ngày sinh</label>
 						<input type="text" class="form-control" name="birthday" value="<?php echo h($person['Person']['birthday']); ?>" />
+					</div>
+					<div class="form-group">
+						<label class="form-label">Giới tính</label>
+						<select name="gender" class="form-control">
+							<option value="1" <?php if($person['Person']['gender']==1) echo 'selected'; ?>>Nam</option>
+							<option value="0" <?php if($person['Person']['gender']==0) echo 'selected'; ?>>Nữ</option>
+						</select>
 					</div>
 					<div class="form-group">
 						<label class="form-label">Đang là</label>

@@ -24,7 +24,16 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Ngày sinh</label>
 							<div class="col-sm-9">
-								<input type="text" name="birthday" class="form-control" value="<?php echo $this->Date->toVnDate($user['birthday']); ?>" />
+								<input type="text" name="birthday" class="form-control datepicker" value="<?php echo $this->Date->toVnDate($user['birthday']); ?>" />
+							</div>	
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label">Giới tính</label>
+							<div class="col-sm-9">
+								<select name="gender" class="form-control">
+									<option value="1" <?php if($user['gender']==1) echo 'selected'; ?>>Nam</option>
+									<option value="0" <?php if($user['gender']==0) echo 'selected'; ?>>Nữ</option>
+								</select>
 							</div>	
 						</div>
 						<div class="form-group">
@@ -67,3 +76,8 @@
 		</div>
 	</div>
 </div>	
+<script>
+$('.datepicker').datepicker({format: "dd/mm/yyyy"}).on('changeDate', function(ev) {
+		$(this).datepicker('hide');
+	});
+</script>
