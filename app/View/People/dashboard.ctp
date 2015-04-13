@@ -287,6 +287,7 @@
                 if(msg != ''){
                     var jsonData = JSON.parse(msg);
                     drawChart(jsonData.chart.chart);
+					/*
 					//console.log(jsonData.progresses);
 					//Loop progresses data
 					if(Object.keys(jsonData.progresses).length>0)
@@ -323,6 +324,7 @@
                     } else {
 						$('.num-pass').html('0');
 					}
+					*/
                 }
             }
         });

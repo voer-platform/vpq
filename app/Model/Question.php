@@ -365,20 +365,10 @@ class Question extends AppModel {
      * @return: array of [done, total]
      */
     public function getSubcategoryCover($person_id, $filterOptions = null){
-		    $countSql = 'select count(distinct QS.subcategory_id) as count, subjects.id AS id from questions Question
-						join questions_subcategories QS
-                            on Question.id = QS.question_id
-                        join scores_questions ScoresQuestion
-                            on Question.id = ScoresQuestion.question_id
-                        join scores Score
-                            on Score.id = ScoresQuestion.score_id
-						join tests
-                            on Score.test_id = tests.id
-						join tests_subjects
-                            on tests_subjects.test_id = tests.id	
-						join subjects
-                            on subjects.id = tests_subjects.subject_id		
-                        where Score.person_id = '.$person_id.' ';
+		    $countSql = "SELECT COUNT(DISTINCT p.sub_category_id) AS count, c.subject_id AS id FROM progresses AS p
+						INNER JOIN subcategories AS sc ON sc.id = p.sub_category_id
+						INNER JOIN categories AS c ON c.id = sc.category_id
+                        where p.person_id = '.$person_id.'";
 						
 			if(isset($filterOptions['time'])){
 				$fromTime = $toTime = null;
@@ -404,10 +394,9 @@ class Question extends AppModel {
 				}
 			}
 			
-			$countSql.= ' group by subjects.id';
+			$countSql.= ' GROUP BY c.subject_id';
 			
 			$count = $this->query($countSql);
-
 			$total = $this->query(
                 'select count(distinct subc) AS count, t.subj AS id from (
 							select s.id AS subc, subjects.id AS subj from subcategories AS s
@@ -420,7 +409,7 @@ class Question extends AppModel {
 		
         foreach($count AS $item)
 		{
-			$result[$item['subjects']['id']]['pass'] = $item[0]['count'];
+			$result[$item['c']['id']]['pass'] = $item[0]['count'];
 		}
 		foreach($total AS $item)
 		{
