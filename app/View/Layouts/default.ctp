@@ -27,6 +27,7 @@
     <?php echo $this->HTML->css('global.css'); ?>
     <?php echo $this->HTML->css('style.css'); ?>
 	<?php echo $this->HTML->css('datepicker.css'); ?>
+	<?php echo $this->HTML->css('select2.css'); ?>
 	
     <!-- javascript -->
     <?php echo $this->Html->script('jquery.min.js');?>
@@ -35,7 +36,7 @@
     <?php echo $this->Html->script('jquery-ui.min.js');?>
     <?php echo $this->Html->script('jquery.multiselect.js');?>
 	<?php echo $this->Html->script('bootstrap-datepicker.js');?>
-	
+	<?php echo $this->Html->script('select2.min.js');?>
     <!-- if production server -->
     <?php if($_SERVER['HTTP_HOST'] == 'pls.edu.vn'): ?>
         <script>

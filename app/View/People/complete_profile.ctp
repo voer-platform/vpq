@@ -55,7 +55,11 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Địa chỉ</label>
 							<div class="col-sm-9">	
-								<input type="text" name="address" class="form-control" placeholder="Nơi bạn đang sống">
+								<select name="address" class="form-control sl2">
+									<?php foreach($provinces AS $province_id=>$province){ ?>
+										<option value="<?php echo $province_id; ?>" <?php if($province_id=='hanoi') echo 'selected'; ?>><?php echo $province; ?></option>
+									<?php } ?>
+								</select>
 							</div>	
 						</div>
 						<div class="form-group right">
@@ -77,7 +81,8 @@
 	</div>
 </div>	
 <script>
-$('.datepicker').datepicker({format: "dd/mm/yyyy"}).on('changeDate', function(ev) {
+	$('.datepicker').datepicker({format: "dd/mm/yyyy"}).on('changeDate', function(ev) {
 		$(this).datepicker('hide');
 	});
+	$('.sl2').select2();
 </script>

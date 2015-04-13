@@ -53,14 +53,14 @@
 					</span>
 				</div>
 				<div style="display: inline-block;float:right;width: 65%;">
-					<?php echo __('Tiến trình học tập'); ?> <a href="javascript:void(0);" class="hasDetail pull-right pls-popover" data-type="Progress Popover" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="top" data-content="Được tính bằng tỷ lệ số bài học đã làm trên tổng số bài của môn học này"><span class="glyphicon glyphicon-question-sign"></span></a>
+					<?php echo __('Tiến trình học tập'); ?> <a href="javascript:void(0);" class="hasDetail pull-right pls-popover" data-type="Progress Popover" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="top" data-content="Được tính bằng tỷ lệ số bài học đã thực hành trên tổng số bài của môn học này"><span class="glyphicon glyphicon-question-sign"></span></a>
 					
 					<div class="progress" style="margin: 10px 0;">
 						<?php $completeness = round(($cover[$progress['Subject']['id']]['pass']/$cover[$progress['Subject']['id']]['total'])*100); ?>
 						<div class="progress-bar progress-bar-striped" id="subject-cover-<?php echo $progress['Subject']['id']; ?>" style="width: <?php echo $completeness; ?>%;" role="progressbar" aria-valuenow="<?php echo $completeness; ?>" aria-valuemin="0" aria-valuemax="100" id="preogressbar-cover"><?php echo $completeness.'%'; ?></div>
 					</div>
 					
-					Bạn đã hoàn thành <b class="num-pass"><?php echo $cover[$progress['Subject']['id']]['pass']; ?></b> trên tổng số <b class="num-total"><?php echo $cover[$progress['Subject']['id']]['total']; ?></b> bài học
+					Bạn đã thực hành <b class="num-pass"><?php echo $cover[$progress['Subject']['id']]['pass']; ?></b> trên tổng số <b class="num-total"><?php echo $cover[$progress['Subject']['id']]['total']; ?></b> bài học
 					<!--<?php echo __('Rating'); ?>
 					<br/>
 					<div class="progress">

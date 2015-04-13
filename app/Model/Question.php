@@ -369,7 +369,7 @@ class Question extends AppModel {
 						INNER JOIN subcategories AS sc ON sc.id = p.sub_category_id
 						INNER JOIN categories AS c ON c.id = sc.category_id
                         where p.person_id = '$person_id'";
-						
+			/*			
 			if(isset($filterOptions['time'])){
 				$fromTime = $toTime = null;
 
@@ -393,7 +393,7 @@ class Question extends AppModel {
 					$countSql.= " AND DATE(Score.time_taken) <= DATE('$toTime')";
 				}
 			}
-			
+			*/
 			$countSql.= ' GROUP BY c.subject_id';
 			
 			$count = $this->query($countSql);

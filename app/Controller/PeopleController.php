@@ -72,9 +72,12 @@ class PeopleController extends AppController {
         }
         $options = array('conditions' => array('Person.' . $this->Person->primaryKey => $id));
         $this->set('person', $this->Person->find('first', $options));
-		$this->loadModel('Grade');
+		$this->loadModel('Grade');		
 		$grades = $this->Grade->find('list');
 		$this->set('grades', $grades);
+		$this->loadModel('Province');
+		$provinces = $this->Province->find('list');
+		$this->set('provinces', $provinces);
     }
 
 /**
@@ -161,7 +164,7 @@ class PeopleController extends AppController {
 					'school'	=>	"'".$this->request->data('school')."'",
 					'gender'	=>	"'".$this->request->data('gender')."'"
 				),
-				array('id' => $user['id'])
+				array('Person.id' => $user['id'])
 			);
 			$newInfo = $this->Person->find('first', $options);
 			$this->Auth->login($newInfo['Person']);
@@ -241,7 +244,7 @@ class PeopleController extends AppController {
                     $data['Person'] = array(
                         'facebook'          => $fb_user['id'],
                         'password'          => AuthComponent::password(uniqid(md5(mt_rand()))), # Set random password
-                        'fullname'			=> $fb_user['first_name'].' '.$fb_user['last_name'],
+                        'fullname'			=> $fb_user['last_name'].' '.$fb_user['first_name'],
 						'first_name'        => $fb_user['first_name'],
                         'birthday'          => $birthday,
                         'last_name'         => $fb_user['last_name'],
@@ -401,13 +404,18 @@ class PeopleController extends AppController {
 								'school'	=>	"'".$this->request->data('school')."'",
 								'gender'	=>	"'".$this->request->data('gender')."'"
 							),
-							array('id' => $user['id'])
+							array('Person.id' => $user['id'])
 						);
+			$newInfo = $this->Person->find('first', array('Person.id' => $user['id']));
+			$this->Auth->login($newInfo['Person']);			
 			$this->redirect(array('controller' => 'people', 'action' => 'dashboard'));
 		}
 		
 		$this->loadModel('Grade');
+		$this->loadModel('Province');
 		$grades = $this->Grade->find('list');
+		$provinces = $this->Province->find('list');
 		$this->set('grades', $grades);
+		$this->set('provinces', $provinces);
 	}
 }

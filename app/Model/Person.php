@@ -95,4 +95,15 @@ class Person extends AppModel {
             )
 
     );
+	
+	public $belongsTo = array(
+		'Province' => array(
+			'className' => 'Province',
+			'foreignKey' => 'address',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		)
+	);
+	
 }

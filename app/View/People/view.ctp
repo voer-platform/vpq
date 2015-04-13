@@ -11,7 +11,7 @@
 					<p><span class="glyphicon glyphicon-gift"></span>&nbsp; <?php echo __('Birthday:'); ?> <?php echo h($person['Person']['birthday']); ?></p>
 					<p><span class="glyphicon glyphicon glyphicon-heart"></span>&nbsp; <?php echo __('Gender:'); ?> <?php echo ($person['Person']['gender']==1)?'Nam':'Nữ'; ?></p>
 					<p><span class="glyphicon glyphicon-education"></span>&nbsp; <?php echo __('Student:'); ?> <?php echo h($person['Person']['grade']); ?><?php if($person['Person']['school']){ echo ', '.h($person['Person']['school']); } ?></p>
-					<p><span class="glyphicon glyphicon-home"></span>&nbsp; <?php echo __('Address:'); ?> <?php echo h($person['Person']['address']); ?></p>
+					<p><span class="glyphicon glyphicon-home"></span>&nbsp; <?php echo __('Address:'); ?> <?php echo h($person['Province']['name']); ?></p>
 					<button class="btn btn-default btn-xs" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-cog"></span> Chỉnh sửa thông tin cá nhân</button></a>
 				</div>
 			</div>
@@ -19,7 +19,7 @@
 	</div>
 </div>
 <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog w-450">
 		<form method="POST" action="<?php echo $this->Html->url(array('controller'=>'people', 'action'=>'update')); ?>">
 		<div class="modal-content">
@@ -57,7 +57,11 @@
 					</div>
 					<div class="form-group">
 						<label class="form-label">Địa chỉ</label>
-						<input type="text" name="address" class="form-control" placeholder="Nơi bạn đang sống" value="<?php echo h($person['Person']['address']); ?>">
+						<select name="address" class="form-control sl2">
+							<?php foreach($provinces AS $province_id=>$province){ ?>
+								<option value="<?php echo $province_id; ?>" <?php if($province_id==$person['Province']['id']) echo 'selected'; ?>><?php echo $province; ?></option>
+							<?php } ?>
+						</select>
 					</div>
 				</form>
 			</div>
@@ -200,4 +204,5 @@
 	$('.hasDatepick').datepicker({format: "dd/mm/yyyy"}).on('changeDate', function(ev) {
 		$(this).datepicker('hide');
 	});
+	$('.sl2').select2();
 </script>
