@@ -406,7 +406,7 @@ class PeopleController extends AppController {
 							),
 							array('Person.id' => $user['id'])
 						);
-			$newInfo = $this->Person->find('first', array('Person.id' => $user['id']));
+			$newInfo = $this->Person->find('first', array('conditions'=>array('Person.id' => $user['id'])));
 			$this->Auth->login($newInfo['Person']);			
 			$this->redirect(array('controller' => 'people', 'action' => 'dashboard'));
 		}
