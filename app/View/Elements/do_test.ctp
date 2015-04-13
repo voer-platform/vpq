@@ -256,9 +256,6 @@
 					}
 				}
 			}
-			var url = '<?php echo Router::url(array('controller'=>'tests','action'=>'timeQuestion'));?>/' + id + '/' + time;
-			$.getJSON(url, function( data ) {
-			});
 			console.log(datatime);
 		});
 
@@ -272,9 +269,6 @@
 						time=datatime[i]['time'];
 					}
 				}
-			var url = '<?php echo Router::url(array('controller'=>'tests','action'=>'timeQuestion'));?>/' + id_question + '/' + time;
-			$.getJSON(url, function( data ) {
-			});
 			console.log(datatime);
 			starttime=endtime;
 			var rel = $(this).attr('rel');
