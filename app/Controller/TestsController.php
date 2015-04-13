@@ -369,8 +369,14 @@ class TestsController extends AppController {
         $this->layout = "ajax";
         $this->autoLayout = false;
         $this->autoRender = false;
-		$data = explode(",",$categories);	
-		$questions = $this->Test->generateTest($numberOfQuestions, $data);		
+		$data = explode(",",$categories);
+		$categories=array();
+		foreach($data as $dt){
+				if($dt!=''){
+					$categories[]=$dt;				
+				}
+			}
+		$questions = $this->Test->generateTest($numberOfQuestions, $categories);		
         $this->header('Content-Type: application/json');
         echo json_encode(count($questions));
 		return;

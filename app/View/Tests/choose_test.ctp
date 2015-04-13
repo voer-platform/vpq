@@ -5,9 +5,9 @@
 </ol>-->
 
 <div class="chooseTest">
-    <h2><?php echo __('Choose test')?></h2>
+    <h2><?php echo __('Choose test')?> môn <?php echo $this->Name->subjectToName($subject);?></h2>
     <hr />
-    <?php echo __('Test').': '.$this->Name->subjectToName($subject); ?>
+	<!--<?php echo __('Test').': '.$this->Name->subjectToName($subject); ?>-->
     <form role="form" class="form-horizontal" id="preDoTest" method="POST">
 	<br/>
 		
