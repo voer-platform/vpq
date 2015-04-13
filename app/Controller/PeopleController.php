@@ -166,7 +166,7 @@ class PeopleController extends AppController {
 				),
 				array('Person.id' => $user['id'])
 			);
-			$newInfo = $this->Person->find('first', $options);
+			$newInfo = $this->Person->find('first', array('conditions'=>array('Person.id' => $user['id'])));
 			$this->Auth->login($newInfo['Person']);
 			$this->Session->setFlash(__('Đã cập nhật thông tin cá nhân'));
 		}
