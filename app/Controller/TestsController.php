@@ -332,6 +332,10 @@ class TestsController extends AppController {
      * @return void
      */
     public function score() {
+
+        $this->layout = 'ajax';
+        $this->autoLayout = false;
+        $this->autoRender = false;
 		
         // process if request is post
         if( $this->request->is('post')){

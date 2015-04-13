@@ -44,7 +44,7 @@
 										<input type="checkbox" class="checkfull" data-id="<?php echo $i;?>"/>
 									</td>
 									<td colspan='2' style="border-top:0px;border-right: solid 1px #ddd;">
-										<a>Check All</a>
+										<a><?php echo __('Check All'); ?></a>
 									</td>
 								</tr>
 								<?php foreach($allcat as $item=>$ac): ?>

@@ -8,14 +8,15 @@
 <!DOCTYPE html>
 
 <html>
-
+    
 <head>
-    <?php echo $this->element('mixpanel_init'); ?>
     <!-- charset -->
 	<?php echo $this->Html->charset(); ?>
-	<title><?php echo $title_for_layout; ?></title>
+	<title><?php echo 'PLS - '.$title_for_layout; ?></title>
 
     <!-- meta -->
+    <?php echo $this->Html->meta('icon', $this->Html->url(Router::url('/', true).'img/favicon.png')); ?>
+    <?php echo $this->element('mixpanel_init'); ?>
     <?php echo $this->Html->meta('viewport', 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no');?>
     <?php echo $this->fetch('meta'); ?>
 

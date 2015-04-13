@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-04-06 11:39+0700\n"
+"POT-Creation-Date: 2015-04-13 11:09+0700\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -79,7 +79,7 @@ msgstr ""
 msgid "The answer could not be deleted. Please, try again."
 msgstr ""
 
-#: Controller/AppController.php:111
+#: Controller/AppController.php:122
 msgid "You are not authorized for that pages"
 msgstr ""
 
@@ -194,7 +194,7 @@ msgstr ""
 msgid "Home"
 msgstr ""
 
-#: Controller/PagesController.php:81
+#: Controller/PagesController.php:84
 #: View/Elements/about_us.ctp:3
 msgid "About us"
 msgstr ""
@@ -219,42 +219,42 @@ msgstr ""
 msgid "The person could not be deleted. Please, try again."
 msgstr ""
 
-#: Controller/PeopleController.php:166
+#: Controller/PeopleController.php:168
 msgid "Đã cập nhật thông tin cá nhân"
 msgstr ""
 
-#: Controller/PeopleController.php:181
+#: Controller/PeopleController.php:183
 msgid "Invalid login. Please try again."
 msgstr ""
 
-#: Controller/PeopleController.php:261;266
+#: Controller/PeopleController.php:265;270
 msgid "Something wrong, cannot log in. Please try again!"
 msgstr ""
 
-#: Controller/PeopleController.php:282
+#: Controller/PeopleController.php:287
 #: View/Elements/menu.ctp:19;40
-#: View/People/dashboard.ctp:15
+#: View/People/dashboard.ctp:5
 #: View/Tests/choose_test.ctp:3
 msgid "Dashboard"
 msgstr ""
 
-#: Controller/PeopleController.php:334
+#: Controller/PeopleController.php:339
 #: Controller/SubcategoriesController.php:144
 #: View/Elements/menu.ctp:20
 msgid "History"
 msgstr ""
 
-#: Controller/PeopleController.php:345
+#: Controller/PeopleController.php:350
 msgid "Suggestion"
 msgstr ""
 
-#: Controller/PeopleController.php:352
-#: View/People/view.ctp:129
+#: Controller/PeopleController.php:357
+#: View/People/view.ctp:137
 #: View/Progresses/view.ctp:2;14
 msgid "Progress"
 msgstr ""
 
-#: Controller/PeopleController.php:363
+#: Controller/PeopleController.php:368
 msgid "Cover details"
 msgstr ""
 
@@ -410,16 +410,16 @@ msgstr ""
 msgid "The test could not be deleted. Please, try again."
 msgstr ""
 
-#: Controller/TestsController.php:152
+#: Controller/TestsController.php:153
 #: View/Tests/choose_test.ctp:8
 msgid "Choose test"
 msgstr ""
 
-#: Controller/TestsController.php:245
+#: Controller/TestsController.php:234
 msgid "Testing"
 msgstr ""
 
-#: Controller/TestsController.php:330
+#: Controller/TestsController.php:319
 msgid "No data found"
 msgstr ""
 
@@ -463,89 +463,88 @@ msgstr ""
 msgid "The tests subject could not be deleted. Please, try again."
 msgstr ""
 
-#: Model/Score.php:290;611
+#: Model/Score.php:280;606
 msgid "Date"
 msgstr ""
 
-#: Model/Score.php:290
+#: Model/Score.php:280
 msgid "Physics"
 msgstr ""
 
-#: Model/Score.php:308
+#: Model/Score.php:298
 #: View/Helper/NameHelper.php:120
 msgid "Sunday"
 msgstr ""
 
-#: Model/Score.php:311
+#: Model/Score.php:301
 #: View/Helper/NameHelper.php:123
 msgid "Monday"
 msgstr ""
 
-#: Model/Score.php:314
+#: Model/Score.php:304
 #: View/Helper/NameHelper.php:126
 msgid "Tuesday"
 msgstr ""
 
-#: Model/Score.php:317
+#: Model/Score.php:307
 #: View/Helper/NameHelper.php:129
 msgid "Wednesday"
 msgstr ""
 
-#: Model/Score.php:320
+#: Model/Score.php:310
 #: View/Helper/NameHelper.php:132
 msgid "Thursday"
 msgstr ""
 
-#: Model/Score.php:323
+#: Model/Score.php:313
 #: View/Helper/NameHelper.php:135
 msgid "Friday"
 msgstr ""
 
-#: Model/Score.php:326
+#: Model/Score.php:316
 #: View/Helper/NameHelper.php:138
 msgid "Saturday"
 msgstr ""
 
-#: Model/Score.php:330
-#: View/Helper/NameHelper.php:142
+#: Model/Score.php:320
+#: View/Helper/NameHelper.php:141
 msgid "None"
 msgstr ""
 
-#: Model/Score.php:611
+#: Model/Score.php:606
 #: View/Elements/progress_all.ctp:4
 #: View/Elements/progress_category.ctp:4
 #: View/Elements/progress_subcategory.ctp:4
 #: View/Elements/progress_subject.ctp:52;93
-#: View/Elements/score_view.ctp:94
-#: View/Elements/table_score.ctp:5
-#: View/People/view.ctp:161
+#: View/Elements/score_view.ctp:98
+#: View/People/view.ctp:169
 #: View/Scores/view.ctp:2;19
 #: View/ScoresQuestions/view.ctp:9
 #: View/Tests/view.ctp:44
 msgid "Score"
 msgstr ""
 
-#: Model/Score.php:635;654
+#: Model/Score.php:641;660
 msgid "Today"
 msgstr ""
 
-#: Model/Score.php:636;656
+#: Model/Score.php:642;662
 msgid "Yesterday"
 msgstr ""
 
-#: Model/Score.php:637;657
+#: Model/Score.php:643;663
 msgid " days ago"
 msgstr ""
 
-#: Model/Score.php:686
+#: Model/Score.php:692
 msgid "This week"
 msgstr ""
 
-#: Model/Score.php:688
+#: Model/Score.php:694
 msgid "Last week"
 msgstr ""
 
-#: Model/Score.php:690
+#: Model/Score.php:696
 msgid " weeks ago"
 msgstr ""
 
@@ -574,8 +573,8 @@ msgid "Name"
 msgstr ""
 
 #: View/Admin/analystics.ctp:5
-#: View/Elements/do_test.ctp:70
-#: View/Elements/score_view.ctp:88
+#: View/Elements/do_test.ctp:71
+#: View/Elements/score_view.ctp:92
 msgid "Number of questions"
 msgstr ""
 
@@ -853,7 +852,7 @@ msgstr ""
 #: View/People/add.ctp:17
 #: View/People/edit.ctp:22
 #: View/People/index.ctp:13;48
-#: View/People/view.ctp:110;130;164
+#: View/People/view.ctp:118;138;172
 #: View/Progresses/add.ctp:14
 #: View/Progresses/edit.ctp:14
 #: View/Progresses/index.ctp:8;42
@@ -989,7 +988,7 @@ msgstr ""
 #: View/Grades/view.ctp:47
 #: View/People/edit.ctp:25
 #: View/People/index.ctp:28
-#: View/People/view.ctp:140;177
+#: View/People/view.ctp:148;185
 #: View/Progresses/edit.ctp:17
 #: View/Progresses/index.ctp:22
 #: View/Questions/edit.ctp:19
@@ -1031,7 +1030,7 @@ msgstr ""
 #: View/Grades/view.ctp:20;47
 #: View/People/edit.ctp:25
 #: View/People/index.ctp:28
-#: View/People/view.ctp:113;140;177
+#: View/People/view.ctp:121;148;185
 #: View/Progresses/edit.ctp:17
 #: View/Progresses/index.ctp:22
 #: View/Progresses/view.ctp:25
@@ -1074,7 +1073,7 @@ msgstr ""
 #: View/Grades/index.ctp:14
 #: View/Grades/view.ctp:45
 #: View/People/index.ctp:26
-#: View/People/view.ctp:138;175
+#: View/People/view.ctp:146;183
 #: View/Progresses/index.ctp:20
 #: View/Questions/index.ctp:19
 #: View/Questions/view.ctp:56;109;140
@@ -1097,7 +1096,7 @@ msgstr ""
 #: View/Grades/index.ctp:15
 #: View/Grades/view.ctp:46
 #: View/People/index.ctp:27
-#: View/People/view.ctp:139;176
+#: View/People/view.ctp:147;184
 #: View/Progresses/index.ctp:21
 #: View/Questions/index.ctp:20
 #: View/Questions/view.ctp:57;110;141
@@ -1127,7 +1126,7 @@ msgstr ""
 #: View/Categories/view.ctp:4;44
 #: View/Faqs/view.ctp:4
 #: View/Grades/view.ctp:4;32
-#: View/People/view.ctp:67;158
+#: View/People/view.ctp:75;166
 #: View/Questions/view.ctp:4;41;76;98;129
 #: View/Scores/view.ctp:4
 #: View/ScoresQuestions/view.ctp:4
@@ -1157,7 +1156,7 @@ msgid "Delete Answer"
 msgstr ""
 
 #: View/Ask4Help/index.ctp:8
-#: View/Elements/score_view.ctp:59
+#: View/Elements/score_view.ctp:63
 msgid "Ask for help"
 msgstr ""
 
@@ -1410,9 +1409,9 @@ msgstr ""
 msgid "Time remains"
 msgstr ""
 
-#: View/Elements/do_test.ctp:62
+#: View/Elements/do_test.ctp:63
 #: View/Elements/progress_subject.ctp:95;114;135
-#: View/Elements/score_view.ctp:80
+#: View/Elements/score_view.ctp:84
 #: View/Scores/view.ctp:9
 #: View/Tests/choose_test.ctp:10
 #: View/Tests/view.ctp:2
@@ -1421,13 +1420,13 @@ msgstr ""
 msgid "Test"
 msgstr ""
 
-#: View/Elements/do_test.ctp:66
-#: View/Elements/score_view.ctp:84
+#: View/Elements/do_test.ctp:67
+#: View/Elements/score_view.ctp:88
 msgid "Timelimit"
 msgstr ""
 
-#: View/Elements/do_test.ctp:67
-#: View/Elements/score_view.ctp:85
+#: View/Elements/do_test.ctp:68
+#: View/Elements/score_view.ctp:89
 msgid "minutes"
 msgstr ""
 
@@ -1462,7 +1461,7 @@ msgstr ""
 #: View/Elements/progress_all.ctp:4
 #: View/Elements/progress_category.ctp:4
 #: View/Elements/progress_subcategory.ctp:4
-#: View/Elements/score_view.ctp:96
+#: View/Elements/score_view.ctp:100
 msgid "Correct"
 msgstr ""
 
@@ -1475,7 +1474,7 @@ msgstr ""
 #: View/Elements/progress_all.ctp:4
 #: View/Elements/progress_category.ctp:4
 #: View/Elements/progress_subcategory.ctp:4
-#: View/Elements/score_view.ctp:96
+#: View/Elements/score_view.ctp:100
 msgid "Total"
 msgstr ""
 
@@ -1547,7 +1546,7 @@ msgstr ""
 #: View/Elements/progress_subject.ctp:83
 #: View/Grades/view.ctp:2
 #: View/Helper/NameHelper.php:53
-#: View/People/view.ctp:82
+#: View/People/view.ctp:90
 msgid "Grade"
 msgstr ""
 
@@ -1559,57 +1558,40 @@ msgstr ""
 msgid "You have no progress at all, please click Test Button to begin your learning process"
 msgstr ""
 
-#: View/Elements/score_view.ctp:62
+#: View/Elements/score_view.ctp:66
 msgid "Solution:"
 msgstr ""
 
-#: View/Elements/score_view.ctp:96
+#: View/Elements/score_view.ctp:100
 msgid "on"
 msgstr ""
 
-#: View/Elements/score_view.ctp:96
+#: View/Elements/score_view.ctp:100
 msgid "questions"
 msgstr ""
 
-#: View/Elements/score_view.ctp:98;157
+#: View/Elements/score_view.ctp:102;179
 msgid "Show Answers"
 msgstr ""
 
-#: View/Elements/score_view.ctp:99;171
+#: View/Elements/score_view.ctp:103;199
 msgid "Show Solutions"
 msgstr ""
 
-#: View/Elements/score_view.ctp:103
+#: View/Elements/score_view.ctp:107
 msgid "Go to dashboard"
 msgstr ""
 
-#: View/Elements/score_view.ctp:104
+#: View/Elements/score_view.ctp:108
 msgid "Take this test again"
 msgstr ""
 
-#: View/Elements/score_view.ctp:151
+#: View/Elements/score_view.ctp:172
 msgid "Hide Answers"
 msgstr ""
 
-#: View/Elements/score_view.ctp:166
+#: View/Elements/score_view.ctp:191
 msgid "Hide Solutions"
-msgstr ""
-
-#: View/Elements/table_score.ctp:5
-msgid "Time taken"
-msgstr ""
-
-#: View/Elements/table_score.ctp:5
-msgid "Time limit"
-msgstr ""
-
-#: View/Elements/table_score.ctp:9
-#: View/Tests/choose_test.ctp:79
-msgid "mins"
-msgstr ""
-
-#: View/Elements/table_score.ctp:15
-msgid "Oops... It looks like you have no scores on this...."
 msgstr ""
 
 #: View/Faqs/add.ctp:4
@@ -1628,7 +1610,7 @@ msgstr ""
 #: View/Faqs/view.ctp:48
 #: View/People/add.ctp:20
 #: View/People/edit.ctp:26
-#: View/People/view.ctp:114
+#: View/People/view.ctp:122
 #: View/Progresses/add.ctp:18
 #: View/Progresses/edit.ctp:19
 #: View/Progresses/index.ctp:45
@@ -1645,7 +1627,7 @@ msgstr ""
 #: View/Faqs/index.ctp:55
 #: View/Faqs/view.ctp:49
 #: View/People/index.ctp:50
-#: View/People/view.ctp:115
+#: View/People/view.ctp:123
 #: View/Progresses/add.ctp:19
 #: View/Progresses/edit.ctp:20
 #: View/Progresses/index.ctp:46
@@ -1698,7 +1680,7 @@ msgid "Status"
 msgstr ""
 
 #: View/Faqs/view.ctp:29
-#: View/People/view.ctp:92
+#: View/People/view.ctp:100
 msgid "Date Created"
 msgstr ""
 
@@ -1794,22 +1776,10 @@ msgstr ""
 msgid "Where you can learn anything!"
 msgstr ""
 
-#: View/Pages/home.ctp:16
+#: View/Pages/home.ctp:100;239
 #: View/Pages/home1.ctp:42
 #: View/Pages/home2.ctp:42;135
 msgid "Login with Facebook"
-msgstr ""
-
-#: View/Pages/home.ctp:52
-msgid "How is your study?"
-msgstr ""
-
-#: View/Pages/home.ctp:53
-msgid "Keep it up!"
-msgstr ""
-
-#: View/Pages/home.ctp:54
-msgid "Take a look"
 msgstr ""
 
 #: View/People/add.ctp:4
@@ -1819,7 +1789,7 @@ msgstr ""
 #: View/People/add.ctp:21
 #: View/People/edit.ctp:27
 #: View/People/index.ctp:51
-#: View/People/view.ctp:116
+#: View/People/view.ctp:124
 #: View/Progresses/add.ctp:17
 #: View/Progresses/edit.ctp:18
 #: View/Progresses/view.ctp:26
@@ -1829,7 +1799,7 @@ msgstr ""
 #: View/People/add.ctp:22
 #: View/People/edit.ctp:28
 #: View/People/index.ctp:52
-#: View/People/view.ctp:117;149
+#: View/People/view.ctp:125;157
 #: View/Progresses/index.ctp:44
 #: View/Progresses/view.ctp:27
 msgid "New Progress"
@@ -1838,7 +1808,7 @@ msgstr ""
 #: View/People/add.ctp:23
 #: View/People/edit.ctp:29
 #: View/People/index.ctp:53
-#: View/People/view.ctp:118
+#: View/People/view.ctp:126
 #: View/Scores/add.ctp:19
 #: View/Scores/edit.ctp:21
 #: View/Scores/view.ctp:41
@@ -1856,7 +1826,7 @@ msgstr ""
 #: View/People/add.ctp:24
 #: View/People/edit.ctp:30
 #: View/People/index.ctp:54
-#: View/People/view.ctp:119;186
+#: View/People/view.ctp:127;194
 #: View/Scores/index.ctp:54
 #: View/Scores/view.ctp:42
 #: View/ScoresQuestions/add.ctp:19
@@ -1870,29 +1840,29 @@ msgstr ""
 msgid "New Score"
 msgstr ""
 
-#: View/People/dashboard.ctp:24
+#: View/People/dashboard.ctp:14
 msgid "Edit Profile"
 msgstr ""
 
-#: View/People/dashboard.ctp:144;164;181;197
+#: View/People/dashboard.ctp:138;158;175;191
 msgid "Subjects"
 msgstr ""
 
-#: View/People/dashboard.ctp:148
+#: View/People/dashboard.ctp:142
 msgid "Load Subjects"
 msgstr ""
 
-#: View/People/dashboard.ctp:153
+#: View/People/dashboard.ctp:147
 msgid "Load All"
 msgstr ""
 
 #: View/People/edit.ctp:4
-#: View/People/view.ctp:112
+#: View/People/view.ctp:120
 msgid "Edit Person"
 msgstr ""
 
 #: View/People/history.ctp:3
-msgid "Your tests history"
+msgid "My tests history"
 msgstr ""
 
 #: View/People/index.ctp:2
@@ -1911,80 +1881,88 @@ msgstr ""
 msgid "Your performance"
 msgstr ""
 
+#: View/People/view.ctp:1
+msgid "Personal Page"
+msgstr ""
+
 #: View/People/view.ctp:11
 msgid "Birthday:"
 msgstr ""
 
 #: View/People/view.ctp:12
-msgid "Student:"
+msgid "Gender:"
 msgstr ""
 
 #: View/People/view.ctp:13
+msgid "Student:"
+msgstr ""
+
+#: View/People/view.ctp:14
 msgid "Address:"
 msgstr ""
 
-#: View/People/view.ctp:57
+#: View/People/view.ctp:65
 msgid "Update"
 msgstr ""
 
-#: View/People/view.ctp:58
+#: View/People/view.ctp:66
 msgid "Close"
 msgstr ""
 
-#: View/People/view.ctp:72
+#: View/People/view.ctp:80
 msgid "First Name"
 msgstr ""
 
-#: View/People/view.ctp:77
+#: View/People/view.ctp:85
 msgid "Last Name"
 msgstr ""
 
-#: View/People/view.ctp:87
+#: View/People/view.ctp:95
 msgid "Birthday"
 msgstr ""
 
-#: View/People/view.ctp:97
+#: View/People/view.ctp:105
 msgid "Role"
 msgstr ""
 
-#: View/People/view.ctp:102
+#: View/People/view.ctp:110
 msgid "Facebook"
 msgstr ""
 
-#: View/People/view.ctp:113
+#: View/People/view.ctp:121
 msgid "Delete Person"
 msgstr ""
 
-#: View/People/view.ctp:123
+#: View/People/view.ctp:131
 msgid "Related Progresses"
 msgstr ""
 
-#: View/People/view.ctp:127;160
+#: View/People/view.ctp:135;168
 #: View/Tests/view.ctp:43
 msgid "Person Id"
 msgstr ""
 
-#: View/People/view.ctp:128
+#: View/People/view.ctp:136
 msgid "Sub Category Id"
 msgstr ""
 
-#: View/People/view.ctp:154
+#: View/People/view.ctp:162
 #: View/Tests/view.ctp:37
 msgid "Related Scores"
 msgstr ""
 
-#: View/People/view.ctp:159
+#: View/People/view.ctp:167
 #: View/Tests/view.ctp:42
 msgid "Test Id"
 msgstr ""
 
-#: View/People/view.ctp:162
+#: View/People/view.ctp:170
 #: View/Scores/view.ctp:24
 #: View/Tests/view.ctp:45
 msgid "Duration"
 msgstr ""
 
-#: View/People/view.ctp:163
+#: View/People/view.ctp:171
 #: View/Scores/view.ctp:29
 #: View/Tests/view.ctp:46
 msgid "Time Taken"
@@ -2234,6 +2212,14 @@ msgstr ""
 msgid "Choose Test"
 msgstr ""
 
+#: View/Tests/choose_test.ctp:47
+msgid "Check All"
+msgstr ""
+
+#: View/Tests/choose_test.ctp:86
+msgid "mins"
+msgstr ""
+
 #: View/Tests/edit.ctp:4
 #: View/Tests/view.ctp:24
 msgid "Edit Test"
@@ -2241,22 +2227,6 @@ msgstr ""
 
 #: View/Tests/index.ctp:2
 msgid "Tests"
-msgstr ""
-
-#: View/Tests/score.ctp:4
-msgid "Your result"
-msgstr ""
-
-#: View/Tests/score.ctp:7
-msgid "Your score for this test:"
-msgstr ""
-
-#: View/Tests/score.ctp:11
-msgid "questions correct."
-msgstr ""
-
-#: View/Tests/score.ctp:37
-msgid "Details"
 msgstr ""
 
 #: View/Tests/view.ctp:25
