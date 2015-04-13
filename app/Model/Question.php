@@ -368,7 +368,7 @@ class Question extends AppModel {
 		    $countSql = "SELECT COUNT(DISTINCT p.sub_category_id) AS count, c.subject_id AS id FROM progresses AS p
 						INNER JOIN subcategories AS sc ON sc.id = p.sub_category_id
 						INNER JOIN categories AS c ON c.id = sc.category_id
-                        where p.person_id = '.$person_id.'";
+                        where p.person_id = '$person_id'";
 						
 			if(isset($filterOptions['time'])){
 				$fromTime = $toTime = null;
