@@ -137,7 +137,6 @@ class NameHelper extends AppHelper {
             case 'Sat':
                 return __('Saturday');
                 break;
-            
             default:
                 return __('None');
                 break;

@@ -296,7 +296,7 @@
 							$('#subject-score-'+subj_id+' .subject-score-number').html(score);
 							$('#subject-score-'+subj_id+' .subject-score-text').css({'color':rankColor(score)});
 							$('#subject-score-'+subj_id).css({'border-color':rankColor(score)});
-							$('.num-pass').html(subj.sum_progress);
+							
 							//progressBar = $('#subject-progress-'+subj_id);
 							//progressBar.html(subj.sum_progress+'/'+subj.sum_total);
 							//progressBar.width((subj.sum_progress/subj.sum_total)*100+'%');
@@ -305,21 +305,24 @@
 					else
 					{
 						$('.subject-score-number').html('0');
-						$('.num-pass').html('0');
 					}
 					//Loop covers data
-					
-					$.each(jsonData.cover, function(subj_id, subj){
-						coverBar = $('#subject-cover-'+subj_id);
-						numPass = 0;
-						if(subj.hasOwnProperty('pass'))
-						{
-							numPass = subj.pass;
-						}
-						coverBar.html(Math.round((numPass/subj.total)*100)+'%');
-						coverBar.width(Math.round((numPass/subj.total)*100)+'%');
-					});
-                    //$('#score-overall').text(jsonData.score);
+					if(Object.keys(jsonData.cover).length>0)
+					{
+						$.each(jsonData.cover, function(subj_id, subj){
+							coverBar = $('#subject-cover-'+subj_id);
+							numPass = 0;
+							if(subj.hasOwnProperty('pass'))
+							{
+								numPass = subj.pass;
+							}
+							$('.num-pass').html(numPass);
+							coverBar.html(Math.round((numPass/subj.total)*100)+'%');
+							coverBar.width(Math.round((numPass/subj.total)*100)+'%');
+						});
+                    } else {
+						$('.num-pass').html('0');
+					}
                 }
             }
         });

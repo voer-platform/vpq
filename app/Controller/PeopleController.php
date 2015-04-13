@@ -295,7 +295,8 @@ class PeopleController extends AppController {
         // get all subject cover
         $this->loadModel('Question');
         $cover = array();
-        $cover = $this->Question->getCover($user_id);
+        //$cover = $this->Question->getCover($user_id);
+		$cover = $this->Question->getSubcategoryCover($user_id);
 
         // get subject for dashboard
         $this->loadModel('Progress');

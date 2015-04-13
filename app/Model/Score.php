@@ -146,7 +146,7 @@ class Score extends AppModel {
 /**
  * evaluate score for one user
  * @param:
- *      in: testId - id of the test
+ *    in: testId - id of the test
  *    in: answers: array() - array of answer from user
  *    in: user - user
  *    out: scoreData
@@ -157,21 +157,10 @@ class Score extends AppModel {
     public function calculateScore($testId, $answers, $user, &$scoreData, $numberOfQuestions){
         //check if answer is right or not
         $correctCounter = 0;
-
-        // filter empty-answered questions
-        // user did not tick in the answer
-        function emptyAnswerFilter($var){
-             // remove with int(0)
-             return ($var !== '') || ($var == '0');
-        }
-        
         $duration = $answers['duration'];
 
-        // array after filter empty
-        $filteredArray = array_filter($answers,'emptyAnswerFilter');
-
         // get row in array, key=question_id, value=>answer_id
-        foreach ( $filteredArray as $question => $answerId) {
+        foreach ( $answers as $question => $answerId) {
             
             // there are some hidden fields, need to confirm that field is test's id or not
             if(!is_numeric($question))
@@ -195,7 +184,7 @@ class Score extends AppModel {
 				'id' => $question,
 				)
 			));
-            if( $result['Answer']['correctness'] == 1){
+            if( !empty($result) && $result['Answer']['correctness'] == 1){
                 $correctCounter++;
                 $scoreData[$question]['correct'] = 1;
             }

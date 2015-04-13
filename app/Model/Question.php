@@ -356,4 +356,78 @@ class Question extends AppModel {
 		
         return $result;
     }
+	
+	/**
+     * get subcategory cover for a person on a subject
+     * @param:  id of user
+     *          grade
+     *          subject
+     * @return: array of [done, total]
+     */
+    public function getSubcategoryCover($person_id, $filterOptions = null){
+		    $countSql = 'select count(distinct QS.subcategory_id) as count, subjects.id AS id from questions Question
+						join questions_subcategories QS
+                            on Question.id = QS.question_id
+                        join scores_questions ScoresQuestion
+                            on Question.id = ScoresQuestion.question_id
+                        join scores Score
+                            on Score.id = ScoresQuestion.score_id
+						join tests
+                            on Score.test_id = tests.id
+						join tests_subjects
+                            on tests_subjects.test_id = tests.id	
+						join subjects
+                            on subjects.id = tests_subjects.subject_id		
+                        where Score.person_id = '.$person_id.' ';
+						
+			if(isset($filterOptions['time'])){
+				$fromTime = $toTime = null;
+
+				switch($filterOptions['time']['type']){
+					case 'week': $fromTime = date('Y-m-d h:i:s', strtotime('-1 Week')); break;
+					case 'month': $fromTime = date('Y-m-d h:i:s', strtotime('-1 Month')); break;
+					case 'custom': 
+						if(array_key_exists('start', $filterOptions['time']) && $filterOptions['time']['start']!='')
+							$fromTime = date('Y-m-d h:i:s', strtotime($filterOptions['time']['start'])); 
+						if(array_key_exists('end', $filterOptions['time']) && $filterOptions['time']['end']!='')
+							$toTime = date('Y-m-d h:i:s', strtotime($filterOptions['time']['end'])); 
+						break;
+				}
+				
+				if($fromTime)
+				{
+					$countSql.=" AND DATE(Score.time_taken) >= DATE('$fromTime')";
+				}
+				if($toTime)
+				{
+					$countSql.= " AND DATE(Score.time_taken) <= DATE('$toTime')";
+				}
+			}
+			
+			$countSql.= ' group by subjects.id';
+			
+			$count = $this->query($countSql);
+
+			$total = $this->query(
+                'select count(distinct subc) AS count, t.subj AS id from (
+							select s.id AS subc, subjects.id AS subj from subcategories AS s
+							inner join categories AS c
+								on c.id = s.category_id		
+							inner join subjects
+								on subjects.id = c.subject_id) AS t 
+						group by t.subj');	
+		$result = array();
+		
+        foreach($count AS $item)
+		{
+			$result[$item['subjects']['id']]['pass'] = $item[0]['count'];
+		}
+		foreach($total AS $item)
+		{
+			$result[$item['t']['id']]['total'] = $item[0]['count'];
+		}
+		
+        return $result;
+    }
+	
 }

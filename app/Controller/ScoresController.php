@@ -211,7 +211,8 @@ class ScoresController extends AppController {
 
 			$this->loadModel('Question');
 			$cover = array();
-			$cover = $this->Question->getCover($user['id'], $filterOptions);
+			//$cover = $this->Question->getCover($user['id'], $filterOptions);
+			$cover = $this->Question->getSubcategoryCover($user['id'], $filterOptions);
 
 			// get subject for dashboard
 			$this->loadModel('Progress');
