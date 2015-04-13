@@ -58,6 +58,9 @@ public function beforeFilter(){
 
 		if (!empty($path[0])) {
 			$page = $path[0];
+			if($page=='home' && $this->Auth->loggedIn()) {
+				$this->redirect(array('controller' => 'people', 'action' => 'dashboard'));				
+			}
 		}
 		if (!empty($path[1])) {
 			$subpage = $path[1];

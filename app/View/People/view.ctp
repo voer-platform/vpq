@@ -34,7 +34,7 @@
 					</div>
 					<div class="form-group">
 						<label class="form-label">Ngày sinh</label>
-						<input type="text" class="form-control" name="birthday" value="<?php echo h($person['Person']['birthday']); ?>" />
+						<input type="text" class="form-control hasDatepick" name="birthday" value="<?php echo h($person['Person']['birthday']); ?>" />
 					</div>
 					<div class="form-group">
 						<label class="form-label">Giới tính</label>
@@ -196,3 +196,8 @@
 	</div>
 </div>
 -->
+<script>
+	$('.hasDatepick').datepicker({format: "dd/mm/yyyy"}).on('changeDate', function(ev) {
+		$(this).datepicker('hide');
+	});
+</script>

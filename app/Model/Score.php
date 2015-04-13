@@ -555,6 +555,7 @@ class Score extends AppModel {
 		if($timeOptions['type']=='tentimes')
 		{
 			$options['limit'] = 10;
+			$options['fields'][] = 'Score.time_taken';
 			$options['group'] = array(
 					'Score.id'
 				);
@@ -618,7 +619,7 @@ class Score extends AppModel {
 			{
 				$z = 0;
 				foreach ($charts as $k=>$chart) {
-					$charts[$chart['Score']['date'].$z] = $chart;
+					$charts[$chart['Score']['time_taken'].$z] = $chart;
 					unset($charts[$k]);
 					$z++;
 				}
