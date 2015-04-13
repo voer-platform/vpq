@@ -2,7 +2,7 @@
 App::uses('AppModel', 'Model');
 App::import('Model', 'Answer');
 App::import('Model', 'ScoresQuestion');
-
+App::import('Model', 'Question');
 /**
  * Score Model
  *
@@ -177,14 +177,26 @@ class Score extends AppModel {
             // count correct questions
             $scoreData[$question] = array();
             $scoreData[$question]['answer'] = $answerId;
-
-            // if user has chosen an answer and is correct
+			$Question=new Question();
+			$data_Question = $Question->find('first', array(
+			'recursive' => -1,
+			'conditions' => array(
+				'id' => $question,
+				)
+			));
             if( !empty($result) && $result['Answer']['correctness'] == 1){
                 $correctCounter++;
                 $scoreData[$question]['correct'] = 1;
             }
             else{
                 $scoreData[$question]['correct'] = 0;
+				$wrong=$data_Question['Question']['wrong']+1;
+				$this->Question->id=$question;
+				$this->Question->save(
+											array(
+												'wrong' => $wrong,
+											)
+										);
             }
             
         }
