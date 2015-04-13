@@ -386,22 +386,28 @@ class TestsController extends AppController {
 		return;
     }
 	
-	public function timeQuestion($id,$t){
-		$options = array(
+	public function timeQuestion(){
+		$this->layout = "ajax";
+        $this->autoLayout = false;
+        $this->autoRender = false;
+		$datatime=$this->request->data;
+		foreach($datatime as $index=>$data_t)
+		{
+			$options = array(
 				'recursive' => 0,
-				'conditions' => array('id'=>$id)
+				'conditions' => array('id'=>$index)
 				);				
-		$question = $this->Question->find('all', $options);
-
-		$time = $question[0]['Question']['time']+$t;
-		$count= $question[0]['Question']['count']+1;
-		$this->Question->id=$id;
-		$this->Question->save(
-									array(
-										'time' => $time,
-										'count' => $count
-									)
-								);
+			$question = $this->Question->find('all', $options);
+			$time = $question[0]['Question']['time']+$data_t;
+			$count= $question[0]['Question']['count']+1;
+			$this->Question->id=$index;
+			$this->Question->save(
+										array(
+											'time' => $time,
+											'count' => $count
+										)
+									);
+		}
 		exit();
 	}
 }

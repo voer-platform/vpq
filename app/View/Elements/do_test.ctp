@@ -139,6 +139,18 @@
     function submitTest(){
         $answered = $('ul.pagination').find('li.chose');
         if ($count == $answered.size()){
+			var a = {};
+			for(i=0;i<datatime.length;i++){
+				a[datatime[i]['id']] = datatime[i]['time']
+			}
+			$.ajax({
+				type:'POST',
+				data: a,
+				url:"<?php echo Router::url(array('controller'=>'tests','action'=>'timeQuestion'));?>/",
+				success:function(data){
+				}
+				
+			});	
             $('#TestAnswersDoTestForm').submit();			
         }else{
 			window.clearInterval(countdown);
@@ -163,35 +175,38 @@
 	
 		question_data();
 		
-		$(document).on('click','#submitTest',function(){
-			for(i=0;i<datatime.length;i++){
-				var url = '<?php echo Router::url(array('controller'=>'tests','action'=>'timeQuestion'));?>/' + datatime[i]['id'] + '/' + datatime[i]['time'];
-				$.getJSON(url, function( data ) {
-				});
-				console.log(datatime);
-			}
-		});
-		
         $('ul#questions').simplePaging({pageSize: "1"});
 
         $('button#sureSubmit').on('click', function(){
-            $('#TestAnswersDoTestForm').submit();
+			var a = {};
 			for(i=0;i<datatime.length;i++){
-				var url = '<?php echo Router::url(array('controller'=>'tests','action'=>'timeQuestion'));?>/' + datatime[i]['id'] + '/' + datatime[i]['time'];
-				$.getJSON(url, function( data ) {
-				});
-				console.log(datatime);
+				a[datatime[i]['id']] = datatime[i]['time']
 			}
+			$.ajax({
+				type:'POST',
+				data: a,
+				url:"<?php echo Router::url(array('controller'=>'tests','action'=>'timeQuestion'));?>/",
+				success:function(data){
+				}
+				
+			});	
+            $('#TestAnswersDoTestForm').submit();
         });
 		
 		$('button#sureSubmit2').on('click', function(){
-            $('#TestAnswersDoTestForm').submit();
+			var a = {};
 			for(i=0;i<datatime.length;i++){
-				var url = '<?php echo Router::url(array('controller'=>'tests','action'=>'timeQuestion'));?>/' + datatime[i]['id'] + '/' + datatime[i]['time'];
-				$.getJSON(url, function( data ) {
-				});
-				console.log(datatime);
+				a[datatime[i]['id']] = datatime[i]['time']
 			}
+			$.ajax({
+				type:'POST',
+				data: a,
+				url:"<?php echo Router::url(array('controller'=>'tests','action'=>'timeQuestion'));?>/",
+				success:function(data){
+				}
+				
+			});	
+            $('#TestAnswersDoTestForm').submit();
         });
 
         $('ul#questions .answer').find('label.btn').on('click', function(){
@@ -250,7 +265,6 @@
 			for(i=0;i<datatime.length;i++){
 				if(datatime[i]['id']==id){
 					datatime[i]['time']=datatime[i]['time']+ktg;
-					time=datatime[i]['time'];
 					if(i!=datatime.length-1){
 					id_question=datatime[i+1]['id'];
 					}
@@ -266,7 +280,6 @@
 			for(i=0;i<datatime.length;i++){
 					if(datatime[i]['id']==id_question){
 						datatime[i]['time']=datatime[i]['time']+ktg;
-						time=datatime[i]['time'];
 					}
 				}
 			console.log(datatime);
