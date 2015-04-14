@@ -60,7 +60,7 @@
 									<tr class="subcat cat-<?php echo $ac['Category']['id'] ?> sub-<?php echo $asc['id'] ?> <?php echo ($ac['Category']['id']==$categories_id ? "pre" : ""); ?>" data-id='<?php echo $ac['Category']['id'] ?>' data-sub='<?php echo $asc['id'] ?>'>
 										<td style='border: solid 1px #ddd;border-right:0px;' class="td-subcat" data-id='<?php echo $asc['id'] ?>'>
 										</td>
-										<td style="padding-left:0px;padding-right:0px;">
+										<td style="width:12px;padding-left:0px;padding-right:0px;">
 											<input type="checkbox" name="sub" class='chkbox-<?php echo $i;?> chksub chk-<?php echo $ac['Category']['id'] ?> ' id='sub-<?php echo $asc['id'] ?>' value="<?php echo $asc['id']?>" <?php echo (in_array($asc['id'],$pretracking) ? "checked" : ""); ?> />
 										</td>
 										<td style='border: solid 1px #ddd;border-left:0px;' class="td-subcat" data-id='<?php echo $asc['id'] ?>'>Bài: <?php echo $asc['name'] ?></td>
