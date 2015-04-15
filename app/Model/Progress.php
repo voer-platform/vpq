@@ -321,6 +321,11 @@ class Progress extends AppModel {
 			$sql['conditions'][] = 'Grade.id IN ('.$filterOptions['grades'].')';
 		}
 		
+		if(isset($filterOptions['subject']))
+		{
+			$sql['conditions'][] = "Subject.id = ".$filterOptions['subject'];
+		}	
+		
         $results = $this->find('all', $sql);
 		//pr($this->getDataSource()->getLog(false, false));
         return $results;

@@ -361,7 +361,30 @@ class TestsController extends AppController {
             // calculate progress
             $this->loadModel('Progress');
             $this->Progress->calculateProgress($user['id'], $scoreData);
-
+			//calcutale score for ranking
+			$this->loadModel('TestsSubject');
+			$subject = $this->TestsSubject->find('first', array('conditions'=>array('test_id'=>$testId)));
+			$subject_id = $subject['Subject']['id'];
+			
+			$totalScore = $this->Progress->progressOnSubject($user['id'], array('subject'=>$subject_id));
+			$totalScore = round($totalScore[0]['Progress']['sum_progress']/$totalScore[0]['Progress']['sum_total'], 2)*10;
+			
+			$this->loadModel('Ranking');
+			$subject_ranking = $this->Ranking->find('first', array('conditions'=>array('subject_id'=>$subject_id, 'person_id'=>$user['id'])));
+			if(empty($subject_ranking))
+			{
+				$this->Ranking->create();
+			}
+			$this->Ranking->updateAll(
+									array(
+										'person_id'	=>	$user['id'],
+										'subject_id'	=>	$subject_id,
+										'score'	=>	$totalScore,
+										'time_update'	=>	"'".date('Y-m-d H:i:s')."'"
+									),
+									array('subject_id'=>$subject_id, 'person_id'=>$user['id'])
+								);
+			
             $this->redirect(array('controller' => 'Scores', 'action' => 'viewDetails', $scoreId));
         }
         else {
