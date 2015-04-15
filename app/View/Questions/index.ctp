@@ -3,22 +3,28 @@
 	<table cellpadding="0" cellspacing="0" class="table table-striped table table-bordered">
 	<thead>
 	<tr>
-			<th><?php echo $this->Paginator->sort('id'); ?></th>
+			<th class="center"><?php echo $this->Paginator->sort('id'); ?></th>
 			<th><?php echo $this->Paginator->sort('content'); ?></th>
-			<th><?php echo $this->Paginator->sort('difficulty'); ?></th>
-			<th class="actions"><?php echo __('Actions'); ?></th>
+			<th class="center"><?php echo $this->Paginator->sort('total'); ?></th>
+			<th class="center"><?php echo $this->Paginator->sort('wrong'); ?></th>
+			<th class="center"><?php echo $this->Paginator->sort('_difficulty', 'difficulty'); ?></th>
+			<th class="center"><?php echo $this->Paginator->sort('_averange_time', 'Average time'); ?></th>
+			<th class="actions center"><?php echo __('Actions'); ?></th>
 	</tr>
 	</thead>
 	<tbody>
 	<?php foreach ($questions as $question): ?>
 	<tr>
-		<td><?php echo h($question['Question']['id']); ?>&nbsp;</td>
-		<td><?php echo html_entity_decode($question['Question']['content']); ?>&nbsp;</td>
-		<td><?php echo h($question['Question']['difficulty']); ?>&nbsp;</td>
-		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $question['Question']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $question['Question']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $question['Question']['id']), array(), __('Are you sure you want to delete # %s?', $question['Question']['id'])); ?>
+		<td class="center"><?php echo h($question['Question']['id']); ?>&nbsp;</td>
+		<td width="600"><?php echo html_entity_decode($question['Question']['content']); ?>&nbsp;</td>
+		<td class="center"><?php echo $question['Question']['count']; ?></td>
+		<td class="center"><?php echo $question['Question']['wrong']; ?></td>
+		<td class="center"><?php echo ($question['Question']['count']>0)?$question['Question']['_difficulty']:'0'; ?></td>
+		<td class="center"><?php echo ($question['Question']['count']>0)?$question['Question']['_averange_time']:'0'; ?></td>
+		<td class="actions center">
+			<?php echo $this->Html->link(__('View'), array('action' => 'view', $question['Question']['id']), array('class'=>'btn btn-default btn-xs')); ?>
+			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $question['Question']['id']), array('class'=>'btn btn-default btn-xs')); ?>
+			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $question['Question']['id']), array('class'=>'btn btn-danger btn-xs'), __('Are you sure you want to delete # %s?', $question['Question']['id'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
