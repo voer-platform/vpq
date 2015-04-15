@@ -371,21 +371,23 @@ class TestsController extends AppController {
 			
 			$this->loadModel('Ranking');
 			$subject_ranking = $this->Ranking->find('first', array('conditions'=>array('subject_id'=>$subject_id, 'person_id'=>$user['id'])));
+			$ranking_data = array(
+								'person_id'	=>	$user['id'],
+								'subject_id'	=>	$subject_id,
+								'score'	=>	$totalScore,
+								'time_update'	=>	date('Y-m-d H:i:s')
+							);
 			if(empty($subject_ranking))
 			{
 				$this->Ranking->create();
+				$this->Ranking->save($ranking_data);
 			}
-			$this->Ranking->updateAll(
-									array(
-										'person_id'	=>	$user['id'],
-										'subject_id'	=>	$subject_id,
-										'score'	=>	$totalScore,
-										'time_update'	=>	"'".date('Y-m-d H:i:s')."'"
-									),
-									array('subject_id'=>$subject_id, 'person_id'=>$user['id'])
-								);
-			
-            $this->redirect(array('controller' => 'Scores', 'action' => 'viewDetails', $scoreId));
+			else
+			{
+				$ranking_data['time_update'] = "'".date('Y-m-d H:i:s')."'";
+				$this->Ranking->updateAll($ranking_data, array('subject_id'=>$subject_id, 'person_id'=>$user['id']));
+			}
+			$this->redirect(array('controller' => 'Scores', 'action' => 'viewDetails', $scoreId));
         }
         else {
             $this->redirect('chooseTest');

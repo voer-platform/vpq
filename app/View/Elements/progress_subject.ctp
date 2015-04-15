@@ -33,6 +33,19 @@
 		<div class="row dashboard-subject-container">
 			<div class="col-md-2">
 				<h2 class="dashboard-subject-name"><?php echo $this->Html->image('physical.png'); ?> <?php echo $progress['Subject']['name']; ?></h2>
+					<p>
+						
+						<a href="javascript:void(0);" 
+							class="hasDetail pls-popover" 
+							data-type="Ranking Popover" 
+							data-trigger="hover" 
+							data-container="body" 
+							data-toggle="popover" 
+							data-placement="right" 
+							data-content="Bạn đang đứng vị trí số <?php echo $rankings[$progress['Subject']['id']]; ?> trong bảng xếp hạng của môn <?php echo $progress['Subject']['name']; ?>" 
+							data-original-title=""><span class="glyphicon glyphicon-question-sign"></span></a>
+							Vị trí xếp hạng: <b><?php echo $rankings[$progress['Subject']['id']]; ?></b>
+					</p>
 					<a href="<?php 
 						echo $this->Html->url(
 							array(

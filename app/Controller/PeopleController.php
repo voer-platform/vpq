@@ -329,7 +329,10 @@ class PeopleController extends AppController {
 		$subject_id = 2;
 		$chart = json_encode($this->Score->getChartData($user_id, $subject_id, array('type'=>'tentimes')));
 		
+		$this->loadModel('Ranking');
+		$ranking_data = $this->Ranking->getSubjectRanking($user_id);
 		
+		$this->set('rankings', $ranking_data);
         $this->set('progresses', $progresses);
         //$this->set('scores', $scores);
         $this->set('cover', $cover);
