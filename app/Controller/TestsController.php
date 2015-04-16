@@ -212,6 +212,7 @@ class TestsController extends AppController {
 				}
 				$this->set('strtracking',$strtracking);				
 			}
+			$this->set('user_id',$user['id']);
 			$this->set('categories_id',$categories_id);
 			$this->set('grade_id',$grade_id);
 			$this->set('pretracking',$pretracking);

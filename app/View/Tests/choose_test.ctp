@@ -9,6 +9,7 @@
     <hr />
 	<!--<?php echo __('Test').': '.$this->Name->subjectToName($subject); ?>-->
     <form role="form" class="form-horizontal" id="preDoTest" method="POST">
+	<input type='hidden' value='<?php echo $user_id; ?>' id='user_id' />
 	<br/>
 		
 		<div class="col-sm-6 col-sm-offset-3">
@@ -158,6 +159,11 @@ function doTest(t){
 			 if(data<t){			
 				showMessage('Không thể làm bài kiểm tra', 'Dữ liệu hiện tại không đủ để thực hiện bài kiểm tra này', 'error', 'glyphicon-remove-sign');
 			 }else{
+				var id = $('#user_id').attr('value');
+				mixpanel.track("Do Test", {
+					"test_time": t,
+					"user_id":id,
+				});
 				$("#preDoTest").attr("action", "/Tests/doTest/" + t + "/" + $subject + "/");
 				$('#preDoTest').submit();
 			 }
