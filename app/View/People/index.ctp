@@ -3,29 +3,29 @@
 	<table cellpadding="0" cellspacing="0" class="table table-striped table table-bordered">
 	<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
-			<th><?php echo $this->Paginator->sort('first_name'); ?></th>
-			<th><?php echo $this->Paginator->sort('last_name'); ?></th>
+			<th><?php echo $this->Paginator->sort('fullname', __('Fullname')); ?></th>
 			<th><?php echo $this->Paginator->sort('birthday'); ?></th>
-			<th><?php echo $this->Paginator->sort('password'); ?></th>
-			<th><?php echo $this->Paginator->sort('date_created'); ?></th>
-			<th><?php echo $this->Paginator->sort('role'); ?> </th>
-			<th><?php echo $this->Paginator->sort('facebook'); ?></th>
+			<th><?php echo $this->Paginator->sort('gender'); ?></th>
+			<th><?php echo $this->Paginator->sort('grade'); ?></th>
+			<th><?php echo $this->Paginator->sort('school', __('school')); ?></th>
+			<th><?php echo $this->Paginator->sort('address', __('address')); ?></th>
+			<th><?php echo $this->Paginator->sort('role', __('role')); ?> </th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	<?php foreach ($people as $person): ?>
 	<tr>
-		<td><?php echo h($person['Person']['id']); ?>&nbsp;</td>
-		<td><?php echo h($person['Person']['first_name']); ?>&nbsp;</td>
-		<td><?php echo h($person['Person']['last_name']); ?>&nbsp;</td>
-		<td><?php echo h($person['Person']['birthday']); ?>&nbsp;</td>
-		<td><?php echo h($person['Person']['password']); ?>&nbsp;</td>
-		<td><?php echo h($person['Person']['date_created']); ?>&nbsp;</td>
+		<td><?php echo h($person['Person']['id']); ?></td>
+		<td><?php echo h($person['Person']['fullname']); ?></td>
+		<td><?php echo h($person['Person']['birthday']); ?></td>
+		<td><?php echo h($person['Person']['_gen']); ?></td>
+		<td><?php echo h($person['Person']['grade']); ?></td>
+		<td><?php echo h($person['Person']['school']); ?></td>
+		<td><?php echo h($person['Province']['name']); ?></td>
 		<td><?php echo h($person['Person']['role']); ?></td>
-		<td><?php echo h($person['Person']['facebook']); ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $person['Person']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $person['Person']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $person['Person']['id']), null, __('Are you sure you want to delete # %s?', $person['Person']['id'])); ?>
+			<?php echo $this->Html->link(__('View'), array('action' => 'view', $person['Person']['id']), array('class'=>'btn btn-default btn-xs')); ?>
+			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $person['Person']['id']), array('class'=>'btn btn-default btn-xs')); ?>
+			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $person['Person']['id']), array('class'=>'btn btn-danger btn-xs'), __('Are you sure you want to delete # %s?', $person['Person']['id'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>

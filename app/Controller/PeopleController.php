@@ -55,6 +55,8 @@ class PeopleController extends AppController {
  * @return void
  */
     public function index() {
+		$this->Person->virtualFields['_gen'] = "IF(Person.gender=1, 'Nam', 'Nữ')";
+		$this->paginate = array('escape'=>false,'fields'=>array('Person.*', 'Province.name', '_gen'));
         $this->Person->recursive = 0;
         $this->set('people', $this->Paginator->paginate());
     }
@@ -194,13 +196,6 @@ class PeopleController extends AppController {
             $fb_user = $this->Facebook->getUser();          # Returns facebook user_id
             if ($fb_user){
                 $fb_user = $this->Facebook->api('/me');     # Returns user information
-                $picture = $this->Facebook->api('/me/picture?height=200&width=200&redirect=false');        # FB picture
-                if(isset($fb_user['birthday'])){
-                    $birthday = date('Y-m-d', strtotime($fb_user['birthday']));
-                }
-                else {
-                    $birthday = '2000-01-01';
-                }
 
                 // We will varify if a local user exists first
                 $local_user = $this->Person->find('first', array(
@@ -209,25 +204,15 @@ class PeopleController extends AppController {
 
                 // If exists, we will log them in
                 if ($local_user){
-                    // update data after login.
-                    /*$this->Person->updateAll(
-                        array(
-							'fullname'	=>	'\''.$fb_user['first_name'].' '.$fb_user['first_name'].'\'',
-                            'first_name'=> '\''.$fb_user['first_name'].'\'',
-                            'last_name'=> '\''.$fb_user['last_name'].'\'',
-                            'image'=> '\''.$picture['data']['url'].'\'',
-                            'birthday' => $birthday,
-                            'date_modified' => '\''.date("Y-m-d H:i:s").'\'',
-                        ),
-                        array( 'facebook' => $fb_user['id'])
-                    );*/
-
-                    // $log = $this->Person->getDataSource()->getLog(false, false);
-                    // debug($log);
-
                     $this->Auth->login($local_user['Person']);            # Manual Login
+					//Create access string for remember login
+					$access_string = $local_user['Person']['facebook'].'|'.Security::hash($local_user['Person']['password'], 'md5', $local_user['Person']['salt']);
+					$encrypted_access_string = Security::cipher($access_string, Configure::read('Security.key'));
+					
 					//Save user data to cookie
-					$this->Cookie->write('remember', $local_user['Person'], false, 31536000);
+					$this->Cookie->delete('remember');
+					$this->Cookie->write('reaccess', $encrypted_access_string, false, 31536000);
+					
 					$firstTimeLogin = $this->request->query('code');
 					if($firstTimeLogin=='true')
 					{
@@ -241,9 +226,21 @@ class PeopleController extends AppController {
 
                 // Otherwise we ll add a new user (Registration)
                 else {
+					$picture = $this->Facebook->api('/me/picture?height=200&width=200&redirect=false');        # FB picture
+					if(isset($fb_user['birthday'])){
+						$birthday = date('d/m/Y', strtotime($fb_user['birthday']));
+					}
+					else {
+						$birthday = '01/01/2000';
+					}
+				
+					$password = AuthComponent::password(uniqid(md5(mt_rand()))); # Set random password
+					$salt = rand(10000, 99999); #Make random salt number
+				
                     $data['Person'] = array(
                         'facebook'          => $fb_user['id'],
-                        'password'          => AuthComponent::password(uniqid(md5(mt_rand()))), # Set random password
+                        'password'          => $password,
+						'salt'				=> $salt,
                         'fullname'			=> $fb_user['last_name'].' '.$fb_user['first_name'],
 						'first_name'        => $fb_user['first_name'],
                         'birthday'          => $birthday,
@@ -279,7 +276,7 @@ class PeopleController extends AppController {
  */
     public function logout() {
         $this->Auth->logout();
-		$this->Cookie->delete('remember');
+		$this->Cookie->delete('reaccess');
         return $this->redirect($this->Auth->loginAction);
     }
 

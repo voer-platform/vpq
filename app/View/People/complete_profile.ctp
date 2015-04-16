@@ -24,7 +24,7 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Ngày sinh</label>
 							<div class="col-sm-9">
-								<input type="text" name="birthday" class="form-control datepicker" value="<?php echo $this->Date->toVnDate($user['birthday']); ?>" />
+								<input type="text" name="birthday" class="form-control datepicker" value="<?php echo $user['birthday']; ?>" />
 							</div>	
 						</div>
 						<div class="form-group">

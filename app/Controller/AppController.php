@@ -20,7 +20,7 @@
  */
 
 App::uses('Controller', 'Controller');
-
+Configure::write('Security.key', 'ac87dfd989d8ffjdsg545fdsf878jriouewtu88435345');
 /**
  * Application Controller
  *
@@ -100,11 +100,20 @@ class AppController extends Controller {
 		
 		if(!$this->Auth->loggedIn()){
 			//if user not logged in, check cookie then auto login
-			$remember = $this->Cookie->read('remember');
+			$remember = $this->Cookie->read('reaccess');
             if($remember)
 			{
-				$this->Auth->login($remember);
-				$this->redirect(array('controller' => 'people', 'action' => 'dashboard'));
+				$access_string = $this->Cookie->read('reaccess');
+				$decryped_access_string = Security::cipher($access_string, Configure::read('Security.key'));
+				$access_info = explode('|', $decryped_access_string);
+				$this->loadModel('Person');
+				$user_exists = $this->Person->find('first', array('conditions'=>array('facebook'=>$access_info[0])));
+				if(!empty($user_exists) && 
+					$access_info[1]==Security::hash($user_exists['Person']['password'], 'md5', $user_exists['Person']['salt']))
+				{
+					$this->Auth->login($user_exists['Person']);
+					$this->redirect(array('controller' => 'people', 'action' => 'dashboard'));
+				}
 			}
 		}
 		
