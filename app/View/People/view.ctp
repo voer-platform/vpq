@@ -12,12 +12,15 @@
 					<p><span class="glyphicon glyphicon glyphicon-heart"></span>&nbsp; <?php echo __('Gender:'); ?> <?php echo ($person['Person']['gender']==1)?'Nam':'Nữ'; ?></p>
 					<p><span class="glyphicon glyphicon-education"></span>&nbsp; <?php echo __('Student:'); ?> <?php echo h($person['Person']['grade']); ?><?php if($person['Person']['school']){ echo ', '.h($person['Person']['school']); } ?></p>
 					<p><span class="glyphicon glyphicon-home"></span>&nbsp; <?php echo __('Address:'); ?> <?php echo h($person['Province']['name']); ?></p>
-					<button class="btn btn-default btn-xs" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-cog"></span> Chỉnh sửa thông tin cá nhân</button></a>
+					<?php if($user['id']== $person['Person']['id']){ ?>
+						<button class="btn btn-default btn-xs" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-cog"></span> Chỉnh sửa thông tin cá nhân</button></a>
+					<?php } ?>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+<?php if($user['id']== $person['Person']['id']){ ?>
 <!-- Modal -->
 <div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog w-450">
@@ -73,6 +76,7 @@
 		</form>
 	</div>
 </div>
+<?php } ?>
 <!--<div class="people view">
 <h2></h2>
 	<dl>
