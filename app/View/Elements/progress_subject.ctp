@@ -33,6 +33,7 @@
 		<div class="row dashboard-subject-container">
 			<div class="col-md-2">
 				<h2 class="dashboard-subject-name"><?php echo $this->Html->image('physical.png'); ?> <?php echo $progress['Subject']['name']; ?></h2>
+					<?php if(!empty($rankings)){ ?>
 					<p>
 						
 						<a href="javascript:void(0);" 
@@ -46,6 +47,7 @@
 							data-original-title=""><span class="glyphicon glyphicon-question-sign"></span></a>
 							Vị trí xếp hạng: <b><?php echo $rankings[$progress['Subject']['id']]; ?></b>
 					</p>
+					<?php } ?>
 					<a href="<?php 
 						echo $this->Html->url(
 							array(
