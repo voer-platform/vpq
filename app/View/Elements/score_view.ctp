@@ -1,5 +1,5 @@
 <div id='doTest'>
-    <div id="center">
+    <div id="left">
         <ul id="questions">
         <?php $wrong_list = array(); ?>
 		<?php $true_list = array(); ?>
@@ -76,7 +76,7 @@
         <?php endforeach;?>
         </ul>
     </div>
-    <!--<div id="right">
+    <div id="right">
         <div class="test-info">
             <div class="title">Thông tin</div>
             <table>
@@ -110,7 +110,7 @@
             <?php echo $this->Html->link(__('Go to dashboard'), array('controller' => 'people', 'action' => 'dashboard'), array('class' => 'btn btn-dashboard')) ?>
             <?php echo $this->Html->link(__('Take this test again'), array('controller' => 'tests', 'action' => 'doTest', 0, 0, $test_id), array('class' => 'btn btn-retake')) ?>
         </div>
-    </div>-->
+    </div>
     <div style="clear:both;"></div>
 </div>
 
