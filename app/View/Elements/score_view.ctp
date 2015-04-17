@@ -1,3 +1,10 @@
+<?php $this->start('meta'); ?>
+<meta property="og:url" content="<?php echo Router::url( $this->here, true ); ?>" />
+<meta property="og:title" content="<?php printf(__('%s has just scored %d on total %d questions on PLS.'), $user['fullname'], $correct, $numberOfQuestions); ?>" />
+<meta property="og:description" content="<?php printf(__('Test on PLS about...')); ?>" />
+<meta property="og:image" content="<?php echo Router::url('/', true).'/img/home3.png'; ?>" />
+<?php $this->end(); ?>
+
 <div id='doTest'>
     <div id="left">
         <ul id="questions">
@@ -98,6 +105,8 @@
             <div><?php echo __('Score'); ?></div>
             <div id="countdown"><?php echo round($correct/$numberOfQuestions,2)*10; ?></div>
             <div id="details"><?php echo __('Correct').': '.'<b>'.$correct.'</b>'.' '.__('on').' '.__('Total').': '.'<b>'.$numberOfQuestions.'</b>'.' '.__('questions').'.'; ?></div>
+            <div class="fb-share-button" data-href="<?php echo Router::url($this->here, true); ?>" data-layout="button_count"></div>
+            </br>
 			<?php if(round($correct/$numberOfQuestions,2)*10>8): ?>
 				<?php echo $this->Html->image('icon1.png',array('style' => 'max-width:120px',)); ?>
 			<?php endif; ?>
