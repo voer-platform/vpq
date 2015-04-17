@@ -148,10 +148,9 @@
 				data: a,
 				url:"<?php echo Router::url(array('controller'=>'tests','action'=>'timeQuestion'));?>/",
 				success:function(data){
-				}
-				
-			});	
-            $('#TestAnswersDoTestForm').submit();			
+					$('#TestAnswersDoTestForm').submit();
+				}				
+			});	            			
         }else{
 			window.clearInterval(countdown);
             $('#msgNotice').modal({
@@ -186,10 +185,9 @@
 				data: a,
 				url:"<?php echo Router::url(array('controller'=>'tests','action'=>'timeQuestion'));?>/",
 				success:function(data){
-				}
-				
-			});	
-            $('#TestAnswersDoTestForm').submit();
+					$('#TestAnswersDoTestForm').submit();
+				}				
+			});	            
         });
 		
 		$('button#sureSubmit2').on('click', function(){
@@ -202,10 +200,10 @@
 				data: a,
 				url:"<?php echo Router::url(array('controller'=>'tests','action'=>'timeQuestion'));?>/",
 				success:function(data){
-				}
-				
+					$('#TestAnswersDoTestForm').submit();
+				}				
 			});	
-            $('#TestAnswersDoTestForm').submit();
+            
         });
 
         $('ul#questions .answer').find('label.btn').on('click', function(){
