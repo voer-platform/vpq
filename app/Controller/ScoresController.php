@@ -15,6 +15,13 @@ class ScoresController extends AppController {
  */
 	public $components = array('Paginator', 'Pls');
 /**
+ * Before filter
+ */
+    public beforeFilter(){
+        parent::beforeFilter();  
+       $this->Auth->allow('viewDetails');
+    }
+/**
  * authorization
  * 
  */
