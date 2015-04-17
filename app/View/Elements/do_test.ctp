@@ -166,7 +166,6 @@
 			var id = $('#dotestQuestions'+s).attr('data-id');
 			timequestion={id:id,time:0};
 			datatime[i]=timequestion;
-			console.log(datatime);
 		}
 		id_question=datatime[0]['id'];
 	}
@@ -270,7 +269,6 @@
 					}
 				}
 			}
-			console.log(datatime);
 		});
 
 		$('ul.simplePagerNav li a').click(function(){			
@@ -282,7 +280,6 @@
 						datatime[i]['time']=datatime[i]['time']+ktg;
 					}
 				}
-			console.log(datatime);
 			starttime=endtime;
 			var rel = $(this).attr('rel');
 			id_question = $('.simplePagerPage'+rel).attr('data-id');		
