@@ -195,4 +195,48 @@ class AdminController extends AppController {
 
 		$this->set('data', $data);
 	}
+/**
+ * rebuild ranking table
+ */
+	public function rebuildRanking()
+	{
+		$this->autoRender = false;
+		$this->loadModel('Subject');
+		$this->loadModel('Person');
+		$this->loadModel('Ranking');
+		$this->loadModel('Progress');
+		$subjects = $this->Subject->find('list');
+		$people = $this->Person->find('list');
+		foreach($subjects AS $subject_id => $subject)
+		{
+			foreach($people AS $person_id=>$person)
+			{
+				$totalScore = $this->Progress->progressOnSubject($person_id, array('subject'=>$subject_id));
+				if(!empty($totalScore))
+				{
+					$totalScore = round($totalScore[0]['Progress']['sum_progress']/$totalScore[0]['Progress']['sum_total'], 2)*10;
+					
+					$subject_ranking = $this->Ranking->find('first', array('conditions'=>array('subject_id'=>$subject_id, 'person_id'=>$person_id)));
+					$ranking_data = array(
+										'person_id'	=>	$person_id,
+										'subject_id'	=>	$subject_id,
+										'score'	=>	$totalScore,
+										'time_update'	=>	date('Y-m-d H:i:s')
+									);
+					if(empty($subject_ranking))
+					{
+						$this->Ranking->create();
+						$this->Ranking->save($ranking_data);
+					}
+					else
+					{
+						$ranking_data['time_update'] = "'".date('Y-m-d H:i:s')."'";
+						$this->Ranking->updateAll($ranking_data, array('subject_id'=>$subject_id, 'person_id'=>$person_id));
+					}
+				}
+			}
+		}
+		$this->Session->setFlash(__('Ranking data refreshed.'));
+		$this->redirect(array('controller' =>'Admin', 'action' => 'index'));
+	}
 }

@@ -8,6 +8,7 @@
 			<th class="center"><?php echo $this->Paginator->sort('total'); ?></th>
 			<th class="center"><?php echo $this->Paginator->sort('wrong'); ?></th>
 			<th class="center"><?php echo $this->Paginator->sort('_difficulty', 'difficulty'); ?></th>
+			<th class="center"><?php echo $this->Paginator->sort('time', 'Total time'); ?></th>
 			<th class="center"><?php echo $this->Paginator->sort('_averange_time', 'Average time'); ?></th>
 			<th class="actions center"><?php echo __('Actions'); ?></th>
 	</tr>
@@ -16,10 +17,11 @@
 	<?php foreach ($questions as $question): ?>
 	<tr>
 		<td class="center"><?php echo h($question['Question']['id']); ?>&nbsp;</td>
-		<td width="600"><?php echo html_entity_decode($question['Question']['content']); ?>&nbsp;</td>
+		<td width="500"><?php echo html_entity_decode($question['Question']['content']); ?>&nbsp;</td>
 		<td class="center"><?php echo $question['Question']['count']; ?></td>
 		<td class="center"><?php echo $question['Question']['wrong']; ?></td>
 		<td class="center"><?php echo ($question['Question']['count']>0)?$question['Question']['_difficulty']:'0'; ?></td>
+		<td class="center"><?php echo $question['Question']['time']; ?></td>
 		<td class="center"><?php echo ($question['Question']['count']>0)?$question['Question']['_averange_time']:'0'; ?></td>
 		<td class="actions center">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $question['Question']['id']), array('class'=>'btn btn-default btn-xs')); ?>
