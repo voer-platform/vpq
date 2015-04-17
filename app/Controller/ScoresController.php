@@ -17,7 +17,7 @@ class ScoresController extends AppController {
 /**
  * Before filter
  */
-    public beforeFilter(){
+    public function beforeFilter(){
         parent::beforeFilter();  
        $this->Auth->allow('viewDetails');
     }
