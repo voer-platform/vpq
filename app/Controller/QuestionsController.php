@@ -23,7 +23,7 @@ class QuestionsController extends AppController {
  * @return void
  */
 	public function index() {
-		$this->Question->virtualFields['_difficulty'] = 'ROUND(Question.wrong/Question.count, 0)';
+		$this->Question->virtualFields['_difficulty'] = 'ROUND((Question.wrong/Question.count)*10, 0)';
 		$this->Question->virtualFields['_averange_time'] = 'ROUND(Question.time/Question.count, 2)';
 		$this->paginate = array('escape'=>false,'fields'=>array('Question.*', '_difficulty', '_averange_time'));
 		$this->Question->recursive = 0;
