@@ -6,13 +6,13 @@
 	<div class="col-md-4">
 	<h2 class="right">
 		<div class="form-inline">
-			<select class="form-control w-200 inline" onChange="window.location.href='<?php echo $this->html->url(array('controller'=>'admin', 'action'=>'ranking')); ?>'+this.value;">
+			<select class="form-control w-200 inline" onChange="window.location.href='<?php echo $this->Html->url(array('controller'=>'admin', 'action'=>'ranking')); ?>'+this.value;">
 				<option value="">Tất cả môn học</option>
 				<?php foreach($subjects AS $subject_id=>$subject){ ?>
 					<option value="/subject:<?php echo $subject_id; ?>" <?php if(isset($current_subject) && $subject_id==$current_subject) echo 'selected'; ?>><?php echo $subject; ?></option>
 				<?php } ?>
 			</select>
-			<a class="btn btn-danger" href="<?php echo $this->html->url(array('controller'=>'admin', 'action'=>'rebuildRanking')); ?>" onClick="return confirm('<?php echo __('Are you sure?'); ?>');"><?php echo __('Rebuild data'); ?></a>
+			<a class="btn btn-danger" href="<?php echo $this->Html->url(array('controller'=>'admin', 'action'=>'rebuildRanking')); ?>" onClick="return confirm('<?php echo __('Are you sure?'); ?>');"><?php echo __('Rebuild data'); ?></a>
 		</div>	
 	</h2>	
 	</div>	
