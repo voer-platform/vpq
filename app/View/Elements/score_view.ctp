@@ -98,6 +98,12 @@
             <div><?php echo __('Score'); ?></div>
             <div id="countdown"><?php echo round($correct/$numberOfQuestions,2)*10; ?></div>
             <div id="details"><?php echo __('Correct').': '.'<b>'.$correct.'</b>'.' '.__('on').' '.__('Total').': '.'<b>'.$numberOfQuestions.'</b>'.' '.__('questions').'.'; ?></div>
+			<?php if(round($correct/$numberOfQuestions,2)*10>=8): ?>
+				<?php echo $this->Html->image('tomandjerry.png',array('style' => 'max-width:120px',)); ?>
+			<?php endif; ?>
+			<?php if(round($correct/$numberOfQuestions,2)*10<=5): ?>
+				<?php echo $this->Html->image('sad.gif',array('style' => 'max-width:120px',)); ?>
+			<?php endif; ?>
             <div class="btn-questions">
                <button class="btn show-answers" id="btn-show-answers"><?php echo __('Show Answers'); ?></button>
                <button class="btn show-solutions" id="btn-show-solutions"><?php echo __('Show Solutions'); ?></button>
@@ -106,7 +112,6 @@
         <div class="options">
             <?php echo $this->Html->link(__('Go to dashboard'), array('controller' => 'people', 'action' => 'dashboard'), array('class' => 'btn btn-dashboard')) ?>
             <!--<?php echo $this->Html->link(__('Take this test again'), array('controller' => 'tests', 'action' => 'doTest', 0, 0, $test_id), array('class' => 'btn btn-retake')) ?>-->
-
         </div>
     </div>
     <div style="clear:both;"></div>

@@ -306,6 +306,16 @@ class TestsController extends AppController {
 											)
 										);
 				}*/
+				foreach($questions as $ques)
+				{
+					$count= $ques['Question']['count']+1;
+					$this->Question->id=$ques['Question']['id'];
+					$this->Question->save(
+											array(
+												'count' => $count
+											)
+										);
+				}
 				$this->Tracking->id=$user['id'];
 				$this->Tracking->save(
 											array(
@@ -425,12 +435,10 @@ class TestsController extends AppController {
 				);				
 			$question = $this->Question->find('all', $options);
 			$time = $question[0]['Question']['time']+$data_t;
-			$count= $question[0]['Question']['count']+1;
 			$this->Question->id=$index;
 			$this->Question->save(
 										array(
 											'time' => $time,
-											'count' => $count
 										)
 									);
 		}
