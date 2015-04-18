@@ -1,8 +1,8 @@
 <?php $this->start('meta'); ?>
 <link href="<?php echo Router::url( $this->here, true ); ?>" rel="canonical">
 <meta property="og:url" content="<?php echo Router::url( $this->here, true ); ?>" />
-<meta property="og:title" content="<?php printf(__('%s has just scored %d on total %d questions on PLS.'), $user['fullname'], $correct, $numberOfQuestions); ?>" />
-<meta property="og:description" content="<?php printf(__('Test on PLS about...')); ?>" />
+<meta property="og:title" content="<?php printf(__('%s has just scored %d on total %d questions on PLS.'), $userInfo['fullname'], $correct, $numberOfQuestions); ?>" />
+<meta property="og:description" content="<?php printf(__('Test on subject %s'), $subject['Subject']['name']); ?>" />
 <meta property="og:image" content="<?php echo Router::url('/', true).'/img/home3.png'; ?>" />
 <?php $this->end(); ?>
 
