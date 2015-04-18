@@ -1,3 +1,11 @@
+<?php $this->start('meta'); ?>
+<link href="<?php echo Router::url( $this->here, true ); ?>" rel="canonical">
+<meta property="og:url" content="<?php echo Router::url( $this->here, true ); ?>" />
+<meta property="og:title" content="<?php printf(__('%s has just scored %d on total %d questions on PLS.'), $userInfo['fullname'], $correct, $numberOfQuestions); ?>" />
+<meta property="og:description" content="<?php printf(__('Test on subject %s'), $subject['Subject']['name']); ?>" />
+<meta property="og:image" content="<?php echo Router::url('/', true).'/img/home3.png'; ?>" />
+<?php $this->end(); ?>
+
 <div id='doTest'>
     <div id="left">
         <ul id="questions">
@@ -100,7 +108,23 @@
 				<?php echo round($correct/$numberOfQuestions,2)*10; ?>				
 			</div>
             <div id="details"><?php echo __('Correct').': '.'<b>'.$correct.'</b>'.' '.__('on').' '.__('Total').': '.'<b>'.$numberOfQuestions.'</b>'.' '.__('questions').'.'; ?></div>
-			
+            <div class="fb-share-button" data-href="<?php echo Router::url($this->here, true); ?>" data-layout="button_count"></div>
+            </br>
+			<?php if(round($correct/$numberOfQuestions,2)*10>8): ?>
+				<?php echo $this->Html->image('icon1.png',array('style' => 'max-width:120px',)); ?>
+			<?php endif; ?>
+			<?php if(round($correct/$numberOfQuestions,2)*10==8 || round($correct/$numberOfQuestions,2)*10==7): ?>
+				<?php echo $this->Html->image('icon3.png',array('style' => 'max-width:120px',)); ?>
+			<?php endif; ?>
+			<?php if(round($correct/$numberOfQuestions,2)*10==6 || round($correct/$numberOfQuestions,2)*10==5): ?>
+				<?php echo $this->Html->image('icon7.png',array('style' => 'max-width:120px',)); ?>
+			<?php endif; ?>
+			<?php if(round($correct/$numberOfQuestions,2)*10==4 || round($correct/$numberOfQuestions,2)*10==3): ?>
+				<?php echo $this->Html->image('icon6.png',array('style' => 'max-width:120px',)); ?>
+			<?php endif; ?>
+			<?php if(round($correct/$numberOfQuestions,2)*10<3): ?>
+				<?php echo $this->Html->image('icon5.png',array('style' => 'max-width:120px',)); ?>
+			<?php endif; ?>
             <div class="btn-questions">
                <button class="btn show-answers" id="btn-show-answers"><?php echo __('Show Answers'); ?></button>
                <button class="btn show-solutions" id="btn-show-solutions"><?php echo __('Show Solutions'); ?></button>

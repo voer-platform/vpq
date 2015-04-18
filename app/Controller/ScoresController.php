@@ -15,6 +15,13 @@ class ScoresController extends AppController {
  */
 	public $components = array('Paginator', 'Pls');
 /**
+ * Before filter
+ */
+    public function beforeFilter(){
+        parent::beforeFilter();  
+       $this->Auth->allow('viewDetails');
+    }
+/**
  * authorization
  * 
  */
@@ -135,7 +142,7 @@ class ScoresController extends AppController {
 
 		$this->loadModel('ScoresQuestion');
 
-		$this->Score->unbindModel(array('belongsTo' => array('Person')));
+		// $this->Score->unbindModel(array('belongsTo' => array('Person')));
 		$score = $this->Score->find('first', array('conditions' => array('Score.id' => $id), 'recursive' => 0) );
 		$scoreData = $this->ScoresQuestion->find('all', array(
 			'recursive' => -1,
@@ -154,6 +161,7 @@ class ScoresController extends AppController {
         $subject = $this->TestsSubject->find('first', array('conditions' => array('TestsSubject.test_id' => $score['Test']['id'])));
 
 		ksort($scoreData); // sort the data to match result from $questions
+        $this->set('userInfo', $score['Person']);
         $this->set('subject', $subject);
         $this->set('test_id', $score['Score']['test_id']);
 		$this->set('questionsData', $questions);
