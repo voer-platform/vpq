@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "POT-Creation-Date: 2015-04-13 11:09+0700\n"
-"PO-Revision-Date: 2015-04-13 14:41+0700\n"
+"PO-Revision-Date: 2015-04-18 08:43+0700\n"
 "Last-Translator: Viet Vu <vietvudanh@gmail.com>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "Language: vi\n"
@@ -1482,7 +1482,7 @@ msgstr "Personal Learning System"
 
 #: View/Pages/home.ctp:4 View/Pages/home1.ctp:4 View/Pages/home2.ctp:4
 msgid "Where you can learn anything!"
-msgstr "Nơi có thể học bất cứ cái gì"
+msgstr "Hệ thống giúp bạn học tất cả!"
 
 #: View/Pages/home.ctp:100;239 View/Pages/home1.ctp:42
 #: View/Pages/home2.ctp:42;135

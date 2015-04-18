@@ -136,4 +136,7 @@
 	padding-left:20px;
 }
 .right {text-align:right;}
+.ib {display:inline-block;}
+.inline {display:inline;}
 .w-450 {width:450px;}
+.w-200 {width:200px;}

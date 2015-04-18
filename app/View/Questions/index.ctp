@@ -5,7 +5,7 @@
 	<tr>
 			<th class="center"><?php echo $this->Paginator->sort('id'); ?></th>
 			<th><?php echo $this->Paginator->sort('content'); ?></th>
-			<th class="center"><?php echo $this->Paginator->sort('total'); ?></th>
+			<th class="center"><?php echo $this->Paginator->sort('count', __('Total')); ?></th>
 			<th class="center"><?php echo $this->Paginator->sort('wrong'); ?></th>
 			<th class="center"><?php echo $this->Paginator->sort('_difficulty', 'difficulty'); ?></th>
 			<th class="center"><?php echo $this->Paginator->sort('time', 'Total time'); ?></th>

@@ -196,6 +196,29 @@ class AdminController extends AppController {
 		$this->set('data', $data);
 	}
 /**
+ * display ranking table
+ */
+ 
+	public function ranking()
+	{
+		$this->loadModel('Ranking');
+		$this->loadModel('Subject');
+		$subjects = $this->Subject->find('list');
+		$options = array();
+		if(isset($this->request->params['named']['subject']))
+		{
+			$subject = $this->request->params['named']['subject'];
+			if($subject)
+				$options['Subject.id'] = $subject;
+				
+			$this->set('current_subject', $subject);
+		}
+		$rankings = $this->Paginator->paginate('Ranking', $options);
+		$this->set('rankings', $rankings);
+		$this->set('subjects', $subjects);
+	}
+ 
+/**
  * rebuild ranking table
  */
 	public function rebuildRanking()
@@ -237,6 +260,6 @@ class AdminController extends AppController {
 			}
 		}
 		$this->Session->setFlash(__('Ranking data refreshed.'));
-		$this->redirect(array('controller' =>'Admin', 'action' => 'index'));
+		$this->redirect(array('controller' =>'Admin', 'action' => 'ranking'));
 	}
 }

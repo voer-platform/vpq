@@ -104,7 +104,9 @@
         </div> 
         <div class="clock">
             <div><?php echo __('Score'); ?></div>
-            <div id="countdown"><?php echo round($correct/$numberOfQuestions,2)*10; ?></div>
+            <div id="countdown">
+				<?php echo round($correct/$numberOfQuestions,2)*10; ?>				
+			</div>
             <div id="details"><?php echo __('Correct').': '.'<b>'.$correct.'</b>'.' '.__('on').' '.__('Total').': '.'<b>'.$numberOfQuestions.'</b>'.' '.__('questions').'.'; ?></div>
             <div class="fb-share-button" data-href="<?php echo Router::url($this->here, true); ?>" data-layout="button_count"></div>
             </br>
@@ -136,6 +138,51 @@
     <div style="clear:both;"></div>
 </div>
 
+<div id="modalicon" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog modal-sm" style='margin-top:100px;'>
+        <div class="modal-content">
+			<div class="modal-body" style='text-align:center'>
+				<table style='border:0px;width:100%;'>
+					<tr>
+						<th style='width:40%;'>
+							<?php if(round($correct/$numberOfQuestions,2)*10>=8): ?>
+								<?php echo $this->Html->image('icon1.png',array('style'=>'max-width:100%')); ?>
+							<?php endif; ?>
+							<?php if(round($correct/$numberOfQuestions,2)*10<8 && round($correct/$numberOfQuestions,2)*10>4): ?>
+								<?php echo $this->Html->image('icon7.png',array('style'=>'max-width:100%')); ?>
+							<?php endif;?>
+							<?php if(round($correct/$numberOfQuestions,2)*10<5): ?>
+								<?php echo $this->Html->image('icon5.png',array('style'=>'max-width:100%')); ?>
+							<?php endif;?>
+						</th>
+						<th style='text-align:center;width:60%;'>
+							<?php if(round($correct/$numberOfQuestions,2)*10>=8): ?>
+							<span style='color:red;font-size:30px;'>Chúc mừng bạn!<span><br/>
+							<?php endif;?>
+							<?php if(round($correct/$numberOfQuestions,2)*10<8 && round($correct/$numberOfQuestions,2)*10>4): ?>
+							<span style='color:red;font-size:30px;'>Cố gắng lên bạn nhé!<span><br/>
+							<?php endif;?>
+							<?php if(round($correct/$numberOfQuestions,2)*10<5): ?>
+							<span style='color:red;font-size:30px;'>Bạn đừng buồn!<span><br/>
+							<?php endif;?>
+							<span style='color:#259013;font-size:120px;'>
+								<?php echo round($correct/$numberOfQuestions,2)*10 ?>
+							</span>						
+						</th>
+					</tr>
+				</table>
+					
+			</div>
+			<div class="modal-footer">
+				<?php echo $this->Html->link(__('Trở về trang cá nhân'), array('controller' => 'people', 'action' => 'dashboard'), array('class' => 'btn btn-dashboard btn-primary')) ?>
+				<button class="btn show-answers btn-primary" id="btn-show-answers" data-dismiss="modal">Xem đáp án</button>
+               <button class="btn show-solutions btn-primary" id="btn-show-solutions" data-dismiss="modal">Xem lời giải</button>
+				<button type="button" class="btn btn-primary" data-dismiss="modal">Xem lại</button>
+			</div>
+        </div>
+    </div>
+</div>
+
 <div id="msgNotice" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
@@ -155,7 +202,9 @@
 <script type="text/javascript">
     
     $(document).ready(function(){
-
+		$('#modalicon').modal({
+                backdrop: false
+            });
         //fb share
         var FBShare = function () {
             FB.ui({

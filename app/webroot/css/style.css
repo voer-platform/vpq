@@ -290,6 +290,18 @@ div#doTest{
   width: 980px;
 }
 
+div#center{
+   background-color: #fcfcfc;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 0 15px #ccc;
+  min-height: 400px;
+  padding: 0 1px 20px;
+  width: 80%;
+  margin-left:10%;
+  float: left;
+}
+
 div#left{
   background-color: #fcfcfc;
   border: 1px solid #ccc;

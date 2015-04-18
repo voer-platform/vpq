@@ -8,7 +8,7 @@
 		<li><?php echo $this->Html->link(__('Categorize'), array('controller' => 'Admin', 'action' => 'manualCategorized')); ?></li>
 		<li><?php echo $this->Html->link(__('Analystic'), array('controller' => 'Admin', 'action' => 'analystics')); ?></li>
 		<li><?php echo $this->Html->link(__('FAQ'), array('controller' => 'Faqs', 'action' => 'index')); ?></li>
-		<li><?php echo $this->Html->link(__('Rebuld Ranking Data'), array('controller' => 'Admin', 'action' => 'rebuildRanking')); ?></li>
+		<li><?php echo $this->Html->link(__('Ranking Data'), array('controller' => 'Admin', 'action' => 'ranking')); ?></li>
 	</ul>
 </div>
 

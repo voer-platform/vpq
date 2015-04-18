@@ -45,7 +45,8 @@ class Ranking extends AppModel {
 						array(
 							'conditions' => array(
 								'subject_id'	=>	$subject_id,
-								"((score > $score) OR (score = $score AND time_update < '$time'))"
+								"score > $score"
+								//"((score > $score) OR (score = $score AND time_update < '$time'))"
 							)
 						)
 					);
