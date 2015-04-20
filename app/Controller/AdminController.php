@@ -210,17 +210,17 @@ class AdminController extends AppController {
 		$this->Paginator->settings = array(
 					'joins'	=> array(
 									array(
-										'table'	=>	'Scores',
+										'table'	=>	'scores',
 										'type'	=>	'INNER',
-										'conditions'	=>	'Scores.person_id = Ranking.person_id'
+										'conditions'	=>	'scores.person_id = Ranking.person_id'
 									),
 									array(
-										'table'	=>	'Tests_subjects',
+										'table'	=>	'tests_subjects',
 										'type'	=>	'INNER',
-										'conditions'	=>	'Tests_subjects.test_id = Scores.test_id'
+										'conditions'	=>	'tests_subjects.test_id = scores.test_id'
 									)
 								),
-					'group'	=>	array('Tests_subjects.subject_id, Ranking.person_id')			
+					'group'	=>	array('tests_subjects.subject_id, Ranking.person_id')			
 				);
 		if(isset($this->request->params['named']['subject']))
 		{
