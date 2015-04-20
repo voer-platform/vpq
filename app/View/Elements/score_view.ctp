@@ -28,10 +28,10 @@
                                 <?php if($data['ScoresQuestion']['answer'] == $answerId && isset($data['ScoresQuestion']['answer'])): ?>
                                     <label class="btn-answer active">
 									<?php $true_list[] = $index;?>
-									<button style='float:right;display:none;' data-id='<?php echo $data['ScoresQuestion']['question_id'] ?>' type='button' class='btn btn-danger report glyphicon glyphicon-bullhorn' title='Đây là nút báo đáp án sai, bạn chỉ click khi chắc chắn là đáp án sai'></button>
+									<button style='float:right;display:none;' data-id='<?php echo $data['ScoresQuestion']['question_id'] ?>' type='button' class='btn btn-danger report glyphicon glyphicon-bullhorn' data-container="body" data-toggle="popover" data-placement="right" data-content="Đây là nút báo đáp án sai, bạn chỉ click khi chắc chắn là đáp án sai."></button>
                                 <?php else: ?>
                                     <label class="btn-answer" correct="true">
-									<button style='float:right;display:none;' data-id='<?php echo $data['ScoresQuestion']['question_id'] ?>' type='button' class='btn btn-danger report glyphicon glyphicon-bullhorn' title='Đây là nút báo đáp án sai, bạn chỉ click khi chắc chắn là đáp án sai'></button>
+									<button style='float:right;display:none;' data-id='<?php echo $data['ScoresQuestion']['question_id'] ?>' type='button' class='btn btn-danger report glyphicon glyphicon-bullhorn' data-container="body" data-toggle="popover" data-placement="right" data-content="Đây là nút báo đáp án sai, bạn chỉ click khi chắc chắn là đáp án sai."></button>
                                 <?php endif; ?>
                             <!-- not correct answer -->
                             <!-- user choose wrong -->
@@ -182,6 +182,7 @@
 <script type="text/javascript">
     
     $(document).ready(function(){
+		$('[data-toggle="popover"]').popover({trigger: 'hover','placement': 'right'});
 		$('#modalicon').modal({
                 backdrop: true
             });

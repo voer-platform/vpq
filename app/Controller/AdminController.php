@@ -205,6 +205,23 @@ class AdminController extends AppController {
 		$this->loadModel('Subject');
 		$subjects = $this->Subject->find('list');
 		$options = array();
+		
+		$this->Ranking->virtualFields['num_test'] = 'COUNT(Tests_subjects.test_id)';
+		$this->Paginator->settings = array(
+					'joins'	=> array(
+									array(
+										'table'	=>	'Scores',
+										'type'	=>	'INNER',
+										'conditions'	=>	'Scores.person_id = Ranking.person_id'
+									),
+									array(
+										'table'	=>	'Tests_subjects',
+										'type'	=>	'INNER',
+										'conditions'	=>	'Tests_subjects.test_id = Scores.test_id'
+									)
+								),
+					'group'	=>	array('Tests_subjects.subject_id, Ranking.person_id')			
+				);
 		if(isset($this->request->params['named']['subject']))
 		{
 			$subject = $this->request->params['named']['subject'];
