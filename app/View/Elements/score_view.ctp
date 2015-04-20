@@ -108,23 +108,7 @@
 				<?php echo round($correct/$numberOfQuestions,2)*10; ?>				
 			</div>
             <div id="details"><?php echo __('Correct').': '.'<b>'.$correct.'</b>'.' '.__('on').' '.__('Total').': '.'<b>'.$numberOfQuestions.'</b>'.' '.__('questions').'.'; ?></div>
-            <div class="fb-share-button" data-href="<?php echo Router::url($this->here, true); ?>" data-layout="button_count"></div>
-            </br>
-			<?php if(round($correct/$numberOfQuestions,2)*10>8): ?>
-				<?php echo $this->Html->image('icon1.png',array('style' => 'max-width:120px',)); ?>
-			<?php endif; ?>
-			<?php if(round($correct/$numberOfQuestions,2)*10==8 || round($correct/$numberOfQuestions,2)*10==7): ?>
-				<?php echo $this->Html->image('icon3.png',array('style' => 'max-width:120px',)); ?>
-			<?php endif; ?>
-			<?php if(round($correct/$numberOfQuestions,2)*10==6 || round($correct/$numberOfQuestions,2)*10==5): ?>
-				<?php echo $this->Html->image('icon7.png',array('style' => 'max-width:120px',)); ?>
-			<?php endif; ?>
-			<?php if(round($correct/$numberOfQuestions,2)*10==4 || round($correct/$numberOfQuestions,2)*10==3): ?>
-				<?php echo $this->Html->image('icon6.png',array('style' => 'max-width:120px',)); ?>
-			<?php endif; ?>
-			<?php if(round($correct/$numberOfQuestions,2)*10<3): ?>
-				<?php echo $this->Html->image('icon5.png',array('style' => 'max-width:120px',)); ?>
-			<?php endif; ?>
+            <div class="fb-share-button" data-href="<?php echo Router::url($this->here, true); ?>" data-layout="button_count"></div>            
             <div class="btn-questions">
                <button class="btn show-answers" id="btn-show-answers"><?php echo __('Show Answers'); ?></button>
                <button class="btn show-solutions" id="btn-show-solutions"><?php echo __('Show Solutions'); ?></button>
@@ -170,21 +154,17 @@
 							</span>						
 						</th>
 					</tr>
-				</table>
-					
+				</table>					
 			</div>
 			<div class="modal-footer">
-				<?php echo $this->Html->link(__('Trở về trang cá nhân'), array('controller' => 'people', 'action' => 'dashboard'), array('class' => 'btn btn-dashboard btn-primary')) ?>
-				<button class="btn show-answers btn-primary" id="btn-show-answers" data-dismiss="modal">Xem đáp án</button>
-               <button class="btn show-solutions btn-primary" id="btn-show-solutions" data-dismiss="modal">Xem lời giải</button>
-				<button type="button" class="btn btn-primary" data-dismiss="modal">Xem lại</button>
+				<button type="button" class="btn btn-primary" data-dismiss="modal">Đóng</button>
 			</div>
         </div>
     </div>
 </div>
 
 <div id="msgNotice" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
+    <div class="modal-dialog modal-sm" style="width:30%;">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="myModalLabel">Thông báo</h4>
@@ -203,7 +183,7 @@
     
     $(document).ready(function(){
 		$('#modalicon').modal({
-                backdrop: false
+                backdrop: true
             });
         //fb share
         var FBShare = function () {
@@ -250,7 +230,6 @@
 				$('.report').css('display', 'none');
                 $('.correct-answer').css('display', 'none');
                 $('#btn-show-answers').text("<?php echo __('Show Answers'); ?>");
-                console.log($('.btn .show-answers').text());
                 showAnswer = false;				
             }
         });
@@ -278,13 +257,11 @@
         var wrong = JSON.parse("<?php echo json_encode($wrong_list); ?>");
         for (var i = wrong.length - 1; i >= 0; i--) {
             $('.simplePageNav' + (wrong[i] + 1)).addClass('wrong');
-            console.log($('.simplePageNav' + (wrong[i] + 1))); 
         };
 		
 		var truee = JSON.parse("<?php echo json_encode($true_list); ?>");
         for (var i = truee.length - 1; i >= 0; i--) {
             $('.simplePageNav' + (truee[i] + 1)).addClass('true');
-            console.log($('.simplePageNav' + (truee[i] + 1))); 
         };
 
         //mixpanel
