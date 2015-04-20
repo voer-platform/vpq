@@ -174,7 +174,7 @@
 			<p style="font-size: 16px;line-height: 25px;">Theo dõi quá trình học tập qua các biểu đồ điểm số, từ đó điều chỉnh chế độ học tập cho hợp lý.</p>
 			<p style="font-size: 16px;line-height: 25px;">Đánh giá kết quả chi tiết theo từng chương, bài; giúp bạn khắc phục điểm yếu và phát huy điểm mạnh.</p>
 			<br/>
-			<p class="center"><a href="<?php echo $fb_login_url; ?>" class="mix-login" data-section="dashboard-intro"><button class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-hand-right"></span>&nbsp; Dùng thử</button></a></p>
+			<p><a href="<?php echo $fb_login_url; ?>" class="mix-login" data-section="dashboard-intro"><button class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-hand-right"></span>&nbsp; Dùng thử</button></a></p>
 		</div>
 	</div>
 	<br/>
@@ -188,7 +188,7 @@
 			<p style="font-size: 16px;line-height: 25px;">PLS được thiết kế tương thích trên nhiều thiết bị. Không chỉ máy tính, bạn còn có thể luyện tập ngay trên smartphone và tablet.</p>
 			
 			<br/>
-			<p class="center"><a href="<?php echo $fb_login_url; ?>" class="mix-login" data-section="responsive-intro"><button class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-hand-right"></span>&nbsp; Dùng thử</button></a></p>
+			<p><a href="<?php echo $fb_login_url; ?>" class="mix-login" data-section="responsive-intro"><button class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-hand-right"></span>&nbsp; Dùng thử</button></a></p>
 		</div>
 		<div class="col-md-7 intro-img">
 			<?php echo $this->Html->image('responsive-theme.jpg'); ?>
