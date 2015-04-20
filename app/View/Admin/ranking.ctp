@@ -26,6 +26,7 @@
 		<th><?php echo $this->Paginator->sort('Person.grade', __('Grade')); ?></th>
 		<th><?php echo $this->Paginator->sort('Person.school', __('School')); ?></th>
 		<th><?php echo $this->Paginator->sort('Subject.id', __('Subject')); ?></th>
+		<th><?php echo $this->Paginator->sort('num_test', __('Total tests')); ?></th>
 		<th><?php echo $this->Paginator->sort('score'); ?></th>
 	</thead>
 	<tbody>
@@ -37,6 +38,7 @@
 				<td><?php echo $score['Person']['grade']; ?></td>
 				<td><?php echo $score['Person']['school']; ?></td>
 				<td><?php echo $score['Subject']['name']; ?></td>
+				<td><?php echo $score['Ranking']['num_test']; ?></td>
 				<td><?php echo $score['Ranking']['score']; ?></td>
 			</tr>
 		<?php } ?>
