@@ -9,6 +9,7 @@
 		<li><?php echo $this->Html->link(__('Analystic'), array('controller' => 'Admin', 'action' => 'analystics')); ?></li>
 		<li><?php echo $this->Html->link(__('FAQ'), array('controller' => 'Faqs', 'action' => 'index')); ?></li>
 		<li><?php echo $this->Html->link(__('Ranking Data'), array('controller' => 'Admin', 'action' => 'ranking')); ?></li>
+		<li><?php echo $this->Html->link(__('Static pages'), array('controller' => 'StaticPages', 'action' => 'index')); ?></li>
 	</ul>
 </div>
 

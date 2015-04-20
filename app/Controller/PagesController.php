@@ -82,5 +82,11 @@ public function beforeFilter(){
 
     public function aboutUs(){
         $this->set('title_for_layout',__("About us"));
+
+        $this->loadModel('StaticPage');
+        $about = $this->StaticPage->find('first', array(
+        	'conditions' => array('StaticPage.name' => 'about')));
+
+        $this->set('about', $about);
     }
 }

@@ -1,1 +1,1 @@
-<?php echo $this->element('about_us'); ?>
+<?php echo html_entity_decode($about['StaticPage']['content']); ?>
