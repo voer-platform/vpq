@@ -136,7 +136,10 @@
 	padding-left:20px;
 }
 .right {text-align:right;}
+.left {text-align:left;}
 .ib {display:inline-block;}
 .inline {display:inline;}
+.bl {display: block;}
 .w-450 {width:450px;}
 .w-200 {width:200px;}
+.fw {width:100%;}

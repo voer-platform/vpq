@@ -171,3 +171,13 @@ div.chart-description {
   border-color: #357ebd!important;
   color:#fff!important;*/
 }
+.ranking-info {
+	  font-weight: normal;
+	  padding: 7px 10px;
+	  display: block;
+	  text-align: left;
+	  font-size:12px;
+}
+.ranking-info a {
+	color: #fff;
+}
