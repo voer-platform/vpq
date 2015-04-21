@@ -15,6 +15,9 @@
                 </div>
             </div>
         </div>
+		<div class="pull-right clearfix">
+			<div class="fb-like" data-href="https://www.facebook.com/pls.edu.vn" data-width="300px" data-layout="standard" data-action="like" data-show-faces="true" data-share="false"></div>
+		</div>
     </div>
 	
     

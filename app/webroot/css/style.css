@@ -675,3 +675,6 @@ div.correct-answer{
   display: none;
 }
 .center {text-align:center;}
+.tab{
+	margin-left:20px;
+}
