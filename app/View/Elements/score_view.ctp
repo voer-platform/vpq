@@ -103,7 +103,7 @@
             </table>
         </div> 
         <div class="clock">
-            <div><?php echo __('Score'); ?></div>
+            <div><b><?php echo __('Score'); ?></b></div>
             <div id="countdown">
 				<?php echo round($correct/$numberOfQuestions,2)*10; ?>				
 			</div>

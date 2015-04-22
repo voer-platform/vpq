@@ -373,7 +373,7 @@ div.test-info table tr td{
 
 div.test-info table tr td.first{
   margin-left: 15px;
-  text-align: right;
+  text-align: left;
   width: 50%;
   font-weight: normal;
 }
