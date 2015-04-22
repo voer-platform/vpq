@@ -480,12 +480,10 @@ ul.simplePagerNav li.active a{
 }
 
 ul.simplePagerNav li.chose a{
-  background-image: -webkit-linear-gradient(#2299dd, #1589cb);
-  background-image: -o-linear-gradient(#2299dd, #1589cb);
-  background-image: linear-gradient(#2299dd, #1589cb);
-  border: 1px solid #0d7bba;
+  background: none repeat scroll 0 0 #2299dd;
+  border: 2px solid #2299dd;
   color: #fff;
-  text-shadow: 1px 1px 1px #0d7bba;  
+  text-shadow: 1px 1px 1px #2299dd;
 }
 div.answer{
   margin: 30px 20px 10px;
