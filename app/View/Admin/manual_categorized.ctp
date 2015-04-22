@@ -1,22 +1,23 @@
 <div class='manual-categorize'>
     <h1><?php echo __("Categorize"); ?></h1>
 
-    <div class="paging">
     <p>
-        <?php
-        echo $this->Paginator->counter(array(
-        'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
-        ));
-        ?>  </p>
-    <?php
-        echo $this->Paginator->prev('< ' . __('previous'), array(), null, array('class' => 'prev disabled'));
-        echo $this->Paginator->numbers(array('separator' => ''));
-        echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));
-    ?>
-    </div>
+		<?php
+			echo $this->Paginator->counter(array(
+				'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
+			));
+		?>
+	</p>
+	<ul class="pagination mg0">
+	<?php
+		echo $this->Paginator->prev('< ' . __('previous'), array('tag'=>'li'), null, array('class' => 'disabled', 'disabledTag'=>'a'));
+		echo $this->Paginator->numbers(array('separator' => '', 'tag'=>'li', 'currentClass' => 'active', 'currentTag' => 'a'));
+		echo $this->Paginator->next(__('next') . ' >', array('tag'=>'li'), null, array('class' => 'disabled', 'disabledTag'=>'a'));
+	?>
+	</ul>
 
     <!-- table -->
-    <table>
+    <table class="table table-stripped table-bordered">
         <?php echo $this->Html->tableHeaders(array(
             __('id'),
             __('Content'),
@@ -51,19 +52,20 @@
 
     <hr>
 
-    <div class="paging">
     <p>
-        <?php
-        echo $this->Paginator->counter(array(
-        'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
-        ));
-        ?>  </p>
-    <?php
-        echo $this->Paginator->prev('< ' . __('previous'), array(), null, array('class' => 'prev disabled'));
-        echo $this->Paginator->numbers(array('separator' => ''));
-        echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));
-    ?>
-    </div>
+		<?php
+			echo $this->Paginator->counter(array(
+				'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
+			));
+		?>
+	</p>
+	<ul class="pagination mg0">
+	<?php
+		echo $this->Paginator->prev('< ' . __('previous'), array('tag'=>'li'), null, array('class' => 'disabled', 'disabledTag'=>'a'));
+		echo $this->Paginator->numbers(array('separator' => '', 'tag'=>'li', 'currentClass' => 'active', 'currentTag' => 'a'));
+		echo $this->Paginator->next(__('next') . ' >', array('tag'=>'li'), null, array('class' => 'disabled', 'disabledTag'=>'a'));
+	?>
+	</ul>
     
     </div>
 </div>

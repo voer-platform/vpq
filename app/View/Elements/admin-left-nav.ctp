@@ -1,16 +1,16 @@
 <div class='col-lg-2'>
-	<ul class="nav nav-pills nav-stacked" id='admin-left-nav'>
-		<li><?php echo $this->Html->link(__('Add Questions'), array('controller' => 'Admin', 'action' => 'insertQuestions')); ?></li>
-		<li><?php echo $this->Html->link(__('Add Mutiple Questions'), array('controller' => 'Admin', 'action' => 'insertMultipleQuestions')); ?></li>
-		<li><?php echo $this->Html->link(__('Manage People'), array('controller' => 'people', 'action' => 'index')); ?></li>
-		<li><?php echo $this->Html->link(__('Manage Questions'), array('controller' => 'questions', 'action' => 'index')); ?></li>
-		<li><?php echo $this->Html->link(__('Manage SubCategories'), array('controller' => 'subcategories', 'action' => 'index')); ?></li>
-		<li><?php echo $this->Html->link(__('Categorize'), array('controller' => 'Admin', 'action' => 'manualCategorized')); ?></li>
-		<li><?php echo $this->Html->link(__('Analystic'), array('controller' => 'Admin', 'action' => 'analystics')); ?></li>
-		<li><?php echo $this->Html->link(__('FAQ'), array('controller' => 'Faqs', 'action' => 'index')); ?></li>
-		<li><?php echo $this->Html->link(__('Ranking Data'), array('controller' => 'Admin', 'action' => 'ranking')); ?></li>
-		<li><?php echo $this->Html->link(__('Static pages'), array('controller' => 'StaticPages', 'action' => 'index')); ?></li>
-	</ul>
+	<div class="list-group">
+		<?php echo $this->Html->link(__('Add Questions'), array('controller' => 'Admin', 'action' => 'insertQuestions'), array('class'=>'list-group-item')); ?>
+		<?php echo $this->Html->link(__('Add Mutiple Questions'), array('controller' => 'Admin', 'action' => 'insertMultipleQuestions'), array('class'=>'list-group-item')); ?>
+		<?php echo $this->Html->link(__('Manage People'), array('controller' => 'people', 'action' => 'index'), array('class'=>'list-group-item')); ?>
+		<?php echo $this->Html->link(__('Manage Questions'), array('controller' => 'questions', 'action' => 'index'), array('class'=>'list-group-item')); ?>
+		<?php echo $this->Html->link(__('Manage SubCategories'), array('controller' => 'subcategories', 'action' => 'index'), array('class'=>'list-group-item')); ?>
+		<?php echo $this->Html->link(__('Categorize'), array('controller' => 'Admin', 'action' => 'manualCategorized'), array('class'=>'list-group-item')); ?>
+		<?php echo $this->Html->link(__('Analystic'), array('controller' => 'Admin', 'action' => 'analystics'), array('class'=>'list-group-item')); ?>
+		<?php echo $this->Html->link(__('FAQ'), array('controller' => 'Faqs', 'action' => 'index'), array('class'=>'list-group-item')); ?>
+		<?php echo $this->Html->link(__('Ranking Data'), array('controller' => 'Admin', 'action' => 'ranking'), array('class'=>'list-group-item')); ?>
+		<?php echo $this->Html->link(__('Static pages'), array('controller' => 'StaticPages', 'action' => 'index'), array('class'=>'list-group-item')); ?>
+	</div>
 </div>
 
 <!-- set active for current tag -->

@@ -5,7 +5,9 @@
 
 		<!-- right nav -->
 		<div class='col-lg-10'>
-			<?php echo __('Select one of functions on the left'); ?>
+			<div class="alert alert-info">
+				<?php echo __('Select one of functions on the left'); ?>
+			</div>	
 		</div>
 	</div>
 </div>
