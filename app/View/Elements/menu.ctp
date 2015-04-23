@@ -14,7 +14,9 @@
     </div>
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li><?php echo $this->HTML->link(__('About'), '/about'); ?></li>
+		<?php if(empty($user) ): ?>
+			<li><?php echo $this->HTML->link(__('Home'), '/'); ?></li>
+		<?php endif; ?>
         <!-- if logged in user -->
         <?php if(!empty($user) ): ?>
           <li><?php echo $this->HTML->link(__('Dashboard'), array('controller' => 'people', 'action' => 'dashboard')); ?></li>
@@ -26,7 +28,7 @@
         <?php if($user['role'] === 'admin' || $user['role'] === 'editor'): ?>
           <li><?php echo $this->HTML->link(__('Admin'), array('controller' => 'Admin', 'action' => 'index')); ?></li>
         <?php endif; ?>
-
+		<li><?php echo $this->HTML->link(__('About'), '/about'); ?></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <?php if(!empty($user)): ?>

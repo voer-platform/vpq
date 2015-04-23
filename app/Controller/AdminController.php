@@ -206,7 +206,7 @@ class AdminController extends AppController {
 		$subjects = $this->Subject->find('list');
 		$options = array();
 		
-		$this->Ranking->virtualFields['num_test'] = 'COUNT(Tests_subjects.test_id)';
+		$this->Ranking->virtualFields['num_test'] = 'COUNT(tests_subjects.test_id)';
 		$this->Paginator->settings = array(
 					'joins'	=> array(
 									array(
