@@ -128,7 +128,7 @@
 			<div class="modal-body" style='text-align:center'>
 				<table style='border:0px;width:100%;'>
 					<tr>
-						<th style='width:40%;'>
+						<td rowspan='2' style='width:40%;'>
 							<?php if(round($correct/$numberOfQuestions,2)*10>=8): ?>
 								<?php echo $this->Html->image('icon1.png',array('style'=>'max-width:100%')); ?>
 							<?php endif; ?>
@@ -138,8 +138,8 @@
 							<?php if(round($correct/$numberOfQuestions,2)*10<5): ?>
 								<?php echo $this->Html->image('icon5.png',array('style'=>'max-width:100%')); ?>
 							<?php endif;?>
-						</th>
-						<th style='text-align:center;width:60%;'>
+						</td>
+						<td style='text-align:center;width:60%;'>
 							<?php if(round($correct/$numberOfQuestions,2)*10>=8): ?>
 							<span style='color:red;font-size:30px;'>Chúc mừng bạn!<span><br/>
 							<?php endif;?>
@@ -152,7 +152,12 @@
 							<span style='color:#259013;font-size:120px;'>
 								<?php echo round($correct/$numberOfQuestions,2)*10 ?>
 							</span>						
-						</th>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<?php echo __('Correct').': '.'<b>'.$correct.'</b>'.' '.__('on').' '.__('Total').': '.'<b>'.$numberOfQuestions.'</b>'.' '.__('questions').'.'; ?>
+						</td>
 					</tr>
 				</table>					
 			</div>
