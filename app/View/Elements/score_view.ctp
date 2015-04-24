@@ -136,7 +136,7 @@
 								<?php echo $this->Html->image('icon7.png',array('style'=>'max-width:100%')); ?>
 							<?php endif;?>
 							<?php if(round($correct/$numberOfQuestions,2)*10<5): ?>
-								<?php echo $this->Html->image('icon5.png',array('style'=>'max-width:100%')); ?>
+								<?php echo $this->Html->image('icon8.png',array('style'=>'max-width:100%')); ?>
 							<?php endif;?>
 						</td>
 						<td style='text-align:center;width:60%;'>
@@ -147,7 +147,7 @@
 							<span style='color:red;font-size:30px;'>Cố gắng lên bạn nhé!<span><br/>
 							<?php endif;?>
 							<?php if(round($correct/$numberOfQuestions,2)*10<5): ?>
-							<span style='color:red;font-size:30px;'>Bạn đừng buồn!<span><br/>
+							<span style='color:red;font-size:30px;'>Cố gắng hết mình nào!<span><br/>
 							<?php endif;?>
 							<span style='color:#259013;font-size:120px;'>
 								<?php echo round($correct/$numberOfQuestions,2)*10 ?>
@@ -162,7 +162,9 @@
 				</table>					
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-primary" data-dismiss="modal">Đóng</button>
+				<button class="btn show-answers btn-primary" id="btn-show-answers" data-dismiss="modal"><?php echo __('Show Answers'); ?></button>
+               <button class="btn show-solutions btn-primary" id="btn-show-solutions" data-dismiss="modal"><?php echo __('Show Solutions'); ?></button>
+			   <?php echo $this->Html->link(__('Go to dashboard'), array('controller' => 'people', 'action' => 'dashboard'), array('class' => 'btn btn-dashboard btn-primary')) ?>
 			</div>
         </div>
     </div>
