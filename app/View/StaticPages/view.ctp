@@ -13,7 +13,7 @@
 		</dd>
 		<dt><?php echo __('Content'); ?></dt>
 		<dd>
-			<?php echo h($staticPage['StaticPage']['content']); ?>
+			<?php echo html_entity_decode($staticPage['StaticPage']['content']); ?>
 			&nbsp;
 		</dd>
 	</dl>

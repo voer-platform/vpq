@@ -4,7 +4,7 @@
 		<legend><?php echo __('Add Static Page'); ?></legend>
 	<?php
 		echo $this->Form->input('name', array('type' => 'text', 'class' => 'form-control'));
-		echo $this->Form->input('content', array('type' => 'textarea'));
+		echo $this->Form->input('content', array('type' => 'textarea', 'class' => 'edit-tinymce'));
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>
@@ -20,6 +20,9 @@
 <script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>
 <script type="text/javascript">
 	tinymce.init({
-		selector:'textarea',
-		height: 400});
+		mode : "specific_textareas",
+		editor_selector:'edit-tinymce',
+		height: 400,
+		plugins: 'code',
+	});
 </script>
