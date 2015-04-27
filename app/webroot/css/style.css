@@ -179,7 +179,7 @@ fieldset {
 
 ul.navbar-nav li > a {
   text-transform: uppercase;
-  color: #ddd;
+  color: #333;
 }
 #register-methods > div {
   padding: 20px 0;
@@ -445,7 +445,7 @@ ul.simplePagerNav{
 }
 
 ul.simplePagerNav li a{
-  background: url("http://static.thionline.vn/image/v2/question.bg.png") repeat-x scroll center center transparent;
+  background-image: linear-gradient(#fff, #D3D3D3);
   border: 2px solid #bbb;
   border-radius: 4px;
   color: #333;
@@ -462,17 +462,17 @@ ul.simplePagerNav li a{
 }
 
 ul.simplePagerNav li.wrong a{
-  background: none repeat scroll 0 0 #D34646;
+  background-image: linear-gradient(#FC6C6C, #DB2727); 
   color: #fff;
   text-shadow: 1px 1px 1px transparent;
-  border: 2px solid #D34646;
+  border: 2px solid #E27676;
 }
 
 ul.simplePagerNav li.true a{
-  background: none repeat scroll 0 0 #2299dd;
+  background-image: linear-gradient(#8add6d, #2FAB04);
   color: #fff;
   text-shadow: 1px 1px 1px transparent;
-  border: 2px solid #2299dd;
+  border: 2px solid #7FC299;
 }
 
 ul.simplePagerNav li.active a{

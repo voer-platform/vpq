@@ -1,5 +1,12 @@
 <div class="questions index">
 	<h2><?php echo __('Questions'); ?></h2>
+	<hr/>
+	<form class="form-inline">
+		<label>Tìm kiếm </label>&nbsp;
+		<input type="text" class="form-control" name="keyword" placeholder="Từ khóa trong nội dung" />&nbsp;
+		<input type="submit" class="btn btn-primary" name="search" value="Tìm kiếm" />
+	</form>
+	<hr/>
 	<table cellpadding="0" cellspacing="0" class="table table-striped table table-bordered">
 	<thead>
 	<tr>
