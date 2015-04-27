@@ -1,0 +1,38 @@
+.content.container {
+    width: 100%!important;
+}
+
+.advantages-image {
+    display: inline-block;
+    width: 120px;
+    height: 120px;
+    border-radius: 150px;
+    position: absolute;
+    left: 25px;
+    top: 0;
+    overflow: hidden;
+}
+
+.advantages-image img {
+    width: 100%;
+}
+
+.advantages-container {
+    padding-left: 140px;
+    height: 120px;
+}
+
+.advantages-text {
+    padding-top: 10px;
+}
+
+.section-heading {
+    background: #FFF4D7;
+    color: #08ADB1;
+    padding: 20px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+div.container.advantage-image{
+    margin: 30px 0px 30px 0px;
+}

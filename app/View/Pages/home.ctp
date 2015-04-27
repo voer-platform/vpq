@@ -2,7 +2,7 @@
 <meta property="og:url" content="<?php echo Router::url( $this->here, true ); ?>" /> 
 <meta property="og:title" content="<?php echo __('Personalized Learning System'); ?>" />
 <meta property="og:description" content="<?php echo __('Where you can learn anything!'); ?>" /> 
-<meta property="og:image" content="<?php echo $this->Html->url(Router::url($this->here, true).'img/logo-small.png'); ?>" />
+<meta property="og:image" content="<?php echo $this->Html->url(Router::url($this->here, true).'img/interface.png'); ?>" />
 <?php $this->end(); ?>
 <?php echo $this->Html->css('home.css');?>
 <style>

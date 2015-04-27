@@ -220,11 +220,19 @@ class PeopleController extends AppController {
 					}
 					else
 					{
-						$this->redirect(array('controller' => 'people', 'action' => 'dashboard'));
+                        // redirect to previous review page if from it
+                        if($this->Session->read('fromViewDetails')){
+                            $review_url = $this->Session->read('fromViewDetails');
+                            $this->Session->delete('fromViewDetails');
+                            $this->redirect($review_url);
+                        }
+                        else{
+        					$this->redirect(array('controller' => 'people', 'action' => 'dashboard'));
+                        }
 					}	
                 }
 
-                // Otherwise we ll add a new user (Registration)
+                // Otherwise we'll add a new user (Registration)
                 else {
 					$picture = $this->Facebook->api('/me/picture?height=200&width=200&redirect=false');        # FB picture
 					if(isset($fb_user['birthday'])){

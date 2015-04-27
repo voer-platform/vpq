@@ -1,11 +1,14 @@
+<?php echo $this->Html->css('score_view.css'); ?>
 <?php $this->start('meta'); ?>
 <link href="<?php echo Router::url( $this->here, true ); ?>" rel="canonical">
 <meta property="og:url" content="<?php echo Router::url( $this->here, true ); ?>" />
-<meta property="og:title" content="<?php printf(__('%s has just scored %d on total %d questions on PLS.'), $userInfo['fullname'], $correct, $numberOfQuestions); ?>" />
-<meta property="og:description" content="<?php printf(__('Test on subject %s'), $subject['Subject']['name']); ?>" />
-<meta property="og:image" content="<?php echo Router::url('/', true).'/img/home3.png'; ?>" />
+<meta property="og:title" content="<?php printf(__('%s has just scored %d on %s.'), $userInfo['fullname'], round($correct, $numberOfQuestions), $subject['Subject']['name']); ?>" />
+<meta property="og:description" content="<?php printf(__('Test on PLS. Subject: %s. Number of question: %d. Correct questions: %d. Wrong questions: %d.'), $subject['Subject']['name'], $numberOfQuestions, $correct, $numberOfQuestions - $correct); ?>" />
+<meta property="og:image" content="<?php echo Router::url('/', true).'/img/review/'.round($correct, $numberOfQuestions).'.png'; ?>" />
 <?php $this->end(); ?>
 
+<!-- do not display if not logged in -->
+<?php if(isset($user)): ?>
 <div id='doTest'>
     <div id="left">
         <ul id="questions">
@@ -300,3 +303,60 @@
     });
 
 </script>
+
+<!-- if not logged in, let's do it! -->
+<?php else: ?>
+    <center>
+        <h2><?php echo __('Please login to view the content!'); ?></h2>
+        <a href="<?php echo $fb_login_url; ?>" class="mix-login" data-section="home-footer">
+            <?php echo $this->Html->image('facebook-login-button.png', array('style'=> 'width:100%;','class' => 'facebook-btn', 'alt' => __('Login with Facebook'))); ?>
+        </a>
+        </br>
+        <h2><?php echo __('And learn a lot from PLS!'); ?></h2>
+        <div class="container advantage-image">
+            
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="advantages-container">
+                        <div class="advantages-image">
+                            <?php echo $this->Html->image('statistic.jpg'); ?>
+                        </div>  
+                        <div class="advantages-text">
+                            <p><b>Theo dõi kết quả học tập</b></p>
+                            <p>Giúp bạn nắm bắt được tình hình và cải tiến chất lượng học tập của mình</p>
+                        </div>
+                    </div>  
+                </div>
+                <div class="col-md-4">
+                    <div class="advantages-container">
+                        <div class="advantages-image">
+                            <?php echo $this->Html->image('responsive.png'); ?>
+                        </div>  
+                        <div class="advantages-text">
+                            <p><b>Học mọi lúc mọi nơi</b></p>
+                            <p>Hỗ trợ đa nền tảng cho phép bạn có thể làm bài trên bất cứ thiết bị nào và bất cứ nơi đâu</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="advantages-container">
+                        <div class="advantages-image">
+                            <?php echo $this->Html->image('ask.jpg'); ?>
+                        </div>  
+                        <div class="advantages-text">
+                            <p><b>Cộng đồng hỗ trợ học tập</b></p>
+                            <p>Kết bạn, trò chuyện và trao đổi bài tập với giáo viên, bạn bè trên hệ thống</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </center>
+    <script type="text/javascript">
+        mixpanel.track('Review.not-login', {
+            'referer': "<?php echo $user['facebook']; ?>" 
+        });
+    </script>
+<?php endif; ?>
+
