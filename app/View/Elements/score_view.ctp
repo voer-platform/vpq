@@ -2,9 +2,9 @@
 <?php $this->start('meta'); ?>
 <link href="<?php echo Router::url( $this->here, true ); ?>" rel="canonical">
 <meta property="og:url" content="<?php echo Router::url( $this->here, true ); ?>" />
-<meta property="og:title" content="<?php printf(__('%s has just scored %d on %s.'), $userInfo['fullname'], round($correct, $numberOfQuestions), $subject['Subject']['name']); ?>" />
+<meta property="og:title" content="<?php printf(__('%s has just scored %d on %s.'), $userInfo['fullname'], round($correct/$numberOfQuestions, 1)*10, $subject['Subject']['name']); ?>" />
 <meta property="og:description" content="<?php printf(__('Test on PLS. Subject: %s. Number of question: %d. Correct questions: %d. Wrong questions: %d.'), $subject['Subject']['name'], $numberOfQuestions, $correct, $numberOfQuestions - $correct); ?>" />
-<meta property="og:image" content="<?php echo Router::url('/', true).'/img/review/'.round($correct, $numberOfQuestions).'.png'; ?>" />
+<meta property="og:image" content="<?php echo Router::url('/', true).'/img/review/'.(round($correct/$numberOfQuestions, 1)*10).'.png'; ?>" />
 <?php $this->end(); ?>
 
 <!-- do not display if not logged in -->
