@@ -91,14 +91,33 @@ class Subject extends AppModel {
 								),
 					'conditions'	=>	array(
 							'OR'	=>	array(
-											array('Ranking.person_id' => $person_id),
-											array('Ranking.person_id' => NULL)
+											array('Ranking.person_id' => $person_id)
 										)
 						),	
 					'recursive' => -1,
 					'order'	=>	array('Ranking.score'=>'DESC')
 				);
 		$results = $this->find('all', $sql);
-		return $results;		
+		
+		$hasData = array();
+		
+		foreach($results AS $subj)
+		{
+			$hasData[] = $subj['Subject']['id'];
+		}
+		
+		$noData = $this->find('all', array(
+							'fields'	=>	array('Subject.id, Subject.name'),
+							'conditions'=>array(
+									'NOT'=>array('id'=>$hasData)
+								)
+							));
+		
+		foreach($noData AS $k=>$subj)
+		{
+			$noData[$k]['Ranking']['score']	= '';
+		}
+		
+		return array_merge($results, $noData);		
 	}
 }
