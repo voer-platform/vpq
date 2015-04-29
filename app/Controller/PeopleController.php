@@ -291,57 +291,72 @@ class PeopleController extends AppController {
  /*
   * dashboard.ctp
   */
-    public function dashboard(){
+    public function dashboard($subject_id = null){
         $this->set('title_for_layout',__("Dashboard"));
         $user_id = $this->Session->read('Auth.User')['id'];
 
-        // get scores for 2 progress bars
-        /*$this->loadModel('Score');
-        $scores = array();
-        $scores = $this->Score->getOverAll($user_id);*/
+		if($subject_id){
+			$this->loadModel('Progress');
+			$progresses = $this->Progress->progressOnSubject($user_id, array('subject'=>$subject_id));
+			$this->set('progresses', $progresses);
 
-        // get all subject cover
-        $this->loadModel('Question');
-        $cover = array();
-        //$cover = $this->Question->getCover($user_id);
-		$cover = $this->Question->getSubcategoryCover($user_id);
+			// get scores for 2 progress bars
+			/*$this->loadModel('Score');
+			$scores = array();
+			$scores = $this->Score->getOverAll($user_id);*/
 
-        // get subject for dashboard
-        $this->loadModel('Progress');
-        $progresses = $this->Progress->progressOnSubject($user_id);
-        $this->set('progresses', $progresses);
+			// get all subject cover
+			$this->loadModel('Question');
+			$cover = array();
+			//$cover = $this->Question->getCover($user_id);
+			$cover = $this->Question->getSubcategoryCover($user_id);
 
-		$this->loadModel('Grade');
+			//get all subject
+			
+			//pr($orverviews);
+			// get subject for dashboard
+			
+
+			$this->loadModel('Grade');
+			
+			$gradeContents = $this->Grade->find('all', 
+											array(
+												//'recursive' => 2,
+												'contain'	=>	array(
+													'Category'	=>	array(
+														'conditions'=> array('Category.subject_id = 2'),
+														'Subcategory'
+													)
+												)	
+											)
+										);
+			$progressDetail = $this->Progress->progressOnGrade($user_id);
+			//pr($progressDetail);
+			
+			$this->set('progressDetail', $progressDetail);
+			$this->set('gradeContents', $gradeContents);
+			
+			$this->loadModel('Score');
+			
+			$chart = json_encode($this->Score->getChartData($user_id, $subject_id, array('type'=>'tentimes')));
+			
+			$this->loadModel('Ranking');
+			$ranking_data = $this->Ranking->getSubjectRanking($user_id);
+			
+			$this->set('rankings', $ranking_data);
+			$this->set('progresses', $progresses);
+			//$this->set('scores', $scores);
+			$this->set('cover', $cover);
+			$this->set('chart', $chart);
+			$this->set('subject_id', $subject_id);
+		}
+		else
+		{
+			$this->loadModel('Subject');
+			$overviews = $this->Subject->subjectOverview($user_id);
+			$this->set('overviews', $overviews);
+		}
 		
-		$gradeContents = $this->Grade->find('all', 
-										array(
-											//'recursive' => 2,
-											'contain'	=>	array(
-												'Category'	=>	array(
-													'conditions'=> array('Category.subject_id = 2'),
-													'Subcategory'
-												)
-											)	
-										)
-									);
-		$progressDetail = $this->Progress->progressOnGrade($user_id);
-		//pr($progressDetail);
-		
-		$this->set('progressDetail', $progressDetail);
-		$this->set('gradeContents', $gradeContents);
-		
-		$this->loadModel('Score');
-		$subject_id = 2;
-		$chart = json_encode($this->Score->getChartData($user_id, $subject_id, array('type'=>'tentimes')));
-		
-		$this->loadModel('Ranking');
-		$ranking_data = $this->Ranking->getSubjectRanking($user_id);
-		
-		$this->set('rankings', $ranking_data);
-        $this->set('progresses', $progresses);
-        //$this->set('scores', $scores);
-        $this->set('cover', $cover);
-		$this->set('chart', $chart);
     }
 
 /**

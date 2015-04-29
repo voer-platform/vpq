@@ -177,16 +177,16 @@
 		<br/>
 		<div class="alert alert-success">
 			<div class="row">
-				<div class="col-md-6">
+				<div class="col-md-8">
 					<span class="glyphicon glyphicon-hand-right "></span>
 					<strong><?php echo __('Welcome to Personal Learning System!'); ?></strong>
 					<br/>
-					<?php echo __('You have no progress at all, please click Test Button to begin your learning process'); ?>
+					<?php echo __('You have no progress on this subject, please click Test Button to begin your learning process'); ?>
 				</div>
-				<div class="col-md-6">
+				<div class="col-md-4">
 					<a href="<?php echo $this->Html->url(array('controller' => 'Tests', 
 																'action' => 'chooseTest', 
-																2)); ?> "class="pls-test-btn" data-teston="first test">
+																$subject_id)); ?> "class="pls-test-btn" data-teston="first test">
 					<button class="btn btn-primary btn-test btn-lg pull-right"><span class="glyphicon glyphicon-play"></span> Kiểm tra ngay</button>
 					</a>
 				</div>

@@ -19,11 +19,68 @@
 			<div class="fb-like" data-href="https://www.facebook.com/pls.edu.vn" data-width="300px" data-layout="standard" data-action="like" data-show-faces="true" data-share="false"></div>
 		</div>
     </div>
-	
-    
+<?php if(isset($overviews)){ ?>
+	<?php if(!$overviews[0]['Ranking']['score']){ ?>
+	<br/>
+	<div class="alert alert-success">
+		<div class="row">
+			<div class="col-md-12">
+				<span class="glyphicon glyphicon-hand-right "></span>
+				<strong><?php echo __('Welcome to Personal Learning System!'); ?></strong>
+				<br/>
+				<?php echo __('You have no progress at all, please click Test Button to begin your learning process'); ?>
+			</div>
+		</div>	
+	</div>
+	<?php } ?>
+	<div class="row">
+		<?php foreach($overviews AS $subj){ ?>
+			<?php
+				$hasScore = '';
+				if($subj['Ranking']['score'])
+				{
+					$action_url = $this->Html->url(
+										array(
+											'controller' => 'People', 
+											'action' => 'dashboard', 
+											$subj['Subject']['id'],
+										)
+									);
+					$hasScore = 'has-score';
+				}
+				else
+				{
+					$action_url = $this->Html->url(
+										array(
+											'controller' => 'Tests', 
+											'action' => 'chooseTest', 
+											$subj['Subject']['id'],
+										)
+									);
+				}
+			?>	
+			<div class="col-md-2">
+				<div class="subject-token <?php echo $hasScore; ?>">
+					<p class="subject-name"><?php echo $subj['Subject']['name']; ?></p>
+					<div class="subject-score">
+						<?php echo ($subj['Ranking']['score'])?$subj['Ranking']['score']:'?'; ?>
+						<span class="subject-score-text">Điểm</span>
+					</div>	
+					<br/>
+					<a class="btn btn-default btn-sm" href="<?php echo $action_url; ?>">
+					<?php if($subj['Ranking']['score']){ ?>
+						<span class="glyphicon glyphicon-info-sign"></span> Chi tiết môn học</a>
+					<?php } else { ?>
+						<span class="glyphicon glyphicon-play"></span> Kiểm tra</a>
+					<?php } ?>	
+				</div>	
+			</div>
+		<?php } ?>
+	</div>
+ <?php } else { ?>   
 	<?php echo $this->element('progress_subject'); ?>
 	<br/><br/><br/><br/><br/><br/>
-</div>
+
 
 <script type="text/javascript">
 	/* Mixpanel initial */
@@ -458,3 +515,5 @@
 	$('.hasDetail').popover();
 	
 </script>
+<?php } ?>	
+</div>

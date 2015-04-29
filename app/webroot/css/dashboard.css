@@ -181,3 +181,27 @@ div.chart-description {
 .ranking-info a {
 	color: #fff;
 }
+.subject-token {
+  background: rgba(66, 139, 202, 0.69);
+  height: 220px;
+  margin: 20px 0;
+  text-align: center;
+}
+.subject-token.has-score {
+	 background: #5cb85c;
+}
+.subject-token .btn {width:auto;}
+.subject-token .subject-name {
+  color: #fff;
+  font-size: 18px;
+  border-bottom: solid 1px #fff;
+  padding: 5px 0;
+}
+.subject-token .subject-score {
+  margin: auto;
+  border-color: #fff;
+  color: #fff;
+}
+.subject-token .subject-score-text {
+	color:#fff;
+}

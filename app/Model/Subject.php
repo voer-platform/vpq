@@ -70,5 +70,35 @@ class Subject extends AppModel {
 			'finderQuery' => '',
 		)
 	);
-
+/**
+ * get subject overview for a person
+ * @param   person_id
+ * @return  overview of subject
+ */
+	public function subjectOverview($person_id)
+	{
+		$sql = array(
+					'fields'	=>	array('Ranking.score, Subject.id, Subject.name'),
+					'joins'	=>	array(
+									array(
+										'type'	=>	'LEFT',
+										'table'	=>	'rankings',
+										'alias'	=>	'Ranking',
+										'conditions'	=>	array(
+												'Ranking.subject_id = Subject.id'
+											)
+									)		
+								),
+					'conditions'	=>	array(
+							'OR'	=>	array(
+											array('Ranking.person_id' => $person_id),
+											array('Ranking.person_id' => NULL)
+										)
+						),	
+					'recursive' => -1,
+					'order'	=>	array('Ranking.score'=>'DESC')
+				);
+		$results = $this->find('all', $sql);
+		return $results;		
+	}
 }
