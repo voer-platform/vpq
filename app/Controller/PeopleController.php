@@ -221,9 +221,9 @@ class PeopleController extends AppController {
 					else
 					{
                         // redirect to previous review page if from it
-                        if($this->Session->read('fromViewDetails')){
-                            $review_url = $this->Session->read('fromViewDetails');
-                            $this->Session->delete('fromViewDetails');
+                        if($this->Cookie->read('fromViewDetails')){
+                            $review_url = $this->Cookie->read('fromViewDetails');
+                            $this->Cookie->delete('fromViewDetails');
                             $this->redirect($review_url);
                         }
                         else{
