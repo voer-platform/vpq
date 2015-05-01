@@ -133,13 +133,13 @@
 					<tr>
 						<td rowspan='2' style='width:40%;'>
 							<?php if(round($correct/$numberOfQuestions,2)*10>=8): ?>
-								<?php echo $this->Html->image('icon1.png',array('style'=>'max-width:100%')); ?>
+								<?php echo $this->Html->image('icon1.png',array('style'=>'max-width:224px')); ?>
 							<?php endif; ?>
 							<?php if(round($correct/$numberOfQuestions,2)*10<8 && round($correct/$numberOfQuestions,2)*10>4): ?>
-								<?php echo $this->Html->image('icon7.png',array('style'=>'max-width:100%')); ?>
+								<?php echo $this->Html->image('icon7.png',array('style'=>'max-width:224px')); ?>
 							<?php endif;?>
 							<?php if(round($correct/$numberOfQuestions,2)*10<5): ?>
-								<?php echo $this->Html->image('icon8.png',array('style'=>'max-width:100%')); ?>
+								<?php echo $this->Html->image('icon8.png',array('style'=>'max-width:224px')); ?>
 							<?php endif;?>
 						</td>
 						<td style='text-align:center;width:60%;'>
