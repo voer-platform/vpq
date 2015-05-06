@@ -38,7 +38,7 @@
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
-              <li><?php echo $this->Html->link(__('Account info'),array('controller'=> 'people','action'=> 'profile', $user['id'])); ?></li>
+              <li><?php echo $this->Html->link(__('Account info'),array('controller'=> 'people','action'=> 'view', $user['id'])); ?></li>
               <li><?php echo $this->HTML->link(__('Dashboard'), array('controller' => 'people', 'action' => 'dashboard')); ?></li>
               <li class="divider"></li>
               <li><?php echo $this->Html->link(__('Logout'),array('controller'=> 'people','action'=> 'logout')); ?></li>

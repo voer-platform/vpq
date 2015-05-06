@@ -75,7 +75,7 @@ class Subject extends AppModel {
  * @param   person_id
  * @return  overview of subject
  */
-	public function subjectOverview($person_id)
+	public function subjectOverview($person_id, $filterOptions = null)
 	{
 		$sql = array(
 					'fields'	=>	array('Ranking.score, Subject.id, Subject.name'),
@@ -97,6 +97,15 @@ class Subject extends AppModel {
 					'recursive' => -1,
 					'order'	=>	array('Ranking.score'=>'DESC')
 				);
+				
+		if(isset($filterOptions['subject']))
+		{	
+			if(is_array($filterOptions['subject']))
+				$sql['conditions'][] = "Subject.id IN (".implode(',', $filterOptions['subject']).")";
+			else
+				$sql['conditions'][] = "Subject.id = ".$filterOptions['subject'];
+		}
+		
 		$results = $this->find('all', $sql);
 		
 		$hasData = array();
@@ -106,12 +115,23 @@ class Subject extends AppModel {
 			$hasData[] = $subj['Subject']['id'];
 		}
 		
-		$noData = $this->find('all', array(
-							'fields'	=>	array('Subject.id, Subject.name'),
-							'conditions'=>array(
-									'NOT'=>array('id'=>$hasData)
-								)
-							));
+		$sql = array(
+					'fields'	=>	array('Subject.id, Subject.name'),
+					'conditions'=>array(
+							'NOT'=>array('id'=>$hasData)
+						)
+				);
+		if(isset($filterOptions['subject']))
+		{	
+			if(is_array($filterOptions['subject']))
+				$sql['conditions'][] = "Subject.id IN (".implode(',', $filterOptions['subject']).")";
+			else
+				$sql['conditions'][] = "Subject.id = ".$filterOptions['subject'];
+		}
+		
+		$noData = $this->find('all', $sql);
+		
+		
 		
 		foreach($noData AS $k=>$subj)
 		{

@@ -27,7 +27,7 @@ class PeopleController extends AppController {
     public function isAuthorized($user) {
         // user can logout, dashboard, progress, history, suggest
         if (isset($user['role']) && $user['role'] === 'user' ){
-            if( in_array( $this->request->action, array('view', 'update','progress', 'login', 'logout', 'history', 'dashboard','suggest', 'completeProfile'))){
+            if( in_array( $this->request->action, array('view', 'update','progress', 'login', 'logout', 'history', 'dashboard','suggest', 'completeProfile', 'invite'))){
                 return true;
             }
         } elseif (isset($user['role']) && $user['role'] === 'editor') {
@@ -195,8 +195,7 @@ class PeopleController extends AppController {
             // User login successful
             $fb_user = $this->Facebook->getUser();          # Returns facebook user_id
             if ($fb_user){
-                $fb_user = $this->Facebook->api('/me');     # Returns user information
-
+				$fb_user = $this->Facebook->getUserInfo();
                 // We will varify if a local user exists first
                 $local_user = $this->Person->find('first', array(
                     'conditions' => array('facebook' => $fb_user['id'])
@@ -213,8 +212,9 @@ class PeopleController extends AppController {
 					$this->Cookie->delete('remember');
 					$this->Cookie->write('reaccess', $encrypted_access_string, false, 31536000);
 					
-					$firstTimeLogin = $this->request->query('code');
-					if($firstTimeLogin=='true')
+					$completedProfile = $local_user['Person']['profile_completed'];
+
+					if(!$completedProfile)
 					{
 						$this->redirect(array('controller' => 'people', 'action' => 'completeProfile'));
 					}
@@ -234,7 +234,6 @@ class PeopleController extends AppController {
 
                 // Otherwise we'll add a new user (Registration)
                 else {
-					$picture = $this->Facebook->api('/me/picture?height=200&width=200&redirect=false');        # FB picture
 					if(isset($fb_user['birthday'])){
 						$birthday = date('d/m/Y', strtotime($fb_user['birthday']));
 					}
@@ -247,6 +246,7 @@ class PeopleController extends AppController {
 				
                     $data['Person'] = array(
                         'facebook'          => $fb_user['id'],
+						'email'          => $fb_user['email'],
                         'password'          => $password,
 						'salt'				=> $salt,
                         'fullname'			=> $fb_user['last_name'].' '.$fb_user['first_name'],
@@ -256,15 +256,23 @@ class PeopleController extends AppController {
                         'role'              => 'user',
                         'date_created'      => date("Y-m-d H:i:s"),
                         'date_modified'     => date("Y-m-d H:i:s"),
-                        'image'             => $picture['data']['url'],
+                        'image'             => $fb_user['picture']['url'],
 						'gender'			=>	($fb_user['gender']=='male')?1:0
                     );
 
                     // You should change this part to include data validation
                     $this->Person->save($data, array('validate' => false));
 
+					//Gift coins for user whole invited this user
+					$this->loadModel('Invitation');
+					$inviter = $fb_user['friends']['data'];
+					foreach($inviter AS $person)
+					{
+						$this->Invitation->invitationGift($person->id, $fb_user['id']);
+					}
+					
                     // After registration we will redirect them back here so they will be logged in
-                    $this->redirect(Router::url('/people/login?code=true', true));
+                    $this->redirect($this->Facebook->getLoginUrl());
                 }
             }
 
@@ -353,8 +361,35 @@ class PeopleController extends AppController {
 		else
 		{
 			$this->loadModel('Subject');
-			$overviews = $this->Subject->subjectOverview($user_id);
+			$viewSubjects = array(2,4,8);
+			$overviews = $this->Subject->subjectOverview($user_id, array('subject'=>$viewSubjects));
 			$this->set('overviews', $overviews);
+			//pr($overviews);
+			$this->loadModel('Progress');
+			$progresses = $this->Progress->progressOnSubject($user_id);
+			$this->set('progresses', $progresses);
+			
+			$this->loadModel('Question');
+			$cover = $this->Question->getSubcategoryCover($user_id);
+			$this->set('cover', $cover);
+			
+			$this->loadModel('Score');
+			$chart = $this->Score->getChartData($user_id, null, array('type'=>'tentimes'));
+			if(isset($chart['chart']['subject']))
+			{
+				foreach($chart['chart']['subject'] AS $subj_id => $subj)
+				{
+					$viewSubjects = array_diff($viewSubjects, [$subj_id]);
+				}
+			}
+			
+			foreach($viewSubjects AS $subj_id)
+			{
+				$chart['chart']['subject'][$subj_id] = array('date'=>array(), 'score'=>array());
+			}
+				
+			//pr($chart);
+			$this->set('chart', json_encode($chart));
 		}
 		
     }
@@ -410,7 +445,7 @@ class PeopleController extends AppController {
 	public function completeProfile()
 	{
 		$user = $this->Auth->user();
-		if($user['school'])
+		if($user['profile_completed'])
 		{
 			$this->redirect(array('controller' => 'people', 'action' => 'dashboard'));
 		}
@@ -425,7 +460,8 @@ class PeopleController extends AppController {
 								'address'	=>	"'".$this->request->data('address')."'", 
 								'grade'		=>	"'".$this->request->data('grade')."'", 
 								'school'	=>	"'".$this->request->data('school')."'",
-								'gender'	=>	"'".$this->request->data('gender')."'"
+								'gender'	=>	"'".$this->request->data('gender')."'",
+								'profile_completed'	=>	"1"
 							),
 							array('Person.id' => $user['id'])
 						);
@@ -441,4 +477,18 @@ class PeopleController extends AppController {
 		$this->set('grades', $grades);
 		$this->set('provinces', $provinces);
 	}
+	
+	public function invite()
+	{
+		$this->autoRender = false;
+		$data = $this->request->data;
+		$invited_friends = $data['frs'];
+		$this->loadModel('Invitation');
+		$user = $this->Auth->user();
+		foreach($invited_friends AS $friend_fb)
+		{
+			$this->Invitation->invite($user['id'], $user['facebook'], $friend_fb);
+		}
+	}
+	
 }

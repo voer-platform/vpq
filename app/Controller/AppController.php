@@ -72,11 +72,18 @@ class AppController extends Controller {
         Configure::load('facebook');
         // this is not recommended by CakePHP, just for backward compatiblity
         // App::import('Vendor', 'facebook-php-sdk-master/src/facebook');
-        require_once(APP. 'Vendor'. DS . 'facebook-php-sdk-master'. DS. 'src'. DS. 'facebook.php');
+        require_once(APP. 'Vendor'. DS . 'facebook'. DS. 'facebook.php');
 
         $this->Facebook = new Facebook(array(
             'appId'     =>  Configure::read('Facebook.AppID'),
-            'secret'    =>  Configure::read('Facebook.AppSecret')
+            'secret'    =>  Configure::read('Facebook.AppSecret'),
+			'redirect_uri' => Router::url(
+                array(
+                    'controller' => 'people', 
+                    'action' => 'login'
+                ), 
+                true),
+            'scope' => 'user_birthday, user_friends, public_profile, publish_actions, email, user_games_activity'
             ));
 
         // set default language is Vietnamese
@@ -88,15 +95,7 @@ class AppController extends Controller {
      */
     public function beforeRender() {
         // set variables before render to user
-        $this->set('fb_login_url', $this->Facebook->getLoginUrl(array(
-            'redirect_uri' => Router::url(
-                array(
-                    'controller' => 'people', 
-                    'action' => 'login'
-                ), 
-                true),
-            'scope' => 'user_birthday',
-        )));
+        $this->set('fb_login_url', $this->Facebook->getLoginUrl());
 		
 		if(!$this->Auth->loggedIn()){
 			//if user not logged in, check cookie then auto login

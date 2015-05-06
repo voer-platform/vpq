@@ -1,6 +1,8 @@
 <?php echo $this->Html->css('dashboard.css');?>
 <?php echo $this->Html->script('highcharts.js');?>
 <?php echo $this->Html->script('no-data-to-display.src.js');?>
+<a href="javascript:void(0);" onclick="FBInvite()">Invite Facebook Friends</a>
+
 <div class='dashboard'>
     <h2 class="page-heading heading"><?php echo __('Dashboard');?></h2>
     <div class="dashboard-header clearfix">
@@ -34,7 +36,7 @@
 	</div>
 	<?php } ?>
 	<div class="row">
-		<?php foreach($overviews AS $subj){ ?>
+		<?php /*foreach($overviews AS $subj){ ?>
 			<?php
 				$hasScore = '';
 				if($subj['Ranking']['score'])
@@ -75,8 +77,72 @@
 					<?php } ?>	
 				</div>	
 			</div>
-		<?php } ?>
+		<?php } */ ?>
+		
 	</div>
+	<br/>
+		<?php  
+		foreach($overviews as $key => $subj){
+			$score  = ($subj['Ranking']['score'])?$subj['Ranking']['score']:0;
+			$name   = $this->Name->determineRank($score);
+			$pass = (isset($cover[$subj['Subject']['id']]['pass']))?$cover[$subj['Subject']['id']]['pass']:0;
+			$total = (isset($cover[$subj['Subject']['id']]['total']))?$cover[$subj['Subject']['id']]['total']:0;
+			$completeness = ($pass)?round(($cover[$subj['Subject']['id']]['pass']/$cover[$subj['Subject']['id']]['total'])*100):0;
+	?>
+		<div class="panel panel-default">
+		<div class="panel-body">
+		<div class="row">
+			<div class="col-md-2">
+				<h2 class="dashboard-subject-name"><?php echo $this->Html->image('subjects/'.$subj['Subject']['id'].'.png'); ?> <?php echo $subj['Subject']['name']; ?></h2>
+					<p><a href="<?php 
+						echo $this->Html->url(
+							array(
+								'controller' => 'Tests', 
+								'action' => 'chooseTest', 
+								$subj['Subject']['id'],
+							)
+						); 
+					?>" class="btn btn-sm btn-primary btn-test pls-test-btn fw bl left" data-teston="subject">
+						<span class="glyphicon glyphicon-play"></span> <?php echo __('Do test on this'); ?>
+					</a></p>
+					
+					<a class="btn btn-default btn-sm bl wa left" href="<?php 
+						echo $this->Html->url(
+							array(
+								'controller' => 'People',
+								'action'	=>	'dashboard',
+								$subj['Subject']['id']
+							)
+						); 
+					?>">
+						<span class="glyphicon glyphicon-info-sign"></span> Chi tiết môn học
+					</a>
+				</div>		
+			<div class="col-md-4 <?php echo (!$score)?'blur1':''; ?>" style="border-left: solid 1px #C0D0E0;">
+				<div style="display: inline-block;">
+					<span class="subject-score" style="border-color:<?php echo $this->Name->rankColor($score); ?>" id="subject-score-<?php echo $subj['Subject']['id']; ?>" title="<?php echo __('Score based on latest 10 tests on the subject'); ?>">
+						<span class="subject-score-number"><?php echo $score; ?></span>
+						<span class="subject-score-text" style="color:<?php echo $this->Name->rankColor($score); ?>"><?php echo __('Score'); ?></span>
+					</span>
+				</div>
+				<div style="display: inline-block;float:right;width: 65%;">
+					<?php echo __('Tiến trình học tập'); ?> <a href="javascript:void(0);" class="hasDetail pull-right pls-popover" data-type="Progress Popover" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="top" data-content="Được tính bằng tỷ lệ số bài học đã thực hành trên tổng số bài của môn học này"><span class="glyphicon glyphicon-question-sign"></span></a>
+					
+					<div class="progress" style="margin: 10px 0;">
+						<div class="progress-bar progress-bar-striped" id="subject-cover-<?php echo $subj['Subject']['id']; ?>" style="width: <?php echo $completeness; ?>%;" role="progressbar" aria-valuenow="<?php echo $completeness; ?>" aria-valuemin="0" aria-valuemax="100" id="preogressbar-cover"><?php echo $completeness.'%'; ?></div>
+					</div>
+					
+					Bạn đã thực hành <b class="num-pass"><?php echo $pass; ?></b> trên tổng số <b class="num-total"><?php echo $total; ?></b> bài học
+				</div>
+			</div>
+			<div class="col-md-6 <?php echo (!$score)?'blur1':''; ?>">
+				<div class="chart" id="chart-subject-<?php echo $subj['Subject']['id']; ?>"></div>
+			</div>
+		</div>	
+		</div>
+		</div>
+	<?php } ?>
+	
  <?php } else { ?>   
 	<?php echo $this->element('progress_subject'); ?>
 	<br/><br/><br/><br/><br/><br/>
@@ -284,7 +350,8 @@
     }
 
 </script>
-
+<?php } ?>	
+</div>
 
 <script type="text/javascript">
     /**
@@ -514,6 +581,27 @@
 	
 	$('.hasDetail').popover();
 	
+	function FBInvite(){
+		FB.ui({
+			method: 'apprequests',
+			title: 'Mời bạn bè tham gia PLS',
+			message: 'Mời bạn bè tham gia PLS',
+			new_style_message: true
+		},function(response){
+			$.ajax({
+				type: 'POST',
+				url: '<?php echo $this->Html->url(
+							array(
+								'controller' => 'People', 
+								'action' => 'invite'
+							)
+						); ?>',
+				data: {'frs': response.to},
+				success: function(){
+					//No handler
+				}
+			});
+		});
+	}
+	
 </script>
-<?php } ?>	
-</div>

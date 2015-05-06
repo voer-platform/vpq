@@ -604,7 +604,11 @@ class Score extends AppModel {
 				'TestSubject.id = Score.test_id' 
 				)
 			);
-		$options['conditions']['TestSubject.subject_id'] = $subject_id;  
+			
+		if($subject_id)	
+		{
+			$options['conditions']['TestSubject.subject_id'] = $subject_id;  
+		}	
 
 		// scores for chart
 		$charts = $this->find('all', $options);

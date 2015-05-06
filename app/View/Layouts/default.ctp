@@ -49,7 +49,7 @@
           ga('send', 'pageview');
         </script>
     <?php endif; ?>    
-
+	<script src="http://connect.facebook.net/en_US/all.js"></script>
 </head>
 <body>
     <?php echo $this->Html->script('facebook.js'); ?>

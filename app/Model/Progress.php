@@ -323,7 +323,10 @@ class Progress extends AppModel {
 		
 		if(isset($filterOptions['subject']))
 		{
-			$sql['conditions'][] = "Subject.id = ".$filterOptions['subject'];
+			if(is_array($filterOptions['subject']))
+				$sql['conditions'][] = "Subject.id IN (".implode(',', $filterOptions['subject']).")";
+			else
+				$sql['conditions'][] = "Subject.id = ".$filterOptions['subject'];
 		}	
 		
         $results = $this->find('all', $sql);

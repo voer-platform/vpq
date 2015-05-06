@@ -1,5 +1,15 @@
 <?php if( !empty($progresses) ){ ?>
 	<div class="time-range clearfix">
+		<div class="btn-group pull-left">
+			<a href="<?php 
+						echo $this->Html->url(
+							array(
+								'controller' => 'People', 
+								'action' => 'dashboard'
+							)
+						); 
+					?>" class="btn btn-link btn-xs"><span class="glyphicon glyphicon-tasks"></span> <?php echo __('Subject list'); ?></a>
+		</div>
         <div class="btn-group pull-right">
 			<a class="btn btn-default btn-xs dropdown-toggle time-range-select" data-range="custom" data-toggle="dropdown" aria-expanded="false"><?php echo __('Custom'); ?> <span class="caret"></span></a>
 			<div class="dropdown-menu unclickable-dropdown" role="menu">
@@ -32,7 +42,7 @@
 	?>
 		<div class="row dashboard-subject-container">
 			<div class="col-md-2">
-				<h2 class="dashboard-subject-name"><?php echo $this->Html->image('physical.png'); ?> <?php echo $progress['Subject']['name']; ?></h2>
+				<h2 class="dashboard-subject-name"><?php echo $this->Html->image('subjects/'.$progress['Subject']['id'].'.png'); ?> <?php echo $progress['Subject']['name']; ?></h2>
 					<p>
 						<!--
 						<a href="javascript:void(0);" 
