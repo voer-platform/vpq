@@ -27,11 +27,11 @@ class PeopleController extends AppController {
     public function isAuthorized($user) {
         // user can logout, dashboard, progress, history, suggest
         if (isset($user['role']) && $user['role'] === 'user' ){
-            if( in_array( $this->request->action, array('view', 'update','progress', 'login', 'logout', 'history', 'dashboard','suggest', 'completeProfile', 'invite'))){
+            if( in_array( $this->request->action, array('view', 'update','progress', 'login', 'logout', 'history', 'dashboard','suggest', 'completeProfile', 'invite','rechargecard'))){
                 return true;
             }
         } elseif (isset($user['role']) && $user['role'] === 'editor') {
-            if( in_array( $this->request->action, array('view','progress', 'login', 'logout', 'history', 'dashboard','suggest'))){
+            if( in_array( $this->request->action, array('view','progress', 'login', 'logout', 'history', 'dashboard','suggest','rechargecard'))){
                 return true;
             }
         }
@@ -257,7 +257,9 @@ class PeopleController extends AppController {
                         'date_created'      => date("Y-m-d H:i:s"),
                         'date_modified'     => date("Y-m-d H:i:s"),
                         'image'             => $fb_user['picture']['url'],
-						'gender'			=>	($fb_user['gender']=='male')?1:0
+						'gender'			=>	($fb_user['gender']=='male')?1:0,
+						'coin'			    => 30,
+						'last_login'		=> date('Y-m-d'),
                     );
 
                     // You should change this part to include data validation
@@ -302,7 +304,28 @@ class PeopleController extends AppController {
     public function dashboard($subject_id = null){
         $this->set('title_for_layout',__("Dashboard"));
         $user_id = $this->Session->read('Auth.User')['id'];
-
+		$this->loadModel('Person');
+		$options = array(
+				'recursive' => -1,
+				'conditions' => array('Person.id'=>$user_id)
+				);			
+		$data_user = $this->Person->find('all',$options);
+		$date1 = strtotime($data_user[0]['Person']['last_login']);
+		$date2 = strtotime(date('Y-m-d'));
+		$diff = abs($date2-$date1);
+		$ketqua=round($diff/(60*60*24));
+		$coin=$data_user[0]['Person']['coin']-$ketqua;
+		if($coin<0){
+			$coin='0';
+		}
+		$this->Person->id=$user_id;
+		$this->Person->save(
+									array(
+										'coin' => $coin,
+										'last_login' => date('Y-m-d'),
+									)
+								);
+		$this->set('coin',$coin);
 		if($subject_id){
 			$this->loadModel('Progress');
 			$progresses = $this->Progress->progressOnSubject($user_id, array('subject'=>$subject_id));
@@ -491,4 +514,14 @@ class PeopleController extends AppController {
 		}
 	}
 	
+	public function RechargeCard(){
+		if ($this->request->is('post')) {
+			$data = $this->request->data;
+			if(!empty($data['seri']) && !empty($data['pin'])){
+				echo "Nạp thành công";
+			}else{
+				echo "Thất bại";
+			}
+		}
+	}
 }

@@ -21,7 +21,7 @@
         <?php if(!empty($user) ): ?>
           <li><?php echo $this->HTML->link(__('Dashboard'), array('controller' => 'people', 'action' => 'dashboard')); ?></li>
           <li><?php echo $this->HTML->link(__('History'), array('controller' => 'people', 'action' => 'history')); ?></li>
-          <li><?php echo $this->HTML->link(__('Faq'), array('controller' => 'faqs', 'action' => 'userIndex')); ?></li>
+          <li><?php echo $this->HTML->link(__('Faq'), array('controller' => 'faqs', 'action' => 'userIndex')); ?></li>		  
         <?php endif; ?>
 
         <!-- if is admin -->
@@ -29,8 +29,12 @@
           <li><?php echo $this->HTML->link(__('Admin'), array('controller' => 'Admin', 'action' => 'index')); ?></li>
         <?php endif; ?>
 		<li><?php echo $this->HTML->link(__('About'), '/about'); ?></li>
+		 <?php if(!empty($user) ): ?>
+		<li id='napthe'><a href="<?php echo $this->Html->url(array('controller'=> 'people','action'=> 'rechargecard')); ?>"><span class='glyphicon glyphicon-usd'></span> Nạp thẻ</a></li>
+		<?php endif; ?>
       </ul>
       <ul class="nav navbar-nav navbar-right">
+		
         <?php if(!empty($user)): ?>
           <li><?php echo $this->Html->link($this->Html->image($user['image'], array('class' => 'profile-img')), array('controller' => 'people', 'action' => 'dashboard'), array('escape' => false, 'class' => 'profile-img') ); ?></li>
           <li><?php echo $this->Html->link($user['fullname'],array('controller' => 'people', 'action' => 'dashboard')); ?></li>
@@ -45,7 +49,7 @@
             </ul>
           </li>
         <?php else: ?>
-          <!-- not exists -->
+          <li id='napthe'><a href='#'><span class='glyphicon glyphicon-usd'></span> Nạp thẻ</a></li>
       	<?php endif; ?>
       </ul>
     </div><!--/.nav-collapse -->

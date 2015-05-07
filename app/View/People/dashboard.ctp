@@ -1,26 +1,63 @@
 <?php echo $this->Html->css('dashboard.css');?>
 <?php echo $this->Html->script('highcharts.js');?>
 <?php echo $this->Html->script('no-data-to-display.src.js');?>
-<a href="javascript:void(0);" onclick="FBInvite()">Invite Facebook Friends</a>
 
 <div class='dashboard'>
-    <h2 class="page-heading heading"><?php echo __('Dashboard');?></h2>
-    <div class="dashboard-header clearfix">
-        <div class="pull-left clearfix">
-            <div class="avatar pull-left">
-                <?php echo $this->Html->image($user['image'], array('width' => '60px', 'height' => '60px')); ?>
-            </div>
-            <div class="user-name pull-right">
-                <h4><?php echo $user['fullname']; ?></h4>
-                <div>
-                    <?php echo $this->Html->link(__('Edit Profile'),array('controller'=> 'people','action'=> 'view', $user['id'])); ?>
-                </div>
-            </div>
-        </div>
-		<div class="pull-right clearfix">
-			<div class="fb-like" data-href="https://www.facebook.com/pls.edu.vn" data-width="300px" data-layout="standard" data-action="like" data-show-faces="true" data-share="false"></div>
+	<div class="page-heading heading">
+		<div class='row' style='margin:0px;'>
+			<div class='col-sm-9'>
+				<div class='row'>
+					<h2 style='margin:0px;'><?php echo __('Dashboard');?></h2>
+				</div>
+				<br/>
+				<div class='row' style='margin-right:0px;'>
+					<div class="dashboard-header clearfix">
+						<div class="pull-left clearfix">
+							<div class="avatar pull-left">
+								<?php echo $this->Html->image($user['image'], array('width' => '60px', 'height' => '60px')); ?>
+							</div>
+							<div class="user-name pull-right">
+								<h4><?php echo $user['fullname']; ?></h4>
+								<div>
+									<?php echo $this->Html->link(__('Edit Profile'),array('controller'=> 'people','action'=> 'view', $user['id'])); ?>
+								</div>
+							</div>
+						</div>
+						<div class="pull-right clearfix">
+							<div class="fb-like" data-href="https://www.facebook.com/pls.edu.vn" data-width="280px" data-layout="standard" data-action="like" data-show-faces="true" data-share="false"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3 box" style='float:right'>
+				<div class='row'>
+					<div class='row' style='margin:0px;padding-left:15px;padding-right:15px;padding-top:15px;'>
+					<?php echo $this->Html->image('coin.png',array('style'=>'width:40px;height:30px')) ?>
+					<span style='color:#428bca;font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;font-size:18px;'>Xu:</span> <span style='color:red;font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;font-size:18px'><?php echo $coin; ?></span>
+					<hr style='border-top:2px solid #81AFD1; margin-top:7px;margin-bottom:5px;'/>
+					</div>
+					<div  class='row' style='margin:0px;padding-left:15px;padding-right:15px;'>	
+						<p style='font-size:11px;'>Bạn hãy chọn 1 trong 2 hình thức dưới để tăng xu.</p>
+					</div>
+					<div  class='row' style='margin:0px;'>						
+						<div class='col-sm-12'>
+							<!--<?php echo $this->Html->image('napthe.png',array('class'=>'','url'=>array('controller'=> 'people','action'=> 'rechargecard'))) ?>
+							<?php echo $this->Html->link($this->Form->button('Nạp thẻ ngay', array('type'=>'button','class'=>'btn btn-danger')),array('controller'=> 'people','action'=> 'rechargecard'),array('escape' => false)); ?>-->
+							<div class='col-sm-6' style='padding-left:0px;padding-right:5px;'>
+							<a class='btn btn-danger bl fw' href="<?php echo $this->Html->url(array('controller'=> 'people','action'=> 'rechargecard')); ?>"><span class='glyphicon glyphicon-usd'></span> Nạp thẻ</a>
+							</div>
+							<div class='col-sm-6' style='padding-left:5px;padding-right:0px;'>
+							<a class='btn btn-success bl fw' href="javascript:void(0);" onclick="FBInvite()"><span class='glyphicon glyphicon-send'></span>&nbsp;&nbsp;Invite</a>
+							</div>
+						</div>
+						<!--<div class='col-sm-6'>
+							<button type='button' class='btn btn-success' style='width:100%;'>Invite</button>
+						</div>-->
+					</div>
+				</div>
+			</div>
 		</div>
-    </div>
+	</div>    
 <?php if(isset($overviews)){ ?>
 	<?php if(!$overviews[0]['Ranking']['score']){ ?>
 	<br/>

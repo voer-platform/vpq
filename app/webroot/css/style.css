@@ -3,6 +3,12 @@ div .dashboard #chart_per{
     display: inline;
 }
 /*dashboard.chart div*/
+.box{
+	padding-bottom:5px;
+	border: solid 2px #81AFD1;
+	background-color:#fff;
+}
+
 div .dashboard #chart{
     text-align: center;
     /*width: 800px;
