@@ -30,7 +30,7 @@
         <?php endif; ?>
 		<li><?php echo $this->HTML->link(__('About'), '/about'); ?></li>
 		 <?php if(!empty($user) ): ?>
-		<li id='napthe'><a href="<?php echo $this->Html->url(array('controller'=> 'people','action'=> 'rechargecard')); ?>"><span class='glyphicon glyphicon-usd'></span> Nạp thẻ</a></li>
+		<li id='napthe'><a href="<?php echo $this->Html->url(array('controller'=> 'people','action'=> 'rechargecard')); ?>">Nạp thẻ</a></li>
 		<?php endif; ?>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -49,7 +49,6 @@
             </ul>
           </li>
         <?php else: ?>
-          <li id='napthe'><a href='#'><span class='glyphicon glyphicon-usd'></span> Nạp thẻ</a></li>
       	<?php endif; ?>
       </ul>
     </div><!--/.nav-collapse -->

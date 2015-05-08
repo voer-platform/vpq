@@ -242,19 +242,6 @@
     </div>
 	<br/>
 </div>
-<div id="modal_rechargecard" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
-    <div class="modal-dialog modal-sm" style='width:500px;margin-top:100px;'>
-        <div class="modal-content">
-            <div class="modal-body" style='text-align:center;'>
-				<h4 class="modal-title" id="myModalLabel">Bạn cần đăng nhập trước khi nạp thẻ</h4>
-				<hr/>
-                <a href="<?php echo $fb_login_url; ?>" class="mix-login" data-section="home-footer">
-					<?php echo $this->Html->image('facebook-login-button.png', array('style'=> 'width:100%;','class' => 'facebook-btn', 'alt' => __('Login with Facebook'))); ?>
-				</a>
-            </div>
-        </div>
-    </div>
-</div>
 <script>
 	$(document).ready(function(){
 		mixpanel.track(
@@ -263,12 +250,6 @@
 		
 		mixpanel.track_links(".mix-login", "Login", function(e){
 			return {"login_section": $(e).attr('data-section')};
-		});
-		
-		$(document).on('click','#napthe', function(){
-			$('#modal_rechargecard').modal({
-				backdrop: true
-			});	
-		});		
+		});	
 	});
 </script>
