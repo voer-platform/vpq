@@ -31,16 +31,16 @@
 			</div>
 			<div class="col-sm-3 box" style='float:right'>
 				<div class='row'>
-					<div class='row' style='margin:0px;padding-left:15px;padding-right:15px;padding-top:15px;'>
+					<div class='row' style='margin:0px;padding-left:10px;padding-right:10px;padding-top:15px;'>
 					<?php echo $this->Html->image('coin.png',array('style'=>'width:40px;height:30px')) ?>
 					<span style='color:#428bca;font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;font-size:18px;'>Xu:</span> <span style='color:red;font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;font-size:18px'><?php echo $coin; ?></span>
 					<hr style='border-top:2px solid #81AFD1; margin-top:7px;margin-bottom:5px;'/>
 					</div>
-					<div  class='row' style='margin:0px;padding-left:15px;padding-right:15px;'>	
+					<div  class='row' style='margin:0px;padding-left:10px;padding-right:10px;'>	
 						<p style='font-size:11px;'>Bạn hãy chọn 1 trong 2 hình thức dưới để tăng xu.</p>
 					</div>
 					<div  class='row' style='margin:0px;'>						
-						<div class='col-sm-12'>
+						<div class='col-sm-12' style='padding-left:10px;padding-right:10px;'>
 							<!--<?php echo $this->Html->image('napthe.png',array('class'=>'','url'=>array('controller'=> 'people','action'=> 'rechargecard'))) ?>
 							<?php echo $this->Html->link($this->Form->button('Nạp thẻ ngay', array('type'=>'button','class'=>'btn btn-danger')),array('controller'=> 'people','action'=> 'rechargecard'),array('escape' => false)); ?>-->
 							<div class='col-sm-6' style='padding-left:0px;padding-right:5px;'>
