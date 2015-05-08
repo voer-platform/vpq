@@ -1,43 +1,54 @@
 <?php echo $this->Html->css('faq.css'); ?>
 <div class="faq-container">
-    <button class="faq-toggle-btn btn btn-sm btn-primary" type="button" data-toggle="collapse" data-target="#faq-popup" aria-expanded="false" aria-control="faq-popup"><?php echo __("Ask us a question"); ?></button>
-    <div id="faq-popup" class="collapse">
-        <div class="title"><?php echo __("Have a question for us? Wanna give some comments? Type here!"); ?></div>
-        <div class='faq-response' id='faq-response'></div>
-        <textarea class='faq-content'></textarea>
-        <button class="faq-submit-btn btn btn-sm btn-primary"><?php echo __("Send PLS"); ?></button>
-    </div>
+    <button class="faq-toggle-btn btn btn-lg btn-info" type="button" data-toggle="modal" data-target="#faq-modal" title="<?php echo __("Ask us a question"); ?>">
+		<span class="glyphicon glyphicon-question-sign"></span>
+	</button>
 </div>
-
+<div class="modal" id="faq-modal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<h4 class="modal-title"><?php echo __("Have a question for us? Wanna give some comments? Type here!"); ?></h4>
+		  </div>
+		  <div class="modal-body">
+			<div class="alert alert-warning" id="faq-response" style="display:none;"></div>
+			<textarea id="faq-content" class="form-control" rows="5" placeholder="<?php echo __('Write your question...'); ?>"></textarea>
+		  </div>
+		  <div class="modal-footer">
+			<button type="button" id="faq-submit-btn" class="btn btn-primary"><span class="glyphicon glyphicon-send"></span> &nbsp;<?php echo __("Send PLS"); ?></button>
+			<button type="button" class="btn btn-default" data-dismiss="modal"><?php echo __('Close'); ?></button>
+		  </div>
+		</div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 <script type="text/javascript">
     $(document).ready(function(){
         var state = false;
-        $('.faq-submit-btn').click(function(){
-            if($('.faq-content').val() != ''){
+        $('#faq-submit-btn').click(function(){
+			content = $('#faq-content').val();
+            if(content != ''){
                 $.ajax({
                     type : 'post',
                     url : "<?php echo Router::url(array('controller' => 'Faqs', 'action' => 'userAdd'), true);?>",
                     data : {
                         'person_id' : "<?php echo $user['id']; ?>",
-                        'content' : $('.faq-content').val()
+                        'content' : content
                     },
                     success : function(msg){
-                        $('#faq-response').fadeToggle(1500);
-                        $('#faq-response').text(msg);
-                        $('#faq-response').fadeToggle(1500);
-                        
+                        $('#faq-response').text(msg).show();
+                        $('#faq-content').val('');
                         setTimeout(function(){
-                            $('#faq-popup').collapse('toggle');
-                            $('.faq-content').val('');
-                            $('#faq-response').text('');
+                            $('#faq-response').text('').hide();
                         }, 3000);
                     }
                 });
             }
             else{
-                $('.faq-response').text("<?php echo __('Blank content'); ?>");
-                $('.faq-response').fadeToggle(1500).fadeToggle(1500);
+                $('#faq-response').text("<?php echo __('Blank content'); ?>");
+                $('#faq-response').show();
             }
         });
     });
 </script>
+	

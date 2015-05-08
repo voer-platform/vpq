@@ -160,12 +160,13 @@ class FaqsController extends AppController {
 				echo __("Send FAQ success!");
 
 				// email to notify
+				/*
 				$Email = new CakeEmail('gmail');
 				$Email->from(array('pls@dev.pls.edu.vn' => 'Dev PLS'))
 				    ->to('juhuvn@gmail.com')
 				    ->subject('Question submitted at PLS')
 				    ->send("A new questions has been submitted at PLS. Please answer it.\n\nThe question: ".$this->request->data['content']);
-
+				*/
 			} else {
 				echo __("Send FAQ failed. Try again leter.");
 			}

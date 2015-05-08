@@ -1,4 +1,4 @@
-<div class='container'>
+<div class="row">
 	<center>
 	   <h2><?php echo __('My tests history'); ?></h2>   
     </center>
