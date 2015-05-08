@@ -102,7 +102,7 @@ class AppController extends Controller {
 			$remember = $this->Cookie->read('reaccess');
             if($remember)
 			{
-				$access_string = $this->Cookie->read('reaccess');
+				$access_string = base64_decode($remember);
 				$decryped_access_string = Security::cipher($access_string, Configure::read('Security.key'));
 				$access_info = explode('|', $decryped_access_string);
 				$this->loadModel('Person');

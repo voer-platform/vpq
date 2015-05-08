@@ -1,4 +1,4 @@
-	var appID = '1503674309914209';
+	var appID = '494801563995465';
 
 	/*
 	 * load face book SDK
@@ -18,7 +18,7 @@
 	   var js, fjs = d.getElementsByTagName(s)[0];
 	   if (d.getElementById(id)) {return;}
 	   js = d.createElement(s); js.id = id;
-	   js.src = "//connect.facebook.net/en_US/sdk.js";
+	   js.src = "//connect.facebook.net/vi_VN/sdk.js";
 	   fjs.parentNode.insertBefore(js, fjs);
 	 }(document, 'script', 'facebook-jssdk'));
 

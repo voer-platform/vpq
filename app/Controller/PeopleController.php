@@ -206,11 +206,11 @@ class PeopleController extends AppController {
                     $this->Auth->login($local_user['Person']);            # Manual Login
 					//Create access string for remember login
 					$access_string = $local_user['Person']['facebook'].'|'.Security::hash($local_user['Person']['password'], 'md5', $local_user['Person']['salt']);
-					$encrypted_access_string = Security::cipher($access_string, Configure::read('Security.key'));
-					
+					$encrypted_access_string = base64_encode(Security::cipher($access_string, Configure::read('Security.key')));
+
 					//Save user data to cookie
 					$this->Cookie->delete('remember');
-					$this->Cookie->write('reaccess', $encrypted_access_string, false, 31536000);
+					$this->Cookie->write('reaccess', $encrypted_access_string, true, 31536000);
 					
 					$completedProfile = $local_user['Person']['profile_completed'];
 
