@@ -279,19 +279,19 @@ class AdminController extends AppController {
 		$this->Session->setFlash(__('Ranking data refreshed.'));
 		$this->redirect(array('controller' =>'Admin', 'action' => 'ranking'));
 	}
-	public function exchangesrate(){
-		$this->loadModel('ExchangesRate');
+	public function promotional(){
+		$this->loadModel('promotional');
 		if($this->request->data('promotional')!='' && $this->request->data('start_date')!='' && $this->request->data('end_date')!=''){
 			$start_date=explode("/",$this->request->data('start_date'));
 			$start_date=$start_date[2]."-".$start_date[0]."-".$start_date[1];
 			$end_date=explode("/",$this->request->data('end_date'));
 			$end_date=$end_date[2]."-".$end_date[0]."-".$end_date[1];
 			
-			if($this->ExchangesRate->updateAll(
+			if($this->promotional->save(
 									array(
-										'promotional'	=>	"'".$this->request->data('promotional')."'",
-										'start_date'	=>	"'".$start_date."'",
-										'end_date'		=>	"'".$end_date."'",
+										'percent'		=>	$this->request->data('promotional'),
+										'start_date'	=>	$start_date,
+										'end_date'		=>	$end_date,
 									)
 			)){
 				$this->Session->setFlash('Cập nhật thành công');
@@ -299,13 +299,15 @@ class AdminController extends AppController {
 				$this->Session->setFlash('Cập nhật thất bại');
 			}
 		}
-		$ExchangesRate=$this->ExchangesRate->find('all');
-		$start_date=explode("-",$ExchangesRate[0]['ExchangesRate']['start_date']);
+		$promotional=$this->promotional->find('all',array(
+			'order' => array('id' => 'desc')
+		));
+		$start_date=explode("-",$promotional[0]['promotional']['start_date']);
 		$start_date=$start_date[2]."/".$start_date[1]."/".$start_date[0];
-		$end_date=explode("-",$ExchangesRate[0]['ExchangesRate']['end_date']);
+		$end_date=explode("-",$promotional[0]['promotional']['end_date']);
 		$end_date=$end_date[2]."/".$end_date[1]."/".$end_date[0];
 		$Rate=array(
-				'promotional'=>$ExchangesRate[0]['ExchangesRate']['promotional'],
+				'promotional'=>$promotional[0]['promotional']['percent'],
 				'start_date' =>$start_date,
 				'end_date'	 =>$end_date,
 				);
