@@ -130,7 +130,7 @@
 						<div  class='row' style='margin:0px;'>						
 							<div class='col-sm-12' style='padding-left:10px;padding-right:10px;'>
 								<!--<?php echo $this->Html->image('napthe.png',array('class'=>'','url'=>array('controller'=> 'people','action'=> 'rechargecard'))) ?>
-								<?php echo $this->Html->link($this->Form->button('Nạp thẻ ngay', array('type'=>'button','class'=>'btn btn-danger')),array('controller'=> 'people','action'=> 'rechargecard'),array('escape' => false)); ?>-->
+								<?php echo $this->Html->link($this->Form->button('Nạp thẻ ngay', array('type'=>'button','class'=>'btn btn-danger')),array('controller'=> 'rechargecard','action'=> 'index'),array('escape' => false)); ?>-->
 								<div class='col-sm-6' style='padding-left:0px;padding-right:5px;'>
 								<a class='btn btn-danger bl fw' href="<?php echo $this->Html->url(array('controller'=> 'people','action'=> 'rechargecard')); ?>"><span class='glyphicon glyphicon-usd'></span> Nạp thẻ</a>
 								</div>
@@ -353,4 +353,29 @@ function showMessage(title, text, type, icon) {
         pnotify_delay: 800
     });
 }
+
+function FBInvite(){
+		FB.ui({
+			method: 'apprequests',
+			title: 'Mời bạn bè tham gia PLS',
+			message: 'Mời bạn bè tham gia PLS',
+			new_style_message: true
+		},function(response){
+			$.ajax({
+				type: 'POST',
+				url: '<?php echo $this->Html->url(
+							array(
+								'controller' => 'People', 
+								'action' => 'invite'
+							)
+						); ?>',
+				data: {'frs': response.to},
+				success: function(){
+					//No handler
+				}
+			});
+		});
+	}
+</script>
+
 </script>
