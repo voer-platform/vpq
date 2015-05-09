@@ -190,7 +190,7 @@ App::uses('AppController', 'Controller');
 							if($lastResult)
 							{
 								$dataSource->commit();
-								$this->mess = "Bạn đã nạp thẻ thành công";
+								$this->mess = "<strong>Nạp thẻ thành công!</strong><br/>Tài khoản của bạn được cộng thêm ".$exchangeCoin+$promotionCoin." xu";
 								$this->status = "success";
 							}							
 							else
