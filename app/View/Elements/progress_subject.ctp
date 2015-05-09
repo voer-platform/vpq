@@ -40,7 +40,7 @@
 			$score  = round($progress['Progress']['sum_progress']/$progress['Progress']['sum_total'],2)*10;
 			$name   = $this->Name->determineRank($score);
 	?>
-		<div class="row dashboard-subject-container">
+		<div class="dashboard-subject-container">
 			<div class="col-md-2">
 				<h2 class="dashboard-subject-name"><?php echo $this->Html->image('subjects/'.$progress['Subject']['id'].'.png'); ?> <?php echo $progress['Subject']['name']; ?></h2>
 					<p>

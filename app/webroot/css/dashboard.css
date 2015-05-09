@@ -137,6 +137,7 @@ div.chart-description {
 .dashboard-subject-container {
 	border-bottom:solid 1px #EFEFEF;
 	padding: 20px 0;
+	overflow:hidden;
 }
 .row.dashboard-subject-container:last-of-type {
 	border-bottom:0;
