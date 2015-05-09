@@ -157,6 +157,28 @@ class TestsController extends AppController {
 			$this->set('subject', $subject);
 			
 			$user = $this->Session->read('Auth.User');
+			$this->loadModel('Person');
+			$options = array(
+					'recursive' => -1,
+					'conditions' => array('Person.id'=>$user['id'])
+					);			
+			$coin = $this->Person->find('all',$options);
+			$date1 = strtotime($coin[0]['Person']['last_login']);
+			$date2 = strtotime(date('Y-m-d'));
+			$diff = abs($date2-$date1);
+			$ketqua=round($diff/(60*60*24));
+			$coin=$coin[0]['Person']['coin']-$ketqua*5;
+			if($coin<0){
+				$coin=0;
+			}
+			$this->Person->id=$user['id'];
+			$this->Person->save(
+										array(
+											'coin' => $coin,
+											'last_login' => date('Y-m-d'),
+										)
+									);
+			$this->set('coin',$coin);
 			$gradeUser = $user['grade'];
 			
 			$options = array(
