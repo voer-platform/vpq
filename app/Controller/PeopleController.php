@@ -314,17 +314,17 @@ class PeopleController extends AppController {
 		$date2 = strtotime(date('Y-m-d'));
 		$diff = abs($date2-$date1);
 		$ketqua=round($diff/(60*60*24));
-		$coin=$data_user[0]['Person']['coin']-$ketqua;
+		$coin=$data_user[0]['Person']['coin']-$ketqua*5;
 		if($coin<0){
 			$coin='0';
 		}
 		$this->Person->id=$user_id;
 		$this->Person->save(
-									array(
-										'coin' => $coin,
-										'last_login' => date('Y-m-d'),
-									)
-								);
+							array(
+								'coin' => $coin,
+								'last_login' => date('Y-m-d'),
+							)
+						);
 		$this->set('coin',$coin);
 		if($subject_id){
 			$this->loadModel('Progress');
@@ -514,14 +514,5 @@ class PeopleController extends AppController {
 		}
 	}
 	
-	public function RechargeCard(){
-		if ($this->request->is('post')) {
-			$data = $this->request->data;
-			if(!empty($data['seri']) && !empty($data['pin'])){
-				echo "Nạp thành công";
-			}else{
-				echo "Thất bại";
-			}
-		}
-	}
+	
 }

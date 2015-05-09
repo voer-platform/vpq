@@ -1,0 +1,13 @@
+input.cardtype-radio:checked  + img.cardtype-image{
+	border:solid 3px #428bca!important;
+	border-radius: 7px;
+}
+.cardtype-radio {
+width:100%;height:100%;position:absolute;top:0px;opacity:0;
+cursor:pointer;
+}
+.cardtype-image{
+width:120px;height:60px;
+border: solid 1px #dedede;
+border-radius: 7px;
+}
