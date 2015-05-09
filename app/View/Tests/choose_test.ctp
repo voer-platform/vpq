@@ -112,7 +112,46 @@
     </div>
 </div>
 
+<div id="rechargecard" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Thông báo</h4>
+            </div>
+            <div class="modal-body" style='text-align:center'>				
+				<div class='row'>
+						<div class='row' style='margin:0px;padding-left:10px;padding-right:10px;padding-top:15px;'>
+						<span style='color:#428bca;font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;font-size:40pt;'>Xu:</span> <span style='color:red;font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;font-size:40pt'><?php echo $coin; ?></span>
+						<hr style='margin-top:7px;margin-bottom:5px;'/>
+						</div>
+						<div  class='row' style='margin:0px;padding-left:10px;padding-right:10px;'>	
+							<p style='font-size:15px;'>Để tiếp tục làm bài bạn hãy chọn 1 trong 2 hình thức dưới để tăng xu.</p>
+						</div>
+						<div  class='row' style='margin:0px;'>						
+							<div class='col-sm-12' style='padding-left:10px;padding-right:10px;'>
+								<!--<?php echo $this->Html->image('napthe.png',array('class'=>'','url'=>array('controller'=> 'people','action'=> 'rechargecard'))) ?>
+								<?php echo $this->Html->link($this->Form->button('Nạp thẻ ngay', array('type'=>'button','class'=>'btn btn-danger')),array('controller'=> 'people','action'=> 'rechargecard'),array('escape' => false)); ?>-->
+								<div class='col-sm-6' style='padding-left:0px;padding-right:5px;'>
+								<a class='btn btn-danger bl fw' href="<?php echo $this->Html->url(array('controller'=> 'people','action'=> 'rechargecard')); ?>"><span class='glyphicon glyphicon-usd'></span> Nạp thẻ</a>
+								</div>
+								<div class='col-sm-6' style='padding-left:5px;padding-right:0px;'>
+								<a class='btn btn-success bl fw' href="javascript:void(0);" onclick="FBInvite()"><span class='glyphicon glyphicon-send'></span>&nbsp;&nbsp;Invite</a>
+								</div>
+							</div>
+							<!--<div class='col-sm-6'>
+								<button type='button' class='btn btn-success' style='width:100%;'>Invite</button>
+							</div>-->
+						</div>
+				</div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
 <script type="text/javascript">
+var coin= <?php echo $coin ?>;
 var sl=<?php echo $count ?>;
 var pretracking='<?php echo $strtracking ?>';
 var arraySubs = pretracking.split(",");
@@ -152,26 +191,32 @@ function doTest(t){
 			n=data[i];
 		}
 	}
-	if(n!=0){
-		$('#categories').val($str);	
-		var url = '<?php echo Router::url(array('controller'=>'tests','action'=>'byQuestion'));?>/' + t + '/'+$str;
-		$.getJSON(url, function( data ) {
-			 if(data<t){			
-				showMessage('Không thể làm bài kiểm tra', 'Dữ liệu hiện tại không đủ để thực hiện bài kiểm tra này', 'error', 'glyphicon-remove-sign');
-			 }else{
-				var id = $('#user_id').attr('value');
-				mixpanel.track("Do Test", {
-					"test_time": t,
-					"user_id":id,
+	if(coin!=0){
+		if(n!=0){
+			$('#categories').val($str);	
+			var url = '<?php echo Router::url(array('controller'=>'tests','action'=>'byQuestion'));?>/' + t + '/'+$str;
+			$.getJSON(url, function( data ) {
+				 if(data<t){			
+					showMessage('Không thể làm bài kiểm tra', 'Dữ liệu hiện tại không đủ để thực hiện bài kiểm tra này', 'error', 'glyphicon-remove-sign');
+				 }else{
+					var id = $('#user_id').attr('value');
+					mixpanel.track("Do Test", {
+						"test_time": t,
+						"user_id":id,
+					});
+					$("#preDoTest").attr("action", "/Tests/doTest/" + t + "/" + $subject + "/");
+					$('#preDoTest').submit();
+				 }
+			});
+		}else{
+			$('#msgNotice').modal({
+					backdrop: true
 				});
-				$("#preDoTest").attr("action", "/Tests/doTest/" + t + "/" + $subject + "/");
-				$('#preDoTest').submit();
-			 }
-		});
-    }else{
-		$('#msgNotice').modal({
-                backdrop: false
-            });
+		}
+	}else{
+		$('#rechargecard').modal({
+					backdrop: true
+				});
 	}
 };
 
