@@ -39,7 +39,7 @@
 					<div  class='row' style='margin:0px;padding-left:10px;padding-right:10px;'>	
 						<p style='font-size:11px;'>Bạn hãy chọn 1 trong 2 hình thức dưới để tăng xu.</p>
 					</div>
-					<div  class='row' style='margin:0px;'>						
+					<div  class='row' style='margin:0px;margin-bottom:10px;'>						
 						<div class='col-sm-12' style='padding-left:10px;padding-right:10px;'>
 							<!--<?php echo $this->Html->image('napthe.png',array('class'=>'','url'=>array('controller'=> 'people','action'=> 'rechargecard'))) ?>
 							<?php echo $this->Html->link($this->Form->button('Nạp thẻ ngay', array('type'=>'button','class'=>'btn btn-danger')),array('controller'=> 'people','action'=> 'rechargecard'),array('escape' => false)); ?>-->
