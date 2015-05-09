@@ -114,7 +114,7 @@
 
 <div id="rechargecard" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
     <div class="modal-dialog modal-sm">
-        <div class="modal-content">
+        <div class="modal-content" style='margin-top:100px;'>
             <div class="modal-body" style='text-align:center;padding-top: 0px;'>				
 				<div class='row'>
 					<div class='row' style='margin:0px;padding-left:10px;padding-right:10px;padding-top:15px;'>
