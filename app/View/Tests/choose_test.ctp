@@ -118,7 +118,7 @@
             <div class="modal-body" style='text-align:center;padding-top: 0px;'>				
 				<div class='row'>
 					<div class='row' style='margin:0px;padding-left:10px;padding-right:10px;padding-top:15px;'>
-					<?php echo $this->Html->image('xu.png',array('style'=>'width:100px;height:100px;')) ?>						
+					<?php echo $this->Html->image('Xu.png',array('style'=>'width:100px;height:100px;')) ?>						
 					<span style='color:#428bca;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:18pt;'>Trời ơi hết xu rồi</span>
 					<hr style='margin-top:7px;margin-bottom:5px;'/>
 					</div>

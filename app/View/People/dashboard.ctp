@@ -7,7 +7,7 @@
             <div class="modal-body" style='text-align:center;padding-top: 0px;'>				
 				<div class='row'>
 					<div class='row' style='margin:0px;padding-left:10px;padding-right:10px;padding-top:15px;'>
-					<?php echo $this->Html->image('xu.png',array('style'=>'width:100px;height:100px;')) ?>						
+					<?php echo $this->Html->image('Xu.png',array('style'=>'width:100px;height:100px;')) ?>						
 					<span style='color:#428bca;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:18pt;'>Trời ơi hết xu rồi</span>
 					<hr style='margin-top:7px;margin-bottom:5px;'/>
 					</div>
@@ -16,14 +16,11 @@
 					</div>
 					<div  class='row' style='margin:0px;'>						
 						<div class='col-sm-12' style='padding-left:10px;padding-right:10px;'>								
-							<div class='col-sm-4' style='padding-left:0px;padding-right:5px;'>
+							<div class='col-sm-6' style='padding-left:0px;padding-right:5px;'>
 							<a class='btn btn-danger bl fw' href="<?php echo $this->Html->url(array('controller'=> 'people','action'=> 'rechargecard')); ?>"><span class='glyphicon glyphicon-usd'></span> Nạp thẻ</a>
 							</div>
-							<div class='col-sm-4' style='padding-left:5px;padding-right:5px;'>
+							<div class='col-sm-6' style='padding-left:5px;padding-right:0px;'>
 							<a class='btn btn-success bl fw' href="javascript:void(0);" onclick="FBInvite()"><span class='glyphicon glyphicon-send'></span>&nbsp;&nbsp;Invite</a>
-							</div>
-							<div class='col-sm-4' style='padding-left:5px;padding-right:5px;'>
-							<a class='btn btn-primary bl fw' data-dismiss='modal'>Để sau</a>
 							</div>
 						</div>
 					</div>
