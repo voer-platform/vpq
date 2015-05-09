@@ -3,7 +3,7 @@ App::uses('AppController', 'Controller');
 /**
  * RechargeCard Controller
  */
-	class RechargeCardController extends AppController {
+	class RechargecardController extends AppController {
 
 		private $mess = "Có lỗi xảy ra, vui lòng thử lại sau!";
 		private $status = "danger";
@@ -11,7 +11,7 @@ App::uses('AppController', 'Controller');
 		public function isAuthorized($user) {
 			// user can logout, dashboard, progress, history, suggest
 			if (isset($user['role']) && $user['role'] === 'user' ){
-				if( in_array( $this->request->action, array('recharge'))){
+				if( in_array( $this->request->action, array('index', 'recharge'))){
 					return true;
 				}
 			} elseif (isset($user['role']) && $user['role'] === 'editor') {
@@ -42,6 +42,14 @@ App::uses('AppController', 'Controller');
 			if(!empty($promotion))
 			{
 				$this->set('promotion', $promotion['Promotional']);
+			}
+			
+			if(CakeSession::check('rechargeMess'))
+			{
+				$this->set('statusType',CakeSession::read('statusType'));
+				$this->set('rechargeMess', CakeSession::read('rechargeMess'));
+				CakeSession::delete('statusType');
+				CakeSession::delete('rechargeMess');
 			}
 		}
 	
@@ -196,9 +204,9 @@ App::uses('AppController', 'Controller');
 					}
 				}	
 				
-				$this->Session->setFlash($this->mess, 'default', array(), 'rechargeMess');
-				$this->Session->setFlash($this->status, 'default', array(), 'statusType');
-				$this->redirect(array('controller' => 'rechargecard', 'action' => 'recharge'));
+				CakeSession::write('rechargeMess', $this->mess);
+				CakeSession::write('statusType', $this->status);
+				$this->redirect(array('controller' => 'rechargecard'));
 			}
 		}		
 		

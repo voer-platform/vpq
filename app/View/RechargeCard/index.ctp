@@ -7,9 +7,9 @@
 </div>
 <div class='row'>
 	<div class='col-sm-9'>
-		<?php if($this->Session->flash('rechargeMess')){ ?>
-		<div class="alert alert-<?php echo $this->Session->flash('statusType'); ?>">
-			<?php echo $this->Session->flash('rechargeMess'); ?>
+		<?php if(isset($rechargeMess)){ ?>
+		<div class="alert alert-<?php echo $statusType; ?>">
+			<?php echo $rechargeMess; ?>
 		</div>
 		<?php } ?>
 		<div class="panel panel-default" style='padding:0px;'>
@@ -17,7 +17,7 @@
 			<h3 class="panel-title"><b>Nạp thẻ</b></h3>		
 			</div>
 			<div class="panel-body">
-				<form action="<?php echo $this->Html->url(array('controller'=>'RechargeCard', 'action'=>'recharge')); ?>" method="POST" name="frmrechargecard" role="form" class="form-horizontal">
+				<form action="<?php echo $this->Html->url(array('controller'=>'Rechargecard', 'action'=>'recharge')); ?>" method="POST" name="frmrechargecard" role="form" class="form-horizontal">
 					<div class='row' style='padding-left:20px;'>
 						<div class='col-sm-10' style='padding-right:0px;'>
 							<h4>Chọn loại thẻ<h4/>
