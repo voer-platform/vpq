@@ -44,7 +44,7 @@
 							<!--<?php echo $this->Html->image('napthe.png',array('class'=>'','url'=>array('controller'=> 'people','action'=> 'rechargecard'))) ?>
 							<?php echo $this->Html->link($this->Form->button('Nạp thẻ ngay', array('type'=>'button','class'=>'btn btn-danger')),array('controller'=> 'people','action'=> 'rechargecard'),array('escape' => false)); ?>-->
 							<div class='col-sm-6' style='padding-left:0px;padding-right:5px;'>
-							<a class='btn btn-danger bl fw' href="<?php echo $this->Html->url(array('controller'=> 'people','action'=> 'rechargecard')); ?>"><span class='glyphicon glyphicon-usd'></span> Nạp thẻ</a>
+							<a class='btn btn-danger bl fw' href="<?php echo $this->Html->url(array('controller'=> 'rechargecard')); ?>"><span class='glyphicon glyphicon-usd'></span> Nạp thẻ</a>
 							</div>
 							<div class='col-sm-6' style='padding-left:5px;padding-right:0px;'>
 							<a class='btn btn-success bl fw' href="javascript:void(0);" onclick="FBInvite()"><span class='glyphicon glyphicon-send'></span>&nbsp;&nbsp;Invite</a>
