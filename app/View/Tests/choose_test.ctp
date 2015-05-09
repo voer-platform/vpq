@@ -115,36 +115,27 @@
 <div id="rechargecard" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel">Thông báo</h4>
-            </div>
-            <div class="modal-body" style='text-align:center'>				
+            <div class="modal-body" style='text-align:center;padding-top: 0px;'>				
 				<div class='row'>
-						<div class='row' style='margin:0px;padding-left:10px;padding-right:10px;padding-top:15px;'>
-						<span style='color:#428bca;font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;font-size:40pt;'>Xu:</span> <span style='color:red;font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;font-size:40pt'><?php echo $coin; ?></span>
-						<hr style='margin-top:7px;margin-bottom:5px;'/>
-						</div>
-						<div  class='row' style='margin:0px;padding-left:10px;padding-right:10px;'>	
-							<p style='font-size:15px;'>Để tiếp tục làm bài bạn hãy chọn 1 trong 2 hình thức dưới để tăng xu.</p>
-						</div>
-						<div  class='row' style='margin:0px;'>						
-							<div class='col-sm-12' style='padding-left:10px;padding-right:10px;'>
-								<!--<?php echo $this->Html->image('napthe.png',array('class'=>'','url'=>array('controller'=> 'people','action'=> 'rechargecard'))) ?>
-								<?php echo $this->Html->link($this->Form->button('Nạp thẻ ngay', array('type'=>'button','class'=>'btn btn-danger')),array('controller'=> 'rechargecard','action'=> 'index'),array('escape' => false)); ?>-->
-								<div class='col-sm-6' style='padding-left:0px;padding-right:5px;'>
-								<a class='btn btn-danger bl fw' href="<?php echo $this->Html->url(array('controller'=> 'rechargecard')); ?>"><span class='glyphicon glyphicon-usd'></span> Nạp thẻ</a>
-								</div>
-								<div class='col-sm-6' style='padding-left:5px;padding-right:0px;'>
-								<a class='btn btn-success bl fw' href="javascript:void(0);" onclick="FBInvite()"><span class='glyphicon glyphicon-send'></span>&nbsp;&nbsp;Invite</a>
-								</div>
+					<div class='row' style='margin:0px;padding-left:10px;padding-right:10px;padding-top:15px;'>
+					<?php echo $this->Html->image('xu.png',array('style'=>'width:100px;height:100px;')) ?>						
+					<span style='color:#428bca;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:18pt;'>Trời ơi hết xu rồi</span>
+					<hr style='margin-top:7px;margin-bottom:5px;'/>
+					</div>
+					<div  class='row' style='margin:0px;padding:10px;'>	
+						<p style='font-size:12pt;'>Đừng lo lắng, bạn hãy chọn 1 trong 2 hình thức dưới để tăng xu ngay nhé.</p>
+					</div>
+					<div  class='row' style='margin:0px;'>						
+						<div class='col-sm-12' style='padding-left:10px;padding-right:10px;'>								
+							<div class='col-sm-6' style='padding-left:0px;padding-right:5px;'>
+							<a class='btn btn-danger bl fw' href="<?php echo $this->Html->url(array('controller'=> 'people','action'=> 'rechargecard')); ?>"><span class='glyphicon glyphicon-usd'></span> Nạp thẻ</a>
 							</div>
-							<!--<div class='col-sm-6'>
-								<button type='button' class='btn btn-success' style='width:100%;'>Invite</button>
-							</div>-->
+							<div class='col-sm-6' style='padding-left:5px;padding-right:0px;'>
+							<a class='btn btn-success bl fw' href="javascript:void(0);" onclick="FBInvite()"><span class='glyphicon glyphicon-send'></span>&nbsp;&nbsp;Invite</a>
+							</div>
 						</div>
+					</div>
 				</div>
-            </div>
-            <div class="modal-footer">
             </div>
         </div>
     </div>
