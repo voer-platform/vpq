@@ -280,12 +280,13 @@ class AdminController extends AppController {
 		$this->redirect(array('controller' =>'Admin', 'action' => 'ranking'));
 	}
 	public function promotional(){
+		$this->set('btn','them');
 		$this->loadModel('promotional');
-		if($this->request->data('promotional')!='' && $this->request->data('start_date')!='' && $this->request->data('end_date')!=''){
+		if($this->request->data('them')){
 			$start_date=explode("/",$this->request->data('start_date'));
-			$start_date=$start_date[2]."-".$start_date[0]."-".$start_date[1];
+			$start_date=$start_date[2]."-".$start_date[1]."-".$start_date[0];
 			$end_date=explode("/",$this->request->data('end_date'));
-			$end_date=$end_date[2]."-".$end_date[0]."-".$end_date[1];
+			$end_date=$end_date[2]."-".$end_date[1]."-".$end_date[0];
 			
 			if($this->promotional->save(
 									array(
@@ -299,6 +300,68 @@ class AdminController extends AppController {
 				$this->Session->setFlash('Cập nhật thất bại');
 			}
 		}
+		
+		if(isset($this->request->query['update'])){
+			$options = array('conditions' => array('promotional.' . $this->promotional->primaryKey => $this->request->query['update']));
+            $update = $this->promotional->find('first', $options);
+			$start_date=explode("-",$update['promotional']['start_date']);
+			$update['promotional']['start_date']=$start_date[2]."/".$start_date[1]."/".$start_date[0];
+			$end_date=explode("-",$update['promotional']['end_date']);
+			$update['promotional']['end_date']=$end_date[2]."/".$end_date[1]."/".$end_date[0];
+			$this->set('btn','sua');
+		}else{
+			$update=array('promotional'=>array(
+											'id'=>'',
+											'percent'=>'',
+											'start_date'=>'',
+											'end_date'=>'',
+			));
+		}
+		
+		if($this->request->data('sua')){
+			$start_date=explode("/",$this->request->data('start_date'));
+			$start_date=$start_date[2]."-".$start_date[1]."-".$start_date[0];
+			$end_date=explode("/",$this->request->data('end_date'));
+			$end_date=$end_date[2]."-".$end_date[1]."-".$end_date[0];
+			$this->promotional->id=$this->request->data('id');
+			if($this->promotional->save(
+									array(
+										'percent'		=>	$this->request->data('promotional'),
+										'start_date'	=>	$start_date,
+										'end_date'		=>	$end_date,
+									)
+			)){
+				$this->Session->setFlash('Cập nhật thành công');
+				$this->redirect(array('controller' =>'Admin', 'action' => 'promotional'));
+			}else{
+				$this->Session->setFlash('Cập nhật thất bại');
+			}
+		}
+		
+		if(isset($this->request->query['delete'])){
+			$this->promotional->id = $this->request->query['delete'];
+			if ($this->promotional->delete()) {
+				$this->Session->setFlash(__('Xóa thành công.'));
+			} else {
+				$this->Session->setFlash(__('Xóa thất bại.'));
+			}
+		}
+		
+		$this->set('update',$update);
+		//pr($this->Paginator->paginate('promotional')));
+		$this->Paginator->settings = array(
+			'limit' => 5,
+			'order' => array('id' => 'DESC'),
+		);
+		$data = $this->Paginator->paginate('promotional');
+		foreach($data as $item=>$dt){
+			$start_date=explode("-",$dt['promotional']['start_date']);
+			$dt['promotional']['start_date']=$start_date[2]."/".$start_date[1]."/".$start_date[0];
+			$end_date=explode("-",$dt['promotional']['end_date']);
+			$dt['promotional']['end_date']=$end_date[2]."/".$end_date[1]."/".$end_date[0];
+			$data[$item]=$dt;
+		}
+		$this->set('data',$data);
 		$promotional=$this->promotional->find('all',array(
 			'order' => array('id' => 'desc')
 		));
