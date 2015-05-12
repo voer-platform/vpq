@@ -148,9 +148,11 @@ App::uses('AppController', 'Controller');
 											)
 										);
 										
-							$promotionCoin = 0;			
+							$promotionCoin = $promotionId = 0;		
+							
 							if(!empty($promotion))
 							{
+								$promotionId = $promotion['Promotional']['id'];
 								$promotionPercent = $promotion['Promotional']['percent'];
 								$promotionCoin = $exchangeCoin*($promotionPercent/100);
 							}
@@ -173,7 +175,8 @@ App::uses('AppController', 'Controller');
 													'card_code'	=>	$dataCard,
 													'card_serie'=>	$cardSerie,
 													'old_coin'	=>	$currentCoin,
-													'new_coin'	=>	$newCoin
+													'new_coin'	=>	$newCoin,
+													'promotional_id'	=>	$promotionId
 												);
 							$this->RechargeLog->save($data);
 							
@@ -190,7 +193,13 @@ App::uses('AppController', 'Controller');
 							if($lastResult)
 							{
 								$dataSource->commit();
-								$this->mess = "<strong>Nạp thẻ thành công!</strong><br/>Tài khoản của bạn được cộng thêm ".$exchangeCoin+$promotionCoin." xu";
+								$this->mess = "<strong>Thành công!</strong><br/>";
+								$this->mess .="Bạn đã nạp <b>$putCardResult VNĐ</b> và nhận được <b>$exchangeCoin</b> xu";
+								if($promotionCoin){
+									$this->mess .=" + <b>$promotionCoin</b> xu trong chương trình khuyến mại.";
+								}	
+								$addTotal = $exchangeCoin+$promotionCoin;
+								$this->mess .="<br/>Tài khoản của bạn hiện tại có <b>$newCoin</b> xu";
 								$this->status = "success";
 							}							
 							else

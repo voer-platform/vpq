@@ -11,6 +11,7 @@
 		<?php echo $this->Html->link(__('Ranking Data'), array('controller' => 'Admin', 'action' => 'ranking'), array('class'=>'list-group-item')); ?>
 		<?php echo $this->Html->link(__('Static pages'), array('controller' => 'StaticPages', 'action' => 'index'), array('class'=>'list-group-item')); ?>
 		<?php echo $this->Html->link('Promotional', array('controller' => 'Admin', 'action' => 'promotional'), array('class'=>'list-group-item')); ?>
+		<?php echo $this->Html->link(__('Card'), array('controller' => 'cardStatistics'), array('class'=>'list-group-item')); ?>
 	</div>
 </div>
 

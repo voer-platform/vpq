@@ -24,7 +24,7 @@ class QuestionsController extends AppController {
  */
 	public function index() {
 		$conditions = array();
-		if($this->request->query['search'])
+		if(isset($this->request->query['search']) && $this->request->query['search']!='')
 		{
 			$keyword = $this->request->query['keyword'];
 			if($keyword)
@@ -38,6 +38,10 @@ class QuestionsController extends AppController {
 							'conditions'=>$conditions);
 		$this->Question->recursive = 0;
 		$this->set('questions', $this->Paginator->paginate());
+		
+		$this->loadModel('Subject');
+		$subjects = $this->Subject->find('list');
+		$this->set('subjects', $subjects);
 	}
 
 /*
