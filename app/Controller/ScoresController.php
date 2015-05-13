@@ -205,7 +205,7 @@ class ScoresController extends AppController {
         $this->autoRender = false;
         
         if( $this->request->is('POST')){
-            $subject_id = '2';//isset($this->request->data['subjectID']) ? $this->request->data['subjectID'] : null;
+            $subject_id = isset($this->request->data['subjectID']) ? $this->request->data['subjectID'] : null;
             $grade_id = isset($this->request->data['gradeID']) && $this->request->data['gradeID'] != '' ? $this->request->data['gradeID'] : null;
             $category_id = isset($this->request->data['categoryID']) ? $this->request->data['categoryID'] : null;
 			
@@ -258,10 +258,10 @@ class ScoresController extends AppController {
 		$report= $question[0]['Question']['report']+1;
 		$this->Question->id=$id;
 		$this->Question->save(
-									array(
-										'report' => $report
-									)
-								);
+							array(
+								'report' => $report
+							)
+						);
 		exit();
 	}
 

@@ -355,7 +355,7 @@ class PeopleController extends AppController {
 												//'recursive' => 2,
 												'contain'	=>	array(
 													'Category'	=>	array(
-														'conditions'=> array('Category.subject_id = 2'),
+														'conditions'=> array("Category.subject_id = $subject_id"),
 														'Subcategory'
 													)
 												)	

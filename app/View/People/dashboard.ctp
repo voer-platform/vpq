@@ -56,9 +56,9 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-sm-3 box" style='float:right'>
+			<div class="col-sm-3 box" style='float:right;padding-bottom:0;'>
 				<div class='row'> 
-					<div class='row' style='margin:0px;padding-left:10px;padding-right:10px;padding-top:7px;'>
+					<div class='row' style='margin:0px;padding-left:10px;padding-right:10px;padding-top:9px;'>
 					<?php echo $this->Html->image('coin.png',array('style'=>'width:40px;height:30px;vertical-align:bottom;')) ?>
 					<span style='color:#428bca;font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;font-size:18px;'>Xu:</span> <span style='color:red;font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;font-size:18px'><?php echo $coin; ?></span>
 					<hr style='border-top:2px solid #81AFD1; margin-top:7px;margin-bottom:5px;'/>
@@ -66,7 +66,7 @@
 					<div  class='row' style='margin:0px;padding-left:10px;padding-right:10px;'>	
 						<p style='font-size:11px;'>Bạn hãy chọn 1 trong 2 hình thức dưới để tăng xu.</p>
 					</div>
-					<div  class='row' style='margin:0px;margin-bottom:10px;'>						
+					<div  class='row' style='margin:0px;margin-bottom:5px;'>						
 						<div class='col-sm-12' style='padding-left:10px;padding-right:10px;padding-bottom:7px;'>
 							<!--<?php echo $this->Html->image('napthe.png',array('class'=>'','url'=>array('controller'=> 'people','action'=> 'rechargecard'))) ?>
 							<?php echo $this->Html->link($this->Form->button('Nạp thẻ ngay', array('type'=>'button','class'=>'btn btn-danger')),array('controller'=> 'people','action'=> 'rechargecard'),array('escape' => false)); ?>-->
@@ -157,19 +157,18 @@
 		<div class="panel-body">
 		<div class="row">
 			<div class="col-md-2">
-				<h2 class="dashboard-subject-name"><?php echo $this->Html->image('subjects/'.$subj['Subject']['id'].'.png'); ?> <?php echo $subj['Subject']['name']; ?></h2>
-					<p><a href="<?php 
+					<a class="nudl no-style" href="<?php 
 						echo $this->Html->url(
 							array(
-								'controller' => 'Tests', 
-								'action' => 'chooseTest', 
-								$subj['Subject']['id'],
+								'controller' => 'People',
+								'action'	=>	'dashboard',
+								$subj['Subject']['id']
 							)
 						); 
-					?>" class="btn btn-sm btn-primary btn-test pls-test-btn fw bl left" data-teston="subject">
-						<span class="glyphicon glyphicon-play"></span> <?php echo __('Do test on this'); ?>
-					</a></p>
-					
+					?>">
+						<h2 class="dashboard-subject-name"><?php echo $this->Html->image('subjects/'.$subj['Subject']['id'].'.png'); ?> <?php echo $subj['Subject']['name']; ?></h2>
+					</a>	
+					<p>
 					<a class="btn btn-default btn-sm bl wa left" href="<?php 
 						echo $this->Html->url(
 							array(
@@ -181,14 +180,38 @@
 					?>">
 						<span class="glyphicon glyphicon-info-sign"></span> Chi tiết môn học
 					</a>
+					</p>
+					<a href="<?php 
+						echo $this->Html->url(
+							array(
+								'controller' => 'Tests', 
+								'action' => 'chooseTest', 
+								$subj['Subject']['id'],
+							)
+						); 
+					?>" class="btn btn-sm btn-primary btn-test pls-test-btn fw bl left" data-teston="subject">
+						<span class="glyphicon glyphicon-play"></span> <?php echo __('Do test on this'); ?>
+					</a>
+					
+					
 				</div>		
 			<div class="col-md-4 <?php echo (!$score)?'blur1':''; ?>" style="border-left: solid 1px #C0D0E0;">
-				<div style="display: inline-block;">
-					<span class="subject-score" style="border-color:<?php echo $this->Name->rankColor($score); ?>" id="subject-score-<?php echo $subj['Subject']['id']; ?>" title="<?php echo __('Score based on latest 10 tests on the subject'); ?>">
-						<span class="subject-score-number"><?php echo $score; ?></span>
-						<span class="subject-score-text" style="color:<?php echo $this->Name->rankColor($score); ?>"><?php echo __('Score'); ?></span>
-					</span>
-				</div>
+				<a class="nudl no-style" href="<?php 
+						echo $this->Html->url(
+							array(
+								'controller' => 'People',
+								'action'	=>	'dashboard',
+								$subj['Subject']['id']
+							)
+						); 
+					?>">
+					<div style="display: inline-block;">
+						<span class="subject-score" style="border-color:<?php echo $this->Name->rankColor($score); ?>" id="subject-score-<?php echo $subj['Subject']['id']; ?>" title="<?php echo __('Score based on latest 10 tests on the subject'); ?>">
+							<span class="subject-score-number"><?php echo $score; ?></span>
+							<span class="subject-score-text" style="color:<?php echo $this->Name->rankColor($score); ?>"><?php echo __('Score'); ?></span>
+						</span>
+					</div>
+				</a>	
 				<div style="display: inline-block;float:right;width: 65%;">
 					<?php echo __('Tiến trình học tập'); ?> <a href="javascript:void(0);" class="hasDetail pull-right pls-popover" data-type="Progress Popover" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="top" data-content="Được tính bằng tỷ lệ số bài học đã thực hành trên tổng số bài của môn học này"><span class="glyphicon glyphicon-question-sign"></span></a>
 					
@@ -475,7 +498,7 @@
             type: 'POST',
             url : URL,
             data: {
-                'subject'   : subjectID,
+                'subjectID'   : subjectID,
                 'gradeID'   : gradeID,
                 'categorydID' : categoryID,
 				'timeRangeType'	: currentTimeRangeType,

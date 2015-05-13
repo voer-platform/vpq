@@ -148,3 +148,7 @@
 .blur1 {opacity: 0.1;}
 .nbrd {border:0;}
 .w-half {width:50%;}
+.nudl {text-decoration:none!important;}
+.nudl.no-style {
+	color: #333;
+}
