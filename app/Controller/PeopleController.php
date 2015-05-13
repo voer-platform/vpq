@@ -424,7 +424,14 @@ class PeopleController extends AppController {
         $this->set('title_for_layout',__("History"));
 
         $this->loadModel('Score');
-        $history = $this->Score->getAllScores($this->Session->read('Auth.User')['id'], 10);
+        //$history = $this->Score->getAllScores($this->Session->read('Auth.User')['id'], 10);
+		$id=$this->Session->read('Auth.User')['id'];
+		$history=$this->Score->query("
+							SELECT * From scores as Score 
+							INNER JOIN tests as Test ON Test.id=Score.test_id
+							INNER JOIN subjects as Subject ON Subject.id=Test.subject_id
+							WHERE Score.person_id='$id' Group By Score.time_taken DESC Limit 10
+							");
         $this->set('scores', $history);
     }
 

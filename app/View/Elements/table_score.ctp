@@ -11,7 +11,7 @@
 		<?php foreach($scores as $item=>$score): ?>
 			<tr>
 				<td><?php echo $this->Html->link($this->Name->convertDayOfWeek(date('D', strtotime($score['Score']['time_taken'])))." ".date('d-m-y', strtotime($score['Score']['time_taken'])), array('controller' => 'scores', 'action' => 'viewDetails', $score['Score']['id']));?></td>
-				<td style='text-align:center;'>Vật lý</td>
+				<td style='text-align:center;'><?php echo $score['Subject']['name'];?></td>
 				<td style='text-align:center;'><?php echo $score['Test']['time_limit']; ?> phút</td>
 				<td style='text-align:center;'><?php echo floor($score['Score']['duration']/60); ?>:<?php echo $score['Score']['duration']%60?></td>
 				<td style='text-align:center;'><?php echo $score['Test']['number_questions'] != 0? round($score['Score']['score']/$score['Test']['number_questions'], 2)*10 : 0 ?></td>

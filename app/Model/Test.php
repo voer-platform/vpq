@@ -170,12 +170,13 @@ class Test extends AppModel {
                 'time_limit' => $timeLimit,
                 'allow_attempts' => -1,
                 'number_questions' => $numberOfQuestions,
+				'subject_id'=>$subjectId,
             ));
         $this->save();
 
-        $this->save(array(
+        /*$this->save(array(
             'Test' => array('id' => $id),
             'Subject' => array('id' => $subjectId)
-            ));
+            ));*/
     }
 }
