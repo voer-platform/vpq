@@ -148,5 +148,23 @@ class SubcategoriesController extends AppController {
 		$this->set('scores', $result);
 		$this->set('subcategory_id', $id);
 	}
+	
+	public function get_subcategories($id=null)
+	{
+		$this->layout = "ajax";
+        $this->autoLayout = false;
+        $this->autoRender = false;
+		
+		$subcategories = $this->Subcategory->find('all', array(
+                'recursive' => -1,
+                'conditions' => array(
+                    'category_id = ' => $id,
+                    ),
+            ));
+		
+		$this->header('Content-Type: application/json');
+        echo json_encode($subcategories);
+        return;
+	}
 
 }
