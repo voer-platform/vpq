@@ -17,7 +17,7 @@
 	</select>&nbsp;
 	<button type="submit" name="filter" class="btn btn-primary" value="true">Xem</button>
 	&nbsp;
-	<a href="<?php echo $this->html->url(array('controller'=>'cardStatistics')); ?>" class="btn btn-default">Xóa lọc</a>
+	<a href="<?php echo $this->Html->url(array('controller'=>'cardStatistics')); ?>" class="btn btn-default">Xóa lọc</a>
 </form>
 <hr/>
 <table class="table table-stripped table-bordered">

@@ -95,7 +95,7 @@ class Subject extends AppModel {
 										)
 						),	
 					'recursive' => -1,
-					'order'	=>	array('Ranking.score'=>'DESC')
+					'order'	=>	array('Subject.order'=>'ASC')
 				);
 				
 		if(isset($filterOptions['subject']))

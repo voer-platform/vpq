@@ -1,11 +1,49 @@
 <div class="questions index">
 	<h2><?php echo __('Questions'); ?></h2>
 	<hr/>
-	<form class="form-inline">
-		<label>Tìm kiếm </label>&nbsp;
-		<input type="text" class="form-control" name="keyword" placeholder="Từ khóa trong nội dung" />&nbsp;
-		<input type="submit" class="btn btn-primary" name="search" value="Tìm kiếm" />
-	</form>
+	<div class="row">
+		<div class="col-md-12">
+			<form class="form-inline">
+				<label>Tìm kiếm </label>&nbsp;
+				<input type="text" class="form-control" name="keyword" placeholder="Từ khóa trong nội dung" <?php if(isset($ckeyword) && $ckeyword!='') echo "value='$ckeyword'"; ?> />&nbsp;
+				
+				<select class="form-control" name="subject" id="subject">
+					<option value="">Môn học</option>
+					<?php foreach($subjects AS $id=>$subject){ ?>
+						<option value="<?php echo $id; ?>" <?php if(isset($csubject) && $csubject==$id) echo 'selected'; ?>><?php echo $subject; ?></option>
+					<?php } ?>
+				</select>
+				
+				<select class="form-control" name="grade" id="grade">
+					<option value="">Lớp</option>
+					<?php foreach($grades AS $id=>$grade){ ?>
+						<option value="<?php echo $id; ?>" <?php if(isset($cgrade) && $cgrade==$id) echo 'selected'; ?>><?php echo $grade; ?></option>
+					<?php } ?>
+				</select>
+				
+				<select class="form-control w-200 sl2" name="category" id="category">
+					<option value="">Chương</option>
+					<?php if(isset($cCategories) && !empty($cCategories)){ ?>
+						<?php foreach($cCategories AS $category){ ?>
+							<option value="<?php echo $category['Category']['id']; ?>" <?php if(isset($ccategory) && $ccategory==$category['Category']['id']) echo 'selected'; ?>><?php echo $category['Category']['name']; ?></option>
+						<?php } ?>
+					<?php } ?>
+				</select>
+				
+				<select class="form-control w-200 sl2" name="subcategory" id="subcategory">
+					<option value="">Bài</option>
+					<?php if(isset($cSubcategories) && !empty($cSubcategories)){ ?>
+						<?php foreach($cSubcategories AS $subcategory){ ?>
+							<option value="<?php echo $subcategory['Subcategory']['id']; ?>" <?php if(isset($csubcategory) && $csubcategory==$subcategory['Subcategory']['id']) echo 'selected'; ?>><?php echo $subcategory['Subcategory']['name']; ?></option>
+						<?php } ?>
+					<?php } ?>
+				</select>
+			
+				<button type="submit" class="btn btn-primary" name="search" value="true">Tìm kiếm</button>
+				<a href="<?php echo $this->Html->url(array('controller'=>'Questions')); ?>" class="btn btn-default">Xóa lọc</a>
+			</form>
+		</div>	
+	</div>	
 	<hr/>
 	<table cellpadding="0" cellspacing="0" class="table table-striped table table-bordered">
 	<thead>
@@ -66,3 +104,51 @@
 		<li><?php echo $this->Html->link(__('New Test'), array('controller' => 'tests', 'action' => 'add')); ?> </li>
 	</ul>
 </div>
+<script>
+	$('.sl2').select2();
+	$('#subject, #grade').change(function(){
+		if($(this).attr('id')=='grade' || $('#grade').val()!='')
+		{
+			handle_url = '<?php echo $this->Html->url(array('controller'=>'Categories', 'action' => 'byGrade')); ?>/'+$(this).val()+'/'+$('#subject').val();
+		}
+		else
+		{
+			handle_url = '<?php echo $this->Html->url(array('controller'=>'Categories', 'action' => 'bySubject')); ?>/'+$(this).val();
+		}
+		$.ajax({
+			type: 'GET',
+			url: handle_url,
+			success: function(response)
+			{
+				response = JSON.parse(response);
+				categoryOptions = '<option value="">Chọn chương</option>';
+				
+				$.each(response, function(key, obj){
+					categoryOptions+='<option value="'+obj.Category.id+'">'+obj.Category.name+'</option>';
+				});
+				$('#category').select2('destroy');
+				$('#category').html(categoryOptions);
+				$('#category').select2();
+				$('#category').trigger('change');
+			}
+		});
+	});
+	$('#category').change(function(){
+		catID = $(this).val();
+		$.ajax({
+			type: 'GET',
+			url: '<?php echo $this->Html->url(array('controller'=>'Subcategories', 'action' => 'get_subcategories')); ?>/'+catID,
+			success: function(response)
+			{
+				response = JSON.parse(response);
+				subcategoryOptions = '<option value="">Chọn bài</option>';
+				$.each(response, function(key, obj){
+					subcategoryOptions+='<option value="'+obj.Subcategory.id+'">'+obj.Subcategory.name+'</option>';
+				});
+				$('#subcategory').select2('destroy');
+				$('#subcategory').html(subcategoryOptions);
+				$('#subcategory').select2();
+			}
+		});
+	});
+</script>

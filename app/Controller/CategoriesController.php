@@ -153,4 +153,25 @@ class CategoriesController extends AppController {
         echo json_encode($categories);
         return;
     }
+	
+	public function bySubject($subject){
+        $this->layout = "ajax";
+        $this->autoLayout = false;
+        $this->autoRender = false;
+
+        $this->Category->unbindModel(array(
+            'belongsTo' => array('Subject')
+            ));
+
+        $categories = $this->Category->find('all', array(
+                'recursive' => 1,
+                'conditions' => array(
+                    'Category.subject_id = ' => $subject
+                    ),
+                'fields' => array('Category.id', 'Category.name')
+            ));
+        $this->header('Content-Type: application/json');
+        echo json_encode($categories);
+        return;
+    }
 }
