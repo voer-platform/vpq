@@ -456,7 +456,8 @@ class PeopleController extends AppController {
 		$history=$this->Score->query("
 							SELECT * From scores as Score 
 							INNER JOIN tests as Test ON Test.id=Score.test_id
-							INNER JOIN subjects as Subject ON Subject.id=Test.subject_id
+							INNER JOIN tests_subjects as TestsSubject ON Test.id=TestsSubject.test_id
+							INNER JOIN subjects as Subject ON Subject.id=TestsSubject.subject_id
 							WHERE Score.person_id='$id' Group By Score.time_taken DESC Limit 10
 							");
         $this->set('scores', $history);
