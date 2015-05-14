@@ -286,6 +286,7 @@ class PeopleController extends AppController {
 							$inviter_id = $this->Invitation->invitationGift($person->id, $fb_user['id']);
 							if($inviter_id)
 							{
+								$this->Notification->create();
 								$this->Notification->save(
 										array(
 											'Notification'	=>	array(
