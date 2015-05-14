@@ -27,7 +27,7 @@ class PeopleController extends AppController {
     public function isAuthorized($user) {
         // user can logout, dashboard, progress, history, suggest
         if (isset($user['role']) && $user['role'] === 'user' ){
-            if( in_array( $this->request->action, array('view', 'update','progress', 'login', 'logout', 'history', 'dashboard','suggest', 'completeProfile', 'invite','rechargecard'))){
+            if( in_array( $this->request->action, array('view', 'update','progress', 'login', 'logout', 'history', 'dashboard','suggest', 'completeProfile', 'invite','rechargecard', 'resetNotifyCounter'))){
                 return true;
             }
         } elseif (isset($user['role']) && $user['role'] === 'editor') {
@@ -258,21 +258,47 @@ class PeopleController extends AppController {
                         'date_modified'     => date("Y-m-d H:i:s"),
                         'image'             => $fb_user['picture']['url'],
 						'gender'			=>	($fb_user['gender']=='male')?1:0,
-						'coin'			    => 30,
+						'coin'			    => 150,
 						'last_login'		=> date('Y-m-d'),
                     );
 
                     // You should change this part to include data validation
                     $this->Person->save($data, array('validate' => false));
+					$currentUser = $this->Person->getLastInsertId();
+					
+					//First notify
+					$this->loadModel('Notification');
+					$notifyData = array(
+									'Notification'	=>	array(
+										'person_id'	=>	$currentUser,
+										'time'	=>	date("Y-m-d H:i:s"),
+										'notification_type_id'	=>	1
+									)	
+								);
+					$this->Notification->save($notifyData);
 
 					//Gift coins for user whole invited this user
 					$this->loadModel('Invitation');
 					$inviter = $fb_user['friends']['data'];
-					foreach($inviter AS $person)
-					{
-						$this->Invitation->invitationGift($person->id, $fb_user['id']);
+					if(!empty($inviter)){
+						foreach($inviter AS $person)
+						{
+							$inviter_id = $this->Invitation->invitationGift($person->id, $fb_user['id']);
+							if($inviter_id)
+							{
+								$this->Notification->save(
+										array(
+											'Notification'	=>	array(
+												'person_id'	=>	$inviter_id,
+												'object_id'	=>	$currentUser,
+												'time'	=>	date("Y-m-d H:i:s"),
+												'notification_type_id'	=>	2
+											)	
+										)
+									);
+							}		
+						}
 					}
-					
                     // After registration we will redirect them back here so they will be logged in
                     $this->redirect($this->Facebook->getLoginUrl());
                 }
@@ -521,5 +547,11 @@ class PeopleController extends AppController {
 		}
 	}
 	
+	public function resetNotifyCounter(){
+		$this->autoRender = false;
+		$user = $this->Auth->user();
+		$this->loadModel('Notification');
+		$this->Notification->resetCounter($user['id']);
+	}
 	
 }

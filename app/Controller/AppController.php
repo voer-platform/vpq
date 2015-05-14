@@ -116,7 +116,11 @@ class AppController extends Controller {
 			}
 		}
 		
-        $this->set('user', $this->Auth->user());
+		$user = $this->Auth->user();
+        $this->set('user', $user);
+		$this->loadModel('Notification');
+		$this->set('notifications', $this->Notification->getNotification($user['id']));
+		$this->set('unread', $this->Notification->getUnreadNotification($user['id']));
     }
 
     /*

@@ -14,8 +14,19 @@ body {
 
 .navbar-nav>li>a.profile-img{
 	padding: 0;
+	padding-right:5px;
 }
 
 .navbar-nav>li{
     white-space: nowrap;
 }
+#notifications-toggle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50px;
+  border: solid 1px #fff;
+  background: #3471A6;
+  text-align: center;
+  line-height: 30px;
+  padding-left:1px;
+ } 

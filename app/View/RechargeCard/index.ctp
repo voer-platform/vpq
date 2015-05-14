@@ -8,6 +8,13 @@
 <div class='row'>
 	<div class='col-sm-9'>
 		<?php if(isset($rechargeMess)){ ?>
+		
+		<?php if($statusType=='success'){ ?>
+			<script>
+				mixpanel.track("Recharge Card Success", {"user_id": "<?php echo $user['id']; ?>"});
+			</script>
+		<?php } ?>
+		
 		<div class="alert alert-<?php echo $statusType; ?>">
 			<?php echo $rechargeMess; ?>
 		</div>
@@ -49,7 +56,7 @@
 					<br/>
 					<div class='row' style='padding-left:20px;'>
 						<div class='col-sm-5'>
-							<input type='submit' class='btn btn-primary' value='Nạp xu' name='napthe'/>
+							<input type='submit' id="recharge-btn" class='btn btn-primary' value='Nạp xu' name='napthe'/>
 						</div>
 					</div>
 				</form>
@@ -93,6 +100,11 @@
 	</div>
 </div>
 <script>
+	mixpanel.track("Enter Recharge Card Page", {"user_id": "<?php echo $user['id']; ?>"});
+	$('#recharge-btn').click(function(){
+		mixpanel.track("Click Recharge Card Button", {"user_id": "<?php echo $user['id']; ?>"});
+	});
+	
 	$('.cardtype-radio').change(function(){
 		if($(this).is(':checked')==true)
 		{

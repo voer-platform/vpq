@@ -1,6 +1,5 @@
 <?php echo $this->HTML->css('navbar-static-top');?>
 <?php Configure::load("pls"); ?>
-
 <div class="navbar navbar-default navbar-static-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
@@ -36,11 +35,16 @@
       <ul class="nav navbar-nav navbar-right">
 		
         <?php if(!empty($user)): ?>
-          <li><?php echo $this->Html->link($this->Html->image($user['image'], array('class' => 'profile-img')), array('controller' => 'people', 'action' => 'dashboard'), array('escape' => false, 'class' => 'profile-img') ); ?></li>
-          <li><?php echo $this->Html->link($user['fullname'],array('controller' => 'people', 'action' => 'dashboard')); ?></li>
+          
+          
 
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
+            <a href="javascript:void(0);" class="dropdown-toggle profile-img" data-toggle="dropdown">
+				<?php echo $this->Html->image($user['image'], array('class' => 'profile-img')); ?>
+				<?php echo $user['fullname']; ?>
+				&nbsp;
+				<span class="caret"></span>
+			</a>
             <ul class="dropdown-menu" role="menu">
               <li><?php echo $this->Html->link(__('Account info'),array('controller'=> 'people','action'=> 'view', $user['id'])); ?></li>
               <li><?php echo $this->HTML->link(__('Dashboard'), array('controller' => 'people', 'action' => 'dashboard')); ?></li>
@@ -48,6 +52,22 @@
               <li><?php echo $this->Html->link(__('Logout'),array('controller'=> 'people','action'=> 'logout')); ?></li>
             </ul>
           </li>
+		  <li class="dropdown mglr-10">
+			<a href="javascript:void(0);" id="open-notifications" class="dropdown-toggle pd10" data-unread="<?php echo $unread; ?>" data-toggle="dropdown">
+				<div id="notifications-toggle">
+					<?php if($unread){ ?>
+					<span class="notify-counter"><?php echo $unread; ?></span>
+					<?php } ?>
+					<span class="glyphicon glyphicon-bell"></span>
+				</div>	
+			</a>	
+				<ul class="dropdown-menu notify-menu" role="menu">
+				<div class="notify-scroll">
+					<?php echo $this->element('notification'); ?>
+				</div>	
+				</ul>
+			
+		  </li>
         <?php else: ?>
       	<?php endif; ?>
       </ul>
