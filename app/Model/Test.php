@@ -170,7 +170,6 @@ class Test extends AppModel {
                 'time_limit' => $timeLimit,
                 'allow_attempts' => -1,
                 'number_questions' => $numberOfQuestions,
-				'subject_id'=>$subjectId,
             ));
         $this->save();
 
