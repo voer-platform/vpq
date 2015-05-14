@@ -60,7 +60,7 @@ Examples:
 
 ATTENTION: The trailing slash is required.
 */
-$baseUrl = '<?php echo $this->Html->url('/');?>';
+$baseUrl = 'http://dev.pls.edu.vn/app/webroot/';
 
 /*
 $baseDir : the path to the local directory (in the server) which points to the
