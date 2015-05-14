@@ -68,8 +68,9 @@ class AdminController extends AppController {
 		$this->set('title_for_layout',__("Add questions"));
 
 		$this->loadModel('Question');
-
-		if($this->request->is('post')){
+		$this->loadModel('Grade');
+		$this->loadModel('Subject');
+		/*if($this->request->is('post')){
 			$path = WWW_ROOT. DS . 'files';
 			if(isset($this->request->data['Attachment'])){
 				foreach($this->request->data['Attachment'] as $key => $value){
@@ -89,11 +90,77 @@ class AdminController extends AppController {
 			} else {
 				$this->Session->setFlash(__('The question could not be saved. Please, try again.'));
 			}
-		}
-		
-		$subcategories = $this->Question->Subcategory->find('list', array('order' => array('Subcategory.id ASC')));
-		$tests = $this->Question->Test->find('list');
+		}*/
+		$options = array(
+					'recursive' => -1,
+					);
+		$this->set('grade',$this->Grade->find('all',$options));
+		$this->set('subject',$this->Subject->find('all',$options));
+		//$subcategories = $this->Question->Subcategory->find('list', array('order' => array('Subcategory.id ASC')));
+		//$tests = $this->Question->Test->find('list');
 		$this->set(compact('subcategories', 'tests'));
+	}
+	
+	public function addquestion(){
+		$this->layout = "ajax";
+        $this->autoLayout = false;
+        $this->autoRender = false;
+		$question=$this->request->data;
+		$correct=explode(' ',trim($question['correct']));
+		pr($correct);
+		echo "<br/>";
+		$this->loadModel('Question');
+		$this->loadModel('QuestionsSubcategory');
+		$this->loadModel('Answer');
+		$question['question']=strip_tags($question['question'],'<img>');
+		for($i=0;$i<4;$i++){
+			$question[$i]=strip_tags($question[$i],'<img>');
+		};
+		$this->Question->save(
+								array(
+									'content'	=>$question['question'],
+									'difficulty'=>0,
+									'solution'	=>'',
+									'count'		=>0,
+									'time'		=>0,
+									'report'	=>0,
+									'wrong'		=>0,
+								)
+							); 
+		$insert_id=$this->Question->getLastInsertId();
+		$this->QuestionsSubcategory->save(
+								array(
+									'question_id'=>$insert_id,
+									'subcategory_id'=>$question['subcategories'],
+									'subcategory1_id'=>0,
+									'persion1_id'=>null,
+									'subcategory2_id'=>0,
+									'persion2_id_id'=>null,
+								)
+		);
+		for($i=0;$i<4;$i++){
+			$this->Answer->create();
+			if(in_array($i,$correct)){
+				$this->Answer->save(
+							array(
+								'question_id'=>$insert_id,
+								'order'		 =>$i,
+								'content'	 =>$question[$i],
+								'correctness'=>1,
+							)
+				);
+			}else{
+				$this->Answer->save(
+							array(
+								'question_id'=>$insert_id,
+								'order'		 =>$i,
+								'content'	 =>$question[$i],
+								'correctness'=>0,
+							)
+				);
+			}
+		};
+		echo $insert_id;
 	}
 
 /**
@@ -361,19 +428,6 @@ class AdminController extends AppController {
 			$dt['promotional']['end_date']=$end_date[2]."/".$end_date[1]."/".$end_date[0];
 			$data[$item]=$dt;
 		}
-		$this->set('data',$data);
-		$promotional=$this->promotional->find('all',array(
-			'order' => array('id' => 'desc')
-		));
-		$start_date=explode("-",$promotional[0]['promotional']['start_date']);
-		$start_date=$start_date[2]."/".$start_date[1]."/".$start_date[0];
-		$end_date=explode("-",$promotional[0]['promotional']['end_date']);
-		$end_date=$end_date[2]."/".$end_date[1]."/".$end_date[0];
-		$Rate=array(
-				'promotional'=>$promotional[0]['promotional']['percent'],
-				'start_date' =>$start_date,
-				'end_date'	 =>$end_date,
-				);
-		$this->set('Rate',$Rate);
+		$this->set('data',$data);		
 	}
 }

@@ -454,7 +454,7 @@ ul.simplePagerNav li a{
   background-image: linear-gradient(#fff, #D3D3D3);
   border: 2px solid #bbb;
   border-radius: 4px;
-  color: #333;
+  color: #333 !important;
   cursor: pointer;
   font-family: arial;
   font-size: 11px;
@@ -488,7 +488,7 @@ ul.simplePagerNav li.active a{
 ul.simplePagerNav li.chose a{
   background: none repeat scroll 0 0 #2299dd;
   border: 2px solid #2299dd;
-  color: #fff;
+  color: #fff !important;
   text-shadow: 1px 1px 1px #2299dd;
 }
 div.answer{

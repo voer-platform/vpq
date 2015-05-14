@@ -174,9 +174,9 @@ class Test extends AppModel {
             ));
         $this->save();
 
-        /*$this->save(array(
+        $this->save(array(
             'Test' => array('id' => $id),
             'Subject' => array('id' => $subjectId)
-            ));*/
+            ));
     }
 }
