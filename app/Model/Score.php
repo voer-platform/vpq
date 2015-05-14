@@ -154,7 +154,7 @@ class Score extends AppModel {
  * @return id of stored score 
  *        
  */
-    public function calculateScore($testId, $answers, $user, &$scoreData, $numberOfQuestions){
+    public function calculateScore($testId, $answers, $user, $scoreData, $numberOfQuestions){
         //check if answer is right or not
         $correctCounter = 0;
         $duration = $answers['duration'];
