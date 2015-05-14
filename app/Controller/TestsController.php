@@ -337,6 +337,15 @@ class TestsController extends AppController {
 											)
 										);
 				}
+				$this->Tracking->id=$user['id'];
+				$this->Tracking->save(
+											array(
+												'person_id' => $user['id'],
+												'grade' => '0',
+												'subject_id' => $subject,
+												'subcategory' => $update_sub
+											)
+										);
             }else{
                 // warn that no data found
                 $this->Session->setFlash(__('No data found'));
