@@ -171,7 +171,7 @@
     	$('#attachments-description').text("<?php echo __('Click button to add more'); ?>");
     });*/
 	$(document).ready(function(){
-		$url="http://pls.local:1080/";     
+		$url='<?php echo $this->Html->url('/');?>';    
 
 			var editor = CKEDITOR.replace( 'question',
 				{
