@@ -227,6 +227,7 @@ class PeopleController extends AppController {
                             $this->redirect($review_url);
                         }
                         else{
+							$this->Session->write('over','2');
         					$this->redirect(array('controller' => 'people', 'action' => 'dashboard'));
                         }
 					}	
@@ -342,8 +343,16 @@ class PeopleController extends AppController {
 		$diff = abs($date2-$date1);
 		$ketqua=round($diff/(60*60*24));
 		$coin=$data_user[0]['Person']['coin']-$ketqua*5;
-		if($coin<0){
+		if($coin<=0){
 			$coin='0';
+			if($this->Session->read('over')==2)
+			{
+				$this->Session->write('over','0');
+			}else{				
+				$this->Session->write('over','1');
+			}
+		}else{
+			$this->Session->write('over','2');
 		}
 		$this->Person->id=$user_id;
 		$this->Person->save(
