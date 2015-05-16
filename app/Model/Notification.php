@@ -41,7 +41,8 @@ class Notification extends AppModel {
 		$options = array(
 						'conditions'	=>	array(
 												'Notification.person_id'	=>	$person_id
-											)
+											),
+						'order'	=>	array('Notification.time' => 'DESC')					
 					);
 		$result = $this->find('all', $options);
 		return $result;

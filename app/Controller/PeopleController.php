@@ -513,7 +513,8 @@ class PeopleController extends AppController {
 			$this->Person->updateAll(
 							array(
 								'fullname'	=>	"'".$this->request->data('fullname')."'", 
-								'birthday'	=>	"'".$this->request->data('birthday')."'", 
+								'birthday'	=>	"'".$this->request->data('birthday')."'",
+								'email'	=>	"'".$this->request->data('email')."'", 
 								'address'	=>	"'".$this->request->data('address')."'", 
 								'grade'		=>	"'".$this->request->data('grade')."'", 
 								'school'	=>	"'".$this->request->data('school')."'",

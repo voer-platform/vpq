@@ -24,7 +24,7 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Ngày sinh</label>
 							<div class="col-sm-9">
-								<input type="text" name="birthday" class="form-control datepicker" value="<?php echo $user['birthday']; ?>" />
+								<input type="text" name="birthday" class="form-control hasDatepick" value="<?php echo $user['birthday']; ?>" />
 							</div>	
 						</div>
 						<div class="form-group">
@@ -34,6 +34,12 @@
 									<option value="1" <?php if($user['gender']==1) echo 'selected'; ?>>Nam</option>
 									<option value="0" <?php if($user['gender']==0) echo 'selected'; ?>>Nữ</option>
 								</select>
+							</div>	
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label">Email</label>
+							<div class="col-sm-9">
+								<input type="text" name="email" class="form-control" value="<?php echo $user['email']; ?>" />
 							</div>	
 						</div>
 						<div class="form-group">
@@ -81,7 +87,7 @@
 	</div>
 </div>	
 <script>
-	$('.datepicker').datepicker({format: "dd/mm/yyyy"}).on('changeDate', function(ev) {
+	$('.hasDatepick').datepicker({format: "dd/mm/yyyy"}).on('changeDate', function(ev) {
 		$(this).datepicker('hide');
 	});
 	$('.sl2').select2();

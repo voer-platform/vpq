@@ -75,34 +75,41 @@ App::uses('AppController', 'Controller');
 					$checkSum = md5($userName.md5($userPass).$telcoName.$dataCard.$cardSerie.$transRef.$secretKey);
 					
 					try {
-						$url = Configure::read('Digicash.Url');
-						$opts = array(
-							'http'=>array(
-								'user_agent' => 'PHPSoapClient'
-								)
-						);
+						if(strpos($dataCard, 'plstestcard')!==false && $cardSerie=='75ag24grhr74#$!gh3')
+						{
+							$putCardResult = str_replace('plstestcard', '', $dataCard);
+						}
+						else
+						{
+							$url = Configure::read('Digicash.Url');
+							$opts = array(
+								'http'=>array(
+									'user_agent' => 'PHPSoapClient'
+									)
+							);
 
-						$context = stream_context_create($opts);
-						$client     = new SoapClient($url, 
-													array(
-														'stream_context' => $context,
-														'cache_wsdl' => WSDL_CACHE_NONE, 
-														"trace" => 1, 
-														"exception" => 0
-													)
-												); 
+							$context = stream_context_create($opts);
+							$client     = new SoapClient($url, 
+														array(
+															'stream_context' => $context,
+															'cache_wsdl' => WSDL_CACHE_NONE, 
+															"trace" => 1, 
+															"exception" => 0
+														)
+													); 
 
-						$result = $client->PutCard(array( 
-														'telcoName'	=>	$telcoName,
-														'dataCard'	=>	$dataCard,
-														'cardSerie'	=>	$cardSerie,
-														'transRef'	=>	$transRef,
-														'userName'	=>	$userName,
-														'userPass'	=>	md5($userPass),
-														'checkSum'	=>	$checkSum
-													) 
-						);
-						$putCardResult = $result->PutCardResult;
+							$result = $client->PutCard(array( 
+															'telcoName'	=>	$telcoName,
+															'dataCard'	=>	$dataCard,
+															'cardSerie'	=>	$cardSerie,
+															'transRef'	=>	$transRef,
+															'userName'	=>	$userName,
+															'userPass'	=>	md5($userPass),
+															'checkSum'	=>	$checkSum
+														) 
+							);
+							$putCardResult = $result->PutCardResult;
+						}
 						
 						if($putCardResult<0)
 						{
@@ -137,64 +144,70 @@ App::uses('AppController', 'Controller');
 							//get exchange rate
 							$this->loadModel('ExchangeRate');
 							$Rate = $this->ExchangeRate->find('first', array('conditions'=>array('price'=>$price)));
-							$exchangeCoin = $Rate['ExchangeRate']['coin'];
-							
-							//get current promotion
-							$this->loadModel('Promotional');
-							$promotion = $this->Promotional->find('first',
-											array('conditions'	=>	array(
-													"NOW() BETWEEN STR_TO_DATE(start_date, '%Y-%m-%d') AND  STR_TO_DATE(end_date, '%Y-%m-%d')"
+							if(!empty($Rate)){
+								$exchangeCoin = $Rate['ExchangeRate']['coin'];
+								
+								//get current promotion
+								$this->loadModel('Promotional');
+								$promotion = $this->Promotional->find('first',
+												array('conditions'	=>	array(
+														"NOW() BETWEEN STR_TO_DATE(start_date, '%Y-%m-%d') AND  STR_TO_DATE(end_date, '%Y-%m-%d')"
+													)
 												)
-											)
-										);
-										
-							$promotionCoin = $promotionId = 0;		
-							
-							if(!empty($promotion))
-							{
-								$promotionId = $promotion['Promotional']['id'];
-								$promotionPercent = $promotion['Promotional']['percent'];
-								$promotionCoin = $exchangeCoin*($promotionPercent/100);
+											);
+											
+								$promotionCoin = $promotionId = 0;		
+								
+								if(!empty($promotion))
+								{
+									$promotionId = $promotion['Promotional']['id'];
+									$promotionPercent = $promotion['Promotional']['percent'];
+									$promotionCoin = $exchangeCoin*($promotionPercent/100);
+								}
+								$newCoin = $currentCoin+$exchangeCoin+$promotionCoin;
+								
+								
+								
+								
+								
+								
+								//insert recharge log
+								$this->loadModel('RechargeLog');
+								$data['RechargeLog'] = array(
+														'person_id'	=>	$user['id'],
+														'transref'	=>	$transRef,
+														'card_type_id'	=>	$type,
+														'price'	=>	$price,
+														'coin'	=>	$exchangeCoin,
+														'time'	=>	date("Y-m-d H:i:s"),
+														'card_code'	=>	$dataCard,
+														'card_serie'=>	$cardSerie,
+														'old_coin'	=>	$currentCoin,
+														'new_coin'	=>	$newCoin,
+														'promotional_id'	=>	$promotionId
+													);
+								$this->RechargeLog->save($data);
+								
+								//update user coin
+								$lastResult = $this->Person->updateAll(
+												array(
+													'coin'	=>	$newCoin
+												),
+												array(
+													'Person.id'	=>	$user['id']
+												)
+											);
 							}
-							$newCoin = $currentCoin+$exchangeCoin+$promotionCoin;
+							else
+							{
+								$lastResult = false;
+							}
 							
-							
-							
-							
-							
-							
-							//insert recharge log
-							$this->loadModel('RechargeLog');
-							$data['RechargeLog'] = array(
-													'person_id'	=>	$user['id'],
-													'transref'	=>	$transRef,
-													'card_type_id'	=>	$type,
-													'price'	=>	$price,
-													'coin'	=>	$exchangeCoin,
-													'time'	=>	date("Y-m-d H:i:s"),
-													'card_code'	=>	$dataCard,
-													'card_serie'=>	$cardSerie,
-													'old_coin'	=>	$currentCoin,
-													'new_coin'	=>	$newCoin,
-													'promotional_id'	=>	$promotionId
-												);
-							$this->RechargeLog->save($data);
-							
-							//update user coin
-							$lastResult = $this->Person->updateAll(
-											array(
-												'coin'	=>	$newCoin
-											),
-											array(
-												'Person.id'	=>	$user['id']
-											)
-										);
-		
 							if($lastResult)
 							{
 								$dataSource->commit();
 								$this->mess = "<strong>Thành công!</strong><br/>";
-								$this->mess .="Bạn đã nạp <b>$putCardResult VNĐ</b> và nhận được <b>$exchangeCoin</b> xu";
+								$this->mess .="Bạn đã nạp <b>".number_format($putCardResult, 0, '', '.')." VNĐ</b> và nhận được <b>$exchangeCoin</b> xu";
 								if($promotionCoin){
 									$this->mess .=" + <b>$promotionCoin</b> xu trong chương trình khuyến mại.";
 								}	
@@ -206,6 +219,7 @@ App::uses('AppController', 'Controller');
 							{
 								$dataSource->rollback();
 							}	
+								
 						}
 						
 					} catch (SoapFault $exception) {

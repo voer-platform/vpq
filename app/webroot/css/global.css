@@ -133,15 +133,17 @@
     width: 32px;
     height: 32px;
 	position: absolute;
-	left: 5px;
+	left: 10px;
 }
 .notify-menu {
 	width:300px;
 	max-height:300px;
 	border-top:0!important;
+	padding-top: 8px;
+	padding-bottom: 8px;
 }
 .notify-menu .divider {
-margin: 5px 0px!important;
+margin: 8px 0px!important;
 }
 
 span.notify-counter {
@@ -160,13 +162,15 @@ span.notify-counter {
   color: #fff;
   font-weight: bold;
 }
-.notify-menu li {
+.notify-menu li.notify {
 	white-space: normal;
 	position: relative;
-	padding-left: 45px;
-	padding-right: 5px;
+	padding-left: 50px;
+	padding-right: 10px;
 	font-size: 12px;
+	min-height: 33px;
 }
+
 /* Personal Page */
 .personal-page-header .user-info {
 	padding-left:20px;
@@ -176,6 +180,7 @@ span.notify-counter {
 .ib {display:inline-block;}
 .inline {display:inline;}
 .bl {display: block;}
+.w-550 {width:550px;}
 .w-450 {width:450px;}
 .w-200 {width:200px!important;}
 .fw {width:100%;}
@@ -187,6 +192,7 @@ span.notify-counter {
 .pdl-30 {padding-left:30px;}
 .pdr-0{padding-right:0;}
 .blur1 {opacity: 0.1;}
+.blur3 {opacity: 0.3;}
 .nbrd {border:0;}
 .w-half {width:50%;}
 .nudl {text-decoration:none!important;}

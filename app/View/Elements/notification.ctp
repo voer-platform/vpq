@@ -4,7 +4,7 @@
 		foreach($notifications AS $notify){ 
 			$count--;
 ?>
-		<li>
+		<li class="notify">
 			<?php
 				$notifyContent = $notify['NotificationType']['content'];
 				

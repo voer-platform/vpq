@@ -287,7 +287,7 @@ class AdminController extends AppController {
 										'conditions'	=>	'tests_subjects.test_id = scores.test_id'
 									)
 								),
-					'group'	=>	array('tests_subjects.subject_id, Ranking.person_id')			
+					'group'	=>	array('Ranking.subject_id, Ranking.person_id')			
 				);
 		if(isset($this->request->params['named']['subject']))
 		{

@@ -22,9 +22,9 @@
 </div>
 <?php if($user['id']== $person['Person']['id']){ ?>
 <!-- Modal -->
-<div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-dialog w-450">
-		<form method="POST" action="<?php echo $this->Html->url(array('controller'=>'people', 'action'=>'update')); ?>">
+<div class="modal" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog w-550">
+		<form method="POST" class="form-horizontal" action="<?php echo $this->Html->url(array('controller'=>'people', 'action'=>'update')); ?>">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -32,39 +32,57 @@
 			</div>
 			<div class="modal-body">
 					<div class="form-group">
-						<label class="form-label">Họ tên</label>
-						<input type="text" class="form-control" name="fullname" value="<?php echo h($person['Person']['fullname']); ?>" />
+						<label class="col-sm-3 control-label">Họ tên</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" name="fullname" value="<?php echo h($person['Person']['fullname']); ?>" />
+						</div>	
 					</div>
 					<div class="form-group">
-						<label class="form-label">Ngày sinh</label>
-						<input type="text" class="form-control hasDatepick" name="birthday" value="<?php echo h($person['Person']['birthday']); ?>" />
+						<label class="col-sm-3 control-label">Ngày sinh</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control hasDatepick" name="birthday" value="<?php echo h($person['Person']['birthday']); ?>" />
+						</div>	
 					</div>
 					<div class="form-group">
-						<label class="form-label">Giới tính</label>
-						<select name="gender" class="form-control">
-							<option value="1" <?php if($person['Person']['gender']==1) echo 'selected'; ?>>Nam</option>
-							<option value="0" <?php if($person['Person']['gender']==0) echo 'selected'; ?>>Nữ</option>
-						</select>
+						<label class="col-sm-3 control-label">Giới tính</label>
+						<div class="col-sm-9">
+							<select name="gender" class="form-control">
+								<option value="1" <?php if($person['Person']['gender']==1) echo 'selected'; ?>>Nam</option>
+								<option value="0" <?php if($person['Person']['gender']==0) echo 'selected'; ?>>Nữ</option>
+							</select>
+						</div>	
 					</div>
 					<div class="form-group">
-						<label class="form-label">Đang là</label>
-						<select name="grade" class="form-control">
-							<?php foreach($grades AS $grade){ ?>
-								<option value="<?php echo $grade; ?>" <?php if($person['Person']['grade']==$grade) echo 'selected'; ?>>Học sinh lớp <?php echo $grade; ?></option>
-							<?php } ?>
-						</select>
+						<label class="col-sm-3 control-label">Email</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" name="email" value="<?php echo h($person['Person']['email']); ?>" />
+						</div>	
 					</div>
 					<div class="form-group">
-						<label class="form-label">Tại trường</label>
-						<input type="text" class="form-control" name="school" value="<?php echo h($person['Person']['school']); ?>" placeholder="Tên trường học của bạn" />
+						<label class="col-sm-3 control-label">Đang là</label>
+						<div class="col-sm-9">
+							<select name="grade" class="form-control">
+								<?php foreach($grades AS $grade){ ?>
+									<option value="<?php echo $grade; ?>" <?php if($person['Person']['grade']==$grade) echo 'selected'; ?>>Học sinh lớp <?php echo $grade; ?></option>
+								<?php } ?>
+							</select>
+						</div>	
 					</div>
 					<div class="form-group">
-						<label class="form-label">Địa chỉ</label>
-						<select name="address" class="form-control sl2">
-							<?php foreach($provinces AS $province_id=>$province){ ?>
-								<option value="<?php echo $province_id; ?>" <?php if($province_id==$person['Province']['id']) echo 'selected'; ?>><?php echo $province; ?></option>
-							<?php } ?>
-						</select>
+						<label class="col-sm-3 control-label">Tại trường</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" name="school" value="<?php echo h($person['Person']['school']); ?>" placeholder="Tên trường học của bạn" />
+						</div>	
+					</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">Địa chỉ</label>
+						<div class="col-sm-9">
+							<select name="address" class="form-control sl2">
+								<?php foreach($provinces AS $province_id=>$province){ ?>
+									<option value="<?php echo $province_id; ?>" <?php if($province_id==$person['Province']['id']) echo 'selected'; ?>><?php echo $province; ?></option>
+								<?php } ?>
+							</select>
+						</div>	
 					</div>
 				</form>
 			</div>
@@ -77,133 +95,6 @@
 	</div>
 </div>
 <?php } ?>
-<!--<div class="people view">
-<h2></h2>
-	<dl>
-		<dt><?php echo __('Id'); ?></dt>
-		<dd>
-			<?php echo h($person['Person']['id']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('First Name'); ?></dt>
-		<dd>
-			<?php echo h($person['Person']['first_name']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Last Name'); ?></dt>
-		<dd>
-			<?php echo h($person['Person']['last_name']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Grade'); ?></dt>
-		<dd>
-			<?php echo h($person['Person']['grade']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Birthday'); ?></dt>
-		<dd>
-			<?php echo h($person['Person']['birthday']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Date Created'); ?></dt>
-		<dd>
-			<?php echo h($person['Person']['date_created']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Role'); ?></dt>
-		<dd>
-			<?php echo h($person['Person']['role']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Facebook'); ?></dt>
-		<dd>
-			<?php echo h($person['Person']['facebook']); ?>
-			&nbsp;
-		</dd>
-	</dl>
-</div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('Edit Person'), array('action' => 'edit', $person['Person']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Person'), array('action' => 'delete', $person['Person']['id']), null, __('Are you sure you want to delete # %s?', $person['Person']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(__('List People'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Person'), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Progresses'), array('controller' => 'progresses', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Progress'), array('controller' => 'progresses', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Scores'), array('controller' => 'scores', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Score'), array('controller' => 'scores', 'action' => 'add')); ?> </li>
-	</ul>
-</div>
-<div class="related">
-	<h3><?php echo __('Related Progresses'); ?></h3>
-	<?php if (!empty($person['Progress'])): ?>
-	<table cellpadding = "0" cellspacing = "0">
-	<tr>
-		<th><?php echo __('Person Id'); ?></th>
-		<th><?php echo __('Sub Category Id'); ?></th>
-		<th><?php echo __('Progress'); ?></th>
-		<th class="actions"><?php echo __('Actions'); ?></th>
-	</tr>
-	<?php foreach ($person['Progress'] as $progress): ?>
-		<tr>
-			<td><?php echo $progress['person_id']; ?></td>
-			<td><?php echo $progress['sub_category_id']; ?></td>
-			<td><?php echo $progress['progress']; ?></td>
-			<td class="actions">
-				<?php echo $this->Html->link(__('View'), array('controller' => 'progresses', 'action' => 'view', $progress['person_id'],$progress['sub_category_id'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('controller' => 'progresses', 'action' => 'edit', $progress['id'])); ?>
-				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'progresses', 'action' => 'delete', $progress['id']), null, __('Are you sure you want to delete # %s?', $progress['id'])); ?>
-			</td>
-		</tr>
-	<?php endforeach; ?>
-	</table>
-<?php endif; ?>
-
-	<div class="actions">
-		<ul>
-			<li><?php echo $this->Html->link(__('New Progress'), array('controller' => 'progresses', 'action' => 'add')); ?> </li>
-		</ul>
-	</div>
-</div>
-<div class="related">
-	<h3><?php echo __('Related Scores'); ?></h3>
-	<?php if (!empty($person['Score'])): ?>
-	<table cellpadding = "0" cellspacing = "0">
-	<tr>
-		<th><?php echo __('Id'); ?></th>
-		<th><?php echo __('Test Id'); ?></th>
-		<th><?php echo __('Person Id'); ?></th>
-		<th><?php echo __('Score'); ?></th>
-		<th><?php echo __('Duration'); ?></th>
-		<th><?php echo __('Time Taken'); ?></th>
-		<th class="actions"><?php echo __('Actions'); ?></th>
-	</tr>
-	<?php foreach ($person['Score'] as $score): ?>
-		<tr>
-			<td><?php echo $score['id']; ?></td>
-			<td><?php echo $score['test_id']; ?></td>
-			<td><?php echo $score['person_id']; ?></td>
-			<td><?php echo $score['score']; ?></td>
-			<td><?php echo $score['duration']; ?></td>
-			<td><?php echo $score['time_taken']; ?></td>
-			<td class="actions">
-				<?php echo $this->Html->link(__('View'), array('controller' => 'scores', 'action' => 'view', $score['id'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('controller' => 'scores', 'action' => 'edit', $score['id'])); ?>
-				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'scores', 'action' => 'delete', $score['id']), null, __('Are you sure you want to delete # %s?', $score['id'])); ?>
-			</td>
-		</tr>
-	<?php endforeach; ?>
-	</table>
-<?php endif; ?>
-
-	<div class="actions">
-		<ul>
-			<li><?php echo $this->Html->link(__('New Score'), array('controller' => 'scores', 'action' => 'add')); ?> </li>
-		</ul>
-	</div>
-</div>
--->
 <script>
 	$('.hasDatepick').datepicker({format: "dd/mm/yyyy"}).on('changeDate', function(ev) {
 		$(this).datepicker('hide');

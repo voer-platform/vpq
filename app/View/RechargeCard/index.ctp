@@ -47,10 +47,10 @@
 						</div>
 						
 						<div class="col-sm-5">
-							<input type="text" class="form-control" placeholder="Mã Thẻ" name="code" required />
+							<input type="text" class="form-control" placeholder="Mã Thẻ" name="code" required autocomplete="off" />
 						</div>
 						<div class="col-sm-5 pdr-0">
-							<input type="text" class="form-control" placeholder="Số seri" name="seri" required />
+							<input type="text" class="form-control" placeholder="Số seri" name="seri" required autocomplete="off" />
 						</div>
 					</div>
 					<br/>
@@ -90,8 +90,8 @@
 					</tr>
 					<?php foreach($exchangeRates AS $rate){ ?>
 					<tr>
-						<td class="center"><?php echo $rate['ExchangeRate']['price']; ?> VNĐ</td>
-						<td class="center"><?php echo $rate['ExchangeRate']['coin']; ?></td>
+						<td class="center"><?php echo number_format($rate['ExchangeRate']['price'], 0, '', '.'); ?> VNĐ</td>
+						<td class="center"><?php echo number_format($rate['ExchangeRate']['coin'], 0, '', '.'); ?></td>
 					</tr>
 					<?php } ?>
 				</table>
