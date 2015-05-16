@@ -93,9 +93,11 @@
 					<b style='color:#428bca;'>PLS</b> tặng bạn <b style='color:red;'>150 Xu</b> cho lần đăng nhập đầu tiên.
 				</p>
 				<p style='font-size:12pt;'>
+					<b style='color:red;'>Xu</b> dùng để duy trì tài khoản, mỗi ngày tài khoản của bạn sẽ bị giảm <b style='color:red;'>5 Xu</b>.
 				</p>
             </div>
             <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal"><?php echo __('Close'); ?></button>
             </div>
         </div>
     </div>
