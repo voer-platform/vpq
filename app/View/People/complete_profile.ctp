@@ -86,9 +86,37 @@
 		</div>
 	</div>
 </div>	
+
+<div id="modalmessages" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content" style='margin-top:150px;'>
+			<div class="modal-header" style='text-align:center'>
+                <h3 class="modal-title" id="myModalLabel" style='color:#428bca;'>Chào mừng bạn đến với PLS</h3>
+            </div>
+            <div class="modal-body" style='text-align:center'>
+                <h3></h3>
+				<p style='font-size:12pt;'>
+					<b style='color:#428bca;'>PLS</b> tặng bạn <b style='color:red;'>150 Xu</b> cho lần đăng nhập đầu tiên.
+				</p>
+				<p style='font-size:12pt;'>
+					<b style='color:red;'>Xu</b> dùng để duy trì tài khoản, mỗi ngày tài khoản của bạn sẽ bị giảm <b style='color:red;'>5 Xu</b>.
+				</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal"><?php echo __('Close'); ?></button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
 	$('.hasDatepick').datepicker({format: "dd/mm/yyyy"}).on('changeDate', function(ev) {
 		$(this).datepicker('hide');
 	});
 	$('.sl2').select2();
+	$(document).ready(function(){
+		$('#modalmessages').modal({
+					backdrop: true
+				});
+	});
 </script>

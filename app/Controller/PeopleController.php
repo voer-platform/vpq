@@ -227,6 +227,7 @@ class PeopleController extends AppController {
                             $this->redirect($review_url);
                         }
                         else{
+							$this->Session->write('over','2');
         					$this->redirect(array('controller' => 'people', 'action' => 'dashboard'));
                         }
 					}	
@@ -342,8 +343,16 @@ class PeopleController extends AppController {
 		$diff = abs($date2-$date1);
 		$ketqua=round($diff/(60*60*24));
 		$coin=$data_user[0]['Person']['coin']-$ketqua*5;
-		if($coin<0){
+		if($coin<=0){
 			$coin='0';
+			if($this->Session->read('over')==2)
+			{
+				$this->Session->write('over','0');
+			}else{				
+				$this->Session->write('over','1');
+			}
+		}else{
+			$this->Session->write('over','2');
 		}
 		$this->Person->id=$user_id;
 		$this->Person->save(
@@ -456,7 +465,8 @@ class PeopleController extends AppController {
 		$history=$this->Score->query("
 							SELECT * From scores as Score 
 							INNER JOIN tests as Test ON Test.id=Score.test_id
-							INNER JOIN subjects as Subject ON Subject.id=Test.subject_id
+							INNER JOIN tests_subjects as TestsSubject ON Test.id=TestsSubject.test_id
+							INNER JOIN subjects as Subject ON Subject.id=TestsSubject.subject_id
 							WHERE Score.person_id='$id' Group By Score.time_taken DESC Limit 10
 							");
         $this->set('scores', $history);

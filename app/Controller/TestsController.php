@@ -168,8 +168,16 @@ class TestsController extends AppController {
 			$diff = abs($date2-$date1);
 			$ketqua=round($diff/(60*60*24));
 			$coin=$coin[0]['Person']['coin']-$ketqua*5;
-			if($coin<0){
-				$coin=0;
+			if($coin<=0){
+				$coin='0';
+				if($this->Session->read('over')==2)
+				{
+					$this->Session->write('over','0');
+				}else{				
+					$this->Session->write('over','1');
+				}
+			}else{
+				$this->Session->write('over','2');
 			}
 			$this->Person->id=$user['id'];
 			$this->Person->save(
