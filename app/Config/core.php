@@ -220,6 +220,7 @@
 		'cookie' => 'PLS'
 	));
 
+	Configure::write('Security.key', 'ac87dfd989d8ffjdsg545fdsf878jriouewtu88435345');
 /**
  * A random string used in security hashing methods.
  */

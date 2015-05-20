@@ -1,3 +1,13 @@
+@media (min-width: 768px) {
+	#dialog .modal-dialog, #login-modal .modal-dialog {
+		margin-top:100px!important;
+	}
+}	
+/* login */
+.login-open, .login-open:focus, .login-open:active {
+	outline:none!important;
+}
+
 /*message, flashMessage*/
 .message{
 	background-color: rgb(238, 238, 238);
@@ -170,7 +180,9 @@ span.notify-counter {
 	font-size: 12px;
 	min-height: 33px;
 }
-
+ul.dropdown-menu li > a {
+	text-transform: none!important;
+}
 /* Personal Page */
 .personal-page-header .user-info {
 	padding-left:20px;
@@ -186,7 +198,9 @@ span.notify-counter {
 .fw {width:100%;}
 .wa {width:auto!important;}
 .mg0 {margin:0;}
-.mglr-10{margin:0 10px;}
+.mgt-0 {margin-top:0!important;}
+.mgt-100 {margin-top:100px!important;}
+.mglr-10{margin:0 10px!important;}
 .pd0 {padding:0!important;}
 .pd10 {padding:10px!important;}
 .pdl-30 {padding-left:30px;}

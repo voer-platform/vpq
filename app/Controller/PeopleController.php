@@ -27,7 +27,7 @@ class PeopleController extends AppController {
     public function isAuthorized($user) {
         // user can logout, dashboard, progress, history, suggest
         if (isset($user['role']) && $user['role'] === 'user' ){
-            if( in_array( $this->request->action, array('view', 'update','progress', 'login', 'logout', 'history', 'dashboard','suggest', 'completeProfile', 'invite','rechargecard', 'resetNotifyCounter'))){
+            if( in_array( $this->request->action, array('view', 'update','progress', 'login', 'logout', 'history', 'dashboard','suggest', 'completeProfile', 'invite','rechargecard', 'resetNotifyCounter', 'emailCheck', 'changePassword'))){
                 return true;
             }
         } elseif (isset($user['role']) && $user['role'] === 'editor') {
@@ -35,7 +35,6 @@ class PeopleController extends AppController {
                 return true;
             }
         }
-
         return parent::isAuthorized($user);
     }
 /*
@@ -155,22 +154,34 @@ class PeopleController extends AppController {
             throw new NotFoundException(__('Invalid person'));
         }
         $this->request->onlyAllow('post');
-        if($this->request->data('update_profile'))
+        if($this->request->is('post'))
 		{
-			$this->Person->updateAll(
-				array(
-					'fullname'	=>	"'".$this->request->data('fullname')."'", 
-					'birthday'	=>	"'".$this->request->data('birthday')."'", 
-					'address'	=>	"'".$this->request->data('address')."'", 
-					'grade'		=>	"'".$this->request->data('grade')."'", 
-					'school'	=>	"'".$this->request->data('school')."'",
-					'gender'	=>	"'".$this->request->data('gender')."'"
-				),
-				array('Person.id' => $user['id'])
-			);
-			$newInfo = $this->Person->find('first', array('conditions'=>array('Person.id' => $user['id'])));
-			$this->Auth->login($newInfo['Person']);
-			$this->Session->setFlash(__('Đã cập nhật thông tin cá nhân'));
+			$email = $this->request->data['email'];
+			$emailUsed = $this->Person->find('first', array(
+							'conditions' => array('email' => $email, 'Person.id !=' => $user['id'])
+						));
+			if($emailUsed)			
+			{
+				$this->Session->setFlash(__('Email này đã được sử dụng'));
+			}
+			else
+			{
+				$this->Person->updateAll(
+					array(
+						'fullname'	=>	"'".$this->request->data('fullname')."'", 
+						'birthday'	=>	"'".$this->request->data('birthday')."'", 
+						'email'		=>	"'".$this->request->data('email')."'",
+						'address'	=>	"'".$this->request->data('address')."'", 
+						'grade'		=>	"'".$this->request->data('grade')."'", 
+						'school'	=>	"'".$this->request->data('school')."'",
+						'gender'	=>	"'".$this->request->data('gender')."'"
+					),
+					array('Person.id' => $user['id'])
+				);
+				$newInfo = $this->Person->find('first', array('conditions'=>array('Person.id' => $user['id'])));
+				$this->Auth->login($newInfo['Person']);
+				$this->Session->setFlash(__('Đã cập nhật thông tin cá nhân'));
+			}
 		}
         return $this->redirect(array('action' => 'view', $user['id']));
     }
@@ -181,12 +192,39 @@ class PeopleController extends AppController {
         $this->autoRender = false;
 
         // If it is a post request we can assume this is a local login request
-        if ($this->request->isPost()){
-            if ($this->Auth->login()){
-                $this->redirect($this->Auth->redirectUrl());
-            } else {
-                $this->Session->setFlash(__('Invalid login. Please try again.'));
-            }
+        if ($this->request->is('ajax')){
+			$email = $this->request->data['email'];
+			$password = $this->request->data['password'];
+			if($email && $password)
+			{
+				$local_user = $this->Person->find('first', array(
+						'conditions' => array('email' => $email)
+					));
+				
+				if($local_user){
+					$hashed = md5($password.Configure::read('Security.key'));
+					if($hashed==$local_user['Person']['password'])
+					{
+						$this->Auth->login($local_user['Person']); # Manual Login
+						//Create access string for remember login
+						$access_string = $local_user['Person']['id'].'|'.Security::hash($local_user['Person']['password'], 'md5', $local_user['Person']['salt']);
+						$encrypted_access_string = base64_encode(Security::cipher($access_string, Configure::read('Security.key')));
+
+						//Save user data to cookie
+						$this->Cookie->delete('remember');
+						$this->Cookie->write('reaccess', $encrypted_access_string, true, 31536000);
+						echo json_encode(array('code'=> 1, 'mess'=>__('Login successful')));
+					}
+					else
+					{
+						echo json_encode(array('code'=> 2, 'mess'=>__('Your password does not match')));
+					}
+				}
+				else
+				{
+					echo json_encode(array('code'=> 2, 'mess'=>__('Your email does not exist')));
+				}
+			}	
         }
 
         // When facebook login is used, facebook always returns $_GET['code'].
@@ -205,7 +243,7 @@ class PeopleController extends AppController {
                 if ($local_user){
                     $this->Auth->login($local_user['Person']);            # Manual Login
 					//Create access string for remember login
-					$access_string = $local_user['Person']['facebook'].'|'.Security::hash($local_user['Person']['password'], 'md5', $local_user['Person']['salt']);
+					$access_string = $local_user['Person']['id'].'|'.Security::hash($local_user['Person']['password'], 'md5', $local_user['Person']['salt']);
 					$encrypted_access_string = base64_encode(Security::cipher($access_string, Configure::read('Security.key')));
 
 					//Save user data to cookie
@@ -245,9 +283,16 @@ class PeopleController extends AppController {
 					$password = AuthComponent::password(uniqid(md5(mt_rand()))); # Set random password
 					$salt = rand(10000, 99999); #Make random salt number
 				
+					$emailUsed = $this->Person->find('first', array('conditions' => array('email' => $fb_user['email'])));
+					$email = '';
+					if(!$emailUsed)
+					{
+						$email = $fb_user['email'];
+					}
+				
                     $data['Person'] = array(
                         'facebook'          => $fb_user['id'],
-						'email'          => $fb_user['email'],
+						'email'          	=> $email,
                         'password'          => $password,
 						'salt'				=> $salt,
                         'fullname'			=> $fb_user['last_name'].' '.$fb_user['first_name'],
@@ -519,7 +564,7 @@ class PeopleController extends AppController {
 		
 		if($this->request->is('post'))
 		{
-			
+			$md5Password = md5($this->request->data('password').Configure::read('Security.key'));
 			$this->Person->updateAll(
 							array(
 								'fullname'	=>	"'".$this->request->data('fullname')."'", 
@@ -529,12 +574,18 @@ class PeopleController extends AppController {
 								'grade'		=>	"'".$this->request->data('grade')."'", 
 								'school'	=>	"'".$this->request->data('school')."'",
 								'gender'	=>	"'".$this->request->data('gender')."'",
+								'password'	=>	"'".$md5Password."'",
 								'profile_completed'	=>	"1"
 							),
 							array('Person.id' => $user['id'])
 						);
 			$newInfo = $this->Person->find('first', array('conditions'=>array('Person.id' => $user['id'])));
 			$this->Auth->login($newInfo['Person']);			
+			
+			$access_string = $user['id'].'|'.Security::hash($md5Password, 'md5', $user['salt']);
+			$encrypted_access_string = base64_encode(Security::cipher($access_string, Configure::read('Security.key')));
+			$this->Cookie->write('reaccess', $encrypted_access_string, true, 31536000);
+			
 			$this->redirect(array('controller' => 'people', 'action' => 'dashboard'));
 		}
 		
@@ -565,5 +616,70 @@ class PeopleController extends AppController {
 		$this->loadModel('Notification');
 		$this->Notification->resetCounter($user['id']);
 	}
+	
+	public function emailCheck()
+	{
+		$this->autoRender = false;
+		$user = $this->Auth->user();
+		$email = $this->request->data['email'];
+		$emailUsed = $this->Person->find('first', array(
+						'conditions' => array('email' => $email, 'Person.id !=' => $user['id'])
+					));
+		if($emailUsed)			
+		{
+			echo json_encode(array('code'=>0));
+		}
+		else
+		{
+			echo json_encode(array('code'=>1));
+		}
+	}
+	
+	public function changePassword()
+	{
+		$this->layout = 'ajax';
+		if($this->request->is('post'))
+		{
+			$this->autoRender = false;
+			$user = $this->Auth->user();
+			$currentPassword = $this->request->data('cpwd');
+			$newPassword = $this->request->data('npwd');
+			$renewPassword = $this->request->data('rnpwd');
+			$code = 0; $mess = __('Has an unexpected error has occurred, please try again');
+			if(md5($currentPassword.Configure::read('Security.key'))!=$user['password'])
+			{
+				$mess = __('Current password does not match');
+			}
+			else if($newPassword!=$renewPassword)
+			{
+				$mess = __('Two password does not match');
+			}
+			else
+			{
+				$md5Password = md5($newPassword.Configure::read('Security.key'));
+				$updateSuccess = $this->Person->updateAll(
+							array(
+								'password'	=>	"'".$md5Password."'"
+							),
+							array('Person.id' => $user['id'])
+						);
+				if($updateSuccess)		
+				{
+					//Update session & cookie
+					$user['password'] = $md5Password;
+					$this->Auth->login($user);
+					$access_string = $user['id'].'|'.Security::hash($md5Password, 'md5', $user['salt']);
+					$encrypted_access_string = base64_encode(Security::cipher($access_string, Configure::read('Security.key')));
+					$this->Cookie->write('reaccess', $encrypted_access_string, true, 31536000);
+					
+					$code = 1;
+					$mess = __('Password successfully changed');
+				}
+			}
+			echo json_encode(array('code'=>$code, 'mess'=>$mess));
+		}
+	}
+	
+	
 	
 }

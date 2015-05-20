@@ -14,7 +14,7 @@
 		  <div class="panel-body">
 			<div class="row">
 				<div class="col-md-8">
-					<form class="form-horizontal" method="POST">
+					<form id="complete-profile-form" class="form-horizontal" method="POST">
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Họ tên</label>
 							<div class="col-sm-9">
@@ -34,12 +34,6 @@
 									<option value="1" <?php if($user['gender']==1) echo 'selected'; ?>>Nam</option>
 									<option value="0" <?php if($user['gender']==0) echo 'selected'; ?>>Nữ</option>
 								</select>
-							</div>	
-						</div>
-						<div class="form-group">
-							<label class="col-sm-3 control-label">Email</label>
-							<div class="col-sm-9">
-								<input type="text" name="email" class="form-control" value="<?php echo $user['email']; ?>" />
 							</div>	
 						</div>
 						<div class="form-group">
@@ -68,10 +62,31 @@
 								</select>
 							</div>	
 						</div>
+						<hr/>
+						<div class="form-group">
+							<label class="col-sm-3 control-label">Email</label>
+							<div class="col-sm-9">
+								<input type="email" required name="email" id="email" class="form-control" placeholder="Email" value="<?php echo $user['email']; ?>" />
+								<p class="text-error" id="email-error" style="display:none;"></p>
+							</div>	
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label">Mật khẩu</label>
+							<div class="col-sm-9">
+								<input type="password" required placeholder="Mật khẩu" id="password" name="password" class="form-control" />
+							</div>	
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label">Xác nhận mật khẩu</label>
+							<div class="col-sm-9">
+								<input type="password" required placeholder="Gõ lại mật khẩu phía trên" id="repassword" name="password" class="form-control" />
+								<p class="text-error" id="password-error" style="display:none;"></p>
+							</div>	
+						</div>
 						<div class="form-group right">
 							<div class="col-sm-12">	
-								<button type="submit" class="btn btn-primary" id="complete-profile" name="complete_profile"><span class="glyphicon glyphicon-ok"></span> Hoàn thành</button>
-								<a id="skip-profile" href="<?php echo $this->Html->url(array('controller'=>'people', 'action'=>'dashboard')); ?>"><button type="button" class="btn btn-default">Bỏ qua</button></a>
+								<button type="button" class="btn btn-primary" id="complete-profile" name="complete_profile"><span class="glyphicon glyphicon-ok"></span> Hoàn thành</button>
+								<!--<a id="skip-profile" href="<?php echo $this->Html->url(array('controller'=>'people', 'action'=>'dashboard')); ?>"><button type="button" class="btn btn-default">Bỏ qua</button></a>-->
 							</div>	
 						</div>	
 					</form>
@@ -118,5 +133,46 @@
 		$('#modalmessages').modal({
 					backdrop: true
 				});
+	});
+	$('#complete-profile').click(function(){
+		if(!validateEmail($('#email').val()))
+		{
+			$('#email-error').html('Email không hợp lệ').show();
+			return false;
+		}
+		else
+		{
+			$('#email-error').hide();
+		}
+		
+		if($('#password').val()=='')
+		{
+			$('#password-error').html('Mật khẩu không được bỏ trống').show();
+		}
+		else if($('#password').val() == $('#repassword').val())
+		{
+			$('#password-error').hide();
+			$.ajax({
+				type: 'POST',
+				url: '<?php echo $this->Html->url(array('controller'=>'people', 'action'=>'emailCheck')); ?>',
+				data: {'email': $('#email').val()},
+				success: function(response){
+					response = JSON.parse(response);
+					if(response.code==0)
+					{
+						$('#email-error').html('Email này đã được sử dụng').show();
+					}
+					else
+					{
+						$('#email-error').hide();
+						$('#complete-profile-form').submit();
+					}
+				}
+			});
+		}
+		else
+		{
+			$('#password-error').html('Hai mật khẩu không khớp').show();
+		}
 	});
 </script>

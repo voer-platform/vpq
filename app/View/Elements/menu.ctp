@@ -48,6 +48,7 @@
             <ul class="dropdown-menu" role="menu">
               <li><?php echo $this->Html->link(__('Account info'),array('controller'=> 'people','action'=> 'view', $user['id'])); ?></li>
               <li><?php echo $this->HTML->link(__('Dashboard'), array('controller' => 'people', 'action' => 'dashboard')); ?></li>
+			  <li><a href="javascript:void(0);" id="change-password"><?php echo __('Change password'); ?></a></li>
               <li class="divider"></li>
               <li><?php echo $this->Html->link(__('Logout'),array('controller'=> 'people','action'=> 'logout')); ?></li>
             </ul>
@@ -69,6 +70,7 @@
 			
 		  </li>
         <?php else: ?>
+			<li><a href="javascript:void(0); "class="login-open" data-toggle="modal" data-target="#login-modal" data-section="menu-top"><?php echo __('Login'); ?></a></li>
       	<?php endif; ?>
       </ul>
     </div><!--/.nav-collapse -->

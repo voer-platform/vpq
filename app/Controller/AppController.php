@@ -20,7 +20,7 @@
  */
 
 App::uses('Controller', 'Controller');
-Configure::write('Security.key', 'ac87dfd989d8ffjdsg545fdsf878jriouewtu88435345');
+
 /**
  * Application Controller
  *
@@ -106,7 +106,7 @@ class AppController extends Controller {
 				$decryped_access_string = Security::cipher($access_string, Configure::read('Security.key'));
 				$access_info = explode('|', $decryped_access_string);
 				$this->loadModel('Person');
-				$user_exists = $this->Person->find('first', array('conditions'=>array('facebook'=>$access_info[0])));
+				$user_exists = $this->Person->find('first', array('conditions'=>array('Person.id'=>$access_info[0])));
 				if(!empty($user_exists) && 
 					$access_info[1]==Security::hash($user_exists['Person']['password'], 'md5', $user_exists['Person']['salt']))
 				{

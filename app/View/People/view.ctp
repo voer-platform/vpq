@@ -24,13 +24,13 @@
 <!-- Modal -->
 <div class="modal" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog w-550">
-		<form method="POST" class="form-horizontal" action="<?php echo $this->Html->url(array('controller'=>'people', 'action'=>'update')); ?>">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				<h4 class="modal-title" id="myModalLabel"><span class="glyphicon glyphicon-pencil"></span> Chỉnh sửa thông tin cá nhân</h4>
 			</div>
 			<div class="modal-body">
+				<form method="POST" class="form-horizontal" id="update-profile-form" action="<?php echo $this->Html->url(array('controller'=>'people', 'action'=>'update')); ?>">
 					<div class="form-group">
 						<label class="col-sm-3 control-label">Họ tên</label>
 						<div class="col-sm-9">
@@ -55,7 +55,8 @@
 					<div class="form-group">
 						<label class="col-sm-3 control-label">Email</label>
 						<div class="col-sm-9">
-							<input type="text" class="form-control" name="email" value="<?php echo h($person['Person']['email']); ?>" />
+							<input type="text" class="form-control" id="update-email" name="email" value="<?php echo h($person['Person']['email']); ?>" />
+							<p class="text-error" id="email-error" style="display:none;"></p>
 						</div>	
 					</div>
 					<div class="form-group">
@@ -84,14 +85,14 @@
 							</select>
 						</div>	
 					</div>
-				</form>
+				</form>	
 			</div>
 			<div class="modal-footer">
-				<button type="submit" name="update_profile" value="update_profile" class="btn btn-primary"><?php echo __('Update'); ?></button>
+				<button type="buttom" id="update-profile" name="update_profile" value="update_profile" class="btn btn-primary"><?php echo __('Update'); ?></button>
 				<button type="button" class="btn btn-default" data-dismiss="modal"><?php echo __('Close'); ?></button>
 			</div>
 		</div>
-		</form>
+		
 	</div>
 </div>
 <?php } ?>
@@ -100,4 +101,23 @@
 		$(this).datepicker('hide');
 	});
 	$('.sl2').select2();
+	$('#update-profile').click(function(){
+		$.ajax({
+			type: 'POST',
+			url: '<?php echo $this->Html->url(array('controller'=>'people', 'action'=>'emailCheck')); ?>',
+			data: {'email': $('#update-email').val()},
+			success: function(response){
+				response = JSON.parse(response);
+				if(response.code==0)
+				{
+					$('#email-error').html('Email này đã được sử dụng').show();
+				}
+				else
+				{
+					$('#email-error').hide();
+					$('#update-profile-form').submit();
+				}
+			}
+		});
+	});
 </script>

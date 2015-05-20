@@ -144,6 +144,7 @@
 	<br/>
 		<?php  
 		foreach($overviews as $key => $subj){
+			$noTest = ($subj['Ranking']['score'])?0:1;
 			$score  = ($subj['Ranking']['score'])?$subj['Ranking']['score']:0;
 			$name   = $this->Name->determineRank($score);
 			$pass = (isset($cover[$subj['Subject']['id']]['pass']))?$cover[$subj['Subject']['id']]['pass']:0;
@@ -192,7 +193,7 @@
 					
 					
 				</div>		
-			<div class="col-md-4 <?php echo (!$score)?'blur3':''; ?>" style="border-left: solid 1px #C0D0E0;">
+			<div class="col-md-4 <?php echo ($noTest)?'blur3':''; ?>" style="border-left: solid 1px #C0D0E0;">
 				<a class="nudl no-style" href="<?php 
 						echo $this->Html->url(
 							array(
@@ -219,7 +220,7 @@
 					Bạn đã thực hành <b class="num-pass"><?php echo $pass; ?></b> trên tổng số <b class="num-total"><?php echo $total; ?></b> bài học
 				</div>
 			</div>
-			<div class="col-md-6 <?php echo (!$score)?'blur3':''; ?>">
+			<div class="col-md-6 <?php echo ($noTest)?'blur3':''; ?>">
 				<div class="chart" id="chart-subject-<?php echo $subj['Subject']['id']; ?>"></div>
 			</div>
 		</div>	
