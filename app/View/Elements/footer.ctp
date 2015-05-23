@@ -2,6 +2,6 @@
 
 <div id="footer">
 	<div class="container">
-		<p class="text-muted">Copyright VOER © 2015 - Developed by VOER Team</p>
+		<p class="text-muted">Copyright PLS © 2015 - Developed by PLS Team</p>
 	</div>
 </div>
