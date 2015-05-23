@@ -439,9 +439,10 @@
 </div>
 
 <script type="text/javascript">
+	var over=<?php echo $over ?>;
 	var coin=<?php echo $coin ?>;
 	$(document).ready(function(){
-		if(coin==0){
+		if(coin==0 && over==0){
 			$('#rechargecard').modal({
 					backdrop: true
 				});

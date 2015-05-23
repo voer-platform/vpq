@@ -187,6 +187,18 @@ ul.dropdown-menu li > a {
 .personal-page-header .user-info {
 	padding-left:20px;
 }
+
+.btn.btn-ghost {
+  border: solid 3px #fff;
+  color: #fff;
+  /*background-color: rgba(66, 139, 202, 0.21);*/
+  transition: .5s;
+}
+.btn.btn-ghost:hover {
+	background:#428BCA;
+	border-color:#428BCA;
+}
+
 .right {text-align:right;}
 .left {text-align:left;}
 .ib {display:inline-block;}
@@ -199,6 +211,7 @@ ul.dropdown-menu li > a {
 .wa {width:auto!important;}
 .mg0 {margin:0;}
 .mgt-0 {margin-top:0!important;}
+.mgt-10 {margin-top:10px!important;}
 .mgt-100 {margin-top:100px!important;}
 .mglr-10{margin:0 10px!important;}
 .pd0 {padding:0!important;}

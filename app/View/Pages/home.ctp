@@ -117,8 +117,8 @@
 				<br/><br/><br/><br/><br/><br/><br/><br/>
 				<h1 style="font-size:42px;font-weight:bold;"><strong>PLS</strong> - Học theo cách của bạn</h1>
 				<p style="font-size: 20px;">Tham gia vào hệ thống để trải nghiệm nguồn kiến thức vô tận trên nhiều lĩnh vực</p>
-				<a href="javascript:void(0);" class="login-open" data-toggle="modal" data-target="#login-modal" data-section="home-banner">
-					<?php echo $this->Html->image('facebook-login-button.png', array('class' => 'facebook-btn', 'alt' => __('Login with Facebook'))); ?>
+				<a href="javascript:void(0);" class="login-open btn btn-ghost btn-lg" data-toggle="modal" data-target="#login-modal" data-section="home-banner">
+					Đăng nhập <span class="glyphicon glyphicon-chevron-right"></span>
 				</a>
 				<br/><br/><br/><br/>
 				<!--<p style="font-size: 16px;">
@@ -251,14 +251,14 @@
 	<div class="row">
 		<div class="col-md-4">
 		</div>
-		<div class="col-md-4 right">
+		<div class="col-md-6 right">
 			<h3 style="margin-top: 5px;font-weight: bold;">Còn chờ gì nữa?</h3>
 			<h4>Tham gia thử sức ngay thôi!</h4>
 		</div>
-		<div class="col-md-4 right">		 
-			<a href="javascript:void(0);" class="login-open" data-toggle="modal" data-target="#login-modal" data-section="home-footer">
-				<?php echo $this->Html->image('facebook-login-button.png', array('style'=> 'width:100%;','class' => 'facebook-btn', 'alt' => __('Login with Facebook'))); ?>
-			</a>			
+		<div class="col-md-2 right">
+			<a href="javascript:void(0);" class="login-open btn btn-lg btn-primary mgt-10" data-toggle="modal" data-target="#login-modal" data-section="home-footer">
+				Đăng nhập <span class="glyphicon glyphicon-chevron-right"></span>
+			</a>
 		</div>
     </div>
 	<br/>
@@ -274,13 +274,28 @@
       <div class="modal-body">
 		<!-- login section -->
 		<div id="login-section" style="overflow:hidden;">
-			<div class="alert alert-danger" id="login-mess" style="display:none;"></div>
+			<div class="alert alert-warning">Nếu chưa có tài khoản, bạn hãy đăng nhập bằng Facebook</div>
+			<div class="form-group">
+				<a href="<?php echo $fb_login_url; ?>" class="btn btn-facebook btn-block mix-login">
+					<div><span class="f-icon"><b>f</b></span>Đăng nhập bằng tài khoản Facebook</div>
+				</a>
+			</div>
+			<div class="center" style="position: relative;margin: 20px 0;border-bottom: solid 1px #dedede;">
+			  <span class="login-or" style="
+				position: absolute;
+				width: 100%;
+				left: 0;
+				top: -10px;
+				text-align: center;"><span style="background-color: #fff;color: #C0C0C0;">( or )</span></span>
+			</div>
+			<div class="alert" id="login-mess" style="display:none;"></div>
 			<div class="form-group">
 				<div class="input-group">
 				  <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
 				  <input type="text" class="form-control" name="email" id="login-email" placeholder="<?php echo __('Email'); ?>">
 				</div>
 			</div>
+			
 			<div class="form-group">
 				<div class="input-group">
 				  <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
@@ -291,9 +306,7 @@
 				<button class="btn btn-primary btn-block" id="login-btn"><?php echo __('Login'); ?></button>
 			</div>	
 			
-			<a href="<?php echo $fb_login_url; ?>" class="btn btn-facebook btn-block mix-login">
-				<div><span class="f-icon"><b>f</b></span>Đăng nhập bằng tài khoản Facebook</div>
-			</a>
+			
 			
 			<hr/>
 			<div class="right">

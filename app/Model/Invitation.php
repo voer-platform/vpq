@@ -36,7 +36,7 @@ class Invitation extends AppModel {
 					array('person_fb_id'=>$inviter_id, 'friend_fb_id'=>$invited_id)
 				);
 			$this->Person->updateAll(
-				array('coin'=>"coin+50"),
+				array('coin'=>"coin+10"),
 				array('Person.id'=>$inviter['Person']['id'])
 			);
 			return $inviter['Person']['id'];

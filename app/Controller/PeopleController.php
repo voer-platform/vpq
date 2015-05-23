@@ -406,6 +406,7 @@ class PeopleController extends AppController {
 								'last_login' => date('Y-m-d'),
 							)
 						);
+		$this->set('over',$this->Session->read('over'));
 		$this->set('coin',$coin);
 		if($subject_id){
 			$this->loadModel('Progress');

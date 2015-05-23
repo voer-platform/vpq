@@ -170,14 +170,6 @@ class TestsController extends AppController {
 			$coin=$coin[0]['Person']['coin']-$ketqua*5;
 			if($coin<=0){
 				$coin='0';
-				if($this->Session->read('over')==2)
-				{
-					$this->Session->write('over','0');
-				}else{				
-					$this->Session->write('over','1');
-				}
-			}else{
-				$this->Session->write('over','2');
 			}
 			$this->Person->id=$user['id'];
 			$this->Person->save(
@@ -186,6 +178,7 @@ class TestsController extends AppController {
 											'last_login' => date('Y-m-d'),
 										)
 									);
+			$this->set('over',$this->Session->read('over'));						
 			$this->set('coin',$coin);
 			$gradeUser = $user['grade'];
 			
