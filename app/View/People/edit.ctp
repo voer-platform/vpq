@@ -14,6 +14,7 @@
 			'type' => 'select', 
 			'options' => array('admin' => 'admin', 'user' => 'user', 'editor' => 'editor')));
 		echo $this->Form->input('facebook');
+		echo $this->Form->input('coin');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>
