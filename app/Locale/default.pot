@@ -5,6 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2015-05-22 22:38+0700\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -662,7 +663,7 @@ msgstr ""
 #: View/Grades/add.ctp:9
 #: View/Grades/edit.ctp:10
 #: View/People/add.ctp:14
-#: View/People/edit.ctp:19
+#: View/People/edit.ctp:20
 #: View/Progresses/add.ctp:11
 #: View/Progresses/edit.ctp:11
 #: View/Questions/add.ctp:12
@@ -887,7 +888,7 @@ msgstr ""
 #: View/Grades/index.ctp:7;36
 #: View/Grades/view.ctp:17;36
 #: View/People/add.ctp:17
-#: View/People/edit.ctp:22
+#: View/People/edit.ctp:23
 #: View/People/index.ctp:13;49
 #: View/Progresses/add.ctp:14
 #: View/Progresses/edit.ctp:14
@@ -1026,7 +1027,7 @@ msgstr ""
 #: View/Grades/edit.ctp:16
 #: View/Grades/index.ctp:16
 #: View/Grades/view.ctp:47
-#: View/People/edit.ctp:25
+#: View/People/edit.ctp:26
 #: View/People/index.ctp:28
 #: View/Progresses/edit.ctp:17
 #: View/Progresses/index.ctp:22
@@ -1069,7 +1070,7 @@ msgstr ""
 #: View/Grades/edit.ctp:16
 #: View/Grades/index.ctp:16
 #: View/Grades/view.ctp:20;47
-#: View/People/edit.ctp:25
+#: View/People/edit.ctp:26
 #: View/People/index.ctp:28
 #: View/Progresses/edit.ctp:17
 #: View/Progresses/index.ctp:22
@@ -1504,6 +1505,11 @@ msgstr ""
 msgid "Logout"
 msgstr ""
 
+#: View/Elements/menu.ctp:73
+#: View/Pages/home.ctp:272;291;423
+msgid "Login"
+msgstr ""
+
 #: View/Elements/notification.ctp:37
 msgid "You have no new notifications"
 msgstr ""
@@ -1684,7 +1690,7 @@ msgstr ""
 #: View/Faqs/index.ctp:55
 #: View/Faqs/view.ctp:48
 #: View/People/add.ctp:20
-#: View/People/edit.ctp:26
+#: View/People/edit.ctp:27
 #: View/Progresses/add.ctp:18
 #: View/Progresses/edit.ctp:19
 #: View/Progresses/index.ctp:45
@@ -1846,10 +1852,6 @@ msgstr ""
 msgid "Where you can learn anything!"
 msgstr ""
 
-#: View/Pages/home.ctp:272;291;418
-msgid "Login"
-msgstr ""
-
 #: View/Pages/home.ctp:281;309
 msgid "Email"
 msgstr ""
@@ -1866,11 +1868,11 @@ msgstr ""
 msgid "Reset password"
 msgstr ""
 
-#: View/Pages/home.ctp:363;393
+#: View/Pages/home.ctp:368;398
 msgid "Please complete all field"
 msgstr ""
 
-#: View/Pages/home.ctp:407
+#: View/Pages/home.ctp:412
 msgid "Forgot password"
 msgstr ""
 
@@ -1884,7 +1886,7 @@ msgid "Add Person"
 msgstr ""
 
 #: View/People/add.ctp:21
-#: View/People/edit.ctp:27
+#: View/People/edit.ctp:28
 #: View/People/index.ctp:52
 #: View/Progresses/add.ctp:17
 #: View/Progresses/edit.ctp:18
@@ -1893,7 +1895,7 @@ msgid "List Progresses"
 msgstr ""
 
 #: View/People/add.ctp:22
-#: View/People/edit.ctp:28
+#: View/People/edit.ctp:29
 #: View/People/index.ctp:53
 #: View/Progresses/index.ctp:44
 #: View/Progresses/view.ctp:27
@@ -1901,7 +1903,7 @@ msgid "New Progress"
 msgstr ""
 
 #: View/People/add.ctp:23
-#: View/People/edit.ctp:29
+#: View/People/edit.ctp:30
 #: View/People/index.ctp:54
 #: View/Scores/add.ctp:19
 #: View/Scores/edit.ctp:21
@@ -1918,7 +1920,7 @@ msgid "List Scores"
 msgstr ""
 
 #: View/People/add.ctp:24
-#: View/People/edit.ctp:30
+#: View/People/edit.ctp:31
 #: View/People/index.ctp:55
 #: View/Scores/index.ctp:54
 #: View/Scores/view.ctp:42

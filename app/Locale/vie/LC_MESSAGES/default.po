@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: 2015-05-20 10:55+0700\n"
+"POT-Creation-Date: 2015-05-22 22:38+0700\n"
+"PO-Revision-Date: 2015-05-23 09:08+0700\n"
 "Last-Translator: Viet Vu <vietvudanh@gmail.com>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "Language: vi\n"
@@ -627,7 +627,7 @@ msgstr "File chứa các câu hỏi"
 #: View/Attachments/edit.ctp:11 View/Categories/add.ctp:11
 #: View/Categories/edit.ctp:12 View/Faqs/add.ctp:16 View/Faqs/edit.ctp:17
 #: View/Grades/add.ctp:9 View/Grades/edit.ctp:10 View/People/add.ctp:14
-#: View/People/edit.ctp:19 View/Progresses/add.ctp:11
+#: View/People/edit.ctp:20 View/Progresses/add.ctp:11
 #: View/Progresses/edit.ctp:11 View/Questions/add.ctp:12
 #: View/Questions/edit.ctp:13 View/QuestionsSubcategories/add.ctp:10
 #: View/QuestionsSubcategories/edit.ctp:10 View/Scores/add.ctp:13
@@ -792,7 +792,7 @@ msgstr "Thêm câu trả lời"
 #: View/Faqs/add.ctp:19 View/Faqs/edit.ctp:20 View/Faqs/index.ctp:13;52
 #: View/Faqs/view.ctp:42 View/Grades/add.ctp:12 View/Grades/edit.ctp:13
 #: View/Grades/index.ctp:7;36 View/Grades/view.ctp:17;36
-#: View/People/add.ctp:17 View/People/edit.ctp:22 View/People/index.ctp:13;49
+#: View/People/add.ctp:17 View/People/edit.ctp:23 View/People/index.ctp:13;49
 #: View/Progresses/add.ctp:14 View/Progresses/edit.ctp:14
 #: View/Progresses/index.ctp:8;42 View/Progresses/view.ctp:22
 #: View/Questions/add.ctp:15 View/Questions/edit.ctp:16
@@ -869,7 +869,7 @@ msgstr "Sửa câu hỏi"
 #: View/Categories/edit.ctp:18 View/Categories/index.ctp:22
 #: View/Categories/view.ctp:57 View/Faqs/edit.ctp:23 View/Faqs/index.ctp:30
 #: View/Grades/edit.ctp:16 View/Grades/index.ctp:16 View/Grades/view.ctp:47
-#: View/People/edit.ctp:25 View/People/index.ctp:28
+#: View/People/edit.ctp:26 View/People/index.ctp:28
 #: View/Progresses/edit.ctp:17 View/Progresses/index.ctp:22
 #: View/Questions/edit.ctp:19 View/Questions/index.ctp:74
 #: View/Questions/view.ctp:58;111;142 View/QuestionsSubcategories/edit.ctp:16
@@ -891,7 +891,7 @@ msgstr "Xóa"
 #: View/Categories/index.ctp:22 View/Categories/view.ctp:30;57
 #: View/Faqs/edit.ctp:23 View/Faqs/index.ctp:30 View/Faqs/view.ctp:45
 #: View/Grades/edit.ctp:16 View/Grades/index.ctp:16 View/Grades/view.ctp:20;47
-#: View/People/edit.ctp:25 View/People/index.ctp:28
+#: View/People/edit.ctp:26 View/People/index.ctp:28
 #: View/Progresses/edit.ctp:17 View/Progresses/index.ctp:22
 #: View/Progresses/view.ctp:25 View/Questions/edit.ctp:19
 #: View/Questions/index.ctp:74 View/Questions/view.ctp:25;58;111;142
@@ -1226,6 +1226,10 @@ msgstr "Đổi mật khẩu"
 msgid "Logout"
 msgstr "Đăng xuất"
 
+#: View/Elements/menu.ctp:73 View/Pages/home.ctp:272;291;423
+msgid "Login"
+msgstr "Đăng nhập"
+
 #: View/Elements/notification.ctp:37
 msgid "You have no new notifications"
 msgstr "Bạn không có thông báo mới nào"
@@ -1393,7 +1397,7 @@ msgid "List Faqs"
 msgstr "Danh sách FAQ"
 
 #: View/Faqs/add.ctp:23 View/Faqs/edit.ctp:25 View/Faqs/index.ctp:55
-#: View/Faqs/view.ctp:48 View/People/add.ctp:20 View/People/edit.ctp:26
+#: View/Faqs/view.ctp:48 View/People/add.ctp:20 View/People/edit.ctp:27
 #: View/Progresses/add.ctp:18 View/Progresses/edit.ctp:19
 #: View/Progresses/index.ctp:45 View/Progresses/view.ctp:28
 #: View/Scores/add.ctp:22 View/Scores/edit.ctp:24 View/Scores/index.ctp:57
@@ -1534,10 +1538,6 @@ msgstr ""
 msgid "Where you can learn anything!"
 msgstr "Hệ thống giúp bạn học tất cả!"
 
-#: View/Pages/home.ctp:272;291;418
-msgid "Login"
-msgstr "Đăng nhập"
-
 #: View/Pages/home.ctp:281;309
 msgid "Email"
 msgstr ""
@@ -1554,11 +1554,11 @@ msgstr "Quên mật khẩu?"
 msgid "Reset password"
 msgstr "Lấy lại mật khẩu"
 
-#: View/Pages/home.ctp:363;393
+#: View/Pages/home.ctp:368;398
 msgid "Please complete all field"
 msgstr "Vui lòng hoàn thành đầy đủ thông tin"
 
-#: View/Pages/home.ctp:407
+#: View/Pages/home.ctp:412
 msgid "Forgot password"
 msgstr "Quên mật khẩu"
 
@@ -1570,18 +1570,18 @@ msgstr "Personal Learning System"
 msgid "Add Person"
 msgstr ""
 
-#: View/People/add.ctp:21 View/People/edit.ctp:27 View/People/index.ctp:52
+#: View/People/add.ctp:21 View/People/edit.ctp:28 View/People/index.ctp:52
 #: View/Progresses/add.ctp:17 View/Progresses/edit.ctp:18
 #: View/Progresses/view.ctp:26
 msgid "List Progresses"
 msgstr ""
 
-#: View/People/add.ctp:22 View/People/edit.ctp:28 View/People/index.ctp:53
+#: View/People/add.ctp:22 View/People/edit.ctp:29 View/People/index.ctp:53
 #: View/Progresses/index.ctp:44 View/Progresses/view.ctp:27
 msgid "New Progress"
 msgstr ""
 
-#: View/People/add.ctp:23 View/People/edit.ctp:29 View/People/index.ctp:54
+#: View/People/add.ctp:23 View/People/edit.ctp:30 View/People/index.ctp:54
 #: View/Scores/add.ctp:19 View/Scores/edit.ctp:21 View/Scores/view.ctp:41
 #: View/ScoresQuestions/add.ctp:18 View/ScoresQuestions/edit.ctp:20
 #: View/ScoresQuestions/index.ctp:51 View/ScoresQuestions/view.ctp:33
@@ -1590,7 +1590,7 @@ msgstr ""
 msgid "List Scores"
 msgstr ""
 
-#: View/People/add.ctp:24 View/People/edit.ctp:30 View/People/index.ctp:55
+#: View/People/add.ctp:24 View/People/edit.ctp:31 View/People/index.ctp:55
 #: View/Scores/index.ctp:54 View/Scores/view.ctp:42
 #: View/ScoresQuestions/add.ctp:19 View/ScoresQuestions/edit.ctp:21
 #: View/ScoresQuestions/index.ctp:52 View/ScoresQuestions/view.ctp:34
@@ -2068,15 +2068,15 @@ msgstr "không trống"
 
 #: Model/Person.php:validation for field username
 msgid "Username is required"
-msgstr ""
+msgstr "Cần điền tên tài khoản"
 
 #: Model/Person.php:validation for field password
 msgid "Password is required"
-msgstr ""
+msgstr "Cần điền mật khẩu"
 
 #: Model/Person.php:validation for field first_name
 msgid "First name is required"
-msgstr ""
+msgstr "Cần điền tên"
 
 #: Model/Person.php:validation for field last_name
 msgid "Last name is required"
