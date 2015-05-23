@@ -73,12 +73,12 @@
 						$Email->subject('Xác nhận thay đổi mật khẩu');
 						$Email->send($mess);
 						$code = 1;
-						$mess = __('A change password request sent to your email');
+						$mess = __('Yêu cầu khôi phục mật khẩu đã được gửi đến email của bạn');
 					}	
 				}
 				else
 				{
-					$mess = __('Your email does not exist');
+					$mess = __('Email không tồn tại');
 				}
 				echo json_encode(array('code'=>$code, 'mess'=>$mess));
 			}
