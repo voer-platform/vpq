@@ -346,7 +346,7 @@
 			console.log(loginSection);
 		});
 		mixpanel.track_links(".mix-login", "Login", function(e){
-			return {"login_section": loginSection};
+			return {"login_section": loginSection, "login_method": "facebook"};
 		});	
 		
 		
@@ -365,6 +365,7 @@
 						if(parseInt(response.code)==1)
 						{
 							$('#login-mess').removeClass('alert-danger').addClass('alert-success');
+							mixpanel.track("Login", {"login_section": loginSection, "login_method": "normal"});
 							window.location.href = "/";
 						}
 						else

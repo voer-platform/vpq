@@ -24,7 +24,9 @@
 </div><!-- /.modal -->
 <script type="text/javascript">
     $(document).ready(function(){
-        var state = false;
+        $('.faq-toggle-btn').click(function(){
+			mixpanel.track("FAQ Form", {"user_id": "<?php echo $user['id']; ?>"});
+		});
         $('#faq-submit-btn').click(function(){
 			content = $('#faq-content').val();
             if(content != ''){

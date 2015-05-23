@@ -68,13 +68,11 @@
 					</div>
 					<div  class='row' style='margin:0px;margin-bottom:5px;'>						
 						<div class='col-sm-12' style='padding-left:10px;padding-right:10px;padding-bottom:7px;'>
-							<!--<?php echo $this->Html->image('napthe.png',array('class'=>'','url'=>array('controller'=> 'people','action'=> 'rechargecard'))) ?>
-							<?php echo $this->Html->link($this->Form->button('Nạp thẻ ngay', array('type'=>'button','class'=>'btn btn-danger')),array('controller'=> 'people','action'=> 'rechargecard'),array('escape' => false)); ?>-->
 							<div class='col-sm-6' style='padding-left:0px;padding-right:5px;'>
 							<a class='btn btn-danger bl fw' href="<?php echo $this->Html->url(array('controller'=> 'rechargecard')); ?>"><span class='glyphicon glyphicon-usd'></span> Nạp thẻ</a>
 							</div>
 							<div class='col-sm-6' style='padding-left:5px;padding-right:0px;'>
-							<a class='btn btn-success bl fw' href="javascript:void(0);" onclick="FBInvite()"><span class='glyphicon glyphicon-send'></span>&nbsp;&nbsp;<?php echo __('Invite'); ?></a>
+							<a class='btn btn-success bl fw' href="javascript:void(0);" id="invite-btn" onclick="FBInvite()"><span class='glyphicon glyphicon-send'></span>&nbsp;&nbsp;<?php echo __('Invite'); ?></a>
 							</div>
 						</div>
 					</div>
@@ -204,7 +202,7 @@
 						); 
 					?>">
 					<div style="display: inline-block;">
-						<span class="subject-score" style="border-color:<?php echo $this->Name->rankColor($score); ?>" id="subject-score-<?php echo $subj['Subject']['id']; ?>" title="<?php echo __('Score based on latest 10 tests on the subject'); ?>">
+						<span class="subject-score" style="border-color:<?php echo $this->Name->rankColor($score); ?>" id="subject-score-<?php echo $subj['Subject']['id']; ?>">
 							<span class="subject-score-number"><?php echo $score; ?></span>
 							<span class="subject-score-text" style="color:<?php echo $this->Name->rankColor($score); ?>"><?php echo __('Score'); ?></span>
 						</span>
@@ -238,7 +236,7 @@
 	$('.pls-popover').mouseover(function(){
 		mixpanel.track("Show Popover", {"popover_id": $(this).attr('data-type')});
 	});
-
+	
 	mixpanel.track_links(".pls-test-btn", "Dashboard Test", function(e){
 		return {"test_on": $(e).attr('data-teston')};
 	});
@@ -692,7 +690,7 @@
 						); ?>',
 				data: {'frs': response.to},
 				success: function(){
-					//No handler
+					mixpanel.track("Invite friends", {"user_id": "<?php echo $user['id']; ?>"});
 				}
 			});
 		});
