@@ -118,7 +118,8 @@
             </div>
         </div>
         <div class="options">
-            <?php echo $this->Html->link(__('Go to dashboard'), array('controller' => 'people', 'action' => 'dashboard'), array('class' => 'btn btn-dashboard')) ?>
+            <!--<?php echo $this->Html->link(__('Go to dashboard'), array('controller' => 'people', 'action' => 'dashboard'), array('class' => 'btn btn-dashboard')) ?>-->
+			<?php echo $this->Html->link('Quay lại môn học', array('controller' => 'people', 'action' => 'dashboard',$subject['Subject']['id']), array('class' => 'btn btn-dashboard btn-primary')) ?>
             <!--<?php echo $this->Html->link(__('Take this test again'), array('controller' => 'tests', 'action' => 'doTest', 0, 0, $test_id), array('class' => 'btn btn-retake')) ?>-->
         </div>
     </div>
@@ -164,10 +165,11 @@
 					</tr>
 				</table>					
 			</div>
-			<div class="modal-footer">
+			<div class="modal-footer">				
 				<button class="btn show-answers btn-primary" id="btn-show-answers" data-dismiss="modal"><?php echo __('Show Answers'); ?></button>
                <button class="btn show-solutions btn-primary" id="btn-show-solutions" data-dismiss="modal"><?php echo __('Show Solutions'); ?></button>
 			   <?php echo $this->Html->link('Quay lại môn học', array('controller' => 'people', 'action' => 'dashboard',$subject['Subject']['id']), array('class' => 'btn btn-dashboard btn-primary')) ?>
+			   <div class="fb-share-button" data-href="<?php echo Router::url($this->here, true); ?>" data-layout="button_count"></div>
 			</div>
         </div>
     </div>
