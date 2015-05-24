@@ -19,14 +19,20 @@
 			<?php echo $rechargeMess; ?>
 		</div>
 		<?php } ?>
-		<div class="panel panel-default" style='padding:0px;'>
-			<div class="panel-heading">
-			<h3 class="panel-title"><b>Nạp thẻ</b></h3>		
-			</div>
-			<div class="panel-body">
+		
+		<div role="tabpanel">
+		  <!-- Nav tabs -->
+		  <ul class="nav nav-tabs grade-tabs" role="tablist">
+				<li role="presentation" class="<?php if($rechargeMethod=='phonecard'){ ?>active<?php } ?>"><a href="#phonecard" aria-controls="phonecard" role="tab" data-toggle="tab">Nạp thẻ điện thoại</a></li>
+				<li role="presentation" class="<?php if($rechargeMethod!='phonecard'){ ?>active<?php } ?>"><a href="#giftcard" aria-controls="giftcard" role="tab" data-toggle="tab">Nạp mã quà tặng</a></li>
+		  </ul>
+		  <!-- Tab panes -->
+		  <div class="tab-content">
+			<div role="tabpanel" class="tab-pane <?php if($rechargeMethod=='phonecard'){ ?>active<?php } ?>" id="phonecard">
 				<form action="<?php echo $this->Html->url(array('controller'=>'Rechargecard', 'action'=>'recharge')); ?>" method="POST" name="frmrechargecard" role="form" class="form-horizontal">
 					<div class='row' style='padding-left:20px;'>
 						<div class='col-sm-10' style='padding-right:0px;'>
+							<br/>
 							<h4>Chọn loại thẻ<h4/>
 							<hr/>
 						</div>
@@ -61,7 +67,22 @@
 					</div>
 				</form>
 			</div>
+			<div role="tabpanel" class="tab-pane <?php if($rechargeMethod!='phonecard'){ ?>active<?php } ?>" id="giftcard">
+				<form action="<?php echo $this->Html->url(array('controller'=>'Rechargecard', 'action'=>'rechargeGiftcard')); ?>" method="POST" class="form-inline">
+					<div class="row" style="padding-left:20px;">
+						<div class="col-md-12">
+							<br/>
+							<label>Bạn hãy nhập 13 kí tự mã thẻ để nhận quà</label>
+							<br/><br/>
+							<input type="text" placeholder="Mã quà tặng" required autocomplete="off" name="giftcode" class="form-control col-md-6 w-300" />&nbsp;
+							<input type="submit" class="btn btn-primary" value="Nhận quà" />
+						</div>
+					</div>	
+				</form>
+			</div>
+		  </div>
 		</div>
+		<br/><br/><br/>
 	</div>
 	<div class='col-sm-3'>
 		<?php if(isset($promotion)){ ?>

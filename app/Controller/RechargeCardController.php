@@ -7,11 +7,12 @@ App::uses('AppController', 'Controller');
 
 		private $mess = "Có lỗi xảy ra, vui lòng thử lại sau!";
 		private $status = "danger";
+		private $method = "phonecard";
 	
 		public function isAuthorized($user) {
 			// user can logout, dashboard, progress, history, suggest
 			if (isset($user['role']) && $user['role'] === 'user' ){
-				if( in_array( $this->request->action, array('index', 'recharge'))){
+				if( in_array( $this->request->action, array('index', 'recharge', 'rechargeGiftcard'))){
 					return true;
 				}
 			} elseif (isset($user['role']) && $user['role'] === 'editor') {
@@ -44,12 +45,16 @@ App::uses('AppController', 'Controller');
 				$this->set('promotion', $promotion['Promotional']);
 			}
 			
+			$this->set('rechargeMethod', $this->rechargeMethod);
+			
 			if(CakeSession::check('rechargeMess'))
 			{
 				$this->set('statusType',CakeSession::read('statusType'));
 				$this->set('rechargeMess', CakeSession::read('rechargeMess'));
+				$this->set('rechargeMethod', CakeSession::read('rechargeMethod'));
 				CakeSession::delete('statusType');
 				CakeSession::delete('rechargeMess');
+				CakeSession::delete('rechargeMethod');
 			}
 		}
 	
@@ -229,9 +234,89 @@ App::uses('AppController', 'Controller');
 				
 				CakeSession::write('rechargeMess', $this->mess);
 				CakeSession::write('statusType', $this->status);
+				CakeSession::write('rechargeMethod', $this->method);
 				$this->redirect(array('controller' => 'rechargecard'));
 			}
 		}		
+		
+		public function rechargeGiftcard(){
+			$this->autoRender = false;
+			if ($this->request->is('post')){
+				$user = $this->Auth->user();
+				App::uses('ConnectionManager', 'Model');
+				$db = ConnectionManager::getDataSource('default');
+				$giftCode = strtoupper(str_replace('-', '', $this->request->data['giftcode']));
+				$giftCode = substr_replace($giftCode, '-', 4, 0);
+				$giftCode = substr_replace($giftCode, '-', 10, 0);
+				$query = "SELECT * FROM giftcodes WHERE id = '$giftCode' AND status = 0";
+				$gift = $db->query($query);
+				if($gift)
+				{
+					$this->loadModel('Person');
+					$dataSource = $this->Person->getDataSource();
+					$dataSource->begin();
+					
+					$giftCoin = $gift[0]['giftcodes']['coin'];
+					
+					//get current coin of user
+					
+					$this->Person->recursive = -1;
+					$person = $this->Person->find('first', array('conditions'=>array('id'=>$user['id'])));
+					$currentCoin = $person['Person']['coin'];
+					$newCoin = $currentCoin+$giftCoin;
+					
+					//insert recharge log
+					$this->loadModel('RechargeLog');
+					$data['RechargeLog'] = array(
+											'person_id'	=>	$user['id'],
+											'transref'	=>	'',
+											'card_type_id'	=>	0,
+											'price'	=>	0,
+											'coin'	=>	$giftCoin,
+											'time'	=>	date("Y-m-d H:i:s"),
+											'card_code'	=>	$giftCode,
+											'card_serie'=>	'',
+											'old_coin'	=>	$currentCoin,
+											'new_coin'	=>	$newCoin,
+											'promotional_id'	=>	0
+										);
+					$this->RechargeLog->save($data);
+					
+					$db->query("UPDATE giftcodes SET status = 1 WHERE id = '$giftCode'");
+					
+					//update user coin
+					$lastResult = $this->Person->updateAll(
+									array(
+										'coin'	=>	$newCoin
+									),
+									array(
+										'Person.id'	=>	$user['id']
+									)
+								);
+					
+					if($lastResult)
+					{
+						$dataSource->commit();
+						$this->mess = "<strong>Thành công!</strong><br/>";
+						$this->mess .="Bạn nhận được <b>$giftCoin</b> xu từ thẻ quà tặng";
+						$this->mess .="<br/>Tài khoản của bạn hiện tại có <b>$newCoin</b> xu";
+						$this->status = "success";
+					}							
+					else
+					{
+						$dataSource->rollback();
+					}
+				}
+				else
+				{
+					$this->mess = 'Mã nhận quà không đúng';
+				}
+				CakeSession::write('rechargeMess', $this->mess);
+				CakeSession::write('statusType', $this->status);
+				CakeSession::write('rechargeMethod', 'giftcard');
+				$this->redirect(array('controller' => 'rechargecard'));
+			}	
+		}
 		
 	}	
 ?>
