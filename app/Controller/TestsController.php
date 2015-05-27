@@ -162,22 +162,23 @@ class TestsController extends AppController {
 					'recursive' => -1,
 					'conditions' => array('Person.id'=>$user['id'])
 					);			
-			$coin = $this->Person->find('all',$options);
-			$date1 = strtotime($coin[0]['Person']['last_login']);
-			$date2 = strtotime(date('Y-m-d'));
-			$diff = abs($date2-$date1);
-			$ketqua=round($diff/(60*60*24));
-			$coin=$coin[0]['Person']['coin']-$ketqua*5;
-			if($coin<=0){
-				$coin='0';
-			}
-			$this->Person->id=$user['id'];
-			$this->Person->save(
-										array(
-											'coin' => $coin,
-											'last_login' => date('Y-m-d'),
-										)
-									);
+			$person = $this->Person->find('first',$options);
+			$coin=$person['Person']['coin'];
+			// $date1 = strtotime($coin[0]['Person']['last_login']);
+			// $date2 = strtotime(date('Y-m-d'));
+			// $diff = abs($date2-$date1);
+			// $ketqua=round($diff/(60*60*24));
+			
+			// if($coin<=0){
+				// $coin='0';
+			// }
+			// $this->Person->id=$user['id'];
+			// $this->Person->save(
+										// array(
+											// 'coin' => $coin,
+											// 'last_login' => date('Y-m-d'),
+										// )
+									// );
 			$this->set('over',$this->Session->read('over'));						
 			$this->set('coin',$coin);
 			$gradeUser = $user['grade'];
@@ -306,6 +307,16 @@ class TestsController extends AppController {
                 $this->loadModel('TestsQuestion');
                 $this->TestsQuestion->saveAll($dataTest);
 
+				$user = $this->Session->read('Auth.User');
+				$this->loadModel('Person');
+                $this->Person->updateAll(
+								array(
+									'Person.coin' => "Person.coin-".($time/5)
+								),
+								array(
+									'Person.id'	=>	$user['id']
+								)
+							);
                 // set to view
                 $this->set('questions', $questions);
                 $this->set('subject', $subject);
@@ -313,7 +324,7 @@ class TestsController extends AppController {
                 $this->set('duration', $timeLimit);
                 $this->set('numberOfQuestions', $numberOfQuestions);
                 // Save data user
-                $user = $this->Session->read('Auth.User');
+                
 				
 				/*$this->Tracking->deleteAll(array('Tracking.person_id'=>$user['id']));
 				foreach($data as $dt)

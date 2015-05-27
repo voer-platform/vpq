@@ -99,7 +99,8 @@ class QuestionsController extends AppController {
 												'conditions'	=>	array('categories.id = subcategories.category_id')
 											)
 										),
-							'conditions'=>$conditions
+							'conditions'=>$conditions,
+							'group'	=>	array('Question.id')
 						);
 		$this->Question->recursive = 0;
 		$this->set('questions', $this->Paginator->paginate());

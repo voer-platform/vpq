@@ -382,12 +382,12 @@ class PeopleController extends AppController {
 				'recursive' => -1,
 				'conditions' => array('Person.id'=>$user_id)
 				);			
-		$data_user = $this->Person->find('all',$options);
-		$date1 = strtotime($data_user[0]['Person']['last_login']);
-		$date2 = strtotime(date('Y-m-d'));
-		$diff = abs($date2-$date1);
-		$ketqua=round($diff/(60*60*24));
-		$coin=$data_user[0]['Person']['coin']-$ketqua*5;
+		$data_user = $this->Person->find('first',$options);
+		// $date1 = strtotime($data_user[0]['Person']['last_login']);
+		// $date2 = strtotime(date('Y-m-d'));
+		// $diff = abs($date2-$date1);
+		// $ketqua=round($diff/(60*60*24));
+		$coin=$data_user['Person']['coin'];
 		if($coin<=0){
 			$coin='0';
 			if($this->Session->read('over')==2)
@@ -399,13 +399,13 @@ class PeopleController extends AppController {
 		}else{
 			$this->Session->write('over','2');
 		}
-		$this->Person->id=$user_id;
-		$this->Person->save(
-							array(
-								'coin' => $coin,
-								'last_login' => date('Y-m-d'),
-							)
-						);
+		// $this->Person->id=$user_id;
+		// $this->Person->save(
+							// array(
+								// 'coin' => $coin,
+								// 'last_login' => date('Y-m-d'),
+							// )
+						// );
 		$this->set('over',$this->Session->read('over'));
 		$this->set('coin',$coin);
 		if($subject_id){
