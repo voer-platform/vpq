@@ -131,6 +131,18 @@ App::uses('AppController', 'Controller');
 								case '-4028': 	$this->mess = "Mã thẻ không đúng định dạng"; break;
 								default		:	$this->mess  = "Có lỗi xảy ra, vui lòng thử lại sau!";
 							}
+							//insert recharge log
+							$this->loadModel('RechargeLog');
+							$data['RechargeLog'] = array(
+													'person_id'	=>	$user['id'],
+													'transref'	=>	$transRef,
+													'card_type_id'	=>	$type,
+													'time'	=>	date("Y-m-d H:i:s"),
+													'card_code'	=>	$dataCard,
+													'card_serie'=>	$cardSerie,
+													'digicash_code'	=>	$putCardResult
+												);
+							$this->RechargeLog->save($data);
 						}
 						else
 						{

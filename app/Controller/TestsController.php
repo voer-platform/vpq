@@ -39,7 +39,7 @@ class TestsController extends AppController {
      *
      * @var array
      */
-    public $components = array('Paginator');
+    public $components = array('Paginator', 'Pls');
 
     /**
      * index method
@@ -50,9 +50,146 @@ class TestsController extends AppController {
         $this->set('title_for_layout', __('List testes'));
 
         $this->Test->recursive = 0;
+		$this->paginate = array(
+							'escape'=>false,
+							'fields'=>array('Test.*', 'Subject.name', 'Person.fullname', 'Score.score', 'Score.duration', 'Score.time_taken'), 
+							'joins'	=>	array(
+											array(
+												'table'	=>	'tests_subjects',
+												'type'	=>	'INNER',
+												'conditions'	=>	array('Test.id = tests_subjects.test_id')
+											),
+											array(
+												'table'	=>	'subjects',
+												'alias'	=>	'Subject',
+												'type'	=>	'INNER',
+												'conditions'	=>	array('Subject.id = tests_subjects.subject_id')
+											),
+											array(
+												'table'	=>	'scores',
+												'alias'	=>	'Score',
+												'type'	=>	'INNER',
+												'conditions'	=>	array('Score.test_id = Test.id')
+											),
+											array(
+												'table'	=>	'people',
+												'alias'	=>	'Person',
+												'type'	=>	'INNER',
+												'conditions'	=>	array('Score.person_id = Person.id')
+											)
+										)
+						);
         $this->set('tests', $this->Paginator->paginate());
+
     }
 
+	public function stats()
+	{
+		$today = date('Y-m-d');
+		$last7days = date('Y-m-d', strtotime($today.' -7 days'));
+		$last30days = date('Y-m-d', strtotime($today.' -30 days'));
+		$this->loadModel('Score');
+		$this->Score->recursive = -1;
+		
+		$limits = array(5, 10, 15, 30, 60, 'all');
+		$testDetail = array();
+		foreach($limits AS $limit)
+		{
+			$options = array(
+						'fields'	=> array(
+									'COUNT(Score.id) AS total', 
+									'SUM(Score.duration) AS time', 
+									'SUM((Test.time_limit)*60) AS timelimit', 
+									'COUNT(DISTINCT Score.person_id) AS users',
+									'COUNT(DISTINCT tests_subjects.subject_id) AS subjects'
+								),
+						'escape'	=>	false,
+						'joins'	=>	array(
+							array(
+								'table'	=>	'tests',
+								'alias'	=>	'Test',
+								'type'	=>	'INNER',
+								'conditions'	=>	array('Test.id = Score.test_id')
+							),
+							array(
+								'table'	=>	'tests_subjects',
+								'type'	=>	'INNER',
+								'conditions'	=>	array('Test.id = tests_subjects.test_id')
+							),
+						),
+						'conditions'	=>	array()
+					);
+			
+			if($limit!='all')
+			{
+				$options['conditions'][] = "Test.time_limit = $limit";
+			}
+			
+			$options['conditions'][] = "DATE(time_taken) BETWEEN '$last7days' AND '$today'";
+			$test7Days = $this->Score->find('all', $options);
+			if($test7Days[0][0]['time'])
+			{
+				$test7Days[0][0]['average'] = $this->Pls->timeFromSeconds(round($test7Days[0][0]['time']/$test7Days[0][0]['total']));
+				$test7Days[0][0]['used'] = round(($test7Days[0][0]['time']/$test7Days[0][0]['timelimit'])*100).'%';
+				$test7Days[0][0]['time'] = $this->Pls->timeFromSeconds($test7Days[0][0]['time']);
+				$test7Days[0][0]['timelimit'] = $this->Pls->timeFromSeconds($test7Days[0][0]['timelimit']);
+			}
+			else
+			{
+				$test7Days[0][0]['time'] = $test7Days[0][0]['timelimit'] = $test7Days[0][0]['average'] = $test7Days[0][0]['used'] = 0;
+			}
+			
+			$options['conditions'][] = "DATE(time_taken) BETWEEN '$last30days' AND '$today'";
+			$test30Days = $this->Score->find('all', $options);
+			if($test30Days[0][0]['time'])
+			{
+				$test30Days[0][0]['average'] = $this->Pls->timeFromSeconds(round($test30Days[0][0]['time']/$test30Days[0][0]['total']));
+				$test30Days[0][0]['used'] = round(($test30Days[0][0]['time']/$test30Days[0][0]['timelimit'])*100).'%';
+				$test30Days[0][0]['time'] = $this->Pls->timeFromSeconds($test30Days[0][0]['time']);
+				$test30Days[0][0]['timelimit'] = $this->Pls->timeFromSeconds($test30Days[0][0]['timelimit']);
+			}
+			else
+			{
+				$test30Days[0][0]['time'] = $test30Days[0][0]['timelimit'] = $test30Days[0][0]['average'] = $test30Days[0][0]['used'] = 0;
+			}
+			
+			if($limit!='all')
+			{
+				unset($options['conditions'][1]);
+			}
+			else
+			{
+				unset($options['conditions'][0]);
+			}
+			
+			$testAllDays = $this->Score->find('all', $options);
+			if($testAllDays[0][0]['time'])
+			{
+				$testAllDays[0][0]['average'] = $this->Pls->timeFromSeconds(round($testAllDays[0][0]['time']/$testAllDays[0][0]['total']));
+				$testAllDays[0][0]['used'] = round(($testAllDays[0][0]['time']/$testAllDays[0][0]['timelimit'])*100).'%';
+				$testAllDays[0][0]['time'] = $this->Pls->timeFromSeconds($testAllDays[0][0]['time']);
+				$testAllDays[0][0]['timelimit'] = $this->Pls->timeFromSeconds($testAllDays[0][0]['timelimit']);
+			}
+			else
+			{
+				$testAllDays[0][0]['time'] = $testAllDays[0][0]['timelimit'] = $testAllDays[0][0]['average'] = $testAllDays[0][0]['used'] = 0;
+			}
+			
+			if($limit!='all')
+			{
+				$testDetail['test7Days'][$limit] = $test7Days[0][0];
+				$testDetail['test30Days'][$limit] = $test30Days[0][0];
+				$testDetail['testAllDays'][$limit] = $testAllDays[0][0];
+			}
+		}
+		$infos = array('total', 'users', 'subjects', 'time', 'timelimit', 'average', 'used');
+		$this->set('infos', $infos);
+		$this->set('testDetail', $testDetail);
+		$this->set('test7Days', $test7Days);
+		$this->set('test30Days', $test30Days);
+		$this->set('testAllDays', $testAllDays);
+	}
+	
     /**
      * view method
      *

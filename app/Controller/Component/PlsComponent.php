@@ -77,5 +77,13 @@ class PlsComponent extends Object{
 		}
 	}
 	
+	public function timeFromSeconds($seconds)
+	{
+		$hours = str_pad(floor($seconds / 3600), 2, 0, STR_PAD_LEFT);
+		$mins = str_pad(floor(($seconds - ($hours*3600)) / 60), 2, 0, STR_PAD_LEFT);
+		$secs = str_pad(floor($seconds % 60), 2, 0, STR_PAD_LEFT);
+		return $hours.':'.$mins.':'.$secs;
+	}
+	
 }
 ?>

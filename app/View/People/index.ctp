@@ -5,6 +5,7 @@
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
 			<th><?php echo $this->Paginator->sort('fullname', __('Fullname')); ?></th>
 			<th><?php echo $this->Paginator->sort('birthday'); ?></th>
+			<th><?php echo $this->Paginator->sort('date_created'); ?></th>
 			<th><?php echo $this->Paginator->sort('gender'); ?></th>
 			<th><?php echo $this->Paginator->sort('grade'); ?></th>
 			<th><?php echo $this->Paginator->sort('school', __('school')); ?></th>
@@ -17,6 +18,7 @@
 		<td><?php echo h($person['Person']['id']); ?></td>
 		<td><?php echo h($person['Person']['fullname']); ?></td>
 		<td><?php echo h($person['Person']['birthday']); ?></td>
+		<td><?php echo h($person['Person']['date_created']); ?></td>
 		<td><?php echo h($person['Person']['_gen']); ?></td>
 		<td><?php echo h($person['Person']['grade']); ?></td>
 		<td><?php echo h($person['Person']['school']); ?></td>
