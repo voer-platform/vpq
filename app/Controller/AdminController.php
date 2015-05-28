@@ -482,7 +482,7 @@ class AdminController extends AppController {
 													'answer_c'	=>$answer_c,
 													'answer_d'	=>$answer_d,
 													'answer_correct'=>$answer_correct,
-													'test_question'=>'0',
+													'check_question'=>'0',
 												)
 											))
 						{
@@ -667,7 +667,7 @@ class AdminController extends AppController {
 				}
 				if(!$this->ImportQuestion->updateAll(
 											array(
-												'test_question'=>1,
+												'check_question'=>1,
 											),
 											array(
 												'id'=>$data_question[0]['ImportQuestion']['id'],
@@ -691,7 +691,7 @@ class AdminController extends AppController {
 			if(isset($this->request->data['id'])){
 				$this->ImportQuestion->id = $this->request->data['id'];
 				if ($this->ImportQuestion->delete()) {
-					$this->redirect(array('controller' =>'Admin', 'action' => 'test_question'));
+					$this->redirect(array('controller' =>'Admin', 'action' => 'check_question'));
 					$this->Session->setFlash(__('Xóa thành công.'));					
 				} else {
 					$this->Session->setFlash(__('Xóa thất bại.'));

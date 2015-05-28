@@ -81,7 +81,7 @@
 								<td><?php echo $ques['ImportQuestion']['question']; ?></td>
 								<td style='text-align:center;'>
 									<?php echo $this->Html->link('', array('controller' => 'admin', 'action' => 'view_question',$ques['ImportQuestion']['id']), array('class' => 'btn btn-dashboard btn-primary glyphicon glyphicon-eye-open','title'=>'Xem chi tiết','target'=>'_blank')) ?>
-									<a onclick="return confirm ('Bạn có muốn xóa câu hỏi này không?')" class='btn btn-danger glyphicon glyphicon-trash' title='Xóa' href="<?php echo $this->Html->url(array('controller'=>'admin','action'=> 'test_question')); ?>?delete=<?php echo $ques['ImportQuestion']['id'] ?>"></a>
+									<a onclick="return confirm ('Bạn có muốn xóa câu hỏi này không?')" class='btn btn-danger glyphicon glyphicon-trash' title='Xóa' href="<?php echo $this->Html->url(array('controller'=>'admin','action'=> 'check_question')); ?>?delete=<?php echo $ques['ImportQuestion']['id'] ?>"></a>
 								</td>
 							</tr>
 						<?php endforeach; ?>
