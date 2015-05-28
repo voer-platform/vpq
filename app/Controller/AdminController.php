@@ -496,7 +496,7 @@ class AdminController extends AppController {
 		}
 	}
 	
-	public function test_question(){
+	public function check_question(){
 		$this->loadModel('ImportQuestion');
 		$this->loadModel('Subject');
 		if(isset($this->request->query['delete'])){
@@ -507,7 +507,7 @@ class AdminController extends AppController {
 				$this->Session->setFlash(__('Xóa thất bại.'));
 			}
 		}
-		$options=array('test_question'=>'0');
+		$options=array('check_question'=>'0');
 		if($this->request->is('post')){
 			if($this->request->data('search')){
 				$subject_id=$this->request->data('subject');
