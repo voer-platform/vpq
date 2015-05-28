@@ -12,6 +12,8 @@
 		<?php echo $this->Html->link(__('Static pages'), array('controller' => 'StaticPages', 'action' => 'index'), array('class'=>'list-group-item')); ?>
 		<?php echo $this->Html->link('Promotional', array('controller' => 'Admin', 'action' => 'promotional'), array('class'=>'list-group-item')); ?>
 		<?php echo $this->Html->link(__('Card'), array('controller' => 'cardStatistics'), array('class'=>'list-group-item')); ?>
+		<?php echo $this->Html->link(__('Import Excel'), array('controller' => 'Admin', 'action' => 'import_excel'), array('class'=>'list-group-item')); ?>
+		<?php echo $this->Html->link(__('Test Questions'), array('controller' => 'Admin', 'action' => 'test_question'), array('class'=>'list-group-item')); ?>
 	</div>
 </div>
 

@@ -114,7 +114,7 @@
 					<b style='color:#428bca;'>PLS</b> tặng bạn <b style='color:red;'>150 Xu</b> cho lần đăng nhập đầu tiên.
 				</p>
 				<p style='font-size:12pt;'>
-					<b style='color:red;'>Xu</b> dùng để duy trì tài khoản, mỗi ngày tài khoản của bạn sẽ bị giảm <b style='color:red;'>5 Xu</b>.
+					<b style='color:red;'>Xu</b> được dùng để giúp bạn có thể làm bài kiểm tra.
 				</p>
             </div>
             <div class="modal-footer">
@@ -125,14 +125,17 @@
 </div>
 
 <script>
+	var login=<?php echo $login ?>;
 	$('.hasDatepick').datepicker({format: "dd/mm/yyyy"}).on('changeDate', function(ev) {
 		$(this).datepicker('hide');
 	});
 	$('.sl2').select2();
 	$(document).ready(function(){
-		$('#modalmessages').modal({
+		if(login==0){
+			$('#modalmessages').modal({
 					backdrop: true
 				});
+		}
 	});
 	$('#complete-profile').click(function(){
 		if(!validateEmail($('#email').val()))

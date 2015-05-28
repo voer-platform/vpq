@@ -273,6 +273,7 @@ class PeopleController extends AppController {
 
                 // Otherwise we'll add a new user (Registration)
                 else {
+					$this->Session->write('login','0');
 					if(isset($fb_user['birthday'])){
 						$birthday = date('d/m/Y', strtotime($fb_user['birthday']));
 					}
@@ -557,10 +558,14 @@ class PeopleController extends AppController {
  */
 	public function completeProfile()
 	{
+		$login=$this->Session->read('login');
+		$this->Session->write('login','1');
 		$user = $this->Auth->user();
 		if($user['profile_completed'])
 		{
 			$this->redirect(array('controller' => 'people', 'action' => 'dashboard'));
+		}else{
+			$this->set('login',$login);
 		}
 		
 		if($this->request->is('post'))
