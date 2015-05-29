@@ -125,7 +125,7 @@ class TestsController extends AppController {
 				$options['conditions'][] = "Test.time_limit = $limit";
 			}
 			
-			$options['conditions'][] = "DATE(time_taken) BETWEEN '$last7days' AND '$today'";
+			$options['conditions'][1] = "DATE(time_taken) BETWEEN '$last7days' AND '$today'";
 			$test7Days = $this->Score->find('all', $options);
 			if($test7Days[0][0]['time'])
 			{
@@ -139,7 +139,7 @@ class TestsController extends AppController {
 				$test7Days[0][0]['time'] = $test7Days[0][0]['timelimit'] = $test7Days[0][0]['average'] = $test7Days[0][0]['used'] = 0;
 			}
 			
-			$options['conditions'][] = "DATE(time_taken) BETWEEN '$last30days' AND '$today'";
+			$options['conditions'][1] = "DATE(time_taken) BETWEEN '$last30days' AND '$today'";
 			$test30Days = $this->Score->find('all', $options);
 			if($test30Days[0][0]['time'])
 			{
@@ -159,7 +159,7 @@ class TestsController extends AppController {
 			}
 			else
 			{
-				unset($options['conditions'][0]);
+				unset($options['conditions']);
 			}
 			
 			$testAllDays = $this->Score->find('all', $options);
@@ -188,6 +188,60 @@ class TestsController extends AppController {
 		$this->set('test7Days', $test7Days);
 		$this->set('test30Days', $test30Days);
 		$this->set('testAllDays', $testAllDays);
+		
+		//Getting question stats
+		$this->loadModel('TestsQuestion');
+		$this->TestsQuestion->recursive = -1;
+		$countUsed = $this->TestsQuestion->find('all', array(
+								'fields'	=>	array('tests_subjects.subject_id', 'COUNT(DISTINCT TestsQuestion.question_id) AS used'),
+								'escape'	=>	false,
+								'joins'		=>	array(
+													array(
+														'table'	=>	'tests_subjects',
+														'type'	=>	'INNER',
+														'conditions'	=>	'TestsQuestion.test_id = tests_subjects.test_id'
+													)
+												),
+								'group'		=>	'tests_subjects.subject_id'				
+							));
+		$usedQuestion = array();
+		foreach($countUsed AS $subjCount)						
+		{
+			$usedQuestion[$subjCount['tests_subjects']['subject_id']] = $subjCount[0]['used'];
+		}
+							
+		$this->loadModel('Question');
+		$this->Question->recursive = -1;
+		$countQuestion = $this->Question->find('all', array(
+										'escape'=>false,
+										'fields'=>array('COUNT(DISTINCT Question.id) AS total', 'subjects.name', 'subjects.id'), 
+										'joins'	=>	array(
+														array(
+															'table'	=>	'questions_subcategories',
+															'type'	=>	'INNER',
+															'conditions'	=>	array('Question.id = questions_subcategories.question_id')
+														),
+														array(
+															'table'	=>	'subcategories',
+															'type'	=>	'INNER',
+															'conditions'	=>	array('subcategories.id = questions_subcategories.subcategory_id')
+														),
+														array(
+															'table'	=>	'categories',
+															'type'	=>	'INNER',
+															'conditions'	=>	array('categories.id = subcategories.category_id')
+														),
+														array(
+															'table'	=>	'subjects',
+															'type'	=>	'INNER',
+															'conditions'	=>	array('categories.subject_id = subjects.id')
+														)
+													),
+										'group'	=>	array('subjects.name', 'subjects.id')
+									)
+							);
+		$this->set('usedQuestion', $usedQuestion);
+		$this->set('countQuestion', $countQuestion);
 	}
 	
     /**

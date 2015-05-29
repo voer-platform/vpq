@@ -1,55 +1,74 @@
 <h2><span class="glyphicon glyphicon-stats"></span> <?php echo __('Test Stats'); ?></h2>
 <hr/>
-	<table class="table table-bordered table-striped" style="width:50%;">
-		<tr>
-			<th></th>
-			<th>7 ngày</th>
-			<th>30 ngày</th>
-			<th>Tất cả</th>
-		</tr>
-		<tr>
-			<td><b>Số lượt test</b></td>
-			<td><?php echo $test7Days[0][0]['total']; ?></td>
-			<td><?php echo $test30Days[0][0]['total']; ?></td>
-			<td><?php echo $testAllDays[0][0]['total']; ?></td>
-		</tr>
-		<tr>
-			<td><b>Số người test</b></td>
-			<td><?php echo $test7Days[0][0]['users']; ?></td>
-			<td><?php echo $test30Days[0][0]['users']; ?></td>
-			<td><?php echo $testAllDays[0][0]['users']; ?></td>
-		</tr>
-		<tr>
-			<td><b>Số môn test</b></td>
-			<td><?php echo $test7Days[0][0]['subjects']; ?></td>
-			<td><?php echo $test30Days[0][0]['subjects']; ?></td>
-			<td><?php echo $testAllDays[0][0]['subjects']; ?></td>
-		</tr>
-		<tr>
-			<td><b>Thời gian thực tế</b></td>
-			<td><?php echo $test7Days[0][0]['time']; ?></td>
-			<td><?php echo $test30Days[0][0]['time']; ?></td>
-			<td><?php echo $testAllDays[0][0]['time']; ?></td>
-		</tr>
-		<tr>
-			<td><b>Thời gian cho phép</b></td>
-			<td><?php echo $test7Days[0][0]['timelimit']; ?></td>
-			<td><?php echo $test30Days[0][0]['timelimit']; ?></td>
-			<td><?php echo $testAllDays[0][0]['timelimit']; ?></td>
-		</tr>
-		<tr>
-			<td><b>Thời gian trung bình</b></td>
-			<td><?php echo $test7Days[0][0]['average']; ?></td>
-			<td><?php echo $test30Days[0][0]['average']; ?></td>
-			<td><?php echo $testAllDays[0][0]['average']; ?></td>
-		</tr>
-		<tr>
-			<td><b>Sử dụng thời gian</b></td>
-			<td><?php echo $test7Days[0][0]['used']; ?></td>
-			<td><?php echo $test30Days[0][0]['used']; ?></td>
-			<td><?php echo $testAllDays[0][0]['used']; ?></td>
-		</tr>
-	</table>
+	<div class="row">
+	<div class="col-md-6">
+		<table class="table table-bordered table-striped">
+			<tr>
+				<th></th>
+				<th>7 ngày</th>
+				<th>30 ngày</th>
+				<th>Tất cả</th>
+			</tr>
+			<tr>
+				<td><b>Số lượt test</b></td>
+				<td><?php echo $test7Days[0][0]['total']; ?></td>
+				<td><?php echo $test30Days[0][0]['total']; ?></td>
+				<td><?php echo $testAllDays[0][0]['total']; ?></td>
+			</tr>
+			<tr>
+				<td><b>Số người test</b></td>
+				<td><?php echo $test7Days[0][0]['users']; ?></td>
+				<td><?php echo $test30Days[0][0]['users']; ?></td>
+				<td><?php echo $testAllDays[0][0]['users']; ?></td>
+			</tr>
+			<tr>
+				<td><b>Số môn test</b></td>
+				<td><?php echo $test7Days[0][0]['subjects']; ?></td>
+				<td><?php echo $test30Days[0][0]['subjects']; ?></td>
+				<td><?php echo $testAllDays[0][0]['subjects']; ?></td>
+			</tr>
+			<tr>
+				<td><b>Thời gian thực tế</b></td>
+				<td><?php echo $test7Days[0][0]['time']; ?></td>
+				<td><?php echo $test30Days[0][0]['time']; ?></td>
+				<td><?php echo $testAllDays[0][0]['time']; ?></td>
+			</tr>
+			<tr>
+				<td><b>Thời gian cho phép</b></td>
+				<td><?php echo $test7Days[0][0]['timelimit']; ?></td>
+				<td><?php echo $test30Days[0][0]['timelimit']; ?></td>
+				<td><?php echo $testAllDays[0][0]['timelimit']; ?></td>
+			</tr>
+			<tr>
+				<td><b>Thời gian trung bình</b></td>
+				<td><?php echo $test7Days[0][0]['average']; ?></td>
+				<td><?php echo $test30Days[0][0]['average']; ?></td>
+				<td><?php echo $testAllDays[0][0]['average']; ?></td>
+			</tr>
+			<tr>
+				<td><b>Sử dụng thời gian</b></td>
+				<td><?php echo $test7Days[0][0]['used']; ?></td>
+				<td><?php echo $test30Days[0][0]['used']; ?></td>
+				<td><?php echo $testAllDays[0][0]['used']; ?></td>
+			</tr>
+		</table>
+	</div>
+	<div class="col-md-6">
+		<table class="table table-bordered table-striped">
+			<tr>
+				<th>Môn học</th>
+				<th>Số câu đã kiểm tra</th>
+				<th>Tổng số câu</th>
+			</tr>
+			<?php foreach($countQuestion AS $subj){ ?>
+				<tr>
+					<td><?=$subj['subjects']['name'];?></td>
+					<td><?php echo (isset($usedQuestion[$subj['subjects']['id']]))?$usedQuestion[$subj['subjects']['id']]:0; ?></td>
+					<td><?=$subj[0]['total'];?></td>
+				</tr>
+			<?php } ?>	
+		</table>	
+	</div>
 	
 	<table class="table table-bordered table-striped">
 		<tr>

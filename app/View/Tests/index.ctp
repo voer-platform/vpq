@@ -20,7 +20,7 @@
 		<td><?php echo h($test['Test']['id']); ?></td>
 		<td><?php echo h($test['Subject']['name']); ?></td>
 		<td><?php echo h($test['Person']['fullname']); ?></td>
-		<td><?php echo h($test['Score']['score']); ?></td>
+		<td><?php echo round(($test['Score']['score']/$test['Test']['number_questions'])*10, 1); ?></td>
 		<td><?php echo h($test['Test']['time_limit']); ?> phút</td>
 		<td><?php echo gmdate('H:i:s', $test['Score']['duration']); ?></td>
 		<td><?php echo h($test['Test']['number_questions']); ?></td>

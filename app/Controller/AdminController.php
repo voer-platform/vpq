@@ -284,7 +284,10 @@ class AdminController extends AppController {
 									array(
 										'table'	=>	'tests_subjects',
 										'type'	=>	'INNER',
-										'conditions'	=>	'tests_subjects.test_id = scores.test_id'
+										'conditions'	=>	array(
+																'tests_subjects.test_id = scores.test_id',
+																'tests_subjects.subject_id = Ranking.subject_id'
+															)
 									)
 								),
 					'group'	=>	array('Ranking.subject_id, Ranking.person_id')			
