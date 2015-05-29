@@ -75,7 +75,11 @@
 				<?php endfor; ?>					
 				</div>	
 			</div>
-			
+			<div class='row'>
+				<div class="tab-content col-sm-12" style="padding:0px;text-align:left;color:red">
+					<span style='font-size:15px;'>Chú ý: Bạn hãy chuẩn bị sẵn giấy nháp, tài liệu cần thiết để bài làm có hiệu quả cao.</span>
+				</div>
+			</div>
 			<div class="row">
 				<div class="tab-content col-sm-12" style="padding:0px; padding-top:10px">
 					<div class='form-group'>
