@@ -75,7 +75,11 @@
 				<?php endfor; ?>					
 				</div>	
 			</div>
-			
+			<div class='row'>
+				<div class="tab-content col-sm-12" style="padding:0px;text-align:left;color:red">
+					<span style='font-size:15px;'>Chú ý: Bạn hãy chuẩn bị sẵn giấy nháp, tài liệu cần thiết để bài làm có hiệu quả cao.</span>
+				</div>
+			</div>
 			<div class="row">
 				<div class="tab-content col-sm-12" style="padding:0px; padding-top:10px">
 					<div class='form-group'>
@@ -97,13 +101,28 @@
 </div>
 
 <div id="msgNotice" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog modal-sm" style="width:400px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Thông báo</h4>
+            </div>
+            <div class="modal-body" style='text-align:center'>
+                <p id='tb' style='font-size:16px;'>Bạn chưa chọn bài nào.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="modal_message" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="myModalLabel">Thông báo</h4>
             </div>
             <div class="modal-body" style='text-align:center'>
-                <p id='tb'>Bạn chưa chọn bài nào.</p>
+                <p id='tb' style='font-size:16px;'>Số lượng câu hỏi không đủ để thực hiện bài kiểm tra này.</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
@@ -189,7 +208,9 @@ function doTest(t){
 			var url = '<?php echo Router::url(array('controller'=>'tests','action'=>'byQuestion'));?>/' + t + '/'+$str;
 			$.getJSON(url, function( data ) {
 				 if(data<t){			
-					showMessage('Không thể làm bài kiểm tra', 'Dữ liệu hiện tại không đủ để thực hiện bài kiểm tra này', 'error', 'glyphicon-remove-sign');
+					$('#modal_message').modal({
+							backdrop: true
+					});
 				 }else{
 					var id = $('#user_id').attr('value');
 					mixpanel.track("Do Test", {
@@ -333,18 +354,6 @@ $(document).ready(function(){
 		document.getElementById('spcat-'+id).innerHTML=s;
 	});
 });
-
-function showMessage(title, text, type, icon) {
-    var notice = new PNotify({
-        title: title,
-        text: text,
-        type: type,
-        icon: 'glyphicon ' + icon,
-        addclass: 'snotify',
-        pnotify_closer: true,
-        pnotify_delay: 800
-    });
-}
 
 function FBInvite(){
 		FB.ui({

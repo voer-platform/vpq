@@ -73,7 +73,8 @@ class AppController extends Controller {
         // this is not recommended by CakePHP, just for backward compatiblity
         // App::import('Vendor', 'facebook-php-sdk-master/src/facebook');
         require_once(APP. 'Vendor'. DS . 'facebook'. DS. 'facebook.php');
-
+		require_once(APP. 'Vendor'. DS .'PHPExcel.php');
+		require_once(APP. 'Vendor'. DS . 'PHPExcel'. DS. 'IOFactory.php');
         $this->Facebook = new Facebook(array(
             'appId'     =>  Configure::read('Facebook.AppID'),
             'secret'    =>  Configure::read('Facebook.AppSecret'),
