@@ -284,10 +284,7 @@ class AdminController extends AppController {
 									array(
 										'table'	=>	'tests_subjects',
 										'type'	=>	'INNER',
-										'conditions'	=>	array(
-																'tests_subjects.test_id = scores.test_id',
-																'tests_subjects.subject_id = Ranking.subject_id'
-															)
+										'conditions'	=>	'tests_subjects.test_id = scores.test_id'
 									)
 								),
 					'group'	=>	array('Ranking.subject_id, Ranking.person_id')			
@@ -751,7 +748,7 @@ class AdminController extends AppController {
 			if(isset($this->request->data['id'])){
 				$this->ImportQuestion->id = $this->request->data['id'];
 				if ($this->ImportQuestion->delete()) {
-					$this->redirect(array('controller' =>'Admin', 'action' => 'test_question'));
+					$this->redirect(array('controller' =>'Admin', 'action' => 'check_question'));
 					$this->Session->setFlash(__('Xóa thành công.'));					
 				} else {
 					$this->Session->setFlash(__('Xóa thất bại.'));
@@ -898,7 +895,7 @@ class AdminController extends AppController {
 				if($count1==$count2){
 					if($count2>=20){
 						for($i=0;$i<20;$i++){
-							if($array_question_old[$i]!=$array_question_new[$i]){
+							if($array_question_old[$i]==$array_question_new[$i]){
 								$k+=1;
 							}
 						}
@@ -907,7 +904,7 @@ class AdminController extends AppController {
 						}
 					}else{
 						for($i=0;$i<$count1;$i++){
-							if($array_question_old[$i]!=$array_question_new[$i]){
+							if($array_question_old[$i]==$array_question_new[$i]){
 								$k+=1;
 							}
 						}
@@ -1002,7 +999,7 @@ class AdminController extends AppController {
 			if(isset($this->request->data['id'])){
 				$this->ImportQuestion->id = $this->request->data['id'];
 				if ($this->ImportQuestion->delete()) {
-					$this->redirect(array('controller' =>'Admin', 'action' => 'test_question'));
+					$this->redirect(array('controller' =>'Admin', 'action' => 'check_question'));
 					$this->Session->setFlash(__('Xóa thành công.'));					
 				} else {
 					$this->Session->setFlash(__('Xóa thất bại.'));

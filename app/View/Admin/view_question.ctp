@@ -41,7 +41,16 @@
 						</div>					
 					</div>
 				</div>
-				<div class='col-lg-3'>				
+				<div class='col-lg-3'>
+					<div class='row' style='padding-left:20px;'>
+						<div class='col-lg-5' style='padding-left:0px;padding-right:0px;'>
+							<b>Mã bài:</b>
+						</div>
+						<div class='col-lg-7' style='padding-left:0px;padding-right:0px;'>
+							<input type='text' name='subcategory_id' class='form-control' value='<?php echo $question[0]['ImportQuestion']['subcategory_id'];?>' />
+						</div>						
+					</div>
+					<br/>
 					<div class='row' style='padding-left:20px;'>
 						<input type='hidden' name='id' class='form-control' value='<?php echo $question[0]['ImportQuestion']['id'];?>' />
 						<input type='submit' class='btn btn-primary col-lg-12' style='height:50px;' name='yes' value='Duyệt'/>
