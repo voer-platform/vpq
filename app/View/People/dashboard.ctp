@@ -32,7 +32,7 @@
 <div class='dashboard'>
 	<div class="page-heading heading">
 		<div class='row' style='margin:0px;'>
-			<div class='col-sm-9'>
+			<div class='col-sm-12'>
 				<!--<div class='row'>
 					<h2 style='margin:0px;'><?php echo __('Dashboard');?></h2>
 				</div>-->
