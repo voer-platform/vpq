@@ -623,7 +623,7 @@ class TestsController extends AppController {
 				$ranking_data['time_update'] = "'".date('Y-m-d H:i:s')."'";
 				$this->Ranking->updateAll($ranking_data, array('subject_id'=>$subject_id, 'person_id'=>$user['id']));
 			}
-			$this->session->write('finishTest', 1);
+			$this->Session->write('finishTest', 1);
 			$this->redirect(array('controller' => 'Scores', 'action' => 'viewDetails', $scoreId));
         }
         else {

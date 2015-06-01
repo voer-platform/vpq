@@ -146,7 +146,7 @@ class ScoresController extends AppController {
 		if($this->Session->read('finishTest'))
 		{
 			$this->set('finishTest', 1);
-			$this->session->delete('finishTest');
+			$this->Session->delete('finishTest');
 		}
 		
 		$this->loadModel('ScoresQuestion');
