@@ -131,11 +131,11 @@
 	});
 	$('.sl2').select2();
 	$(document).ready(function(){
-		if(login==0){
+		/*if(login==0){
 			$('#modalmessages').modal({
 					backdrop: true
 				});
-		}
+		}*/
 	});
 	$('#complete-profile').click(function(){
 		if(!validateEmail($('#email').val()))

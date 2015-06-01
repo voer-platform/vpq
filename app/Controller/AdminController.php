@@ -441,7 +441,7 @@ class AdminController extends AppController {
 				$data = PHPExcel_IOFactory::load($_FILES['file_import']['tmp_name']);	
 				$sheetData = $data->getActiveSheet()->toArray(null, true, true, true);
 				
-				$person1		=	$sheetData[5]['B'];
+				$user		=	$sheetData[5]['B'];
 				$subject		=	$sheetData[6]['B'];
 				$subject_id		=	$sheetData[7]['B'];
 				$book_name			=	$sheetData[8]['B'];
@@ -466,8 +466,7 @@ class AdminController extends AppController {
 						$this->ImportQuestion->create();
 						if($this->ImportQuestion->save(
 												array(
-													'person1'   =>$person1,
-													'person2'	=>'',
+													'user'   =>$user,
 													'subject'	=>$subject,
 													'subject_id'=>$subject_id,
 													'book_id'		=>$book_id,
@@ -601,7 +600,7 @@ class AdminController extends AppController {
 		$this->set('correct',$answer_correct);
 		$this->set('question',$data_question);
 		
-		if($this->request->data('yes')){
+		/*if($this->request->data('yes')){
 			$this->loadModel('ImportQuestion');
 			$this->loadModel('PullQuestion');
 			$question=	$data_question[0]['ImportQuestion']['question'];		
@@ -695,6 +694,315 @@ class AdminController extends AppController {
 				$this->ImportQuestion->id = $this->request->data['id'];
 				if ($this->ImportQuestion->delete()) {
 					$this->redirect(array('controller' =>'Admin', 'action' => 'check_question'));
+					$this->Session->setFlash(__('Xóa thành công.'));					
+				} else {
+					$this->Session->setFlash(__('Xóa thất bại.'));
+				}
+			}
+		}*/
+		if($this->request->data('yes')){
+			$this->loadModel('ImportQuestion');
+			$user_id = $this->Session->read('Auth.User')['id'];
+			$subcategory_id=$this->request->data('subcategory_id');
+			$options = array(
+					'recursive' => -1,
+					'conditions' => array('id'=>$id)
+					);
+			$data_question=$this->ImportQuestion->find('all',$options);
+			if($data_question[0]['ImportQuestion']['person1_id']=='')
+			{
+				if($this->ImportQuestion->updateAll(
+											array(
+												'person1_id'=>$user_id,
+												'subcategory1_id'=>$subcategory_id,
+											),
+											array(
+												'id'=>$data_question[0]['ImportQuestion']['id'],
+											)
+				)){
+					$this->Session->setFlash(__('Duyệt thành công.'));
+				}else{
+					$this->Session->setFlash(__('Duyệt thất bại.'));
+				}
+			}else{
+				if($data_question[0]['ImportQuestion']['person1_id']!=$user_id)
+				{
+					if($this->ImportQuestion->updateAll(
+											array(
+												'person2_id'=>$user_id,
+												'subcategory2_id'=>$subcategory_id,
+												'check_question'=>1,
+											),
+											array(
+												'id'=>$data_question[0]['ImportQuestion']['id'],
+											)
+					)){
+						$this->Session->setFlash(__('Duyệt thành công.'));
+					}else{
+						$this->Session->setFlash(__('Duyệt thất bại.'));
+					}
+				}else{
+					$this->Session->setFlash(__('Tài khoản này đã kiểm tra lần 1'));
+				}
+			}
+		}
+		
+		if($this->request->data('no')){
+			if(isset($this->request->data['id'])){
+				$this->ImportQuestion->id = $this->request->data['id'];
+				if ($this->ImportQuestion->delete()) {
+					$this->redirect(array('controller' =>'Admin', 'action' => 'test_question'));
+					$this->Session->setFlash(__('Xóa thành công.'));					
+				} else {
+					$this->Session->setFlash(__('Xóa thất bại.'));
+				}
+			}
+		}
+	}
+	
+	public function pull_question(){
+		$this->loadModel('ImportQuestion');
+		$this->loadModel('Subject');
+		if(isset($this->request->query['delete'])){
+			$this->ImportQuestion->id = $this->request->query['delete'];
+			if ($this->ImportQuestion->delete()) {
+				$this->Session->setFlash(__('Xóa thành công.'));
+			} else {
+				$this->Session->setFlash(__('Xóa thất bại.'));
+			}
+		}
+		$options=array('check_question'=>'1','subcategory1_id=subcategory2_id');		
+		if($this->request->is('post')){
+			if($this->request->data('search')){
+				$subject_id=$this->request->data('subject');
+				$book_id=$this->request->data('book');
+				$category_id=$this->request->data('categories');
+				$subcategory_id=$this->request->data('subcategories');
+				if($subject_id!=''){
+					$options['subject_id']=$subject_id;
+					$this->loadModel('Book');
+					$options3 = array(
+					'recursive' => -1,
+					'conditions' => array('subject_id'=>$subject_id)
+					);
+					$book=$this->Book->find('all',$options3);
+					$this->set('book',$book);
+				}
+				if($book_id!=''){
+					$options['book_id']=$book_id;
+					$this->loadModel('Book');
+					$this->loadModel('Category');
+					$options4 = array(
+								'recursive' => -1,
+								'conditions' => array('id'=>$book_id)
+								);
+					$book=$this->Book->find('all',$options4);
+					$options4 = array(
+								'recursive' => -1,
+								'conditions' => array(	
+														'subject_id'=>$book[0]['Book']['subject_id'],
+														'grade_id'=>$book[0]['Book']['grade_id']
+													)
+								);
+					$categories=$this->Category->find('all',$options4);
+					$this->set('categories',$categories);
+				}
+				if($category_id!=''){
+					$options['category_id']=$category_id;
+					$this->loadModel('Subcategory');
+					$subcategories = $this->Subcategory->find('all', array(
+																'recursive' => -1,
+																'conditions' => array(
+																	'category_id = ' => $category_id,
+																	),
+															));
+					$this->set('subcategories',$subcategories);
+				}
+				if($subcategory_id!=''){
+					$options['subcategory_id']=$subcategory_id;
+				}
+				$this->set('subject_id',$subject_id);
+				$this->set('book_id',$book_id);
+				$this->set('category_id',$category_id);
+				$this->set('subcategory_id',$subcategory_id);
+			}	
+		}else{
+			$this->set('subject_id','');
+			$this->set('book_id','');
+			$this->set('category_id','');
+			$this->set('subcategory_id','');
+		}
+		$this->Paginator->settings = array(
+			'limit' => 10,
+			'conditions'=>$options
+		);
+		$import_question = $this->Paginator->paginate('ImportQuestion');
+		$this->set('import_question',$import_question);
+		$option2=array(
+					'recursive' => -1,
+				);
+		$this->set('subject',$this->Subject->find('all',$option2));
+		
+	}
+	
+	public function view_pull($id){
+		$this->loadModel('ImportQuestion');
+		$this->loadModel('Question');
+		$this->loadModel('QuestionsSubcategory');
+		$this->loadModel('Answer');
+		$options = array(
+					'recursive' => -1,
+					'conditions' => array('id'=>$id),
+					);
+		$data_question=$this->ImportQuestion->find('all',$options);		
+		$correct=explode(' ',trim($data_question[0]['ImportQuestion']['answer_correct']));
+		foreach($correct as $correct){
+			$answer_correct[$correct]='';
+		}
+		$this->set('correct',$answer_correct);
+		$this->set('question',$data_question);
+		
+		if($this->request->data('yes')){
+			$error_pull=false;
+			$question=	$data_question[0]['ImportQuestion']['question'];		
+			$solution= 	$data_question[0]['ImportQuestion']['solution'];		
+			$subcategories=$data_question[0]['ImportQuestion']['subcategory_id'];		
+			$answer=array(
+						'1'=>$data_question[0]['ImportQuestion']['answer_a'],
+						'2'=>$data_question[0]['ImportQuestion']['answer_b'],
+						'3'=>$data_question[0]['ImportQuestion']['answer_c'],
+						'4'=>$data_question[0]['ImportQuestion']['answer_d'],
+			);
+			$correct=explode(' ',trim($data_question[0]['ImportQuestion']['answer_correct']));
+			$array_question_new=explode(' ',$question);
+			$count1=count($array_question_new);
+			$options = array(
+					'recursive' => 0,
+					'conditions' => array('subcategory_id'=>$data_question[0]['ImportQuestion']['subcategory1_id']),
+					'joins'=>array(
+                        array(
+                            'type'=>'INNER',
+                            'table'=>'questions',
+                            'alias'=>'Questions',
+                            'conditions'=>array(
+                                'Questions.id = QuestionsSubcategory.question_id'
+                            )
+                        )
+                    )
+					);				
+			$question_old=$this->QuestionsSubcategory->find('all',$options);
+			foreach($question_old as $ques){
+				$k=0;
+				$array_question_old=explode(' ',$ques['Question']['content']);
+				$count2=count($array_question_old);
+				if($count1==$count2){
+					if($count2>=20){
+						for($i=0;$i<20;$i++){
+							if($array_question_old[$i]!=$array_question_new[$i]){
+								$k+=1;
+							}
+						}
+						if($k==20){
+							$error_pull=true;
+						}
+					}else{
+						for($i=0;$i<$count1;$i++){
+							if($array_question_old[$i]!=$array_question_new[$i]){
+								$k+=1;
+							}
+						}
+						if($k==$count1){
+							$error_pull=true;
+						}
+					}
+				}				
+			}
+			if($error_pull){
+				$this->Session->setFlash(__('Duyệt thất bại, câu hỏi này đã tồn tại.'));
+			}else{
+				$this->Question->begin(); 
+				$error = false;
+				$this->Question->create();
+				if($this->Question->save(
+										array(
+											'content'	=>$question,
+											'difficulty'=>0,
+											'solution'	=>$solution,
+											'count'		=>0,
+											'time'		=>0,
+											'report'	=>0,
+											'wrong'		=>0,
+										)									
+				)){
+					$insert_id=$this->Question->getLastInsertId();
+					$this->QuestionsSubcategory->create();
+					if(!$this->QuestionsSubcategory->save(
+											array(
+												'question_id'=>$insert_id,
+												'subcategory_id'=>$subcategories,
+												'subcategory1_id'=>0,
+												'persion1_id'=>null,
+												'subcategory2_id'=>0,
+												'persion2_id_id'=>null,
+											)
+					)){
+						$error = true; 
+					}
+					foreach($answer as $key=>$value){
+						$this->Answer->create();
+						if(in_array($key,$correct)){
+							if(!$this->Answer->save(
+										array(
+											'question_id'=>$insert_id,
+											'order'		 =>$key,
+											'content'	 =>$value,
+											'correctness'=>1,
+										)
+							)){
+								$error = true; 
+							}
+						}else{
+							if(!$this->Answer->save(
+										array(
+											'question_id'=>$insert_id,
+											'order'		 =>$key,
+											'content'	 =>$value,
+											'correctness'=>0,
+										)
+							)){
+								$error = true; 
+							}
+						}
+					}
+					if(!$this->ImportQuestion->updateAll(
+												array(
+													'check_question'=>2,
+												),
+												array(
+													'id'=>$data_question[0]['ImportQuestion']['id'],
+												)
+					)){
+						$error = true; 
+					}
+				}
+				if($error) {
+					$this->Question->rollback();
+					$this->Session->setFlash(__('Duyệt thất bại.'));
+				}
+				else
+				{							
+					$this->Question->commit();
+					$this->Session->setFlash(__('Duyệt thành công câu hỏi số '.$insert_id));
+				}
+			}
+		}
+		
+		
+		if($this->request->data('no')){
+			if(isset($this->request->data['id'])){
+				$this->ImportQuestion->id = $this->request->data['id'];
+				if ($this->ImportQuestion->delete()) {
+					$this->redirect(array('controller' =>'Admin', 'action' => 'test_question'));
 					$this->Session->setFlash(__('Xóa thành công.'));					
 				} else {
 					$this->Session->setFlash(__('Xóa thất bại.'));

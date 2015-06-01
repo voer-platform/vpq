@@ -33,8 +33,21 @@
 	<div class="page-heading heading">
 		<div class='row' style='margin:0px;'>
 			<div class='col-sm-9'>
-				<div class='row'>
+				<!--<div class='row'>
 					<h2 style='margin:0px;'><?php echo __('Dashboard');?></h2>
+				</div>-->
+				<div class='row'>
+					<div class="col-sm-9">
+						<h2 style='margin:0px;'><?php echo __('Dashboard');?></h2>
+					</div>
+					<div class='col-sm-3' style='width:250px; float:right;'>
+						<div class='row' style="margin-top:15px;">							
+							<div class="fb-share-button col-sm-6" data-href="<?php echo Router::url($this->here, true); ?>" data-layout="button_count"></div>
+							<div class='col-sm-6'>
+							<a class='btn btn-success bl fw' href="javascript:void(0);" id="invite-btn" onclick="FBInvite()" style="padding:0px;margin:0px;width:100px;float:right;"><span class='glyphicon glyphicon-send'></span>&nbsp;&nbsp;<?php echo __('Invite'); ?></a>
+							</div>
+						</div>
+					</div>			
 				</div>
 				<br/>
 				<div class='row' style='margin-right:0px;'>
@@ -56,7 +69,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-sm-3 box" style='float:right;padding-bottom:0;'>
+			<!--<div class="col-sm-3 box" style='float:right;padding-bottom:0;'>
 				<div class='row'> 
 					<div class='row' style='margin:0px;padding-left:10px;padding-right:10px;padding-top:9px;'>
 					<?php echo $this->Html->image('coin.png',array('style'=>'width:40px;height:30px;vertical-align:bottom;')) ?>
@@ -78,6 +91,22 @@
 					</div>
 				</div>
 			</div>
+			<div class="col-sm-3 box" style='float:right;padding-bottom:0;width:250px;'>
+				<div class='row'> 					
+					<div  class='row' style='margin:0px;padding-left:10px;padding-right:10px;'>	
+						<p style='font-size:17px;color:red;'>Hãy chia sẻ để giúp bạn bè của bạn có được cơ hội học tập giống như bạn.</p>
+						<hr style='border-top:2px solid #81AFD1; margin-top:7px;margin-bottom:5px;'/>
+					</div>
+					<div  class='row' style='margin:0px;margin-bottom:5px;'>						
+						<div class='col-sm-12' style='padding-left:10px;padding-right:10px;padding-bottom:2px;padding-top:7px;'>							
+							<div class="fb-share-button col-sm-6" data-href="<?php echo Router::url($this->here, true); ?>" data-layout="button_count" style='padding-left:0px;'></div>
+							<div class='col-sm-6' style='padding-left:5px;padding-right:0px;'>
+							<a class='btn btn-success bl fw' href="javascript:void(0);" id="invite-btn" onclick="FBInvite()" style="padding:0px;margin:0px;width:100px;float:right;"><span class='glyphicon glyphicon-send'></span>&nbsp;&nbsp;<?php echo __('Invite'); ?></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>-->
 		</div>
 	</div>    
 <?php if(isset($overviews)){ ?>
