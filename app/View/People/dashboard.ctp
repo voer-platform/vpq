@@ -112,7 +112,7 @@
 		</div>
 	</div>    
 <?php if(isset($overviews)){ ?>
-	<?php if(!$overviews[0]['Ranking']['score']){ ?>
+	<?php if(!is_numeric($overviews[0]['Ranking']['score'])){ ?>
 	<br/>
 	<div class="alert alert-success">
 		<div class="row">
@@ -173,7 +173,7 @@
 	<br/>
 		<?php  
 		foreach($overviews as $key => $subj){
-			$noTest = ($subj['Ranking']['score'])?0:1;
+			$noTest = (is_numeric($subj['Ranking']['score']))?0:1;
 			$score  = ($subj['Ranking']['score'])?$subj['Ranking']['score']:0;
 			$name   = $this->Name->determineRank($score);
 			$pass = (isset($cover[$subj['Subject']['id']]['pass']))?$cover[$subj['Subject']['id']]['pass']:0;

@@ -119,7 +119,8 @@ class Subject extends AppModel {
 					'fields'	=>	array('Subject.id, Subject.name'),
 					'conditions'=>array(
 							'NOT'=>array('id'=>$hasData)
-						)
+						),
+					'recursive' => -1	
 				);
 		if(isset($filterOptions['subject']))
 		{	
