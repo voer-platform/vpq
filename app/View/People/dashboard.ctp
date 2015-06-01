@@ -38,7 +38,7 @@
 				</div>				
 				<br/>
 				<div class='row'>
-					<div class='col-sm-9'>
+					<div class='col-sm-9' style='padding-left:0px;'>
 						<div class="dashboard-header clearfix">
 							<div class="pull-left clearfix">
 								<div class="avatar pull-left">
