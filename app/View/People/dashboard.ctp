@@ -32,23 +32,10 @@
 <div class='dashboard'>
 	<div class="page-heading heading">
 		<div class='row' style='margin:0px;'>
-			<div class='col-sm-12'>
-				<!--<div class='row'>
-					<h2 style='margin:0px;'><?php echo __('Dashboard');?></h2>
-				</div>-->
+			<div class='col-sm-9'>
 				<div class='row'>
-					<div class="col-sm-9">
-						<h2 style='margin:0px;'><?php echo __('Dashboard');?></h2>
-					</div>
-					<div class='col-sm-3' style='width:250px; float:right;'>
-						<div class='row' style="margin-top:15px;">							
-							<div class="fb-share-button col-sm-6" data-href="<?php echo Router::url($this->here, true); ?>" data-layout="button_count"></div>
-							<div class='col-sm-6'>
-							<a class='btn btn-success bl fw' href="javascript:void(0);" id="invite-btn" onclick="FBInvite()" style="padding:0px;margin:0px;width:100px;float:right;"><span class='glyphicon glyphicon-send'></span>&nbsp;&nbsp;<?php echo __('Invite'); ?></a>
-							</div>
-						</div>
-					</div>			
-				</div>
+					<h2 style='margin:0px;'><?php echo __('Dashboard');?></h2>
+				</div>				
 				<br/>
 				<div class='row' style='margin-right:0px;'>
 					<div class="dashboard-header clearfix">
@@ -90,7 +77,7 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</div>-->
 			<div class="col-sm-3 box" style='float:right;padding-bottom:0;width:250px;'>
 				<div class='row'> 					
 					<div  class='row' style='margin:0px;padding-left:10px;padding-right:10px;'>	
@@ -106,7 +93,7 @@
 						</div>
 					</div>
 				</div>
-			</div>-->
+			</div>
 		</div>
 	</div>    
 <?php if(isset($overviews)){ ?>
