@@ -37,7 +37,7 @@
 					<h2 style='margin:0px;'><?php echo __('Dashboard');?></h2>
 				</div>				
 				<br/>
-				<div class='row' style='margin-right:0px;'>
+				<div class='row'>
 					<div class="dashboard-header clearfix">
 						<div class="pull-left clearfix">
 							<div class="avatar pull-left">
