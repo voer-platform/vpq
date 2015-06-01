@@ -114,9 +114,13 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
-				<br/><br/><br/><br/><br/><br/><br/><br/>
+				<br/><br/><br/>
 				<h1 style="font-size:42px;font-weight:bold;"><strong>PLS</strong> - Học theo cách của bạn</h1>
 				<p style="font-size: 20px;">Tham gia vào hệ thống để trải nghiệm nguồn kiến thức vô tận trên nhiều lĩnh vực</p>
+				<p style="font-size: 15px;">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-ok"></span>&nbsp; Hơn 10000 câu hỏi có lời giải</p>
+				<p style="font-size: 15px;">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-ok"></span>&nbsp; Phương thức làm bài mềm dẻo, chỉ từ 5 phút mỗi bài</p>
+				<p style="font-size: 15px;">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-ok"></span>&nbsp; Tự động đánh giá kết quả chi tiết và chính xác</p>
+				<br/>
 				<a href="javascript:void(0);" class="login-open btn btn-ghost btn-lg" data-toggle="modal" data-target="#login-modal" data-section="home-banner">
 					Đăng nhập <span class="glyphicon glyphicon-chevron-right"></span>
 				</a>
