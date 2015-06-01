@@ -499,15 +499,16 @@ class TestsController extends AppController {
                 $this->TestsQuestion->saveAll($dataTest);
 
 				$user = $this->Session->read('Auth.User');
-				$this->loadModel('Person');
-                $this->Person->updateAll(
-								array(
-									'Person.coin' => "Person.coin-".($time/5)
-								),
-								array(
-									'Person.id'	=>	$user['id']
-								)
-							);
+				//Descrease Coin per test
+				// $this->loadModel('Person');
+                // $this->Person->updateAll(
+								// array(
+									// 'Person.coin' => "Person.coin-".($time/5)
+								// ),
+								// array(
+									// 'Person.id'	=>	$user['id']
+								// )
+							// );
                 // set to view
                 $this->set('questions', $questions);
                 $this->set('subject', $subject);
