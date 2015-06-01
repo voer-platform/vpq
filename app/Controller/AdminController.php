@@ -895,7 +895,7 @@ class AdminController extends AppController {
 				if($count1==$count2){
 					if($count2>=20){
 						for($i=0;$i<20;$i++){
-							if($array_question_old[$i]!=$array_question_new[$i]){
+							if($array_question_old[$i]==$array_question_new[$i]){
 								$k+=1;
 							}
 						}
@@ -904,7 +904,7 @@ class AdminController extends AppController {
 						}
 					}else{
 						for($i=0;$i<$count1;$i++){
-							if($array_question_old[$i]!=$array_question_new[$i]){
+							if($array_question_old[$i]==$array_question_new[$i]){
 								$k+=1;
 							}
 						}

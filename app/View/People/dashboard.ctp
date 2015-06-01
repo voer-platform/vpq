@@ -31,14 +31,27 @@
 </div>
 <div class='dashboard'>
 	<div class="page-heading heading">
-		<div class='row' style='margin:0px;'>
-			<div class='col-sm-12'>
-				<div class='row'>
+		<div class='row' >
+			<div class='col-sm-12'">
+				<!--<div class='row'>
+					<div class="col-sm-9">
+						<h2 style='margin:0px;'><?php echo __('Dashboard');?></h2>
+					</div>
+					<div class='col-sm-3' style='width:250px; float:right;'>
+						<div class='row' style="margin-top:15px;">							
+							<div class="fb-share-button col-sm-6" data-href="<?php echo Router::url($this->here, true); ?>" data-layout="button_count"></div>
+							<div class='col-sm-6'>
+							<a class='btn btn-success bl fw' href="javascript:void(0);" id="invite-btn" onclick="FBInvite()" style="padding:0px;margin:0px;width:100px;float:right;"><span class='glyphicon glyphicon-send'></span>&nbsp;&nbsp;<?php echo __('Invite'); ?></a>
+							</div>
+						</div>
+					</div>			
+				</div>-->
+				<div class='row' style='margin-left:0px;'>
 					<h2 style='margin:0px;'><?php echo __('Dashboard');?></h2>
-				</div>				
+				</div>
 				<br/>
-				<div class='row'>
-					<div class='col-sm-9' style='padding-left:0px;'>
+				<div class='row' style='margin-right:0px;'>
+					<div class='col-sm-9' style='width:77%'>
 						<div class="dashboard-header clearfix">
 							<div class="pull-left clearfix">
 								<div class="avatar pull-left">
@@ -56,10 +69,10 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-sm-3 box" style='float:right;padding-bottom:0;'>
+					<div class='col-sm-3 box' style='float:right;padding-bottom:0;width:22%'>
 						<div class='row'> 					
 							<div  class='row' style='margin:0px;padding-left:10px;padding-right:10px;'>	
-								<p style='font-size:15px;margin-top:5px;margin-bottom:5px;color:red;'>Hãy rủ bạn ôn thi miễn phí cùng PLS.</p>
+								<p style='font-size:13px;margin-top:5px;margin-bottom:5px;color:red;'>Hãy rủ bạn ôn thi miễn phí cùng PLS.</p>
 								<hr style='border-top:2px solid #81AFD1; margin-top:7px;margin-bottom:5px;'/>
 							</div>
 							<div  class='row' style='margin:0px;margin-bottom:5px;'>						
@@ -95,23 +108,7 @@
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="col-sm-3 box" style='float:right;padding-bottom:0;width:250px;'>
-				<div class='row'> 					
-					<div  class='row' style='margin:0px;padding-left:10px;padding-right:10px;'>	
-						<p style='font-size:17px;color:red;'>Hãy rủ bạn ôn thi miễn phí cùng pls</p>
-						<hr style='border-top:2px solid #81AFD1; margin-top:7px;margin-bottom:5px;'/>
-					</div>
-					<div  class='row' style='margin:0px;margin-bottom:5px;'>						
-						<div class='col-sm-12' style='padding-left:10px;padding-right:10px;padding-bottom:2px;padding-top:7px;'>							
-							<div class="fb-share-button col-sm-6" data-href="<?php echo Router::url($this->here, true); ?>" data-layout="button_count" style='padding-left:0px;'></div>
-							<div class='col-sm-6' style='padding-left:5px;padding-right:0px;'>
-							<a class='btn btn-success bl fw' href="javascript:void(0);" id="invite-btn" onclick="FBInvite()" style="padding:0px;margin:0px;width:100px;float:right;"><span class='glyphicon glyphicon-send'></span>&nbsp;&nbsp;<?php echo __('Invite'); ?></a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>-->
+			</div>-->			
 		</div>
 	</div>    
 <?php if(isset($overviews)){ ?>
