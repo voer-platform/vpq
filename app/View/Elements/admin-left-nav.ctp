@@ -14,6 +14,8 @@
 		<?php echo $this->Html->link(__('Card'), array('controller' => 'cardStatistics'), array('class'=>'list-group-item')); ?>
 		<?php echo $this->Html->link(__('Import Excel'), array('controller' => 'Admin', 'action' => 'import_excel'), array('class'=>'list-group-item')); ?>
 		<?php echo $this->Html->link(__('Check Questions'), array('controller' => 'Admin', 'action' => 'check_question'), array('class'=>'list-group-item')); ?>
+		<?php echo $this->Html->link(__('Pull Questions'), array('controller' => 'Admin', 'action' => 'import_excel'), array('class'=>'list-group-item')); ?>
+		<?php echo $this->Html->link(__('View Pull'), array('controller' => 'Admin', 'action' => 'check_question'), array('class'=>'list-group-item')); ?>
 		<?php echo $this->Html->link(__('Tests'), array('controller' => 'Tests'), array('class'=>'list-group-item')); ?>
 		<?php echo $this->Html->link(__('Test Stats'), array('controller' => 'Tests', 'action' => 'stats'), array('class'=>'list-group-item')); ?>
 	</div>
