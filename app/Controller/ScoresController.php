@@ -143,6 +143,12 @@ class ScoresController extends AppController {
             $this->Cookie->write('fromViewDetails', Router::url(NULL, true));      // return to this page after loggin, if do not
         }
 
+		if($this->Session->read('finishTest'))
+		{
+			$this->set('finishTest', 1);
+			$this->session->delete('finishTest');
+		}
+		
 		$this->loadModel('ScoresQuestion');
 
 		// $this->Score->unbindModel(array('belongsTo' => array('Person')));

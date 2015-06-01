@@ -212,11 +212,6 @@ function doTest(t){
 							backdrop: true
 					});
 				 }else{
-					var id = $('#user_id').attr('value');
-					mixpanel.track("Do Test", {
-						"test_time": t,
-						"user_id":id,
-					});
 					$("#preDoTest").attr("action", "/Tests/doTest/" + t + "/" + $subject + "/");
 					$('#preDoTest').submit();
 				 }

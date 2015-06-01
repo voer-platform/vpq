@@ -39,7 +39,7 @@
 		margin-bottom: 30px;
 	}	
 	#banner {
-		background: url('img/home3.png');
+		background: url('img/home4.png');
 		height:400px;
 		color: rgb(255, 255, 255);
 		text-shadow: 3px 1px 3px #6B6B6B;
@@ -115,11 +115,11 @@
 		<div class="row">
 			<div class="col-md-12">
 				<br/><br/><br/>
-				<h1 style="font-size:42px;font-weight:bold;"><strong>PLS</strong> - Học theo cách của bạn</h1>
-				<p style="font-size: 20px;">Tham gia vào hệ thống để trải nghiệm nguồn kiến thức vô tận trên nhiều lĩnh vực</p>
-				<p style="font-size: 15px;">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-ok"></span>&nbsp; Hơn 10000 câu hỏi có lời giải</p>
-				<p style="font-size: 15px;">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-ok"></span>&nbsp; Phương thức làm bài mềm dẻo, chỉ từ 5 phút mỗi bài</p>
-				<p style="font-size: 15px;">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-ok"></span>&nbsp; Tự động đánh giá kết quả chi tiết và chính xác</p>
+				<h1 style="font-size:42px;font-weight:bold;"><strong>PLS</strong> - Ôn thi đại học miễn phí</h1>
+				<!--<p style="font-size: 20px;">Tham gia vào hệ thống để trải nghiệm nguồn kiến thức vô tận trên nhiều lĩnh vực</p>-->
+				<p style="font-size: 20px;"><span class="glyphicon glyphicon-ok"></span>&nbsp; Hơn 10000 câu hỏi có lời giải với 3 môn Lý, Hóa, Sinh</p>
+				<p style="font-size: 20px;"><span class="glyphicon glyphicon-ok"></span>&nbsp; Phương thức làm bài mềm dẻo, chỉ từ 5 phút mỗi bài</p>
+				<p style="font-size: 20px;"><span class="glyphicon glyphicon-ok"></span>&nbsp; Tự động đánh giá kết quả chi tiết và chính xác</p>
 				<br/>
 				<a href="javascript:void(0);" class="login-open btn btn-ghost btn-lg" data-toggle="modal" data-target="#login-modal" data-section="home-banner">
 					Đăng nhập <span class="glyphicon glyphicon-chevron-right"></span>

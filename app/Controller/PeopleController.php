@@ -409,6 +409,11 @@ class PeopleController extends AppController {
 						// );
 		$this->set('over',$this->Session->read('over'));
 		$this->set('coin',$coin);
+		
+		$this->loadModel('Ranking');
+		$ranking_data = $this->Ranking->getSubjectRanking($user_id);
+		$this->set('rankings', $ranking_data);
+		
 		if($subject_id){
 			$this->loadModel('Progress');
 			$progresses = $this->Progress->progressOnSubject($user_id, array('subject'=>$subject_id));
@@ -454,10 +459,6 @@ class PeopleController extends AppController {
 			
 			$chart = json_encode($this->Score->getChartData($user_id, $subject_id, array('type'=>'tentimes')));
 			
-			$this->loadModel('Ranking');
-			$ranking_data = $this->Ranking->getSubjectRanking($user_id);
-			
-			$this->set('rankings', $ranking_data);
 			$this->set('progresses', $progresses);
 			//$this->set('scores', $scores);
 			$this->set('cover', $cover);
@@ -496,6 +497,7 @@ class PeopleController extends AppController {
 				
 			//pr($chart);
 			$this->set('chart', json_encode($chart));
+			
 		}
 		
     }

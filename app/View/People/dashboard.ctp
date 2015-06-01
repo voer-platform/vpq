@@ -177,11 +177,19 @@
 			$pass = (isset($cover[$subj['Subject']['id']]['pass']))?$cover[$subj['Subject']['id']]['pass']:0;
 			$total = (isset($cover[$subj['Subject']['id']]['total']))?$cover[$subj['Subject']['id']]['total']:0;
 			$completeness = ($pass)?round(($cover[$subj['Subject']['id']]['pass']/$cover[$subj['Subject']['id']]['total'])*100):0;
+			if(isset($rankings[$subj['Subject']['id']]))
+			{
+				$rankingInfo = 'Bạn đang đứng vị trí số '.$rankings[$subj['Subject']['id']].' trong bảng xếp hạng của môn '.$subj['Subject']['name'];
+			}
+			else
+			{
+				$rankingInfo = 'Bạn chưa có tên trong bảng xếp hạng của môn '.$subj['Subject']['name'];
+			}
 	?>
 		<div class="panel panel-default">
 		<div class="panel-body">
 		<div class="row">
-			<div class="col-md-2">
+			<div class="col-md-2" style="width: 21%;">
 					<a class="nudl no-style" href="<?php 
 						echo $this->Html->url(
 							array(
@@ -192,7 +200,11 @@
 						); 
 					?>">
 						<h2 class="dashboard-subject-name"><?php echo $this->Html->image('subjects/'.$subj['Subject']['id'].'.png'); ?> <?php echo $subj['Subject']['name']; ?></h2>
-					</a>	
+					</a>
+					<span class="badge badge-info overviews-ranking hasDetail" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="top" data-content="<?=$rankingInfo;?>">
+						<span class="glyphicon glyphicon-star"></span>
+						<?=(isset($rankings[$subj['Subject']['id']]))?$rankings[$subj['Subject']['id']]:0;?>
+					</span>
 					<p>
 					<a class="btn btn-default btn-sm bl wa left" href="<?php 
 						echo $this->Html->url(
@@ -220,7 +232,7 @@
 					
 					
 				</div>		
-			<div class="col-md-4 <?php echo ($noTest)?'blur3':''; ?>" style="border-left: solid 1px #C0D0E0;">
+			<div class="col-md-4 <?php echo ($noTest)?'blur3':''; ?>" style="border-left: solid 1px #C0D0E0;width:33%;">
 				<a class="nudl no-style" href="<?php 
 						echo $this->Html->url(
 							array(
@@ -247,7 +259,7 @@
 					Bạn đã thực hành <b class="num-pass"><?php echo $pass; ?></b> trên tổng số <b class="num-total"><?php echo $total; ?></b> bài học
 				</div>
 			</div>
-			<div class="col-md-6 <?php echo ($noTest)?'blur3':''; ?>">
+			<div class="col-md-6 <?php echo ($noTest)?'blur3':''; ?>" style="width:46%;">
 				<div class="chart" id="chart-subject-<?php echo $subj['Subject']['id']; ?>"></div>
 			</div>
 		</div>	

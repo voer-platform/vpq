@@ -199,6 +199,14 @@ ul.dropdown-menu li > a {
 	border-color:#428BCA;
 }
 
+.overviews-ranking {
+	position: absolute;
+	top: 4px;
+	right: 15px;
+	background:#00B2FF;
+	cursor:pointer;
+}
+
 .right {text-align:right;}
 .left {text-align:left;}
 .ib {display:inline-block;}
