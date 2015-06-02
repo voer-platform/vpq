@@ -77,7 +77,7 @@
 							</div>
 							<div  class='row' style='margin:0px;margin-bottom:5px;'>						
 								<div class='col-sm-12' style='padding-left:10px;padding-right:10px;padding-bottom:2px;padding-top:7px;'>							
-									<div class="fb-share-button col-sm-6" data-href="<?php echo Router::url($this->here, true); ?>" data-layout="button_count" style='padding-left:0px;'></div>
+									<div class="fb-share-button col-sm-6" data-href="<?php echo Router::url('/', true); ?>" data-layout="button_count" style='padding-left:0px;'></div>
 									<div class='col-sm-6' style='padding-left:5px;padding-right:0px;'>
 									<a class='btn btn-success bl fw' href="javascript:void(0);" id="invite-btn" onclick="FBInvite()" style="padding:0px;margin:0px;width:100px;float:right;"><span class='glyphicon glyphicon-send'></span>&nbsp;&nbsp;<?php echo __('Invite'); ?></a>
 									</div>
