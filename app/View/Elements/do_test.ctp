@@ -139,6 +139,7 @@
     function submitTest(){
         $answered = $('ul.pagination').find('li.chose');
         if ($count == $answered.size()){
+			$('#btn-submit').text('Đang nộp bài');
 			var a = {};
 			for(i=0;i<datatime.length;i++){
 				a[datatime[i]['id']] = datatime[i]['time']
@@ -176,6 +177,7 @@
         $('ul#questions').simplePaging({pageSize: "1"});
 
         $('button#sureSubmit').on('click', function(){
+			$('button#sureSubmit').text('Đang nộp bài');
 			var a = {};
 			for(i=0;i<datatime.length;i++){
 				a[datatime[i]['id']] = datatime[i]['time']
@@ -191,6 +193,7 @@
         });
 		
 		$('button#sureSubmit2').on('click', function(){
+			$('button#sureSubmit2').text('Đang nộp bài');
 			var a = {};
 			for(i=0;i<datatime.length;i++){
 				a[datatime[i]['id']] = datatime[i]['time']
