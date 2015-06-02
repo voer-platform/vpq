@@ -915,6 +915,14 @@ class AdminController extends AppController {
 				}				
 			}
 			if($error_pull){
+				$this->ImportQuestion->updateAll(
+								array(
+									'check_question'=>2,
+								),
+								array(
+									'id'=>$data_question[0]['ImportQuestion']['id'],
+								)
+					);
 				$this->Session->setFlash(__('Duyệt thất bại, câu hỏi này đã tồn tại.'));
 			}else{
 				$this->Question->begin(); 
