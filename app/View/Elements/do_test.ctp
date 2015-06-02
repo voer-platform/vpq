@@ -140,7 +140,7 @@
         $answered = $('ul.pagination').find('li.chose');
         if ($count == $answered.size()){
 			$('.nb').attr('disabled','disabled');
-			$$('.nb').text('Đang nộp bài');
+			$('.nb').text('Đang nộp bài');
 			var a = {};
 			for(i=0;i<datatime.length;i++){
 				a[datatime[i]['id']] = datatime[i]['time']
