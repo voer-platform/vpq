@@ -79,7 +79,7 @@
         <div id="submitTest">
             <?php echo $this->Form->button("Nộp bài", array(
                 'type' => 'button',//__('Submit your answers'), 
-                'class' => 'btn btn-warning btn-lg', 
+                'class' => 'btn btn-warning btn-lg nb', 
                 'onclick' => 'submitTest()',
                 'id' => 'btn-submit')); ?>
         </div>   
@@ -98,7 +98,7 @@
             </div>
             <div class="modal-footer">
                 <button id="autoSubmit" type="button" class="btn btn-default" data-dismiss="modal">Làm tiếp</button>
-                <button id="sureSubmit" type="button" class="btn btn-danger" data-dismiss="modal">Nộp bài</button>
+                <button id="sureSubmit" type="button" class="btn btn-danger nb" data-dismiss="modal">Nộp bài</button>
             </div>
         </div>
     </div>
@@ -114,7 +114,7 @@
             </div>
             <div class="modal-footer">
                 <button id="autoSubmit2" type="button" class="btn btn-default" data-dismiss="modal">Xem lại</button>
-                <button id="sureSubmit2" type="button" class="btn btn-danger" data-dismiss="modal">Nộp bài</button>
+                <button id="sureSubmit2" type="button" class="btn btn-danger nb" data-dismiss="modal">Nộp bài</button>
             </div>
         </div>
     </div>
@@ -139,7 +139,8 @@
     function submitTest(){
         $answered = $('ul.pagination').find('li.chose');
         if ($count == $answered.size()){
-			$('#btn-submit').text('Đang nộp bài');
+			$('.nb').attr('disabled','disabled');
+			$$('.nb').text('Đang nộp bài');
 			var a = {};
 			for(i=0;i<datatime.length;i++){
 				a[datatime[i]['id']] = datatime[i]['time']
@@ -177,7 +178,8 @@
         $('ul#questions').simplePaging({pageSize: "1"});
 
         $('button#sureSubmit').on('click', function(){
-			$('button#sureSubmit').text('Đang nộp bài');
+			$('.nb').attr('disabled','disabled');
+			$('.nb').text('Đang nộp bài');
 			var a = {};
 			for(i=0;i<datatime.length;i++){
 				a[datatime[i]['id']] = datatime[i]['time']
@@ -193,7 +195,8 @@
         });
 		
 		$('button#sureSubmit2').on('click', function(){
-			$('button#sureSubmit2').text('Đang nộp bài');
+			$('.nb').attr('disabled','disabled');
+			$('.nb').text('Đang nộp bài');
 			var a = {};
 			for(i=0;i<datatime.length;i++){
 				a[datatime[i]['id']] = datatime[i]['time']
