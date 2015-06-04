@@ -581,6 +581,13 @@ class TestsController extends AppController {
             // data
             $user = $this->Session->read('Auth.User');
             $testId = $this->request->data('testID');
+			
+			$this->loadModel('Test');
+			if($this->Test->find('count', array('conditions'=>array('Test.id'=>$testId)))==0)
+			{
+				$this->redirect('chooseTest');
+			}	
+			
             $numberOfQuestions = $this->request->data['numberOfQuestions'];
 
             //counter to determine score
