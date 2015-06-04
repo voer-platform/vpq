@@ -178,34 +178,20 @@
 							<th style='text-align:center;width:350px;background-color:#E0FDFF;'>Bài</th>
 							<th style='width:45px;text-align:center;background-color:#E0FDFF;'>Đ</th>
 							<th style='width:45px;text-align:center;background-color:#E0FDFF;'>S</th>
-							<th style='background-color:#E0FDFF;'></th>
 						<tr/>						
 					</table>
 				</div>
-				<div class='row' style='overflow:auto;height:200px;margin-left:3px;margin-right:3px;width:653px;'>
-					<table class='table table-striped table-bordered' style='font-size:12px;'>
-						<?php if(count($table1)<6){ ?>
-							<?php foreach($table1 as $data): ?>
-								<tr>
-									<td style='width:45;'><?php echo $data['grade_name'];?></td>
-									<td style='text-align:left;width:150px;'><?php echo $data['cat_name'];?></td>
-									<td style='text-align:left;width:350px;'><?php echo $data['sub_name'];?></td>
-									<td style='width:45px;text-align:center;'><?php echo $data['true'];?></td>
-									<td style='width:45px;text-align:center;'><?php echo $data['false'];?></td>
-									<td style='width:17px;'></td>
-								</tr>
-							<?php endforeach; ?>						
-						<?php }else{ ?>
-							<?php foreach($table1 as $data): ?>
-								<tr>
-									<td style='width:45;'><?php echo $data['grade_name'];?></td>
-									<td style='text-align:left;width:150px;'><?php echo $data['cat_name'];?></td>
-									<td style='text-align:left;width:350px;'><?php echo $data['sub_name'];?></td>
-									<td style='width:45px;text-align:center;'><?php echo $data['true'];?></td>
-									<td style='width:45px;text-align:center;'><?php echo $data['false'];?></td>								
-								</tr>
-							<?php endforeach; ?>
-						<?php } ?>
+				<div class='row table-scroll' style='margin-left:3px;margin-right:3px;'>
+					<table class='table table-striped table-bordered' style='font-size:12px;width:653px;'>
+						<?php foreach($table1 as $data): ?>
+							<tr>
+								<td style='width:45px;'><?php echo $data['grade_name'];?></td>
+								<td style='text-align:left;width:150px;'><?php echo $data['cat_name'];?></td>
+								<td style='text-align:left;width:350px;'><?php echo $data['sub_name'];?></td>
+								<td style='width:45px;text-align:center;'><?php echo $data['true'];?></td>
+								<td style='width:45px;text-align:center;'><?php echo $data['false'];?></td>								
+							</tr>
+						<?php endforeach; ?>
 					</table>
 				</div>
 			</div>
@@ -213,9 +199,7 @@
 				<button class="btn show-answers btn-primary" id="btn-show-answers" data-dismiss="modal"><?php echo __('Show Answers'); ?></button>
                <button class="btn show-solutions btn-primary" id="btn-show-solutions" data-dismiss="modal"><?php echo __('Show Solutions'); ?></button>
 			   <?php echo $this->Html->link('Quay lại môn học', array('controller' => 'people', 'action' => 'dashboard',$subject['Subject']['id']), array('class' => 'btn btn-dashboard btn-primary')) ?>
-			   <button type='button' class='btn' style='background-color:#4c69ba;color:#fff;' name='btn_share' id='btn_share'><span><?php echo $this->Html->image('logo_fb1.png',array('style'=>'max-width:20px;')); ?> </span><b>Chia sẻ</b></button>
-				<!--<?php echo $this->Html->image('button_share.png',array('class'=>'btn','style'=>'height:50px;')); ?>-->
-			   <div class="fb-share-button" data-href="<?php echo Router::url($this->here, true); ?>" data-layout="button_count"></div>
+			   <div class="fb-share-button" style='float:left' id='fb-share-modal' data-href="<?php echo Router::url($this->here, true); ?>" data-layout="button"></div>
 			</div>
         </div>
     </div>
@@ -239,11 +223,7 @@
 </div>
 
 <script type="text/javascript">
-	$(document).on('click','#btn_share',function(){
-		$('.fb-share-button').click();
-	});
     $(document).ready(function(){
-		$('.fb-share-button').hide();
 		$('[data-toggle="popover"]').popover({trigger: 'hover','placement': 'right'});
 		$('#modalicon').modal({
                 backdrop: true
