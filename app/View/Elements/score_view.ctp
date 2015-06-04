@@ -121,93 +121,93 @@
             <!--<?php echo $this->Html->link(__('Go to dashboard'), array('controller' => 'people', 'action' => 'dashboard'), array('class' => 'btn btn-dashboard')) ?>-->
 			<?php echo $this->Html->link('Quay lại môn học', array('controller' => 'people', 'action' => 'dashboard',$subject['Subject']['id']), array('class' => 'btn btn-dashboard btn-primary')) ?>
             <!--<?php echo $this->Html->link(__('Take this test again'), array('controller' => 'tests', 'action' => 'doTest', 0, 0, $test_id), array('class' => 'btn btn-retake')) ?>-->
-			<button type='button' class='btn btn-primary' name='detail' id='detail'>kết quả bài làm</button>
         </div>
     </div>
     <div style="clear:both;"></div>
 </div>
 
 <div id="modalicon" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
-    <div class="modal-dialog modal-sm" style='margin-top:100px;'>
+    <div class="modal-dialog modal-sm" style='margin-top:100px;width:700px;'>
         <div class="modal-content">
-			<div class="modal-body" style='text-align:center'>
-				<table style='border:0px;width:100%;'>
-					<tr>
-						<td rowspan='2' style='width:40%;'>
-							<?php if(round($correct/$numberOfQuestions,2)*10>=8): ?>
-								<?php echo $this->Html->image('icon1.png',array('style'=>'max-width:224px')); ?>
-							<?php endif; ?>
-							<?php if(round($correct/$numberOfQuestions,2)*10<8 && round($correct/$numberOfQuestions,2)*10>4): ?>
-								<?php echo $this->Html->image('icon7.png',array('style'=>'max-width:224px')); ?>
-							<?php endif;?>
-							<?php if(round($correct/$numberOfQuestions,2)*10<5): ?>
-								<?php echo $this->Html->image('icon8.png',array('style'=>'max-width:224px')); ?>
-							<?php endif;?>
-						</td>
-						<td style='text-align:center;width:60%;'>
-							<?php if(round($correct/$numberOfQuestions,2)*10>=8): ?>
-							<span style='color:red;font-size:30px;'>Chúc mừng bạn!<span><br/>
-							<?php endif;?>
-							<?php if(round($correct/$numberOfQuestions,2)*10<8 && round($correct/$numberOfQuestions,2)*10>4): ?>
-							<span style='color:red;font-size:30px;'>Cố gắng lên bạn nhé!<span><br/>
-							<?php endif;?>
-							<?php if(round($correct/$numberOfQuestions,2)*10<5): ?>
-							<span style='color:red;font-size:30px;'>Cố gắng hết mình nào!<span><br/>
-							<?php endif;?>
-							<span style='color:#259013;font-size:120px;'>
-								<?php echo round($correct/$numberOfQuestions,2)*10 ?>
-							</span>						
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<?php echo __('Correct').': '.'<b>'.$correct.'</b>'.' '.__('on').' '.__('Total').': '.'<b>'.$numberOfQuestions.'</b>'.' '.__('questions').'.'; ?>
-						</td>
-					</tr>
-				</table>					
+			<div class="modal-body" style='text-align:center'>				
+				<div class='row'>
+					<table style='border:0px;width:100%;'>
+						<tr>
+							<td style='width:110px;'>
+								<div style='border:3px solid #259013;border-radius:50px;margin-left:10px;margin-right:10px;'>
+									<span style='color:#259013;font-size:60px'>
+										<?php echo round($correct/$numberOfQuestions,2)*10 ?>										
+									</span>
+								</div>
+							</td>
+							<td style='text-align:left;width:30px;'>
+							</td>
+							<td style='text-align:left;width:350px;'>
+								<span style='font-size:17px;'><?php echo __('Correct').': '.'<b>'.$correct.'</b>'.' '.__('on').' '.__('Total').': '.'<b>'.$numberOfQuestions.'</b>'.' '.__('questions').'.'; ?></span><br/>
+								<?php if(round($correct/$numberOfQuestions,2)*10>=8): ?>
+								<span style='color:red;font-size:30px;'>Chúc mừng bạn!<span><br/>
+								<?php endif;?>
+								<?php if(round($correct/$numberOfQuestions,2)*10<8 && round($correct/$numberOfQuestions,2)*10>4): ?>
+								<span style='color:red;font-size:30px;'>Cố gắng lên bạn nhé!<span><br/>
+								<?php endif;?>
+								<?php if(round($correct/$numberOfQuestions,2)*10<5): ?>
+								<span style='color:red;font-size:30px;'>Cố gắng hết mình nào!<span><br/>
+								<?php endif;?>					
+							</td>
+							<td>
+								<?php if(round($correct/$numberOfQuestions,2)*10>=8): ?>
+									<?php echo $this->Html->image('icon1.png',array('style'=>'max-width:100px')); ?>
+								<?php endif; ?>
+								<?php if(round($correct/$numberOfQuestions,2)*10<8 && round($correct/$numberOfQuestions,2)*10>4): ?>
+									<?php echo $this->Html->image('icon7.png',array('style'=>'max-width:100px')); ?>
+								<?php endif;?>
+								<?php if(round($correct/$numberOfQuestions,2)*10<5): ?>
+									<?php echo $this->Html->image('icon8.png',array('style'=>'max-width:100px')); ?>
+								<?php endif;?>
+							</td>
+						</tr>
+						
+					</table>
+				</div>
+				<br/>
+				<div class='row' style='margin-left:3px;margin-right:3px;'>
+					<table class='table table-bordered' style='margin:0px;width:653px;'>
+						<tr>
+							<th style='width:45px;text-align:center;background-color:#E0FDFF;'>Lớp</th>
+							<th style='text-align:center;width:150px;background-color:#E0FDFF;'>Chương</th>
+							<th style='text-align:center;width:350px;background-color:#E0FDFF;'>Bài</th>
+							<th style='width:45px;text-align:center;background-color:#E0FDFF;'>Đ</th>
+							<th style='width:45px;text-align:center;background-color:#E0FDFF;'>S</th>
+							<th style='background-color:#E0FDFF;'></th>
+						<tr/>						
+					</table>
+				</div>
+				<div class='row' style='overflow:auto;height:200px;margin-left:3px;margin-right:3px;width:653px;'>
+					<table class='table table-striped table-bordered' style='font-size:12px;'>
+						<?php foreach($table1 as $data): ?>
+							<tr>
+								<td style='width:45;'><?php echo $data['grade_name'];?></td>
+								<td style='text-align:left;width:150px;'><?php echo $data['cat_name'];?></td>
+								<td style='text-align:left;width:350px;'><?php echo $data['sub_name'];?></td>
+								<td style='width:45px;text-align:center;'><?php echo $data['true'];?></td>
+								<td style='width:45px;text-align:center;'><?php echo $data['false'];?></td>
+							</tr>
+						<?php endforeach; ?>
+					</table>
+				</div>
 			</div>
 			<div class="modal-footer">				
 				<button class="btn show-answers btn-primary" id="btn-show-answers" data-dismiss="modal"><?php echo __('Show Answers'); ?></button>
                <button class="btn show-solutions btn-primary" id="btn-show-solutions" data-dismiss="modal"><?php echo __('Show Solutions'); ?></button>
 			   <?php echo $this->Html->link('Quay lại môn học', array('controller' => 'people', 'action' => 'dashboard',$subject['Subject']['id']), array('class' => 'btn btn-dashboard btn-primary')) ?>
+			   <button type='button' class='btn' style='background-color:#4c69ba;color:#fff;' name='btn_share' id='btn_share'><span><?php echo $this->Html->image('logo_fb1.png',array('style'=>'max-width:20px;')); ?> </span><b>Chia sẻ</b></button>
+				<!--<?php echo $this->Html->image('button_share.png',array('class'=>'btn','style'=>'height:50px;')); ?>-->
 			   <div class="fb-share-button" data-href="<?php echo Router::url($this->here, true); ?>" data-layout="button_count"></div>
 			</div>
         </div>
     </div>
 </div>
 
-<div id="modal_detail" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
-    <div class="modal-dialog modal-sm" style='width:80%'>
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel">Kết quả bài làm</h4>
-            </div>
-            <div class="modal-body" style='text-align:center'>
-                <table class='table table-striped table-bordered'>
-					<tr>
-						<th style='width:5%;text-align:center;'>Lớp</th>
-						<th style='text-align:center;'>Chương</th>
-						<th style='text-align:center;'>Bài</th>
-						<th style='width:10%;text-align:center;'>Số câu đúng</th>
-						<th style='width:10%;text-align:center;'>Số câu sai</th>
-					<tr/>
-					<?php foreach($table1 as $data): ?>
-						<tr>
-							<td><?php echo $data['grade_name'];?></td>
-							<td style='text-align:left;'><?php echo $data['cat_name'];?></td>
-							<td style='text-align:left;'><?php echo $data['sub_name'];?></td>
-							<td><?php echo $data['true'];?></td>
-							<td><?php echo $data['false'];?></td>
-						</tr>
-					<?php endforeach; ?>
-				</table>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
 
 <div id="msgNotice" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
     <div class="modal-dialog modal-sm" style="width:30%;">
@@ -226,10 +226,8 @@
 </div>
 
 <script type="text/javascript">
-    $(document).on('click','#detail',function(){
-		$('#modal_detail').modal({
-                backdrop: true
-            });
+	$(document).on('click','#btn_share',function(){
+		$('.fb-share-button').click();
 	});
     $(document).ready(function(){
 		$('[data-toggle="popover"]').popover({trigger: 'hover','placement': 'right'});
