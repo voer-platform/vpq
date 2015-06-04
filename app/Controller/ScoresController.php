@@ -159,9 +159,50 @@ class ScoresController extends AppController {
 				'score_id' => $id
 			)
 		));
-
+		$this->loadModel('Answer');
+		$table=array();
+		$table1=array();
 		$questionsIds = array();
-		foreach($scoreData as $data){$questionIds[] = $data['ScoresQuestion']['question_id'];}
+		foreach($scoreData as $data){
+			$questionIds[] = $data['ScoresQuestion']['question_id'];
+			$result = $this->Answer->find('first', array(
+                'recursive' => -1,
+                'conditions' => array(
+                    'question_id' => $data['ScoresQuestion']['question_id'],
+                    'Answer.order' =>  $data['ScoresQuestion']['answer'],
+                    )
+                ));
+			if(!empty($result) && $result['Answer']['correctness'] == 1){
+				$table[$data['ScoresQuestion']['question_id']]=1;
+			}else{
+				$table[$data['ScoresQuestion']['question_id']]=0;
+			}
+		}
+		foreach($table as $key=>$value){
+			$this->loadModel('QuestionsSubcategory');
+			$tk=$this->QuestionsSubcategory->query("
+										Select * from questions_subcategories as qs
+										INNER JOIN subcategories as s ON qs.subcategory_id=s.id
+										INNER JOIN categories as c ON s.category_id=c.id
+										INNER JOIN grades as g ON c.grade_id=g.id
+										WHERE qs.question_id='$key'
+			");
+			if(!array_key_exists($tk[0]['s']['id'],$table1)){				
+						$table1[$tk[0]['s']['id']]=array(
+									'grade_name'=>$tk[0]['g']['name'],
+									'cat_name'=>$tk[0]['c']['name'],
+									'sub_name'=>$tk[0]['s']['name'],
+									'true'=>0,
+									'false'=>0,
+									);
+					}
+			if($value==1){
+						$table1[$tk[0]['s']['id']]['true']=$table1[$tk[0]['s']['id']]['true']+1;
+			}else{
+						$table1[$tk[0]['s']['id']]['false']=$table1[$tk[0]['s']['id']]['false']+1;
+			}
+		}
+		$this->set('table1',$table1);
 
 		$this->loadModel('Question');
 		$questions = $this->Question->getQuestionsFromIds($questionIds);

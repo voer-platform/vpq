@@ -121,6 +121,7 @@
             <!--<?php echo $this->Html->link(__('Go to dashboard'), array('controller' => 'people', 'action' => 'dashboard'), array('class' => 'btn btn-dashboard')) ?>-->
 			<?php echo $this->Html->link('Quay lại môn học', array('controller' => 'people', 'action' => 'dashboard',$subject['Subject']['id']), array('class' => 'btn btn-dashboard btn-primary')) ?>
             <!--<?php echo $this->Html->link(__('Take this test again'), array('controller' => 'tests', 'action' => 'doTest', 0, 0, $test_id), array('class' => 'btn btn-retake')) ?>-->
+			<button type='button' class='btn btn-primary' name='detail' id='detail'>kết quả từng bài</button>
         </div>
     </div>
     <div style="clear:both;"></div>
@@ -175,6 +176,39 @@
     </div>
 </div>
 
+<div id="modal_detail" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog modal-sm" style='width:80%'>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Thông báo</h4>
+            </div>
+            <div class="modal-body" style='text-align:center'>
+                <table class='table table-striped table-bordered'>
+					<tr>
+						<th style='width:5%;text-align:center;'>Lớp</th>
+						<th style='text-align:center;'>Chương</th>
+						<th style='text-align:center;'>Bài</th>
+						<th style='width:10%;text-align:center;'>Số câu đúng</th>
+						<th style='width:10%;text-align:center;'>Số câu sai</th>
+					<tr/>
+					<?php foreach($table1 as $data): ?>
+						<tr>
+							<td><?php echo $data['grade_name'];?></td>
+							<td style='text-align:left;'><?php echo $data['cat_name'];?></td>
+							<td style='text-align:left;'><?php echo $data['sub_name'];?></td>
+							<td><?php echo $data['true'];?></td>
+							<td><?php echo $data['false'];?></td>
+						</tr>
+					<?php endforeach; ?>
+				</table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div id="msgNotice" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
     <div class="modal-dialog modal-sm" style="width:30%;">
         <div class="modal-content">
@@ -192,7 +226,11 @@
 </div>
 
 <script type="text/javascript">
-    
+    $(document).on('click','#detail',function(){
+		$('#modal_detail').modal({
+                backdrop: true
+            });
+	});
     $(document).ready(function(){
 		$('[data-toggle="popover"]').popover({trigger: 'hover','placement': 'right'});
 		$('#modalicon').modal({
