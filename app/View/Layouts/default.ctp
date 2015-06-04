@@ -38,7 +38,7 @@
     <?php echo $this->Html->script('jquery.multiselect.js');?>
 	<?php echo $this->Html->script('bootstrap-datepicker.js');?>
 	<?php echo $this->Html->script('select2.min.js');?>
-	<?php echo $this->Html->script('global.min.js');?>
+	<?php echo $this->Html->script('global.min.js?v=1.3');?>
 	<?php echo $this->Html->script('jquery.slimscroll.min.js');?>
     <!-- if production server -->
     <?php if($_SERVER['HTTP_HOST'] == 'pls.edu.vn'): ?>
