@@ -184,15 +184,28 @@
 				</div>
 				<div class='row' style='overflow:auto;height:200px;margin-left:3px;margin-right:3px;width:653px;'>
 					<table class='table table-striped table-bordered' style='font-size:12px;'>
-						<?php foreach($table1 as $data): ?>
-							<tr>
-								<td style='width:45;'><?php echo $data['grade_name'];?></td>
-								<td style='text-align:left;width:150px;'><?php echo $data['cat_name'];?></td>
-								<td style='text-align:left;width:350px;'><?php echo $data['sub_name'];?></td>
-								<td style='width:45px;text-align:center;'><?php echo $data['true'];?></td>
-								<td style='width:45px;text-align:center;'><?php echo $data['false'];?></td>
-							</tr>
-						<?php endforeach; ?>
+						<?php if(count($table1)<6){ ?>
+							<?php foreach($table1 as $data): ?>
+								<tr>
+									<td style='width:45;'><?php echo $data['grade_name'];?></td>
+									<td style='text-align:left;width:150px;'><?php echo $data['cat_name'];?></td>
+									<td style='text-align:left;width:350px;'><?php echo $data['sub_name'];?></td>
+									<td style='width:45px;text-align:center;'><?php echo $data['true'];?></td>
+									<td style='width:45px;text-align:center;'><?php echo $data['false'];?></td>
+									<td style='width:17px;'></td>
+								</tr>
+							<?php endforeach; ?>						
+						<?php }else{ ?>
+							<?php foreach($table1 as $data): ?>
+								<tr>
+									<td style='width:45;'><?php echo $data['grade_name'];?></td>
+									<td style='text-align:left;width:150px;'><?php echo $data['cat_name'];?></td>
+									<td style='text-align:left;width:350px;'><?php echo $data['sub_name'];?></td>
+									<td style='width:45px;text-align:center;'><?php echo $data['true'];?></td>
+									<td style='width:45px;text-align:center;'><?php echo $data['false'];?></td>								
+								</tr>
+							<?php endforeach; ?>
+						<?php } ?>
 					</table>
 				</div>
 			</div>
@@ -230,6 +243,7 @@
 		$('.fb-share-button').click();
 	});
     $(document).ready(function(){
+		$('.fb-share-button').hide();
 		$('[data-toggle="popover"]').popover({trigger: 'hover','placement': 'right'});
 		$('#modalicon').modal({
                 backdrop: true
