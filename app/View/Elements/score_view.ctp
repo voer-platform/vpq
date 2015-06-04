@@ -134,13 +134,11 @@
 					<table style='border:0px;width:100%;'>
 						<tr>
 							<td style='width:110px;'>
-								<div style='border:3px solid #259013;border-radius:65px;margin-left:10px;margin-right:10px;padding:10px;width:110px;'>
-									<span style='color:#259013;font-size:60px'>
+								<div style='border:3px solid #259013;border-radius:79px;margin-left:16px;margin-right:10px;padding:10px;width:85px;height:85px;line-height:60px;'>
+									<span style='color:#259013;font-size:40px'>
 										<?php echo round($correct/$numberOfQuestions,2)*10 ?>										
 									</span>
 								</div>
-							</td>
-							<td style='text-align:left;width:30px;'>
 							</td>
 							<td style='text-align:left;width:350px;'>
 								<span style='font-size:17px;'><?php echo __('Correct').': '.'<b>'.$correct.'</b>'.' '.__('on').' '.__('Total').': '.'<b>'.$numberOfQuestions.'</b>'.' '.__('questions').'.'; ?></span><br/>
@@ -154,7 +152,7 @@
 								<span style='color:red;font-size:30px;'>Cố gắng hết mình nào!<span><br/>
 								<?php endif;?>					
 							</td>
-							<td>
+							<td style='width:110px;'>
 								<?php if(round($correct/$numberOfQuestions,2)*10>=8): ?>
 									<?php echo $this->Html->image('icon1.png',array('style'=>'max-width:100px')); ?>
 								<?php endif; ?>
