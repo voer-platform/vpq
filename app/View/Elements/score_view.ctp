@@ -121,7 +121,7 @@
             <!--<?php echo $this->Html->link(__('Go to dashboard'), array('controller' => 'people', 'action' => 'dashboard'), array('class' => 'btn btn-dashboard')) ?>-->
 			<?php echo $this->Html->link('Quay lại môn học', array('controller' => 'people', 'action' => 'dashboard',$subject['Subject']['id']), array('class' => 'btn btn-dashboard btn-primary')) ?>
             <!--<?php echo $this->Html->link(__('Take this test again'), array('controller' => 'tests', 'action' => 'doTest', 0, 0, $test_id), array('class' => 'btn btn-retake')) ?>-->
-			<button type='button' class='btn btn-primary' name='detail' id='detail'>kết quả làm bài</button>
+			<button type='button' class='btn btn-primary' name='detail' id='detail'>kết quả bài làm</button>
         </div>
     </div>
     <div style="clear:both;"></div>
@@ -180,7 +180,7 @@
     <div class="modal-dialog modal-sm" style='width:80%'>
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel">Kết quả làm bài</h4>
+                <h4 class="modal-title" id="myModalLabel">Kết quả bài làm</h4>
             </div>
             <div class="modal-body" style='text-align:center'>
                 <table class='table table-striped table-bordered'>
