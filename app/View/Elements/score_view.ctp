@@ -134,7 +134,7 @@
 					<table style='border:0px;width:100%;'>
 						<tr>
 							<td style='width:110px;'>
-								<div style='border:3px solid #259013;border-radius:50px;margin-left:10px;margin-right:10px;'>
+								<div style='border:3px solid #259013;border-radius:65px;margin-left:10px;margin-right:10px;padding:10px;'>
 									<span style='color:#259013;font-size:60px'>
 										<?php echo round($correct/$numberOfQuestions,2)*10 ?>										
 									</span>
