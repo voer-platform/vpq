@@ -159,9 +159,66 @@ class ScoresController extends AppController {
 				'score_id' => $id
 			)
 		));
-
+		$this->loadModel('Answer');
+		$table=array();
+		$table1=array();
 		$questionsIds = array();
-		foreach($scoreData as $data){$questionIds[] = $data['ScoresQuestion']['question_id'];}
+		foreach($scoreData as $data){
+			$questionIds[] = $data['ScoresQuestion']['question_id'];
+			$result = $this->Answer->find('first', array(
+                'recursive' => -1,
+                'conditions' => array(
+                    'question_id' => $data['ScoresQuestion']['question_id'],
+                    'Answer.order' =>  $data['ScoresQuestion']['answer'],
+                    )
+                ));
+			if(!empty($result) && $result['Answer']['correctness'] == 1){
+				$table[$data['ScoresQuestion']['question_id']]=1;
+			}else{
+				$table[$data['ScoresQuestion']['question_id']]=0;
+			}
+		}
+		foreach($table as $key=>$value){
+			$this->loadModel('QuestionsSubcategory');
+			$tk=$this->QuestionsSubcategory->query("
+										Select * from questions_subcategories as qs
+										INNER JOIN subcategories as s ON qs.subcategory_id=s.id
+										INNER JOIN categories as c ON s.category_id=c.id
+										INNER JOIN grades as g ON c.grade_id=g.id
+										WHERE qs.question_id='$key'
+			");
+			$cat_name=explode(' ',$tk[0]['c']['name']);
+			if(count($cat_name)>4){
+				$cat_name=$cat_name[0].' '.$cat_name[1].' '.$cat_name[2].' '.$cat_name[3].'...';
+			}else{
+				$cat_name=$tk[0]['c']['name'];
+			}
+			$sub_name=explode(' ',$tk[0]['s']['name']);
+			$sub_name1='';
+			if(count($sub_name)>10){
+				for($i=0;$i<10;$i++){
+					$sub_name1=$sub_name1.' '.$sub_name[$i];
+				}
+				$sub_name1=$sub_name1.'...';
+			}else{
+				$sub_name1=$tk[0]['s']['name'];
+			}
+			if(!array_key_exists($tk[0]['s']['id'],$table1)){				
+						$table1[$tk[0]['s']['id']]=array(
+									'grade_name'=>$tk[0]['g']['name'],
+									'cat_name'=>$cat_name,
+									'sub_name'=>$sub_name1,
+									'true'=>0,
+									'false'=>0,
+									);
+					}
+			if($value==1){
+						$table1[$tk[0]['s']['id']]['true']=$table1[$tk[0]['s']['id']]['true']+1;
+			}else{
+						$table1[$tk[0]['s']['id']]['false']=$table1[$tk[0]['s']['id']]['false']+1;
+			}
+		}
+		$this->set('table1',$table1);
 
 		$this->loadModel('Question');
 		$questions = $this->Question->getQuestionsFromIds($questionIds);
