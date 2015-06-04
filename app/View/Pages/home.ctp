@@ -2,7 +2,7 @@
 <meta property="og:url" content="<?php echo Router::url( $this->here, true ); ?>" /> 
 <meta property="og:title" content="<?php echo __('PLS - Hệ thống cá nhân hóa học tập'); ?>" />
 <meta property="og:description" content="<?php echo __('Ôn thi đại học theo cách của bạn'); ?>" /> 
-<meta property="og:image" content="<?php echo $this->Html->url(Router::url($this->here, true).'img/share.jpg'); ?>" />
+<meta property="og:image" content="<?php echo $this->Html->url(Router::url($this->here, true).'img/share4.jpg'); ?>" />
 <?php $this->end(); ?>
 <?php echo $this->Html->css('home.css');?>
 <style>
@@ -108,6 +108,14 @@
 	  border-right: solid 1px #314B89;
 	  padding-right: 9px;
 	 } 
+	 .btn.btn-orange {
+		color:#fff;
+		background-color: #F47920;
+		border-color: #F47920;
+	}
+	.btn.btn-orange:hover {
+		background-color:#FF6B00;
+	}
 </style>
 <div id="banner">
 	<div class="banner-overlay"></div>
@@ -121,9 +129,11 @@
 				<p style="font-size: 20px;"><span class="glyphicon glyphicon-ok"></span>&nbsp; Phương thức làm bài mềm dẻo, chỉ từ 5 phút mỗi bài</p>
 				<p style="font-size: 20px;"><span class="glyphicon glyphicon-ok"></span>&nbsp; Tự động đánh giá kết quả chi tiết và chính xác</p>
 				<br/>
-				<a href="javascript:void(0);" class="login-open btn btn-ghost btn-lg" data-toggle="modal" data-target="#login-modal" data-section="home-banner">
-					Đăng nhập <span class="glyphicon glyphicon-chevron-right"></span>
+				
+				<a href="javascript:void(0);" class="login-open btn btn-orange btn-lg" data-toggle="modal" data-target="#login-modal" data-section="home-banner">
+					Thử sức ngay <span class="glyphicon glyphicon-chevron-right"></span>
 				</a>
+				<p style="font-size: 16px;margin-top: 7px;">Chỉ mất 3s đăng ký</p>
 				<br/><br/><br/><br/>
 				<!--<p style="font-size: 16px;">
 					<ul class="counter">

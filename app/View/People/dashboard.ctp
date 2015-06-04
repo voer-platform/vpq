@@ -228,7 +228,7 @@
 								$subj['Subject']['id'],
 							)
 						); 
-					?>" class="btn btn-sm btn-primary btn-test pls-test-btn fw bl left" data-teston="subject">
+					?>" class="btn btn-sm btn-orange btn-test pls-test-btn fw bl left" data-teston="subject">
 						<span class="glyphicon glyphicon-play"></span> <?php echo __('Do test on this'); ?>
 					</a>
 					

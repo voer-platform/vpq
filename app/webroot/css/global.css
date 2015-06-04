@@ -198,7 +198,14 @@ ul.dropdown-menu li > a {
 	background:#428BCA;
 	border-color:#428BCA;
 }
-
+.btn.btn-orange {
+	  color: #fff;
+	background-color: #F47920;
+	border-color: #F47920;
+}
+.btn.btn-orange:hover {
+	background-color: #F5954F;
+}
 .overviews-ranking {
 	position: absolute;
 	top: 4px;

@@ -24,7 +24,7 @@
 	<?php echo $this->Html->css('bootstrap.min.css'); ?>
     <?php echo $this->HTML->css('jquery-ui.css'); ?>
     <?php echo $this->HTML->css('jquery.multiselect.css'); ?>
-    <?php echo $this->HTML->css('global.css?v=1.1'); ?>
+    <?php echo $this->HTML->css('global.css?v=1.3'); ?>
     <?php echo $this->HTML->css('style.css'); ?>
 	<?php echo $this->HTML->css('datepicker.css'); ?>
 	<?php echo $this->HTML->css('select2.css'); ?>

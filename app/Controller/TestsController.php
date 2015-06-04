@@ -583,7 +583,9 @@ class TestsController extends AppController {
             $testId = $this->request->data('testID');
 			
 			$this->loadModel('Test');
-			if($this->Test->find('count', array('conditions'=>array('Test.id'=>$testId)))==0)
+			$this->Test->recursive = -1;
+			$hasTest = $this->Test->find('count', array('conditions'=>array('Test.id'=>$testId)));
+			if(!$hasTest)
 			{
 				$this->redirect('chooseTest');
 			}	
