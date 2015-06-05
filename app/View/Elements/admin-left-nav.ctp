@@ -7,6 +7,7 @@
 		<?php echo $this->Html->link(__('Manage SubCategories'), array('controller' => 'subcategories', 'action' => 'index'), array('class'=>'list-group-item')); ?>
 		<?php echo $this->Html->link(__('Categorize'), array('controller' => 'Admin', 'action' => 'manualCategorized'), array('class'=>'list-group-item')); ?>
 		<?php echo $this->Html->link(__('Analystic'), array('controller' => 'Admin', 'action' => 'analystics'), array('class'=>'list-group-item')); ?>
+		<?php echo $this->Html->link(__('Send Facebook Notify'), array('controller' => 'Admin', 'action' => 'sendFacebookNotify'), array('class'=>'list-group-item')); ?>
 		<?php echo $this->Html->link(__('FAQ'), array('controller' => 'Faqs', 'action' => 'index'), array('class'=>'list-group-item')); ?>
 		<?php echo $this->Html->link(__('Ranking Data'), array('controller' => 'Admin', 'action' => 'ranking'), array('class'=>'list-group-item')); ?>
 		<?php echo $this->Html->link(__('Static pages'), array('controller' => 'StaticPages', 'action' => 'index'), array('class'=>'list-group-item')); ?>
@@ -17,6 +18,7 @@
 		<?php echo $this->Html->link(__('Pull Questions'), array('controller' => 'Admin', 'action' => 'pull_question'), array('class'=>'list-group-item')); ?>
 		<?php echo $this->Html->link(__('Tests'), array('controller' => 'Tests'), array('class'=>'list-group-item')); ?>
 		<?php echo $this->Html->link(__('Test Stats'), array('controller' => 'Tests', 'action' => 'stats'), array('class'=>'list-group-item')); ?>
+		
 	</div>
 </div>
 
