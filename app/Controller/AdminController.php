@@ -1054,4 +1054,77 @@ class AdminController extends AppController {
         echo json_encode($categories);
 		return;
 	}
+	
+	public function sendFacebookNotify()
+	{
+		$this->loadModel('FacebookNotificationsPerson');	
+		
+		if($this->request->is('post'))
+		{
+			$users = $this->FacebookNotificationsPerson->query("SELECT people.id, people.facebook, people.email, people.fullname, fnp.ttfn, fnp.lastsend, DATEDIFF(NOW(), people.date_created) AS joindate, DATEDIFF(NOW(), MAX(time_taken)) AS lasttest from people
+				LEFT JOIN scores ON scores.person_id = people.id
+				LEFT JOIN (SELECT facebook_notifications_people.person_id, DATEDIFF(NOW(), MAX(facebook_notifications_people.time)) AS lastsend, COUNT(facebook_notifications_people.id) AS ttfn 
+							FROM facebook_notifications_people 
+							
+							GROUP BY facebook_notifications_people.person_id) AS fnp ON fnp.person_id = people.id
+				WHERE DATEDIFF(NOW(), people.date_created) > 7
+				GROUP BY people.id, people.facebook 
+				HAVING (lastsend IS NULL OR lastsend >= 7)
+						AND ((lasttest IS NULL AND joindate < 30) OR (lasttest >= 7 AND lasttest < 30))");	
+				
+			$this->loadModel('FacebookNotification');
+			$notifications = $this->FacebookNotification->find('list', array('fields'=>array('content')));
+			if(!empty($users)){
+				App::uses('CakeEmail', 'Network/Email');
+				foreach($users AS $person)
+				{
+					$fb_id = $person['people']['facebook'];
+					$person_id = $person['people']['id'];
+					if($person[0]['lasttest'])
+					{
+						$mess = $notifications[1];
+						$notiType = 1;
+						$days = $person[0]['lasttest'];
+					}
+					else
+					{
+						$mess = $notifications[2];
+						$notiType = 2;
+						$days = $person[0]['joindate'];
+					}
+					
+					$mess = str_replace(array('{1}', '{2}'), array("@[$fb_id]", $days), $mess);
+					
+					$this->Facebook->sendNotify($person['people']['facebook'], $mess);
+					
+					if($person['people']['email'])
+					{
+						$username = $person['people']['fullname'];
+						$mess = str_replace("@[$fb_id]", $username, $mess);		
+						$Email = new CakeEmail('gmail');
+						$Email->to($person['people']['email']);
+						$Email->subject("$username, chúng tôi nhớ bạn");
+						$Email->send($mess);
+					}
+					
+					$this->FacebookNotificationsPerson->create();
+					$this->FacebookNotificationsPerson->save(array('person_id'=>$person_id, 'facebook_notify_type'=>$notiType, 'time'=>date('Y-m-d h:i:s')));
+				}
+			}	
+			
+			$this->redirect('sendFacebookNotify');
+			
+		}
+		
+		
+		$this->Paginator->settings = array(
+			'FacebookNotificationsPerson' => array(
+				'limit' => 10,
+				'order' => array('id' => 'desc')
+			)
+		);
+		$this->set('users', $this->paginate('FacebookNotificationsPerson'));	
+		
+	}
+	
 }

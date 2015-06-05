@@ -11,13 +11,15 @@
 
 	class Facebook {
 
-		private $helper, $session, $scope;
+		private $helper, $session, $scope, $appId, $appSecret;
 	
 		public function __construct($configs)
 		{
 			FacebookSession::setDefaultApplication($configs['appId'] , $configs['secret']);
 			$this->helper = new FacebookRedirectLoginHelper($configs['redirect_uri']);
 			$this->scope = $configs['scope'];
+			$this->appId = $configs['appId'];
+			$this->appSecret = $configs['secret'];
 		}
 		
 		public function getLoginUrl()
@@ -52,6 +54,19 @@
 			$user_profile['friends'] = $user_friend->asArray();
 			
 			return $user_profile;
+		}
+		
+		public function sendNotify($fb_id, $mess)
+		{
+			$session = FacebookSession::newAppSession();
+			$notify = (new FacebookRequest($session, 'POST', "/$fb_id/notifications/",
+				array(
+					'access_token' => $this->appId.'|'.$this->appSecret,
+					'href' => '/',  //this does link to the app's root, don't think this actually works, seems to link to the app's canvas page
+					'template' => $mess,
+					'ref' => 'pls_noti' //this is for Facebook's insight
+				)
+			))->execute();
 		}
 		
 		/*
