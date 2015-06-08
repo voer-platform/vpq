@@ -16,7 +16,7 @@
 	<?php foreach ($people as $person): ?>
 	<tr>
 		<td><?php echo h($person['Person']['id']); ?></td>
-		<td><?php echo h($person['Person']['fullname']); ?></td>
+		<td><a target="blank" href="<?=$this->Html->url(array('controller'=>'Log', 'action'=>'Person', $person['Person']['id']));?>"><?php echo h($person['Person']['fullname']); ?></a></td>
 		<td><?php echo h($person['Person']['birthday']); ?></td>
 		<td><?php echo h($person['Person']['date_created']); ?></td>
 		<td><?php echo h($person['Person']['_gen']); ?></td>
