@@ -1095,16 +1095,39 @@ class AdminController extends AppController {
 					
 					$mess = str_replace(array('{1}', '{2}'), array("@[$fb_id]", $days), $mess);
 					
-					$this->Facebook->sendNotify($person['people']['facebook'], $mess);
+					try {
+						$this->Facebook->sendNotify($person['people']['facebook'], $mess);
+					}
+					catch(Exception $e)
+					{
+					
+					}
 					
 					if($person['people']['email'])
 					{
 						$username = $person['people']['fullname'];
+						if($notiType==1)
+						{
+							$mess = "Đã lâu rồi chưa thấy bạn làm bài trên www.PLS.edu.vn. Chúng tôi mới có thêm một số tính năng sẽ giúp cho bạn học tốt hơn đấy.";
+						}
+						else
+						{
+							$mess = "Bạn đăng ký đã lâu nhưng chưa làm bài trên www.PLS.edu.vn, hệ thống sẽ giúp bạn học bài hiệu quả. Hãy thử xem";
+						}
+						
 						$mess = str_replace("@[$fb_id]", $username, $mess);		
+						$content = '<table border="0" cellpadding="30" style="border: solid #428BCA;background-color: #FDFDFD;font-size: 16px;"><tbody><tr><td>
+									<p style="text-align: center;"><strong>CHÚNG TÔI RẤT NHỚ BẠN!</strong></p>
+									<p>Chào <b>'.$username.'</b></p>
+									<p>'.$mess.'</p>
+									<p>PLS rất mong muốn được lắng nghe ý kiến của bạn để không ngừng nâng cao chất lượng học tập, và quan trọng hơn, để tiếp tục được là người bạn đồng hành tin cậy của bạn. Bạn có thể đóng góp những ý kiến của mình trực tiếp trên website hoặc gửi thư vào đia chỉ email plseduvn@gmail.com</p>
+									<p>Hãy để chúng tôi lắng nghe bạn nhé!</p>
+									</td></tr></tbody></table>';
+									
 						$Email = new CakeEmail('gmail');
 						$Email->to($person['people']['email']);
 						$Email->subject("$username, chúng tôi nhớ bạn");
-						$Email->send($mess);
+						$Email->send($content);
 					}
 					
 					$this->FacebookNotificationsPerson->create();
