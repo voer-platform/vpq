@@ -221,6 +221,7 @@ class Score extends AppModel {
 											array(
 													'correct' => $data_exp['Exp']['correct']+1,
 													'exp'	  => $data_exp['Exp']['exp']+1,
+													'date'		=> date('Y-m-d h:i:s'),
 												)
 										);
 					}else{
@@ -282,6 +283,7 @@ class Score extends AppModel {
 											array(
 													'wrong' => $data_exp['Exp']['wrong']+1,
 													'exp'=>$exp,
+													'date'		=> date('Y-m-d h:i:s'),
 												)
 										);
 					}else{
