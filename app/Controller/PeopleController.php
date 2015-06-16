@@ -399,18 +399,21 @@ class PeopleController extends AppController {
 		}
 		$calculateExp=$this->Score->calculateExp();
 		$this->loadModel('Exp');
-		foreach($calculateExp as $cal){
-			$this->Exp->create();
-			$this->Exp->save(
-									array(
-											'person_id'=>$cal['scores']['person_id'],
-											'correct'  =>$cal['0']['correct'],
-											'wrong'	   =>$cal['0']['wrong'],
-											'exp'	   =>$cal['0']['exp'],
-											'date'	   =>$cal['0']['date'],
-									)
-			);
-		};
+		$table_exp=$this->Exp->find('all');
+		if($table_exp!=null){
+			foreach($calculateExp as $cal){
+				$this->Exp->create();
+				$this->Exp->save(
+										array(
+												'person_id'=>$cal['scores']['person_id'],
+												'correct'  =>$cal['0']['correct'],
+												'wrong'	   =>$cal['0']['wrong'],
+												'exp'	   =>$cal['0']['exp'],
+												'date'	   =>$cal['0']['date'],
+										)
+				);
+			};
+		}
         $user_id = $this->Session->read('Auth.User')['id'];
 		$options = array(
 				'recursive' => -1,
