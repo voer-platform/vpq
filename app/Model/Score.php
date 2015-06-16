@@ -3,6 +3,8 @@ App::uses('AppModel', 'Model');
 App::import('Model', 'Answer');
 App::import('Model', 'ScoresQuestion');
 App::import('Model', 'Question');
+App::import('Model', 'Person');
+App::import('Model', 'Exp');
 /**
  * Score Model
  *
@@ -184,9 +186,65 @@ class Score extends AppModel {
 				'id' => $question,
 				)
 			));
+            $exp_total = $this->Person->find('first',array(
+														'recursive' => -1,
+														'conditions' => array(
+															'id' => $user['id'],
+															)
+													)
+									  );
+			$exp_total=$exp_total['Person']['exp'];
+			$Exp=new Exp();
+			$data_exp=$Exp->find('first',array(
+													'conditions'=>array('person_id'=>$user['id'])
+													)
+			);
             if( !empty($result) && $result['Answer']['correctness'] == 1){
                 $correctCounter++;
-                $scoreData[$question]['correct'] = 1;
+                $scoreData[$question]['correct'] = 1;				
+				$this->Person->id=$user['id'];
+				$this->Person->save(
+									array(
+											'exp' => $exp_total+1,
+										)
+									);
+				if($data_exp!=null){
+					$date=$data_exp['Exp']['date'];
+					$date=explode(' ',$date);
+					$date=$date[0];
+					$date=explode('-',$date);
+					$date=$date[0]."-".$date[1];
+					$now=date('Y-m');
+					if($date==$now){
+						$Exp->id=$data_exp['Exp']['id'];
+						$Exp->save(
+											array(
+													'correct' => $data_exp['Exp']['correct']+1,
+													'exp'	  => $data_exp['Exp']['exp']+1,
+												)
+										);
+					}else{
+						$Exp->save(
+									array(
+											'person_id' =>$user['id'],
+											'correct' 	=> 1,
+											'wrong'		=> 0,
+											'exp'	  	=> 1,
+											'date'		=> date('Y-m-d h:i:s'),
+										)
+								);
+					}
+				}else{
+					$Exp->save(
+									array(
+											'person_id' =>$user['id'],
+											'correct' 	=> 1,
+											'wrong'		=> 0,
+											'exp'	  	=> 1,
+											'date'		=> date('Y-m-d h:i:s'),
+										)
+								);
+				}
             }
             else{
                 $scoreData[$question]['correct'] = 0;
@@ -197,6 +255,57 @@ class Score extends AppModel {
 												'wrong' => $wrong,
 											)
 										);
+				$exp_total=$exp_total-1;
+				if($exp_total<0){
+					$exp_total=0;
+				}
+				$this->Person->id=$user['id'];
+				$this->Person->save(
+									array(
+											'exp' => $exp_total,
+										)
+									);
+				if($data_exp!=null){
+					$date=$data_exp['Exp']['date'];
+					$date=explode(' ',$date);
+					$date=$date[0];
+					$date=explode('-',$date);
+					$date=$date[0]."-".$date[1];
+					$now=date('Y-m');
+					if($date==$now){
+						$exp=$data_exp['Exp']['exp']-1;
+						if($exp<0){
+							$exp=0;
+						}
+						$Exp->id=$data_exp['Exp']['id'];
+						$Exp->save(
+											array(
+													'wrong' => $data_exp['Exp']['wrong']+1,
+													'exp'=>$exp,
+												)
+										);
+					}else{
+						$Exp->save(
+									array(
+											'person_id' =>$user['id'],
+											'correct' 	=> 0,
+											'wrong'		=> 1,
+											'exp'	  	=> 0,
+											'date'		=> date('Y-m-d h:i:s'),			
+										)
+								);
+					}
+				}else{
+					$Exp->save(
+									array(
+											'person_id' =>$user['id'],
+											'correct' 	=> 0,
+											'wrong'		=> 1,
+											'exp'	  	=> 0,
+											'date'		=> date('Y-m-d h:i:s'),			
+										)
+								);
+				}
             }
             
         }
@@ -225,6 +334,15 @@ class Score extends AppModel {
 
         return $scoreId;
     }
+	
+	public function calculateExp(){
+		$exp=$this->query(
+								"
+									SELECT scores.person_id, SUM(scores.score) as correct, SUM(tests.number_questions)-SUM(scores.score) as wrong, IF(SUM(scores.score)-(SUM(tests.number_questions)-SUM(scores.score))<0,'0',SUM(scores.score)-(SUM(tests.number_questions)-SUM(scores.score))) as exp, now() as date FROM `scores` INNER JOIN `tests` ON tests.id=scores.test_id WHERE month(scores.time_taken)=month(now()) AND year(scores.time_taken)=year(now()) Group By scores.person_id
+								"
+							);
+		return $exp;					
+	}
 
 /**
  * get score for draw chart using Google Chart API

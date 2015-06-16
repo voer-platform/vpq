@@ -377,8 +377,41 @@ class PeopleController extends AppController {
   */
     public function dashboard($subject_id = null){
         $this->set('title_for_layout',__("Dashboard"));
-        $user_id = $this->Session->read('Auth.User')['id'];
 		$this->loadModel('Person');
+		$this->loadModel('Score');
+		if($this->Session->read('Auth.User')['role']== 'admin'){
+			$this->loadModel('Progress');
+			$data=$this->Progress->query(
+										"SELECT person_id, Sum(progress) as correct, Sum(total)-Sum(progress) as wrong FROM `progresses` Group by person_id"
+										);
+			foreach($data as $dt){
+				$exp=$dt[0]['correct']-$dt[0]['wrong'];
+				if($exp<0){
+					$exp=0;
+				}
+				$this->Person->id=$dt['progresses']['person_id'];
+				$this->Person->save(
+									array(
+											'exp'=>$exp,
+									)
+				);
+			};
+		}
+		$calculateExp=$this->Score->calculateExp();
+		$this->loadModel('Exp');
+		foreach($calculateExp as $cal){
+			$this->Exp->create();
+			$this->Exp->save(
+									array(
+											'person_id'=>$cal['scores']['person_id'],
+											'correct'  =>$cal['0']['correct'],
+											'wrong'	   =>$cal['0']['wrong'],
+											'exp'	   =>$cal['0']['exp'],
+											'date'	   =>$cal['0']['date'],
+									)
+			);
+		};
+        $user_id = $this->Session->read('Auth.User')['id'];
 		$options = array(
 				'recursive' => -1,
 				'conditions' => array('Person.id'=>$user_id)
