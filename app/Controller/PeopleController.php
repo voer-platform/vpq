@@ -400,7 +400,7 @@ class PeopleController extends AppController {
 		$calculateExp=$this->Score->calculateExp();
 		$this->loadModel('Exp');
 		$table_exp=$this->Exp->find('all');
-		if($table_exp!=null){
+		if($table_exp==null){
 			foreach($calculateExp as $cal){
 				$this->Exp->create();
 				$this->Exp->save(
