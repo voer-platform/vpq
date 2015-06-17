@@ -90,7 +90,7 @@ class Test extends AppModel {
      * @param  [type] $categoryId        [description]
      * @return [type]                    [description]
      */
-    public function generateTest($numberOfQuestions, $categories){
+    /*public function generateTest($numberOfQuestions, $categories){
         $this->Question->unBindModel( array('hasAndBelongsToMany' => array('Score', 'Test')) );
 
         $_results = $this->Question->find('all', array(
@@ -108,6 +108,58 @@ class Test extends AppModel {
                         )
                     )
                 ));
+        $results = Set::sort($_results, '{n}.Question.id', 'asc');
+        return $results;
+    }*/
+	
+	public function generateTest($numberOfQuestions, $categories){
+		$numberOfQuestions1=$numberOfQuestions*0.4;
+		$numberOfQuestions2=$numberOfQuestions-$numberOfQuestions1;
+        $this->Question->unBindModel( array('hasAndBelongsToMany' => array('Score', 'Test')) );
+		$_results1=$this->Question->find('all', array(
+                    'limit' => $numberOfQuestions1,
+                    'order' => array('count'=>'asc'),
+                    'conditions' => array('Subcategory.subcategory_id' => $categories),
+                    'joins'=>array(
+                        array(
+                            'type'=>'LEFT',
+                            'table'=>'questions_subcategories',
+                            'alias'=>'Subcategory',
+                            'conditions'=>array(
+                                'Question.id = Subcategory.question_id'
+                            )
+                        )
+                    )
+                ));
+		$id_question=array();
+		foreach($_results1 as $rs){
+			$id_question[]=$rs['Question']['id'];
+		}				
+        $_results = $this->Question->find('all', array(
+                    'limit' => $numberOfQuestions2,
+                    'order' => 'rand()',
+                    'conditions' => array(
+											array('Subcategory.subcategory_id' => $categories),
+											'NOT'=>array(														
+														'Question.id'=> $id_question,
+											),											
+										),
+                    'joins'=>array(
+                        array(
+                            'type'=>'LEFT',
+                            'table'=>'questions_subcategories',
+                            'alias'=>'Subcategory',
+                            'conditions'=>array(
+                                'Question.id = Subcategory.question_id'
+                            )
+                        )
+                    )
+                ));
+		foreach($_results1 as $rs1){
+			$_results[]=$rs1;
+		}
+		//pr($_results);
+		//exit();
         $results = Set::sort($_results, '{n}.Question.id', 'asc');
         return $results;
     }

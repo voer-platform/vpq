@@ -84,6 +84,25 @@ class ExpsController extends AppController {
 					);
 				};
 			}
+			
+			$calculateExpSubject=$this->Score->calculateExpSubject();
+			$this->loadModel('ExpSubject');
+			$table_exp=$this->ExpSubject->find('all');
+			if($table_exp==null){
+				foreach($calculateExpSubject as $cal){
+					$this->ExpSubject->create();
+					$this->ExpSubject->save(
+											array(
+													'person_id'=>$cal['scores']['person_id'],
+													'subject_id'=>$cal['tests_subjects']['subject_id'],
+													'correct'  =>$cal['0']['correct'],
+													'wrong'	   =>$cal['0']['wrong'],
+													'exp'	   =>$cal['0']['exp'],
+													'date'	   =>$cal['0']['date'],
+											)
+					);
+				};
+			}
 		}
 		
 		$this->redirect(array('controller' => 'people', 'action' => 'dashboard'));

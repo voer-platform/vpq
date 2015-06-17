@@ -5,6 +5,7 @@ App::import('Model', 'ScoresQuestion');
 App::import('Model', 'Question');
 App::import('Model', 'Person');
 App::import('Model', 'Exp');
+App::import('Model', 'ExpSubject');
 /**
  * Score Model
  *
@@ -156,11 +157,13 @@ class Score extends AppModel {
  * @return id of stored score 
  *        
  */
-    public function calculateScore($testId, $answers, $user, &$scoreData, $numberOfQuestions){
+    public function calculateScore($testId, $answers, $user, &$scoreData, $numberOfQuestions, $subject_id){
         //check if answer is right or not
         $correctCounter = 0;
+		$wrongCounter = 0;
         $duration = $answers['duration'];
-
+		$Exp=new Exp();
+		$ExpSubject=new ExpSubject();
         // get row in array, key=question_id, value=>answer_id
         foreach ( $answers as $question => $answerId) {
             
@@ -194,11 +197,7 @@ class Score extends AppModel {
 													)
 									  );
 			$exp_total=$exp_total['Person']['exp'];
-			$Exp=new Exp();
-			$data_exp=$Exp->find('first',array(
-													'conditions'=>array('person_id'=>$user['id'])
-													)
-			);
+			
             if( !empty($result) && $result['Answer']['correctness'] == 1){
                 $correctCounter++;
                 $scoreData[$question]['correct'] = 1;				
@@ -207,47 +206,10 @@ class Score extends AppModel {
 									array(
 											'exp' => $exp_total+1,
 										)
-									);
-				if($data_exp!=null){
-					$date=$data_exp['Exp']['date'];
-					$date=explode(' ',$date);
-					$date=$date[0];
-					$date=explode('-',$date);
-					$date=$date[0]."-".$date[1];
-					$now=date('Y-m');
-					if($date==$now){
-						$Exp->id=$data_exp['Exp']['id'];
-						$Exp->save(
-											array(
-													'correct' => $data_exp['Exp']['correct']+1,
-													'exp'	  => $data_exp['Exp']['exp']+1,
-													'date'		=> date('Y-m-d h:i:s'),
-												)
-										);
-					}else{
-						$Exp->save(
-									array(
-											'person_id' =>$user['id'],
-											'correct' 	=> 1,
-											'wrong'		=> 0,
-											'exp'	  	=> 1,
-											'date'		=> date('Y-m-d h:i:s'),
-										)
-								);
-					}
-				}else{
-					$Exp->save(
-									array(
-											'person_id' =>$user['id'],
-											'correct' 	=> 1,
-											'wrong'		=> 0,
-											'exp'	  	=> 1,
-											'date'		=> date('Y-m-d h:i:s'),
-										)
-								);
-				}
+									);				
             }
             else{
+				$wrongCounter++;
                 $scoreData[$question]['correct'] = 0;
 				$wrong=$data_Question['Question']['wrong']+1;
 				$this->Question->id=$question;
@@ -266,48 +228,6 @@ class Score extends AppModel {
 											'exp' => $exp_total,
 										)
 									);
-				if($data_exp!=null){
-					$date=$data_exp['Exp']['date'];
-					$date=explode(' ',$date);
-					$date=$date[0];
-					$date=explode('-',$date);
-					$date=$date[0]."-".$date[1];
-					$now=date('Y-m');
-					if($date==$now){
-						$exp=$data_exp['Exp']['exp']-1;
-						if($exp<0){
-							$exp=0;
-						}
-						$Exp->id=$data_exp['Exp']['id'];
-						$Exp->save(
-											array(
-													'wrong' => $data_exp['Exp']['wrong']+1,
-													'exp'=>$exp,
-													'date'		=> date('Y-m-d h:i:s'),
-												)
-										);
-					}else{
-						$Exp->save(
-									array(
-											'person_id' =>$user['id'],
-											'correct' 	=> 0,
-											'wrong'		=> 1,
-											'exp'	  	=> 0,
-											'date'		=> date('Y-m-d h:i:s'),			
-										)
-								);
-					}
-				}else{
-					$Exp->save(
-									array(
-											'person_id' =>$user['id'],
-											'correct' 	=> 0,
-											'wrong'		=> 1,
-											'exp'	  	=> 0,
-											'date'		=> date('Y-m-d h:i:s'),			
-										)
-								);
-				}
             }
             
         }
@@ -316,6 +236,66 @@ class Score extends AppModel {
             // save score to db
             $scoreId = $this->getNextScoreId();
             $this->saveScore($scoreId, $testId, $user['id'], $correctCounter, $duration, date("Y-m-d H:i:s"));
+			
+			$data_exp=$Exp->query(
+								"SELECT * FROM `exps` as Exp Where person_id='$person_id' AND year(date)=year(now()) AND month(date)=month(now())"			
+			);
+			$exp=$correctCounter - $wrongCounter;
+			if($exp<0){
+				$exp=0;
+			}
+			if($data_exp!=null){
+				$Exp=new Exp();
+				$Exp->updateAll(
+									array(
+											'correct' => $data_exp[0]['Exp']['correct']+$correctCounter,
+											'wrong'	  => $data_exp[0]['Exp']['wrong']+$wrongCounter,
+											'exp'	  => $data_exp[0]['Exp']['exp']+$exp,
+											'date'		=>"'".date('Y-m-d h:i:s')."'",
+										),											
+									array('id'=>$data_exp[0]['Exp']['id'])
+								);
+			}else{
+				$Exp->create();
+				$Exp->save(
+								array(
+										'person_id' =>$user['id'],
+										'correct' 	=> $correctCounter,
+										'wrong'		=> $wrongCounter,
+										'exp'	  	=> $exp,
+										'date'		=> date('Y-m-d h:i:s'),
+									)
+							);
+			};
+			
+			$data_expsubject=$ExpSubject->query(
+								"SELECT * FROM `exp_subjects` as ExpSubject Where person_id='$person_id' AND subject_id='$subject_id' AND year(date)=year(now()) AND month(date)=month(now())"			
+			);
+			
+			if($data_expsubject!=null){
+				$ExpSubject=new ExpSubject();
+				$ExpSubject->updateAll(
+									array(
+											'correct' => $data_expsubject[0]['ExpSubject']['correct']+$correctCounter,
+											'wrong'	  => $data_expsubject[0]['ExpSubject']['wrong']+$wrongCounter,
+											'exp'	  => $data_expsubject[0]['ExpSubject']['exp']+$exp,
+											'date'		=>"'".date('Y-m-d h:i:s')."'",
+										),											
+									array('id'=>$data_expsubject[0]['ExpSubject']['id'])
+								);
+			}else{
+				$ExpSubject->create();
+				$ExpSubject->save(
+								array(
+										'person_id' =>$user['id'],
+										'subject_id'=>$subject_id,
+										'correct' 	=> $correctCounter,
+										'wrong'		=> $wrongCounter,
+										'exp'	  	=> $exp,
+										'date'		=> date('Y-m-d h:i:s'),
+									)
+							);
+			};
         }
 
         // save score_question
@@ -344,6 +324,15 @@ class Score extends AppModel {
 								"
 							);
 		return $exp;					
+	}
+	
+	public function calculateExpSubject(){
+		$expsubject=$this->query(
+								"
+									SELECT scores.person_id, SUM(scores.score) as correct, SUM(tests.number_questions)-SUM(scores.score) as wrong, IF(SUM(scores.score)-(SUM(tests.number_questions)-SUM(scores.score))<0,'0',SUM(scores.score)-(SUM(tests.number_questions)-SUM(scores.score))) as exp, now() as date, tests_subjects.subject_id as subject_id FROM `scores` INNER JOIN `tests` ON tests.id=scores.test_id INNER JOIN `tests_subjects` ON tests.id=tests_subjects.test_id  WHERE month(scores.time_taken)=month(now()) AND year(scores.time_taken)=year(now()) Group By scores.person_id, tests_subjects.subject_id;
+								"
+							);
+		return $expsubject;					
 	}
 
 /**
