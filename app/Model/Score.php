@@ -320,7 +320,7 @@ class Score extends AppModel {
 	public function calculateExp(){
 		$exp=$this->query(
 								"
-									SELECT scores.person_id, SUM(scores.score) as correct, SUM(tests.number_questions)-SUM(scores.score) as wrong, IF(SUM(scores.score)-(SUM(tests.number_questions)-SUM(scores.score))<0,'0',SUM(scores.score)-(SUM(tests.number_questions)-SUM(scores.score))) as exp, now() as date FROM `scores` INNER JOIN `tests` ON tests.id=scores.test_id WHERE month(scores.time_taken)=month(now()) AND year(scores.time_taken)=year(now()) Group By scores.person_id
+									SELECT `tbl_exps`.person_id, SUM(`tbl_exps`.correct) as correct, SUM(`tbl_exps`.wrong) as wrong, SUM(`tbl_exps`.exp) as exp, now() as date FROM (SELECT scores.person_id, SUM(scores.score) as correct, SUM(tests.number_questions)-SUM(scores.score) as wrong, IF(SUM(scores.score)-(SUM(tests.number_questions)-SUM(scores.score))<0,'0',SUM(scores.score)-(SUM(tests.number_questions)-SUM(scores.score))) as exp, tests_subjects.subject_id as subject_id FROM `scores` INNER JOIN `tests` ON tests.id=scores.test_id INNER JOIN `tests_subjects` ON tests.id=tests_subjects.test_id  WHERE month(scores.time_taken)=month(now()) AND year(scores.time_taken)=year(now()) Group By scores.person_id, tests_subjects.subject_id) as tbl_exps GROUP BY `tbl_exps`.person_id
 								"
 							);
 		return $exp;					
