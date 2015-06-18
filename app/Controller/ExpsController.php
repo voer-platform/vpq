@@ -75,7 +75,7 @@ class ExpsController extends AppController {
 					$this->Exp->create();
 					$this->Exp->save(
 											array(
-													'person_id'=>$cal['scores']['person_id'],
+													'person_id'=>$cal['tbl_exps']['person_id'],
 													'correct'  =>$cal['0']['correct'],
 													'wrong'	   =>$cal['0']['wrong'],
 													'exp'	   =>$cal['0']['exp'],
