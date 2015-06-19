@@ -171,10 +171,10 @@
 					<div class="news-container">
 						<?php foreach($newsletterCategories[0]['Newsletters'] AS $news){ ?>
 							<div class="news-list-item">
-								<a href="<?=$this->html->url(array('controller'=>'portal', 'action'=>'viewPost', $news['Newsletter']['id']));?>">
+								<a href="<?=$this->Html->url(array('controller'=>'portal', 'action'=>'viewPost', $news['Newsletter']['id']));?>">
 									<img class="news-img" src="<?=$this->Pls->getImageFromContent($news['Newsletter']['content']);?>" width="70" height="70" />
 								</a>
-								<a href="<?=$this->html->url(array('controller'=>'portal', 'action'=>'viewPost', $news['Newsletter']['id']));?>">
+								<a href="<?=$this->Html->url(array('controller'=>'portal', 'action'=>'viewPost', $news['Newsletter']['id']));?>">
 									<h5 class="news-title"><b><?=$news['Newsletter']['title'];?></b></h5>
 								</a>	
 								<p class="news-time"><?=date('d/m/Y h:i', strtotime($news['Newsletter']['created']));?></p>
@@ -204,10 +204,10 @@
 							unset($newsletterCategories[0]['Newsletters'][0]);
 						?>
 						<div class="news-list-item">
-							<a href="<?=$this->html->url(array('controller'=>'portal', 'action'=>'viewPost', $firstNew['Newsletter']['id']));?>">
+							<a href="<?=$this->Html->url(array('controller'=>'portal', 'action'=>'viewPost', $firstNew['Newsletter']['id']));?>">
 								<img class="news-img" src="<?=$this->Pls->getImageFromContent($firstNew['Newsletter']['content']);?>" width="70" height="70" />
 							</a>
-							<a href="<?=$this->html->url(array('controller'=>'portal', 'action'=>'viewPost', $firstNew['Newsletter']['id']));?>">
+							<a href="<?=$this->Html->url(array('controller'=>'portal', 'action'=>'viewPost', $firstNew['Newsletter']['id']));?>">
 								<h5 class="news-title"><b><?=$firstNew['Newsletter']['title'];?></b></h5>
 							</a>	
 							<p class="news-time"><?=date('d/m/Y h:i', strtotime($firstNew['Newsletter']['created']));?></p>
@@ -216,7 +216,7 @@
 						<ul class="subnews-container">
 						<?php foreach($newsletterCategories[0]['Newsletters'] AS $news){ ?>
 							<li>
-								<a href="<?=$this->html->url(array('controller'=>'portal', 'action'=>'viewPost', $news['Newsletter']['id']));?>">
+								<a href="<?=$this->Html->url(array('controller'=>'portal', 'action'=>'viewPost', $news['Newsletter']['id']));?>">
 									<h5 class="subnews-title"><b><?=$news['Newsletter']['title'];?></b></h5>
 								</a>	
 							</li>	
