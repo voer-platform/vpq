@@ -65,7 +65,7 @@
 
 		</div>
 		<div class="col-md-3">
-			<?=$this->element('../portal/sidebar');?>
+			<?=$this->element('../Portal/sidebar');?>
 		</div>
 	</div>
 <script type="text/javascript">

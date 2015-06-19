@@ -18,7 +18,7 @@
 		<?php echo $this->Html->link(__('Pull Questions'), array('controller' => 'Admin', 'action' => 'pull_question'), array('class'=>'list-group-item')); ?>
 		<?php echo $this->Html->link(__('Tests'), array('controller' => 'Tests'), array('class'=>'list-group-item')); ?>
 		<?php echo $this->Html->link(__('Test Stats'), array('controller' => 'Tests', 'action' => 'stats'), array('class'=>'list-group-item')); ?>
-		
+		<?php echo $this->Html->link(__('Newsletter'), array('controller' => 'Newsletters', 'action' => 'index'), array('class'=>'list-group-item')); ?>
 	</div>
 </div>
 

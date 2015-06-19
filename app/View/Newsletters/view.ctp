@@ -1,42 +1,17 @@
 <div class="newsletters view">
 <h2><?php echo __('Newsletter'); ?></h2>
-	<dl>
-		<dt><?php echo __('Id'); ?></dt>
-		<dd>
-			<?php echo h($newsletter['Newsletter']['id']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Newsletter Category'); ?></dt>
-		<dd>
-			<?php echo $this->Html->link($newsletter['NewsletterCategory']['name'], array('controller' => 'newsletter_categories', 'action' => 'view', $newsletter['NewsletterCategory']['id'])); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Title'); ?></dt>
-		<dd>
-			<?php echo h($newsletter['Newsletter']['title']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Content'); ?></dt>
-		<dd>
-			<?php echo h($newsletter['Newsletter']['content']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Created'); ?></dt>
-		<dd>
-			<?php echo h($newsletter['Newsletter']['created']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Modified'); ?></dt>
-		<dd>
-			<?php echo h($newsletter['Newsletter']['modified']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Status'); ?></dt>
-		<dd>
-			<?php echo h($newsletter['Newsletter']['status']); ?>
-			&nbsp;
-		</dd>
-	</dl>
+	<p><?php echo __('Id'); ?>: <?php echo h($newsletter['Newsletter']['id']); ?>, <?php echo __('Newsletter Category'); ?>: <?php echo $this->Html->link($newsletter['NewsletterCategory']['name'], array('controller' => 'newsletter_categories', 'action' => 'view', $newsletter['NewsletterCategory']['id'])); ?></p>
+	<h4><?php echo __('Title'); ?>: <?php echo h($newsletter['Newsletter']['title']); ?></h4>
+	<hr/>
+	<p><?php echo __('Content'); ?></p>
+	<div class="well">
+		<?php echo h($newsletter['Newsletter']['content']); ?>
+	</div>	
+	<hr/>
+	<p>
+		<?php echo __('Created'); ?>: <?php echo h($newsletter['Newsletter']['created']); ?>,
+		<?php echo __('Modified'); ?>: <?php echo h($newsletter['Newsletter']['modified']); ?>
+	</p>	
 </div>
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>

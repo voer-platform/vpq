@@ -325,6 +325,9 @@ transition: all 0.7s ease;
 .w-450 {width:450px;}
 .w-200 {width:200px!important;}
 .w-300 {width:300px!important;}
+.w-150 {width:150px!important;}
+.w-100 {width:100px!important;}
+
 .fw {width:100%;}
 .wa {width:auto!important;}
 .l40 {left:40px!important;}
