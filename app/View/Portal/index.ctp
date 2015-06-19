@@ -186,7 +186,7 @@
 				<div class="col-md-4">
 					<br/>
 					
-					<?=$this->element('../portal/rankings');?>
+					<?=$this->element('../Portal/rankings');?>
 				</div>
 			</div>
 			<!--	

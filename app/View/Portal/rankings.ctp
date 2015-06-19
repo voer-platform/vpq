@@ -15,7 +15,7 @@
 			<div class="ranking-entry">
 				<img src="<?=$entry['Person']['image'];?>" />
 				<p>
-					<b><a href="<?=$this->html->url(array('controller'=>'People', 'action'=>'view', $entry['Person']['id']));?>"><?=$entry['Person']['fullname'];?></a></b>
+					<b><a href="<?=$this->HTML->url(array('controller'=>'People', 'action'=>'view', $entry['Person']['id']));?>"><?=$entry['Person']['fullname'];?></a></b>
 					<span class="ranking-xp"><?=$entry['Exp']['exp'];?>xp</span>
 					<br/>
 					<span class="ranking-meta">Tỷ lệ đúng <?=floor($entry['Exp']['correct']/($entry['Exp']['correct']+$entry['Exp']['wrong'])*100);?>%</span>
@@ -25,7 +25,7 @@
 		</li>
 	<?php } ?>
 	</ul>
-	<div class="panel-footer center"><a href="<?=$this->html->url(array('controller'=>'ranking', 'action'=>'index'));?>"><span class="glyphicon glyphicon-fire"></span> Xem Top 100 <span class="glyphicon glyphicon-fire"></span></a></div>
+	<div class="panel-footer center"><a href="<?=$this->HTML->url(array('controller'=>'ranking', 'action'=>'index'));?>"><span class="glyphicon glyphicon-fire"></span> Xem Top 100 <span class="glyphicon glyphicon-fire"></span></a></div>
   </div>
 </div>
 <script type="text/javascript">

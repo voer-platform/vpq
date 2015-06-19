@@ -6,7 +6,7 @@
 		<li class="activity-item" <?php if($i>5){ ?>style="display:none;"<?php }?>>
 			<div class="activity-entry">
 				<img src="<?=$entry['Person']['image'];?>" />
-				<p><b><a href="<?=$this->html->url(array('controller'=>'People', 'action'=>'view', $entry['Person']['id']));?>"><?=$entry['Person']['fullname'];?></a></b> vừa làm bài kiểm tra <?=$entry['Test']['time_limit'];?> phút môn <?=$entry['Subject']['name'];?></p>
+				<p><b><a href="<?=$this->HTML->url(array('controller'=>'People', 'action'=>'view', $entry['Person']['id']));?>"><?=$entry['Person']['fullname'];?></a></b> vừa làm bài kiểm tra <?=$entry['Test']['time_limit'];?> phút môn <?=$entry['Subject']['name'];?></p>
 			</div>
 		</li>
 	<?php $i++; } ?>
