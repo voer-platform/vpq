@@ -85,5 +85,11 @@ class PlsComponent extends Object{
 		return $hours.':'.$mins.':'.$secs;
 	}
 	
+	public function getImageFromContent($text)
+	{
+		preg_match('/<img.+src=[\'"](?P<src>.+)[\'"].*>/i', $text, $image);
+		return $image['src'];
+	}
+	
 }
 ?>

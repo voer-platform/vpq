@@ -9,13 +9,13 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
+	  <a href="<?=$this->HTML->url('/');?>">
       <?php echo $this->Html->image('logo-small.png', array('alt' => 'PLS')); ?>
+	  </a>
     </div>
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-		<?php if(empty($user) ): ?>
-			<li><?php echo $this->HTML->link(__('Home'), '/'); ?></li>
-		<?php endif; ?>
+		<li><?php echo $this->HTML->link(__('Home'), '/'); ?></li>
         <!-- if logged in user -->
         <?php if(!empty($user) ): ?>
           <li><?php echo $this->HTML->link(__('Dashboard'), array('controller' => 'people', 'action' => 'dashboard')); ?></li>
@@ -29,7 +29,7 @@
         <?php endif; ?>
 		<li><?php echo $this->HTML->link(__('About'), '/about'); ?></li>
 		 <?php if(!empty($user) ): ?>
-		<li id='napthe'><a href="<?php echo $this->Html->url(array('controller'=> 'rechargeCard')); ?>">Nạp thẻ</a></li>
+		<!--<li id='napthe'><a href="<?php echo $this->Html->url(array('controller'=> 'rechargeCard')); ?>">Nạp thẻ</a></li>-->
 		<?php endif; ?>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -70,7 +70,7 @@
 			
 		  </li>
         <?php else: ?>
-			<li><a href="javascript:void(0); "class="login-open" data-toggle="modal" data-target="#login-modal" data-section="menu-top"><?php echo __('Login'); ?></a></li>
+			<li><a href="javascript:void(0); "class="login-open" data-toggle="modal" data-target="#login-modal" data-section="menu-top">Đăng nhập - Đăng ký</a></li>
       	<?php endif; ?>
       </ul>
     </div><!--/.nav-collapse -->

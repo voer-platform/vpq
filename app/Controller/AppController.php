@@ -46,8 +46,8 @@ class AppController extends Controller {
             ),
             //action login
         	'loginAction' => array(
-        		'controller' => 'Pages',
-                'action' => 'display'
+        		'controller' => 'Portal',
+                'action' => 'index'
         	),
             //redirect after logged in
         	'loginRedirect' => array(
@@ -133,7 +133,7 @@ class AppController extends Controller {
             return true;
         }
         $this->Session->setFlash(__("You are not authorized for that pages"));
-        $this->redirect(array('controller' =>'pages', 'action' => 'display', 'home'));
+        $this->redirect('/');
 
         // Default deny
         return false;

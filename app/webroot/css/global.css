@@ -214,6 +214,108 @@ ul.dropdown-menu li > a {
 	cursor:pointer;
 }
 
+/* portal */
+li.activity-item {
+  padding: 7px;
+}
+li.activity-item:nth-child(odd){
+	  background: #F9F9F9;
+}
+
+.activity-list {
+  list-style: none;
+  padding:0;
+  margin-bottom: 0;
+  height: 264px;
+}
+.activity-entry, .ranking-entry  {
+  position: relative;
+}
+.activity-item img, .ranking-item img {
+  width: 30px;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.activity-item p, .ranking-item p {
+  margin-left: 40px;
+  height: 30px;
+  font-size: 12px;
+  margin-bottom:0;
+}
+
+.ranking-filter {
+	  background-color: #1361A5;
+  font-size: 13px;
+  padding: 1px;
+  border-radius: 3px;
+  border: solid 1px #075598;
+  outline:none;
+}
+
+.ranking-list {
+  list-style: none;
+  padding:0;
+  margin-bottom: 0;
+}
+.ranking-item img {
+	border-radius: 50px;
+}
+
+li.ranking-item {
+  padding: 7px;
+}
+li.ranking-item:nth-child(odd){
+	  background: #F9F9F9;
+}
+
+.ranking-item a, .activity-item a {
+	color: #333;
+}
+
+.ranking-xp {
+	float:right;
+	padding-right: 5px;
+}
+.ranking-meta {
+  font-size: 11px;
+  color: #7C7C7C;
+}
+.ranking-number {
+width: 30px;
+  height: 30px;
+  display: block;
+  position: absolute;
+  font-size: 12px;
+  line-height: 30px;
+  border-radius: 30px;
+  background-color: #D8EDFF;
+  left: 0;
+  top: 0;
+  text-align: center;
+  font-weight: bold;
+}
+
+ul.subnews-container {
+  padding-left: 20px;
+  list-style-type: square;
+}
+h5.subnews-title {
+  font-size: 12px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.cta-btn {
+	-webkit-transition: all 0.7s ease;
+transition: all 0.7s ease;
+
+}
+.cta-btn-hover {
+  background-color: #E25111!important;
+  border-color: #D34D11!important;
+}
+
 .right {text-align:right;}
 .left {text-align:left;}
 .ib {display:inline-block;}
@@ -225,7 +327,11 @@ ul.dropdown-menu li > a {
 .w-300 {width:300px!important;}
 .fw {width:100%;}
 .wa {width:auto!important;}
+.l40 {left:40px!important;}
+.l35 {left:35px!important;}
 .mg0 {margin:0;}
+.mgl-75 {margin-left:75px!important;}
+.mgl-80 {margin-left:80px!important;}
 .mgt-0 {margin-top:0!important;}
 .mgt-10 {margin-top:10px!important;}
 .mgt-100 {margin-top:100px!important;}
@@ -242,3 +348,14 @@ ul.dropdown-menu li > a {
 .nudl.no-style {
 	color: #333;
 }
+.news-hr {
+	margin-top: 5px;
+  margin-bottom: 5px;
+  border-color: #428BCA;
+  border-width: 2px;
+}
+
+/* Font Class */
+.fs-25 {font-size:25px;}
+.fs-19 {font-size:19px;}
+.fs-13 {font-size:13px;}
