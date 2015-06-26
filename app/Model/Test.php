@@ -108,7 +108,14 @@ class Test extends AppModel {
                         )
                     )
                 ));
+		
         $results = Set::sort($_results, '{n}.Question.id', 'asc');
+		$id_question2=array();
+		foreach($_results as $rs2){
+			$id_question2[]=$rs2['Question']['id'];
+		}
+		pr($id_question2);
+		exit();
         return $results;
     }*/
 	
@@ -117,8 +124,9 @@ class Test extends AppModel {
 		$numberOfQuestions2=$numberOfQuestions-$numberOfQuestions1;
         $this->Question->unBindModel( array('hasAndBelongsToMany' => array('Score', 'Test')) );
 		$_results1=$this->Question->find('all', array(
+					'fields'=>'DISTINCT `Question`.`id`',
                     'limit' => $numberOfQuestions1,
-                    'order' => array('count'=>'asc'),
+                    'order' => array('Question.count'=>'asc'),
                     'conditions' => array('Subcategory.subcategory_id' => $categories),
                     'joins'=>array(
                         array(
@@ -134,8 +142,10 @@ class Test extends AppModel {
 		$id_question=array();
 		foreach($_results1 as $rs){
 			$id_question[]=$rs['Question']['id'];
-		}				
+		};
+		//pr($id_question);
         $_results = $this->Question->find('all', array(
+					'fields'=>'DISTINCT `Question`.`id`',
                     'limit' => $numberOfQuestions2,
                     'order' => 'rand()',
                     'conditions' => array(
@@ -155,6 +165,12 @@ class Test extends AppModel {
                         )
                     )
                 ));
+		/*$id_question2=array();
+		foreach($_results as $rs2){
+			$id_question2[]=$rs2['Question']['id'];
+		}
+		pr($id_question2);
+		exit();*/
 		foreach($_results1 as $rs1){
 			$_results[]=$rs1;
 		}
