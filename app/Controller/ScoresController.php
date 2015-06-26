@@ -140,9 +140,9 @@ class ScoresController extends AppController {
 	public function viewDetails($id){
         $this->set('title_for_layout', __('Test result'));
         if(!$this->Session->read('Auth.User')){
-            $this->Cookie->write('fromViewDetails', Router::url(NULL, true));      // return to this page after loggin, if do not
+            $this->Cookie->write('innerReferal', Router::url(NULL, true));      // return to this page after loggin, if do not
+			$this->redirect(Router::url(array('controller'=>'login', 'action'=>'index'), true));
         }
-
 		if($this->Session->read('finishTest'))
 		{
 			$this->set('finishTest', 1);

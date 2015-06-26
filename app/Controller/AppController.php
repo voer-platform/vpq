@@ -61,13 +61,17 @@ class AppController extends Controller {
             'authorize' => array('Controller')
 	    ),
         'Session',
-		'Cookie'
+		'Cookie',
+		'RequestHandler'
     );
 
     /**
      * beforeFilter
      */
     public function beforeFilter() {
+		if ($this->request->is('mobile')) {
+			$this->redirect('/mobile');
+		}
         // load sdk
         Configure::load('facebook');
         // this is not recommended by CakePHP, just for backward compatiblity
@@ -98,6 +102,9 @@ class AppController extends Controller {
         // set variables before render to user
         $this->set('fb_login_url', $this->Facebook->getLoginUrl());
 		
+		$referal = $this->Cookie->read('innerReferal');
+		$this->set('innerReferal', $referal);
+		
 		if(!$this->Auth->loggedIn()){
 			//if user not logged in, check cookie then auto login
 			$remember = $this->Cookie->read('reaccess');
@@ -115,6 +122,18 @@ class AppController extends Controller {
 					$this->redirect(array('controller' => 'people', 'action' => 'dashboard'));
 				}
 			}
+			
+			
+			
+		}
+		else
+		{
+			if($referal)
+			{
+				$this->Cookie->write('innerReferal', '');
+				$this->redirect($referal);
+			}
+			
 		}
 		
 		$user = $this->Auth->user();

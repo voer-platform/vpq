@@ -53,30 +53,25 @@ class RankingController extends AppController {
 		$monthRankings = $this->Exp->find('all', $options);
 		$this->set('monthRankings', $monthRankings);
 		
-		$this->loadModel('Score');
+		$this->loadModel('Ranking');
 		$options = array(
-						'fields'	=>	array('Person.id, Person.fullname', 'Person.image', 'Test.time_limit', 'Subject.name'),
+						//'conditions'	=>	array("Exp.date LIKE '$month%'"),
+						'fields'	=>	array('Person.id, Person.fullname', 'Person.image', 'Province.name', 'Ranking.score'),
 						'joins'	=>	array(
 										array(
-											'table'	=>	'tests_subjects',
-											'alias'	=>	'TestSubject',
-											'type'	=>	'INNER',
-											'conditions'	=>	'TestSubject.test_id = Test.id'
-										),
-										array(
-											'table'	=>	'subjects',
-											'alias'	=>	'Subject',
-											'type'	=>	'INNER',
-											'conditions'	=>	'TestSubject.subject_id = Subject.id'
+											'table'	=>	'provinces',
+											'alias'	=>	'Province',
+											'conditions'	=>	'Province.id = Person.address'
 										)
 									),
 						'recursive'	=>	0,
-						'limit'	=>	20,
-						'order'	=>	array('Score.time_taken DESC'),
-						'group'	=>	array('Person.id')
+						'limit'	=>	100,
+						'order'	=>	'Ranking.score DESC',
+						'conditions'	=>	array('Ranking.subject_id' => key($subjects))
 					);
-		$activities = $this->Score->find('all', $options);
-		$this->set('activities', $activities);
+		$scoreRankings = $this->Ranking->find('all', $options);
+		 // pr($scoreRankings);
+		$this->set('scoreRankings', $scoreRankings);
 		
 	}
 }	

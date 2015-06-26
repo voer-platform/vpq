@@ -3,6 +3,9 @@
 		margin-top:100px!important;
 	}
 }	
+body > .container {
+	margin-top: 40px;
+}
 /* login */
 .login-open, .login-open:focus, .login-open:active {
 	outline:none!important;
@@ -76,6 +79,32 @@
   -webkit-box-shadow: 1px 1px 2px #ccc;
 }
 
+.dashboard .breadcrumb {
+  background-color: #D3F2FF;
+  border: solid 1px #B2E6FC;
+  color: #4B97D5;
+}
+
+.dashboard .breadcrumb>li+li:before
+{
+	color: #4B97D5;
+}
+
+.dashboard .breadcrumb a {
+	text-decoration:none;
+}
+
+.user-overview .avatar {
+	width: 70px;
+	height: 70px;
+	border-radius: 70px;
+	position: absolute;
+}
+
+.info-overview {
+	padding-left: 85px;
+}
+
 .user-name {
   padding-left: 10px;
 }
@@ -99,11 +128,11 @@
   padding-top: 8px;
 }
 .time-range {
-  border-bottom: 1px solid #ddd;
+  /*border-bottom: 1px solid #ddd;
   background-color: #fff;
   box-shadow: 0px 1px 1px #eee;
   -moz-box-shadow: 0px 1px 1px #eee;
-  -webkit-box-shadow: 0px 1px 1px #eee;
+  -webkit-box-shadow: 0px 1px 1px #eee;*/
 }
 .time-range h5 {
   margin-left: 10px; 
@@ -253,6 +282,12 @@ li.activity-item:nth-child(odd){
   outline:none;
 }
 
+.ranking-filter-green {
+background-color: #C5E0B9;
+  border-color: #B2C5AB;
+  color: #000
+}
+
 .ranking-list {
   list-style: none;
   padding:0;
@@ -327,17 +362,22 @@ transition: all 0.7s ease;
 .w-300 {width:300px!important;}
 .w-150 {width:150px!important;}
 .w-100 {width:100px!important;}
+.w-70 {width:70px!important;}
+.w-50 {width:50px!important;}
 
 .fw {width:100%;}
 .wa {width:auto!important;}
 .l40 {left:40px!important;}
 .l35 {left:35px!important;}
+.mga {margin:auto;}
 .mg0 {margin:0;}
 .mgl-75 {margin-left:75px!important;}
 .mgl-80 {margin-left:80px!important;}
 .mgt-0 {margin-top:0!important;}
 .mgt-10 {margin-top:10px!important;}
 .mgt-100 {margin-top:100px!important;}
+.mgb-0 {margin-bottom:0px!important;}
+.mgb-10 {margin-bottom:10px!important;}
 .mglr-10{margin:0 10px!important;}
 .pd0 {padding:0!important;}
 .pd10 {padding:10px!important;}
@@ -360,5 +400,37 @@ transition: all 0.7s ease;
 
 /* Font Class */
 .fs-25 {font-size:25px;}
+.fs-22 {font-size:22px!important;}
 .fs-19 {font-size:19px;}
 .fs-13 {font-size:13px;}
+.fs-12 {font-size:12px;}
+
+/* Additional button */
+.btn-facebook {
+	  color: #fff;
+	  background-color: #49639f;
+	  border-color: #374D81;
+} 
+.f-icon {
+	position: relative;
+	padding-right: 25px;
+}
+.btn-facebook:hover, .btn-facebook:focus, .btn-facebook:active {
+	color:#fff!important;
+}
+
+.btn-facebook .f-icon b {
+	position: absolute;
+  font-size: 18px;
+  top: -4px;
+  border-right: solid 1px #314B89;
+  padding-right: 9px;
+ } 
+ .btn.btn-orange {
+	color:#fff;
+	background-color: #F47920;
+	border-color: #F47920;
+}
+.btn.btn-orange:hover {
+	background-color:#FF6B00;
+}

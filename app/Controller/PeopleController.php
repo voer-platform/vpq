@@ -27,7 +27,7 @@ class PeopleController extends AppController {
     public function isAuthorized($user) {
         // user can logout, dashboard, progress, history, suggest
         if (isset($user['role']) && $user['role'] === 'user' ){
-            if( in_array( $this->request->action, array('view', 'update','progress', 'login', 'logout', 'history', 'dashboard','suggest', 'completeProfile', 'invite','rechargecard', 'resetNotifyCounter', 'emailCheck', 'changePassword'))){
+            if( in_array( $this->request->action, array('view', 'update','progress', 'login', 'logout', 'history', 'dashboard','suggest', 'completeProfile', 'invite','rechargecard', 'resetNotifyCounter', 'emailCheck', 'phoneCheck', 'changePassword'))){
                 return true;
             }
         } elseif (isset($user['role']) && $user['role'] === 'editor') {
@@ -160,17 +160,28 @@ class PeopleController extends AppController {
 			$emailUsed = $this->Person->find('first', array(
 							'conditions' => array('email' => $email, 'Person.id !=' => $user['id'])
 						));
+						
+			$phone = $this->request->data['phone'];
+			$phoneUsed = $this->Person->find('first', array(
+							'conditions' => array('phone' => $phone, 'Person.id !=' => $user['id'])
+						));			
+						
 			if($emailUsed)			
 			{
 				$this->Session->setFlash(__('Email này đã được sử dụng'));
+			}
+			elseif($phoneUsed)
+			{
+				$this->Session->setFlash(__('Số điện thoại này đã được sử dụng'));
 			}
 			else
 			{
 				$this->Person->updateAll(
 					array(
 						'fullname'	=>	"'".$this->request->data('fullname')."'", 
-						'birthday'	=>	"'".$this->request->data('birthday')."'", 
+						'birthday'	=>	"'".implode('/', $this->request->data('birthday'))."'", 
 						'email'		=>	"'".$this->request->data('email')."'",
+						'phone'		=>	"'".$this->request->data('phone')."'",
 						'address'	=>	"'".$this->request->data('address')."'", 
 						'grade'		=>	"'".$this->request->data('grade')."'", 
 						'school'	=>	"'".$this->request->data('school')."'",
@@ -193,12 +204,12 @@ class PeopleController extends AppController {
 
         // If it is a post request we can assume this is a local login request
         if ($this->request->is('ajax')){
-			$email = $this->request->data['email'];
+			$accountId = $this->request->data['email'];
 			$password = $this->request->data['password'];
-			if($email && $password)
+			if($accountId && $password)
 			{
 				$local_user = $this->Person->find('first', array(
-						'conditions' => array('email' => $email)
+						'conditions' => array('OR'=>array(array('email' => $accountId), array('phone' => $accountId)))
 					));
 				
 				if($local_user){
@@ -222,7 +233,7 @@ class PeopleController extends AppController {
 				}
 				else
 				{
-					echo json_encode(array('code'=> 2, 'mess'=>__('Your email does not exist')));
+					echo json_encode(array('code'=> 2, 'mess'=>__('Email hoặc số điện thoại không đúng')));
 				}
 			}	
         }
@@ -250,14 +261,14 @@ class PeopleController extends AppController {
 					$this->Cookie->delete('remember');
 					$this->Cookie->write('reaccess', $encrypted_access_string, true, 31536000);
 					
-					$completedProfile = $local_user['Person']['profile_completed'];
+					// $completedProfile = $local_user['Person']['profile_completed'];
 
-					if(!$completedProfile)
-					{
-						$this->redirect(array('controller' => 'people', 'action' => 'completeProfile'));
-					}
-					else
-					{
+					// if(!$completedProfile)
+					// {
+						// $this->redirect(array('controller' => 'people', 'action' => 'completeProfile'));
+					// }
+					// else
+					// {
                         // redirect to previous review page if from it
                         if($this->Cookie->read('fromViewDetails')){
                             $review_url = $this->Cookie->read('fromViewDetails');
@@ -268,7 +279,7 @@ class PeopleController extends AppController {
 							$this->Session->write('over','2');
         					$this->redirect(array('controller' => 'people', 'action' => 'dashboard'));
                         }
-					}	
+					// }	
                 }
 
                 // Otherwise we'll add a new user (Registration)
@@ -284,11 +295,15 @@ class PeopleController extends AppController {
 					$password = AuthComponent::password(uniqid(md5(mt_rand()))); # Set random password
 					$salt = rand(10000, 99999); #Make random salt number
 				
-					$emailUsed = $this->Person->find('first', array('conditions' => array('email' => $fb_user['email'])));
 					$email = '';
-					if(!$emailUsed)
+					if(isset($fb_user['email']))
 					{
-						$email = $fb_user['email'];
+						$emailUsed = $this->Person->find('first', array('conditions' => array('email' => $fb_user['email'])));
+						
+						if(!$emailUsed)
+						{
+							$email = $fb_user['email'];
+						}
 					}
 				
                     $data['Person'] = array(
@@ -384,6 +399,7 @@ class PeopleController extends AppController {
 				'conditions' => array('Person.id'=>$user_id)
 				);			
 		$data_user = $this->Person->find('first',$options);
+		$this->set('data_user', $data_user['Person']);
 		// $date1 = strtotime($data_user[0]['Person']['last_login']);
 		// $date2 = strtotime(date('Y-m-d'));
 		// $diff = abs($date2-$date1);
@@ -419,6 +435,9 @@ class PeopleController extends AppController {
 			$progresses = $this->Progress->progressOnSubject($user_id, array('subject'=>$subject_id));
 			$this->set('progresses', $progresses);
 
+			$this->loadModel('Subject');
+			$subject = $this->Subject->find('first', array('conditions'=>array('id'=>$subject_id)));
+			$this->set('subjectName', $subject['Subject']['name']);
 			// get scores for 2 progress bars
 			/*$this->loadModel('Score');
 			$scores = array();
@@ -500,6 +519,8 @@ class PeopleController extends AppController {
 			
 		}
 		
+		$this->set('activities', $this->getActivities());
+		
     }
 
 /**
@@ -572,17 +593,43 @@ class PeopleController extends AppController {
 		
 		if($this->request->is('post'))
 		{
-			$md5Password = md5($this->request->data('password').Configure::read('Security.key'));
+			// $md5Password = md5($this->request->data('password').Configure::read('Security.key'));
+			
+			$email = $this->request->data('email');
+			if($email)
+			{
+				$emailUsed = $this->Person->find('first', array(
+								'conditions' => array('email' => $email, 'Person.id !=' => $user['id'])
+							));
+				if($emailUsed)			
+				{
+					$email = '';
+				}
+			}
+			
+			$phone = $this->request->data('phone');
+			if($phone)
+			{
+				$phoneUsed = $this->Person->find('first', array(
+								'conditions' => array('phone' => $phone, 'Person.id !=' => $user['id'])
+							));
+				if($phoneUsed)			
+				{
+					$phone = '';
+				}
+			}
+			
 			$this->Person->updateAll(
 							array(
 								'fullname'	=>	"'".$this->request->data('fullname')."'", 
-								'birthday'	=>	"'".$this->request->data('birthday')."'",
-								'email'	=>	"'".$this->request->data('email')."'", 
+								// 'birthday'	=>	"'".$this->request->data('birthday')."'",
+								'email'	=>	"'".$email."'", 
+								'phone'	=>	"'".$phone."'", 
 								'address'	=>	"'".$this->request->data('address')."'", 
 								'grade'		=>	"'".$this->request->data('grade')."'", 
 								'school'	=>	"'".$this->request->data('school')."'",
 								'gender'	=>	"'".$this->request->data('gender')."'",
-								'password'	=>	"'".$md5Password."'",
+								// 'password'	=>	"'".$md5Password."'",
 								'profile_completed'	=>	"1"
 							),
 							array('Person.id' => $user['id'])
@@ -590,9 +637,9 @@ class PeopleController extends AppController {
 			$newInfo = $this->Person->find('first', array('conditions'=>array('Person.id' => $user['id'])));
 			$this->Auth->login($newInfo['Person']);			
 			
-			$access_string = $user['id'].'|'.Security::hash($md5Password, 'md5', $user['salt']);
-			$encrypted_access_string = base64_encode(Security::cipher($access_string, Configure::read('Security.key')));
-			$this->Cookie->write('reaccess', $encrypted_access_string, true, 31536000);
+			// $access_string = $user['id'].'|'.Security::hash($md5Password, 'md5', $user['salt']);
+			// $encrypted_access_string = base64_encode(Security::cipher($access_string, Configure::read('Security.key')));
+			// $this->Cookie->write('reaccess', $encrypted_access_string, true, 31536000);
 			
 			$this->redirect(array('controller' => 'people', 'action' => 'dashboard'));
 		}
@@ -643,6 +690,24 @@ class PeopleController extends AppController {
 		}
 	}
 	
+	public function phoneCheck()
+	{
+		$this->autoRender = false;
+		$user = $this->Auth->user();
+		$phone = $this->request->data['phone'];
+		$phoneUsed = $this->Person->find('first', array(
+						'conditions' => array('phone' => $phone, 'Person.id !=' => $user['id'])
+					));
+		if($phoneUsed)			
+		{
+			echo json_encode(array('code'=>0));
+		}
+		else
+		{
+			echo json_encode(array('code'=>1));
+		}
+	}
+	
 	public function changePassword()
 	{
 		$this->layout = 'ajax';
@@ -650,15 +715,16 @@ class PeopleController extends AppController {
 		{
 			$this->autoRender = false;
 			$user = $this->Auth->user();
-			$currentPassword = $this->request->data('cpwd');
+			// $currentPassword = $this->request->data('cpwd');
 			$newPassword = $this->request->data('npwd');
 			$renewPassword = $this->request->data('rnpwd');
 			$code = 0; $mess = __('Has an unexpected error has occurred, please try again');
-			if(md5($currentPassword.Configure::read('Security.key'))!=$user['password'])
-			{
-				$mess = __('Current password does not match');
-			}
-			else if($newPassword!=$renewPassword)
+			// if(md5($currentPassword.Configure::read('Security.key'))!=$user['password'])
+			// {
+				// $mess = __('Current password does not match');
+			// }
+			// else 
+			if($newPassword!=$renewPassword)
 			{
 				$mess = __('Two password does not match');
 			}
@@ -688,6 +754,32 @@ class PeopleController extends AppController {
 		}
 	}
 	
-	
+	private function getActivities()
+	{
+		$this->loadModel('Score');
+		$options = array(
+						'fields'	=>	array('Person.id, Person.fullname', 'Person.image', 'Test.time_limit', 'Subject.name'),
+						'joins'	=>	array(
+										array(
+											'table'	=>	'tests_subjects',
+											'alias'	=>	'TestSubject',
+											'type'	=>	'INNER',
+											'conditions'	=>	'TestSubject.test_id = Test.id'
+										),
+										array(
+											'table'	=>	'subjects',
+											'alias'	=>	'Subject',
+											'type'	=>	'INNER',
+											'conditions'	=>	'TestSubject.subject_id = Subject.id'
+										)
+									),
+						'recursive'	=>	0,
+						'limit'	=>	20,
+						'order'	=>	array('Score.time_taken DESC'),
+						'group'	=>	array('Person.id')
+					);
+		$activities = $this->Score->find('all', $options);
+		return $activities;
+	}
 	
 }

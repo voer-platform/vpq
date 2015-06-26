@@ -1,4 +1,3 @@
-<br/>
 <div class="row">
 	<div class="col-md-12">
 		<div class="alert alert-success">
@@ -21,12 +20,14 @@
 								<input type="text" name="fullname" class="form-control" value="<?php echo $user['last_name'].' '.$user['first_name']; ?>" />
 							</div>	
 						</div>	
+						<!--
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Ngày sinh</label>
 							<div class="col-sm-9">
 								<input type="text" name="birthday" class="form-control hasDatepick" value="<?php echo $user['birthday']; ?>" />
 							</div>	
 						</div>
+						-->
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Giới tính</label>
 							<div class="col-sm-9">
@@ -62,31 +63,39 @@
 								</select>
 							</div>	
 						</div>
-						<hr/>
+						
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Email</label>
 							<div class="col-sm-9">
-								<input type="email" required name="email" id="email" class="form-control" placeholder="Email" value="<?php echo $user['email']; ?>" />
+								<input type="email" name="email" id="email" class="form-control" placeholder="Nhập email nếu có" value="<?php echo $user['email']; ?>" />
 								<p class="text-error" id="email-error" style="display:none;"></p>
 							</div>	
 						</div>
 						<div class="form-group">
+							<label class="col-sm-3 control-label">Điện thoại</label>
+							<div class="col-sm-9">
+								<input type="text" name="phone" id="phone" class="form-control" placeholder="Nhập số điện thoại nếu có" />
+								<p class="text-error" id="phone-error" style="display:none;"></p>
+							</div>	
+						</div>
+						
+						<div class="form-group">
 							<label class="col-sm-3 control-label">Mật khẩu</label>
 							<div class="col-sm-9">
-								<input type="password" required placeholder="Mật khẩu" id="password" name="password" class="form-control" />
+								<input type="password" placeholder="Mật khẩu" id="password" name="password" class="form-control" />
 							</div>	
 						</div>
 						<div class="form-group">
-							<label class="col-sm-3 control-label">Xác nhận mật khẩu</label>
+							<label class="col-sm-3 control-label">Gõ lại mật khẩu</label>
 							<div class="col-sm-9">
-								<input type="password" required placeholder="Gõ lại mật khẩu phía trên" id="repassword" name="password" class="form-control" />
+								<input type="password" placeholder="Gõ lại mật khẩu phía trên" id="repassword" name="password" class="form-control" />
 								<p class="text-error" id="password-error" style="display:none;"></p>
 							</div>	
 						</div>
+						
 						<div class="form-group right">
 							<div class="col-sm-12">	
-								<button type="button" class="btn btn-primary" id="complete-profile" name="complete_profile"><span class="glyphicon glyphicon-ok"></span> Hoàn thành</button>
-								<!--<a id="skip-profile" href="<?php echo $this->Html->url(array('controller'=>'people', 'action'=>'dashboard')); ?>"><button type="button" class="btn btn-default">Bỏ qua</button></a>-->
+								<button type="submit" class="btn btn-primary" id="complete-profile" name="complete_profile"><span class="glyphicon glyphicon-ok"></span> Hoàn thành</button>
 							</div>	
 						</div>	
 					</form>
@@ -125,57 +134,29 @@
 </div>
 
 <script>
-	var login=<?php echo $login ?>;
-	$('.hasDatepick').datepicker({format: "dd/mm/yyyy"}).on('changeDate', function(ev) {
-		$(this).datepicker('hide');
+	$('.sl2').select2();	
+	
+	var formValid = true;
+	
+	$('#email').blur(function(){
+		var email = $('#email').val();
+		checkEmail(email);
 	});
-	$('.sl2').select2();
-	$(document).ready(function(){
-		/*if(login==0){
-			$('#modalmessages').modal({
-					backdrop: true
-				});
-		}*/
+	
+	$('#phone').blur(function(){
+		var phone = $('#phone').val();	
+		checkPhone(phone);
 	});
+	
 	$('#complete-profile').click(function(){
-		if(!validateEmail($('#email').val()))
+		
+		check2Password($('#password').val(), $('#repassword').val());
+		
+		if($('.text-error:visible').length>0)
 		{
-			$('#email-error').html('Email không hợp lệ').show();
 			return false;
 		}
-		else
-		{
-			$('#email-error').hide();
-		}
-		
-		if($('#password').val()=='')
-		{
-			$('#password-error').html('Mật khẩu không được bỏ trống').show();
-		}
-		else if($('#password').val() == $('#repassword').val())
-		{
-			$('#password-error').hide();
-			$.ajax({
-				type: 'POST',
-				url: '<?php echo $this->Html->url(array('controller'=>'people', 'action'=>'emailCheck')); ?>',
-				data: {'email': $('#email').val()},
-				success: function(response){
-					response = JSON.parse(response);
-					if(response.code==0)
-					{
-						$('#email-error').html('Email này đã được sử dụng').show();
-					}
-					else
-					{
-						$('#email-error').hide();
-						$('#complete-profile-form').submit();
-					}
-				}
-			});
-		}
-		else
-		{
-			$('#password-error').html('Hai mật khẩu không khớp').show();
-		}
 	});
+		
+	
 </script>

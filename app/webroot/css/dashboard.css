@@ -108,7 +108,7 @@ div.chart-description {
 	padding: 12px;
 	padding-bottom: 0;
 }
-.subject-score {
+.detail-subject-score {
   display: block;
   height: 106px;
   width: 106px;
@@ -120,12 +120,30 @@ div.chart-description {
   box-shadow: inset 0 -1px 0 rgba(0,0,0,.15);
   webkit-box-shadow: inset 0 -1px 0 rgba(0,0,0,.15);
 }
-.subject-score-text {
+.subject-score {
+  display: block;
+  height: 70px;
+  width: 70px;
+  border: solid 3px #5cb85c;
+  text-align: center;
+  line-height: 46px;
+  border-radius: 150px;
+  font-size: 26px;
+  box-shadow: inset 0 -1px 0 rgba(0,0,0,.15);
+  webkit-box-shadow: inset 0 -1px 0 rgba(0,0,0,.15);
+}
+.detail-subject-score-text {
 	font-size: 15px;
 	display: block;
 	line-height: 5px;
 	color: #3B9B3B;
-}  
+} 
+.subject-score-text {
+  font-size: 12px;
+  display: block;
+  line-height: 5px;
+  color: #3B9B3B;
+} 
 .dashboard-subject-name {
 	margin-top: 0;
 	font-size: 25px;

@@ -11,11 +11,12 @@
 		public function beforeFilter()
 		{
 			//$this->autoRender = false;
+			$this->layout = 'ajax';
 		}
 	
 		public function portalRankings()
 		{
-			$this->layout = 'ajax';
+			
 			$month = date('Y-m');
 			
 			$limit = 10;
@@ -51,6 +52,52 @@
 			}
 			
 			$this->set('rankings', $rankings);
+		}
+	
+		public function scoreRankings()
+		{
+			$subject = $this->request->query['subject'];
+			$limit = 10;
+			if(isset($this->request->query['limit']))
+			{
+				$limit = $this->request->query['limit'];
+			}
+			$this->loadModel('Ranking');
+			$options = array(
+							//'conditions'	=>	array("Exp.date LIKE '$month%'"),
+							'fields'	=>	array('Person.id, Person.fullname', 'Person.image', 'Province.name', 'Ranking.score'),
+							'joins'	=>	array(
+											array(
+												'table'	=>	'provinces',
+												'alias'	=>	'Province',
+												'conditions'	=>	'Province.id = Person.address'
+											)
+										),
+							'recursive'	=>	0,
+							'limit'	=>	$limit,
+							'order'	=>	'Ranking.score DESC',
+							'conditions'	=>	array('Ranking.subject_id' => $subject)
+						);
+			$scoreRankings = $this->Ranking->find('all', $options);
+			 // pr($scoreRankings);
+			$this->set('scoreRankings', $scoreRankings);
+		}
+	
+		public function phoneCheck()
+		{
+			$user = $this->Auth->user();
+			$phone = $this->request->data['phone'];
+			$phoneUsed = $this->Person->find('first', array(
+							'conditions' => array('phone' => $phone, 'Person.id !=' => $user['id'])
+						));
+			if($phoneUsed)			
+			{
+				echo json_encode(array('code'=>0));
+			}
+			else
+			{
+				echo json_encode(array('code'=>1));
+			}
 		}
 	
 	}

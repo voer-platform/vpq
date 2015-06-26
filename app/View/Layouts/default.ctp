@@ -30,7 +30,7 @@
 	<?php echo $this->HTML->css('select2.css'); ?>
 	
     <!-- javascript -->
-	<script>var PLS = {ajaxUrl: '<?php echo $this->Html->url('/', true); ?>'};</script>
+	<script>var PLS = {ajaxUrl: '<?php echo $this->Html->url('/', true); ?>', innerReferal: '<?=$innerReferal;?>'};</script>
     <?php echo $this->Html->script('jquery.min.js');?>
     <?php echo $this->Html->script('jquery.simplePaging.js');?>
     <?php echo $this->Html->script('bootstrap.min.js');?>
