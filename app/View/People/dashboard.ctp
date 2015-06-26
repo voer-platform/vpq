@@ -1,4 +1,4 @@
-<?php echo $this->Html->css('dashboard.css');?>
+<?php echo $this->Html->css('dashboard.css?v=1.4');?>
 <?php echo $this->Html->script('highcharts.js');?>
 <?php echo $this->Html->script('no-data-to-display.src.js');?>
 <div id="rechargecard" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
