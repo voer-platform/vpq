@@ -116,7 +116,7 @@ class PartnerController extends Controller {
 								
 					//Chạy từng hàng trong sheetData
 						foreach ($sheetData as $row){
-							if (is_numeric($row['A']) && !empty($rowp=['B'])) {
+							if (is_numeric($row['A']) && !empty($row=['B'])) {
 								$question=	$row['B'];
 								$solution= 	$row['C'];
 								$answer_a=$row['D'];
