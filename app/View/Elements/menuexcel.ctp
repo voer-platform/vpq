@@ -42,7 +42,7 @@
             <ul class="dropdown-menu" role="menu">
 			  <li><a href="javascript:void(0);" id="change-password2"><?php echo __('Change password'); ?></a></li>
               <li class="divider"></li>
-              <li><?php echo $this->Html->link(__('Logout'),array('controller'=> 'Login','action'=> 'logout')); ?></li>
+              <li><?php echo $this->Html->link(__('Logout'),array('controller'=> 'partner','action'=> 'logout')); ?></li>
             </ul>
           </li>
 		  <!--<li class="dropdown mglr-10">

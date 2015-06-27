@@ -37,17 +37,17 @@ class PartnerController extends Controller {
 	public function isAuthorized($user) {
 	    // only admin can do 
 	    if (isset($user['role'])  && $user['role'] === 'admin'){
-	    	if( in_array( $this->request->action, array('import_excel', 'check_question', 'view_question', 'changePassword','getBook','getCategory','remake','get_subcategories','byGrade','bySubject'))){
+	    	if( in_array( $this->request->action, array('import_excel', 'check_question', 'view_question', 'changePassword','getBook','getCategory','remake','get_subcategories','byGrade','bySubject','login','logout'))){
                 return true;
             }
 	    }
 		if (isset($user['role']) && $user['role'] === 'editor') {
-			if( in_array( $this->request->action, array('import_excel','view_question', 'changePassword','getBook','getCategory','remake','get_subcategories','byGrade','bySubject'))){
+			if( in_array( $this->request->action, array('import_excel','view_question', 'changePassword','getBook','getCategory','remake','get_subcategories','byGrade','bySubject','login','logout'))){
                 return true;
             }
 		}
 		if (isset($user['role']) && $user['role'] === 'tester') {
-			if( in_array( $this->request->action, array('check_question', 'view_question', 'changePassword','getBook','getCategory','get_subcategories','byGrade','bySubject'))){
+			if( in_array( $this->request->action, array('check_question', 'view_question', 'changePassword','getBook','getCategory','get_subcategories','byGrade','bySubject','login','logout'))){
                 return true;
             }
 		}
@@ -83,7 +83,7 @@ class PartnerController extends Controller {
 		$user = $this->Session->read('user');
 		$this->set('user', $user);
 		if(!isset($user)){
-			$this->redirect(array('controller' =>'login', 'action' => 'index'));
+			$this->redirect(array('controller' =>'partner', 'action' => 'index'));
 		};
 		$this->layout ='excel';
 		$this->loadModel('ImportQuestion');
@@ -275,7 +275,7 @@ class PartnerController extends Controller {
 		$user = $this->Session->read('user');
 		$this->set('user', $user);
 		if(!isset($user)){
-			$this->redirect(array('controller' =>'login', 'action' => 'index'));
+			$this->redirect(array('controller' =>'partner', 'action' => 'index'));
 		};
 		$this->layout ='excel';
 		$this->loadModel('ImportQuestion');
@@ -387,7 +387,7 @@ class PartnerController extends Controller {
 		$user = $this->Session->read('user');
 		$this->set('user', $user);
 		if(!isset($user)){
-			$this->redirect(array('controller' =>'login', 'action' => 'index'));
+			$this->redirect(array('controller' =>'partner', 'action' => 'index'));
 		};
 		$this->layout ='excel';
 		$this->loadModel('ImportQuestion');
@@ -813,6 +813,47 @@ class PartnerController extends Controller {
 			echo json_encode(array('code'=>$code, 'mess'=>$mess));
 		}
 	}
+	
+	public function login(){
+		$user = array();
+        $this->set('user', $user);
+		$this->layout ='excel';
+		$this->loadModel('Person');
+		if($this->request->is('post')){			
+			if($this->request->data('login')){
+				$this->Session->destroy();
+				$user=$this->request->data('user');
+				$pass=$this->request->data('pass');
+				$user=$this->Person->find('all',array(
+											'recursive' => -1,
+											'conditions' => array('username'=>$user),
+									)
+				);
+				if($user!=null){
+					if($user[0]['Person']['password']==md5($pass)){
+						$this->Session->write('user',$user[0]['Person']);
+						//$this->Auth->login($user[0]['Person']);
+						$this->Cookie->delete('remember');
+						//$this->Cookie->write('reaccess', $encrypted_access_string, true, 31536000);						
+						if($user[0]['Person']['role']=='tester'){
+							$this->redirect(array('controller' =>'partner', 'action' => 'check_question'));
+						}else{
+							$this->redirect(array('controller' =>'partner', 'action' => 'import_excel'));
+						}
+					}else{
+						$this->Session->setFlash(__('Mật khẩu không đúng.'));
+					}
+				}else{
+					
+				}
+			}
+		}
+	}
 		
-
+	public function logout() {
+		$this->Session->destroy();
+        //$this->Auth->logout();
+		//$this->Cookie->delete('reaccess');
+        return $this->redirect(array('controller' =>'partner', 'action' => 'login'));
+    }
 }
