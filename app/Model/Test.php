@@ -124,7 +124,7 @@ class Test extends AppModel {
 		$numberOfQuestions2=$numberOfQuestions-$numberOfQuestions1;
         $this->Question->unBindModel( array('hasAndBelongsToMany' => array('Score', 'Test')) );
 		$_results1=$this->Question->find('all', array(
-					'fields'=>'DISTINCT `Question`.`id`',
+					'fields'=>array('DISTINCT `Question`.`id`','`Question`.`count`','`Question`.`content`'),
                     'limit' => $numberOfQuestions1,
                     'order' => array('Question.count'=>'asc'),
                     'conditions' => array('Subcategory.subcategory_id' => $categories),
@@ -145,7 +145,7 @@ class Test extends AppModel {
 		};
 		//pr($id_question);
         $_results = $this->Question->find('all', array(
-					'fields'=>'DISTINCT `Question`.`id`',
+					'fields'=>array('DISTINCT `Question`.`id`','`Question`.`count`','`Question`.`content`'),
                     'limit' => $numberOfQuestions2,
                     'order' => 'rand()',
                     'conditions' => array(

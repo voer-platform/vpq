@@ -83,7 +83,7 @@ class PartnerController extends Controller {
 		$user = $this->Session->read('user');
 		$this->set('user', $user);
 		if(!isset($user)){
-			$this->redirect(array('controller' =>'partner', 'action' => 'index'));
+			$this->redirect(array('controller' =>'partner', 'action' => 'login'));
 		};
 		$this->layout ='excel';
 		$this->loadModel('ImportQuestion');
@@ -275,7 +275,7 @@ class PartnerController extends Controller {
 		$user = $this->Session->read('user');
 		$this->set('user', $user);
 		if(!isset($user)){
-			$this->redirect(array('controller' =>'partner', 'action' => 'index'));
+			$this->redirect(array('controller' =>'partner', 'action' => 'login'));
 		};
 		$this->layout ='excel';
 		$this->loadModel('ImportQuestion');
@@ -387,7 +387,7 @@ class PartnerController extends Controller {
 		$user = $this->Session->read('user');
 		$this->set('user', $user);
 		if(!isset($user)){
-			$this->redirect(array('controller' =>'partner', 'action' => 'index'));
+			$this->redirect(array('controller' =>'partner', 'action' => 'login'));
 		};
 		$this->layout ='excel';
 		$this->loadModel('ImportQuestion');

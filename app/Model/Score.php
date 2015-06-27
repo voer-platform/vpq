@@ -6,6 +6,7 @@ App::import('Model', 'Question');
 App::import('Model', 'Person');
 App::import('Model', 'Exp');
 App::import('Model', 'ExpSubject');
+App::import('Model', 'TestsSubject');
 /**
  * Score Model
  *
@@ -157,7 +158,11 @@ class Score extends AppModel {
  * @return id of stored score 
  *        
  */
-    public function calculateScore($testId, $answers, $user, &$scoreData, $numberOfQuestions, $subject_id){
+    public function calculateScore($testId, $answers, $user, &$scoreData, $numberOfQuestions){
+		$TestsSubject=new TestsSubject();
+		$subject = $TestsSubject->find('first', array('conditions'=>array('test_id'=>$testId)));
+		$subject_id = $subject['Subject']['id'];
+		$person_id=$user['id'];
         //check if answer is right or not
         $correctCounter = 0;
 		$wrongCounter = 0;
@@ -253,7 +258,7 @@ class Score extends AppModel {
 											'exp'	  => $data_exp[0]['Exp']['exp']+$exp,
 											'date'		=>"'".date('Y-m-d h:i:s')."'",
 										),											
-									array('id'=>$data_exp[0]['Exp']['id'])
+									array('Exp.id'=>$data_exp[0]['Exp']['id'])
 								);
 			}else{
 				$Exp->create();

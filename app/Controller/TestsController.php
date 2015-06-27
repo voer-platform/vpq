@@ -483,7 +483,11 @@ class TestsController extends AppController {
 					$update_sub=$update_sub.','.$dt;					
 				}
 			}
-            $questions = $this->Test->generateTest($numberOfQuestions, $categories);			
+            $questions = $this->Test->generateTest($numberOfQuestions, $categories);
+			$id_question=array();
+			foreach($questions as $rs){
+				$id_question[]=$rs['Question']['id'];
+			}
             if (count($questions) > 0){
                 // create tests in database
                 $testID = $this->Test->nextTestId();
@@ -572,7 +576,6 @@ class TestsController extends AppController {
         $this->layout = 'ajax';
         $this->autoLayout = false;
         $this->autoRender = false;
-		
         // process if request is post
         if( $this->request->is('post')){
             //layout						
