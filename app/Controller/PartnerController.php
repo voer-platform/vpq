@@ -459,7 +459,7 @@ class PartnerController extends Controller {
 		));
 		$this->set('subcategory',$subcategory);
 		if($this->request->data('yes')){
-			$user_id = $this->Session->read('Auth.User')['id'];
+			$user_id = $user['id'];
 			$subcategory_id=$this->request->data('subcategory_id');
 			
 			$options = array(
@@ -490,7 +490,7 @@ class PartnerController extends Controller {
 												)
 					)){
 						$this->Session->setFlash(__('Duyệt thành công.'));
-						$this->redirect(array('controller' =>'Admin', 'action' => 'check_question'));
+						$this->redirect(array('controller' =>'partner', 'action' => 'check_question'));
 					}else{
 						$this->Session->setFlash(__('Duyệt thất bại.'));
 					}
@@ -587,7 +587,7 @@ class PartnerController extends Controller {
 							else
 							{							
 								$this->Question->commit();
-								$this->redirect(array('controller' =>'Admin', 'action' => 'check_question'));
+								$this->redirect(array('controller' =>'partner', 'action' => 'check_question'));
 								$this->Session->setFlash(__('Duyệt thành công câu hỏi số '.$insert_id));
 							}
 						}else{
@@ -600,7 +600,7 @@ class PartnerController extends Controller {
 														'id'=>$data_question[0]['ImportQuestion']['id'],
 													)
 							)){
-								$this->redirect(array('controller' =>'Admin', 'action' => 'check_question'));
+								$this->redirect(array('controller' =>'partner', 'action' => 'check_question'));
 								$this->Session->setFlash(__('Phân loại không trùng'));
 							}else{
 								$this->Session->setFlash(__('Lỗi phân loại câu hỏi'));
@@ -619,7 +619,7 @@ class PartnerController extends Controller {
 			if(isset($this->request->data['id'])){
 				$this->ImportQuestion->id = $this->request->data['id'];
 				if ($this->ImportQuestion->delete()) {
-					$this->redirect(array('controller' =>'Admin', 'action' => 'check_question'));
+					$this->redirect(array('controller' =>'partner', 'action' => 'check_question'));
 					$this->Session->setFlash(__('Xóa thành công.'));					
 				} else {
 					$this->Session->setFlash(__('Xóa thất bại.'));
@@ -637,7 +637,7 @@ class PartnerController extends Controller {
 													'id'=>$this->request->data['id'],
 												)
 				)){
-					$this->redirect(array('controller' =>'Admin', 'action' => 'import_excel'));
+					$this->redirect(array('controller' =>'partner', 'action' => 'import_excel'));
 					$this->Session->setFlash(__('Duyệt thành công'));
 				}else{
 					$this->Session->setFlash(__('Duyệt thất bại'));
@@ -655,7 +655,7 @@ class PartnerController extends Controller {
 													'id'=>$this->request->data['id'],
 												)
 				)){
-					$this->redirect(array('controller' =>'Admin', 'action' => 'import_excel'));
+					$this->redirect(array('controller' =>'partner', 'action' => 'import_excel'));
 					$this->Session->setFlash(__('Duyệt thành công'));
 				}else{
 					$this->Session->setFlash(__('Duyệt thất bại'));
