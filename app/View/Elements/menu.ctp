@@ -6,8 +6,6 @@
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
       </button>
 	  <a href="<?=$this->HTML->url('/');?>">
       <?php echo $this->Html->image('logo-small.png', array('alt' => 'PLS')); ?>
@@ -15,7 +13,6 @@
     </div>
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-		<li><?php echo $this->HTML->link(__('Home'), '/'); ?></li>
         <!-- if logged in user -->
         <?php if(!empty($user) ): ?>
           <li><?php echo $this->HTML->link(__('Dashboard'), array('controller' => 'people', 'action' => 'dashboard')); ?></li>
@@ -23,14 +20,18 @@
           <li><?php echo $this->HTML->link(__('Faq'), array('controller' => 'faqs', 'action' => 'userIndex')); ?></li>		  
         <?php endif; ?>
 
-        <!-- if is admin -->
-        <?php if($user['role'] === 'admin' || $user['role'] === 'editor'): ?>
-          <li><?php echo $this->HTML->link(__('Admin'), array('controller' => 'Admin', 'action' => 'index')); ?></li>
-        <?php endif; ?>
 		<li><?php echo $this->HTML->link(__('About'), '/about'); ?></li>
 		 <?php if(!empty($user) ): ?>
 		<!--<li id='napthe'><a href="<?php echo $this->Html->url(array('controller'=> 'rechargeCard')); ?>">Nạp thẻ</a></li>-->
 		<?php endif; ?>
+		
+		<li><?php echo $this->HTML->link(__('Ranking'), array('controller' => 'ranking', 'action' => 'index')); ?></li>
+		
+		<!-- if is admin -->
+        <?php if($user['role'] === 'admin' || $user['role'] === 'editor'): ?>
+          <li><?php echo $this->HTML->link(__('Admin'), array('controller' => 'Admin', 'action' => 'index')); ?></li>
+        <?php endif; ?>
+		
       </ul>
       <ul class="nav navbar-nav navbar-right">
 		

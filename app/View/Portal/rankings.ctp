@@ -25,7 +25,6 @@
 		</li>
 	<?php } ?>
 	</ul>
-	<div class="panel-footer center"><a href="<?=$this->Html->url(array('controller'=>'ranking', 'action'=>'index'));?>"><span class="glyphicon glyphicon-fire"></span> Xem Top 100 <span class="glyphicon glyphicon-fire"></span></a></div>
   </div>
 </div>
 <script type="text/javascript">

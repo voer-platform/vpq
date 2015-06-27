@@ -24,13 +24,13 @@
 	<?php echo $this->Html->css('bootstrap.min.css'); ?>
     <?php echo $this->HTML->css('jquery-ui.css'); ?>
     <?php echo $this->HTML->css('jquery.multiselect.css'); ?>
-    <?php echo $this->HTML->css('global.css?v=1.3'); ?>
+    <?php echo $this->HTML->css('global.css?v=1.4'); ?>
     <?php echo $this->HTML->css('style.css'); ?>
 	<?php echo $this->HTML->css('datepicker.css'); ?>
 	<?php echo $this->HTML->css('select2.css'); ?>
 	
     <!-- javascript -->
-	<script>var PLS = {ajaxUrl: '<?php echo $this->Html->url('/', true); ?>'};</script>
+	<script>var PLS = {ajaxUrl: '<?php echo $this->Html->url('/', true); ?>', innerReferal: '<?=$innerReferal;?>'};</script>
     <?php echo $this->Html->script('jquery.min.js');?>
     <?php echo $this->Html->script('jquery.simplePaging.js');?>
     <?php echo $this->Html->script('bootstrap.min.js');?>
@@ -38,7 +38,7 @@
     <?php echo $this->Html->script('jquery.multiselect.js');?>
 	<?php echo $this->Html->script('bootstrap-datepicker.js');?>
 	<?php echo $this->Html->script('select2.min.js');?>
-	<?php echo $this->Html->script('global.min.js?v=1.3');?>
+	<?php echo $this->Html->script('global.min.js?v=1.4');?>
 	<?php echo $this->Html->script('jquery.slimscroll.min.js');?>
     <!-- if production server -->
     <?php if($_SERVER['HTTP_HOST'] == 'pls.edu.vn'): ?>

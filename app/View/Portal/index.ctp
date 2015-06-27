@@ -4,7 +4,7 @@
 <meta property="og:description" content="<?php echo __('Ôn thi đại học theo cách của bạn'); ?>" /> 
 <meta property="og:image" content="<?php echo $this->Html->url(Router::url($this->here, true).'img/share4.jpg'); ?>" />
 <?php $this->end(); ?>
-<?php echo $this->Html->css('home.css');?>
+
 <style>
 	.content.container {
 		width:100%!important;
@@ -84,34 +84,7 @@
 	.counter li b {
 			font-size: 26px;
 	}
-	.btn-facebook {
-	  color: #fff;
-	  background-color: #49639f;
-	  border-color: #374D81;
-	} 
-	.f-icon {
-		position: relative;
-		padding-right: 25px;
-	}
-	.btn-facebook:hover, .btn-facebook:focus, .btn-facebook:active {
-		color:#fff!important;
-	}
-
-	.btn-facebook .f-icon b {
-		position: absolute;
-	  font-size: 18px;
-	  top: -4px;
-	  border-right: solid 1px #314B89;
-	  padding-right: 9px;
-	 } 
-	 .btn.btn-orange {
-		color:#fff;
-		background-color: #F47920;
-		border-color: #F47920;
-	}
-	.btn.btn-orange:hover {
-		background-color:#FF6B00;
-	}
+	
 	.news-list-item {
 	  position: relative;
 	  padding-left: 85px;
@@ -151,7 +124,6 @@
 			
 			<div class="row">
 				<div class="col-md-8">
-					<br/>
 					<div class="bg-info" style="padding: 10px;color: #206DB0;">
 							<div class="ib">
 								<p class="mg0 fs-19"><b>PLS - Ôn thi đại học miễn phí</b></p>
@@ -184,8 +156,6 @@
 					</div>
 				</div>
 				<div class="col-md-4">
-					<br/>
-					
 					<?=$this->element('../Portal/rankings');?>
 				</div>
 			</div>
@@ -233,181 +203,13 @@
 	</div>	
 
 </div>	
-<!-- Modal -->
-<div class="modal" id="login-modal" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog w-450">
-    <div class="modal-content">
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			<h4 class="modal-title" id="login-modal-title"><?php echo __('Login'); ?></h4>
-		  </div>
-      <div class="modal-body">
-		<!-- login section -->
-		<div id="login-section" style="overflow:hidden;">
-			<div class="alert alert-warning">Nếu chưa có tài khoản, bạn hãy đăng nhập bằng Facebook</div>
-			<div class="form-group">
-				<a href="<?php echo $fb_login_url; ?>" class="btn btn-facebook btn-block mix-login">
-					<div><span class="f-icon"><b>f</b></span>Đăng nhập bằng tài khoản Facebook</div>
-				</a>
-			</div>
-			<div class="center" style="position: relative;margin: 20px 0;border-bottom: solid 1px #dedede;">
-			  <span class="login-or" style="
-				position: absolute;
-				width: 100%;
-				left: 0;
-				top: -10px;
-				text-align: center;"><span style="background-color: #fff;color: #C0C0C0;">( or )</span></span>
-			</div>
-			<div class="alert" id="login-mess" style="display:none;"></div>
-			<div class="form-group">
-				<div class="input-group">
-				  <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
-				  <input type="text" class="form-control" name="email" id="login-email" placeholder="<?php echo __('Email'); ?>">
-				</div>
-			</div>
-			
-			<div class="form-group">
-				<div class="input-group">
-				  <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-				  <input type="password" class="form-control" name="password" id="login-password" placeholder="<?php echo __('Password'); ?>">
-				</div>
-			</div>	
-			<div class="form-group">
-				<button class="btn btn-primary btn-block" id="login-btn"><?php echo __('Login'); ?></button>
-			</div>	
-			
-			
-			
-			<hr/>
-			<div class="right">
-				<a href="javascript:void(0);" id="show-forgot-form"><?php echo __('Forgot password?'); ?></a>
-			</div>
-		</div>	
-		<!-- forgot section -->
-		<div id="forgot-section" style="height:0;overflow:hidden;">
-			<div class="alert alert-danger" id="forgot-mess" style="display:none;"></div>
-			<div class="form-group">
-				<div class="input-group">
-				  <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
-				  <input type="text" class="form-control" name="email" id="forgot-email" placeholder="<?php echo __('Email'); ?>">
-				</div>
-			</div>
-			<div class="form-group">
-				<button class="btn btn-primary btn-block" id="forgot-btn"><?php echo __('Reset password'); ?></button>
-			</div>	
-			<hr/>
-			<div class="right">
-				<a href="javascript:void(0);" id="show-login-form">Quay về đăng nhập</a>
-			</div>
-		</div>	
-      </div>
-    </div>
-  </div>
-</div>
+
 <script>
 	$(document).ready(function(){
 		mixpanel.track(
 			"Enter Hompage"
 		);
-		
-		var loginSection = '';
-		$('.login-open').click(function(){
-			loginSection = $(this).attr('data-section');
-			console.log(loginSection);
-		});
-		mixpanel.track_links(".mix-login", "Login", function(e){
-			return {"login_section": loginSection, "login_method": "facebook"};
-		});	
-		
-		
-		$('#login-btn').click(function(){
-			email = $('#login-email').val();
-			password = $('#login-password').val();
-			if(email && password)
-			{
-				$.ajax({
-					type: 'POST',
-					url: '<?php echo $this->Html->url(array('controller'=>'people', 'action'=>'login')); ?>',
-					data: {'email': email, 'password': password},
-					success: function(response){
-						response = JSON.parse(response);
-						mess = '';
-						if(parseInt(response.code)==1)
-						{
-							$('#login-mess').removeClass('alert-danger').addClass('alert-success');
-							mixpanel.track("Login", {"login_section": loginSection, "login_method": "normal"});
-							window.location.href = "/";
-						}
-						else
-						{
-							$('#login-mess').removeClass('alert-success').addClass('alert-danger');
-						}
-						$('#login-mess').html(response.mess).show();
-					}
-				});
-			}
-			else
-			{
-				$('#login-mess').removeClass('alert-success').addClass('alert-danger');
-				$('#login-mess').html('<?php echo __('Please complete all field'); ?>').show();
-			}
-		});
-		
-		$('#forgot-btn').click(function(){
-			email = $('#forgot-email').val();
-			if(email)
-			{
-				$.ajax({
-					type: 'POST',
-					url: '<?php echo $this->Html->url(array('controller'=>'api', 'action'=>'forgotPassword')); ?>',
-					data: {'email': email},
-					success: function(response){
-						response = JSON.parse(response);
-						mess = '';
-						if(parseInt(response.code)==1)
-						{
-							$('#forgot-mess').removeClass('alert-danger').addClass('alert-success');
-						}
-						else
-						{
-							$('#forgot-mess').removeClass('alert-success').addClass('alert-danger');
-						}
-						$('#forgot-mess').html(response.mess).show();
-					}
-				});
-			}
-			else
-			{
-				$('#forgot-mess').removeClass('alert-success').addClass('alert-danger');
-				$('#forgot-mess').html('<?php echo __('Please complete all field'); ?>').show();
-			}
-		});
-		
-		$('#show-forgot-form, #show-login-form').click(function(){
-			if($(this).attr('id')=='show-forgot-form')
-			{
-				el = $('#forgot-section').clone().appendTo('body');
-				autoHeight = el.css('height', 'auto').height();
-				el.remove();
-				$('#login-section').animate({ height: 0, 'min-height': 0 }, 300);
-				$('#forgot-section').animate({'min-height': autoHeight}, 300, function(){
-					$(this).css('height', 'auto');
-				});
-				$('#login-modal-title').text('<?php echo __('Forgot password'); ?>');
-			}
-			else
-			{
-				el = $('#login-section').clone().appendTo('body');
-				autoHeight = el.css('height', 'auto').height();
-				el.remove();
-				$('#forgot-section').animate({ height: 0, 'min-height': 0 }, 300);
-				$('#login-section').animate({'min-height': autoHeight}, 300, function(){
-					$(this).css('height', 'auto');
-				});
-				$('#login-modal-title').text('<?php echo __('Login'); ?>');
-			}
-		});
-		
+
 		setInterval(function(){
 			$(".cta-btn").toggleClass("cta-btn-hover");
 		 },1000);
