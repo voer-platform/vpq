@@ -4,6 +4,7 @@
 	<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
 			<th><?php echo $this->Paginator->sort('fullname', __('Fullname')); ?></th>
+			<th>Facebook</th>
 			<th><?php echo $this->Paginator->sort('birthday'); ?></th>
 			<th><?php echo $this->Paginator->sort('date_created'); ?></th>
 			<th><?php echo $this->Paginator->sort('gender'); ?></th>
@@ -17,6 +18,7 @@
 	<tr>
 		<td><?php echo h($person['Person']['id']); ?></td>
 		<td><a target="blank" href="<?=$this->Html->url(array('controller'=>'Log', 'action'=>'Person', $person['Person']['id']));?>"><?php echo h($person['Person']['fullname']); ?></a></td>
+		<td><a target="blank" href="http://facebook.com/<?=($person['Person']['facebook']); ?>">Xem</a></td>
 		<td><?php echo h($person['Person']['birthday']); ?></td>
 		<td><?php echo h($person['Person']['date_created']); ?></td>
 		<td><?php echo h($person['Person']['_gen']); ?></td>
