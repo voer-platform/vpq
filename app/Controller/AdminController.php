@@ -1088,6 +1088,12 @@ class AdminController extends AppController {
 						$mess = $notifications[1];
 						$notiType = 1;
 						$days = $person[0]['lasttest'];
+						
+						$resultScore = '';
+						foreach($rankings AS $ranking){
+							$resultScore.= $ranking['Subject']['name'].' - '.$ranking['Ranking']['score'].', ';
+						}
+						$resultScore = rtrim($resultScore, ', ');
 					}
 					else
 					{
@@ -1096,7 +1102,7 @@ class AdminController extends AppController {
 						$days = $person[0]['joindate'];
 					}
 					
-					$mess = str_replace(array('{1}', '{2}'), array("@[$fb_id]", $days), $mess);
+					$mess = str_replace(array('{1}', '{2}', '{3}'), array("@[$fb_id]", $days, $resultScore), $mess);
 					
 					try {
 						$this->Facebook->sendNotify($person['people']['facebook'], $mess);
@@ -1111,8 +1117,8 @@ class AdminController extends AppController {
 						$username = $person['people']['fullname'];
 						if($notiType==1)
 						{
-							$mess = "Đã lâu rồi chưa thấy bạn làm bài trên www.PLS.edu.vn. Chúng tôi mới có thêm một số tính năng sẽ giúp cho bạn học tốt hơn đấy.";
-							$mess.= '<table border="1" cellpadding="5" style="text-align: center;margin: auto;">
+							$mess = "Đã lâu rồi chưa thấy bạn làm bài trên www.PLS.edu.vn. Hãy tích cực làm bài để nâng cao kết quả học tập nhé.";
+							$mess.= '<br/><p style="  text-align: center;color: #428BCA;">Điểm số hiện tại của bạn</p><table border="1" cellpadding="5" style="text-align: center;margin: auto;">
 									 <thead><tr><td><b>Môn học</b></td>';
 									foreach($rankings AS $ranking){
 										$mess.='<td>'.$ranking['Subject']['name'].'</td>';
@@ -1121,7 +1127,7 @@ class AdminController extends AppController {
 									foreach($rankings AS $ranking){
 										$mess.='<td style="width: 70px;">'.$ranking['Ranking']['score'].'</td>';
 									}	
-							$mess.='</tr></tbody></table>';
+							$mess.='</tr></tbody></table><br/>';
 						}
 						else
 						{
