@@ -29,7 +29,8 @@ class RankingController extends AppController {
 		$options = array(
 						'limit'	=>	100,
 						'order'	=>	'exp DESC',
-						'recursive'	=>	0
+						'recursive'	=>	0,
+						'conditions'	=>	array('Person.exp > 0')
 					);
 		$rankings = $this->Person->find('all', $options);
 		
@@ -46,7 +47,7 @@ class RankingController extends AppController {
 		$this->loadModel('Exp');
 		$month = date('Y-m');
 		$options = array(
-						'conditions'	=>	array("Exp.date LIKE '$month%'"),
+						'conditions'	=>	array("Exp.date LIKE '$month%'", 'Exp.exp > 0'),
 						'limit'	=>	100,
 						'order'	=>	'Exp.exp DESC'
 					);
@@ -67,7 +68,7 @@ class RankingController extends AppController {
 						'recursive'	=>	0,
 						'limit'	=>	100,
 						'order'	=>	'Ranking.score DESC',
-						'conditions'	=>	array('Ranking.subject_id' => key($subjects))
+						'conditions'	=>	array('Ranking.subject_id' => key($subjects), 'Ranking.score > 5')
 					);
 		$scoreRankings = $this->Ranking->find('all', $options);
 		 // pr($scoreRankings);

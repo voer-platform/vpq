@@ -10,7 +10,7 @@
 			<div class="login-form-container">
 				<!-- login section -->
 				<div id="login-section" style="overflow:hidden;">
-					<!--<div class="alert alert-warning">Nếu chưa có tài khoản, bạn hãy đăng nhập bằng Facebook</div>-->
+					<div class="alert alert-warning">Nếu chưa có tài khoản, bạn hãy đăng nhập bằng Facebook</div>
 					<div class="form-group">
 						<a href="<?php echo $fb_login_url; ?>" class="btn btn-facebook btn-block mix-login">
 							<div><span class="f-icon"><b>f</b></span>Đăng nhập bằng tài khoản Facebook</div>

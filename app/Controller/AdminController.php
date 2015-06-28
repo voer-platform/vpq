@@ -1082,16 +1082,16 @@ class AdminController extends AppController {
 					$person_id = $person['people']['id'];
 					
 					$rankings = $this->Ranking->find('all', array('recursive'=>1, 'conditions'=>array('person_id'=>$person_id)));
+					$resultScore = '';
 					
 					if($person[0]['lasttest'])
 					{
 						$mess = $notifications[1];
 						$notiType = 1;
 						$days = $person[0]['lasttest'];
-						
-						$resultScore = '';
+
 						foreach($rankings AS $ranking){
-							$resultScore.= $ranking['Subject']['name'].' - '.$ranking['Ranking']['score'].', ';
+							$resultScore.= $ranking['Subject']['name'].' - '.$ranking['Ranking']['score'].'đ, ';
 						}
 						$resultScore = rtrim($resultScore, ', ');
 					}
@@ -1117,7 +1117,7 @@ class AdminController extends AppController {
 						$username = $person['people']['fullname'];
 						if($notiType==1)
 						{
-							$mess = "Đã lâu rồi chưa thấy bạn làm bài trên www.PLS.edu.vn. Hãy tích cực làm bài để nâng cao kết quả học tập nhé.";
+							$mess = "Đã lâu rồi chưa thấy bạn làm bài trên www.PLS.edu.vn. Hãy tích cực luyện tập để nâng cao kết quả học tập nhé.";
 							$mess.= '<br/><p style="  text-align: center;color: #428BCA;">Điểm số hiện tại của bạn</p><table border="1" cellpadding="5" style="text-align: center;margin: auto;">
 									 <thead><tr><td><b>Môn học</b></td>';
 									foreach($rankings AS $ranking){

@@ -76,7 +76,7 @@
 							'recursive'	=>	0,
 							'limit'	=>	$limit,
 							'order'	=>	'Ranking.score DESC',
-							'conditions'	=>	array('Ranking.subject_id' => $subject)
+							'conditions'	=>	array('Ranking.subject_id' => $subject, 'Ranking.score > 5')
 						);
 			$scoreRankings = $this->Ranking->find('all', $options);
 			 // pr($scoreRankings);
