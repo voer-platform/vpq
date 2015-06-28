@@ -1065,21 +1065,24 @@ class AdminController extends AppController {
 				LEFT JOIN scores ON scores.person_id = people.id
 				LEFT JOIN (SELECT facebook_notifications_people.person_id, DATEDIFF(NOW(), MAX(facebook_notifications_people.time)) AS lastsend, COUNT(facebook_notifications_people.id) AS ttfn 
 							FROM facebook_notifications_people 
-							
 							GROUP BY facebook_notifications_people.person_id) AS fnp ON fnp.person_id = people.id
-				WHERE DATEDIFF(NOW(), people.date_created) > 7
-				GROUP BY people.id, people.facebook 
-				HAVING (lastsend IS NULL OR lastsend >= 7)
+							WHERE DATEDIFF(NOW(), people.date_created) > 7
+							GROUP BY people.id, people.facebook 
+							HAVING (lastsend IS NULL OR lastsend >= 7)
 						AND ((lasttest IS NULL AND joindate < 30) OR (lasttest >= 7 AND lasttest < 30))");	
 				
 			$this->loadModel('FacebookNotification');
 			$notifications = $this->FacebookNotification->find('list', array('fields'=>array('content')));
+			$this->loadModel('Ranking');
 			if(!empty($users)){
 				App::uses('CakeEmail', 'Network/Email');
 				foreach($users AS $person)
 				{
 					$fb_id = $person['people']['facebook'];
 					$person_id = $person['people']['id'];
+					
+					$rankings = $this->Ranking->find('all', array('recursive'=>1, 'conditions'=>array('person_id'=>$person_id)));
+					
 					if($person[0]['lasttest'])
 					{
 						$mess = $notifications[1];
@@ -1109,6 +1112,16 @@ class AdminController extends AppController {
 						if($notiType==1)
 						{
 							$mess = "Đã lâu rồi chưa thấy bạn làm bài trên www.PLS.edu.vn. Chúng tôi mới có thêm một số tính năng sẽ giúp cho bạn học tốt hơn đấy.";
+							$mess.= '<table border="1" cellpadding="5" style="text-align: center;margin: auto;">
+									 <thead><tr><td><b>Môn học</b></td>';
+									foreach($rankings AS $ranking){
+										$mess.='<td>'.$ranking['Subject']['name'].'</td>';
+									}	
+							$mess.='</tr></thead><tbody><tr><td><b>Điểm</b></td>';
+									foreach($rankings AS $ranking){
+										$mess.='<td style="width: 70px;">'.$ranking['Ranking']['score'].'</td>';
+									}	
+							$mess.='</tr></tbody></table>';
 						}
 						else
 						{
@@ -1129,6 +1142,8 @@ class AdminController extends AppController {
 						$Email->subject("$username, chúng tôi nhớ bạn");
 						$Email->send($content);
 					}
+					
+					
 					
 					$this->FacebookNotificationsPerson->create();
 					$this->FacebookNotificationsPerson->save(array('person_id'=>$person_id, 'facebook_notify_type'=>$notiType, 'time'=>date('Y-m-d h:i:s')));
