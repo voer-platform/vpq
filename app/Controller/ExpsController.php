@@ -51,19 +51,16 @@ class ExpsController extends AppController {
 		$this->loadModel('Score');
 		$this->loadModel('Progress');
 		if($this->Session->read('Auth.User')['role']== 'admin'){			
-			$data=$this->Progress->query(
+			/*$data=$this->Progress->query(
 										"SELECT person_id, Sum(progress) as correct, Sum(total)-Sum(progress) as wrong FROM `progresses` Group by person_id"
-										);
+										);*/
+			$data=$this->Score->calculateTotalExp();
 			foreach($data as $dt){
-				$exp=$dt[0]['correct']-$dt[0]['wrong'];
-				if($exp<0){
-					$exp=0;
-				}
-				$this->Person->id=$dt['progresses']['person_id'];
-				$this->Person->save(
+				$this->Person->updateAll(
 									array(
-											'exp'=>$exp,
-									)
+											'exp'=>$dt[0]['exp'],
+									),
+									array('Person.id'=>$dt['tbl_exps']['person_id'])
 				);
 			};
 			
