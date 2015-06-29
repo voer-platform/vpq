@@ -27,7 +27,7 @@ class PeopleController extends AppController {
     public function isAuthorized($user) {
         // user can logout, dashboard, progress, history, suggest
         if (isset($user['role']) && $user['role'] === 'user' ){
-            if( in_array( $this->request->action, array('view', 'update','progress', 'login', 'logout', 'history', 'dashboard','suggest', 'completeProfile', 'invite','rechargecard', 'resetNotifyCounter', 'emailCheck', 'phoneCheck', 'changePassword'))){
+            if( in_array( $this->request->action, array('view', 'update','progress', 'login', 'logout', 'history', 'dashboard','suggest', 'completeProfile', 'invite','rechargecard', 'resetNotifyCounter', 'emailCheck', 'phoneCheck', 'changePassword','exportpdf'))){
                 return true;
             }
         } elseif (isset($user['role']) && $user['role'] === 'editor') {
@@ -780,6 +780,98 @@ class PeopleController extends AppController {
 					);
 		$activities = $this->Score->find('all', $options);
 		return $activities;
+	}
+	
+	public function exportpdf($id=null){
+		$this->loadModel('Person');
+		$options = array(
+				'recursive' => -1,
+				'conditions' => array('Person.id'=>$id)
+				);			
+		$user = $this->Person->find('all',$options);		
+		$this->set('user',$user);
+		$datenow=explode('-',date('d-m-Y'));
+		$this->set('datenow',$datenow);
+		$this->loadModel('Subject');
+		$viewSubjects = array(2,4,8);
+		$overviews = $this->Subject->subjectOverview($id, array('subject'=>$viewSubjects));
+		foreach($overviews as $ov){
+			$overv[$ov['Subject']['id']]['Subject_id']=$ov['Subject']['id'];
+			$overv[$ov['Subject']['id']]['Subject_name']=$ov['Subject']['name'];
+			$overv[$ov['Subject']['id']]['Score']=$ov['Ranking']['score'];
+		}
+		$this->set('overv',$overv);
+		$this->loadModel('Ranking');
+		$ranking_data = $this->Ranking->getSubjectRanking($id);
+		$this->set('rankings', $ranking_data);
+		$this->loadModel('Score');
+		
+		$now=date('m');
+		if($now==1){
+			$last=12;
+		}else{
+			$last=$now-1;
+		}
+
+		$this->loadModel('Score');
+		$now_data=$this->Score->CalculateScoreSubject($id,$now);
+		
+		$this->set('now',$now_data);
+
+		$last_data=$this->Score->CalculateScoreSubject($id,$last);
+		$last_data2=array();
+		foreach($last_data as $key=>$ld)
+		{
+			if($ld[0]['score']=='-'){
+				$sc=0;
+			}else{
+				$sc=$ld[0]['score'];
+			};
+			$sc=$now_data[$key][0]['score']-$sc;
+			if($sc>=0)
+			{
+				$sc='+'.$sc;
+			}
+			if($ld[0]['count']=='-'){
+				$ct=0;
+			}else{
+				$ct=$ld[0]['count'];
+			};
+			$ct=$now_data[$key][0]['count']-$ct;
+			if($ct>=0)
+			{
+				$ct='+'.$ct;
+			}
+			if($ld[0]['total_time']=='-'){
+				$tt=0;
+			}else{
+				$tt=$ld[0]['total_time'];
+			};
+			$tt=$now_data[$key][0]['total_time']-$tt;
+			if($tt>=0)
+			{
+				$tt='+'.$tt;
+			}
+			$last_data2[$key]=array(
+								'person_id'		=>	$ld['scores']['person_id'],
+								'score'			=>	$sc,
+								'count'			=>	$ct,
+								'total_time'	=>	$tt,
+								'subject_id'	=>	$ld['tests_subjects']['subject_id'],
+			);
+		}
+		
+		$this->set('last',$last_data2);
+		
+/*PDF*/
+		$this->layout='pdf';
+		error_reporting(0);
+		$mpdf = new mPDF();
+		$response = $this->render('exportpdf');
+		$html = $response->body();
+		$mpdf->WriteHTML($html);
+		//$mpdf->Output('Test.pdf','D');
+		$mpdf->Output();
 	}
 	
 }

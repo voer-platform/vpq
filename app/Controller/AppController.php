@@ -93,6 +93,7 @@ class AppController extends Controller {
 
         // set default language is Vietnamese
         Configure::write('Config.language', 'vie');
+		App::import('Vendor', 'mPDF', array('file' => 'mPDF'.DS.'mpdf.php'));
     }
 
     /**
