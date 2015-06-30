@@ -116,6 +116,28 @@
 	  font-size: 12px;
 	  margin-bottom: 0;
 	} 
+	.topbanner-container {
+		position:relative;
+		cursor:pointer;
+	}
+	.topbanner-container:hover .topbanner {
+		display:none;
+	}	
+	.topbanner-container:hover .topbanner-hover {
+		display: block;
+	}
+	.topbanner {
+		
+		  top: 0;
+		  left: 0;
+		  z-index: 2;
+	}
+	.topbanner-hover {
+		display:none;
+	  top: 0;
+	  left: 0;
+	  z-index: 1;
+	}
 </style>
 <div class="container">
 
@@ -124,7 +146,7 @@
 			
 			<div class="row">
 				<div class="col-md-8">
-					<div class="bg-info" style="padding: 10px;color: #206DB0;">
+					<!--<div class="bg-info" style="padding: 10px;color: #206DB0;">
 							<div class="ib">
 								<p class="mg0 fs-19"><b>PLS - Ôn thi đại học miễn phí</b></p>
 								&nbsp;<span class="glyphicon glyphicon-ok"></span>&nbsp; Hơn 10000 câu hỏi có lời giải với 3 môn Lý, Hóa, Sinh
@@ -134,10 +156,16 @@
 								&nbsp;<span class="glyphicon glyphicon-ok"></span>&nbsp; Tự động đánh giá kết quả chi tiết và chính xác
 							</div>	
 							<div class="ib pull-right mgt-10">
-								<p><button class="btn btn-orange cta-btn" data-toggle="modal" data-target="#login-modal" data-section="menu-top"><span class="glyphicon glyphicon-chevron-right"></span> Bắt đầu ngay</button></p>
+								<p><button class="btn btn-orange cta-btn" ><span class="glyphicon glyphicon-chevron-right"></span> Bắt đầu ngay</button></p>
 								<p>Chỉ mất 3s đăng ký</p>
 							</div>
+					</div>-->
+
+					<div class="topbanner-container" data-toggle="modal" data-target="#login-modal" data-section="menu-top">
+						<?=$this->Html->image('topbanner.gif', array('class'=>'fw topbanner'));?>
+						<?=$this->Html->image('topbanner-hover.gif', array('class'=>'fw topbanner-hover'));?>
 					</div>
+					
 					<h3><?=$newsletterCategories[0]['NewsletterCategory']['name'];?></h3>
 					<hr class="news-hr" />
 					<div class="news-container">
