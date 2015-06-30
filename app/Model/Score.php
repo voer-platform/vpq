@@ -322,6 +322,39 @@ class Score extends AppModel {
         return $scoreId;
     }
 	
+	public function CalculateScoreSubject($id,$now)
+	{
+		$scoresubject=$this->query(
+								"
+									SELECT scores.person_id,(ROUND(SUM(scores.score)/SUM(tests.number_questions),1)*10) DIV 1 as score, Count(tests.number_questions) as count, SUM(tests.time_limit) as total_time, tests_subjects.subject_id as subject_id FROM `scores` INNER JOIN `tests` ON tests.id=scores.test_id INNER JOIN `tests_subjects` ON tests.id=tests_subjects.test_id  WHERE scores.person_id='$id' AND month(scores.time_taken)='$now' AND year(scores.time_taken)=year(now()) Group By tests_subjects.subject_id
+								"
+		);
+		$data=array();
+		foreach($scoresubject as $now){
+			$data[$now['tests_subjects']['subject_id']]=$now;
+		};
+		$array_subject=array(
+							'0'=>2,
+							'1'=>4,
+							'2'=>8,
+		);
+		foreach($array_subject as $as){
+			if(!array_key_exists($as,$data))
+			{
+				$data[$as]=array(
+								'scores'			=>	array('person_id'=>$id),
+								'0'					=>	array(
+																'score'			=>	'-',
+																'count'			=>	'-',
+																'total_time'	=>	'-',
+															 ),
+								'tests_subjects'	=>	array('subject_id'=>$as),
+							  );
+			}
+		}
+		return $data;
+	}
+	
 	public function calculateTotalExp(){
 		$exp=$this->query(
 								"
