@@ -29,6 +29,9 @@
         </div>
     </div>
 </div>
+
+<div class="check-phone hidden-xs"></div>
+
 <div class='dashboard'>
   
 
@@ -73,7 +76,7 @@
 								$rankingInfo = 'Bạn chưa có tên trong bảng xếp hạng của môn '.$subj['Subject']['name'];
 							}
 					?>
-						<div class="col-md-4">
+						<div class="col-md-4 col-sm-4">
 							<div class="panel panel-default">
 								<div class="panel-body">
 									<div class="row">
@@ -119,9 +122,12 @@
 												</a>
 												
 												
-											</div>		
-										<div class="col-md-12 <?php echo ($noTest)?'blur3':''; ?>">
-											<hr class="mgt-10 mgb-10" />
+										</div>	
+									</div>	
+									<div class="row <?php echo ($noTest)?'blur3':''; ?>">
+										<hr class="mgt-10 mgb-10" />
+										
+										<div class="col-md-4 col-sm-4 pdr-5">
 											<a class="nudl no-style" href="<?php 
 													echo $this->Html->url(
 														array(
@@ -131,24 +137,31 @@
 														)
 													); 
 												?>">
-												<div style="display: inline-block;">
-													<span class="subject-score" style="border-color:<?php echo $this->Name->rankColor($score); ?>" id="subject-score-<?php echo $subj['Subject']['id']; ?>">
-														<span class="subject-score-number"><?php echo $score; ?></span>
-														<span class="subject-score-text" style="color:<?php echo $this->Name->rankColor($score); ?>"><?php echo __('Score'); ?></span>
-													</span>
+												
+												<div class="subject-score" style="background-color:<?php echo $this->Name->rankColor($score); ?>" id="subject-score-<?php echo $subj['Subject']['id']; ?>">
+													<div style="position: absolute;width: 100%;height: 100%;display: block;top: 0;left: 0;padding: 2px;border-radius: 50%;">
+															<div style="width: 100%;height: 100%;display: block;background-color: #fff;border-radius: 50%;">
+																	<span class="subject-score-number"><?php echo $score; ?></span>
+																	<span class="subject-score-text" style="color:<?php echo $this->Name->rankColor($score); ?>"><?php echo __('Score'); ?></span>
+															</div>
+														
+													</div>
+													
 												</div>
+												
 											</a>	
-											<div style="display: inline-block;float:right;width: 65%;font-size:12px;">
-												<?php echo __('Tiến trình học tập'); ?> <a href="javascript:void(0);" class="hasDetail pull-right pls-popover" data-type="Progress Popover" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="top" data-content="Được tính bằng tỷ lệ số bài học đã thực hành trên tổng số bài của môn học này"><span class="glyphicon glyphicon-question-sign"></span></a>
-												
-												<div class="progress" style="margin: 7px 0;">
-													<div class="progress-bar progress-bar-striped" id="subject-cover-<?php echo $subj['Subject']['id']; ?>" style="width: <?php echo $completeness; ?>%;" role="progressbar" aria-valuenow="<?php echo $completeness; ?>" aria-valuemin="0" aria-valuemax="100" id="preogressbar-cover"><?php echo $completeness.'%'; ?></div>
-												</div>
-												
-												Đã thực hành <b class="num-pass"><?php echo $pass; ?></b> / <b class="num-total"><?php echo $total; ?></b> bài
+										</div>	
+										<div class="col-md-8 col-sm-8  fs-12 pdl-5">
+											<?php echo __('Tiến trình học tập'); ?> <a href="javascript:void(0);" class="hasDetail pull-right pls-popover" data-type="Progress Popover" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="top" data-content="Được tính bằng tỷ lệ số bài học đã thực hành trên tổng số bài của môn học này"><span class="glyphicon glyphicon-question-sign"></span></a>
+											
+											<div class="progress" style="margin: 7px 0;">
+												<div class="progress-bar progress-bar-striped" id="subject-cover-<?php echo $subj['Subject']['id']; ?>" style="width: <?php echo $completeness; ?>%;" role="progressbar" aria-valuenow="<?php echo $completeness; ?>" aria-valuemin="0" aria-valuemax="100" id="preogressbar-cover"><?php echo $completeness.'%'; ?></div>
 											</div>
+											
+											Đã thực hành <b class="num-pass"><?php echo $pass; ?></b> / <b class="num-total"><?php echo $total; ?></b> bài
 										</div>
-										
+									</div>
+									<div class="row">
 										<div class="col-md-12 <?php echo ($noTest)?'blur3':''; ?> mgt-10">
 											<div class="chart" data-enabled-label="false" data-chart-height="70" data-spacing-bottom="5" id="chart-subject-<?php echo $subj['Subject']['id']; ?>"></div>
 										</div>
@@ -162,7 +175,7 @@
 					<?php echo $this->element('progress_subject'); ?>
 				<?php } ?>	
 		</div>	
-		<div class="col-md-3">
+		<div class="col-md-3 hidden-sm">
 			<?=$this->element('../People/sidebar');?>
 		</div>
 	</div>	
@@ -417,6 +430,12 @@
         chart = new google.visualization.LineChart(document.getElementById('chart'));
         chart.draw(data, options);
     }*/
+	
+	//Check phone device
+	if($('.check-phone').is(':visible')==false)
+	{
+		window.location.href = PLS.ajaxUrl+'mobile';
+	}
 	
 	$('.category-row td:first-child').click(function(){
 		catId = $(this).parent().attr('data-id');

@@ -1,4 +1,3 @@
-
 <div class="panel panel-default" style="border: solid 2px #428BCA;">
 	<div class="panel-body">
 		<div class="user-overview">
@@ -11,9 +10,13 @@
 		</div>	
 		<hr class="mgb-10" />
 		Việc học sẽ vui hơn khi có bạn bè. Hãy rủ bạn tham gia ngay nhé!
-		<div class="center mgt-10">
-			<a class='btn btn-primary ib w-100' href="javascript:void(0);" onclick="FBShare()"><span class='glyphicon glyphicon-share-alt'></span>&nbsp;&nbsp;<?php echo __('Share'); ?></a>
-			&nbsp;&nbsp;<a class='btn btn-success ib w-100' href="javascript:void(0);" onclick="FBInvite()"><span class='glyphicon glyphicon-send'></span>&nbsp;&nbsp;<?php echo __('Invite'); ?></a>
+		<div class="row mgt-10">
+			<div class="col-md-6 pdr-5">
+				<a class='btn btn-primary ib fw' href="javascript:void(0);" onclick="FBShare()"><span class='glyphicon glyphicon-share-alt'></span>&nbsp;&nbsp;<?php echo __('Share'); ?></a>
+			</div>	
+			<div class="col-md-6 pdl-5">
+				<a class='btn btn-success ib fw' href="javascript:void(0);" onclick="FBInvite()"><span class='glyphicon glyphicon-send'></span>&nbsp;&nbsp;<?php echo __('Invite'); ?></a>
+			</div>	
 		</div>	
 	</div>
 </div>

@@ -1,7 +1,7 @@
 <?php echo $this->HTML->css('navbar-static-top');?>
 <?php Configure::load("pls"); ?>
 <div class="navbar navbar-default navbar-static-top" role="navigation">
-  <div class="container">
+  <div class="container menu-container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
         <span class="sr-only">Toggle navigation</span>
@@ -13,6 +13,7 @@
     </div>
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
+		<li><?php echo $this->HTML->link(__('Home'), '/'); ?></li>
         <!-- if logged in user -->
         <?php if(!empty($user) ): ?>
           <li><?php echo $this->HTML->link(__('Dashboard'), array('controller' => 'people', 'action' => 'dashboard')); ?></li>

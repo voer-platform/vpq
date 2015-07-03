@@ -17,7 +17,8 @@
     <!-- meta -->
     <?php echo $this->Html->meta('icon', $this->Html->url(Router::url('/', true).'img/favicon.png')); ?>
     <?php echo $this->element('mixpanel_init'); ?>
-    <?php echo $this->Html->meta('viewport', 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no');?>
+    <?php echo $this->Html->meta(array('http-equiv'=>'X-UA-Compatible', 'content'=>'IE=edge'));?>
+	<?php echo $this->Html->meta(array('name'=>'viewport', 'content'=>'width=device-width, initial-scale=1'));?>
     <?php echo $this->fetch('meta'); ?>
 
     <!-- css -->

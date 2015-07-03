@@ -69,9 +69,9 @@ class AppController extends Controller {
      * beforeFilter
      */
     public function beforeFilter() {
-		if ($this->request->is('mobile')) {
-			$this->redirect('/mobile');
-		}
+		// if ($this->request->is('mobile')) {
+			//$this->redirect('/mobile');
+		// }
         // load sdk
         Configure::load('facebook');
         // this is not recommended by CakePHP, just for backward compatiblity

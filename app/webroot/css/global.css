@@ -95,14 +95,14 @@ body > .container {
 }
 
 .user-overview .avatar {
-	width: 70px;
-	height: 70px;
+	width: 60px;
+	height: 60px;
 	border-radius: 70px;
 	position: absolute;
 }
 
 .info-overview {
-	padding-left: 85px;
+	padding-left: 75px;
 }
 
 .user-name {
@@ -381,8 +381,12 @@ transition: all 0.7s ease;
 .mglr-10{margin:0 10px!important;}
 .pd0 {padding:0!important;}
 .pd10 {padding:10px!important;}
+
 .pdl-30 {padding-left:30px;}
+.pdl-5 {padding-left:5px!important;}
+.pdr-5 {padding-right:5px!important;}
 .pdr-0{padding-right:0;}
+
 .blur1 {opacity: 0.1;}
 .blur3 {opacity: 0.3;}
 .nbrd {border:0;}

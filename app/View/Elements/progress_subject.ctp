@@ -10,7 +10,7 @@
 		<div class="panel panel-default" style="background:#FCFCFC;">
 			<div class="panel-body">
 				<div class="row">
-					<div class="col-md-3">
+					<div class="col-md-3 col-sm-3">
 						<h2 class="dashboard-subject-name"><?php echo $this->Html->image('subjects/'.$progress['Subject']['id'].'.png'); ?> <?php echo $progress['Subject']['name']; ?></h2>
 							<p>
 								<!--
@@ -47,7 +47,7 @@
 								<span class="glyphicon glyphicon-play"></span> <?php echo __('Do test on this'); ?>
 							</a>
 					</div>		
-					<div class="col-md-6" style="border-left: solid 1px #C0D0E0;">
+					<div class="col-md-9 col-sm-9" style="border-left: solid 1px #C0D0E0;">
 						<div style="display: inline-block;float:left;">
 							<span class="detail-subject-score" style="border-color:<?php echo $this->Name->rankColor($score); ?>" id="subject-score-<?php echo $progress['Subject']['id']; ?>" title="<?php echo __('Score based on latest 10 tests on the subject'); ?>">
 								<span class="subject-score-number"><?php echo $score; ?></span>
