@@ -5,7 +5,7 @@
 			<div class="info-overview">
 				<b><?=$user['fullname'];?></b><br/>
 				<span class="fs-12">Exp: <?=$data_user['exp'];?></span><br/>
-				<span class="fs-12">Coin: <?=$data_user['coin'];?></span>
+				<span class="fs-12">Xu: <?=$data_user['coin'];?></span>
 			</div>
 		</div>	
 		<hr class="mgb-10" />

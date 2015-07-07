@@ -5,7 +5,7 @@
 	<hr/>
 	<p><?php echo __('Content'); ?></p>
 	<div class="well">
-		<?php echo h($newsletter['Newsletter']['content']); ?>
+		<?php echo $newsletter['Newsletter']['content']; ?>
 	</div>	
 	<hr/>
 	<p>

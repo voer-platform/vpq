@@ -56,11 +56,20 @@ class ExpsController extends AppController {
 										);*/
 			$data=$this->Score->calculateTotalExp();
 			foreach($data as $dt){
+				if($dt[0]['exp']>0)
+				{
+					$exp = $dt[0]['exp'];
+				}
+				else
+				{
+					$exp = 0;
+				}
+				
 				$this->Person->updateAll(
 									array(
-											'exp'=>$dt[0]['exp'],
+											'exp'=>$exp,
 									),
-									array('Person.id'=>$dt['tbl_exps']['person_id'])
+									array('Person.id'=>$dt['progresses']['person_id'])
 				);
 			};
 			

@@ -146,20 +146,6 @@
 			
 			<div class="row">
 				<div class="col-md-8">
-					<!--<div class="bg-info" style="padding: 10px;color: #206DB0;">
-							<div class="ib">
-								<p class="mg0 fs-19"><b>PLS - Ôn thi đại học miễn phí</b></p>
-								&nbsp;<span class="glyphicon glyphicon-ok"></span>&nbsp; Hơn 10000 câu hỏi có lời giải với 3 môn Lý, Hóa, Sinh
-								<br/>
-								&nbsp;<span class="glyphicon glyphicon-ok"></span>&nbsp; Phương thức làm bài mềm dẻo, chỉ từ 5 phút mỗi bài
-								<br/>
-								&nbsp;<span class="glyphicon glyphicon-ok"></span>&nbsp; Tự động đánh giá kết quả chi tiết và chính xác
-							</div>	
-							<div class="ib pull-right mgt-10">
-								<p><button class="btn btn-orange cta-btn" ><span class="glyphicon glyphicon-chevron-right"></span> Bắt đầu ngay</button></p>
-								<p>Chỉ mất 3s đăng ký</p>
-							</div>
-					</div>-->
 
 					<div class="topbanner-container" data-toggle="modal" data-target="#login-modal" data-section="menu-top">
 						<?=$this->Html->image('topbanner.gif', array('class'=>'fw topbanner'));?>
@@ -178,7 +164,7 @@
 									<h5 class="news-title"><b><?=$news['Newsletter']['title'];?></b></h5>
 								</a>	
 								<p class="news-time"><?=date('d/m/Y h:i', strtotime($news['Newsletter']['created']));?></p>
-								<p class="news-excerpt"><?=$this->Text->truncate($news['Newsletter']['content'], 150);?></p>
+								<p class="news-excerpt"><?=$this->Text->truncate(strip_tags($news['Newsletter']['content']), 190);?></p>
 							</div>	
 						<?php } ?>
 					</div>
@@ -187,43 +173,7 @@
 					<?=$this->element('../Portal/rankings');?>
 				</div>
 			</div>
-			<!--	
-			<hr/>
-			<div class="row">
-				<div class="col-md-5">
-					<div class="fb-page" data-href="https://www.facebook.com/plseduvn" data-small-header="false" data-width="438" data-hide-cover="false" data-show-facepile="true" data-show-posts="false"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/plseduvn"><a href="https://www.facebook.com/plseduvn">PLS Edu</a></blockquote></div></div>
-				</div>	
-				<div class="col-md-7">
-					<h3 class="mg0"><?=$newsletterCategories[0]['NewsletterCategory']['name'];?></h3>
-					<hr class="news-hr" />
-					<div class="news-container">
-						<?php 
-							$firstNew = $newsletterCategories[0]['Newsletters'][0]; 
-							unset($newsletterCategories[0]['Newsletters'][0]);
-						?>
-						<div class="news-list-item">
-							<a href="<?=$this->Html->url(array('controller'=>'portal', 'action'=>'viewPost', $firstNew['Newsletter']['id']));?>">
-								<img class="news-img" src="<?=$this->Pls->getImageFromContent($firstNew['Newsletter']['content']);?>" width="70" height="70" />
-							</a>
-							<a href="<?=$this->Html->url(array('controller'=>'portal', 'action'=>'viewPost', $firstNew['Newsletter']['id']));?>">
-								<h5 class="news-title"><b><?=$firstNew['Newsletter']['title'];?></b></h5>
-							</a>	
-							<p class="news-time"><?=date('d/m/Y h:i', strtotime($firstNew['Newsletter']['created']));?></p>
-							<p class="news-excerpt"><?=$this->Text->truncate($firstNew['Newsletter']['content'], 110);?></p>
-						</div>	
-						<ul class="subnews-container">
-						<?php foreach($newsletterCategories[0]['Newsletters'] AS $news){ ?>
-							<li>
-								<a href="<?=$this->Html->url(array('controller'=>'portal', 'action'=>'viewPost', $news['Newsletter']['id']));?>">
-									<h5 class="subnews-title"><b><?=$news['Newsletter']['title'];?></b></h5>
-								</a>	
-							</li>	
-						<?php } ?>
-						</ul>
-					</div>	
-				</div>
-			</div>	
-			-->
+			
 		</div>
 		<div class="col-md-3">
 			<?=$this->element('../Portal/sidebar');?>

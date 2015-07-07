@@ -167,8 +167,7 @@ class Score extends AppModel {
         $correctCounter = 0;
 		$wrongCounter = 0;
         $duration = $answers['duration'];
-		$Exp=new Exp();
-		$ExpSubject=new ExpSubject();
+		
         // get row in array, key=question_id, value=>answer_id
         foreach ( $answers as $question => $answerId) {
             
@@ -180,8 +179,8 @@ class Score extends AppModel {
             $result = $Answer->find('first', array(
                 'recursive' => -1,
                 'conditions' => array(
-                    'question_id' => $question,
-                    'Answer.order' => $answerId         // the answer has order(0 to 3) corresspond to question
+						'question_id' => $question,
+						'Answer.order' => $answerId         // the answer has order(0 to 3) corresspond to question
                     )
                 ));
             // count correct questions
@@ -189,29 +188,16 @@ class Score extends AppModel {
             $scoreData[$question]['answer'] = $answerId;
 			$Question=new Question();
 			$data_Question = $Question->find('first', array(
-			'recursive' => -1,
-			'conditions' => array(
-				'id' => $question,
-				)
+				'recursive' => -1,
+				'conditions' => array(
+						'id' => $question,
+					)
 			));
-            $exp_total = $this->Person->find('first',array(
-														'recursive' => -1,
-														'conditions' => array(
-															'id' => $user['id'],
-															)
-													)
-									  );
-			$exp_total=$exp_total['Person']['exp'];
+            
 			
             if( !empty($result) && $result['Answer']['correctness'] == 1){
                 $correctCounter++;
                 $scoreData[$question]['correct'] = 1;				
-				$this->Person->id=$user['id'];
-				$this->Person->save(
-									array(
-											'exp' => $exp_total+1,
-										)
-									);				
             }
             else{
 				$wrongCounter++;
@@ -223,44 +209,67 @@ class Score extends AppModel {
 												'wrong' => $wrong,
 											)
 										);
-				$exp_total=$exp_total-1;
-				if($exp_total<0){
-					$exp_total=0;
-				}
-				$this->Person->id=$user['id'];
-				$this->Person->save(
-									array(
-											'exp' => $exp_total,
-										)
-									);
+				
             }
             
         }
-
+		
         if(!empty($user)){
             // save score to db
             $scoreId = $this->getNextScoreId();
             $this->saveScore($scoreId, $testId, $user['id'], $correctCounter, $duration, date("Y-m-d H:i:s"));
 			
-			$data_exp=$Exp->query(
-								"SELECT * FROM `exps` as Exp Where person_id='$person_id' AND year(date)=year(now()) AND month(date)=month(now())"			
-			);
+			// update exp
 			$exp=$correctCounter - $wrongCounter;
-			if($exp<0){
-				$exp=0;
+			
+			$exp_total = $this->Person->find('first',array(
+													'recursive' => -1,
+													'conditions' => array(
+															'id' => $user['id'],
+														)
+												)
+								  );
+			$exp_total=$exp_total['Person']['exp'];
+
+			$exp_total=$exp_total+$exp;
+			if($exp_total<0)
+			{
+				$exp_total=0;
 			}
+			
+			$this->Person->id=$user['id'];
+			$this->Person->save(
+						array(
+							'exp' => $exp_total,
+						)
+					);
+			
+			$Exp=new Exp();
+				
+			$data_exp=$Exp->query(
+							"SELECT * FROM `exps` as Exp Where person_id='$person_id' AND year(date)=year(now()) AND month(date)=month(now())"			
+						);
+			
 			if($data_exp!=null){
-				$Exp=new Exp();
+							
+				$newMonthlyExp = $data_exp[0]['Exp']['exp']+$exp;
+				if($newMonthlyExp<0)
+				{
+					$newMonthlyExp = 0;
+				}
+				
 				$Exp->updateAll(
-									array(
-											'correct' => $data_exp[0]['Exp']['correct']+$correctCounter,
-											'wrong'	  => $data_exp[0]['Exp']['wrong']+$wrongCounter,
-											'exp'	  => $data_exp[0]['Exp']['exp']+$exp,
-											'date'		=>"'".date('Y-m-d h:i:s')."'",
-										),											
-									array('Exp.id'=>$data_exp[0]['Exp']['id'])
-								);
-			}else{
+								array(
+										'correct' => $data_exp[0]['Exp']['correct']+$correctCounter,
+										'wrong'	  => $data_exp[0]['Exp']['wrong']+$wrongCounter,
+										'exp'	  => $newMonthlyExp,
+										'date'		=>"'".date('Y-m-d h:i:s')."'",
+									),											
+								array('Exp.id'=>$data_exp[0]['Exp']['id'])
+							);
+			}
+			else
+			{
 				$Exp->create();
 				$Exp->save(
 								array(
@@ -273,22 +282,32 @@ class Score extends AppModel {
 							);
 			};
 			
+			$ExpSubject=new ExpSubject();
 			$data_expsubject=$ExpSubject->query(
-								"SELECT * FROM `exp_subjects` as ExpSubject Where person_id='$person_id' AND subject_id='$subject_id' AND year(date)=year(now()) AND month(date)=month(now())"			
-			);
+										"SELECT * FROM `exp_subjects` as ExpSubject Where person_id='$person_id' AND subject_id='$subject_id' AND year(date)=year(now()) AND month(date)=month(now())"			
+									);
 			
-			if($data_expsubject!=null){
-				$ExpSubject=new ExpSubject();
+			if($data_expsubject!=null)
+			{
+				
+				$newMonthlySubjectExp = $data_expsubject[0]['ExpSubject']['exp']+$exp;
+				if($newMonthlySubjectExp<0)
+				{
+					$newMonthlySubjectExp = 0;
+				}
+				
 				$ExpSubject->updateAll(
 									array(
 											'correct' => $data_expsubject[0]['ExpSubject']['correct']+$correctCounter,
 											'wrong'	  => $data_expsubject[0]['ExpSubject']['wrong']+$wrongCounter,
-											'exp'	  => $data_expsubject[0]['ExpSubject']['exp']+$exp,
+											'exp'	  => $newMonthlySubjectExp,
 											'date'		=>"'".date('Y-m-d h:i:s')."'",
 										),											
-									array('id'=>$data_expsubject[0]['ExpSubject']['id'])
+									array('ExpSubject.id'=>$data_expsubject[0]['ExpSubject']['id'])
 								);
-			}else{
+			}
+			else
+			{
 				$ExpSubject->create();
 				$ExpSubject->save(
 								array(
@@ -356,11 +375,7 @@ class Score extends AppModel {
 	}
 	
 	public function calculateTotalExp(){
-		$exp=$this->query(
-								"
-									SELECT `tbl_exps`.person_id, SUM(`tbl_exps`.correct) as correct, SUM(`tbl_exps`.wrong) as wrong, SUM(`tbl_exps`.exp) as exp, now() as date FROM (SELECT scores.person_id, SUM(scores.score) as correct, SUM(tests.number_questions)-SUM(scores.score) as wrong, IF(SUM(scores.score)-(SUM(tests.number_questions)-SUM(scores.score))<0,'0',SUM(scores.score)-(SUM(tests.number_questions)-SUM(scores.score))) as exp, tests_subjects.subject_id as subject_id FROM `scores` INNER JOIN `tests` ON tests.id=scores.test_id INNER JOIN `tests_subjects` ON tests.id=tests_subjects.test_id Group By scores.person_id, tests_subjects.subject_id) as tbl_exps GROUP BY `tbl_exps`.person_id
-								"
-							);
+		$exp=$this->query("SELECT person_id, (SUM(progress)*2-SUM(total)) AS exp  FROM progresses GROUP BY person_id");
 		return $exp;					
 	}
 	
