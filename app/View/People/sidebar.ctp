@@ -4,8 +4,8 @@
 			<img class="avatar" src="<?=$user['image'];?>" />
 			<div class="info-overview">
 				<b><?=$user['fullname'];?></b><br/>
-				<span class="fs-12">Exp: <?=$data_user['exp'];?></span><br/>
-				<span class="fs-12">Xu: <?=$data_user['coin'];?></span>
+				<span class="fs-12"><a href="javascript:void(0);" class="hasDetail" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="left" data-html="true" data-content="<b>Điểm kinh nghiệm (Exp)</b><br/>là điểm bạn nhận được khi làm bài hoặc tham gia các sự kiện"><span class="glyphicon glyphicon-question-sign"></span></a> Exp: <?=$data_user['exp'];?></span><br/>
+				<span class="fs-12 hasDetail" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="left" data-html="true" data-content="<b>Xu</b><br/>nhận được bằng cách nạp thẻ hoặc tham gia sự kiện, sử dụng để mua bài kiểm tra"><?=$this->Html->image('coin.png', array('style="width:12px;margin-bottom:3px;"'));?> Xu: <?=$data_user['coin'];?></span>
 			</div>
 		</div>	
 		<hr class="mgb-10" />

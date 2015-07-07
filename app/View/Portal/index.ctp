@@ -147,7 +147,7 @@
 			<div class="row">
 				<div class="col-md-8">
 
-					<div class="topbanner-container" data-toggle="modal" data-target="#login-modal" data-section="menu-top">
+					<div class="topbanner-container" <?php if(!$user){ ?>data-toggle="modal" data-target="#login-modal" data-section="menu-top"<?php } else { ?>onClick="window.location.href='/people/dashboard';"<?php } ?>>
 						<?=$this->Html->image('topbanner.gif', array('class'=>'fw topbanner'));?>
 						<?=$this->Html->image('topbanner-hover.gif', array('class'=>'fw topbanner-hover'));?>
 					</div>
