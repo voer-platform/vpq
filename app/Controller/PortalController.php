@@ -24,7 +24,7 @@ class PortalController extends AppController {
 	
 	public function index()
 	{
-		$this->set('title_for_layout',__("Home"));
+		$this->set('title_for_layout', 'Học trực tuyến miễn phí');
 		
 		$this->loadModel('Newsletter');
 		$this->loadModel('NewsletterCategory');

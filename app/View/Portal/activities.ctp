@@ -5,7 +5,7 @@
 	<?php $i=0; foreach($activities AS $entry){ ?>
 		<li class="activity-item" <?php if($i>5){ ?>style="display:none;"<?php }?>>
 			<div class="activity-entry">
-				<img src="<?=$entry['Person']['image'];?>" />
+				<img class="avatar" src="<?=$entry['Person']['image'];?>" />
 				<p><b><a href="<?=$this->Html->url('/thanh-vien/'.$entry['Person']['id'], true);?>"><?=$entry['Person']['fullname'];?></a></b> vừa làm bài kiểm tra <?=$entry['Test']['time_limit'];?> phút môn <?=$entry['Subject']['name'];?></p>
 			</div>
 		</li>

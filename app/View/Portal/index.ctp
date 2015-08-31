@@ -1,4 +1,8 @@
 <?php $this->start('meta'); ?>
+<title>PLS - Học trực tuyến miễn phí</title>
+<meta name="description" content="PLS là một website học trực tuyến, giúp cho người học (học sinh phổ thông, sinh viên, học viên, …) có thể theo dõi được tiến độ, chất lượng học tập của mình.">
+<meta name="keywords" content="hoc truc tuyen, on thi dai hoc, hoc mai, luyen thi, on thi chat luong">
+<meta name="robots" content="INDEX,FOLLOW">
 <meta property="og:url" content="<?php echo Router::url( $this->here, true ); ?>" /> 
 <meta property="og:title" content="<?php echo __('PLS - Hệ thống cá nhân hóa học tập'); ?>" />
 <meta property="og:description" content="<?php echo __('Ôn thi đại học theo cách của bạn'); ?>" /> 

@@ -1,4 +1,8 @@
-	
+<?php $this->start('meta'); ?>
+<meta name="description" content="PLS là một website học trực tuyến, giúp cho học viên có thể theo dõi được tiến độ, chất lượng học tập của mình.">
+<meta name="keywords" content="hoc truc tuyen, on thi dai hoc, hoc mai, luyen thi, on thi chat luong">
+<meta name="robots" content="INDEX,FOLLOW">
+<?php $this->end(); ?>	
 	<div class="row">
 		<div class="col-md-4">
 			<div class="panel panel-danger">
@@ -11,7 +15,7 @@
 						<li class="ranking-item">
 							<div class="ranking-entry">
 								<span class="ranking-number"><?=$k+1;?></span>
-								<img class="l40" src="<?=$entry['Person']['image'];?>" />
+								<img class="l40 avatar" src="<?=$entry['Person']['image'];?>" />
 								<p class="mgl-80">
 									<b><a href="<?=$this->Html->url('/thanh-vien/'.$entry['Person']['id']);?>"><?=$entry['Person']['fullname'];?></a></b>
 									<span class="ranking-xp"><?=$entry['Person']['exp'];?>xp</span>
@@ -43,7 +47,7 @@
 						<li class="ranking-item">
 							<div class="ranking-entry">
 								<span class="ranking-number"><?=$k+1;?></span>
-								<img class="l40" src="<?=$entry['Person']['image'];?>" />
+								<img class="l40 avatar" src="<?=$entry['Person']['image'];?>" />
 								<p class="mgl-80">
 									<b><a href="<?=$this->Html->url('/thanh-vien/'.$entry['Person']['id'], true);?>"><?=$entry['Person']['fullname'];?></a></b>
 									<span class="ranking-xp"><?=$entry['Ranking']['score'];?>đ</span>
@@ -77,7 +81,7 @@
 						<li class="ranking-item">
 							<div class="ranking-entry">
 								<span class="ranking-number"><?=$k+1;?></span>
-								<img class="l40" src="<?=$entry['Person']['image'];?>" />
+								<img class="l40 avatar" src="<?=$entry['Person']['image'];?>" />
 								<p class="mgl-80">
 									<b><a href="<?=$this->Html->url('/thanh-vien/'.$entry['Person']['id'], true);?>"><?=$entry['Person']['fullname'];?></a></b>
 									<span class="ranking-xp"><?=$entry['Exp']['exp'];?>xp</span>
