@@ -1,34 +1,6 @@
 <?php echo $this->Html->css('dashboard.css?v=1.4');?>
 <?php echo $this->Html->script('highcharts.js');?>
 <?php echo $this->Html->script('no-data-to-display.src.js');?>
-<div id="rechargecard" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
-        <div class="modal-content" style='margin-top:100px;'>
-            <div class="modal-body" style='text-align:center;padding-top: 0px;'>				
-				<div class='row'>
-					<div class='row' style='margin:0px;padding-left:10px;padding-right:10px;padding-top:15px;'>
-					<?php echo $this->Html->image('Xu.png',array('style'=>'width:100px;height:100px;')) ?>						
-					<span style='color:#428bca;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:18pt;'>Trời ơi hết xu rồi</span>
-					<hr style='margin-top:7px;margin-bottom:5px;'/>
-					</div>
-					<div  class='row' style='margin:0px;padding:10px;'>	
-						<p style='font-size:12pt;'>Đừng lo lắng, bạn hãy chọn 1 trong 2 hình thức dưới để tăng xu ngay nhé.</p>
-					</div>
-					<div  class='row' style='margin:0px;'>						
-						<div class='col-sm-12' style='padding-left:10px;padding-right:10px;'>								
-							<div class='col-sm-6' style='padding-left:0px;padding-right:5px;'>
-							<a class='btn btn-danger bl fw' href="<?php echo $this->Html->url(array('controller'=> 'rechargecard')); ?>"><span class='glyphicon glyphicon-usd'></span> Nạp thẻ</a>
-							</div>
-							<div class='col-sm-6' style='padding-left:5px;padding-right:0px;'>
-							<a class='btn btn-success bl fw' href="javascript:void(0);" onclick="FBInvite()"><span class='glyphicon glyphicon-send'></span>&nbsp;&nbsp;<?php echo _('Invite'); ?></a>
-							</div>
-						</div>
-					</div>
-				</div>
-            </div>
-        </div>
-    </div>
-</div>
 
 <div class="check-phone hidden-xs"></div>
 
@@ -183,15 +155,7 @@
 </div>
 
 <script type="text/javascript">
-	var over=<?php echo $over ?>;
-	var coin=<?php echo $coin ?>;
-	$(document).ready(function(){
-		if(coin==0 && over==0){
-			$('#rechargecard').modal({
-					backdrop: true
-				});
-		}
-	});
+
     /**
      * Ajax on chart data
      */

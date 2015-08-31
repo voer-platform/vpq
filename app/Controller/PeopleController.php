@@ -404,18 +404,18 @@ class PeopleController extends AppController {
 		// $date2 = strtotime(date('Y-m-d'));
 		// $diff = abs($date2-$date1);
 		// $ketqua=round($diff/(60*60*24));
-		$coin=$data_user['Person']['coin'];
-		if($coin<=0){
-			$coin='0';
-			if($this->Session->read('over')==2)
-			{
-				$this->Session->write('over','0');
-			}else{				
-				$this->Session->write('over','1');
-			}
-		}else{
-			$this->Session->write('over','2');
-		}
+		// $coin=$data_user['Person']['coin'];
+		// if($coin<=0){
+			// $coin='0';
+			// if($this->Session->read('over')==2)
+			// {
+				// $this->Session->write('over','0');
+			// }else{				
+				// $this->Session->write('over','1');
+			// }
+		// }else{
+			// $this->Session->write('over','2');
+		// }
 		// $this->Person->id=$user_id;
 		// $this->Person->save(
 							// array(
@@ -423,8 +423,8 @@ class PeopleController extends AppController {
 								// 'last_login' => date('Y-m-d'),
 							// )
 						// );
-		$this->set('over',$this->Session->read('over'));
-		$this->set('coin',$coin);
+		// $this->set('over',$this->Session->read('over'));
+		// $this->set('coin',$coin);
 		
 		$this->loadModel('Ranking');
 		$ranking_data = $this->Ranking->getSubjectRanking($user_id);
