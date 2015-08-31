@@ -15,7 +15,7 @@
 			<div class="ranking-entry">
 				<img src="<?=$entry['Person']['image'];?>" />
 				<p>
-					<b><a href="<?=$this->Html->url(array('controller'=>'People', 'action'=>'view', $entry['Person']['id']));?>"><?=$entry['Person']['fullname'];?></a></b>
+					<b><a href="<?=$this->Html->url('/thanh-vien/'.$entry['Person']['id'], true);?>"><?=$entry['Person']['fullname'];?></a></b>
 					<span class="ranking-xp"><?=$entry['Exp']['exp'];?>xp</span>
 					<br/>
 					<span class="ranking-meta">Tỷ lệ đúng <?=floor($entry['Exp']['correct']/($entry['Exp']['correct']+$entry['Exp']['wrong'])*100);?>%</span>

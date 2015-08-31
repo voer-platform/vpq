@@ -21,7 +21,7 @@
           <li><?php echo $this->HTML->link(__('Faq'), array('controller' => 'faqs', 'action' => 'userIndex')); ?></li>		  
         <?php endif; ?>
 
-		<li><?php echo $this->HTML->link(__('About'), '/about'); ?></li>
+		<li><?php echo $this->HTML->link(__('About'), '/gioi-thieu'); ?></li>
 		 <?php if(!empty($user) ): ?>
 		<!--<li id='napthe'><a href="<?php echo $this->Html->url(array('controller'=> 'rechargeCard')); ?>">Nạp thẻ</a></li>-->
 		<?php endif; ?>
