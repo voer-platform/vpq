@@ -1,4 +1,3 @@
 User-agent: *
 Allow: /
 Disallow: /thanh-vien/
-Disallow: /tin-tuc/

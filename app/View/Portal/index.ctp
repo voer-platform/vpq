@@ -1,11 +1,10 @@
 <?php $this->start('meta'); ?>
-<title>PLS - Học trực tuyến miễn phí</title>
-<meta name="description" content="PLS là một website học trực tuyến, giúp cho người học (học sinh phổ thông, sinh viên, học viên, …) có thể theo dõi được tiến độ, chất lượng học tập của mình.">
-<meta name="keywords" content="hoc truc tuyen, on thi dai hoc, hoc mai, luyen thi, on thi chat luong">
+<meta name="description" content="PLS là một mạng xã hội học trực tuyến, giúp cho học sinh có thể ôn luyện bài học bằng cách làm bài tập và theo dõi tiến độ cũng như chất lượng học tập.">
+<meta name="keywords" content="hoc truc tuyen, on thi dai hoc, hoc mai, luyen thi, on thi chat luong, on thi cap 3, lam bai tap, on thi thpt, lam bai thpt, hoc online">
 <meta name="robots" content="INDEX,FOLLOW">
 <meta property="og:url" content="<?php echo Router::url( $this->here, true ); ?>" /> 
-<meta property="og:title" content="<?php echo __('PLS - Hệ thống cá nhân hóa học tập'); ?>" />
-<meta property="og:description" content="<?php echo __('Ôn thi đại học theo cách của bạn'); ?>" /> 
+<meta property="og:title" content="<?php echo __('PLS - Mạng xã hội học trực tuyến'); ?>" />
+<meta property="og:description" content="<?php echo __('PLS là một mạng xã hội học trực tuyến, giúp cho học sinh có thể ôn luyện bài học bằng cách làm bài tập và theo dõi tiến độ cũng như chất lượng học tập.'); ?>" /> 
 <meta property="og:image" content="<?php echo $this->Html->url(Router::url($this->here, true).'img/share4.jpg'); ?>" />
 <?php $this->end(); ?>
 
@@ -161,10 +160,10 @@
 					<div class="news-container">
 						<?php foreach($newsletterCategories[0]['Newsletters'] AS $news){ ?>
 							<div class="news-list-item">
-								<a href="<?=$this->Html->url('/tin-tuc/'.$news['Newsletter']['id'], true);?>">
+								<a href="<?=$this->Html->url('/tin-tuc/'.$news['Newsletter']['slug'], true);?>">
 									<img class="news-img" src="<?=$this->Pls->getImageFromContent($news['Newsletter']['content']);?>" width="70" height="70" />
 								</a>
-								<a href="<?=$this->Html->url('/tin-tuc/'.$news['Newsletter']['id'], true);?>">
+								<a href="<?=$this->Html->url('/tin-tuc/'.$news['Newsletter']['slug'], true);?>">
 									<h5 class="news-title"><b><?=$news['Newsletter']['title'];?></b></h5>
 								</a>	
 								<p class="news-time"><?=date('d/m/Y h:i', strtotime($news['Newsletter']['created']));?></p>

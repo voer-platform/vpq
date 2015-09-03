@@ -15,7 +15,7 @@
 						<li class="ranking-item">
 							<div class="ranking-entry">
 								<span class="ranking-number"><?=$k+1;?></span>
-								<img class="l40 avatar" src="<?=$entry['Person']['image'];?>" />
+								<?php echo $this->Html->image('avatars/'.$entry['Person']['image'], array('class' => 'l40 avatar')); ?>
 								<p class="mgl-80">
 									<b><a href="<?=$this->Html->url('/thanh-vien/'.$entry['Person']['id']);?>"><?=$entry['Person']['fullname'];?></a></b>
 									<span class="ranking-xp"><?=$entry['Person']['exp'];?>xp</span>
@@ -47,7 +47,7 @@
 						<li class="ranking-item">
 							<div class="ranking-entry">
 								<span class="ranking-number"><?=$k+1;?></span>
-								<img class="l40 avatar" src="<?=$entry['Person']['image'];?>" />
+								<?php echo $this->Html->image('avatars/'.$entry['Person']['image'], array('class' => 'l40 avatar')); ?>
 								<p class="mgl-80">
 									<b><a href="<?=$this->Html->url('/thanh-vien/'.$entry['Person']['id'], true);?>"><?=$entry['Person']['fullname'];?></a></b>
 									<span class="ranking-xp"><?=$entry['Ranking']['score'];?>đ</span>
@@ -81,7 +81,7 @@
 						<li class="ranking-item">
 							<div class="ranking-entry">
 								<span class="ranking-number"><?=$k+1;?></span>
-								<img class="l40 avatar" src="<?=$entry['Person']['image'];?>" />
+								<?php echo $this->Html->image('avatars/'.$entry['Person']['image'], array('class' => 'l40 avatar')); ?>
 								<p class="mgl-80">
 									<b><a href="<?=$this->Html->url('/thanh-vien/'.$entry['Person']['id'], true);?>"><?=$entry['Person']['fullname'];?></a></b>
 									<span class="ranking-xp"><?=$entry['Exp']['exp'];?>xp</span>

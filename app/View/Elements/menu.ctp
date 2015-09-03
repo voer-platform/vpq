@@ -42,7 +42,7 @@
 
           <li class="dropdown">
             <a href="javascript:void(0);" class="dropdown-toggle profile-img" data-toggle="dropdown">
-				<?php echo $this->Html->image($user['image'], array('class' => 'profile-img')); ?>
+				<?php echo $this->Html->image('avatars/'.$user['image'], array('class' => 'profile-img avatar')); ?>
 				<?php echo $user['fullname']; ?>
 				&nbsp;
 				<span class="caret"></span>

@@ -24,7 +24,7 @@ class PortalController extends AppController {
 	
 	public function index()
 	{
-		$this->set('title_for_layout', 'Học trực tuyến miễn phí');
+		$this->set('title_for_layout', 'Mạng xã hội học trực tuyến');
 		
 		$this->loadModel('Newsletter');
 		$this->loadModel('NewsletterCategory');
@@ -59,10 +59,10 @@ class PortalController extends AppController {
 		$this->set('rankings', $this->getRankings(date('Y-m')));
 	}
 	
-	public function viewPost($id)
+	public function viewPost($slug)
 	{
 		$this->loadModel('Newsletter');
-		$newsletter = $this->Newsletter->find('first', array('conditions'=>array('Newsletter.id'=>$id)));
+		$newsletter = $this->Newsletter->find('first', array('conditions'=>array('Newsletter.slug'=>$slug)));
 		
 		if(empty($newsletter)){
 			$this->redirect('/');

@@ -13,7 +13,7 @@
 	<?php foreach($rankings AS $entry){ ?>
 		<li class="ranking-item">
 			<div class="ranking-entry">
-				<img class="avatar" src="<?=$entry['Person']['image'];?>" />
+				<?php echo $this->Html->image('avatars/'.$entry['Person']['image'], array('class' => 'avatar')); ?>
 				<p>
 					<b><a href="<?=$this->Html->url('/thanh-vien/'.$entry['Person']['id'], true);?>"><?=$entry['Person']['fullname'];?></a></b>
 					<span class="ranking-xp"><?=$entry['Exp']['exp'];?>xp</span>

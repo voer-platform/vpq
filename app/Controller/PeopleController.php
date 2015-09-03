@@ -305,6 +305,22 @@ class PeopleController extends AppController {
 							$email = $fb_user['email'];
 						}
 					}
+					
+					$arrContextOptions=array(
+						"ssl"=>array(
+							"verify_peer"=>false,
+							"verify_peer_name"=>false,
+						),
+					);
+					
+					@$image = file_get_contents('https://graph.facebook.com/'.$fb_user['id'].'/picture?width=200&height=200', false, stream_context_create($arrContextOptions));
+				
+					if ($image) {
+						$imageUrl = $fb_user['id'].'.jpg';
+						file_put_contents(WWW_ROOT."img/avatars/".$imageUrl, $image);
+					} else {
+						$imageUrl = '';
+					}
 				
                     $data['Person'] = array(
                         'facebook'          => $fb_user['id'],
@@ -318,7 +334,7 @@ class PeopleController extends AppController {
                         'role'              => 'user',
                         'date_created'      => date("Y-m-d H:i:s"),
                         'date_modified'     => date("Y-m-d H:i:s"),
-                        'image'             => $fb_user['picture']['url'],
+                        'image'             => $imageUrl,
 						'gender'			=>	($fb_user['gender']=='male')?1:0,
 						'coin'			    => 150,
 						'last_login'		=> date('Y-m-d'),
@@ -329,15 +345,15 @@ class PeopleController extends AppController {
 					$currentUser = $this->Person->getLastInsertId();
 					
 					//First notify
-					$this->loadModel('Notification');
-					$notifyData = array(
-									'Notification'	=>	array(
-										'person_id'	=>	$currentUser,
-										'time'	=>	date("Y-m-d H:i:s"),
-										'notification_type_id'	=>	1
-									)	
-								);
-					$this->Notification->save($notifyData);
+					// $this->loadModel('Notification');
+					// $notifyData = array(
+									// 'Notification'	=>	array(
+										// 'person_id'	=>	$currentUser,
+										// 'time'	=>	date("Y-m-d H:i:s"),
+										// 'notification_type_id'	=>	1
+									// )	
+								// );
+					// $this->Notification->save($notifyData);
 
 					//Gift coins for user whole invited this user
 					$this->loadModel('Invitation');
@@ -346,20 +362,20 @@ class PeopleController extends AppController {
 						foreach($inviter AS $person)
 						{
 							$inviter_id = $this->Invitation->invitationGift($person->id, $fb_user['id']);
-							if($inviter_id)
-							{
-								$this->Notification->create();
-								$this->Notification->save(
-										array(
-											'Notification'	=>	array(
-												'person_id'	=>	$inviter_id,
-												'object_id'	=>	$currentUser,
-												'time'	=>	date("Y-m-d H:i:s"),
-												'notification_type_id'	=>	2
-											)	
-										)
-									);
-							}		
+							// if($inviter_id)
+							// {
+								// $this->Notification->create();
+								// $this->Notification->save(
+										// array(
+											// 'Notification'	=>	array(
+												// 'person_id'	=>	$inviter_id,
+												// 'object_id'	=>	$currentUser,
+												// 'time'	=>	date("Y-m-d H:i:s"),
+												// 'notification_type_id'	=>	2
+											// )	
+										// )
+									// );
+							// }		
 						}
 					}
                     // After registration we will redirect them back here so they will be logged in

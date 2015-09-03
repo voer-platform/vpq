@@ -31,7 +31,7 @@
 	Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'));
 	Router::connect('/gioi-thieu', array('controller' => 'pages', 'action' => 'aboutUs'));
 	Router::connect('/bang-xep-hang', array('controller' => 'ranking', 'action' => 'index'));
-	Router::connect('/tin-tuc/:id', array('controller' => 'portal', 'action' => 'viewPost'), array('pass' => array('id'), 'id' => '[0-9]+'));
+	Router::connect('/tin-tuc/:slug', array('controller' => 'portal', 'action' => 'viewPost'), array('pass' => array('slug')));
 	Router::connect('/thanh-vien/:id', array('controller' => 'people', 'action' => 'view'), array('pass' => array('id'), 'id' => '[0-9]+'));
 	
 	Router::connect('/dang-xuat', array('controller' => 'people', 'action' => 'logout'));
