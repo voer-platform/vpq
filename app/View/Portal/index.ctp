@@ -106,8 +106,9 @@
 	  left: 0;
 	  top: 0;
 	}
-	h5.news-title {
+	h3.news-title {
 	  margin-bottom: 5px;
+	  font-size:14px;
 	}
 	p.news-time {
 	  font-size: 12px;
@@ -141,6 +142,15 @@
 	  left: 0;
 	  z-index: 1;
 	}
+	.about {
+		border: 1px solid #eee;
+		padding: 10px 20px;
+		margin-bottom: 20px;
+	}
+	.about h1 {
+		font-size: 18px;
+		margin-top: 10px;
+	}
 </style>
 <div class="container">
 
@@ -151,11 +161,16 @@
 				<div class="col-md-8">
 
 					<div class="topbanner-container" <?php if(!$user){ ?>data-toggle="modal" data-target="#login-modal" data-section="menu-top"<?php } else { ?>onClick="window.location.href='/people/dashboard';"<?php } ?>>
-						<?=$this->Html->image('topbanner.gif', array('class'=>'fw topbanner'));?>
-						<?=$this->Html->image('topbanner-hover.gif', array('class'=>'fw topbanner-hover'));?>
+						<?=$this->Html->image('topbanner.gif', array('class'=>'fw topbanner', 'alt' => 'Quảng cáo'));?>
+						<?=$this->Html->image('topbanner-hover.gif', array('class'=>'fw topbanner-hover', 'alt' => 'Quảng cáo'));?>
 					</div>
+					<br/>
+					<div class="about">
+						<h1 class="text-danger">Học trực tuyến tại PLS Edu</h1>
+						<p>PLS là một mạng xã hội học tập, giúp cho học sinh có thể ôn luyện bài học bằng cách làm bài tập và theo dõi tiến độ cũng như chất lượng học tập.</p>
+					  </div>
 					
-					<h3><?=$newsletterCategories[0]['NewsletterCategory']['name'];?></h3>
+					<h2 style="font-size: 18px;"><?=$newsletterCategories[0]['NewsletterCategory']['name'];?></h2>
 					<hr class="news-hr" />
 					<div class="news-container">
 						<?php foreach($newsletterCategories[0]['Newsletters'] AS $news){ ?>
@@ -164,7 +179,7 @@
 									<img class="news-img" src="<?=$this->Pls->getImageFromContent($news['Newsletter']['content']);?>" width="70" height="70" />
 								</a>
 								<a href="<?=$this->Html->url('/tin-tuc/'.$news['Newsletter']['slug'], true);?>">
-									<h5 class="news-title"><b><?=$news['Newsletter']['title'];?></b></h5>
+									<h3 class="news-title"><b><?=$news['Newsletter']['title'];?></b></h3>
 								</a>	
 								<p class="news-time"><?=date('d/m/Y h:i', strtotime($news['Newsletter']['created']));?></p>
 								<p class="news-excerpt"><?=$this->Text->truncate(strip_tags($news['Newsletter']['content']), 190);?></p>

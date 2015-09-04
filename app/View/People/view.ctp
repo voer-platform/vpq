@@ -3,7 +3,7 @@
 		<div class="personal-page-header clearfix">
 			<div class="pull-left clearfix">
 				<div class="avatar pull-left">
-					<img src="<?php echo $person['Person']['image']; ?>" width="200px" height="200px">
+					<?php echo $this->Html->image('avatars/'.$person['Person']['image'], array('class' => 'avatar', 'style' => "width:200px; height:200px;")); ?>
 				</div>
 				<div class="user-info pull-right">
 					<h3><?php echo h($person['Person']['fullname']); ?></h3>
