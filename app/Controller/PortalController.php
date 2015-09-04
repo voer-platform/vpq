@@ -70,7 +70,7 @@ class PortalController extends AppController {
 		
 		$this->set('title_for_layout', $newsletter['Newsletter']['title']);
 		
-		$breadcrumbs[] = array('url'=>Router::url(array('controller'=>'portal', 'action'=>'viewCategory', $newsletter['NewsletterCategory']['id'])), 'text'=>$newsletter['NewsletterCategory']['name']);
+		$breadcrumbs[] = array('url' => '/', 'text'=>$newsletter['NewsletterCategory']['name']);
 		
 		$this->set('breadcrumbs', $breadcrumbs);
 		$this->set('newsletter', $newsletter);
