@@ -319,7 +319,7 @@ class PeopleController extends AppController {
 						$imageUrl = $fb_user['id'].'.jpg';
 						file_put_contents(WWW_ROOT."img/avatars/".$imageUrl, $image);
 					} else {
-						$imageUrl = '';
+						$imageUrl = 'no_avatar.jpg';
 					}
 				
                     $data['Person'] = array(
