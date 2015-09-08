@@ -5,7 +5,7 @@
 <meta property="og:url" content="<?php echo Router::url( $this->here, true ); ?>" /> 
 <meta property="og:title" content="<?php echo __('PLS - Mạng xã hội học trực tuyến'); ?>" />
 <meta property="og:description" content="<?php echo __('PLS là một mạng xã hội học trực tuyến, giúp cho học sinh có thể ôn luyện bài học bằng cách làm bài tập và theo dõi tiến độ cũng như chất lượng học tập.'); ?>" /> 
-<meta property="og:image" content="<?php echo $this->Html->url(Router::url($this->here, true).'img/share4.jpg'); ?>" />
+<meta property="og:image" content="<?php echo $this->Html->url(Router::url($this->here, true).'img/pls.png'); ?>" />
 <?php $this->end(); ?>
 
 <style>
