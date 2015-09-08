@@ -132,8 +132,6 @@
 </div>
 
 <script type="text/javascript">
-var over=<?php echo $over ?>;
-var coin= <?php echo $coin ?>;
 var sl=<?php echo $count ?>;
 var pretracking='<?php echo $strtracking ?>';
 var arraySubs = pretracking.split(",");
