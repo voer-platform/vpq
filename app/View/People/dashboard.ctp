@@ -435,7 +435,7 @@
 	function FBShare(){
 		FB.ui({
 		  method: 'share',
-		  href: '<?php echo Router::url($this->here, true); ?>',
+		  href: '<?php echo Router::url('/', true); ?>',
 		}, function(response){});
 	}
 	
