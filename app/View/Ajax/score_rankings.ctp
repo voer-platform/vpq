@@ -2,7 +2,7 @@
 	<li class="ranking-item">
 		<div class="ranking-entry">
 			<span class="ranking-number"><?=$k+1;?></span>
-			<img class="l40" src="<?=$entry['Person']['image'];?>" />
+			<?php echo $this->Html->image('avatars/'.$entry['Person']['image'], array('class' => 'avatar l40')); ?>
 			<p class="mgl-80">
 				<b><a href="<?=$this->Html->url(array('controller'=>'People', 'action'=>'view', $entry['Person']['id']));?>"><?=$entry['Person']['fullname'];?></a></b>
 				<span class="ranking-xp"><?=$entry['Ranking']['score'];?>đ</span>
