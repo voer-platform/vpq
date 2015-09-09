@@ -12,6 +12,7 @@ CKEDITOR.editorConfig = function( config ) {
 	{ name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ], items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat' ] },
 	{ name: 'tools', items: [ 'Maximize'] },
 	{ name: 'insert', items: [ 'Image', 'Table', 'HorizontalRule', 'SpecialChar'] },
+	{ name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ], items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote' ] },
 	{ name: 'styles', items: [ 'Styles', 'Format', 'Font', 'FontSize' ] },
 	{ name: 'colors', items: [ 'TextColor', 'BGColor' ] },
 	
