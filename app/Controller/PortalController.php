@@ -87,6 +87,27 @@ class PortalController extends AppController {
 						'fields'	=>	array('Person.id, Person.fullname', 'Person.image', 'Test.time_limit', 'Subject.name'),
 						'joins'	=>	array(
 										array(
+											'table'	=>	'tests',
+											'alias'	=>	'Test',
+											'type'	=>	'INNER',
+											'conditions'	=>	'Score.test_id =  Test.id'
+										),
+										array(
+											'table'	=>	'people',
+											'alias'	=>	'Person',
+											'type'	=>	'INNER',
+											'conditions'	=>	"Score.person_id` = Person.id AND Person.role = 'user'"
+										),
+										array(
+											'table'	=>	'(SELECT person_id, MAX(time_taken) AS maxtime FROM scores GROUP BY person_id ORDER BY maxtime DESC LIMIT 20)',
+											'alias'	=>	'MaxTime',
+											'type'	=>	'INNER',
+											'conditions'	=>	array(
+																	'Score.person_id = MaxTime.person_id',
+																	'Score.time_taken = MaxTime.maxtime'
+																)	
+										),
+										array(
 											'table'	=>	'tests_subjects',
 											'alias'	=>	'TestSubject',
 											'type'	=>	'INNER',
@@ -99,12 +120,14 @@ class PortalController extends AppController {
 											'conditions'	=>	'TestSubject.subject_id = Subject.id'
 										)
 									),
-						'recursive'	=>	0,
+						'recursive'	=>	-1,
 						'limit'	=>	20,
 						'order'	=>	array('Score.time_taken DESC'),
 						'group'	=>	array('Person.id')
 					);
 		$activities = $this->Score->find('all', $options);
+		$log = $this->Score->getDataSource()->getLog(false, false);
+		debug($log);
 		return $activities;
 	}
 	
