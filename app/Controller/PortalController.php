@@ -126,8 +126,6 @@ class PortalController extends AppController {
 						'group'	=>	array('Person.id')
 					);
 		$activities = $this->Score->find('all', $options);
-		$log = $this->Score->getDataSource()->getLog(false, false);
-		debug($log);
 		return $activities;
 	}
 	

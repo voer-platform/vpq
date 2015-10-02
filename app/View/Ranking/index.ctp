@@ -102,7 +102,7 @@
 		<div class="col-md-12">
 			<div class="alert alert-info">
 				<img src="/img/ranking-emoticon.png" style="width: 130px;border-radius: 50%;height: 120px;float: left;margin-right: 30px;">
-				<p><b>Những thành viên lười biếng(<i>không thường xuyên làm bài</i>) sẽ không có tên trên bảng xếp hạng này</b><p>
+				<p><b>Những thành viên <i>không thường xuyên làm bài</i> sẽ không có tên trên bảng xếp hạng này</b><p>
 				- Top cao thủ là danh sách 100 người có <u>điểm kinh nghiệm(EXP)</u> cao nhất<br/>
 				- Top cao điểm là danh sách 100 người có <u>điểm trung bình</u> cao nhất<br/>
 				- Top tháng là danh sách 100 người nhận được nhiều <u>điểm kinh nghiệm(EXP)</u> nhất trong tháng này

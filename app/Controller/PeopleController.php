@@ -156,16 +156,23 @@ class PeopleController extends AppController {
         $this->request->onlyAllow('post');
         if($this->request->is('post'))
 		{
+			$emailUsed = $phoneUsed = false;
+			
 			$email = $this->request->data['email'];
-			$emailUsed = $this->Person->find('first', array(
-							'conditions' => array('email' => $email, 'Person.id !=' => $user['id'])
-						));
+			if ($email) {
+				$emailUsed = $this->Person->find('first', array(
+								'conditions' => array('email' => $email, 'Person.id !=' => $user['id'])
+							));
+			}				
 						
 			$phone = $this->request->data['phone'];
-			$phoneUsed = $this->Person->find('first', array(
-							'conditions' => array('phone' => $phone, 'Person.id !=' => $user['id'])
-						));			
-						
+			
+			if ($phone) {
+				$phoneUsed = $this->Person->find('first', array(
+								'conditions' => array('phone' => $phone, 'Person.id !=' => $user['id'])
+							));			
+			}
+			
 			if($emailUsed)			
 			{
 				$this->Session->setFlash(__('Email này đã được sử dụng'));
