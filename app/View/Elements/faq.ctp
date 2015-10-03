@@ -14,7 +14,7 @@
 		  <div class="modal-body">
 			<!--<div class="alert alert-warning" id="faq-response" style="display:none;"></div>
 			<textarea id="faq-content" class="form-control" rows="5" placeholder="<?php echo __('Write your question...'); ?>"></textarea>-->
-			<iframe style="overflow-y:scroll !important; overflow-x:hidden !important; overflow:hidden;height:400px;width:550px;" src="http://localhost/qa"  frameborder="none" scrolling="yes"></iframe>
+			<iframe style="overflow-y:scroll !important; overflow-x:hidden !important; overflow:hidden;height:400px;width:550px;" src="<?php echo Router::url(array('controller' => 'Qa', 'action' => 'index'), true);?>"  frameborder="none" scrolling="yes"></iframe>
 		  </div>
 		  <div class="modal-footer">
 			<!--<button type="button" id="faq-submit-btn" class="btn btn-primary"><span class="glyphicon glyphicon-send"></span> &nbsp;<?php echo __("Send PLS"); ?></button>-->
