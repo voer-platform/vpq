@@ -12,11 +12,12 @@
 			<h4 class="modal-title"><?php echo __("Have a question for us? Wanna give some comments? Type here!"); ?></h4>
 		  </div>
 		  <div class="modal-body">
-			<div class="alert alert-warning" id="faq-response" style="display:none;"></div>
-			<textarea id="faq-content" class="form-control" rows="5" placeholder="<?php echo __('Write your question...'); ?>"></textarea>
+			<!--<div class="alert alert-warning" id="faq-response" style="display:none;"></div>
+			<textarea id="faq-content" class="form-control" rows="5" placeholder="<?php echo __('Write your question...'); ?>"></textarea>-->
+			<iframe style="overflow-y:scroll !important; overflow-x:hidden !important; overflow:hidden;height:400px;width:550px;" src="http://localhost/qa"  frameborder="none" scrolling="yes"></iframe>
 		  </div>
 		  <div class="modal-footer">
-			<button type="button" id="faq-submit-btn" class="btn btn-primary"><span class="glyphicon glyphicon-send"></span> &nbsp;<?php echo __("Send PLS"); ?></button>
+			<!--<button type="button" id="faq-submit-btn" class="btn btn-primary"><span class="glyphicon glyphicon-send"></span> &nbsp;<?php echo __("Send PLS"); ?></button>-->
 			<button type="button" class="btn btn-default" data-dismiss="modal"><?php echo __('Close'); ?></button>
 		  </div>
 		</div><!-- /.modal-content -->

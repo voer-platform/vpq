@@ -35,7 +35,7 @@ class PagesController extends AppController {
 public function beforeFilter(){
 	parent::beforeFilter();
 
-	$this->Auth->allow('display', 'aboutUs','forgotPassword');
+	$this->Auth->allow('display', 'aboutUs','forgotPassword', 'Qa');
 }	
 
 /**
@@ -88,6 +88,16 @@ public function beforeFilter(){
         	'conditions' => array('StaticPage.name' => 'about')));
 
         $this->set('about', $about);
+    }
+	
+	public function Qa(){
+        $this->set('title_for_layout',__("Hỏi đáp"));
+
+        // $this->loadModel('StaticPage');
+        // $about = $this->StaticPage->find('first', array(
+        	// 'conditions' => array('StaticPage.name' => 'about')));
+
+        // $this->set('about', $about);
     }
 	
 }
