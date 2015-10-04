@@ -62,6 +62,7 @@ class RankingController extends AppController {
 										array(
 											'table'	=>	'provinces',
 											'alias'	=>	'Province',
+											'type'	=>	'left',
 											'conditions'	=>	'Province.id = Person.address'
 										)
 									),
