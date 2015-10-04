@@ -70,13 +70,14 @@
 											array(
 												'table'	=>	'provinces',
 												'alias'	=>	'Province',
+												'type'	=>	'left',
 												'conditions'	=>	'Province.id = Person.address'
 											)
 										),
 							'recursive'	=>	0,
 							'limit'	=>	$limit,
 							'order'	=>	'Ranking.score DESC',
-							'conditions'	=>	array('Ranking.subject_id' => $subject, 'Ranking.score > 5')
+							'conditions'	=>	array('Ranking.subject_id' => $subject, 'Ranking.score > 5', "Person.role = 'user'")
 						);
 			$scoreRankings = $this->Ranking->find('all', $options);
 			 // pr($scoreRankings);

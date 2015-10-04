@@ -69,7 +69,7 @@ class RankingController extends AppController {
 						'recursive'	=>	0,
 						'limit'	=>	100,
 						'order'	=>	'Ranking.score DESC',
-						'conditions'	=>	array('Ranking.subject_id' => key($subjects), 'Ranking.score > 5')
+						'conditions'	=>	array('Ranking.subject_id' => key($subjects), 'Ranking.score > 5', "Person.role = 'user'")
 					);
 		$scoreRankings = $this->Ranking->find('all', $options);
 		 // pr($scoreRankings);
