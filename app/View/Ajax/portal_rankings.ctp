@@ -12,7 +12,7 @@
 					
 				</p>
 			<?php } else { ?>
-				<img src="<?=$entry['Person']['image'];?>" />
+				<?php echo $this->Html->image('avatars/'.$entry['Person']['image']); ?>
 				<p>
 					<b><a href="<?=$this->Html->url(array('controller'=>'People', 'action'=>'view', $entry['Person']['id']));?>"><?=$entry['Person']['fullname'];?></a></b>
 					<span class="ranking-xp"><?=$entry['Exp']['exp'];?>xp</span>
