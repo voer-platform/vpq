@@ -131,24 +131,24 @@ class PortalController extends AppController {
 	
 	private function getRankings($month)
 	{
-		// $this->loadModel('Exp');
-		// $options = array(
-						// 'conditions'	=>	array("Exp.date LIKE '$month%'"),
-						// 'limit'	=>	10,
-						// 'order'	=>	'Exp.exp DESC'
-					// );
-		// $rankings = $this->Exp->find('all', $options);
-		// return $rankings;
-		$this->loadModel('Person');
+		$this->loadModel('Exp');
 		$options = array(
-						'fields'	=>	array('Person.id, Person.fullname', 'Person.image', 'Province.name', 'Person.exp'),
-						
-						'recursive'	=>	0,
+						'conditions'	=>	array("Exp.date LIKE '$month%'"),
 						'limit'	=>	10,
-						'order'	=>	'Person.exp DESC'
+						'order'	=>	'Exp.exp DESC'
 					);
-		$rankings = $this->Person->find('all', $options);
+		$rankings = $this->Exp->find('all', $options);
 		return $rankings;
+		// $this->loadModel('Person');
+		// $options = array(
+						// 'fields'	=>	array('Person.id, Person.fullname', 'Person.image', 'Province.name', 'Person.exp'),
+						
+						// 'recursive'	=>	0,
+						// 'limit'	=>	10,
+						// 'order'	=>	'Person.exp DESC'
+					// );
+		// $rankings = $this->Person->find('all', $options);
+		// return $rankings;
 	}
 	
 	
