@@ -126,6 +126,7 @@
     <div style="clear:both;"></div>
 </div>
 
+ <?php if(isset($user)){ ?>
 <div id="modalicon" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
     <div class="modal-dialog modal-sm" style='margin-top:100px;width:700px;'>
         <div class="modal-content">
@@ -202,7 +203,7 @@
         </div>
     </div>
 </div>
-
+<?php } ?>
 
 <div id="msgNotice" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
     <div class="modal-dialog modal-sm" style="width:30%;">
