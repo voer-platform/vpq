@@ -110,7 +110,8 @@
 				<?php echo round($correct/$numberOfQuestions,2)*10; ?>				
 			</div>
             <div id="details"><?php echo __('Correct').': '.'<b>'.$correct.'</b>'.' '.__('on').' '.__('Total').': '.'<b>'.$numberOfQuestions.'</b>'.' '.__('questions').'.'; ?></div>
-            <div class="fb-share-button" data-href="<?php echo Router::url($this->here, true); ?>" data-layout="button_count"></div>            
+			<br/>
+            <button class="btn btn-primary fb-share-button" id="fb-share-modal" data-position="sidebar"><span class="glyphicon glyphicon-share-alt"></span> &nbsp;<?=__('Share');?></button>            
             <div class="btn-questions">
                <button class="btn show-answers" id="btn-show-answers"><?php echo __('Show Answers'); ?></button>
                <button class="btn show-solutions" id="btn-show-solutions"><?php echo __('Show Solutions'); ?></button>
@@ -196,7 +197,7 @@
 				<button class="btn show-answers btn-primary" id="btn-show-answers" data-dismiss="modal"><?php echo __('Show Answers'); ?></button>
                <button class="btn show-solutions btn-primary" id="btn-show-solutions" data-dismiss="modal"><?php echo __('Show Solutions'); ?></button>
 			   <?php echo $this->Html->link('Quay lại môn học', array('controller' => 'people', 'action' => 'dashboard',$subject['Subject']['id']), array('class' => 'btn btn-dashboard btn-primary')) ?>
-			   <div class="fb-share-button" style='float:left' id='fb-share-modal' data-href="<?php echo Router::url($this->here, true); ?>" data-layout="button"></div>
+			   <button class="btn btn-primary fb-share-button pull-left" id="fb-share-modal" data-position="popup"><span class="glyphicon glyphicon-share-alt"></span> &nbsp;<?=__('Share');?></button>
 			</div>
         </div>
     </div>
@@ -225,24 +226,18 @@
 		$('#modalicon').modal({
                 backdrop: true
             });
-        //fb share
-        var FBShare = function () {
-            FB.ui({
-                method: 'share',
-                href: '<?php echo Router::url('/'); ?>',
-            }, function(response) {
-                if (response && !response.error_code) {
-                    alert('Posting completed.');
-                } else {
-                    alert('Error while posting.');
-                }
-            });
-        };
         <?php //if ( count($explanationsData) < 1 ): ?>
           //setTimeout(FBShare, 1000);
         <?php //endif; ?>
+		
         $('.fb-share-button').click(function() {
-            FBShare();
+			position = $(this).attr('data-position');
+            FB.ui({
+                method: 'share',
+                href: '<?php echo Router::url($this->here, true); ?>',
+            }, function(response) {
+                mixpanel.track("Share Facebook", {"user_id": "<?php echo $user['id']; ?>", "share_page": "Test Result", "button_position": position});
+            });
         });
 
         var showAnswer = false;
