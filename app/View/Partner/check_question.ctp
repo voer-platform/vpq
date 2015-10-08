@@ -108,7 +108,7 @@
 									</td>
 									<td>
 										<?php if($ques['ImportQuestion']['check_question']==1){ ?>
-										<?php echo $this->Html->link('', array('controller' => 'partner', 'action' => 'view_question',$ques['ImportQuestion']['id']), array('class' => 'btn btn-dashboard btn-primary glyphicon glyphicon-eye-open','title'=>'Xem chi tiết','target'=>'_blank')) ?>
+											<?php echo $this->Html->link('', array('controller' => 'partner', 'action' => 'view_question',$ques['ImportQuestion']['id']), array('class' => 'btn btn-dashboard btn-primary glyphicon glyphicon-eye-open','title'=>'Xem chi tiết','target'=>'_blank')) ?>
 										<?php }else{ ?>
 											<?php echo $this->Html->link('', array('controller' => 'partner', 'action' => 'view_question',$ques['ImportQuestion']['id']), array('class' => 'btn btn-dashboard btn-primary glyphicon glyphicon-eye-open','title'=>'Xem chi tiết','target'=>'_blank','disabled')) ?>
 										<?php }?>

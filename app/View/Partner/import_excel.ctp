@@ -10,74 +10,39 @@
 	</div>
 	<form action="" method="POST" name="frmimportexcel" role="form"  enctype="multipart/form-data" class="form-horizontal">
 	<div class='row' style='margin:0px;'>
-		<div class='col-lg-3' style='border-right:solid 1px #eee;'>
-			<div class='row' style='margin-right:0px;'>
-				<input type='file' name='file_import' class='form-control'/>
-				</div>
-				<br/>
-			<div class='row' style='margin-right:0px;'>
-				<input type='submit' name='import_excel' value='Import Excel' class='btn btn-primary'/>
-			</div>			
-			<div class='row' style='margin-right:0px;'>
-				<hr/>
-			</div>
-			<div class='row' style='margin-right:0px;'>
-				<select class='form-control' name='subject' id='subject'>
-					<option value=''>-Chọn môn-</option>						
-					<?php foreach($subject as $sub): ?>
-					<option value='<?php echo $sub['Subject']['id'];?>' <?php echo ($sub['Subject']['id']==$subject_id)?"selected":"" ?>><?php echo $sub['Subject']['name'];?></option>
-					<?php endforeach; ?>
-				</select>
-			</div>
-			<br/>
-			<div class='row' style='margin-right:0px;'>
-				<select class='form-control' name='book' id='book'>
-					<option value=''>-Chọn sách-</option>
-					<?php if(!empty($book)): ?>
-						<?php foreach($book as $book): ?>
-						<option value='<?php echo $book['Book']['id'];?>' <?php echo ($book['Book']['id']==$book_id)?"selected":"" ?>><?php echo $book['Book']['name'];?></option>
-						<?php endforeach; ?>
-					<?php endif; ?>
-				</select>
-			</div>
-			<!--<br/>
-			<div class='row' style='margin-right:0px;'>
-				<select class='form-control' name='categories' id='categories'>
-					<option value=''>-Chọn chương-</option>
-					<?php if(!empty($categories)): ?>
-						<?php foreach($categories as $categories): ?>
-						<option value='<?php echo $categories['Category']['id'];?>' <?php echo ($categories['Category']['id']==$category_id)?"selected":"" ?>><?php echo $categories['Category']['name'];?></option>
-						<?php endforeach; ?>
-					<?php endif; ?>
-				</select>
-			</div>
-			<br/>
-			<div class='row' style='margin-right:0px;'>
-				<select class='form-control' name='subcategories' id='subcategories'>
-					<option value=''>-Chọn bài-</option>
-					<?php if(!empty($subcategories)): ?>
-						<?php foreach($subcategories as $subcategories): ?>
-						<option value='<?php echo $subcategories['Subcategory']['id'];?>' <?php echo ($subcategories['Subcategory']['id']==$subcategory_id)?"selected":"" ?>><?php echo $subcategories['Subcategory']['name'];?></option>
-						<?php endforeach; ?>
-					<?php endif; ?>
-				</select>
-			</div>-->
-			<br/>
-			<div class='row' style='margin-right:0px;'>
-				<select class='form-control' name='state' id='state'>
-					<option value=''>-Trạng thái-</option>
-					<option value='0' <?php echo ($state==0)?"selected":"" ?>>Chưa kiểm tra</option>
-					<option value='1' <?php echo ($state==1)?"selected":"" ?>>Chưa phân loại</option>
-					<option value='2' <?php echo ($state==2)?"selected":"" ?>>Hủy</option>
-					<option value='3' <?php echo ($state==3)?"selected":"" ?>>Đã phân loại</option>
-				</select>
-			</div>
-			<br/>
-			<div class='row' style='margin-right:0px;'>
-				<input type='submit' class='btn btn-primary' name='search' value='Tìm kiếm' />
-			</div>
+		<div class="col-lg-3" style="padding-left:0px;">
+			<select class='form-control' name='subject' id='subject'>
+				<option value=''>-Chọn môn-</option>						
+				<?php foreach($subject as $sub): ?>
+				<option value='<?php echo $sub['Subject']['id'];?>' <?php echo ($sub['Subject']['id']==$subject_id)?"selected":"" ?>><?php echo $sub['Subject']['name'];?></option>
+				<?php endforeach; ?>
+			</select>
 		</div>
-		<div class='col-lg-9' style='padding-right:0px;'>
+		<div class="col-lg-3" style="padding-left:0px;">
+			<select class='form-control' name='book' id='book'>
+				<option value=''>-Chọn sách-</option>
+				<?php if(!empty($book)): ?>
+					<?php foreach($book as $book): ?>
+					<option value='<?php echo $book['Book']['id'];?>' <?php echo ($book['Book']['id']==$book_id)?"selected":"" ?>><?php echo $book['Book']['name'];?></option>
+					<?php endforeach; ?>
+				<?php endif; ?>
+			</select>
+		</div>
+		<div class="col-lg-3" style="padding-left:0px;">
+			<select class='form-control' name='state' id='state'>
+				<option value=''>-Trạng thái-</option>
+				<option value='0' <?php echo ($state==0)?"selected":"" ?>>Chưa kiểm tra</option>
+				<option value='1' <?php echo ($state==1)?"selected":"" ?>>Chưa phân loại</option>
+				<option value='2' <?php echo ($state==2)?"selected":"" ?>>Hủy</option>
+				<option value='3' <?php echo ($state==3)?"selected":"" ?>>Đã phân loại</option>
+			</select>
+		</div>
+		<div class="col-lg-3">
+			<input type='submit' class='btn btn-primary' name='search' value='Tìm kiếm' />
+		</div>
+	</div>
+	<div class='row' style='margin:0px;'>
+		<div class='col-lg-12' style='padding:0px;'>
 			<!--<div class='row' style='margin:0px;'>
 				<h3 style='margin:0px;'>Danh sách câu hỏi</h3>
 			</div>
@@ -128,10 +93,10 @@
 						<td style='text-align:center;'>
 							<?php if($ques['ImportQuestion']['check_question']==0){ ?>
 							<?php echo $this->Html->link('', array('controller' => 'partner', 'action' => 'view_question',$ques['ImportQuestion']['id']), array('class' => 'btn btn-dashboard btn-primary glyphicon glyphicon-eye-open','title'=>'Xem chi tiết','target'=>'_blank')) ?>
-							<a onclick="return confirm ('Bạn có muốn xóa câu hỏi này không?')" class='btn btn-danger glyphicon glyphicon-trash' title='Xóa' href="<?php echo $this->Html->url(array('controller'=>'admin','action'=> 'import_excel')); ?>?delete=<?php echo $ques['ImportQuestion']['id'] ?>"></a>
+							<a onclick="return confirm ('Bạn có muốn xóa câu hỏi này không?')" class='btn btn-danger glyphicon glyphicon-trash' title='Xóa' href="<?php echo $this->Html->url(array('controller'=>'Partner','action'=> 'import_excel')); ?>?delete=<?php echo $ques['ImportQuestion']['id'] ?>"></a>
 							<?php }else{ ?>
 								<?php echo $this->Html->link('', array('controller' => 'partner', 'action' => 'view_question',$ques['ImportQuestion']['id']), array('class' => 'btn btn-dashboard btn-primary glyphicon glyphicon-eye-open','title'=>'Xem chi tiết','target'=>'_blank','disabled')) ?>
-								<a onclick="return confirm ('Bạn có muốn xóa câu hỏi này không?')" class='btn btn-danger glyphicon glyphicon-trash' title='Xóa' disabled href="<?php echo $this->Html->url(array('controller'=>'admin','action'=> 'import_excel')); ?>?delete=<?php echo $ques['ImportQuestion']['id'] ?>"></a>
+								<a onclick="return confirm ('Bạn có muốn xóa câu hỏi này không?')" class='btn btn-danger glyphicon glyphicon-trash' title='Xóa' disabled href="<?php echo $this->Html->url(array('controller'=>'Partner','action'=> 'import_excel')); ?>?delete=<?php echo $ques['ImportQuestion']['id'] ?>"></a>
 							<?php } ?>
 						</td>
 					</tr>

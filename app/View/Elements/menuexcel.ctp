@@ -15,14 +15,15 @@
       <ul class="nav navbar-nav">		
 		<?php if(!empty($user)): ?>
 			<?php if($user['role'] == 'admin'): ?>
-			  <li><?php echo $this->HTML->link(__('Nhập câu hỏi'), array('controller' => 'partner', 'action' => 'import_excel')); ?></li>
-			  <li><?php echo $this->HTML->link(__('Kiểm tra'), array('controller' => 'partner', 'action' => 'check_question')); ?></li>
+			  <li><?php echo $this->HTML->link(__('Nhập câu hỏi'), array('controller' => 'partner', 'action' => 'insertQuestions')); ?></li>	
+			  <li><?php echo $this->HTML->link(__('Kiểm tra câu hỏi'), array('controller' => 'partner', 'action' => 'import_excel')); ?></li>
 			<?php endif; ?>
 			<?php if($user['role'] == 'editor'): ?>
-				 <li><?php echo $this->HTML->link(__('Nhập câu hỏi'), array('controller' => 'partner', 'action' => 'import_excel')); ?></li>
+				 <li><?php echo $this->HTML->link(__('Nhập câu hỏi'), array('controller' => 'partner', 'action' => 'insertQuestions')); ?></li>
+				 <li><?php echo $this->HTML->link(__('Kiểm tra câu hỏi'), array('controller' => 'partner', 'action' => 'import_excel')); ?></li>
 			<?php endif; ?>
 			<?php if($user['role'] == 'tester'): ?>
-				<li><?php echo $this->HTML->link(__('Kiểm tra'), array('controller' => 'partner', 'action' => 'check_question')); ?></li>
+				<li><?php echo $this->HTML->link(__('Phân loại câu hỏi'), array('controller' => 'partner', 'action' => 'check_question')); ?></li>
 			<?php endif; ?>
 		<?php endif; ?>
       </ul>
