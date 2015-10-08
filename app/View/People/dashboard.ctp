@@ -436,7 +436,9 @@
 		FB.ui({
 		  method: 'share',
 		  href: '<?php echo Router::url('/', true); ?>',
-		}, function(response){});
+		}, function(response){
+			mixpanel.track("Share Facebook", {"user_id": "<?php echo $user['id']; ?>", "share_page": "Home Page"});
+		});
 	}
 	
 </script>
