@@ -229,3 +229,17 @@ div.chart-description {
 		width: 100%;
 	}
 }
+.subject-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+	background: rgba(255, 255, 255, 0.7);
+}
+.subject-overlay p {
+    text-align: center;
+    margin-top: 50%;
+    font-weight: bold;
+    color: #A5BCD0;
+}
