@@ -235,11 +235,11 @@ div.chart-description {
     height: 100%;
     top: 0;
     left: 0;
-	background: rgba(255, 255, 255, 0.7);
+	background: rgba(255, 255, 255, 0.6);
 }
 .subject-overlay p {
     text-align: center;
     margin-top: 50%;
     font-weight: bold;
-    color: #A5BCD0;
+    color: #93AFC7;
 }
