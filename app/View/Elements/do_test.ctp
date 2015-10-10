@@ -127,6 +127,7 @@
 	var id_question,endtime=0;
 	var ht=0;
 	var starttime = tgc;
+	var reSubmit = 0;
 	var $count = parseInt("<?php echo $duration ?>");
     // add duration to form, when user submit score early
     // if timeout, it is 0 by default
@@ -178,23 +179,14 @@
         $('ul#questions').simplePaging({pageSize: "1"});
 
         $('button#sureSubmit').on('click', function(){
-			$('.nb').attr('disabled','disabled');
-			$('.nb').text('Đang nộp bài');
-			var a = {};
-			for(i=0;i<datatime.length;i++){
-				a[datatime[i]['id']] = datatime[i]['time']
-			}
-			$.ajax({
-				type:'POST',
-				data: a,
-				url:"<?php echo Router::url(array('controller'=>'tests','action'=>'timeQuestion'));?>/",
-				success:function(data){
-					$('#TestAnswersDoTestForm').submit();
-				}				
-			});	            
+			submitTest();	            
         });
 		
 		$('button#sureSubmit2').on('click', function(){
+            submitTest();
+        });
+		
+		function submitTest() {
 			$('.nb').attr('disabled','disabled');
 			$('.nb').text('Đang nộp bài');
 			var a = {};
@@ -207,10 +199,15 @@
 				url:"<?php echo Router::url(array('controller'=>'tests','action'=>'timeQuestion'));?>/",
 				success:function(data){
 					$('#TestAnswersDoTestForm').submit();
-				}				
-			});	
-            
-        });
+				},
+				error: function(){
+					if (reSubmit == 0) {
+						reSubmit = 1;
+						submitTest();
+					}	
+				}
+			});
+		}
 
         $('ul#questions .answer').find('label.btn').on('click', function(){
             var li = $(this).closest('li');
