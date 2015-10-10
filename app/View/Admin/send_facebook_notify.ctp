@@ -1,14 +1,23 @@
 <h2>Gửi thông báo tới Facebook</h2>
 <hr/>
+<h4>Nội dung tin nhắn</h4>
+<form action="" method="POST">
+<div class="row">
+	<div class="col-md-12">
+		<textarea class="form-control" name="message" rows="5"></textarea>
+	</div>
+</div>
+</br>
 <div class="row">
 	<div class="col-md-6">
 		<b>Danh sách thành viên được gửi thông báo</b>
 	</div>
 	<div class="col-md-6">	
-		<form action="" method="POST"><input type="submit" name="send_notify" value="Gửi thông báo" class="btn btn-danger pull-right" /></form>
+		<input type="submit" name="send_notify" value="Gửi thông báo" class="btn btn-danger pull-right" />
 	</div>
 </div>
 <br/>
+</form>
 <table class="table table-tripped table-bordered">
 	<tr>
 		<th>ID</th>
