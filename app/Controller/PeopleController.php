@@ -510,7 +510,7 @@ class PeopleController extends AppController {
 		else
 		{
 			$this->loadModel('Subject');
-			$viewSubjects = array(2,4,8,3,1);
+			$viewSubjects = array(2,4,8);
 			$overviews = $this->Subject->subjectOverview($user_id, array('subject'=>$viewSubjects));
 			$this->set('overviews', $overviews);
 			//pr($overviews);
