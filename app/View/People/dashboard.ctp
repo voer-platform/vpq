@@ -139,7 +139,8 @@
 										</div>
 									</div>	
 								</div>
-								<?php if(!isset($subj['Subject']['enabled'])){ ?>
+
+								<?php if(!isset($subj['Subject']['enabled']) || !$subj['Subject']['enabled']){ ?>
 									<div class="subject-overlay"><p>Đang cập nhật</p></div>
 								<?php } ?>
 							</div>
