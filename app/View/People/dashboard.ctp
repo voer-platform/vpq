@@ -1,4 +1,4 @@
-<?php echo $this->Html->css('dashboard.css?v=1.4');?>
+<?php echo $this->Html->css('dashboard.css?v=1.5');?>
 <?php echo $this->Html->script('highcharts.js');?>
 <?php echo $this->Html->script('no-data-to-display.src.js');?>
 
@@ -139,6 +139,10 @@
 										</div>
 									</div>	
 								</div>
+
+								<?php if(!$subj['Subject']['enabled']){ ?>
+									<div class="subject-overlay"><p>Đang cập nhật</p></div>
+								<?php } ?>
 							</div>
 						</div>	
 					<?php } ?>

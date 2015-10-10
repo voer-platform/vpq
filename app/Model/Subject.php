@@ -78,7 +78,7 @@ class Subject extends AppModel {
 	public function subjectOverview($person_id, $filterOptions = null)
 	{
 		$sql = array(
-					'fields'	=>	array('Ranking.score, Subject.id, Subject.name'),
+					'fields'	=>	array('Ranking.score, Subject.id, Subject.name, Subject.enabled'),
 					'joins'	=>	array(
 									array(
 										'type'	=>	'LEFT',
@@ -95,7 +95,7 @@ class Subject extends AppModel {
 										)
 						),	
 					'recursive' => -1,
-					'order'	=>	array('Subject.order'=>'ASC')
+					'order'	=>	array('Subject.enabled'=>'DESC', 'Subject.order'=>'ASC')
 				);
 				
 		if(isset($filterOptions['subject']))
@@ -116,11 +116,12 @@ class Subject extends AppModel {
 		}
 		
 		$sql = array(
-					'fields'	=>	array('Subject.id, Subject.name'),
+					'fields'	=>	array('Subject.id, Subject.name, Subject.enabled'),
 					'conditions'=>array(
 							'NOT'=>array('id'=>$hasData)
 						),
-					'recursive' => -1	
+					'recursive' => -1,
+					'order'	=>	array('Subject.enabled'=>'DESC', 'Subject.order'=>'ASC')
 				);
 		if(isset($filterOptions['subject']))
 		{	
@@ -131,8 +132,6 @@ class Subject extends AppModel {
 		}
 		
 		$noData = $this->find('all', $sql);
-		
-		
 		
 		foreach($noData AS $k=>$subj)
 		{
