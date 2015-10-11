@@ -8,6 +8,9 @@
 <?php $this->end(); ?>
 
 <!-- do not display if not logged in -->
+<script type="text/javascript"
+	  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+	</script>
 <div id='doTest'>
     <div id="left">
         <ul id="questions">

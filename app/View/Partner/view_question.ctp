@@ -1,10 +1,14 @@
+<script type="text/javascript"
+	  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+	</script>
 <div class='admin-insert-questions'>
 	<form action="" method="POST" name="frmExchangesRates" role="form" class="form-horizontal">
 	<div class='col-lg-12'>
+	
 		<!-- visible form -->
 		<div class='row'>
 			<div class='col-lg-6' style='padding-left:0px;'>
-				<h2>Chi tiết câu hỏi</h2>
+				<h2>Chi tiết câu hỏi: <?php echo $subject[0]['Subject']['name'];?></h2>
 			</div>
 			<?php if($user['role']=='editor' || $user['role']=='admin'): ?>
 			<div class='col-lg-6' style='padding-right:0px;'>
@@ -21,29 +25,34 @@
 					<div id='left'>
 						<div class='col-lg-12'>
 							<div class='row' style='margin:0px;margin-top:10px;'>
-								<b style='color:brown;font-size:16px;'>Câu hỏi</b>
+								<b style='color:brown;font-size:16px;'>Câu hỏi:</b>
 							</div>
 							<div class='row' style='margin:0px;margin-top:10px;'>
 								<span style='color:brown;' id='content'><?php echo $question[0]['ImportQuestion']['question'];?></span>
 							</div>
 							<br/>
-							<br/>
+							<div class='row' style='margin:0px;margin-top:10px;'>
+								<b style='color:brown;font-size:16px;'>Lời giải:</b>
+							</div>
+							<div class='row' style='margin:0px;margin-top:10px;'>
+								<textarea style='margin-top:10px;margin-bottom:10px;' class='form-control' name='text_solution' id='text_solution' value='' rows="10"><?php echo $question[0]['ImportQuestion']['solution'];?></textarea>
+							</div>
 							<div class='row'>
 								<div class='btn-group answer'>
 									<label <?php echo(array_key_exists('0',$correct))?"class='btn-answer active'":"class='btn-answer wrong'"; ?> id='answer_a'>
-										<span>a</span><?php echo $question[0]['ImportQuestion']['answer_a'];?>
+										<span class="lbanswer">a</span><?php echo $question[0]['ImportQuestion']['answer_a'];?>
 									</label>
 									<textarea style='margin-top:10px;margin-bottom:10px;' type='text' class='form-control' name='text_a' id='text_a' value=''><?php echo $question[0]['ImportQuestion']['answer_a'];?></textarea>
 									<label <?php echo(array_key_exists('1',$correct))?"class='btn-answer active'":"class='btn-answer wrong'"; ?> id='answer_b'>
-										<span>b</span><?php echo $question[0]['ImportQuestion']['answer_b'];?>
+										<span class="lbanswer">b</span><?php echo $question[0]['ImportQuestion']['answer_b'];?>
 									</label>
 									<textarea style='margin-top:10px;margin-bottom:10px;' type='text' class='form-control' name='text_b' id='text_b' value=''><?php echo $question[0]['ImportQuestion']['answer_b'];?></textarea>
 									<label <?php echo(array_key_exists('2',$correct))?"class='btn-answer active'":"class='btn-answer wrong'"; ?> id='answer_c'>
-										<span>c</span><?php echo $question[0]['ImportQuestion']['answer_c'];?>
+										<span class="lbanswer">c</span><?php echo $question[0]['ImportQuestion']['answer_c'];?>
 									</label>
 									<textarea style='margin-top:10px;margin-bottom:10px;' type='text' class='form-control' name='text_c' id='text_c' value=''><?php echo $question[0]['ImportQuestion']['answer_c'];?></textarea>
 									<label <?php echo(array_key_exists('3',$correct))?"class='btn-answer active'":"class='btn-answer wrong'"; ?> id='answer_d'>
-										<span>d</span><?php echo $question[0]['ImportQuestion']['answer_d'];?>
+										<span class="lbanswer">d</span><?php echo $question[0]['ImportQuestion']['answer_d'];?>
 									</label>
 									<textarea style='margin-top:10px;margin-bottom:10px;' type='text' class='form-control' name='text_d' id='text_d' value=''><?php echo $question[0]['ImportQuestion']['answer_d'];?></textarea>
 								</div>
@@ -52,7 +61,7 @@
 					</div>
 				</div>
 				<div class='col-lg-3'>
-					<?php if($user['role']=='admin' || $user['role']=='tester'){ ?>
+					<?php if($user['role']=='tester'){ ?>
 					<div class='row'>
 						<select class='form-control' name='grades' id='grades'>
 							<option value=''>-Chọn lớp-</option>
@@ -84,7 +93,7 @@
 					</div>					
 					<br/>					
 					<div class='row'>
-						<input type='submit' class='btn btn-primary col-lg-12' style='height:50px;' name='yes' id='yes' value='Duyệt' />
+						<input type='submit' class='btn btn-primary col-lg-12' style='height:50px;' name='yes' id='yes' value='Phân Loại' />
 					</div>
 					<br/>
 					<div class='row'>
@@ -93,7 +102,7 @@
 					</div>					
 					<?php }else{ ?>
 						<div class='row'>
-							<input type='submit' class='btn btn-primary col-lg-12' style='height:50px;' name='ok' value='Duyệt' />
+							<input type='submit' class='btn btn-primary col-lg-12' style='height:50px;' name='ok' value='Xác nhận' />
 						</div>
 						<br/>
 						<div class='row'>
@@ -206,7 +215,7 @@
 		$answer_d='<span>d</span>'+$('#text_d').val();
 		$('#answer_d').html($answer_d);
 		$('#answer_d').show();
-		$('#text_d').hide();
+		$('#text_d').hide();		
 	});
 	$(document).on('click','#update',function(){
 		$content_question=$('#content_question').val();

@@ -1,3 +1,6 @@
+<script type="text/javascript"
+	  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+	</script>
 <div id='doTest'>
     <?php echo $this->Form->create('TestAnswers', array( 'url' => 'score')); ?>
     <div id="left">
@@ -97,7 +100,7 @@
                 Bạn chưa trả lời hết các câu hỏi. Bạn chắc chắn muốn nộp bài không?
             </div>
             <div class="modal-footer">
-                <button id="autoSubmit" type="button" class="btn btn-default" data-dismiss="modal">Làm tiếp</button>
+                <button id="autoSubmit" type="button" class="btn btn-default lt" data-dismiss="modal">Làm tiếp</button>
                 <button id="sureSubmit" type="button" class="btn btn-danger nb" data-dismiss="modal">Nộp bài</button>
             </div>
         </div>
@@ -113,7 +116,7 @@
                 <p id='tb'></p>
             </div>
             <div class="modal-footer">
-                <button id="autoSubmit2" type="button" class="btn btn-default" data-dismiss="modal">Xem lại</button>
+                <button id="autoSubmit2" type="button" class="btn btn-default lt" data-dismiss="modal">Xem lại</button>
                 <button id="sureSubmit2" type="button" class="btn btn-danger nb" data-dismiss="modal">Nộp bài</button>
             </div>
         </div>

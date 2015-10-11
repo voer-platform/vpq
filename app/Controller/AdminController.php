@@ -1056,7 +1056,7 @@ class AdminController extends AppController {
 	}
 	
 	public function sendFacebookNotify()
-	{
+	{		
 		$this->loadModel('FacebookNotificationsPerson');	
 		
 		if($this->request->is('post'))
@@ -1115,25 +1115,29 @@ class AdminController extends AppController {
 					if($person['people']['email'])
 					{
 						$username = $person['people']['fullname'];
-						if($notiType==1)
-						{
-							$mess = "Đã lâu rồi chưa thấy bạn làm bài trên www.PLS.edu.vn. Hãy tích cực luyện tập để nâng cao kết quả học tập nhé.";
-							$mess.= '<br/><p style="  text-align: center;color: #428BCA;">Điểm số hiện tại của bạn</p><table border="1" cellpadding="5" style="text-align: center;margin: auto;">
-									 <thead><tr><td><b>Môn học</b></td>';
-									foreach($rankings AS $ranking){
-										$mess.='<td>'.$ranking['Subject']['name'].'</td>';
-									}	
-							$mess.='</tr></thead><tbody><tr><td><b>Điểm</b></td>';
-									foreach($rankings AS $ranking){
-										$mess.='<td style="width: 70px;">'.$ranking['Ranking']['score'].'</td>';
-									}	
-							$mess.='</tr></tbody></table><br/>';
+						if($this->request->data['message']!=''){
+								$mess = $this->request->data['message'];
+						}else{
+							if($notiType==1)
+							{							
+								$mess = "Đã lâu rồi chưa thấy bạn làm bài trên www.PLS.edu.vn. Hãy tích cực luyện tập để nâng cao kết quả học tập nhé.";
+								$mess.= '<br/><p style="  text-align: center;color: #428BCA;">Điểm số hiện tại của bạn</p><table border="1" cellpadding="5" style="text-align: center;margin: auto;">
+										 <thead><tr><td><b>Môn học</b></td>';
+										foreach($rankings AS $ranking){
+											$mess.='<td>'.$ranking['Subject']['name'].'</td>';
+										}	
+								$mess.='</tr></thead><tbody><tr><td><b>Điểm</b></td>';
+										foreach($rankings AS $ranking){
+											$mess.='<td style="width: 70px;">'.$ranking['Ranking']['score'].'</td>';
+										}	
+								$mess.='</tr></tbody></table><br/>';
+								
+							}
+							else
+							{
+								$mess = "Bạn đăng ký đã lâu nhưng chưa làm bài trên www.PLS.edu.vn, hệ thống sẽ giúp bạn học bài hiệu quả. Hãy thử xem";
+							}
 						}
-						else
-						{
-							$mess = "Bạn đăng ký đã lâu nhưng chưa làm bài trên www.PLS.edu.vn, hệ thống sẽ giúp bạn học bài hiệu quả. Hãy thử xem";
-						}
-						
 						$mess = str_replace("@[$fb_id]", $username, $mess);		
 						$content = '<table border="0" cellpadding="30" style="border: solid #428BCA;background-color: #FDFDFD;font-size: 16px;"><tbody><tr><td>
 									<p style="text-align: center;"><strong>CHÚNG TÔI RẤT NHỚ BẠN!</strong></p>
