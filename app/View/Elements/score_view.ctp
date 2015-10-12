@@ -46,7 +46,7 @@
                             <?php else: ?>
                                 <label class="btn-answer">
                             <?php endif; ?>          
-                                <span><?php echo chr(97 + $answerId); ?></span><?php echo $answer['content']; ?>
+                                <span class='lbanswer'><?php echo chr(97 + $answerId); ?></span><?php echo $answer['content']; ?>
                             </label>
                         <?php endforeach;?>
                     </div>

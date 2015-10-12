@@ -524,7 +524,18 @@ div.answer label.active{
   box-shadow: none;
 }
 
-div.answer label span{
+/*div.answer label span{
+  background: none repeat scroll 0 0 #ddd;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  color: #111;
+  font-weight: bold;
+  padding: 4px 10px 5px;
+  text-align: center; 
+  margin-right: 10px;
+}*/
+
+div.answer label span.lbanswer{
   background: none repeat scroll 0 0 #ddd;
   border: 1px solid transparent;
   border-radius: 3px;
@@ -535,7 +546,13 @@ div.answer label span{
   margin-right: 10px;
 }
 
-div.answer label.active span{
+/*div.answer label.active span{
+  background: none repeat scroll 0 0 #2299dd;
+  color: #fff;
+  text-shadow: 1px 1px 1px transparent;  
+}*/
+
+div.answer label.active span.lbanswer{
   background: none repeat scroll 0 0 #2299dd;
   color: #fff;
   text-shadow: 1px 1px 1px transparent;  
@@ -549,7 +566,13 @@ div.answer label.wrong{
   box-shadow: none;
 }
 
-div.answer label.wrong span{
+/*div.answer label.wrong span{
+  background: none repeat scroll 0 0 #DD2241;
+  color: #fff;
+  text-shadow: 1px 1px 1px transparent;  
+}*/
+
+div.answer label.wrong span.lbanswer{
   background: none repeat scroll 0 0 #DD2241;
   color: #fff;
   text-shadow: 1px 1px 1px transparent;  
