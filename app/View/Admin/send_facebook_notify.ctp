@@ -1,13 +1,6 @@
 <h2>Gửi thông báo tới Facebook</h2>
 <hr/>
-<h4>Nội dung tin nhắn</h4>
 <form action="" method="POST">
-<div class="row">
-	<div class="col-md-12">
-		<textarea class="form-control" name="message" rows="5"></textarea>
-	</div>
-</div>
-</br>
 <div class="row">
 	<div class="col-md-6">
 		<b>Danh sách thành viên được gửi thông báo</b>

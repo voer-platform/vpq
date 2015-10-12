@@ -1066,7 +1066,6 @@ class AdminController extends AppController {
 				LEFT JOIN (SELECT facebook_notifications_people.person_id, DATEDIFF(NOW(), MAX(facebook_notifications_people.time)) AS lastsend, COUNT(facebook_notifications_people.id) AS ttfn 
 							FROM facebook_notifications_people 
 							GROUP BY facebook_notifications_people.person_id) AS fnp ON fnp.person_id = people.id
-							WHERE DATEDIFF(NOW(), people.date_created) > 7
 							GROUP BY people.id, people.facebook 
 							HAVING (lastsend IS NULL OR lastsend >= 7)
 						AND ((lasttest IS NULL AND joindate < 30) OR (lasttest >= 7 AND lasttest < 30))");	
@@ -1075,34 +1074,40 @@ class AdminController extends AppController {
 			$notifications = $this->FacebookNotification->find('list', array('fields'=>array('content')));
 			$this->loadModel('Ranking');
 			if(!empty($users)){
-				App::uses('CakeEmail', 'Network/Email');
+				// App::uses('CakeEmail', 'Network/Email');
 				foreach($users AS $person)
 				{
 					$fb_id = $person['people']['facebook'];
 					$person_id = $person['people']['id'];
 					
-					$rankings = $this->Ranking->find('all', array('recursive'=>1, 'conditions'=>array('person_id'=>$person_id)));
-					$resultScore = '';
+					// $rankings = $this->Ranking->find('all', array('recursive'=>1, 'conditions'=>array('person_id'=>$person_id)));
+					// $resultScore = '';
 					
-					if($person[0]['lasttest'])
-					{
-						$mess = $notifications[1];
-						$notiType = 1;
-						$days = $person[0]['lasttest'];
+					// if($person[0]['lasttest'])
+					// {
+						// $mess = $notifications[1];
+						// $notiType = 1;
+						// $days = $person[0]['lasttest'];
 
-						foreach($rankings AS $ranking){
-							$resultScore.= $ranking['Subject']['name'].' - '.$ranking['Ranking']['score'].'đ, ';
-						}
-						$resultScore = rtrim($resultScore, ', ');
-					}
-					else
-					{
-						$mess = $notifications[2];
-						$notiType = 2;
-						$days = $person[0]['joindate'];
-					}
+						// foreach($rankings AS $ranking){
+							// $resultScore.= $ranking['Subject']['name'].' - '.$ranking['Ranking']['score'].'đ, ';
+						// }
+						// $resultScore = rtrim($resultScore, ', ');
+					// }
+					// else
+					// {
+						// $mess = $notifications[2];
+						// $notiType = 2;
+						// $days = $person[0]['joindate'];
+					// }
 					
-					$mess = str_replace(array('{1}', '{2}', '{3}'), array("@[$fb_id]", $days, $resultScore), $mess);
+					// $mess = str_replace(array('{1}', '{2}', '{3}'), array("@[$fb_id]", $days, $resultScore), $mess);
+					
+					$mess = "{1} ơi, hãy mau mau tranh TOP tháng 10 để nhận những phần quà hấp dẫn từ PLS nhé";
+					
+					$notiType = 3;
+					
+					$mess = str_replace(array('{1}'), array("@[$fb_id]"), $mess);
 					
 					try {
 						$this->Facebook->sendNotify($person['people']['facebook'], $mess);
@@ -1112,46 +1117,46 @@ class AdminController extends AppController {
 					
 					}
 					
-					if($person['people']['email'])
-					{
-						$username = $person['people']['fullname'];
-						if($this->request->data['message']!=''){
-								$mess = $this->request->data['message'];
-						}else{
-							if($notiType==1)
-							{							
-								$mess = "Đã lâu rồi chưa thấy bạn làm bài trên www.PLS.edu.vn. Hãy tích cực luyện tập để nâng cao kết quả học tập nhé.";
-								$mess.= '<br/><p style="  text-align: center;color: #428BCA;">Điểm số hiện tại của bạn</p><table border="1" cellpadding="5" style="text-align: center;margin: auto;">
-										 <thead><tr><td><b>Môn học</b></td>';
-										foreach($rankings AS $ranking){
-											$mess.='<td>'.$ranking['Subject']['name'].'</td>';
-										}	
-								$mess.='</tr></thead><tbody><tr><td><b>Điểm</b></td>';
-										foreach($rankings AS $ranking){
-											$mess.='<td style="width: 70px;">'.$ranking['Ranking']['score'].'</td>';
-										}	
-								$mess.='</tr></tbody></table><br/>';
+					// if($person['people']['email'])
+					// {
+						// $username = $person['people']['fullname'];
+						// if($this->request->data['message']!=''){
+								// $mess = $this->request->data['message'];
+						// }else{
+							// if($notiType==1)
+							// {							
+								// $mess = "Đã lâu rồi chưa thấy bạn làm bài trên www.PLS.edu.vn. Hãy tích cực luyện tập để nâng cao kết quả học tập nhé.";
+								// $mess.= '<br/><p style="  text-align: center;color: #428BCA;">Điểm số hiện tại của bạn</p><table border="1" cellpadding="5" style="text-align: center;margin: auto;">
+										 // <thead><tr><td><b>Môn học</b></td>';
+										// foreach($rankings AS $ranking){
+											// $mess.='<td>'.$ranking['Subject']['name'].'</td>';
+										// }	
+								// $mess.='</tr></thead><tbody><tr><td><b>Điểm</b></td>';
+										// foreach($rankings AS $ranking){
+											// $mess.='<td style="width: 70px;">'.$ranking['Ranking']['score'].'</td>';
+										// }	
+								// $mess.='</tr></tbody></table><br/>';
 								
-							}
-							else
-							{
-								$mess = "Bạn đăng ký đã lâu nhưng chưa làm bài trên www.PLS.edu.vn, hệ thống sẽ giúp bạn học bài hiệu quả. Hãy thử xem";
-							}
-						}
-						$mess = str_replace("@[$fb_id]", $username, $mess);		
-						$content = '<table border="0" cellpadding="30" style="border: solid #428BCA;background-color: #FDFDFD;font-size: 16px;"><tbody><tr><td>
-									<p style="text-align: center;"><strong>CHÚNG TÔI RẤT NHỚ BẠN!</strong></p>
-									<p>Chào <b>'.$username.'</b></p>
-									<p>'.$mess.'</p>
-									<p>PLS rất mong muốn được lắng nghe ý kiến của bạn để không ngừng nâng cao chất lượng học tập, và quan trọng hơn, để tiếp tục được là người bạn đồng hành tin cậy của bạn. Bạn có thể đóng góp những ý kiến của mình trực tiếp trên website hoặc gửi thư vào đia chỉ email plseduvn@gmail.com</p>
-									<p>Hãy để chúng tôi lắng nghe bạn nhé!</p>
-									</td></tr></tbody></table>';
+							// }
+							// else
+							// {
+								// $mess = "Bạn đăng ký đã lâu nhưng chưa làm bài trên www.PLS.edu.vn, hệ thống sẽ giúp bạn học bài hiệu quả. Hãy thử xem";
+							// }
+						// }
+						// $mess = str_replace("@[$fb_id]", $username, $mess);		
+						// $content = '<table border="0" cellpadding="30" style="border: solid #428BCA;background-color: #FDFDFD;font-size: 16px;"><tbody><tr><td>
+									// <p style="text-align: center;"><strong>CHÚNG TÔI RẤT NHỚ BẠN!</strong></p>
+									// <p>Chào <b>'.$username.'</b></p>
+									// <p>'.$mess.'</p>
+									// <p>PLS rất mong muốn được lắng nghe ý kiến của bạn để không ngừng nâng cao chất lượng học tập, và quan trọng hơn, để tiếp tục được là người bạn đồng hành tin cậy của bạn. Bạn có thể đóng góp những ý kiến của mình trực tiếp trên website hoặc gửi thư vào đia chỉ email plseduvn@gmail.com</p>
+									// <p>Hãy để chúng tôi lắng nghe bạn nhé!</p>
+									// </td></tr></tbody></table>';
 									
-						$Email = new CakeEmail('gmail');
-						$Email->to($person['people']['email']);
-						$Email->subject("$username, chúng tôi nhớ bạn");
-						$Email->send($content);
-					}
+						// $Email = new CakeEmail('gmail');
+						// $Email->to($person['people']['email']);
+						// $Email->subject("$username, chúng tôi nhớ bạn");
+						// $Email->send($content);
+					// }
 					
 					
 					
