@@ -463,13 +463,13 @@ class PartnerController extends Controller {
 			$data=$this->request->data;
 			if($this->ImportQuestion->updateAll(
 												array(
-													'question'=>"'".$data['content_question']."'",
-													'solution'=>"'".$data['text_solution']."'",
-													'answer_a'  =>"'".$data['text_a']."'",
-													'answer_b'  =>"'".$data['text_b']."'",
-													'answer_c'  =>"'".$data['text_c']."'",
-													'answer_d'  =>"'".$data['text_d']."'",
-													'answer_correct'  =>"'".$data['answer_correct']."'",
+													'question'=>'"'.trim($data['content_question']).'"',
+													'solution'=>'"'.trim($data['text_solution']).'"',
+													'answer_a'  =>'"'.trim($data['text_a']).'"',
+													'answer_b'  =>'"'.trim($data['text_b']).'"',
+													'answer_c'  =>'"'.trim($data['text_c']).'"',
+													'answer_d'  =>'"'.trim($data['text_d']).'"',
+													'answer_correct'  =>'"'.trim($data['answer_correct']).'"',
 												),
 												array(
 													'id'=>$data['id'],

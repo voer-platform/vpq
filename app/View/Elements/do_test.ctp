@@ -14,7 +14,7 @@
                     </div>
                     <?php $option = array(); ?>
                     <?php foreach ($question['Answer'] as $aindex => $answer): ?>
-                        <?php $option[$aindex] = "<span>" . chr(97 + $aindex) . "</span>" . $answer['content']; //.'--'.$answer['correctness']; ?>
+                        <?php $option[$aindex] = "<span class='lbanswer'>" . chr(97 + $aindex) . "</span>" . $answer['content']; //.'--'.$answer['correctness']; ?>
                     <?php endforeach; ?>
                     <div class="btn-group answer" data-toggle='buttons'>
                         <input type="hidden" value="" name="<?php echo $question['Question']['id']; ?>">
