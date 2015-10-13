@@ -1,12 +1,35 @@
 <h2>Gửi thông báo tới Facebook</h2>
 <hr/>
-<form action="" method="POST">
+
 <div class="row">
+	
+	<div class="col-md-12">
+		<form action="<?=$this->Html->url(array("controller" => "Admin/sendFacebookNotify"));?>">
+			Đã gửi tin cách đây > <input type="text" class="form-control inline w-50" value="<?=$lastsend;?>" name="lastsend" /> ngày &nbsp;|&nbsp; đã tham gia < <input type="text" class="form-control inline w-50" value="<?=$maxjoindate;?>" name="maxjoindate" /> ngày &nbsp;|&nbsp; Kiểm tra lần cuối từ <input type="text" class="form-control inline w-50" value="<?=$minlasttest;?>" name="minlasttest" /> đến <input type="text" class="form-control inline w-50" value="<?=$maxlasttest;?>" name="maxlasttest" /> ngày
+			&nbsp;&nbsp;&nbsp;<input type="submit" value="Lọc thành viên" class="btn btn-primary" name="filter" />
+		</form>
+		
+		<hr/><br/>
+	</div>
 	<div class="col-md-6">
 		<b>Danh sách thành viên được gửi thông báo</b>
 	</div>
 	<div class="col-md-6">	
-		<input type="submit" name="send_notify" value="Gửi thông báo" class="btn btn-danger pull-right" />
+		<form action="<?=$this->Html->url(array("controller" => "Admin/sendFacebookNotify"));?>" method="POST">
+			<input type="hidden" name="minlasttest" value="<?=$minlasttest;?>" />
+			<input type="hidden" name="maxlasttest" value="<?=$maxlasttest;?>" />
+			<input type="hidden" name="maxjoindate" value="<?=$maxjoindate;?>" />
+			<input type="hidden" name="lastsend" value="<?=$lastsend;?>" />
+			
+			
+			<input type="submit" name="send_notify" value="Gửi thông báo" class="btn btn-danger pull-right" />
+			
+			<select class="form-control pull-right inline w-200 mglr-10" name="type">
+				<option value="3">Thông báo sự kiện tháng 10</option>
+				<option value="1">Gửi nhắc nhở học tập</option>
+			</select>
+			
+		</form>	
 	</div>
 </div>
 <br/>
