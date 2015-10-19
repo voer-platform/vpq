@@ -5,48 +5,56 @@
 		<table class="table table-bordered table-striped">
 			<tr>
 				<th></th>
+				<th>Hôm nay</th>
 				<th>7 ngày</th>
 				<th>30 ngày</th>
 				<th>Tất cả</th>
 			</tr>
 			<tr>
 				<td><b>Số lượt test</b></td>
+				<td><?php echo $testToDays[0][0]['total']; ?></td>
 				<td><?php echo $test7Days[0][0]['total']; ?></td>
 				<td><?php echo $test30Days[0][0]['total']; ?></td>
 				<td><?php echo $testAllDays[0][0]['total']; ?></td>
 			</tr>
 			<tr>
 				<td><b>Số người test</b></td>
+				<td><?php echo $testToDays[0][0]['users']; ?></td>
 				<td><?php echo $test7Days[0][0]['users']; ?></td>
 				<td><?php echo $test30Days[0][0]['users']; ?></td>
 				<td><?php echo $testAllDays[0][0]['users']; ?></td>
 			</tr>
 			<tr>
 				<td><b>Số môn test</b></td>
+				<td><?php echo $testToDays[0][0]['subjects']; ?></td>
 				<td><?php echo $test7Days[0][0]['subjects']; ?></td>
 				<td><?php echo $test30Days[0][0]['subjects']; ?></td>
 				<td><?php echo $testAllDays[0][0]['subjects']; ?></td>
 			</tr>
 			<tr>
 				<td><b>Thời gian thực tế</b></td>
+				<td><?php echo $testToDays[0][0]['time']; ?></td>
 				<td><?php echo $test7Days[0][0]['time']; ?></td>
 				<td><?php echo $test30Days[0][0]['time']; ?></td>
 				<td><?php echo $testAllDays[0][0]['time']; ?></td>
 			</tr>
 			<tr>
 				<td><b>Thời gian cho phép</b></td>
+				<td><?php echo $testToDays[0][0]['timelimit']; ?></td>
 				<td><?php echo $test7Days[0][0]['timelimit']; ?></td>
 				<td><?php echo $test30Days[0][0]['timelimit']; ?></td>
 				<td><?php echo $testAllDays[0][0]['timelimit']; ?></td>
 			</tr>
 			<tr>
 				<td><b>Thời gian trung bình</b></td>
+				<td><?php echo $testToDays[0][0]['average']; ?></td>
 				<td><?php echo $test7Days[0][0]['average']; ?></td>
 				<td><?php echo $test30Days[0][0]['average']; ?></td>
 				<td><?php echo $testAllDays[0][0]['average']; ?></td>
 			</tr>
 			<tr>
 				<td><b>Sử dụng thời gian</b></td>
+				<td><?php echo $testToDays[0][0]['used']; ?></td>
 				<td><?php echo $test7Days[0][0]['used']; ?></td>
 				<td><?php echo $test30Days[0][0]['used']; ?></td>
 				<td><?php echo $testAllDays[0][0]['used']; ?></td>
@@ -73,9 +81,10 @@
 	<table class="table table-bordered table-striped">
 		<tr>
 			<th></th>
-			<th colspan="<?=count($testDetail)+2;?>" class="success">7 ngày</th>
-			<th colspan="<?=count($testDetail)+2;?>" class="info">30 ngày</th>
-			<th colspan="<?=count($testDetail)+2;?>" class="warning">Tất cả</th>
+			<th colspan="<?=count($testDetail)+1;?>" class="">Hôm nay</th>
+			<th colspan="<?=count($testDetail)+1;?>" class="success">7 ngày</th>
+			<th colspan="<?=count($testDetail)+1;?>" class="info">30 ngày</th>
+			<th colspan="<?=count($testDetail)+1;?>" class="warning">Tất cả</th>
 		</tr>
 		<tr>
 			<th></th>
@@ -87,6 +96,7 @@
 						case 'test7Days': $class = 'success'; break;
 						case 'test30Days': $class = 'info'; break;
 						case 'testAllDays': $class = 'warning'; break;
+						default: $class=""; break;
 					}
 					foreach($range AS $k=>$limit){
 					

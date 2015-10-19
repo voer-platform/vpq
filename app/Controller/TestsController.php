@@ -125,6 +125,20 @@ class TestsController extends AppController {
 				$options['conditions'][] = "Test.time_limit = $limit";
 			}
 			
+			$options['conditions'][1] = "DATE(time_taken) = '$today'";
+			$testToDays = $this->Score->find('all', $options);
+			if($testToDays[0][0]['time'])
+			{
+				$testToDays[0][0]['average'] = $this->Pls->timeFromSeconds(round($testToDays[0][0]['time']/$testToDays[0][0]['total']));
+				$testToDays[0][0]['used'] = round(($testToDays[0][0]['time']/$testToDays[0][0]['timelimit'])*100).'%';
+				$testToDays[0][0]['time'] = $this->Pls->timeFromSeconds($testToDays[0][0]['time']);
+				$testToDays[0][0]['timelimit'] = $this->Pls->timeFromSeconds($testToDays[0][0]['timelimit']);
+			}
+			else
+			{
+				$testToDays[0][0]['time'] = $testToDays[0][0]['timelimit'] = $testToDays[0][0]['average'] = $testToDays[0][0]['used'] = 0;
+			}
+			
 			$options['conditions'][1] = "DATE(time_taken) BETWEEN '$last7days' AND '$today'";
 			$test7Days = $this->Score->find('all', $options);
 			if($test7Days[0][0]['time'])
@@ -177,6 +191,7 @@ class TestsController extends AppController {
 			
 			if($limit!='all')
 			{
+				$testDetail['testToDays'][$limit] = $testToDays[0][0];
 				$testDetail['test7Days'][$limit] = $test7Days[0][0];
 				$testDetail['test30Days'][$limit] = $test30Days[0][0];
 				$testDetail['testAllDays'][$limit] = $testAllDays[0][0];
@@ -185,6 +200,7 @@ class TestsController extends AppController {
 		$infos = array('total', 'users', 'subjects', 'time', 'timelimit', 'average', 'used');
 		$this->set('infos', $infos);
 		$this->set('testDetail', $testDetail);
+		$this->set('testToDays', $testToDays);
 		$this->set('test7Days', $test7Days);
 		$this->set('test30Days', $test30Days);
 		$this->set('testAllDays', $testAllDays);
