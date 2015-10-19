@@ -423,6 +423,10 @@ class PeopleController extends AppController {
 				);			
 		$data_user = $this->Person->find('first',$options);
 		$this->set('data_user', $data_user['Person']);
+		
+		$this->loadModel('Announcement');
+		$announcement = $this->Announcement->find('all', array('conditions' => array('status = 1')));
+		$this->set('announcement', $announcement);
 		// $date1 = strtotime($data_user[0]['Person']['last_login']);
 		// $date2 = strtotime(date('Y-m-d'));
 		// $diff = abs($date2-$date1);
