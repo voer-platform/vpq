@@ -102,6 +102,25 @@
 					</div>					
 					<?php }else{ ?>
 						<div class='row'>
+							<div class='col-lg-12' style='padding-left:0px; padding-right:0px'>
+								<p><b>Chú ý đáp án:</b><span style="float:right;">A=0, B=1, C=2, D=3<span></p>
+							</div>
+						</div>
+						<br/>
+						<div class='row'>
+							<div class='col-lg-5' style='padding-left:0px;'>
+								<label>Đáp án đúng:</label>
+							</div>
+							<div class='col-lg-7' style='padding-right:0px;'>
+								<input type='text' class='form-control' name='answer_correct' id='answer_correct' value='<?php echo $cr; ?>' />
+							</div>
+						</div>
+						<br/>
+						<div class='row'>
+							<input type='submit' class='btn btn-warning col-lg-12' style='height:50px;' name='update' id='update' value='Cập nhật' />
+						</div>
+						<br/>
+						<div class='row'>
 							<input type='submit' class='btn btn-primary col-lg-12' style='height:50px;' name='ok' value='Xác nhận' />
 						</div>
 						<br/>
@@ -123,28 +142,7 @@
 				<textarea type='text' style='width:710px;' class='form-control' rows='8' name='content_question' id='content_question'><?php echo $question[0]['ImportQuestion']['question'];?></textarea>
 			</div>
 			<div class='col-lg-3'>
-				<div class='row'>
-					<div class='col-lg-12' style='padding-left:0px; padding-right:0px'>
-						<p><b>Chú ý đáp án:</b><span style="float:right;">A=0, B=1, C=2, D=3<span></p>
-					</div>
-				</div>
-				<br/>
-				<div class='row'>
-					<div class='col-lg-5' style='padding-left:0px;'>
-						<label>Đáp án đúng:</label>
-					</div>
-					<div class='col-lg-7' style='padding-right:0px;'>
-						<input type='text' class='form-control' name='answer_correct' id='answer_correct' value='<?php echo $cr; ?>' />
-					</div>
-				</div>
-				<br/>
-				<div class='row'>
-					<button type='button' class='btn btn-default col-lg-12' style='height:50px;' name='try' id='try'>Thử</button>
-				</div>
-				<br/>
-				<div class='row'>
-					<input type='submit' class='btn btn-warning col-lg-12' style='height:50px;' name='update' id='update' value='Cập nhật' />
-				</div>
+	
 			</div>
 		</div>
 		<div class='row'>
@@ -196,26 +194,6 @@
 	$(document).on('click','#answer_d',function(){
 		$('#answer_d').hide();
 		$('#text_d').show();
-	});
-	$(document).on('click','#try',function(){
-		$content_question=$('#content_question').val();
-		$('#content').html($content_question);
-		$answer_a='<span>a</span>'+$('#text_a').val();
-		$('#answer_a').html($answer_a);
-		$('#answer_a').show();
-		$('#text_a').hide();
-		$answer_b='<span>b</span>'+$('#text_b').val();
-		$('#answer_b').html($answer_b);
-		$('#answer_b').show();
-		$('#text_b').hide();
-		$answer_c='<span>c</span>'+$('#text_c').val();
-		$('#answer_c').html($answer_c);
-		$('#answer_c').show();
-		$('#text_c').hide();
-		$answer_d='<span>d</span>'+$('#text_d').val();
-		$('#answer_d').html($answer_d);
-		$('#answer_d').show();
-		$('#text_d').hide();		
 	});
 	$(document).on('click','#update',function(){
 		$content_question=$('#content_question').val();

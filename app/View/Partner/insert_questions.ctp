@@ -135,131 +135,9 @@
 	
 </div>
 
-<!-- elf file manager -->
-<?php //$this->TinymceElfinder->defineElfinderBrowser()?>
-<!--<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
-
-<!-- script -->
-<!--<script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>-->
 <script>
-	/*var i = 0;
-	// tinyMCE
-    tinymce.init({
-    	selector : '.tinymce-content',
-    	plugins : 'code',
-    	relative_urls: false,
-    	toolbar: 'code image',
-    	menubar : '',
-    	extended_valid_elements: 'figure,figcaption,maction,maligngroup,malignmark,math,menclose,merror,mfenced,mfrac,mglyph,mi,mlabeledtr,mlongdiv,mmultiscripts,mn,mo,mover,mpadded,mphantom,mroot,mrow,ms,mscarries,mscarry,msgroup,msline,mspace,msqrt,msrow,mstack,mstyle,msubsup,msup,mtable,mtd,mtext,mtr,munder,munderover,semantics,sub,mfrac,sup,annotation', 
-    	file_browser_callback : elFinderBrowser
-    });
-
-    tinymce.init({
-    	selector: '.tinymce-answer',
-    	height: 50,
-    	width: 300,
-    	plugins : 'code',
-    	relative_urls: false,
-    	toolbar: 'code',
-    	extended_valid_elements: 'figure,figcaption,maction,maligngroup,malignmark,math,menclose,merror,mfenced,mfrac,mglyph,mi,mlabeledtr,mlongdiv,mmultiscripts,mn,mo,mover,mpadded,mphantom,mroot,mrow,ms,mscarries,mscarry,msgroup,msline,mspace,msqrt,msrow,mstack,mstyle,msubsup,msup,mtable,mtd,mtext,mtr,munder,munderover,semantics,sub,mfrac,sup,annotation', 
-    	menubar : ''
-    });
-
-    // disable multiple correct question
-    $(".answer-correct").each(function()
-	{
-	    $(this).change(function()
-	    {
-	        $(".answer-correct").prop('checked',false);
-	        $(this).prop('checked',true);
-	    });
-	});
-
-    // add more attachments
-    $('#btn-add-attachments').click(function(){
-    	i++;
-    	$('#attachments').append("<input type='file' name='data[Attachment][" + i + "]' class='form-control' id='QuestionAttachment-" + i + "'>");
-    	$('#btn-add-attachments').text("<?php echo __('More attachments'); ?>");
-    	$('#attachments-description').text("<?php echo __('Click button to add more'); ?>");
-    });*/
 	$(document).ready(function(){
-		/*$url='<?php echo Router::fullbaseUrl();?>/';    
 
-			var editor = CKEDITOR.replace( 'question',
-				{
-					filebrowserBrowseUrl : $url+'app/webroot/ckfinder/ckfinder.html',
-					filebrowserImageBrowseUrl : $url+'app/webroot/ckfinder/ckfinder.html?type=Images',
-					filebrowserFlashBrowseUrl : $url+'app/webroot/ckfinder/ckfinder.html?type=Flash',
-					filebrowserUploadUrl : $url+'app/webroot/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
-					filebrowserImageUploadUrl : $url+'app/webroot/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
-					filebrowserFlashUploadUrl : $url+'app/webroot/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash',
-					fullPage: true,
-					allowedContent: true,
-				}
-				
-			);
-			CKFinder.setupCKEditor( editor, '../' ) ;
-			
-			var editor2 = CKEDITOR.replace( 'answer_a',
-				{
-					filebrowserBrowseUrl : $url+'app/webroot/ckfinder/ckfinder.html',
-					filebrowserImageBrowseUrl : $url+'app/webroot/ckfinder/ckfinder.html?type=Images',
-					filebrowserFlashBrowseUrl : $url+'app/webroot/ckfinder/ckfinder.html?type=Flash',
-					filebrowserUploadUrl : $url+'app/webroot/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
-					filebrowserImageUploadUrl : $url+'app/webroot/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
-					filebrowserFlashUploadUrl : $url+'app/webroot/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash',
-					fullPage: true,
-					allowedContent: true,
-				}
-				
-			);
-			CKFinder.setupCKEditor( editor2, '../' ) ;
-			
-			var editor3 = CKEDITOR.replace( 'answer_b',
-				{
-					filebrowserBrowseUrl : $url+'app/webroot/ckfinder/ckfinder.html',
-					filebrowserImageBrowseUrl : $url+'app/webroot/ckfinder/ckfinder.html?type=Images',
-					filebrowserFlashBrowseUrl : $url+'app/webroot/ckfinder/ckfinder.html?type=Flash',
-					filebrowserUploadUrl : $url+'app/webroot/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
-					filebrowserImageUploadUrl : $url+'app/webroot/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
-					filebrowserFlashUploadUrl : $url+'app/webroot/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash',
-					fullPage: true,
-					allowedContent: true,
-				}
-				
-			);
-			CKFinder.setupCKEditor( editor3, '../' ) ;
-			
-			var editor4 = CKEDITOR.replace( 'answer_c',
-				{
-					filebrowserBrowseUrl : $url+'app/webroot/ckfinder/ckfinder.html',
-					filebrowserImageBrowseUrl : $url+'app/webroot/ckfinder/ckfinder.html?type=Images',
-					filebrowserFlashBrowseUrl : $url+'app/webroot/ckfinder/ckfinder.html?type=Flash',
-					filebrowserUploadUrl : $url+'app/webroot/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
-					filebrowserImageUploadUrl : $url+'app/webroot/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
-					filebrowserFlashUploadUrl : $url+'app/webroot/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash',
-					fullPage: true,
-					allowedContent: true,
-				}
-				
-			);
-			CKFinder.setupCKEditor( editor4, '../' ) ;
-			
-			var editor5 = CKEDITOR.replace( 'answer_d',
-				{
-					filebrowserBrowseUrl : $url+'app/webroot/ckfinder/ckfinder.html',
-					filebrowserImageBrowseUrl : $url+'app/webroot/ckfinder/ckfinder.html?type=Images',
-					filebrowserFlashBrowseUrl : $url+'app/webroot/ckfinder/ckfinder.html?type=Flash',
-					filebrowserUploadUrl : $url+'app/webroot/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
-					filebrowserImageUploadUrl : $url+'app/webroot/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
-					filebrowserFlashUploadUrl : $url+'app/webroot/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash',
-					fullPage: true,
-					allowedContent: true,
-				}
-				
-			);
-			CKFinder.setupCKEditor( editor5, '../' ) ;
-			*/
 	});
 	
 	$(document).on('change','#grade',function(){
@@ -283,7 +161,7 @@
 		if($('#grade').val()!=''){
 			$subject_id=$(this).val();
 			$grade_id=$('#grade').val();
-			var url = '<?php echo Router::url(array('controller'=>'categories','action'=>'byGrade'));?>/' + $grade_id + '/'+$subject_id;
+			var url = '<?php echo Router::url(array('controller'=>'partner','action'=>'byGrade'));?>/' + $grade_id + '/'+$subject_id;
 			$.getJSON(url, function( data ) {
 				var options="";
 				options+="<option value=''>Chọn chương</option>";
@@ -298,7 +176,7 @@
 	
 	$(document).on('change','#categories',function(){
 		$cat_id=$(this).val();
-		var url = '<?php echo Router::url(array('controller'=>'subcategories','action'=>'get_subcategories'));?>/' + $cat_id;
+		var url = '<?php echo Router::url(array('controller'=>'partner','action'=>'get_subcategories'));?>/' + $cat_id;
 		$.getJSON(url, function( data ) {
 			var options="";
 			options+="<option value=''>Chọn bài</option>";

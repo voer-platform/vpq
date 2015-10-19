@@ -37,17 +37,17 @@ class PartnerController extends Controller {
 	public function isAuthorized($user) {
 	    // only admin can do 
 	    if (isset($user['role'])  && $user['role'] === 'admin'){
-	    	if( in_array( $this->request->action, array('import_excel', 'check_question', 'view_question', 'changePassword','getBook','getCategory','remake','get_subcategories','byGrade','bySubject','login','logout','addquestion','insertQuestions'))){
+	    	if( in_array( $this->request->action, array('import_excel', 'check_question', 'view_question', 'changePassword','getBook','getCategory','remake','get_subcategories','byGrade','bySubject','login','logout','addquestion','insertQuestions','report_admin','delete'))){
                 return true;
             }
 	    }
 		if (isset($user['role']) && $user['role'] === 'editor') {
-			if( in_array( $this->request->action, array('import_excel','view_question', 'changePassword','getBook','getCategory','remake','get_subcategories','byGrade','bySubject','login','logout','addquestion','insertQuestions'))){
+			if( in_array( $this->request->action, array('import_excel','view_question', 'changePassword','getBook','getCategory','remake','get_subcategories','byGrade','bySubject','login','logout','addquestion','insertQuestions','report_admin','delete'))){
                 return true;
             }
 		}
 		if (isset($user['role']) && $user['role'] === 'tester') {
-			if( in_array( $this->request->action, array('check_question', 'view_question', 'changePassword','getBook','getCategory','get_subcategories','byGrade','bySubject','login','logout'))){
+			if( in_array( $this->request->action, array('check_question', 'view_question', 'changePassword','getBook','getCategory','get_subcategories','byGrade','bySubject','login','logout','report_admin','delete'))){
                 return true;
             }
 		}
@@ -68,7 +68,39 @@ class PartnerController extends Controller {
  * @return void
  */
 	public function index(){
-		$this->set('title_for_layout',__("Admin"));
+		$user = array();
+        $this->set('user', $user);
+		$this->layout ='excel';
+		$this->loadModel('Person');
+		if($this->request->is('post')){			
+			if($this->request->data('login')){
+				$this->Session->destroy();
+				$user=$this->request->data('user');
+				$pass=$this->request->data('pass');
+				$user=$this->Person->find('all',array(
+											'recursive' => -1,
+											'conditions' => array('username'=>$user),
+									)
+				);
+				if($user!=null){
+					if($user[0]['Person']['password']==md5($pass)){
+						$this->Session->write('user',$user[0]['Person']);
+						//$this->Auth->login($user[0]['Person']);
+						$this->Cookie->delete('remember');
+						//$this->Cookie->write('reaccess', $encrypted_access_string, true, 31536000);						
+						if($user[0]['Person']['role']=='tester'){
+							$this->redirect(array('controller' =>'partner', 'action' => 'check_question'));
+						}else{
+							$this->redirect(array('controller' =>'partner', 'action' => 'list_questions'));
+						}
+					}else{
+						$this->Session->setFlash(__('Mật khẩu không đúng.'));
+					}
+				}else{
+					
+				}
+			}
+		}
 	}
 
 /**
@@ -213,7 +245,7 @@ class PartnerController extends Controller {
 		echo $this->ImportQuestion->getLastInsertId();
 	}
 	
-	public function import_excel(){
+	public function list_questions(){
 		require_once(APP. 'Vendor'. DS .'PHPExcel.php');
 		require_once(APP. 'Vendor'. DS . 'PHPExcel'. DS. 'IOFactory.php');
 		$user = $this->Session->read('user');
@@ -301,10 +333,11 @@ class PartnerController extends Controller {
 				}*/
 				if($state!=''){
 					$options['check_question']=$state;
+					$this->set('state',$state);
 				}
 				$this->set('subject_id',$subject_id);
 				$this->set('book_id',$book_id);
-				$this->set('state',$state);
+				
 				//$this->set('category_id',$category_id);
 				//$this->set('subcategory_id',$subcategory_id);
 			}	
@@ -313,7 +346,7 @@ class PartnerController extends Controller {
 			$this->set('book_id','');
 			$this->set('category_id','');
 			$this->set('subcategory_id','');
-			$this->set('state','');
+
 		}
 		$this->Paginator->settings = array(
 			'limit' => 10,
@@ -321,6 +354,13 @@ class PartnerController extends Controller {
 		);
 		$import_question = $this->Paginator->paginate('ImportQuestion');
 		$this->set('import_question',$import_question);
+		$count=$this->ImportQuestion->find('count',
+											array(
+													'recursive' => -1,
+													'conditions' => $options
+												)
+											);
+		$this->set('count',$count);
 		
 		/*$this->Paginator->setting = array(
 			'limit'	=> 10,
@@ -398,20 +438,6 @@ class PartnerController extends Controller {
 					$categories=$this->Category->find('all',$options4);
 					$this->set('categories',$categories);
 				}
-				/*if($category_id!=''){
-					$options['category_id']=$category_id;
-					$this->loadModel('Subcategory');
-					$subcategories = $this->Subcategory->find('all', array(
-																'recursive' => -1,
-																'conditions' => array(
-																	'category_id = ' => $category_id,
-																	),
-															));
-					$this->set('subcategories',$subcategories);
-				}
-				if($subcategory_id!=''){
-					$options['subcategory_id']=$subcategory_id;
-				}*/
 				if($state!=''){
 					$options['check_question']=$state;
 				}
@@ -426,7 +452,7 @@ class PartnerController extends Controller {
 			$this->set('book_id','');
 			$this->set('category_id','');
 			$this->set('subcategory_id','');
-			$this->set('state','');
+			$this->set('state','1');
 		}
 		$this->Paginator->settings = array(
 			'limit' => 10,
@@ -458,7 +484,8 @@ class PartnerController extends Controller {
 		$this->loadModel('Answer');
 		$this->loadModel('Category');
 		$this->loadModel('Subcategory');
-		$this->loadModel('Subject');		
+		$this->loadModel('Subject');
+		$this->loadModel('ClassifyQuestion');
 		if($this->request->data('update')){
 			$data=$this->request->data;
 			if($this->ImportQuestion->updateAll(
@@ -550,7 +577,17 @@ class PartnerController extends Controller {
 			$correct=explode(' ',trim($data_question[0]['ImportQuestion']['answer_correct']));
 			if($data_question[0]['ImportQuestion']['subcategory2_id']==''){				
 				if($data_question[0]['ImportQuestion']['subcategory1_id']=='')
-				{					
+				{	
+					
+
+					$this->ClassifyQuestion->save(
+											array(												
+												'question_id' =>$data_question[0]['ImportQuestion']['id'],
+												'user'	  	  =>$user['id'],
+												'subject_id'  =>$data_question[0]['ImportQuestion']['subject_id'],
+												'status'	  =>0,
+											)
+										);
 					if($this->ImportQuestion->updateAll(
 												array(
 													'person1_id'=>$user_id,
@@ -654,6 +691,26 @@ class PartnerController extends Controller {
 								)){
 									$error = true; 
 								}
+								if(!$this->ClassifyQuestion->updateAll(
+															array(
+																'status' => '1',
+															),
+															array(
+																'question_id'=>$data_question[0]['ImportQuestion']['id'],
+															)
+								)){
+									$error = true;
+								}
+								if(!$this->ClassifyQuestion->save(
+									array(												
+										'question_id' =>$data_question[0]['ImportQuestion']['id'],
+										'user'	  	  =>$user['id'],
+										'subject_id'  =>$data_question[0]['ImportQuestion']['subject_id'],
+										'status'	  =>1,
+									)
+								)){
+									$error = true;
+								}
 							}
 							if($error) {
 								$this->Question->rollback();
@@ -666,10 +723,27 @@ class PartnerController extends Controller {
 								$this->Session->setFlash(__('Phân loại thành công câu hỏi số '.$insert_id));
 							}
 						}else{
+							$this->ClassifyQuestion->updateAll(
+														array(
+															'status' => '2',
+														),
+														array(
+															'question_id'=>$data_question[0]['ImportQuestion']['id'],
+														)
+							);
+							$this->ClassifyQuestion->save(
+								array(												
+									'question_id' =>$data_question[0]['ImportQuestion']['id'],
+									'user'	  	  =>$user['id'],
+									'subject_id'  =>$data_question[0]['ImportQuestion']['subject_id'],
+									'status'	  =>2,
+								)
+							);
 							if($this->ImportQuestion->updateAll(
 													array(
 														'person1_id'=>null,
 														'subcategory1_id'=>null,
+														'check_question'=>'1',
 													),
 													array(
 														'id'=>$data_question[0]['ImportQuestion']['id'],
@@ -692,12 +766,18 @@ class PartnerController extends Controller {
 		
 		if($this->request->data('no')){
 			if(isset($this->request->data['id'])){
-				$this->ImportQuestion->id = $this->request->data['id'];
-				if ($this->ImportQuestion->delete()) {
-					$this->redirect(array('controller' =>'partner', 'action' => 'check_question'));
-					$this->Session->setFlash(__('Xóa thành công.'));					
+				if($this->ImportQuestion->updateAll(
+												array(
+													'check_question'=>2,
+												),
+												array(
+													'id'=>$this->request->data['id'],
+												)
+				)){
+					$this->redirect(array('controller' =>'partner', 'action' => 'list_questions'));
+					$this->Session->setFlash(__('Hủy thành công.'));					
 				} else {
-					$this->Session->setFlash(__('Xóa thất bại.'));
+					$this->Session->setFlash(__('Hủy thất bại.'));
 				}
 			}
 		}
@@ -712,7 +792,7 @@ class PartnerController extends Controller {
 													'id'=>$this->request->data['id'],
 												)
 				)){
-					$this->redirect(array('controller' =>'partner', 'action' => 'import_excel'));
+					$this->redirect(array('controller' =>'partner', 'action' => 'list_questions'));
 					$this->Session->setFlash(__('Duyệt thành công'));
 				}else{
 					$this->Session->setFlash(__('Duyệt thất bại'));
@@ -730,15 +810,152 @@ class PartnerController extends Controller {
 													'id'=>$this->request->data['id'],
 												)
 				)){
-					$this->redirect(array('controller' =>'partner', 'action' => 'import_excel'));
-					$this->Session->setFlash(__('Duyệt thành công'));
+					$this->redirect(array('controller' =>'partner', 'action' => 'list_questions'));
+					$this->Session->setFlash(__('Hủy thành công'));
 				}else{
-					$this->Session->setFlash(__('Duyệt thất bại'));
+					$this->Session->setFlash(__('Hủy thất bại'));
 				}
 			}
 		}
 
 	}	
+	
+	public function report_admin(){
+		$user = $this->Session->read('user');
+		$this->set('user', $user);
+		if(!isset($user)){
+			$this->redirect(array('controller' =>'partner', 'action' => 'login'));
+		}else{
+			$this->layout ='excel2';
+			$this->loadModel('Person');
+			$option0 = array(
+					'recursive' => -1,
+					'conditions' => array("role='editor'")
+					);
+			$people_insert=$this->Person->find('all',$option0);								
+			foreach($people_insert as $key=>$value)
+			{
+					$id=$value['Person']['id'];
+					$this->loadModel('ImportQuestion');
+					$option1 = array(
+						'recursive' => -1,
+						'conditions' => array("user='$id'")
+					);
+					$total=$this->ImportQuestion->find('count',$option1);
+					$people_insert[$key]['Person']['total']=$total;
+					$option2 = array(
+						'recursive' => -1,
+						'conditions' => array("subject_id='3' AND user='$id'")
+					);
+					$match=$this->ImportQuestion->find('count',$option2);
+					$people_insert[$key]['Person']['match']=$match;
+					$option3 = array(
+						'recursive' => -1,
+						'conditions' => array("subject_id='2' AND user='$id'")
+					);
+					$physical=$this->ImportQuestion->find('count',$option3);
+					$people_insert[$key]['Person']['physical']=$physical;
+					$option4 = array(
+						'recursive' => -1,
+						'conditions' => array("subject_id='4' AND user='$id'")
+					);
+					$chemistry=$this->ImportQuestion->find('count',$option4);
+					$people_insert[$key]['Person']['chemistry']=$chemistry;
+					$option5 = array(
+						'recursive' => -1,
+						'conditions' => array("subject_id='1' AND user='$id'")
+					);
+					$english=$this->ImportQuestion->find('count',$option5);
+					$people_insert[$key]['Person']['english']=$english;
+					$option6 = array(
+						'recursive' => -1,
+						'conditions' => array("subject_id='8' AND user='$id'")
+					);
+					$biological=$this->ImportQuestion->find('count',$option6);
+					$people_insert[$key]['Person']['biological']=$biological;
+					$option7 = array(
+						'recursive' => -1,
+						'conditions' => array("user='$id' AND (check_question='1' OR check_question='3')")
+					);
+					$status=$this->ImportQuestion->find('count',$option7);
+					$people_insert[$key]['Person']['status']=$status;
+			};
+			$this->set('people_insert',$people_insert);
+			$option0 = array(
+					'recursive' => -1,
+					'conditions' => array("role='tester'")
+					);
+			$people_classify=$this->Person->find('all',$option0);
+			foreach($people_classify as $key=>$value)
+			{
+					$id=$value['Person']['id'];
+					$this->loadModel('ClassifyQuestion');
+					$option1 = array(
+						'recursive' => -1,
+						'conditions' => array("user='$id'")
+					);
+					$total=$this->ClassifyQuestion->find('count',$option1);
+					$people_classify[$key]['Person']['total']=$total;
+					$option2 = array(
+						'recursive' => -1,
+						'conditions' => array("subject_id='3' AND user='$id'")
+					);
+					$match=$this->ClassifyQuestion->find('count',$option2);
+					$people_classify[$key]['Person']['match']=$match;
+					$option3 = array(
+						'recursive' => -1,
+						'conditions' => array("subject_id='2' AND user='$id'")
+					);
+					$physical=$this->ClassifyQuestion->find('count',$option3);
+					$people_classify[$key]['Person']['physical']=$physical;
+					$option4 = array(
+						'recursive' => -1,
+						'conditions' => array("subject_id='4' AND user='$id'")
+					);
+					$chemistry=$this->ClassifyQuestion->find('count',$option4);
+					$people_classify[$key]['Person']['chemistry']=$chemistry;
+					$option5 = array(
+						'recursive' => -1,
+						'conditions' => array("subject_id='1' AND user='$id'")
+					);
+					$english=$this->ClassifyQuestion->find('count',$option5);
+					$people_classify[$key]['Person']['english']=$english;
+					$option6 = array(
+						'recursive' => -1,
+						'conditions' => array("subject_id='8' AND user='$id'")
+					);
+					$biological=$this->ClassifyQuestion->find('count',$option6);
+					$people_classify[$key]['Person']['biological']=$biological;
+					$option7 = array(
+						'recursive' => -1,
+						'conditions' => array("user='$id' AND status='1'")
+					);
+					$status=$this->ClassifyQuestion->find('count',$option7);
+					$people_classify[$key]['Person']['status']=$status;
+			};			
+			$this->set('people_classify',$people_classify);
+			
+		}		
+	}
+	
+	public function delete(){
+		$this->loadModel('ImportQuestion');
+		if($this->request->query['id']){
+			if($this->ImportQuestion->updateAll(
+											array(
+												'check_question'=>2,
+											),
+											array(
+												'id'=>$this->request->query['id'],
+											)
+			)){
+				$this->redirect(array('controller' =>'partner', 'action' => 'list_questions'));
+				$this->Session->setFlash(__('Hủy thành công'));
+			}else{
+				$this->Session->setFlash(__('Hủy thất bại'));
+			}
+		}
+	}
 	
 	public function getBook($subject_id){
 		$this->layout = "ajax";
@@ -913,7 +1130,7 @@ class PartnerController extends Controller {
 						if($user[0]['Person']['role']=='tester'){
 							$this->redirect(array('controller' =>'partner', 'action' => 'check_question'));
 						}else{
-							$this->redirect(array('controller' =>'partner', 'action' => 'import_excel'));
+							$this->redirect(array('controller' =>'partner', 'action' => 'list_questions'));
 						}
 					}else{
 						$this->Session->setFlash(__('Mật khẩu không đúng.'));

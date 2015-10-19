@@ -3,7 +3,7 @@
 	<div class='row' style='margin:0px;'>
 		<div class='col-lg-12'>
 			<div class='row'>
-				<h2>Import questions from excel</h2>
+				<h2>Danh sách câu hỏi</h2>
 				<hr/>
 			</div>
 		</div>
@@ -31,31 +31,28 @@
 		<div class="col-lg-3" style="padding-left:0px;">
 			<select class='form-control' name='state' id='state'>
 				<option value=''>-Trạng thái-</option>
-				<option value='0' <?php echo ($state==0)?"selected":"" ?>>Chưa kiểm tra</option>
-				<option value='1' <?php echo ($state==1)?"selected":"" ?>>Chưa phân loại</option>
-				<option value='2' <?php echo ($state==2)?"selected":"" ?>>Hủy</option>
-				<option value='3' <?php echo ($state==3)?"selected":"" ?>>Đã phân loại</option>
+				<option value='0' <?php echo (isset($state) && $state==0)?"selected":"" ?>>Chưa kiểm tra</option>
+				<option value='1' <?php echo (isset($state) && $state==1)?"selected":"" ?>>Chưa phân loại</option>
+				<option value='2' <?php echo (isset($state) && $state==2)?"selected":"" ?>>Hủy</option>
+				<option value='3' <?php echo (isset($state) && $state==3)?"selected":"" ?>>Đã phân loại</option>
 			</select>
 		</div>
 		<div class="col-lg-3">
 			<input type='submit' class='btn btn-primary' name='search' value='Tìm kiếm' />
 		</div>
 	</div>
+	
 	<div class='row' style='margin:0px;'>
 		<div class='col-lg-12' style='padding:0px;'>
-			<!--<div class='row' style='margin:0px;'>
-				<h3 style='margin:0px;'>Danh sách câu hỏi</h3>
-			</div>
-			<br/>-->
+			<hr style='margin:20px 0px 10px 0px'/>
 			<div class='row' style='margin:0px;'>
 				<div class='col-lg-6' style='padding-left:0px;'>
 					<h4>Môn: <span id='mon' style='color:#1EF059'><?php echo $sub_name; ?></span></h4>					
 				</div>
 				<div class='col-lg-6' style='padding-right:0px;'>
-					<h4 style='float:right;'>Sách: <span id='sach' style='color:#1EF059'><?php echo $book_name; ?></span></h4>
+					<h4 style='float:right;'>Số lượng câu đã nhập: <span id='sach' style='color:#1EF059'><?php echo $count; ?></span></h4>
 				</div>
 			</div>
-			<hr style='margin-top:0px;'/>
 			<div class='row' style='margin:0px;'>
 				<table class='table table-striped table-bordered'>
 					<tr>
@@ -93,10 +90,10 @@
 						<td style='text-align:center;'>
 							<?php if($ques['ImportQuestion']['check_question']==0){ ?>
 							<?php echo $this->Html->link('', array('controller' => 'partner', 'action' => 'view_question',$ques['ImportQuestion']['id']), array('class' => 'btn btn-dashboard btn-primary glyphicon glyphicon-eye-open','title'=>'Xem chi tiết','target'=>'_blank')) ?>
-							<a onclick="return confirm ('Bạn có muốn xóa câu hỏi này không?')" class='btn btn-danger glyphicon glyphicon-trash' title='Xóa' href="<?php echo $this->Html->url(array('controller'=>'Partner','action'=> 'import_excel')); ?>?delete=<?php echo $ques['ImportQuestion']['id'] ?>"></a>
+							<a onclick="return confirm ('Bạn có muốn xóa câu hỏi này không?')" class='btn btn-danger glyphicon glyphicon-trash' title='Xóa' href="<?php echo $this->Html->url(array('controller'=>'Partner','action'=> 'delete')); ?>?id=<?php echo $ques['ImportQuestion']['id'] ?>"></a>
 							<?php }else{ ?>
 								<?php echo $this->Html->link('', array('controller' => 'partner', 'action' => 'view_question',$ques['ImportQuestion']['id']), array('class' => 'btn btn-dashboard btn-primary glyphicon glyphicon-eye-open','title'=>'Xem chi tiết','target'=>'_blank','disabled')) ?>
-								<a onclick="return confirm ('Bạn có muốn xóa câu hỏi này không?')" class='btn btn-danger glyphicon glyphicon-trash' title='Xóa' disabled href="<?php echo $this->Html->url(array('controller'=>'Partner','action'=> 'import_excel')); ?>?delete=<?php echo $ques['ImportQuestion']['id'] ?>"></a>
+								<a onclick="return confirm ('Bạn có muốn xóa câu hỏi này không?')" class='btn btn-danger glyphicon glyphicon-trash' title='Xóa' disabled href="<?php echo $this->Html->url(array('controller'=>'Partner','action'=> 'delete')); ?>?id=<?php echo $ques['ImportQuestion']['id'] ?>"></a>
 							<?php } ?>
 						</td>
 					</tr>
