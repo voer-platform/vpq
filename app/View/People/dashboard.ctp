@@ -10,6 +10,12 @@
 	
 	<div class="row">
 		<div class="col-md-9">
+			<?php if ($announcement) { ?>
+				
+			<div class="alert alert-warning">
+				<?=$announcement[0]['Announcement']['content'];?>
+			</div>
+			<?php } ?>
 			<ol class="breadcrumb">
 			  <li><a href="<?=$this->Html->url(array('controller'=>'people', 'action'=>'dashboard'));?>"><span class="glyphicon glyphicon-th"></span> Danh sách môn học</a></li>
 			  <?php if(isset($subjectName)){ ?>
