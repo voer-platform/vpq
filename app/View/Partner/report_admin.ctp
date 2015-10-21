@@ -48,16 +48,16 @@
 				<?php } ?>
 					<tr>
 						<td style="text-align:center;background-color:#DFF0D8;"><b>Tổng</b></td>
-						<td style="text-align:center;background-color:#DFF0D8;"><?php echo $total ?></td>
-						<td style="text-align:center;background-color:#DFF0D8;"><?php echo $total_math ?></td>
-						<td style="text-align:center;background-color:#DFF0D8;"><?php echo $total_physical ?></td>
-						<td style="text-align:center;background-color:#DFF0D8;"><?php echo $total_chemistry ?></td>
-						<td style="text-align:center;background-color:#DFF0D8;"><?php echo $total_english ?></td>
-						<td style="text-align:center;background-color:#DFF0D8;"><?php echo $total_biological ?></td>
-						<td style="text-align:center;background-color:#DFF0D8;"><?php echo $total_delete ?></td>
-						<td style="text-align:center;background-color:#DFF0D8;"><?php echo $total_status ?></td>
-						<td style="text-align:center;background-color:#DFF0D8;"></td>
-						<td style="text-align:center;background-color:#DFF0D8;"></td>
+						<td style="text-align:center;background-color:#DFF0D8;color:red"><?php echo $total ?></td>
+						<td style="text-align:center;background-color:#DFF0D8;color:red"><?php echo $total_math ?></td>
+						<td style="text-align:center;background-color:#DFF0D8;color:red"><?php echo $total_physical ?></td>
+						<td style="text-align:center;background-color:#DFF0D8;color:red"><?php echo $total_chemistry ?></td>
+						<td style="text-align:center;background-color:#DFF0D8;color:red"><?php echo $total_english ?></td>
+						<td style="text-align:center;background-color:#DFF0D8;color:red"><?php echo $total_biological ?></td>
+						<td style="text-align:center;background-color:#DFF0D8;color:red"><?php echo $total_delete ?></td>
+						<td style="text-align:center;background-color:#DFF0D8;color:red"><?php echo $total_status ?></td>
+						<td style="text-align:center;background-color:#DFF0D8;color:red"></td>
+						<td style="text-align:center;background-color:#DFF0D8;color:red"></td>
 					</tr>
 			</table>
 		</div>
