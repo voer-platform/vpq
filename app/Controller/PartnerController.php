@@ -972,31 +972,31 @@ class PartnerController extends Controller {
 			$this->set('total',$total);
 			$option_total2 = array(
 						'recursive' => -1,
-						'conditions' => array("subject_id='3' AND user='$id'")
+						'conditions' => array("subject_id='3'")
 					);
 			$total_math=$this->ImportQuestion->find('count',$option_total2);
 			$this->set('total_math',$total_math);
 			$option_total3 = array(
 						'recursive' => -1,
-						'conditions' => array("subject_id='2' AND user='$id'")
+						'conditions' => array("subject_id='2'")
 					);
 			$total_physical=$this->ImportQuestion->find('count',$option_total3);
 			$this->set('total_physical',$total_physical);
 			$option_total4 = array(
 						'recursive' => -1,
-						'conditions' => array("subject_id='4' AND user='$id'")
+						'conditions' => array("subject_id='4'")
 					);
 			$total_chemistry=$this->ImportQuestion->find('count',$option_total4);
 			$this->set('total_chemistry',$total_chemistry);
 			$option_total5 = array(
 						'recursive' => -1,
-						'conditions' => array("subject_id='1' AND user='$id'")
+						'conditions' => array("subject_id='1'")
 					);
 			$total_english=$this->ImportQuestion->find('count',$option_total5);
 			$this->set('total_english',$total_english);
 			$option_total6 = array(
 						'recursive' => -1,
-						'conditions' => array("subject_id='8' AND user='$id'")
+						'conditions' => array("subject_id='8'")
 					);
 			$total_biological=$this->ImportQuestion->find('count',$option_total6);
 			$this->set('total_biological',$total_biological);
