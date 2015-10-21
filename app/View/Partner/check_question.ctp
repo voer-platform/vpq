@@ -53,17 +53,16 @@
 					</div>
 					<br/>
 					<div class='row'>
-							<table class='table table-striped table-bordered'>
-								<tr>
-									<th style='text-align:center;'>STT</th>
-									<!--<th style='text-align:center;'>Môn</th>
-									<th style='text-align:center;'>Sách</th>
-									<th style='text-align:center;'>Trang</th>
-									<th style='text-align:center;'>Câu</th>-->										
-									<th style='text-align:center;'>Nội dung</th>
-									<th style='text-align:center;'>Trạng thái</th>
-									<th style='text-align:center;width:105px;'></th>
-								</tr>
+							<table id="tbl_questions" class="table table-striped table-bordered datatable" cellspacing="0" width="100%">
+								<thead>
+									<tr>
+										<th style='text-align:center;'>STT</th>									
+										<th style='text-align:center;'>Nội dung</th>
+										<th style='text-align:center;'>Trạng thái</th>
+										<th style='text-align:center;width:105px;'></th>
+									</tr>
+								<thead>
+								<tbody>
 								<?php foreach($import_question as $key=>$ques): ?>
 								<tr>
 									<td style='text-align:center;width:70px;'><?php echo $key+1; ?></td>
@@ -100,6 +99,7 @@
 									</td>
 								</tr>
 							<?php endforeach; ?>
+							</tbody>
 							</table>
 					</div>
 					<div class='row'>
@@ -119,10 +119,9 @@
 	
 </div>
 <script>
-	/*$(document).ready(function(){
-		$('#start_date').datepicker();
-		$('#end_date').datepicker();
-	});*/
+	$(document).ready(function(){
+		$('#tbl_questions').DataTable();
+	});
 	$(document).on('change','#subject',function(){
 		if($(this).val()!=''){
 			$subject_id=$(this).val();

@@ -22,12 +22,15 @@
 
     <!-- css -->
 	<?php echo $this->Html->css('bootstrap.min.css'); ?>
+	<?php echo $this->Html->css('bootstrap3.min.css'); ?>
     <?php echo $this->HTML->css('jquery-ui.css'); ?>
     <?php echo $this->HTML->css('jquery.multiselect.css'); ?>
     <?php echo $this->HTML->css('global.css'); ?>
     <?php echo $this->HTML->css('style.css'); ?>
 	<?php echo $this->HTML->css('datepicker.css'); ?>
 	<?php echo $this->HTML->css('select2.css'); ?>
+	<?php echo $this->HTML->css('dataTables.bootstrap.min.css'); ?>
+	
 	
     <!-- javascript -->
 	<script>var PLS = {ajaxUrl: '<?php echo $this->Html->url('/', true); ?>'};</script>
@@ -40,24 +43,11 @@
 	<?php echo $this->Html->script('select2.min.js');?>
 	<?php echo $this->Html->script('global.min.js');?>
 	<?php echo $this->Html->script('jquery.slimscroll.min.js');?>
-    <!-- if production server -->
-    <?php if($_SERVER['HTTP_HOST'] == 'pls.edu.vn'): ?>
-        <script>
-          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-          ga('create', 'UA-61725216-1', 'auto');
-          ga('send', 'pageview');
-        </script>
-    <?php endif; ?>    
-	<script src="http://connect.facebook.net/vi_VN/all.js"></script>
+	<?php echo $this->Html->script('jquery-1.11.3.min.js');?>
+	<?php echo $this->Html->script('jquery.dataTables.min.js');?>
+	<?php echo $this->Html->script('dataTables.bootstrap.min.js');?>
 </head>
 <body>
-    <?php echo $this->Html->script('facebook.js'); ?>
-
-    <?php //echo $this->element('login'); ?>
     <div class = "header">
         <div id = "menu">
             <?php  echo $this->element('menuexcel');?>
@@ -70,9 +60,6 @@
     </div>
 
     <?php echo $this->element('footer');?>
-    <?php if(isset($user)): ?>
-        <?php // echo $this->element('faq');?>
-    <?php endif;?>
 
 </body>
 </Html>

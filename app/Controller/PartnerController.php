@@ -42,12 +42,12 @@ class PartnerController extends Controller {
             }
 	    }
 		if (isset($user['role']) && $user['role'] === 'editor') {
-			if( in_array( $this->request->action, array('import_excel','view_question', 'changePassword','getBook','getCategory','remake','get_subcategories','byGrade','bySubject','login','logout','addquestion','insertQuestions','report_admin','delete'))){
+			if( in_array( $this->request->action, array('import_excel','view_question', 'changePassword','getBook','getCategory','remake','get_subcategories','byGrade','bySubject','login','logout','addquestion','insertQuestions','delete'))){
                 return true;
             }
 		}
 		if (isset($user['role']) && $user['role'] === 'tester') {
-			if( in_array( $this->request->action, array('check_question', 'view_question', 'changePassword','getBook','getCategory','get_subcategories','byGrade','bySubject','login','logout','report_admin','delete'))){
+			if( in_array( $this->request->action, array('check_question', 'view_question', 'changePassword','getBook','getCategory','get_subcategories','byGrade','bySubject','login','logout','delete'))){
                 return true;
             }
 		}
@@ -348,11 +348,15 @@ class PartnerController extends Controller {
 			$this->set('subcategory_id','');
 
 		}
-		$this->Paginator->settings = array(
+		/*$this->Paginator->settings = array(
 			'limit' => 10,
 			'conditions'=>$options
 		);
-		$import_question = $this->Paginator->paginate('ImportQuestion');
+		$import_question = $this->Paginator->paginate('ImportQuestion');*/
+		$import_question = $this->ImportQuestion->find('all',array(
+													'recursive' => -1,
+													'conditions' => $options
+												));
 		$this->set('import_question',$import_question);
 		$count=$this->ImportQuestion->find('count',
 											array(
@@ -454,11 +458,15 @@ class PartnerController extends Controller {
 			$this->set('subcategory_id','');
 			$this->set('state','1');
 		}
-		$this->Paginator->settings = array(
+		/*$this->Paginator->settings = array(
 			'limit' => 10,
 			'conditions'=>$options
 		);
-		$import_question = $this->Paginator->paginate('ImportQuestion');		
+		$import_question = $this->Paginator->paginate('ImportQuestion');*/
+		$import_question =	$this->ImportQuestion->find('all',array(
+													'recursive' => -1,
+													'conditions' => $options
+												));
 		$total_question = $this->ImportQuestion->find('all',$option_total);
 		$this->set('count',count($import_question));
 		$this->set('count_total',count($total_question));
@@ -488,18 +496,16 @@ class PartnerController extends Controller {
 		$this->loadModel('ClassifyQuestion');
 		if($this->request->data('update')){
 			$data=$this->request->data;
-			if($this->ImportQuestion->updateAll(
+			$this->ImportQuestion->id=$data['id'];
+			if($this->ImportQuestion->save(
 												array(
-													'question'=>'"'.trim($data['content_question']).'"',
-													'solution'=>'"'.trim($data['text_solution']).'"',
-													'answer_a'  =>'"'.trim($data['text_a']).'"',
-													'answer_b'  =>'"'.trim($data['text_b']).'"',
-													'answer_c'  =>'"'.trim($data['text_c']).'"',
-													'answer_d'  =>'"'.trim($data['text_d']).'"',
-													'answer_correct'  =>'"'.trim($data['answer_correct']).'"',
-												),
-												array(
-													'id'=>$data['id'],
+													'question'=>trim($data['content_question']),
+													'solution'=>trim($data['text_solution']),
+													'answer_a'  =>trim($data['text_a']),
+													'answer_b'  =>trim($data['text_b']),
+													'answer_c'  =>trim($data['text_c']),
+													'answer_d'  =>trim($data['text_d']),
+													'answer_correct'  =>trim($data['answer_correct']),
 												)
 			)){
 				$this->Session->setFlash(__('Cập nhật thành công'));

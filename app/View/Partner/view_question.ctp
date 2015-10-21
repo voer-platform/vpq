@@ -42,19 +42,19 @@
 									<label <?php echo(array_key_exists('0',$correct))?"class='btn-answer active'":"class='btn-answer wrong'"; ?> id='answer_a'>
 										<span class="lbanswer">a</span><?php echo $question[0]['ImportQuestion']['answer_a'];?>
 									</label>
-									<textarea style='margin-top:10px;margin-bottom:10px;' type='text' class='form-control' name='text_a' id='text_a' value=''><?php echo $question[0]['ImportQuestion']['answer_a'];?></textarea>
+									<textarea style='margin-top:10px;margin-bottom:10px;' type='text' class='form-control' name='text_a' id='text_a' value='' rows='5'><?php echo $question[0]['ImportQuestion']['answer_a'];?></textarea>
 									<label <?php echo(array_key_exists('1',$correct))?"class='btn-answer active'":"class='btn-answer wrong'"; ?> id='answer_b'>
 										<span class="lbanswer">b</span><?php echo $question[0]['ImportQuestion']['answer_b'];?>
 									</label>
-									<textarea style='margin-top:10px;margin-bottom:10px;' type='text' class='form-control' name='text_b' id='text_b' value=''><?php echo $question[0]['ImportQuestion']['answer_b'];?></textarea>
+									<textarea style='margin-top:10px;margin-bottom:10px;' type='text' class='form-control' name='text_b' id='text_b' value='' rows='5'><?php echo $question[0]['ImportQuestion']['answer_b'];?></textarea>
 									<label <?php echo(array_key_exists('2',$correct))?"class='btn-answer active'":"class='btn-answer wrong'"; ?> id='answer_c'>
 										<span class="lbanswer">c</span><?php echo $question[0]['ImportQuestion']['answer_c'];?>
 									</label>
-									<textarea style='margin-top:10px;margin-bottom:10px;' type='text' class='form-control' name='text_c' id='text_c' value=''><?php echo $question[0]['ImportQuestion']['answer_c'];?></textarea>
+									<textarea style='margin-top:10px;margin-bottom:10px;' type='text' class='form-control' name='text_c' id='text_c' value='' rows='5'><?php echo $question[0]['ImportQuestion']['answer_c'];?></textarea>
 									<label <?php echo(array_key_exists('3',$correct))?"class='btn-answer active'":"class='btn-answer wrong'"; ?> id='answer_d'>
 										<span class="lbanswer">d</span><?php echo $question[0]['ImportQuestion']['answer_d'];?>
 									</label>
-									<textarea style='margin-top:10px;margin-bottom:10px;' type='text' class='form-control' name='text_d' id='text_d' value=''><?php echo $question[0]['ImportQuestion']['answer_d'];?></textarea>
+									<textarea style='margin-top:10px;margin-bottom:10px;' type='text' class='form-control' name='text_d' id='text_d' value='' rows='5'><?php echo $question[0]['ImportQuestion']['answer_d'];?></textarea>
 								</div>
 							</div>
 						</div>					

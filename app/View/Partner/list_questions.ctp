@@ -54,60 +54,61 @@
 				</div>
 			</div>
 			<div class='row' style='margin:0px;'>
-				<table class='table table-striped table-bordered'>
-					<tr>
-						<th style='text-align:center;width:70px;'>STT</th>
-						<!--<th style='text-align:center;'>Môn</th>
-						<th style='text-align:center;'>Sách</th>
-						<th style='text-align:center;'>Trang</th>
-						<th style='text-align:center;'>Câu</th>-->						
-						<th style='text-align:center;'>Nội dung</th>
-						<th style='text-align:center;width:150px;'>Trạng thái</th>
-						<th style='text-align:center;width:105px;'></th>
-					</tr>
-					<?php foreach($import_question as $key=>$ques): ?>
-					<tr>
-						<td style='text-align:center;'><?php echo $key+1; ?></td>
-						<!--<td><?php echo $ques['ImportQuestion']['subject']; ?></td>
-						<td><?php echo $ques['ImportQuestion']['book_name']; ?></td>
-						<td><?php echo $ques['ImportQuestion']['page']; ?></td>						
-						<td><?php echo $ques['ImportQuestion']['sentence']; ?></td>-->						
-						<td><?php echo $ques['ImportQuestion']['question']; ?></td>
-						<td style='text-align:center'>
-							<?php if($ques['ImportQuestion']['check_question']==0){ ?>
-								<span class="label label-default">chưa kiểm tra</span>
-							<?php } ?>
-							<?php if($ques['ImportQuestion']['check_question']==1){ ?>
-								<span class="label label-warning">chưa phân loại</span>
-							<?php } ?>
-							<?php if($ques['ImportQuestion']['check_question']==2){ ?>
-								<span class="label label-danger">hủy</span>
-							<?php } ?>
-							<?php if($ques['ImportQuestion']['check_question']==3){ ?>
-								<span class="label label-success">đã phân loại</span>
-							<?php } ?>
-						</td>
-						<td style='text-align:center;'>
-							<?php if($ques['ImportQuestion']['check_question']==0){ ?>
-							<?php echo $this->Html->link('', array('controller' => 'partner', 'action' => 'view_question',$ques['ImportQuestion']['id']), array('class' => 'btn btn-dashboard btn-primary glyphicon glyphicon-eye-open','title'=>'Xem chi tiết','target'=>'_blank')) ?>
-							<a onclick="return confirm ('Bạn có muốn xóa câu hỏi này không?')" class='btn btn-danger glyphicon glyphicon-trash' title='Xóa' href="<?php echo $this->Html->url(array('controller'=>'Partner','action'=> 'delete')); ?>?id=<?php echo $ques['ImportQuestion']['id'] ?>"></a>
-							<?php }else{ ?>
-								<?php echo $this->Html->link('', array('controller' => 'partner', 'action' => 'view_question',$ques['ImportQuestion']['id']), array('class' => 'btn btn-dashboard btn-primary glyphicon glyphicon-eye-open','title'=>'Xem chi tiết','target'=>'_blank','disabled')) ?>
-								<a onclick="return confirm ('Bạn có muốn xóa câu hỏi này không?')" class='btn btn-danger glyphicon glyphicon-trash' title='Xóa' disabled href="<?php echo $this->Html->url(array('controller'=>'Partner','action'=> 'delete')); ?>?id=<?php echo $ques['ImportQuestion']['id'] ?>"></a>
-							<?php } ?>
-						</td>
-					</tr>
-				<?php endforeach; ?>
+				<table id="tbl_questions" class="table table-striped table-bordered datatable" cellspacing="0" width="100%">
+					<thead>
+						<tr>
+							<th style='text-align:center;width:70px;'>STT</th>				
+							<th style='text-align:center;'>Nội dung</th>
+							<th style='text-align:center;width:150px;'>Trạng thái</th>
+							<th style='text-align:center;width:105px;'></th>
+						</tr>
+					<thead>
+					<tbody>
+						<?php foreach($import_question as $key=>$ques): ?>
+						<tr>
+							<td style='text-align:center;'><?php echo $key+1; ?></td>
+							<!--<td><?php echo $ques['ImportQuestion']['subject']; ?></td>
+							<td><?php echo $ques['ImportQuestion']['book_name']; ?></td>
+							<td><?php echo $ques['ImportQuestion']['page']; ?></td>						
+							<td><?php echo $ques['ImportQuestion']['sentence']; ?></td>-->						
+							<td><?php echo $ques['ImportQuestion']['question']; ?></td>
+							<td style='text-align:center'>
+								<?php if($ques['ImportQuestion']['check_question']==0){ ?>
+									<span class="label label-default">chưa kiểm tra</span>
+								<?php } ?>
+								<?php if($ques['ImportQuestion']['check_question']==1){ ?>
+									<span class="label label-warning">chưa phân loại</span>
+								<?php } ?>
+								<?php if($ques['ImportQuestion']['check_question']==2){ ?>
+									<span class="label label-danger">hủy</span>
+								<?php } ?>
+								<?php if($ques['ImportQuestion']['check_question']==3){ ?>
+									<span class="label label-success">đã phân loại</span>
+								<?php } ?>
+							</td>
+							<td style='text-align:center;'>
+								<?php if($ques['ImportQuestion']['check_question']==0){ ?>
+								<?php echo $this->Html->link('', array('controller' => 'partner', 'action' => 'view_question',$ques['ImportQuestion']['id']), array('class' => 'btn btn-dashboard btn-primary glyphicon glyphicon-eye-open','title'=>'Xem chi tiết','target'=>'_blank')) ?>
+								<a onclick="return confirm ('Bạn có muốn xóa câu hỏi này không?')" class='btn btn-danger glyphicon glyphicon-trash' title='Xóa' href="<?php echo $this->Html->url(array('controller'=>'Partner','action'=> 'delete')); ?>?id=<?php echo $ques['ImportQuestion']['id'] ?>"></a>
+								<?php }else{ ?>
+									<?php echo $this->Html->link('', array('controller' => 'partner', 'action' => 'view_question',$ques['ImportQuestion']['id']), array('class' => 'btn btn-dashboard btn-primary glyphicon glyphicon-eye-open','title'=>'Xem chi tiết','target'=>'_blank','disabled')) ?>
+									<a onclick="return confirm ('Bạn có muốn xóa câu hỏi này không?')" class='btn btn-danger glyphicon glyphicon-trash' title='Xóa' disabled href="<?php echo $this->Html->url(array('controller'=>'Partner','action'=> 'delete')); ?>?id=<?php echo $ques['ImportQuestion']['id'] ?>"></a>
+								<?php } ?>
+							</td>
+						</tr>
+						<?php endforeach; ?>
+					</tbody>
+				
 				</table>						
 			</div>
-			<div class='row' style='margin:0px;'>
+			<!--<div class='row' style='margin:0px;'>
 				<div class="paging">
-				<?php
+				<?php /*
 					echo $this->Paginator->prev('< ' . __('previous'), array(), null, array('class' => 'prev disabled'));
 					echo $this->Paginator->numbers(array('separator' => ''));
-					echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));
+					echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled')); */
 				?>
-			</div>
+			</div>-->
 		</div>
 	</div>
 	
@@ -116,7 +117,7 @@
 
 <script>
 	$(document).ready(function(){
-		
+		$('#tbl_questions').DataTable();
 	});
 	$(document).on('change','#subject',function(){
 		if($(this).val()!=''){
