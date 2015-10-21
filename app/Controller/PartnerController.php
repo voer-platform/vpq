@@ -866,8 +866,8 @@ class PartnerController extends Controller {
 						'recursive' => -1,
 						'conditions' => array("subject_id='3' AND user='$id'")
 					);
-					$match=$this->ImportQuestion->find('count',$option2);
-					$people_insert[$key]['Person']['match']=$match;
+					$math=$this->ImportQuestion->find('count',$option2);
+					$people_insert[$key]['Person']['math']=$math;
 					$option3 = array(
 						'recursive' => -1,
 						'conditions' => array("subject_id='2' AND user='$id'")
@@ -912,7 +912,7 @@ class PartnerController extends Controller {
 					$people_insert[$key]['Person']['wait']=$wait;
 			};
 			$this->set('people_insert',$people_insert);
-			$option0 = array(
+			/*$option0 = array(
 					'recursive' => -1,
 					'conditions' => array("role='tester'")
 					);
@@ -964,8 +964,54 @@ class PartnerController extends Controller {
 					$status=$this->ClassifyQuestion->find('count',$option7);
 					$people_classify[$key]['Person']['status']=$status;
 			};			
-			$this->set('people_classify',$people_classify);
-			
+			$this->set('people_classify',$people_classify);*/
+			$option_total1 = array(
+						'recursive' => -1,
+					);
+			$total=$this->ImportQuestion->find('count',$option_total1);
+			$this->set('total',$total);
+			$option_total2 = array(
+						'recursive' => -1,
+						'conditions' => array("subject_id='3' AND user='$id'")
+					);
+			$total_math=$this->ImportQuestion->find('count',$option_total2);
+			$this->set('total_math',$total_math);
+			$option_total3 = array(
+						'recursive' => -1,
+						'conditions' => array("subject_id='2' AND user='$id'")
+					);
+			$total_physical=$this->ImportQuestion->find('count',$option_total3);
+			$this->set('total_physical',$total_physical);
+			$option_total4 = array(
+						'recursive' => -1,
+						'conditions' => array("subject_id='4' AND user='$id'")
+					);
+			$total_chemistry=$this->ImportQuestion->find('count',$option_total4);
+			$this->set('total_chemistry',$total_chemistry);
+			$option_total5 = array(
+						'recursive' => -1,
+						'conditions' => array("subject_id='1' AND user='$id'")
+					);
+			$total_english=$this->ImportQuestion->find('count',$option_total5);
+			$this->set('total_english',$total_english);
+			$option_total6 = array(
+						'recursive' => -1,
+						'conditions' => array("subject_id='8' AND user='$id'")
+					);
+			$total_biological=$this->ImportQuestion->find('count',$option_total6);
+			$this->set('total_biological',$total_biological);
+			$option_total7 = array(
+						'recursive' => -1,
+						'conditions' => array("check_question='2'")
+					);
+			$total_delete=$this->ImportQuestion->find('count',$option_total7);
+			$this->set('total_delete',$total_delete);
+			$option_total8 = array(
+						'recursive' => -1,
+						'conditions' => array("check_question='1' OR check_question='3'")
+					);
+			$total_status=$this->ImportQuestion->find('count',$option_total8);
+			$this->set('total_status',$total_status);
 		}		
 	}
 	
