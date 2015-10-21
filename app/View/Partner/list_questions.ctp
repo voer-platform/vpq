@@ -53,6 +53,7 @@
 					<h4 style='float:right;'>Số lượng câu đã nhập: <span id='sach' style='color:#1EF059'><?php echo $count; ?></span></h4>
 				</div>
 			</div>
+			<hr style='margin:10px 0px 10px 0px'/>
 			<div class='row' style='margin:0px;'>
 				<table id="tbl_questions" class="table table-striped table-bordered datatable" cellspacing="0" width="100%">
 					<thead>
@@ -114,11 +115,47 @@
 	
 	</form>
 </div>
-
+<div id="modal_message" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog modal-sm" style="margin-top:100px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Thông báo</h4>
+            </div>
+            <div class="modal-body" style='text-align:center'>
+                <p id='tb' style='font-size:16px;'>Bạn đã được thanh toán <?php echo $number ?> câu.</p>
+            </div>
+            <div class="modal-footer">
+				<button type="button" class="btn btn-primary" id="accept" data-dismiss="modal">Xác nhận</button>
+                <button type="button" class="btn btn-danger" id="notaccept" data-dismiss="modal">Không xác nhận</button>
+            </div>
+        </div>
+    </div>
+</div>
 <script>
 	$(document).ready(function(){
+		var $status = <?php echo $accept ?>;
 		$('#tbl_questions').DataTable();
+		if($status==1){
+			$('#modal_message').modal({
+						backdrop: false
+					});	
+		}		
 	});
+	
+	$(document).on('click','#accept',function(){
+		var url = '<?php echo Router::url(array('controller'=>'partner','action'=>'accept'));?>/0';
+		$.getJSON(url, function( data ) {
+			alert("Xác nhận thành công.");
+		});	
+	})
+	
+	$(document).on('click','#notaccept',function(){
+		var url = '<?php echo Router::url(array('controller'=>'partner','action'=>'accept'));?>/2';
+		$.getJSON(url, function( data ) {
+			alert("Yêu cầu của bạn đã được gửi, mời bạn đến gặp người quản lý để giải quyết.");
+		});	
+	})
+	
 	$(document).on('change','#subject',function(){
 		if($(this).val()!=''){
 			$subject_id=$(this).val();

@@ -47,7 +47,7 @@ class PartnerController extends Controller {
             }
 		}
 		if (isset($user['role']) && $user['role'] === 'tester') {
-			if( in_array( $this->request->action, array('check_question', 'view_question', 'changePassword','getBook','getCategory','get_subcategories','byGrade','bySubject','login','logout','delete'))){
+			if( in_array( $this->request->action, array('check_question', 'view_question', 'changePassword','getBook','getCategory','get_subcategories','byGrade','bySubject','login','logout','delete','accept'))){
                 return true;
             }
 		}
@@ -252,129 +252,122 @@ class PartnerController extends Controller {
 		$this->set('user', $user);
 		if(!isset($user)){
 			$this->redirect(array('controller' =>'partner', 'action' => 'login'));
-		};
-		$this->layout ='excel';
-		$this->loadModel('ImportQuestion');
-		$this->loadModel('QuestionsSubcategory');
-		$this->loadModel('Subcategory');
-		$this->loadModel('Category');
-		$this->loadModel('Subject');
-		$this->loadModel('File');
-		
-		if(isset($this->request->query['delete'])){
-			$this->ImportQuestion->id = $this->request->query['delete'];
-			if ($this->ImportQuestion->delete()) {
-				$this->Session->setFlash(__('Xóa thành công.'));
-			} else {
-				$this->Session->setFlash(__('Xóa thất bại.'));
+		}else{		
+			$this->layout ='excel';
+			$this->loadModel('Person');
+			$this->loadModel('ImportQuestion');
+			$this->loadModel('QuestionsSubcategory');
+			$this->loadModel('Subcategory');
+			$this->loadModel('Category');
+			$this->loadModel('Subject');
+			$this->loadModel('File');
+			$person=$this->Person->find('all',
+								array(
+									'recursive' => -1,
+									'conditions' => array('id'=>$user['id'])
+								)
+			);
+			if($person[0]['Person']['accept']==1)
+			{
+				$this->set('accept','1');
+				$this->set('number',$person[0]['Person']['number']);
+			}else{
+				$this->set('accept','0');
+				$this->set('number',$user['number']);
 			}
-		}
-		$options=array();
-		if($user['role']!='admin'){
-			$options['user']=$user['id'];
-		}
-		$this->set('sub_name','chọn tất cả');
-		$this->set('book_name','chọn tất cả');
-		if($this->request->is('post')){
-			if($this->request->data('search')){
-				$subject_id=$this->request->data('subject');
-				$book_id=$this->request->data('book');
-				$category_id=$this->request->data('categories');
-				$subcategory_id=$this->request->data('subcategories');
-				$state=$this->request->data('state');
-				if($subject_id!=''){
-					$options['subject_id']=$subject_id;
-					$this->loadModel('Book');
-					$options3 = array(
-					'recursive' => -1,
-					'conditions' => array('subject_id'=>$subject_id)
-					);
-					$book=$this->Book->find('all',$options3);
-					$this->set('book',$book);
-					$sub_id=$this->Subject->find('all',array(
-											'recursive' => -1,
-											'conditions' => array('id'=>$subject_id)
-					));
-					$this->set('sub_name',$sub_id[0]['Subject']['name']);
+			if(isset($this->request->query['delete'])){
+				$this->ImportQuestion->id = $this->request->query['delete'];
+				if ($this->ImportQuestion->delete()) {
+					$this->Session->setFlash(__('Xóa thành công.'));
+				} else {
+					$this->Session->setFlash(__('Xóa thất bại.'));
 				}
-				if($book_id!=''){
-					$options['book_id']=$book_id;
-					$this->loadModel('Book');
-					$this->loadModel('Category');
-					$options4 = array(
-								'recursive' => -1,
-								'conditions' => array('id'=>$book_id)
-								);
-					$book=$this->Book->find('all',$options4);
-					$this->set('book_name',$book[0]['Book']['name']);					
-					$options4 = array(
-								'recursive' => -1,
-								'conditions' => array(	
-														'subject_id'=>$book[0]['Book']['subject_id'],
-														'grade_id'=>$book[0]['Book']['grade_id']
-													)
-								);
-					$categories=$this->Category->find('all',$options4);
-					$this->set('categories',$categories);
-				}
-				/*if($category_id!=''){
-					$options['category_id']=$category_id;
-					$this->loadModel('Subcategory');
-					$subcategories = $this->Subcategory->find('all', array(
-																'recursive' => -1,
-																'conditions' => array(
-																	'category_id = ' => $category_id,
-																	),
-															));
-					$this->set('subcategories',$subcategories);
-				}
-				if($subcategory_id!=''){
-					$options['subcategory_id']=$subcategory_id;
-				}*/
-				if($state!=''){
-					$options['check_question']=$state;
-					$this->set('state',$state);
-				}
-				$this->set('subject_id',$subject_id);
-				$this->set('book_id',$book_id);
-				
-				//$this->set('category_id',$category_id);
-				//$this->set('subcategory_id',$subcategory_id);
-			}	
-		}else{
-			$this->set('subject_id','');
-			$this->set('book_id','');
-			$this->set('category_id','');
-			$this->set('subcategory_id','');
+			}
+			$options=array();
+			if($user['role']!='admin'){
+				$options['user']=$user['id'];
+			}
+			$this->set('sub_name','chọn tất cả');
+			$this->set('book_name','chọn tất cả');
+			if($this->request->is('post')){
+				if($this->request->data('search')){
+					$subject_id=$this->request->data('subject');
+					$book_id=$this->request->data('book');
+					$category_id=$this->request->data('categories');
+					$subcategory_id=$this->request->data('subcategories');
+					$state=$this->request->data('state');
+					if($subject_id!=''){
+						$options['subject_id']=$subject_id;
+						$this->loadModel('Book');
+						$options3 = array(
+						'recursive' => -1,
+						'conditions' => array('subject_id'=>$subject_id)
+						);
+						$book=$this->Book->find('all',$options3);
+						$this->set('book',$book);
+						$sub_id=$this->Subject->find('all',array(
+												'recursive' => -1,
+												'conditions' => array('id'=>$subject_id)
+						));
+						$this->set('sub_name',$sub_id[0]['Subject']['name']);
+					}
+					if($book_id!=''){
+						$options['book_id']=$book_id;
+						$this->loadModel('Book');
+						$this->loadModel('Category');
+						$options4 = array(
+									'recursive' => -1,
+									'conditions' => array('id'=>$book_id)
+									);
+						$book=$this->Book->find('all',$options4);
+						$this->set('book_name',$book[0]['Book']['name']);					
+						$options4 = array(
+									'recursive' => -1,
+									'conditions' => array(	
+															'subject_id'=>$book[0]['Book']['subject_id'],
+															'grade_id'=>$book[0]['Book']['grade_id']
+														)
+									);
+						$categories=$this->Category->find('all',$options4);
+						$this->set('categories',$categories);
+					}
+					if($state!=''){
+						$options['check_question']=$state;
+						$this->set('state',$state);
+					}
+					$this->set('subject_id',$subject_id);
+					$this->set('book_id',$book_id);
+				}	
+			}else{
+				$this->set('subject_id','');
+				$this->set('book_id','');
+				$this->set('category_id','');
+				$this->set('subcategory_id','');
 
+			}
+			$import_question = $this->ImportQuestion->find('all',array(
+														'recursive' => -1,
+														'conditions' => $options,
+														'order' => array('id' => 'desc')
+													));
+			$this->set('import_question',$import_question);
+			$count=$this->ImportQuestion->find('count',
+												array(
+														'recursive' => -1,
+														'conditions' => $options
+													)
+												);
+			$this->set('count',$count);
+			
+			/*$this->Paginator->setting = array(
+				'limit'	=> 10,
+				'conditions'=>$options
+			);*/
+			$option2=array(
+						'recursive' => -1,
+					);
+			$this->set('subject',$this->Subject->find('all',$option2));
 		}
-		/*$this->Paginator->settings = array(
-			'limit' => 10,
-			'conditions'=>$options
-		);
-		$import_question = $this->Paginator->paginate('ImportQuestion');*/
-		$import_question = $this->ImportQuestion->find('all',array(
-													'recursive' => -1,
-													'conditions' => $options
-												));
-		$this->set('import_question',$import_question);
-		$count=$this->ImportQuestion->find('count',
-											array(
-													'recursive' => -1,
-													'conditions' => $options
-												)
-											);
-		$this->set('count',$count);
-		
-		/*$this->Paginator->setting = array(
-			'limit'	=> 10,
-			'conditions'=>$options
-		);*/
-		$option2=array(
-					'recursive' => -1,
-				);
-		$this->set('subject',$this->Subject->find('all',$option2));
-		
 	}
 	
 	public function check_question(){
@@ -458,14 +451,10 @@ class PartnerController extends Controller {
 			$this->set('subcategory_id','');
 			$this->set('state','1');
 		}
-		/*$this->Paginator->settings = array(
-			'limit' => 10,
-			'conditions'=>$options
-		);
-		$import_question = $this->Paginator->paginate('ImportQuestion');*/
 		$import_question =	$this->ImportQuestion->find('all',array(
 													'recursive' => -1,
-													'conditions' => $options
+													'conditions' => $options,
+													'order' => array('id' => 'desc')
 												));
 		$total_question = $this->ImportQuestion->find('all',$option_total);
 		$this->set('count',count($import_question));
@@ -834,6 +823,31 @@ class PartnerController extends Controller {
 		}else{
 			$this->layout ='excel2';
 			$this->loadModel('Person');
+			$this->loadModel('ImportQuestion');
+			if($this->request->is('post'))
+			{
+				$data=$this->request->data;
+				foreach($data['socau'] as $key=>$value)
+				{
+					if($value!=0){
+						$id_partner=$data['id_partner'][$key];
+						$person=$this->Person->find('all',
+																array(
+																'recursive' => -1,
+																'conditions' => array("id='$id_partner'")
+																)
+															);
+						$amount=$person[0]['Person']['number']+$value;
+						$this->Person->id=$id_partner;
+						$this->Person->save(
+												array(
+													'number' => $amount,
+													'accept' => 1
+												)
+						);
+					}
+				}
+			}
 			$option0 = array(
 					'recursive' => -1,
 					'conditions' => array("role='editor'")
@@ -841,8 +855,7 @@ class PartnerController extends Controller {
 			$people_insert=$this->Person->find('all',$option0);								
 			foreach($people_insert as $key=>$value)
 			{
-					$id=$value['Person']['id'];
-					$this->loadModel('ImportQuestion');
+					$id=$value['Person']['id'];					
 					$option1 = array(
 						'recursive' => -1,
 						'conditions' => array("user='$id'")
@@ -885,6 +898,18 @@ class PartnerController extends Controller {
 					);
 					$status=$this->ImportQuestion->find('count',$option7);
 					$people_insert[$key]['Person']['status']=$status;
+					$option8 = array(
+						'recursive' => -1,
+						'conditions' => array("user='$id' AND check_question='2'")
+					);
+					$delete=$this->ImportQuestion->find('count',$option8);
+					$people_insert[$key]['Person']['delete']=$delete;
+					$option9 = array(
+						'recursive' => -1,
+						'conditions' => array("user='$id' AND check_question='0'")
+					);
+					$wait=$this->ImportQuestion->find('count',$option9);
+					$people_insert[$key]['Person']['wait']=$wait;
 			};
 			$this->set('people_insert',$people_insert);
 			$option0 = array(
@@ -942,6 +967,22 @@ class PartnerController extends Controller {
 			$this->set('people_classify',$people_classify);
 			
 		}		
+	}
+	
+	public function accept($key)
+	{
+		$this->layout = "ajax";
+        $this->autoLayout = false;
+        $this->autoRender = false;
+		$this->loadModel('Person');
+		$user = $this->Session->read('user');
+		$this->Person->id = $user['id'];
+
+		$this->Person->save(
+						array(
+							'accept' => $key,
+						)
+		);
 	}
 	
 	public function delete(){

@@ -22,8 +22,12 @@
 					<th style="text-align:center;width:100px;background-color:#dff0d8;">Hóa</th>
 					<th style="text-align:center;width:100px;background-color:#dff0d8;">Anh</th>
 					<th style="text-align:center;width:100px;background-color:#dff0d8;">Sinh</th>
-					<th style="text-align:center;width:120px;background-color:#dff0d8;">Đã kiểm tra</th>			
+					<th style="text-align:center;width:120px;background-color:#dff0d8;">Hủy</th>
+					<th style="text-align:center;width:120px;background-color:#dff0d8;">Đã kiểm tra</th>
+					<th style="text-align:center;width:120px;background-color:#dff0d8;">Thanh Toán</th>
+					<th style="text-align:center;width:120px;background-color:#dff0d8;"></th>
 				</tr>
+				<?php $i=0; ?>
 				<?php foreach($people_insert as $value){ ?>
 					<tr>
 						<td><?php echo $value['Person']['fullname'] ?></td>
@@ -33,12 +37,18 @@
 						<td style="text-align:center;"><?php echo $value['Person']['chemistry'] ?></td>
 						<td style="text-align:center;"><?php echo $value['Person']['english'] ?></td>
 						<td style="text-align:center;"><?php echo $value['Person']['biological'] ?></td>
+						<td style="text-align:center;"><?php echo $value['Person']['delete'] ?></td>
 						<td style="text-align:center;"><?php echo $value['Person']['status'] ?></td>
+						<td style="text-align:center;"><?php echo $value['Person']['number'] ?></td>
+						<td style="text-align:center;">
+							<input type="hidden" class="form-control" name="id_partner[]" value="<?php echo $value['Person']['id'] ?>" />
+							<input type="text" class="form-control" name="socau[]" value="0" />							
+						</td>
 					</tr>
 				<?php } ?>
 			</table>
 		</div>
-		<div class='row' style='margin:0px;'>
+		<!--<div class='row' style='margin:0px;'>
 			<h3>Kết quả nhóm phân loại</h3>
 		</div>
 		<div class='row' style='margin:0px;'>
@@ -51,7 +61,9 @@
 					<th style="text-align:center;width:100px;background-color:#d9edf7;">Hóa</th>
 					<th style="text-align:center;width:100px;background-color:#d9edf7;">Anh</th>
 					<th style="text-align:center;width:100px;background-color:#d9edf7;">Sinh</th>
-					<th style="text-align:center;width:120px;background-color:#d9edf7;">Phân loại trùng</th>					
+					<th style="text-align:center;width:120px;background-color:#d9edf7;">Phân loại trùng</th>
+					<th style="text-align:center;width:120px;background-color:#dff0d8;">Đã Thanh Toán</th>
+					<th style="text-align:center;width:120px;background-color:#dff0d8;"></th>	
 				</tr>
 				<?php foreach($people_classify as $value){ ?>
 					<tr>
@@ -63,9 +75,17 @@
 						<td style="text-align:center;"><?php echo $value['Person']['english'] ?></td>
 						<td style="text-align:center;"><?php echo $value['Person']['biological'] ?></td>
 						<td style="text-align:center;"><?php echo $value['Person']['status'] ?></td>
+						<td style="text-align:center;"></td>
+						<td style="text-align:center;">
+							<input type="hidden" class="form-control" name="id_partner[]" value="<?php echo $value['Person']['id'] ?>" />
+							<input type="text" class="form-control" name="socau[]" value="0" />							
+						</td>
 					</tr>
 				<?php } ?>
 			</table>
+		</div>-->
+		<div class='row' style='margin:0px;'>
+			<input type="submit" class="btn btn-primary" name="submit" value="Thanh Toán"/>
 		</div>
 	</form>
 </div>
