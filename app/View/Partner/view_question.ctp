@@ -55,6 +55,10 @@
 										<span class="lbanswer">d</span><?php echo $question[0]['ImportQuestion']['answer_d'];?>
 									</label>
 									<textarea style='margin-top:10px;margin-bottom:10px;' type='text' class='form-control' name='text_d' id='text_d' value='' rows='5'><?php echo $question[0]['ImportQuestion']['answer_d'];?></textarea>
+									<label <?php echo(array_key_exists('4',$correct))?"class='btn-answer active'":"class='btn-answer wrong'"; ?> id='answer_e'>
+										<span class="lbanswer">e</span><?php echo $question[0]['ImportQuestion']['answer_e'];?>
+									</label>
+									<textarea style='margin-top:10px;margin-bottom:10px;' type='text' class='form-control' name='text_e' id='text_e' value='' rows='5'><?php echo $question[0]['ImportQuestion']['answer_e'];?></textarea>
 								</div>
 							</div>
 						</div>					
@@ -103,7 +107,7 @@
 					<?php }else{ ?>
 						<div class='row'>
 							<div class='col-lg-12' style='padding-left:0px; padding-right:0px'>
-								<p><b>Chú ý đáp án:</b><span style="float:right;">A=0, B=1, C=2, D=3<span></p>
+								<p><b>Chú ý đáp án:</b><span style="float:right;">A=0, B=1, C=2, D=3, E=4<span></p>
 							</div>
 						</div>
 						<br/>
@@ -195,12 +199,16 @@
 		$('#answer_d').hide();
 		$('#text_d').show();
 	});
+	$(document).on('click','#answer_e',function(){
+		$('#answer_e').hide();
+		$('#text_e').show();
+	});
 	$(document).on('click','#update',function(){
 		$content_question=$('#content_question').val();
 		$answer_a=$('#text_a').val();
 		$answer_b=$('#text_b').val();
-		$answer_c=$('#text_b').val();
-		$answer_d=$('#text_b').val();
+		$answer_c=$('#text_c').val();
+		$answer_d=$('#text_d').val();
 		$answer_correct=$('#answer_correct').val();
 		if($content_question=='' || $answer_a=='' || $answer_b=='' || $answer_c=='' || $answer_d=='' || $answer_correct==''){
 			return false;
@@ -249,5 +257,6 @@
 		$('#text_b').hide();
 		$('#text_c').hide();
 		$('#text_d').hide();
+		$('#text_e').hide();
 	});
 </script>

@@ -237,6 +237,7 @@ class PartnerController extends Controller {
 									'answer_b'	=>trim($question[1]),
 									'answer_c'	=>trim($question[2]),
 									'answer_d'	=>trim($question[3]),
+									'answer_e'	=>trim($question[4]),
 									'answer_correct'=>trim($question['correct']),
 									'check_question'=>'0',
 									'date'=>date('d/m/Y'),
@@ -494,6 +495,7 @@ class PartnerController extends Controller {
 													'answer_b'  =>trim($data['text_b']),
 													'answer_c'  =>trim($data['text_c']),
 													'answer_d'  =>trim($data['text_d']),
+													'answer_e'  =>trim($data['text_e']),
 													'answer_correct'  =>trim($data['answer_correct']),
 												)
 			)){

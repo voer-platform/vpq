@@ -123,6 +123,23 @@
 							<textarea class="form-control" rows="2" name='answer_d' id='answer_d'></textarea>
 						</td>
 					</tr>
+					<tr>
+						<td style='padding-left:0px;padding-right:15px;border-right:1px solid #eee'>
+							<b>Đáp án E</b>
+							<label class="checkbox-inline" style='float:right;'>
+								<input type="checkbox" value="4" name='chk_e'  class='checkbox'  id='chk_5'>Chọn nếu là đáp án đúng
+							</label>
+						</td>
+						<td style='padding-left:15px;'>
+						</td>
+					</tr>
+					<tr>
+						<td style='padding-right:15px;border-right:1px solid #eee'>
+							<textarea class="form-control" rows="2" name='answer_e' id='answer_e'></textarea>
+						</td>
+						<td style='padding-left:15px;'>
+						</td>
+					</tr>
 				</table>
 			</div>
 			<br/>
@@ -192,7 +209,7 @@
 		$('#correct').val('');
 		$correct=$('#correct').val();	
 		
-		for(i=1;i<5;i++)
+		for(i=1;i<6;i++)
 		{
 			if($('#chk_'+i).attr('checked')=='checked'){
 				$val=$('#chk_'+i).val();
@@ -210,6 +227,7 @@
 			data['1']=$('#answer_b').val();
 			data['2']=$('#answer_c').val();
 			data['3']=$('#answer_d').val();
+			data['4']=$('#answer_e').val();
 			data['correct']=$('#correct').val();
 			data['solution']=$('#solution').val();
 			console.log(data);
@@ -223,6 +241,7 @@
 						$('#answer_b').val('');
 						$('#answer_c').val('');
 						$('#answer_d').val('');
+						$('#answer_e').val('');
 						$('#solution').val('');
 						$('.checkbox').attr('checked',false);
 						alert("Cập nhật thành công");
