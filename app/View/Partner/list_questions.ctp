@@ -1,3 +1,6 @@
+<script type="text/javascript"
+	  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+	</script>
 <div class='admin-insert-questions'>
 	<!-- right nav -->
 	<div class='row' style='margin:0px;'>
