@@ -100,5 +100,6 @@
 		<div class='row' style='margin:0px;'>
 			<input type="submit" class="btn btn-primary" name="submit" value="Thanh Toán"/>
 		</div>
+		</br>
 	</form>
 </div>
