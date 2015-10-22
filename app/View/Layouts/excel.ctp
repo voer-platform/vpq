@@ -57,7 +57,7 @@
         <?php echo $this->fetch('content'); ?>
     </div>
 
-    <?php echo $this->element('footer');?>
+    <?php echo $this->element('footerpartner');?>
 
 </body>
 </Html>

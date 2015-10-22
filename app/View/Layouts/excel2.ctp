@@ -69,7 +69,7 @@
         <?php echo $this->fetch('content'); ?>
     </div>
 
-    <?php echo $this->element('footer');?>
+    <?php echo $this->element('footerpartner');?>
     <?php if(isset($user)): ?>
         <?php // echo $this->element('faq');?>
     <?php endif;?>
