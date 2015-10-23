@@ -42,19 +42,23 @@
 									<label <?php echo(array_key_exists('0',$correct))?"class='btn-answer active'":"class='btn-answer wrong'"; ?> id='answer_a'>
 										<span class="lbanswer">a</span><?php echo $question[0]['ImportQuestion']['answer_a'];?>
 									</label>
-									<textarea style='margin-top:10px;margin-bottom:10px;' type='text' class='form-control' name='text_a' id='text_a' value=''><?php echo $question[0]['ImportQuestion']['answer_a'];?></textarea>
+									<textarea style='margin-top:10px;margin-bottom:10px;' type='text' class='form-control' name='text_a' id='text_a' value='' rows='5'><?php echo $question[0]['ImportQuestion']['answer_a'];?></textarea>
 									<label <?php echo(array_key_exists('1',$correct))?"class='btn-answer active'":"class='btn-answer wrong'"; ?> id='answer_b'>
 										<span class="lbanswer">b</span><?php echo $question[0]['ImportQuestion']['answer_b'];?>
 									</label>
-									<textarea style='margin-top:10px;margin-bottom:10px;' type='text' class='form-control' name='text_b' id='text_b' value=''><?php echo $question[0]['ImportQuestion']['answer_b'];?></textarea>
+									<textarea style='margin-top:10px;margin-bottom:10px;' type='text' class='form-control' name='text_b' id='text_b' value='' rows='5'><?php echo $question[0]['ImportQuestion']['answer_b'];?></textarea>
 									<label <?php echo(array_key_exists('2',$correct))?"class='btn-answer active'":"class='btn-answer wrong'"; ?> id='answer_c'>
 										<span class="lbanswer">c</span><?php echo $question[0]['ImportQuestion']['answer_c'];?>
 									</label>
-									<textarea style='margin-top:10px;margin-bottom:10px;' type='text' class='form-control' name='text_c' id='text_c' value=''><?php echo $question[0]['ImportQuestion']['answer_c'];?></textarea>
+									<textarea style='margin-top:10px;margin-bottom:10px;' type='text' class='form-control' name='text_c' id='text_c' value='' rows='5'><?php echo $question[0]['ImportQuestion']['answer_c'];?></textarea>
 									<label <?php echo(array_key_exists('3',$correct))?"class='btn-answer active'":"class='btn-answer wrong'"; ?> id='answer_d'>
 										<span class="lbanswer">d</span><?php echo $question[0]['ImportQuestion']['answer_d'];?>
 									</label>
-									<textarea style='margin-top:10px;margin-bottom:10px;' type='text' class='form-control' name='text_d' id='text_d' value=''><?php echo $question[0]['ImportQuestion']['answer_d'];?></textarea>
+									<textarea style='margin-top:10px;margin-bottom:10px;' type='text' class='form-control' name='text_d' id='text_d' value='' rows='5'><?php echo $question[0]['ImportQuestion']['answer_d'];?></textarea>
+									<label <?php echo(array_key_exists('4',$correct))?"class='btn-answer active'":"class='btn-answer wrong'"; ?> id='answer_e'>
+										<span class="lbanswer">e</span><?php echo $question[0]['ImportQuestion']['answer_e'];?>
+									</label>
+									<textarea style='margin-top:10px;margin-bottom:10px;' type='text' class='form-control' name='text_e' id='text_e' value='' rows='5'><?php echo $question[0]['ImportQuestion']['answer_e'];?></textarea>
 								</div>
 							</div>
 						</div>					
@@ -102,6 +106,25 @@
 					</div>					
 					<?php }else{ ?>
 						<div class='row'>
+							<div class='col-lg-12' style='padding-left:0px; padding-right:0px'>
+								<p><b>Chú ý đáp án:</b><span style="float:right;">A=0, B=1, C=2, D=3, E=4<span></p>
+							</div>
+						</div>
+						<br/>
+						<div class='row'>
+							<div class='col-lg-5' style='padding-left:0px;'>
+								<label>Đáp án đúng:</label>
+							</div>
+							<div class='col-lg-7' style='padding-right:0px;'>
+								<input type='text' class='form-control' name='answer_correct' id='answer_correct' value='<?php echo $cr; ?>' />
+							</div>
+						</div>
+						<br/>
+						<div class='row'>
+							<input type='submit' class='btn btn-warning col-lg-12' style='height:50px;' name='update' id='update' value='Cập nhật' />
+						</div>
+						<br/>
+						<div class='row'>
 							<input type='submit' class='btn btn-primary col-lg-12' style='height:50px;' name='ok' value='Xác nhận' />
 						</div>
 						<br/>
@@ -123,28 +146,7 @@
 				<textarea type='text' style='width:710px;' class='form-control' rows='8' name='content_question' id='content_question'><?php echo $question[0]['ImportQuestion']['question'];?></textarea>
 			</div>
 			<div class='col-lg-3'>
-				<div class='row'>
-					<div class='col-lg-12' style='padding-left:0px; padding-right:0px'>
-						<p><b>Chú ý đáp án:</b><span style="float:right;">A=0, B=1, C=2, D=3<span></p>
-					</div>
-				</div>
-				<br/>
-				<div class='row'>
-					<div class='col-lg-5' style='padding-left:0px;'>
-						<label>Đáp án đúng:</label>
-					</div>
-					<div class='col-lg-7' style='padding-right:0px;'>
-						<input type='text' class='form-control' name='answer_correct' id='answer_correct' value='<?php echo $cr; ?>' />
-					</div>
-				</div>
-				<br/>
-				<div class='row'>
-					<button type='button' class='btn btn-default col-lg-12' style='height:50px;' name='try' id='try'>Thử</button>
-				</div>
-				<br/>
-				<div class='row'>
-					<input type='submit' class='btn btn-warning col-lg-12' style='height:50px;' name='update' id='update' value='Cập nhật' />
-				</div>
+	
 			</div>
 		</div>
 		<div class='row'>
@@ -197,32 +199,16 @@
 		$('#answer_d').hide();
 		$('#text_d').show();
 	});
-	$(document).on('click','#try',function(){
-		$content_question=$('#content_question').val();
-		$('#content').html($content_question);
-		$answer_a='<span>a</span>'+$('#text_a').val();
-		$('#answer_a').html($answer_a);
-		$('#answer_a').show();
-		$('#text_a').hide();
-		$answer_b='<span>b</span>'+$('#text_b').val();
-		$('#answer_b').html($answer_b);
-		$('#answer_b').show();
-		$('#text_b').hide();
-		$answer_c='<span>c</span>'+$('#text_c').val();
-		$('#answer_c').html($answer_c);
-		$('#answer_c').show();
-		$('#text_c').hide();
-		$answer_d='<span>d</span>'+$('#text_d').val();
-		$('#answer_d').html($answer_d);
-		$('#answer_d').show();
-		$('#text_d').hide();		
+	$(document).on('click','#answer_e',function(){
+		$('#answer_e').hide();
+		$('#text_e').show();
 	});
 	$(document).on('click','#update',function(){
 		$content_question=$('#content_question').val();
 		$answer_a=$('#text_a').val();
 		$answer_b=$('#text_b').val();
-		$answer_c=$('#text_b').val();
-		$answer_d=$('#text_b').val();
+		$answer_c=$('#text_c').val();
+		$answer_d=$('#text_d').val();
 		$answer_correct=$('#answer_correct').val();
 		if($content_question=='' || $answer_a=='' || $answer_b=='' || $answer_c=='' || $answer_d=='' || $answer_correct==''){
 			return false;
@@ -271,5 +257,6 @@
 		$('#text_b').hide();
 		$('#text_c').hide();
 		$('#text_d').hide();
+		$('#text_e').hide();
 	});
 </script>

@@ -14,13 +14,23 @@
 					<table style="border:0px;">
 						<tr>
 							<td style="padding-right:50px;"><h3 style="margin:0px;">Thêm câu hỏi</h3></td>
-							<td style="padding-right:10px;"><input type='file' name='file_import' class='form-control'/></td>
-							<td><input type='submit' name='import_excel' value='Import Excel' class='btn btn-primary'/></td>
+							<!--<td style="padding-right:10px;"><input type='file' name='file_import' class='form-control'/></td>
+							<td><input type='submit' name='import_excel' value='Import Excel' class='btn btn-primary'/></td>-->
+							<td style="padding-right:10px;">
+								<select name='subject' id='subject' class='form-control'>
+									<option value>Chọn môn</option>
+									<?php foreach($subject as $subject): ?>
+										<option value='<?php echo $subject['Subject']['id'];?>'><?php echo $subject['Subject']['name'];?></option>
+									<?php endforeach; ?>
+								</select>
+							</td>
+							<td>
+							</td>
 						</tr>
 					</table>
 				</div>
 			</form>
-			<div class='row'>
+			<!--<div class='row'>
 			<hr/>
 			</div>
 			<div class='row'>
@@ -50,7 +60,7 @@
 						<option value>Chọn bài</option>
 					</select>
 				</div>				
-			</div>
+			</div>-->
 			<div class='row'>
 				<hr/>
 			</div>
@@ -123,6 +133,23 @@
 							<textarea class="form-control" rows="2" name='answer_d' id='answer_d'></textarea>
 						</td>
 					</tr>
+					<tr>
+						<td style='padding-left:0px;padding-right:15px;border-right:1px solid #eee'>
+							<b>Đáp án E</b>
+							<label class="checkbox-inline" style='float:right;'>
+								<input type="checkbox" value="4" name='chk_e'  class='checkbox'  id='chk_5'>Chọn nếu là đáp án đúng
+							</label>
+						</td>
+						<td style='padding-left:15px;'>
+						</td>
+					</tr>
+					<tr>
+						<td style='padding-right:15px;border-right:1px solid #eee'>
+							<textarea class="form-control" rows="2" name='answer_e' id='answer_e'></textarea>
+						</td>
+						<td style='padding-left:15px;'>
+						</td>
+					</tr>
 				</table>
 			</div>
 			<br/>
@@ -135,131 +162,8 @@
 	
 </div>
 
-<!-- elf file manager -->
-<?php //$this->TinymceElfinder->defineElfinderBrowser()?>
-<!--<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
-
-<!-- script -->
-<!--<script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>-->
 <script>
-	/*var i = 0;
-	// tinyMCE
-    tinymce.init({
-    	selector : '.tinymce-content',
-    	plugins : 'code',
-    	relative_urls: false,
-    	toolbar: 'code image',
-    	menubar : '',
-    	extended_valid_elements: 'figure,figcaption,maction,maligngroup,malignmark,math,menclose,merror,mfenced,mfrac,mglyph,mi,mlabeledtr,mlongdiv,mmultiscripts,mn,mo,mover,mpadded,mphantom,mroot,mrow,ms,mscarries,mscarry,msgroup,msline,mspace,msqrt,msrow,mstack,mstyle,msubsup,msup,mtable,mtd,mtext,mtr,munder,munderover,semantics,sub,mfrac,sup,annotation', 
-    	file_browser_callback : elFinderBrowser
-    });
-
-    tinymce.init({
-    	selector: '.tinymce-answer',
-    	height: 50,
-    	width: 300,
-    	plugins : 'code',
-    	relative_urls: false,
-    	toolbar: 'code',
-    	extended_valid_elements: 'figure,figcaption,maction,maligngroup,malignmark,math,menclose,merror,mfenced,mfrac,mglyph,mi,mlabeledtr,mlongdiv,mmultiscripts,mn,mo,mover,mpadded,mphantom,mroot,mrow,ms,mscarries,mscarry,msgroup,msline,mspace,msqrt,msrow,mstack,mstyle,msubsup,msup,mtable,mtd,mtext,mtr,munder,munderover,semantics,sub,mfrac,sup,annotation', 
-    	menubar : ''
-    });
-
-    // disable multiple correct question
-    $(".answer-correct").each(function()
-	{
-	    $(this).change(function()
-	    {
-	        $(".answer-correct").prop('checked',false);
-	        $(this).prop('checked',true);
-	    });
-	});
-
-    // add more attachments
-    $('#btn-add-attachments').click(function(){
-    	i++;
-    	$('#attachments').append("<input type='file' name='data[Attachment][" + i + "]' class='form-control' id='QuestionAttachment-" + i + "'>");
-    	$('#btn-add-attachments').text("<?php echo __('More attachments'); ?>");
-    	$('#attachments-description').text("<?php echo __('Click button to add more'); ?>");
-    });*/
 	$(document).ready(function(){
-		/*$url='<?php echo Router::fullbaseUrl();?>/';    
-
-			var editor = CKEDITOR.replace( 'question',
-				{
-					filebrowserBrowseUrl : $url+'app/webroot/ckfinder/ckfinder.html',
-					filebrowserImageBrowseUrl : $url+'app/webroot/ckfinder/ckfinder.html?type=Images',
-					filebrowserFlashBrowseUrl : $url+'app/webroot/ckfinder/ckfinder.html?type=Flash',
-					filebrowserUploadUrl : $url+'app/webroot/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
-					filebrowserImageUploadUrl : $url+'app/webroot/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
-					filebrowserFlashUploadUrl : $url+'app/webroot/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash',
-					fullPage: true,
-					allowedContent: true,
-				}
-				
-			);
-			CKFinder.setupCKEditor( editor, '../' ) ;
-			
-			var editor2 = CKEDITOR.replace( 'answer_a',
-				{
-					filebrowserBrowseUrl : $url+'app/webroot/ckfinder/ckfinder.html',
-					filebrowserImageBrowseUrl : $url+'app/webroot/ckfinder/ckfinder.html?type=Images',
-					filebrowserFlashBrowseUrl : $url+'app/webroot/ckfinder/ckfinder.html?type=Flash',
-					filebrowserUploadUrl : $url+'app/webroot/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
-					filebrowserImageUploadUrl : $url+'app/webroot/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
-					filebrowserFlashUploadUrl : $url+'app/webroot/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash',
-					fullPage: true,
-					allowedContent: true,
-				}
-				
-			);
-			CKFinder.setupCKEditor( editor2, '../' ) ;
-			
-			var editor3 = CKEDITOR.replace( 'answer_b',
-				{
-					filebrowserBrowseUrl : $url+'app/webroot/ckfinder/ckfinder.html',
-					filebrowserImageBrowseUrl : $url+'app/webroot/ckfinder/ckfinder.html?type=Images',
-					filebrowserFlashBrowseUrl : $url+'app/webroot/ckfinder/ckfinder.html?type=Flash',
-					filebrowserUploadUrl : $url+'app/webroot/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
-					filebrowserImageUploadUrl : $url+'app/webroot/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
-					filebrowserFlashUploadUrl : $url+'app/webroot/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash',
-					fullPage: true,
-					allowedContent: true,
-				}
-				
-			);
-			CKFinder.setupCKEditor( editor3, '../' ) ;
-			
-			var editor4 = CKEDITOR.replace( 'answer_c',
-				{
-					filebrowserBrowseUrl : $url+'app/webroot/ckfinder/ckfinder.html',
-					filebrowserImageBrowseUrl : $url+'app/webroot/ckfinder/ckfinder.html?type=Images',
-					filebrowserFlashBrowseUrl : $url+'app/webroot/ckfinder/ckfinder.html?type=Flash',
-					filebrowserUploadUrl : $url+'app/webroot/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
-					filebrowserImageUploadUrl : $url+'app/webroot/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
-					filebrowserFlashUploadUrl : $url+'app/webroot/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash',
-					fullPage: true,
-					allowedContent: true,
-				}
-				
-			);
-			CKFinder.setupCKEditor( editor4, '../' ) ;
-			
-			var editor5 = CKEDITOR.replace( 'answer_d',
-				{
-					filebrowserBrowseUrl : $url+'app/webroot/ckfinder/ckfinder.html',
-					filebrowserImageBrowseUrl : $url+'app/webroot/ckfinder/ckfinder.html?type=Images',
-					filebrowserFlashBrowseUrl : $url+'app/webroot/ckfinder/ckfinder.html?type=Flash',
-					filebrowserUploadUrl : $url+'app/webroot/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
-					filebrowserImageUploadUrl : $url+'app/webroot/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
-					filebrowserFlashUploadUrl : $url+'app/webroot/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash',
-					fullPage: true,
-					allowedContent: true,
-				}
-				
-			);
-			CKFinder.setupCKEditor( editor5, '../' ) ;
-			*/
 	});
 	
 	$(document).on('change','#grade',function(){
@@ -283,7 +187,7 @@
 		if($('#grade').val()!=''){
 			$subject_id=$(this).val();
 			$grade_id=$('#grade').val();
-			var url = '<?php echo Router::url(array('controller'=>'categories','action'=>'byGrade'));?>/' + $grade_id + '/'+$subject_id;
+			var url = '<?php echo Router::url(array('controller'=>'partner','action'=>'byGrade'));?>/' + $grade_id + '/'+$subject_id;
 			$.getJSON(url, function( data ) {
 				var options="";
 				options+="<option value=''>Chọn chương</option>";
@@ -298,7 +202,7 @@
 	
 	$(document).on('change','#categories',function(){
 		$cat_id=$(this).val();
-		var url = '<?php echo Router::url(array('controller'=>'subcategories','action'=>'get_subcategories'));?>/' + $cat_id;
+		var url = '<?php echo Router::url(array('controller'=>'partner','action'=>'get_subcategories'));?>/' + $cat_id;
 		$.getJSON(url, function( data ) {
 			var options="";
 			options+="<option value=''>Chọn bài</option>";
@@ -314,7 +218,7 @@
 		$('#correct').val('');
 		$correct=$('#correct').val();	
 		
-		for(i=1;i<5;i++)
+		for(i=1;i<6;i++)
 		{
 			if($('#chk_'+i).attr('checked')=='checked'){
 				$val=$('#chk_'+i).val();
@@ -322,36 +226,42 @@
 				$('#correct').val($correct);				
 			}
 		}
-		if($('#question').val()!='' && $('#answer_a').val()!='' && $('#answer_b').val()!='' && $('#answer_c').val()!='' && $('#answer_d').val()!='' && $('#correct').val()!='')
-		{
-			var data = {};
-			data['subject']=$('#subject').val();
-			data['subcategories']=$('#subcategories').val();
-			data['question']=$('#question').val();
-			data['0']=$('#answer_a').val();
-			data['1']=$('#answer_b').val();
-			data['2']=$('#answer_c').val();
-			data['3']=$('#answer_d').val();
-			data['correct']=$('#correct').val();
-			data['solution']=$('#solution').val();
-			console.log(data);
-			$.ajax({
-					type:'POST',
-					data: data,
-					url:"<?php echo Router::url(array('controller'=>'Partner','action'=>'addquestion'));?>/",
-					success:function(data){							
-						$('#question').val('');
-						$('#answer_a').val('');
-						$('#answer_b').val('');
-						$('#answer_c').val('');
-						$('#answer_d').val('');
-						$('#solution').val('');
-						$('.checkbox').attr('checked',false);
-						alert("Cập nhật thành công");
-					}				
-				});	  
+		if($('#subject').val()==''){
+			alert("Bạn chưa chọn môn.");
 		}else{
-			alert("Nhập đầy đủ câu hỏi, câu trả lời và chọn đáp án đúng");
+			if($('#question').val()!='' && $('#answer_a').val()!='' && $('#answer_b').val()!='' && $('#answer_c').val()!='' && $('#answer_d').val()!='' && $('#correct').val()!='')
+			{
+				var data = {};
+				data['subject']=$('#subject').val();
+				data['subcategories']=$('#subcategories').val();
+				data['question']=$('#question').val();
+				data['0']=$('#answer_a').val();
+				data['1']=$('#answer_b').val();
+				data['2']=$('#answer_c').val();
+				data['3']=$('#answer_d').val();
+				data['4']=$('#answer_e').val();
+				data['correct']=$('#correct').val();
+				data['solution']=$('#solution').val();
+				console.log(data);
+				$.ajax({
+						type:'POST',
+						data: data,
+						url:"<?php echo Router::url(array('controller'=>'Partner','action'=>'addquestion'));?>/",
+						success:function(data){							
+							$('#question').val('');
+							$('#answer_a').val('');
+							$('#answer_b').val('');
+							$('#answer_c').val('');
+							$('#answer_d').val('');
+							$('#answer_e').val('');
+							$('#solution').val('');
+							$('.checkbox').attr('checked',false);
+							alert("Cập nhật thành công");
+						}				
+					});	  
+			}else{
+				alert("Nhập đầy đủ câu hỏi, câu trả lời và chọn đáp án đúng");
+			}
 		}
 	});
 	$(document).on('click','.checkbox',function(){		

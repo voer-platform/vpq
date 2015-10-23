@@ -1,3 +1,6 @@
+<script type="text/javascript"
+	  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+	</script>
 <div class='admin-insert-questions'>
 	<div class='col-lg-12'>
 		<!-- visible form -->
@@ -26,31 +29,11 @@
 									<?php endforeach; ?>
 								<?php endif; ?>
 							</select>
-						</div>
-						<!--<div class='col-lg-3' style='padding-left:5px;padding-right:5px;'>
-							<select class='form-control' name='categories' id='categories'>
-								<option value=''>-Chọn chương-</option>
-								<?php if(!empty($categories)): ?>
-									<?php foreach($categories as $categories): ?>
-									<option value='<?php echo $categories['Category']['id'];?>' <?php echo ($categories['Category']['id']==$category_id)?"selected":"" ?>><?php echo $categories['Category']['name'];?></option>
-									<?php endforeach; ?>
-								<?php endif; ?>
-							</select>
-						</div>
-						<div class='col-lg-3' style='padding-left:10px;padding-right:0px;'>
-							<select class='form-control' name='subcategories' id='subcategories'>
-								<option value=''>-Chọn bài-</option>
-								<?php if(!empty($subcategories)): ?>
-									<?php foreach($subcategories as $subcategories): ?>
-									<option value='<?php echo $subcategories['Subcategory']['id'];?>' <?php echo ($subcategories['Subcategory']['id']==$subcategory_id)?"selected":"" ?>><?php echo $subcategories['Subcategory']['name'];?></option>
-									<?php endforeach; ?>
-								<?php endif; ?>
-							</select>
-						</div>-->
+						</div>	
 						<div class='col-lg-3' style='padding-left:5px;padding-right:5px;'>
 							<select class='form-control' name='state' id='state'>
 								<option value=''>-Trạng thái-</option>
-								<option value='0' <?php echo ($state==0)?"selected":"" ?>>Chưa kiểm tra</option>
+								<!--<option value='0' <?php echo ($state==0)?"selected":"" ?>>Chưa kiểm tra</option>-->
 								<option value='1' <?php echo ($state==1)?"selected":"" ?>>Chưa phân loại</option>
 								<option value='2' <?php echo ($state==2)?"selected":"" ?>>Hủy</option>
 								<option value='3' <?php echo ($state==3)?"selected":"" ?>>Đã phân loại</option>
@@ -73,17 +56,16 @@
 					</div>
 					<br/>
 					<div class='row'>
-							<table class='table table-striped table-bordered'>
-								<tr>
-									<th style='text-align:center;'>STT</th>
-									<!--<th style='text-align:center;'>Môn</th>
-									<th style='text-align:center;'>Sách</th>
-									<th style='text-align:center;'>Trang</th>
-									<th style='text-align:center;'>Câu</th>-->										
-									<th style='text-align:center;'>Nội dung</th>
-									<th style='text-align:center;'>Trạng thái</th>
-									<th style='text-align:center;width:105px;'></th>
-								</tr>
+							<table id="tbl_questions" class="table table-striped table-bordered datatable" cellspacing="0" width="100%">
+								<thead>
+									<tr>
+										<th style='text-align:center;'>STT</th>									
+										<th style='text-align:center;'>Nội dung</th>
+										<th style='text-align:center;'>Trạng thái</th>
+										<th style='text-align:center;width:105px;'></th>
+									</tr>
+								<thead>
+								<tbody>
 								<?php foreach($import_question as $key=>$ques): ?>
 								<tr>
 									<td style='text-align:center;width:70px;'><?php echo $key+1; ?></td>
@@ -113,13 +95,14 @@
 											<?php echo $this->Html->link('', array('controller' => 'partner', 'action' => 'view_question',$ques['ImportQuestion']['id']), array('class' => 'btn btn-dashboard btn-primary glyphicon glyphicon-eye-open','title'=>'Xem chi tiết','target'=>'_blank','disabled')) ?>
 										<?php }?>
 										<?php if($ques['ImportQuestion']['check_question']!=3){ ?>
-										<a onclick="return confirm ('Bạn có muốn xóa câu hỏi này không?')" class='btn btn-danger glyphicon glyphicon-trash' style='float:right;' title='Xóa' href="<?php echo $this->Html->url(array('controller'=>'admin','action'=> 'check_question')); ?>?delete=<?php echo $ques['ImportQuestion']['id'] ?>"></a>
+										<a onclick="return confirm ('Bạn có muốn xóa câu hỏi này không?')" class='btn btn-danger glyphicon glyphicon-trash' style='float:right;' title='Xóa' href="<?php echo $this->Html->url(array('controller'=>'Partner','action'=> 'delete')); ?>?id=<?php echo $ques['ImportQuestion']['id'] ?>"></a>
 										<?php }else{ ?>
-											<a onclick="return confirm ('Bạn có muốn xóa câu hỏi này không?')" class='btn btn-danger glyphicon glyphicon-trash' style='float:right;' disabled title='Xóa' href="<?php echo $this->Html->url(array('controller'=>'admin','action'=> 'check_question')); ?>?delete=<?php echo $ques['ImportQuestion']['id'] ?>"></a>
+											<a onclick="return confirm ('Bạn có muốn xóa câu hỏi này không?')" class='btn btn-danger glyphicon glyphicon-trash' style='float:right;' disabled title='Xóa' href="<?php echo $this->Html->url(array('controller'=>'Partner','action'=> 'delete')); ?>?id=<?php echo $ques['ImportQuestion']['id'] ?>"></a>
 										<?php }?>
 									</td>
 								</tr>
 							<?php endforeach; ?>
+							</tbody>
 							</table>
 					</div>
 					<div class='row'>
@@ -139,10 +122,9 @@
 	
 </div>
 <script>
-	/*$(document).ready(function(){
-		$('#start_date').datepicker();
-		$('#end_date').datepicker();
-	});*/
+	$(document).ready(function(){
+		$('#tbl_questions').DataTable();
+	});
 	$(document).on('change','#subject',function(){
 		if($(this).val()!=''){
 			$subject_id=$(this).val();

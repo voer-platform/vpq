@@ -48,13 +48,15 @@
 										<a><?php echo __('Check All'); ?></a>
 									</td>
 								</tr>
+								<?php $k=1; ?>								
 								<?php foreach($allcat as $item=>$ac): ?>
+								<?php $b=1; ?>
 								<?php if($ac['Grade']['id']==$i): ?>
 								<tr>
 									<td class="td_cat" style="padding-left:5px; width:10px;border: solid 1px #ddd;border-right:0px;">
 										<input type="checkbox" class="checkall chkall-<?php echo $i;?>" data-id='<?php echo $ac['Category']['id'] ?>'/>
 									</td>
-									<td colspan='2' class="cat" data-id='<?php echo $ac['Category']['id'] ?>' style="padding-left:5px;border: solid 1px #ddd;border-left:0px;">&nbsp<a>Chương: <?php echo $ac['Category']['name'];?><i style="float:right;margin-top:2px" class="glyphicon glyphicon-plus-sign"></i><span id='spcat-<?php echo $ac['Category']['id'] ?>' style="float:right; margin-right:10px;" id="sl_incat"></span></a>
+									<td colspan='2' class="cat" data-id='<?php echo $ac['Category']['id'] ?>' style="padding-left:5px;border: solid 1px #ddd;border-left:0px;">&nbsp<a>Chương <?php echo $k++; ?>: <?php echo $ac['Category']['name'];?><i style="float:right;margin-top:2px" class="glyphicon glyphicon-plus-sign"></i><span id='spcat-<?php echo $ac['Category']['id'] ?>' style="float:right; margin-right:10px;" id="sl_incat"></span></a>
 									</td>
 								</tr>				
 								<?php foreach($ac['Subcategory'] as $item=>$asc): ?>
@@ -64,7 +66,7 @@
 										<td style="width:12px;padding-left:0px;padding-right:0px;">
 											<input type="checkbox" name="sub" class='chkbox-<?php echo $i;?> chksub chk-<?php echo $ac['Category']['id'] ?> ' id='sub-<?php echo $asc['id'] ?>' value="<?php echo $asc['id']?>" <?php echo (in_array($asc['id'],$pretracking) ? "checked" : ""); ?> />
 										</td>
-										<td style='border: solid 1px #ddd;border-left:0px;' class="td-subcat" data-id='<?php echo $asc['id'] ?>'>Bài: <?php echo $asc['name'] ?></td>
+										<td style='border: solid 1px #ddd;border-left:0px;' class="td-subcat" data-id='<?php echo $asc['id'] ?>'>Bài <?php echo $b++; ?>: <?php echo $asc['name'] ?></td>
 									</tr>
 								<?php endforeach; ?>									
 								<?php endif; ?>
@@ -122,7 +124,11 @@
                 <h4 class="modal-title" id="myModalLabel">Thông báo</h4>
             </div>
             <div class="modal-body" style='text-align:center'>
-                <p id='tb' style='font-size:16px;'>Số lượng câu hỏi không đủ để thực hiện bài kiểm tra này.</p>
+                <p id='tb' style='font-size:16px;'>
+					Số lượng câu hỏi không đủ để thực hiện bài kiểm tra này.</br>
+					Giúp chúng tôi phân loại câu hỏi, cũng chính là giúp bạn</br>
+					và những người khác.
+				</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>

@@ -16,11 +16,12 @@
 		<?php if(!empty($user)): ?>
 			<?php if($user['role'] == 'admin'): ?>
 			  <li><?php echo $this->HTML->link(__('Nhập câu hỏi'), array('controller' => 'partner', 'action' => 'insertQuestions')); ?></li>	
-			  <li><?php echo $this->HTML->link(__('Kiểm tra câu hỏi'), array('controller' => 'partner', 'action' => 'import_excel')); ?></li>
+			  <li><?php echo $this->HTML->link(__('Danh sách câu hỏi'), array('controller' => 'partner', 'action' => 'list_questions')); ?></li>
+			  <li><?php echo $this->HTML->link(__('Báo cáo thống kê'), array('controller' => 'partner', 'action' => 'report_admin')); ?></li>
 			<?php endif; ?>
 			<?php if($user['role'] == 'editor'): ?>
 				 <li><?php echo $this->HTML->link(__('Nhập câu hỏi'), array('controller' => 'partner', 'action' => 'insertQuestions')); ?></li>
-				 <li><?php echo $this->HTML->link(__('Kiểm tra câu hỏi'), array('controller' => 'partner', 'action' => 'import_excel')); ?></li>
+				 <li><?php echo $this->HTML->link(__('Danh sách câu hỏi'), array('controller' => 'partner', 'action' => 'list_questions')); ?></li>
 			<?php endif; ?>
 			<?php if($user['role'] == 'tester'): ?>
 				<li><?php echo $this->HTML->link(__('Phân loại câu hỏi'), array('controller' => 'partner', 'action' => 'check_question')); ?></li>
