@@ -52,22 +52,22 @@
           ga('create', 'UA-61725216-1', 'auto');
           ga('send', 'pageview');
         </script>
+		<!-- Facebook Conversion Code for PLS - Số lượt xem trang chính -->
 		<script>(function() {
-			var _fbq = window._fbq || (window._fbq = []);
-			if (!_fbq.loaded) {
-			var fbds = document.createElement('script');
-			fbds.async = true;
-			fbds.src = '//connect.facebook.net/en_US/fbds.js';
-			var s = document.getElementsByTagName('script')[0];
-			s.parentNode.insertBefore(fbds, s);
-			_fbq.loaded = true;
-			}
-			_fbq.push(['addPixelId', '995982473754418']);
-			})();
-			window._fbq = window._fbq || [];
-			window._fbq.push(['track', 'PixelInitialized', {}]);
+		var _fbq = window._fbq || (window._fbq = []);
+		if (!_fbq.loaded) {
+		var fbds = document.createElement('script');
+		fbds.async = true;
+		fbds.src = '//connect.facebook.net/en_US/fbds.js';
+		var s = document.getElementsByTagName('script')[0];
+		s.parentNode.insertBefore(fbds, s);
+		_fbq.loaded = true;
+		}
+		})();
+		window._fbq = window._fbq || [];
+		window._fbq.push(['track', '6023770897837', {'value':'0.00','currency':'VND'}]);
 		</script>
-		<noscript><img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?id=995982473754418&amp;ev=PixelInitialized" /></noscript>
+		<noscript><img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?ev=6023770897837&amp;cd[value]=0.00&amp;cd[currency]=VND&amp;noscript=1" /></noscript>
     <?php endif; ?>    
 	<script src="http://connect.facebook.net/vi_VN/all.js"></script>
 	<!--Start of Zopim Live Chat Script-->
