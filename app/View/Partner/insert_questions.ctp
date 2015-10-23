@@ -14,13 +14,23 @@
 					<table style="border:0px;">
 						<tr>
 							<td style="padding-right:50px;"><h3 style="margin:0px;">Thêm câu hỏi</h3></td>
-							<td style="padding-right:10px;"><input type='file' name='file_import' class='form-control'/></td>
-							<td><input type='submit' name='import_excel' value='Import Excel' class='btn btn-primary'/></td>
+							<!--<td style="padding-right:10px;"><input type='file' name='file_import' class='form-control'/></td>
+							<td><input type='submit' name='import_excel' value='Import Excel' class='btn btn-primary'/></td>-->
+							<td style="padding-right:10px;">
+								<select name='subject' id='subject' class='form-control'>
+									<option value>Chọn môn</option>
+									<?php foreach($subject as $subject): ?>
+										<option value='<?php echo $subject['Subject']['id'];?>'><?php echo $subject['Subject']['name'];?></option>
+									<?php endforeach; ?>
+								</select>
+							</td>
+							<td>
+							</td>
 						</tr>
 					</table>
 				</div>
 			</form>
-			<div class='row'>
+			<!--<div class='row'>
 			<hr/>
 			</div>
 			<div class='row'>
@@ -50,7 +60,7 @@
 						<option value>Chọn bài</option>
 					</select>
 				</div>				
-			</div>
+			</div>-->
 			<div class='row'>
 				<hr/>
 			</div>
@@ -154,7 +164,6 @@
 
 <script>
 	$(document).ready(function(){
-
 	});
 	
 	$(document).on('change','#grade',function(){
@@ -217,38 +226,42 @@
 				$('#correct').val($correct);				
 			}
 		}
-		if($('#question').val()!='' && $('#answer_a').val()!='' && $('#answer_b').val()!='' && $('#answer_c').val()!='' && $('#answer_d').val()!='' && $('#correct').val()!='')
-		{
-			var data = {};
-			data['subject']=$('#subject').val();
-			data['subcategories']=$('#subcategories').val();
-			data['question']=$('#question').val();
-			data['0']=$('#answer_a').val();
-			data['1']=$('#answer_b').val();
-			data['2']=$('#answer_c').val();
-			data['3']=$('#answer_d').val();
-			data['4']=$('#answer_e').val();
-			data['correct']=$('#correct').val();
-			data['solution']=$('#solution').val();
-			console.log(data);
-			$.ajax({
-					type:'POST',
-					data: data,
-					url:"<?php echo Router::url(array('controller'=>'Partner','action'=>'addquestion'));?>/",
-					success:function(data){							
-						$('#question').val('');
-						$('#answer_a').val('');
-						$('#answer_b').val('');
-						$('#answer_c').val('');
-						$('#answer_d').val('');
-						$('#answer_e').val('');
-						$('#solution').val('');
-						$('.checkbox').attr('checked',false);
-						alert("Cập nhật thành công");
-					}				
-				});	  
+		if($('#subject').val()==''){
+			alert("Bạn chưa chọn môn.");
 		}else{
-			alert("Nhập đầy đủ câu hỏi, câu trả lời và chọn đáp án đúng");
+			if($('#question').val()!='' && $('#answer_a').val()!='' && $('#answer_b').val()!='' && $('#answer_c').val()!='' && $('#answer_d').val()!='' && $('#correct').val()!='')
+			{
+				var data = {};
+				data['subject']=$('#subject').val();
+				data['subcategories']=$('#subcategories').val();
+				data['question']=$('#question').val();
+				data['0']=$('#answer_a').val();
+				data['1']=$('#answer_b').val();
+				data['2']=$('#answer_c').val();
+				data['3']=$('#answer_d').val();
+				data['4']=$('#answer_e').val();
+				data['correct']=$('#correct').val();
+				data['solution']=$('#solution').val();
+				console.log(data);
+				$.ajax({
+						type:'POST',
+						data: data,
+						url:"<?php echo Router::url(array('controller'=>'Partner','action'=>'addquestion'));?>/",
+						success:function(data){							
+							$('#question').val('');
+							$('#answer_a').val('');
+							$('#answer_b').val('');
+							$('#answer_c').val('');
+							$('#answer_d').val('');
+							$('#answer_e').val('');
+							$('#solution').val('');
+							$('.checkbox').attr('checked',false);
+							alert("Cập nhật thành công");
+						}				
+					});	  
+			}else{
+				alert("Nhập đầy đủ câu hỏi, câu trả lời và chọn đáp án đúng");
+			}
 		}
 	});
 	$(document).on('click','.checkbox',function(){		

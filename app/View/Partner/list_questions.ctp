@@ -78,26 +78,21 @@
 							<td><?php echo $ques['ImportQuestion']['question']; ?></td>
 							<td style='text-align:center'>
 								<?php if($ques['ImportQuestion']['check_question']==0){ ?>
-									<span class="label label-default">chưa kiểm tra</span>
+									<span class="label label-default">Chưa kiểm tra</span>
 								<?php } ?>
 								<?php if($ques['ImportQuestion']['check_question']==1){ ?>
-									<span class="label label-warning">chưa phân loại</span>
+									<span class="label label-warning">Đã kiểm tra</span>
 								<?php } ?>
 								<?php if($ques['ImportQuestion']['check_question']==2){ ?>
-									<span class="label label-danger">hủy</span>
+									<span class="label label-danger">Hủy</span>
 								<?php } ?>
 								<?php if($ques['ImportQuestion']['check_question']==3){ ?>
-									<span class="label label-success">đã phân loại</span>
+									<span class="label label-success">Đã phân loại</span>
 								<?php } ?>
 							</td>
 							<td style='text-align:center;'>
-								<?php if($ques['ImportQuestion']['check_question']==0){ ?>
 								<?php echo $this->Html->link('', array('controller' => 'partner', 'action' => 'view_question',$ques['ImportQuestion']['id']), array('class' => 'btn btn-dashboard btn-primary glyphicon glyphicon-eye-open','title'=>'Xem chi tiết','target'=>'_blank')) ?>
 								<a onclick="return confirm ('Bạn có muốn xóa câu hỏi này không?')" class='btn btn-danger glyphicon glyphicon-trash' title='Xóa' href="<?php echo $this->Html->url(array('controller'=>'Partner','action'=> 'delete')); ?>?id=<?php echo $ques['ImportQuestion']['id'] ?>"></a>
-								<?php }else{ ?>
-									<?php echo $this->Html->link('', array('controller' => 'partner', 'action' => 'view_question',$ques['ImportQuestion']['id']), array('class' => 'btn btn-dashboard btn-primary glyphicon glyphicon-eye-open','title'=>'Xem chi tiết','target'=>'_blank','disabled')) ?>
-									<a onclick="return confirm ('Bạn có muốn xóa câu hỏi này không?')" class='btn btn-danger glyphicon glyphicon-trash' title='Xóa' disabled href="<?php echo $this->Html->url(array('controller'=>'Partner','action'=> 'delete')); ?>?id=<?php echo $ques['ImportQuestion']['id'] ?>"></a>
-								<?php } ?>
 							</td>
 						</tr>
 						<?php endforeach; ?>
@@ -137,7 +132,11 @@
 <script>
 	$(document).ready(function(){
 		var $status = <?php echo $accept ?>;
-		$('#tbl_questions').DataTable();
+		$('#tbl_questions').DataTable(
+			{
+				"lengthMenu": [[50, 25, 10], [50, 25, 10]]
+			}
+		);
 		if($status==1){
 			$('#modal_message').modal({
 						backdrop: false
