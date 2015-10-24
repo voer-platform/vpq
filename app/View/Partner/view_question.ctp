@@ -25,16 +25,18 @@
 					<div id='left'>
 						<div class='col-lg-12'>
 							<div class='row' style='margin:0px;margin-top:10px;'>
-								<b style='color:brown;font-size:16px;'>Câu hỏi:</b>
+								<b style='color:brown;font-size:16px;'>Câu hỏi:</b>&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-hand-right"></span>&nbsp;<a id="a_question">click để sửa câu hỏi</a>
 							</div>
 							<div class='row' style='margin:0px;margin-top:10px;'>
-								<span style='color:brown;' id='content'><?php echo $question[0]['ImportQuestion']['question'];?></span>
+								<span style='color:brown;' id='question'><?php echo $question[0]['ImportQuestion']['question'];?></span>
+								<textarea type='text' class='form-control' rows='8' name='content_question' id='content_question'><?php echo $question[0]['ImportQuestion']['question'];?></textarea>
 							</div>
 							<br/>
 							<div class='row' style='margin:0px;margin-top:10px;'>
-								<b style='color:brown;font-size:16px;'>Lời giải:</b>
+								<b style='color:#DAC073;font-size:16px;'>Lời giải:</b>&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-hand-right"></span>&nbsp;<a id="a_solution">click để sửa lời giải</a>
 							</div>
 							<div class='row' style='margin:0px;margin-top:10px;'>
+									<span style='color:#DAC073;font-weight: normal;' id="solution"><?php echo $question[0]['ImportQuestion']['solution'];?></span>
 								<textarea style='margin-top:10px;margin-bottom:10px;' class='form-control' name='text_solution' id='text_solution' value='' rows="10"><?php echo $question[0]['ImportQuestion']['solution'];?></textarea>
 							</div>
 							<div class='row'>
@@ -143,7 +145,7 @@
 		<?php if($user['role']=='editor' || $user['role']=='admin'){ ?>
 		<div class='row'>
 			<div class='col-lg-9' style='padding-left:0px;'>
-				<textarea type='text' style='width:710px;' class='form-control' rows='8' name='content_question' id='content_question'><?php echo $question[0]['ImportQuestion']['question'];?></textarea>
+				
 			</div>
 			<div class='col-lg-3'>
 	
@@ -203,6 +205,14 @@
 		$('#answer_e').hide();
 		$('#text_e').show();
 	});
+	$(document).on('click','#a_solution',function(){
+		$('#solution').hide();
+		$('#text_solution').show();
+	});
+	$(document).on('click','#a_question',function(){
+		$('#question').hide();
+		$('#content_question').show();
+	});
 	$(document).on('click','#update',function(){
 		$content_question=$('#content_question').val();
 		$answer_a=$('#text_a').val();
@@ -258,5 +268,7 @@
 		$('#text_c').hide();
 		$('#text_d').hide();
 		$('#text_e').hide();
+		$('#text_solution').hide();
+		$('#content_question').hide();
 	});
 </script>
