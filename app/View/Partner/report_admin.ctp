@@ -3,15 +3,12 @@
 	<div class='row' style='margin:0px;'>
 		<div class='col-lg-12'>
 			<div class='row'>
-				<h2>Báo cáo thống kê</h2>
+				<h3>Kết quả nhóm nhập liêu:</h3>
 				<hr/>
 			</div>
 		</div>
 	</div>
 	<form action="" method="POST" name="frmreportadmin" role="form" class="form-horizontal">
-		<div class='row' style='margin:0px;'>
-			<h3>Kết quả nhóm nhập liêu:</h3>
-		</div>
 		<div class='row' style='margin:0px;'>
 			<table class="table table-striped table-bordered">
 				<tr>
