@@ -219,7 +219,8 @@ class PartnerController extends Controller {
 		$this->loadModel('QuestionsSubcategory');
 		$this->loadModel('Answer');
 		$this->loadModel('ImportQuestion');
-
+		$this->loadModel('ClassifyQuestion');
+		
 		$this->ImportQuestion->save(
 								array(
 									'user'	   =>$user['id'],
@@ -243,7 +244,20 @@ class PartnerController extends Controller {
 									'date'=>date('d/m/Y'),
 								)
 							);
-		echo $this->ImportQuestion->getLastInsertId();
+		$iquestion_id = $this->ImportQuestion->getLastInsertId();
+		
+		if($question['subcategories']!='')
+		{
+			$this->ClassifyQuestion->save(
+								array(
+									'iquestion_id'	=>	$iquestion_id,
+									'user_id'	  	=>	$user['id'],
+									'subcategories_id' =>	trim($question['subcategories'])
+								)
+			);
+		}
+				
+		
 	}
 	
 	public function list_questions(){

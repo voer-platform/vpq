@@ -24,43 +24,28 @@
 									<?php endforeach; ?>
 								</select>
 							</td>
-							<td>
+							<td  style="padding-right:10px;">
+								<select name='grade' id='grade' class='form-control'>
+									<option value>Chọn lớp</option>
+									<?php foreach($grade as $grade): ?>
+										<option value='<?php echo $grade['Grade']['id'];?>'>Lớp <?php echo $grade['Grade']['name'];?></option>
+									<?php endforeach; ?>
+								</select>
+							</td>
+							<td  style="padding-right:10px;">
+								<select name='categories' id='categories' class='form-control'>
+									<option value>Chọn chương</option>						
+								</select>
+							</td>
+							<td  style="padding-right:10px;">
+								<select name='subcategories' id='subcategories' class='form-control'>
+									<option value>Chọn bài</option>
+								</select>
 							</td>
 						</tr>
 					</table>
 				</div>
 			</form>
-			<!--<div class='row'>
-			<hr/>
-			</div>
-			<div class='row'>
-				<div class='col-sm-3' style='padding-left:0px;padding-right:10px;'>
-					<select name='grade' id='grade' class='form-control'>
-						<option value>Chọn lớp</option>
-						<?php foreach($grade as $grade): ?>
-							<option value='<?php echo $grade['Grade']['id'];?>'>Lớp <?php echo $grade['Grade']['name'];?></option>
-						<?php endforeach; ?>
-					</select>					
-				</div>	
-				<div class='col-sm-3' style='padding-left:0px;padding-right:5px;'>
-					<select name='subject' id='subject' class='form-control'>
-						<option value>Chọn môn</option>
-						<?php foreach($subject as $subject): ?>
-							<option value='<?php echo $subject['Subject']['id'];?>'><?php echo $subject['Subject']['name'];?></option>
-						<?php endforeach; ?>
-					</select>
-				</div>				
-				<div class='col-sm-3' style='padding-left:5px;padding-right:0px;'>
-					<select name='categories' id='categories' class='form-control'>
-						<option value>Chọn chương</option>						
-					</select>
-				</div>
-				<div class='col-sm-3' style='padding-left:10px;padding-right:0px;'>
-					<select name='subcategories' id='subcategories' class='form-control'>
-						<option value>Chọn bài</option>
-					</select>
-				</div>				
-			</div>-->
 			<div class='row'>
 				<hr/>
 			</div>
@@ -170,7 +155,7 @@
 		if($('#subject').val()!=''){
 			$grade_id=$(this).val();
 			$subject_id=$('#subject').val();
-			var url = '<?php echo Router::url(array('controller'=>'categories','action'=>'byGrade'));?>/' + $grade_id + '/'+$subject_id;
+			var url = '<?php echo Router::url(array('controller'=>'partner','action'=>'byGrade'));?>/' + $grade_id + '/'+$subject_id;
 			$.getJSON(url, function( data ) {
 				var options="";
 				options+="<option value=''>Chọn chương</option>";
