@@ -248,7 +248,8 @@ class PartnerController extends Controller {
 								array(
 									'iquestion_id'	=>	$iquestion_id,
 									'user_id'	  	=>	$user['id'],
-									'subcategories_id' =>	trim($question['subcategories'])
+									'subcategories_id' =>	trim($question['subcategories']),
+									'role'			=> 5
 								)
 			);
 		}
