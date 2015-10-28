@@ -124,7 +124,7 @@ class QuestionsController extends AppController {
 	    	return true;
 	    }
 	    else if (isset($user['role']) && $user['role'] === 'user' ){
-	    	if( in_array( $this->request->action, array('ajaxCover'))){
+	    	if( in_array( $this->request->action, array('ajaxCover', 'sorting'))){
 	    		return true;
 	    	}
 	    }
