@@ -1,3 +1,4 @@
+<?php if($question){ ?>
 <div class="sorting-form-container">
 	<div class="alert alert-success">
 		<strong>Câu hỏi:</strong> <?=$question['ImportQuestion']['question'];?><br/>
@@ -42,3 +43,4 @@
 	</div>	
 	<p class="text-danger" id="sorting-error" style="display:none;"></p>
 </div>	
+<?php } ?>
