@@ -101,4 +101,46 @@
 			}
 		}
 	
+		public function sortingOption(){
+			$this->autoRender = false;
+			$this->loadModel('Subcategory');
+			
+			$grade = $this->request->query['grade'];
+			$subject = $this->request->query['subject'];
+			$category = $this->request->query['category'];
+			
+			$options = array();
+			
+			if ($category) {
+			
+				$subcategories = $this->Subcategory->find('list', array(
+					'recursive'	=> -1,
+					'fields'	=>	array('Subcategory.id', 'Subcategory.name'),
+					'joins'	=>	array(
+						array(
+							'table'	=>	'Categories',
+							'alias'	=>	'Category',
+							'type'	=>	'INNER',
+							'conditions'	=>	'Subcategory.category_id = Category.id'
+						)
+					),
+					'conditions'	=>	array("Category.grade_id = $grade", "Category.subject_id = $subject", "Category.id = $category")
+				));
+				$options['subcategories'] = $subcategories;
+				
+			} else if ($grade && $subject) {
+			
+				$this->loadModel('Category');
+				$categories = $this->Category->find('list', array(
+					'recursive'	=>	-1,
+					'fields'	=>	array('Category.id', 'Category.name'),
+					'conditions'	=>	array("Category.grade_id = $grade", "Category.subject_id = $subject")
+				));
+				$options['categories'] = $categories;
+			}
+			
+			echo json_encode($options);
+			
+		}
+	
 	}

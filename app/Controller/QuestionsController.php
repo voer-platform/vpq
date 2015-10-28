@@ -215,4 +215,77 @@ class QuestionsController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
+	
+	public function sorting() {
+	
+		$user = $this->Auth->user();
+		$this->loadModel('ClassifyQuestion');
+	
+		if ($this->request->is('post')) {
+			$questionId = $this->request->data['question'];
+			$subcategoryId = $this->request->data['subcategory'];
+			
+			if ($questionId && $subcategoryId) {
+			
+				$hasQuestion = $this->ClassifyQuestion->find('first', array('conditions' => array('iquestion_id' => $questionId, 'user_id' => $user['id'])));
+			
+				if (!$hasQuestion) {
+			
+					$this->ClassifyQuestion->create();
+					$this->ClassifyQuestion->save(array('iquestion_id' => $questionId, 'user_id' => $user['id'], 'subcategories_id' => $subcategoryId));
+					echo json_encode(array('status' => 1));
+					exit();
+				}
+				
+			}
+			
+			echo json_encode(array('status' => 0));
+			exit();
+		}
+		
+		$this->layout = 'ajax';
+		
+		$this->loadModel('ImportQuestion');
+		$this->loadModel('Grade');
+		$this->loadModel('Subject');
+		$this->loadModel('Category');
+		// $this->loadModel('Subcategory');
+		
+		
+		$db = $this->Question->getDataSource();
+		$subQuery = $db->buildStatement(
+			array(
+				'fields'     => array('SortingQuestion.iquestion_id'),
+				'table'      => $db->fullTableName($this->ClassifyQuestion),
+				'alias'      => 'SortingQuestion',
+				'conditions' => array('SortingQuestion.user_id' => $user['id'])
+			),
+			$this->ClassifyQuestion
+		);
+		$subQuery = ' ImportQuestion.id NOT IN (' . $subQuery . ') ';
+		$subQueryExpression = $db->expression($subQuery);
+		$conditions[] = $subQueryExpression;
+		$order[] = 'RAND()';
+		$unSortingQuestion = $this->ImportQuestion->find('first', compact('conditions', 'order'));
+		$this->set('question', $unSortingQuestion);
+		
+		if (isset($unSortingQuestion['ImportQuestion']['grade_id'])) {
+			$categories = $this->Category->find('list', array(
+				'fields' => array('id', 'name'),
+				'conditions' => array('subject_id' => $unSortingQuestion['ImportQuestion']['subject_id'], 'grade_id' => $unSortingQuestion['ImportQuestion']['grade_id']),
+				'recursive'	=> -1
+			));
+			$this->set('categories', $categories);
+		}
+		
+		$grades = $this->Grade->find('list', array('id', 'name'));
+		$this->set('grades', $grades);
+		
+		
+		
+		// $subjects = $this->Subject->find('list', array('id', 'name'));
+		// $this->set('subjects', $subjects);
+		
+	}
+	
 }

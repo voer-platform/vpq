@@ -386,6 +386,7 @@ transition: all 0.7s ease;
 .pdl-5 {padding-left:5px!important;}
 .pdr-5 {padding-right:5px!important;}
 .pdr-0{padding-right:0;}
+.pd-0 {padding:0;}
 
 .blur1 {opacity: 0.1;}
 .blur3 {opacity: 0.3;}
@@ -400,6 +401,10 @@ transition: all 0.7s ease;
   margin-bottom: 5px;
   border-color: #428BCA;
   border-width: 2px;
+}
+
+.hover-pointer {
+	cursor: pointer;
 }
 
 /* Font Class */

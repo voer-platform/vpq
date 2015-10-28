@@ -20,7 +20,12 @@
 	</div>
 </div>
 
-<?=$this->element('../Portal/activities');?>
+<div class="panel panel-default hover-pointer" id="open-sorting-panel">
+	<div class="panel-body pd-0">
+		<?php echo $this->Html->image('question-sorting.gif', array('class' => 'fw')); ?>
+	</div>
+</div>	
+
 <div class="fb-page" data-href="https://www.facebook.com/plseduvn" data-small-header="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="false">
 	<div class="fb-xfbml-parse-ignore">
 		<blockquote cite="https://www.facebook.com/plseduvn">
