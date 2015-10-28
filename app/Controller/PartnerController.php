@@ -219,18 +219,15 @@ class PartnerController extends Controller {
 		$this->loadModel('QuestionsSubcategory');
 		$this->loadModel('Answer');
 		$this->loadModel('ImportQuestion');
-
+		$this->loadModel('ClassifyQuestion');
+		
 		$this->ImportQuestion->save(
 								array(
 									'user'	   =>$user['id'],
-									'author'   =>'',
-									'subject'	=>'',
 									'subject_id'=>trim($question['subject']),
-									'book_id'		=>'',
-									'book_name'		=>'',
-									'subcategory_id' => trim($question['subcategories']),					
-									'page'		=>'',
-									'sentence'	=>'',
+									'grade_id'=>trim($question['grade']),
+									'categories_id'=>trim($question['categories']),
+									'subcategory_id' => trim($question['subcategories']),				
 									'question'	=>trim($question['question']),
 									'solution'	=>trim($question['solution']),
 									'answer_a'	=>trim($question[0]),
@@ -243,7 +240,21 @@ class PartnerController extends Controller {
 									'date'=>date('d/m/Y'),
 								)
 							);
-		echo $this->ImportQuestion->getLastInsertId();
+		$iquestion_id = $this->ImportQuestion->getLastInsertId();
+		
+		if($question['subcategories']!='')
+		{
+			$this->ClassifyQuestion->save(
+								array(
+									'iquestion_id'	=>	$iquestion_id,
+									'user_id'	  	=>	$user['id'],
+									'subcategories_id' =>	trim($question['subcategories']),
+									'role'			=> 5
+								)
+			);
+		}
+				
+		
 	}
 	
 	public function list_questions(){
