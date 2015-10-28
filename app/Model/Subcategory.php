@@ -48,6 +48,7 @@ class Subcategory extends AppModel {
 	public $belongsTo = array(
 		'Category' => array(
 			'className' => 'Category',
+			'joinTable' => 'categories',
 			'foreignKey' => 'category_id',
 			'conditions' => '',
 			'fields' => '',
