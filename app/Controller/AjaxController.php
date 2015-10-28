@@ -118,7 +118,7 @@
 					'fields'	=>	array('Subcategory.id', 'Subcategory.name'),
 					'joins'	=>	array(
 						array(
-							'table'	=>	'Categories',
+							'table'	=>	'categories',
 							'alias'	=>	'Category',
 							'type'	=>	'INNER',
 							'conditions'	=>	'Subcategory.category_id = Category.id'
