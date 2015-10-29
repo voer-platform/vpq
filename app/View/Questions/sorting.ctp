@@ -24,7 +24,7 @@
 			</select>
 		<?php } else { ?>
 			<input type="hidden" id="grade" value="<?=$question['ImportQuestion']['grade_id'];?>" />
-			<?=$grades[$question['ImportQuestion']['grade_id']];?>
+			<label> Lớp <?=$grades[$question['ImportQuestion']['grade_id']];?></label>
 		<?php } ?>
 		<select class="form-control inline wa mgt-10" id="category">
 			<option value="">Chọn chương</option>
