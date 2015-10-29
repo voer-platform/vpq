@@ -12,7 +12,7 @@ class PlsHelper extends AppHelper {
 			return $image['src'];
 		}
 		else
-			return 'img/noimage.png';
+			return Router::url('/').'img/noimage.png';
 	}
 	
 	public function getCategory($subject, $grade) {

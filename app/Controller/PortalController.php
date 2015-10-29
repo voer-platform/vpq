@@ -15,11 +15,12 @@ class PortalController extends AppController {
  */
     public $helpers = array('Text');
 
+	public $components = array('Paginator');
 	
 	public function beforeFilter(){
         parent::beforeFilter();
         // Allow users to
-        $this->Auth->allow('index', 'viewPost');
+        $this->Auth->allow('index', 'viewPost', 'listNews');
     }
 	
 	public function index()
@@ -38,7 +39,7 @@ class PortalController extends AppController {
 		foreach($newsletterCategories AS $k=>$category){
 			$newsletter = $this->Newsletter->find('all', array(
 															'conditions'=>array('newsletter_category_id'=>$category['NewsletterCategory']['id'], 'Newsletter.status' => 1),
-															'limit'	=>	5,
+															'limit'	=>	3,
 															'order'	=>	array('created DESC')
 														)
 													);
@@ -60,6 +61,22 @@ class PortalController extends AppController {
 		$this->set('rankings', $this->getRankings(date('Y-m')));
 	}
 	
+	public function listNews()
+	{
+		$this->loadModel('Newsletter');
+		$this->Newsletter->recursive = -1;
+		$this->paginate = array(
+							'conditions' => array('status' => 1, 'newsletter_category_id' => 1),
+							'order'	=>	array('created' => 'DESC')
+						);
+		$this->set('newsletters', $this->Paginator->paginate('Newsletter'));
+		
+		$breadcrumbs[] = array('url' => '/tin-tuc', 'text'=> 'Tin tức');
+		
+		$this->set('breadcrumbs', $breadcrumbs);
+		$this->set('activities', $this->getActivities());
+	}
+	
 	public function viewPost($slug)
 	{
 		$this->loadModel('Newsletter');
@@ -71,7 +88,7 @@ class PortalController extends AppController {
 		
 		$this->set('title_for_layout', $newsletter['Newsletter']['title']);
 		
-		$breadcrumbs[] = array('url' => '/', 'text'=>$newsletter['NewsletterCategory']['name']);
+		$breadcrumbs[] = array('url' => '/tin-tuc', 'text'=>$newsletter['NewsletterCategory']['name']);
 		
 		$this->set('breadcrumbs', $breadcrumbs);
 		$this->set('newsletter', $newsletter);
