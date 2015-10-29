@@ -6,7 +6,7 @@
 	<?php } ?>
 	<div class="row">
 		<div class="col-md-12">
-			<form class="form-inline">
+			<form action="<?=$this->Html->url(array('controller' => 'classifyQuestion','action' => 'index'));?>" class="form-inline">
 				<select class="form-control" name="subject" id="subject">
 					<option value="">Tất cả môn học</option>
 					<?php foreach($subjects AS $id=>$subject){ ?>
@@ -54,7 +54,7 @@
 				<input type="hidden" name="sort_question" class="sort-question" value="<?=$question['ImportQuestion']['id'];?>" />
 				<input type="hidden" class="sort-subject" value="<?=$question['ImportQuestion']['subject_id'];?>" />
 				<div class="form-group">
-					<?php if (!isset($question['ImportQuestion']['grade_id'])) { ?>
+					<?php if (!$question['ImportQuestion']['grade_id']) { ?>
 						<select class="form-control inline wa mgt-10 sort-grade">
 							<option value="">Chọn lớp</option>
 							<?php foreach($grades AS $id => $name){ ?>
@@ -63,31 +63,32 @@
 						</select>
 						<select class="form-control inline wa mgt-10 sort-category">
 							<option value="">Chọn chương</option>
-							<?php if (isset($categories)) { 
-										foreach ($categories AS $id => $name) {
-							?>
-								<option value="<?=$id;?>"><?=$name;?></option>
-							<?php
-								}
-									}
-							?>
 						</select>
 					<?php } else { ?>
 						<input type="hidden" class="sort-grade" value="<?=$question['ImportQuestion']['grade_id'];?>" />
-						<label> Lớp <?=$grades[$question['ImportQuestion']['grade_id']];?></label>&nbsp;					
-						<select class="form-control inline wa mgt-10 sort-category">
-							<option value="">Chọn chương</option>
-							<?php foreach ($this->Pls->getCategory($question['ImportQuestion']['subject_id'], $question['ImportQuestion']['grade_id']) AS $id => $name) { ?>
-								<option value="<?=$id;?>"><?=$name;?></option>
-							<?php	}	?>
-						</select>
+						<label> Lớp <?=$grades[$question['ImportQuestion']['grade_id']];?></label>&nbsp;
+						<?php if (!$question['ImportQuestion']['categories_id']) { ?>
+							<select class="form-control inline wa mgt-10 sort-category">
+								<option value="">Chọn chương</option>
+								<?php foreach ($this->Pls->getCategory($question['ImportQuestion']['subject_id'], $question['ImportQuestion']['grade_id']) AS $id => $name) { ?>
+									<option value="<?=$id;?>"><?=$name;?></option>
+								<?php	}	?>
+							</select>
+						<?php } else { ?>	
+							<?php $categories = $this->Pls->getCategory($question['ImportQuestion']['subject_id'], $question['ImportQuestion']['grade_id']); ?>
+							&nbsp;- Chương: <?=$categories[$question['ImportQuestion']['categories_id']];?>
+						<?php } ?>
 					<?php } ?>
 				</div>
 				<div class="form-group">
-					
-					<select class="form-control inline wa sort-subcategory" name="sort_subcategory">
-						<option value="">Chọn bài</option>
-					</select>
+						<select class="form-control inline wa sort-subcategory" name="sort_subcategory">
+							<option value="">Chọn bài</option>
+							<?php if ($question['ImportQuestion']['categories_id']) { ?>
+								<?php foreach ($this->Pls->getSubcategory($question['ImportQuestion']['categories_id']) AS $id => $name) { ?>
+									<option value="<?=$id;?>"><?=$name;?></option>
+								<?php	}	?>
+							<?php } ?>
+						</select>
 					<input type="submit" class="btn btn-primary sort-submit" value="Gửi" />
 				</div>	
 				<p class="text-danger sort-error" style="display:none;">Vui lòng chọn chương, bài</p>

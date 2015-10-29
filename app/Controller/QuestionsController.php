@@ -384,9 +384,6 @@ class QuestionsController extends AppController {
 		$this->loadModel('ImportQuestion');
 		$this->loadModel('Grade');
 		$this->loadModel('Subject');
-		$this->loadModel('Category');
-		// $this->loadModel('Subcategory');
-		
 		
 		$db = $this->Question->getDataSource();
 		$subQuery = $db->buildStatement(
@@ -405,7 +402,18 @@ class QuestionsController extends AppController {
 		$unSortingQuestion = $this->ImportQuestion->find('first', compact('conditions', 'order'));
 		$this->set('question', $unSortingQuestion);
 		
-		if (isset($unSortingQuestion['ImportQuestion']['grade_id'])) {
+		if ($unSortingQuestion['ImportQuestion']['categories_id']) {
+			$this->loadModel('Subcategory');
+			$subcategories = $this->Subcategory->find('list', array(
+				'fields' => array('id', 'name'),
+				'conditions' => array('category_id' => $unSortingQuestion['ImportQuestion']['categories_id']),
+				'recursive'	=> -1
+			));
+			$this->set('subcategories', $subcategories);
+		}
+		
+		if ($unSortingQuestion['ImportQuestion']['grade_id']) {
+			$this->loadModel('Category');
 			$categories = $this->Category->find('list', array(
 				'fields' => array('id', 'name'),
 				'conditions' => array('subject_id' => $unSortingQuestion['ImportQuestion']['subject_id'], 'grade_id' => $unSortingQuestion['ImportQuestion']['grade_id']),
