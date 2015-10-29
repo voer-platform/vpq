@@ -219,7 +219,12 @@ class QuestionsController extends AppController {
 	public function sorting() {
 	
 		$user = $this->Auth->user();
+		$this->loadModel('Question');
+		$this->loadModel('ImportQuestion');
 		$this->loadModel('ClassifyQuestion');
+		$this->loadModel('Answer');
+		$this->loadModel('QuestionsSubcategory');
+
 	
 		if ($this->request->is('post')) {
 			$questionId = $this->request->data['question'];
@@ -233,8 +238,139 @@ class QuestionsController extends AppController {
 			
 					$this->ClassifyQuestion->create();
 					$this->ClassifyQuestion->save(array('iquestion_id' => $questionId, 'user_id' => $user['id'], 'subcategories_id' => $subcategoryId));
-					echo json_encode(array('status' => 1));
-					exit();
+					$dataiquestion = $this->ClassifyQuestion->find('all',array('conditions' => array('iquestion_id' => $questionId)));
+					$n=0;
+					$statistical = array();
+					foreach($dataiquestion as $key=>$value)
+					{
+						$n = $n + $value['ClassifyQuestion']['role'];
+						if(array_key_exists($value['ClassifyQuestion']['subcategories_id'],$statistical))
+						{
+							$statistical[$value['ClassifyQuestion']['subcategories_id']] = $statistical[$value['ClassifyQuestion']['subcategories_id']] + $value['ClassifyQuestion']['role'];
+						}else{
+							$statistical[$value['ClassifyQuestion']['subcategories_id']] = $value['ClassifyQuestion']['role'];
+						}
+					}
+					
+					$t=0;					
+					foreach($statistical as $key=>$value)
+					{
+						if($value>$t)
+						{
+							$t=$value;
+							$correct_subcatergory=$key;
+						}
+					}
+
+					$p=round($t/$n,2)*100;					
+					
+					if($n>=5)
+					{
+						$question = $this->Question->find('all',array('conditions' => array('iquestion_id' => $questionId)));				if($p>=80)
+						{
+							if($question)
+							{
+								$this->Question->id = $question[0]['Question']['id'];
+								$this->Question->save(
+												array(
+													'status' => 0,
+												)
+								);
+							}else{
+								$data_question = $this->ImportQuestion->find('all',array('conditions' => array('id' => $questionId)));							
+								$this->Question->begin();
+								$error = false;
+								$this->Question->create();
+								if($this->Question->save(
+														array(
+															'content'	=>$data_question[0]['ImportQuestion']['question'],
+															'difficulty'=>0,
+															'solution'	=>$data_question[0]['ImportQuestion']['solution'],
+															'count'		=>0,
+															'time'		=>0,
+															'report'	=>0,
+															'wrong'		=>0,
+															'status'	=>0,
+															'iquestion_id'	=> $data_question[0]['ImportQuestion']['id'],
+														)									
+								)){
+									$insert_id=$this->Question->getLastInsertId();
+									$this->QuestionsSubcategory->create();
+									if(!$this->QuestionsSubcategory->save(
+															array(
+																'question_id'=>$insert_id,
+																'subcategory_id'=>$correct_subcatergory,
+																'subcategory1_id'=>0,
+																'persion1_id'=>null,
+																'subcategory2_id'=>0,
+																'persion2_id_id'=>null,
+															)
+									)){
+										$error = true; 
+									}
+									$content=array(
+												'0'	=> $data_question[0]['ImportQuestion']['answer_a'],
+												'1'	=> $data_question[0]['ImportQuestion']['answer_b'],
+												'2'	=> $data_question[0]['ImportQuestion']['answer_c'],
+												'3'	=> $data_question[0]['ImportQuestion']['answer_d'],
+												'4'	=> $data_question[0]['ImportQuestion']['answer_e'],
+									);
+									for($i=0;$i<=4;$i++)
+									{
+										$this->Answer->create();
+										if($i==$data_question[0]['ImportQuestion']['answer_correct']){
+											if(!$this->Answer->save(
+															array(
+																'question_id'	=>	$insert_id,
+																'order'			=>	$i,
+																'content'		=>  $content[$i],
+																'correctness'	=>	1,
+															)
+											)){
+												$error	= true;
+											}
+										}else{
+											if(!$this->Answer->save(
+															array(
+																'question_id'	=>	$insert_id,
+																'order'			=>	$i,
+																'content'		=>  $content[$i],
+																'correctness'	=> 	0,
+															)
+											));
+										}
+									}
+								};
+								if($error){
+									$this->Question->rollback();
+								}
+								else
+								{							
+									$this->Question->commit();
+									echo json_encode(array('status' => 1));
+									exit();
+								}
+							}
+						}else{
+							if($question)
+							{
+								$this->Question->id = $question[0]['Question']['id'];
+								$this->Question->save(
+												array(
+													'status' => 1,
+												)
+								);
+								echo json_encode(array('status' => 1));
+								exit();
+							}else{
+								echo json_encode(array('status' => 1));
+								exit();
+							}
+						}
+					}else{
+						echo json_encode(array('status' => 1));
+						exit();
+					}		
 				}
 				
 			}
