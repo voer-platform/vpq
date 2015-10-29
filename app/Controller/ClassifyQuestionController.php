@@ -24,7 +24,7 @@ class ClassifyQuestionController extends AppController {
  */
 	public function index() {
 		$conditions = array();
-		
+		$this->set('title_for_layout' ,'Phân loại câu hỏi');
 		$user = $this->Auth->user();
 		if(isset($this->request->query['search']) && $this->request->query['search']!='')
 		{
