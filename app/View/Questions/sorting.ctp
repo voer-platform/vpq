@@ -15,7 +15,7 @@
 		<br/>
 		<input type="hidden" id="question" value="<?=$question['ImportQuestion']['id'];?>" />
 		<input type="hidden" id="subject" value="<?=$question['ImportQuestion']['subject_id'];?>" />
-		<?php if (!isset($question['ImportQuestion']['grade_id'])) { ?>
+		<?php if (!$question['ImportQuestion']['grade_id']) { ?>
 			<select class="form-control inline wa mgt-10" id="grade">
 				<option value="">Chọn lớp</option>
 				<?php foreach($grades AS $id => $name){ ?>
