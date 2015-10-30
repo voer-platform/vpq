@@ -4,7 +4,7 @@
 	<?php if (isset($message)) { ?>
 		<div class="alert alert-success"><?=$message;?></div>
 		<script>
-			mixpanel.track("Classify Question");
+			mixpanel.track("Classify Question", {"classify_tool": "advanced"});
 		</script>
 	<?php } ?>
 	<div class="row">

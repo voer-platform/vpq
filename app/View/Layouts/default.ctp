@@ -39,7 +39,7 @@
     <?php echo $this->Html->script('jquery.multiselect.js');?>
 	<?php echo $this->Html->script('bootstrap-datepicker.js');?>
 	<?php echo $this->Html->script('select2.min.js');?>
-	<?php echo $this->Html->script('global.min.js?v=2.2');?>
+	<?php echo $this->Html->script('global.min.js?v=2.3');?>
 	<?php echo $this->Html->script('jquery.slimscroll.min.js');?>
 	<?php echo $this->Html->script('../mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML');?>
     <!-- if production server -->
