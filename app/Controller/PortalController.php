@@ -63,6 +63,7 @@ class PortalController extends AppController {
 	
 	public function listNews()
 	{
+		$this->set('title_for_layout', 'Tin tức');
 		$this->loadModel('Newsletter');
 		$this->Newsletter->recursive = -1;
 		$this->paginate = array(
