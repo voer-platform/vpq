@@ -396,12 +396,48 @@ transition: all 0.7s ease;
 .nudl.no-style {
 	color: #333;
 }
+
+/* News CSS */
+.category-news-list-item {
+	position: relative;
+	padding-left: 85px;
+	    border-bottom: dotted 1px #f6f7f8;
+    padding-bottom: 20px;
+	    padding-right: 20px;
+    text-align: justify;
+}
+
+.category-news-list-item  .news-img {
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+.category-news-list-item .news-title {
+	font-size: 15px;
+	margin-bottom: 5px;
+}
+
+.category-news-list-item p.news-time {
+    font-style: italic;
+    color: #aaa;
+    margin-bottom: 0;
+}
+
+.pagination-container {
+	padding: 20px;
+    overflow: hidden;
+}
+
 .news-hr {
 	margin-top: 5px;
   margin-bottom: 5px;
   border-color: #428BCA;
   border-width: 2px;
+  clear: both;
 }
+
+
 
 .hover-pointer {
 	cursor: pointer;
@@ -410,6 +446,9 @@ transition: all 0.7s ease;
 /* Font Class */
 .fs-25 {font-size:25px;}
 .fs-22 {font-size:22px!important;}
+.fs-12 {font-size:12px;}
+.fs-15 {font-size:15px;}
+.fs-18 {font-size:18px;}
 .fs-19 {font-size:19px;}
 .fs-13 {font-size:13px;}
 .fs-12 {font-size:12px;}

@@ -26,19 +26,31 @@
 			<input type="hidden" id="grade" value="<?=$question['ImportQuestion']['grade_id'];?>" />
 			<label> Lớp <?=$grades[$question['ImportQuestion']['grade_id']];?></label>
 		<?php } ?>
-		<select class="form-control inline wa mgt-10" id="category">
-			<option value="">Chọn chương</option>
-			<?php if (isset($categories)) { 
-						foreach ($categories AS $id => $name) {
+		<?php if (isset($subcategories)) { ?> 
+			<label> - Chương: <?=$categories[$question['ImportQuestion']['categories_id']];?></label>
+		<?php } else { ?>
+			<select class="form-control inline wa mgt-10" id="category">
+				<option value="">Chọn chương</option>
+				<?php if (isset($categories)) { 
+							foreach ($categories AS $id => $name) {
+				?>
+					<option value="<?=$id;?>"><?=$name;?></option>
+				<?php
+					}
+						}
+				?>
+			</select>
+		<?php } ?>
+		<select class="form-control inline wa mgt-10" id="subcategory">
+			<option value="">Chọn bài</option>
+			<?php if (isset($subcategories)) { 
+						foreach ($subcategories AS $id => $name) {
 			?>
 				<option value="<?=$id;?>"><?=$name;?></option>
 			<?php
 				}
 					}
 			?>
-		</select>
-		<select class="form-control inline wa mgt-10" id="subcategory">
-			<option value="">Chọn bài</option>
 		</select>
 	</div>	
 	<p class="text-danger" id="sorting-error" style="display:none;"></p>

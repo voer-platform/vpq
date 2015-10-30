@@ -170,7 +170,7 @@
 						<p>PLS là một mạng xã hội học tập, giúp cho học sinh có thể ôn luyện bài học bằng cách làm bài tập và theo dõi tiến độ cũng như chất lượng học tập.</p>
 					  </div>
 					
-					<h2 style="font-size: 18px;"><?=$newsletterCategories[0]['NewsletterCategory']['name'];?></h2>
+					<a href="<?=$this->Html->url('/tin-tuc/', true);?>" style="color:black;"><h2 class="fs-18 inline"><?=$newsletterCategories[0]['NewsletterCategory']['name'];?></h2><span class="pull-right fs-12"><i>Xem thêm ...</i></span></a>
 					<hr class="news-hr" />
 					<div class="news-container">
 						<?php foreach($newsletterCategories[0]['Newsletters'] AS $news){ ?>
@@ -182,7 +182,7 @@
 									<h3 class="news-title"><b><?=$news['Newsletter']['title'];?></b></h3>
 								</a>	
 								<p class="news-time"><?=date('d/m/Y h:i', strtotime($news['Newsletter']['created']));?></p>
-								<p class="news-excerpt"><?=$this->Text->truncate(strip_tags($news['Newsletter']['content']), 190);?></p>
+								<p class="news-excerpt"><?=substr(strip_tags($news['Newsletter']['content']), 0, stripos(strip_tags($news['Newsletter']['content']), '.')+1);?></p>
 							</div>	
 						<?php } ?>
 					</div>
