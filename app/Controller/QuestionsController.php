@@ -430,6 +430,9 @@ class QuestionsController extends AppController {
 		// $subjects = $this->Subject->find('list', array('id', 'name'));
 		// $this->set('subjects', $subjects);
 		
+		$subj = $this->Subject->find('first', array('conditions' => array('id' => $unSortingQuestion['ImportQuestion']['subject_id'])));
+		$this->set('subject_name', $subj['Subject']['name']);
+		
 	}
 	
 }

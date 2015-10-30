@@ -54,6 +54,9 @@
 				<input type="hidden" name="sort_question" class="sort-question" value="<?=$question['ImportQuestion']['id'];?>" />
 				<input type="hidden" class="sort-subject" value="<?=$question['ImportQuestion']['subject_id'];?>" />
 				<div class="form-group">
+					<?php if (isset($subject_name)) { ?>
+						<label> Môn: <?=$subject_name;?></label> -&nbsp;
+					<?php } ?>
 					<?php if (!$question['ImportQuestion']['grade_id']) { ?>
 						<select class="form-control inline wa mgt-10 sort-grade">
 							<option value="">Chọn lớp</option>

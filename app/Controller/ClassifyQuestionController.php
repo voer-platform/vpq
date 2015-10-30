@@ -30,8 +30,12 @@ class ClassifyQuestionController extends AppController {
 		{
 
 			$subject = $this->request->query['subject'];
-			if($subject)
+			if ($subject) {
+				$this->loadModel('Subject');
 				$conditions['subject_id'] = $subject;
+				$subj = $this->Subject->find('first', array('conditions' => array('id' => $subject)));
+				$this->set('subject_name', $subj['Subject']['name']);
+			}	
 			$this->set('csubject', $subject);
 			
 			$grade = $this->request->query['grade'];
@@ -202,7 +206,7 @@ class ClassifyQuestionController extends AppController {
 								else
 								{							
 									$this->Question->commit();
-									$this->set('message', 'Phân loại của bạn đã được gửi, hãy tiếp tục với câu hỏi bên dưới nhé! Cảm ơn bạn nhiều ^^!');
+									$this->set('message', 'Phân loại của bạn đã được ghi nhận, hãy tiếp tục với câu hỏi bên dưới nhé! Cảm ơn bạn nhiều ^^!');
 								}
 							}
 						}else{
@@ -214,11 +218,11 @@ class ClassifyQuestionController extends AppController {
 													'status' => 1,
 												)
 								);
-								$this->set('message', 'Phân loại của bạn đã được gửi, hãy tiếp tục với câu hỏi bên dưới nhé! Cảm ơn bạn nhiều ^^!');
+								$this->set('message', 'Phân loại của bạn đã được ghi nhận, hãy tiếp tục với câu hỏi bên dưới nhé! Cảm ơn bạn nhiều ^^!');
 							}
 						}
 					}else{
-						$this->set('message', 'Phân loại của bạn đã được gửi, hãy tiếp tục với câu hỏi bên dưới nhé! Cảm ơn bạn nhiều ^^!');
+						$this->set('message', 'Phân loại của bạn đã được ghi nhận, hãy tiếp tục với câu hỏi bên dưới nhé! Cảm ơn bạn nhiều ^^!');
 					}					
 					
 				}
