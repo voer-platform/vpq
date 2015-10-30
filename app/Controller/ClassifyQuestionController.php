@@ -217,6 +217,8 @@ class ClassifyQuestionController extends AppController {
 								$this->set('message', 'Phân loại của bạn đã được gửi, hãy tiếp tục với câu hỏi bên dưới nhé! Cảm ơn bạn nhiều ^^!');
 							}
 						}
+					}else{
+						$this->set('message', 'Phân loại của bạn đã được gửi, hãy tiếp tục với câu hỏi bên dưới nhé! Cảm ơn bạn nhiều ^^!');
 					}					
 					
 				}

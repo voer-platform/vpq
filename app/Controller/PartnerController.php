@@ -488,6 +488,11 @@ class PartnerController extends Controller {
 		
 		if($this->request->data('no2')){
 			if(isset($this->request->data['id'])){
+				$hasQuestion = $this->Question->find('all',array('conditions'=>array('iquestion_id'=>$this->request->data['id'])));
+				if($hasQuestion){
+					$this->Question->id = $hasQuestion[0]['Question']['id'];
+					$this->Question->delete();					
+				};
 				if($this->ImportQuestion->updateAll(
 												array(
 													'check_question'=>2,
@@ -671,7 +676,13 @@ class PartnerController extends Controller {
 	
 	public function delete(){
 		$this->loadModel('ImportQuestion');
+		$this->loadModel('Question');
 		if($this->request->query['id']){
+			$hasQuestion = $this->Question->find('all',array('conditions' => array('iquestion_id' => $this->request->query['id'])));
+			if($hasQuestion){
+				$this->Question->id = $hasQuestion[0]['Question']['id'];
+				$this->Question->delete();
+			};
 			if($this->ImportQuestion->updateAll(
 											array(
 												'check_question'=>2,

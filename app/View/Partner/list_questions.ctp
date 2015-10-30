@@ -91,7 +91,11 @@
 								<?php } ?>
 							</td>
 							<td style='text-align:center;'>
-								<?php echo $this->Html->link('', array('controller' => 'partner', 'action' => 'view_question',$ques['ImportQuestion']['id']), array('class' => 'btn btn-dashboard btn-primary glyphicon glyphicon-eye-open','title'=>'Xem chi tiết')) ?>
+								<?php if($ques['ImportQuestion']['check_question']==0){ ?>
+									<?php echo $this->Html->link('', array('controller' => 'partner', 'action' => 'view_question',$ques['ImportQuestion']['id']), array('class' => 'btn btn-dashboard btn-primary glyphicon glyphicon-eye-open','title'=>'Xem chi tiết')) ?>
+								<?php }else{ ?>
+									<?php echo $this->Html->link('', array('controller' => 'partner', 'action' => 'view_question',$ques['ImportQuestion']['id']), array('class' => 'btn btn-dashboard btn-primary glyphicon glyphicon-eye-open','title'=>'Xem chi tiết','disabled')) ?>
+								<?php } ?>
 								<a onclick="return confirm ('Bạn có muốn xóa câu hỏi này không?')" class='btn btn-danger glyphicon glyphicon-trash' title='Xóa' href="<?php echo $this->Html->url(array('controller'=>'Partner','action'=> 'delete')); ?>?id=<?php echo $ques['ImportQuestion']['id'] ?>"></a>
 							</td>
 						</tr>
