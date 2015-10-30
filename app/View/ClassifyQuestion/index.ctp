@@ -3,6 +3,9 @@
 	<hr/>
 	<?php if (isset($message)) { ?>
 		<div class="alert alert-success"><?=$message;?></div>
+		<script>
+			mixpanel.track("Classify Question");
+		</script>
 	<?php } ?>
 	<div class="row">
 		<div class="col-md-12">
