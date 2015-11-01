@@ -161,8 +161,8 @@
 				<div class="col-md-8">
 
 					<div class="topbanner-container" <?php if(!$user){ ?>data-toggle="modal" data-target="#login-modal" data-section="menu-top"<?php } else { ?>onClick="window.location.href='/people/dashboard';"<?php } ?>>
-						<?=$this->Html->image('topbanner02.gif', array('class'=>'fw topbanner', 'alt' => 'Quảng cáo'));?>
-						<?=$this->Html->image('topbanner-hover02.gif', array('class'=>'fw topbanner-hover', 'alt' => 'Quảng cáo'));?>
+						<?=$this->Html->image('topbanner03.gif', array('class'=>'fw topbanner', 'alt' => 'Quảng cáo'));?>
+						<?=$this->Html->image('topbanner-hover03.gif', array('class'=>'fw topbanner-hover', 'alt' => 'Quảng cáo'));?>
 					</div>
 					<br/>
 					<div class="about">

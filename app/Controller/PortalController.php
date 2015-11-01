@@ -151,7 +151,7 @@ class PortalController extends AppController {
 	{
 		$this->loadModel('Exp');
 		$options = array(
-						'conditions'	=>	array("Exp.date LIKE '$month%'"),
+						'conditions'	=>	array("Exp.date LIKE '$month%'", "Exp.exp > 0"),
 						'limit'	=>	10,
 						'order'	=>	'Exp.exp DESC'
 					);
