@@ -3,7 +3,7 @@
 	<hr/>
 	<div class="row">
 		<div class="col-md-12">
-			<form class="form-inline">
+			<form class="form-inline" action="<?=$this->Html->url(array('controller' => 'Question','action' => 'index'));?>">
 				<label>Tìm kiếm </label>&nbsp;
 				<input type="text" class="form-control" name="keyword" placeholder="Từ khóa trong nội dung" <?php if(isset($ckeyword) && $ckeyword!='') echo "value='$ckeyword'"; ?> />&nbsp;
 				
