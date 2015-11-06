@@ -1,7 +1,5 @@
 <div class='col-lg-2'>
 	<div class="list-group">
-		<?php echo $this->Html->link(__('Add Questions'), array('controller' => 'Admin', 'action' => 'insertQuestions'), array('class'=>'list-group-item')); ?>
-		<?php echo $this->Html->link(__('Add Mutiple Questions'), array('controller' => 'Admin', 'action' => 'insertMultipleQuestions'), array('class'=>'list-group-item')); ?>
 		<?php echo $this->Html->link(__('Manage People'), array('controller' => 'people', 'action' => 'index'), array('class'=>'list-group-item')); ?>
 		<?php echo $this->Html->link(__('Manage Questions'), array('controller' => 'questions', 'action' => 'index'), array('class'=>'list-group-item')); ?>
 		<?php echo $this->Html->link('Bài học', array('controller' => 'subcategories', 'action' => 'index'), array('class'=>'list-group-item')); ?>
@@ -20,6 +18,7 @@
 		<?php echo $this->Html->link(__('Test Stats'), array('controller' => 'Tests', 'action' => 'stats'), array('class'=>'list-group-item')); ?>
 		<?php echo $this->Html->link(__('Newsletter'), array('controller' => 'Newsletters', 'action' => 'index'), array('class'=>'list-group-item')); ?>
 		<?php echo $this->Html->link(__('Announcement'), array('controller' => 'Announcements', 'action' => 'index'), array('class'=>'list-group-item')); ?>
+		<?php echo $this->Html->link(__('Classify Questions'), array('controller' => 'Admin', 'action' => 'reportclassify'), array('class'=>'list-group-item')); ?>
 	</div>
 </div>
 
