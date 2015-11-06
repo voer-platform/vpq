@@ -86,6 +86,7 @@ class TestsController extends AppController {
 	public function stats()
 	{
 		$today = date('Y-m-d');
+		$yesterday = date('Y-m-d', strtotime($today.' -1 days'));
 		$last7days = date('Y-m-d', strtotime($today.' -7 days'));
 		$last30days = date('Y-m-d', strtotime($today.' -30 days'));
 		$this->loadModel('Score');
@@ -124,7 +125,7 @@ class TestsController extends AppController {
 			{
 				$options['conditions'][] = "Test.time_limit = $limit";
 			}
-			
+			// Get today stats
 			$options['conditions'][1] = "DATE(time_taken) = '$today'";
 			$testToDays = $this->Score->find('all', $options);
 			if($testToDays[0][0]['time'])
@@ -138,7 +139,21 @@ class TestsController extends AppController {
 			{
 				$testToDays[0][0]['time'] = $testToDays[0][0]['timelimit'] = $testToDays[0][0]['average'] = $testToDays[0][0]['used'] = 0;
 			}
-			
+			// Get yesterday stats
+			$options['conditions'][1] = "DATE(time_taken) = '$yesterday'";
+			$testYesterday = $this->Score->find('all', $options);
+			if($testYesterday[0][0]['time'])
+			{
+				$testYesterday[0][0]['average'] = $this->Pls->timeFromSeconds(round($testYesterday[0][0]['time']/$testYesterday[0][0]['total']));
+				$testYesterday[0][0]['used'] = round(($testYesterday[0][0]['time']/$testYesterday[0][0]['timelimit'])*100).'%';
+				$testYesterday[0][0]['time'] = $this->Pls->timeFromSeconds($testYesterday[0][0]['time']);
+				$testYesterday[0][0]['timelimit'] = $this->Pls->timeFromSeconds($testYesterday[0][0]['timelimit']);
+			}
+			else
+			{
+				$testYesterday[0][0]['time'] = $testYesterday[0][0]['timelimit'] = $testYesterday[0][0]['average'] = $testYesterday[0][0]['used'] = 0;
+			}
+			// Get last7days stats
 			$options['conditions'][1] = "DATE(time_taken) BETWEEN '$last7days' AND '$today'";
 			$test7Days = $this->Score->find('all', $options);
 			if($test7Days[0][0]['time'])
@@ -152,7 +167,7 @@ class TestsController extends AppController {
 			{
 				$test7Days[0][0]['time'] = $test7Days[0][0]['timelimit'] = $test7Days[0][0]['average'] = $test7Days[0][0]['used'] = 0;
 			}
-			
+			// Get last30days stats
 			$options['conditions'][1] = "DATE(time_taken) BETWEEN '$last30days' AND '$today'";
 			$test30Days = $this->Score->find('all', $options);
 			if($test30Days[0][0]['time'])
@@ -192,6 +207,7 @@ class TestsController extends AppController {
 			if($limit!='all')
 			{
 				$testDetail['testToDays'][$limit] = $testToDays[0][0];
+				$testDetail['testYesterday'][$limit] = $testYesterday[0][0];
 				$testDetail['test7Days'][$limit] = $test7Days[0][0];
 				$testDetail['test30Days'][$limit] = $test30Days[0][0];
 				$testDetail['testAllDays'][$limit] = $testAllDays[0][0];
@@ -201,6 +217,7 @@ class TestsController extends AppController {
 		$this->set('infos', $infos);
 		$this->set('testDetail', $testDetail);
 		$this->set('testToDays', $testToDays);
+		$this->set('testYesterday', $testYesterday);
 		$this->set('test7Days', $test7Days);
 		$this->set('test30Days', $test30Days);
 		$this->set('testAllDays', $testAllDays);
@@ -218,8 +235,18 @@ class TestsController extends AppController {
 														'conditions'	=>	'TestsQuestion.test_id = tests_subjects.test_id'
 													)
 												),
+								'conditions'	=>	array('TestsQuestion.question_id IN (SELECT DISTINCT Question.id
+																	FROM `questions` AS `Question` 
+																	INNER JOIN `questions_subcategories`  ON (`Question`.`id` = `questions_subcategories`.`question_id`) 
+																	INNER JOIN `subcategories`  ON (`subcategories`.`id` = `questions_subcategories`.`subcategory_id`) 
+																	INNER JOIN `categories`  ON (`categories`.`id` = `subcategories`.`category_id`) 
+																	INNER JOIN `subjects`  ON (`categories`.`subject_id` = `subjects`.`id`)  
+																	WHERE `subjects`.`id` = `tests_subjects`.`subject_id`)'),				
 								'group'		=>	'tests_subjects.subject_id'				
 							));
+
+		
+		
 		$usedQuestion = array();
 		foreach($countUsed AS $subjCount)						
 		{
@@ -258,6 +285,7 @@ class TestsController extends AppController {
 							);
 		$this->set('usedQuestion', $usedQuestion);
 		$this->set('countQuestion', $countQuestion);
+		
 	}
 	
     /**

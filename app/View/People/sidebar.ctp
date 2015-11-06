@@ -1,7 +1,7 @@
 <div class="panel panel-default" style="border: solid 2px #428BCA;">
 	<div class="panel-body">
 		<div class="user-overview">
-			<?php echo $this->Html->image('avatars/'.$user['image'], array('class' => 'avatar')); ?>
+			<?php echo $this->Html->image('avatars/'.(($user['image'])?$user['image']:'no_avatar.gif'), array('class' => 'avatar')); ?>
 			<div class="info-overview">
 				<b><?=$user['fullname'];?></b><br/>
 				<span class="fs-12"><a href="javascript:void(0);" class="hasDetail" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="left" data-html="true" data-content="<b>Điểm kinh nghiệm (Exp)</b><br/>là điểm bạn nhận được khi làm bài hoặc tham gia các sự kiện"><span class="glyphicon glyphicon-question-sign"></span></a> Exp: <?=$data_user['exp'];?></span><br/><br/>

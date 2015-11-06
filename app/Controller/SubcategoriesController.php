@@ -45,8 +45,67 @@ class SubcategoriesController extends AppController {
  * @return void
  */
 	public function index() {
+		$conditions = array();
+		if(isset($this->request->query['search']) && $this->request->query['search']!='')
+		{
+
+			$subject = $this->request->query['subject'];
+			if($subject)
+				$conditions['categories.subject_id'] = $subject;
+			$this->set('csubject', $subject);
+			
+			$grade = $this->request->query['grade'];
+			if($grade)
+				$conditions['categories.grade_id'] = $grade;
+			$this->set('cgrade', $grade);
+			
+			$category = $this->request->query['category'];
+			if($category){
+				$conditions['categories.id'] = $category;
+			}	
+			$this->set('ccategory', $category);
+			
+			//Get current categories list
+			if($grade || $subject){
+				$catConditions = array();
+				if($grade)	$catConditions['Category.grade_id = '] = $grade;
+				if($subject)	$catConditions['Category.subject_id = '] = $subject;
+				$this->loadModel('Category');
+				$categories = $this->Category->find('all', array(
+					'recursive' => 1,
+					'conditions' => $catConditions,
+					'fields' => array('Category.id', 'Category.name')
+				));
+				$this->set('cCategories', $categories);
+			}
+			
+		}
+		
+		$this->Subcategory->virtualFields['number_question'] = 'SELECT COUNT(*) FROM questions_subcategories WHERE subcategory_id = Subcategory.id';
+		$this->paginate = array(
+							'escape'=>false,
+							'fields'=>array('Subcategory.*', 'number_question'), 
+							'joins'	=>	array(
+											array(
+												'table'	=>	'categories',
+												'type'	=>	'INNER',
+												'conditions'	=>	array('categories.id = Subcategory.category_id')
+											)
+										),
+							'conditions'=>$conditions,
+							// 'group'	=>	array('Question.id')
+						);
 		$this->Subcategory->recursive = 0;
 		$this->set('subcategories', $this->Paginator->paginate());
+		
+		$this->loadModel('Subject');
+		$subjects = $this->Subject->find('list');
+		$this->set('subjects', $subjects);
+		
+		$this->loadModel('Grade');
+		$grades = $this->Grade->find('list');
+		$this->set('grades', $grades);
+		
 	}
 
 /**

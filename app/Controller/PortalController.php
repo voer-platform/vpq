@@ -63,6 +63,7 @@ class PortalController extends AppController {
 	
 	public function listNews()
 	{
+		$this->set('title_for_layout', 'Tin tức');
 		$this->loadModel('Newsletter');
 		$this->Newsletter->recursive = -1;
 		$this->paginate = array(
@@ -150,7 +151,7 @@ class PortalController extends AppController {
 	{
 		$this->loadModel('Exp');
 		$options = array(
-						'conditions'	=>	array("Exp.date LIKE '$month%'"),
+						'conditions'	=>	array("Exp.date LIKE '$month%'", "Exp.exp > 0"),
 						'limit'	=>	10,
 						'order'	=>	'Exp.exp DESC'
 					);

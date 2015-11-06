@@ -407,7 +407,7 @@ class PeopleController extends AppController {
     public function logout() {
         $this->Auth->logout();
 		$this->Cookie->delete('reaccess');
-        return $this->redirect($this->Auth->loginAction);
+        return $this->redirect('/');
     }
 
  /*

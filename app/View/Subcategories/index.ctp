@@ -1,10 +1,44 @@
 <div class="subcategories index">
-	<h2><?php echo __('Subcategories'); ?></h2>
+	<h2>Bài học</h2>
+	<hr/>
+	<div class="row">
+		<div class="col-md-12">
+			<form class="form-inline" action="<?=$this->Html->url(array('controller' => 'Subcategories','action' => 'index'));?>">
+				<label>Tìm kiếm </label>&nbsp;
+				<select class="form-control" name="subject" id="subject">
+					<option value="">Môn học</option>
+					<?php foreach($subjects AS $id=>$subject){ ?>
+						<option value="<?php echo $id; ?>" <?php if(isset($csubject) && $csubject==$id) echo 'selected'; ?>><?php echo $subject; ?></option>
+					<?php } ?>
+				</select>
+				
+				<select class="form-control" name="grade" id="grade">
+					<option value="">Lớp</option>
+					<?php foreach($grades AS $id=>$grade){ ?>
+						<option value="<?php echo $id; ?>" <?php if(isset($cgrade) && $cgrade==$id) echo 'selected'; ?>><?php echo $grade; ?></option>
+					<?php } ?>
+				</select>
+				
+				<select class="form-control w-200 sl2" name="category" id="category">
+					<option value="">Chương</option>
+					<?php if(isset($cCategories) && !empty($cCategories)){ ?>
+						<?php foreach($cCategories AS $category){ ?>
+							<option value="<?php echo $category['Category']['id']; ?>" <?php if(isset($ccategory) && $ccategory==$category['Category']['id']) echo 'selected'; ?>><?php echo $category['Category']['name']; ?></option>
+						<?php } ?>
+					<?php } ?>
+				</select>
+			
+				<button type="submit" class="btn btn-primary" name="search" value="true">Tìm kiếm</button>
+				<a href="<?php echo $this->Html->url(array('controller'=>'Subcategories')); ?>" class="btn btn-default">Xóa lọc</a>
+			</form>
+		</div>	
+	</div>	
+	<hr/>
 	<table class="table table-stripped table-bordered">
 	<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
 			<th><?php echo $this->Paginator->sort('name'); ?></th>
-			<th><?php echo $this->Paginator->sort('category_id'); ?></th>
+			<th><?php echo $this->Paginator->sort('number_question'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	<?php foreach ($subcategories as $subcategory): ?>
@@ -12,7 +46,7 @@
 		<td><?php echo h($subcategory['Subcategory']['id']); ?>&nbsp;</td>
 		<td><?php echo h($subcategory['Subcategory']['name']); ?>&nbsp;</td>
 		<td>
-			<?php echo $this->Html->link($subcategory['Category']['name'], array('controller' => 'categories', 'action' => 'view', $subcategory['Category']['id'])); ?>
+			<?php echo h($subcategory['Subcategory']['number_question']); ?>
 		</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $subcategory['Subcategory']['id']), array('class'=>'btn btn-default btn-xs')); ?>

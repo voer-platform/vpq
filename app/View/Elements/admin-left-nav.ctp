@@ -4,7 +4,7 @@
 		<?php echo $this->Html->link(__('Add Mutiple Questions'), array('controller' => 'Admin', 'action' => 'insertMultipleQuestions'), array('class'=>'list-group-item')); ?>
 		<?php echo $this->Html->link(__('Manage People'), array('controller' => 'people', 'action' => 'index'), array('class'=>'list-group-item')); ?>
 		<?php echo $this->Html->link(__('Manage Questions'), array('controller' => 'questions', 'action' => 'index'), array('class'=>'list-group-item')); ?>
-		<?php echo $this->Html->link(__('Manage SubCategories'), array('controller' => 'subcategories', 'action' => 'index'), array('class'=>'list-group-item')); ?>
+		<?php echo $this->Html->link('Bài học', array('controller' => 'subcategories', 'action' => 'index'), array('class'=>'list-group-item')); ?>
 		<?php echo $this->Html->link(__('Categorize'), array('controller' => 'Admin', 'action' => 'manualCategorized'), array('class'=>'list-group-item')); ?>
 		<?php echo $this->Html->link(__('Analystic'), array('controller' => 'Admin', 'action' => 'analystics'), array('class'=>'list-group-item')); ?>
 		<?php echo $this->Html->link(__('Send Facebook Notify'), array('controller' => 'Admin', 'action' => 'sendFacebookNotify'), array('class'=>'list-group-item')); ?>
