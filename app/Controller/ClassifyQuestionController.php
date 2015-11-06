@@ -119,6 +119,15 @@ class ClassifyQuestionController extends AppController {
 
 					$p=round($t/$n,2)*100;					
 					
+					$this->ImportQuestion->id = $questionId;
+								
+					$this->ImportQuestion->save(
+											array(
+												'correct_percent' => $p,
+												'number'		  => $n,
+											)
+					);
+					
 					if($n>=5)
 					{
 						$question = $this->Question->find('all',array('conditions' => array('iquestion_id' => $questionId)));				if($p>=80)
@@ -131,7 +140,7 @@ class ClassifyQuestionController extends AppController {
 													'status' => 0,
 												)
 								);
-							}else{
+							}else{	
 								$data_question = $this->ImportQuestion->find('all',array('conditions' => array('id' => $questionId)));							
 								$this->Question->begin();
 								$error = false;
