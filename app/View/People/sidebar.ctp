@@ -10,10 +10,10 @@
 		<hr class="mgb-10" />
 		Việc học sẽ vui hơn khi có bạn bè. Hãy rủ bạn tham gia ngay nhé!
 		<div class="row mgt-10">
-			<div class="col-md-6 pdr-5">
+			<div class="col-md-6 col-xs-12 pdr-md-5 mgbt-xs-10">
 				<a class='btn btn-primary ib fw' href="javascript:void(0);" onclick="FBShare()"><span class='glyphicon glyphicon-share-alt'></span>&nbsp;&nbsp;<?php echo __('Share'); ?></a>
 			</div>	
-			<div class="col-md-6 pdl-5">
+			<div class="col-md-6 col-xs-12 pdl-md-5">
 				<a class='btn btn-success ib fw' href="javascript:void(0);" onclick="FBInvite()"><span class='glyphicon glyphicon-send'></span>&nbsp;&nbsp;<?php echo __('Invite'); ?></a>
 			</div>	
 		</div>	

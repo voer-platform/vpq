@@ -10,7 +10,7 @@
 		<div class="panel panel-default" style="background:#FCFCFC;">
 			<div class="panel-body">
 				<div class="row">
-					<div class="col-md-3 col-sm-3">
+					<div class="col-md-3 col-sm-3 col-xs-12 mgbt-xs-10">
 						<h2 class="dashboard-subject-name"><?php echo $this->Html->image('subjects/'.$progress['Subject']['id'].'.png'); ?> <?php echo $progress['Subject']['name']; ?></h2>
 							<p>
 								<!--
@@ -47,28 +47,30 @@
 								<span class="glyphicon glyphicon-play"></span> <?php echo __('Do test on this'); ?>
 							</a>
 					</div>		
-					<div class="col-md-9 col-sm-9" style="border-left: solid 1px #C0D0E0;">
-						<div style="display: inline-block;float:left;">
-							<span class="detail-subject-score" style="border-color:<?php echo $this->Name->rankColor($score); ?>" id="subject-score-<?php echo $progress['Subject']['id']; ?>" title="<?php echo __('Score based on latest 10 tests on the subject'); ?>">
-								<span class="subject-score-number"><?php echo $score; ?></span>
-								<span class="detail-subject-score-text" style="color:<?php echo $this->Name->rankColor($score); ?>"><?php echo __('Score'); ?></span>
-							</span>
-						</div>
-						<div style="display: inline-block;float:left;width: 65%;margin-left: 15px;">
-							<?php echo __('Tiến trình học tập'); ?> <a href="javascript:void(0);" class="hasDetail pull-right pls-popover" data-type="Progress Popover" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="top" data-content="Được tính bằng tỷ lệ số bài học đã thực hành trên tổng số bài của môn học này"><span class="glyphicon glyphicon-question-sign"></span></a>
-							
-							<div class="progress" style="margin: 10px 0;">
-								<?php $completeness = round(($cover[$progress['Subject']['id']]['pass']/$cover[$progress['Subject']['id']]['total'])*100); ?>
-								<div class="progress-bar progress-bar-striped" id="subject-cover-<?php echo $progress['Subject']['id']; ?>" style="width: <?php echo $completeness; ?>%;" role="progressbar" aria-valuenow="<?php echo $completeness; ?>" aria-valuemin="0" aria-valuemax="100" id="preogressbar-cover"><?php echo $completeness.'%'; ?></div>
+					<div class="col-md-9 col-sm-9 col-xs-12 no-border-xs" style="border-left: solid 1px #C0D0E0;">
+						<div class="row">
+							<div class="col-md-3 col-xs-3 pdr-xs-5">
+								<span class="detail-subject-score" style="border-color:<?php echo $this->Name->rankColor($score); ?>" id="subject-score-<?php echo $progress['Subject']['id']; ?>" title="<?php echo __('Score based on latest 10 tests on the subject'); ?>">
+									<span class="subject-score-number"><?php echo $score; ?></span>
+									<span class="detail-subject-score-text" style="color:<?php echo $this->Name->rankColor($score); ?>"><?php echo __('Score'); ?></span>
+								</span>
 							</div>
-							
-							Bạn đã thực hành <b class="num-pass"><?php echo $cover[$progress['Subject']['id']]['pass']; ?></b> trên tổng số <b class="num-total"><?php echo $cover[$progress['Subject']['id']]['total']; ?></b> bài học
-							<!--<?php echo __('Rating'); ?>
-							<br/>
-							<div class="progress">
-								<div class="progress-bar progress-bar-info" id="subject-progress-<?php echo $progress['Subject']['id']; ?>" style="width: <?php echo round(($progress['Progress']['sum_progress']/$progress['Progress']['sum_total'])*100); ?>%;" role="progressbar" aria-valuenow="<?php echo round($progress['Progress']['sum_progress']/$progress['Progress']['sum_total']*100); ?>" aria-valuemin="0" aria-valuemax="100" id="preogressbar-rating"><?php echo $progress['Progress']['sum_progress'].'/'.$progress['Progress']['sum_total']; ?></div>
-							</div>-->
-						</div>
+							<div class="col-md-9 col-xs-9 mgl-md-s20 pdl-md-0 pdl-xs-5">
+								<?php echo __('Tiến trình học tập'); ?> <a href="javascript:void(0);" class="hasDetail pull-right pls-popover" data-type="Progress Popover" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="top" data-content="Được tính bằng tỷ lệ số bài học đã thực hành trên tổng số bài của môn học này"><span class="glyphicon glyphicon-question-sign"></span></a>
+								
+								<div class="progress" style="margin: 10px 0;">
+									<?php $completeness = round(($cover[$progress['Subject']['id']]['pass']/$cover[$progress['Subject']['id']]['total'])*100); ?>
+									<div class="progress-bar progress-bar-striped" id="subject-cover-<?php echo $progress['Subject']['id']; ?>" style="width: <?php echo $completeness; ?>%;" role="progressbar" aria-valuenow="<?php echo $completeness; ?>" aria-valuemin="0" aria-valuemax="100" id="preogressbar-cover"><?php echo $completeness.'%'; ?></div>
+								</div>
+								
+								Bạn đã thực hành <b class="num-pass"><?php echo $cover[$progress['Subject']['id']]['pass']; ?></b> trên tổng số <b class="num-total"><?php echo $cover[$progress['Subject']['id']]['total']; ?></b> bài học
+								<!--<?php echo __('Rating'); ?>
+								<br/>
+								<div class="progress">
+									<div class="progress-bar progress-bar-info" id="subject-progress-<?php echo $progress['Subject']['id']; ?>" style="width: <?php echo round(($progress['Progress']['sum_progress']/$progress['Progress']['sum_total'])*100); ?>%;" role="progressbar" aria-valuenow="<?php echo round($progress['Progress']['sum_progress']/$progress['Progress']['sum_total']*100); ?>" aria-valuemin="0" aria-valuemax="100" id="preogressbar-rating"><?php echo $progress['Progress']['sum_progress'].'/'.$progress['Progress']['sum_total']; ?></div>
+								</div>-->
+							</div>
+						</div>	
 					</div>
 				</div>	
 			</div>	
@@ -76,30 +78,37 @@
 		<div>
 			<div class="pd10">
 				<div class="time-range">
-					<span class="pull-left"><b>Biểu đồ học tập</b></span>
-					<div class="btn-group pull-right">
-						<a class="btn btn-default btn-xs dropdown-toggle time-range-select" data-range="custom" data-toggle="dropdown" aria-expanded="false"><?php echo __('Custom'); ?> <span class="caret"></span></a>
-						<div class="dropdown-menu unclickable-dropdown" role="menu">
-							<div class="row">
-								<div class="col-md-12">
-									<div class="form-group">
-										<input type="text" class="form-control datepicker" id="time-range-start" placeholder="Từ ngày" />
-									</div>
-									<div class="form-group">
-										<input type="text" class="form-control datepicker" id="time-range-end" placeholder="Đến ngày" />
-									</div>
-									<div class="form-group right">
-										<button class="btn btn-default btn-sm" id="time-ranger-choose">Đồng ý</button>
-									</div>
-								</div>	
+					<div class="row">
+						<div class="col-md-6 col-xs-12">
+							<span class="pull-left"><b>Biểu đồ học tập</b></span>
+						</div>	
+						<div class="col-md-6 col-xs-12">
+							<div class="btn-group pull-right">
+								<a class="btn btn-default btn-xs dropdown-toggle time-range-select" data-range="custom" data-toggle="dropdown" aria-expanded="false"><?php echo __('Custom'); ?> <span class="caret"></span></a>
+								<div class="dropdown-menu unclickable-dropdown" role="menu">
+									<div class="row">
+										<div class="col-md-12">
+											<div class="form-group">
+												<input type="text" class="form-control datepicker" id="time-range-start" placeholder="Từ ngày" />
+											</div>
+											<div class="form-group">
+												<input type="text" class="form-control datepicker" id="time-range-end" placeholder="Đến ngày" />
+											</div>
+											<div class="form-group right">
+												<button class="btn btn-default btn-sm" id="time-ranger-choose">Đồng ý</button>
+											</div>
+										</div>	
+									</div>	
+								</div>
 							</div>	
-						</div>
+							
+							<!--<a class="pull-right btn btn-primary btn-xs time-range-select" data-range="all"><?php echo __('All time'); ?></a>-->
+							<a class="pull-right btn btn-default  btn-xs time-range-select" data-range="month"><?php echo __('1 Month'); ?></a>
+							<a class="pull-right btn btn-default btn-xs time-range-select" data-range="week"><?php echo __('1 Week'); ?></a>
+							<a class="pull-right btn btn-primary btn-xs time-range-select" data-range="tentimes"><?php echo __('Last 10 times'); ?></a>
+							<h5 class="pull-right hidden-xs"><?php echo __('Time range'); ?></h5>
+						</div>	
 					</div>	
-					<!--<a class="pull-right btn btn-primary btn-xs time-range-select" data-range="all"><?php echo __('All time'); ?></a>-->
-					<a class="pull-right btn btn-default  btn-xs time-range-select" data-range="month"><?php echo __('1 Month'); ?></a>
-					<a class="pull-right btn btn-default btn-xs time-range-select" data-range="week"><?php echo __('1 Week'); ?></a>
-					<a class="pull-right btn btn-primary btn-xs time-range-select" data-range="tentimes"><?php echo __('Last 10 times'); ?></a>
-					<h5 class="pull-right"><?php echo __('Time range'); ?></h5>
 				</div>
 				<div class="chart" id="chart-subject-<?php echo $progress['Subject']['id']; ?>"></div>
 			</div>
@@ -118,7 +127,7 @@
 				  <div class="tab-content">
 					<?php foreach($gradeContents AS $grade){ ?>
 						<div role="tabpanel" class="tab-pane <?php if($grade['Grade']['name']==$user['grade']) echo 'active'; ?>" id="grade<?php echo $grade['Grade']['id']; ?>">
-							<table class="table table-bordered" style="border-top:0;">
+							<table class="table table-bordered subcategory-detail-table" style="border-top:0;">
 								<thead>
 									<th></th>
 									<th class="center"><?php echo __('Score'); ?></th>
@@ -206,10 +215,6 @@
 	/* Mixpanel initial */
 	$('.pls-popover').mouseover(function(){
 		mixpanel.track("Show Popover", {"popover_id": $(this).attr('data-type')});
-	});
-	
-	mixpanel.track_links(".pls-test-btn", "Dashboard Test", function(e){
-		return {"test_on": $(e).attr('data-teston')};
 	});
 	
 	/**
