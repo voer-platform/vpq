@@ -173,6 +173,15 @@ class PartnerController extends Controller {
 									'role'			=> 5
 								)
 			);
+			
+			$this->ImportQuestion->id = $iquestion_id;
+			
+			$this->ImportQuestion->save(
+									array(
+										'correct_percent' => 100,
+										'number'		  => 5,
+									)
+			);
 		}
 				
 		
