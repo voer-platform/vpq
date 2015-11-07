@@ -127,7 +127,7 @@ class Test extends AppModel {
 					'fields'=>array('DISTINCT `Question`.`id`','`Question`.`count`','`Question`.`content`'),
                     'limit' => $numberOfQuestions1,
                     'order' => array('Question.count'=>'asc'),
-                    'conditions' => array('Subcategory.subcategory_id' => $categories),
+                    'conditions' => array('Subcategory.subcategory_id' => $categories, 'Question.status' => 1),
                     'joins'=>array(
                         array(
                             'type'=>'LEFT',
@@ -149,7 +149,7 @@ class Test extends AppModel {
                     'limit' => $numberOfQuestions2,
                     'order' => 'rand()',
                     'conditions' => array(
-											array('Subcategory.subcategory_id' => $categories),
+											array('Subcategory.subcategory_id' => $categories, 'Question.status' => 1),
 											'NOT'=>array(														
 														'Question.id'=> $id_question,
 											),											
