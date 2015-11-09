@@ -1,7 +1,7 @@
 <script type="text/javascript"
   src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
-<?php echo $this->HTML->css('dataTables.bootstrap.min.css'); ?>
+<?php echo $this->Html->css('dataTables.bootstrap.min.css'); ?>
 <?php echo $this->Html->script('jquery.dataTables.min.js');?>
 <?php echo $this->Html->script('dataTables.bootstrap.min.js');?>
 <?php echo $this->Html->css('insert-questions-admin.css'); ?>
