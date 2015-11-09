@@ -52,7 +52,7 @@
 								<?php foreach($allcat as $item=>$ac): ?>
 								<?php $b=1; ?>
 								<?php if($ac['Grade']['id']==$i): ?>
-								<tr>
+								<tr class="hover-pointer">
 									<td class="td_cat" style="padding-left:5px; width:10px;border: solid 1px #ddd;border-right:0px;">
 										<input type="checkbox" class="checkall chkall-<?php echo $i;?>" data-id='<?php echo $ac['Category']['id'] ?>'/>
 									</td>
@@ -126,9 +126,9 @@
             <div class="modal-body" style='text-align:center'>
                 <p id='tb' style='font-size:16px;'>
 					Số lượng câu hỏi không đủ để thực hiện bài kiểm tra này.</br>
-					Giúp chúng tôi phân loại câu hỏi, cũng chính là giúp bạn</br>
-					và những người khác.
+					Giúp PLS phân loại câu hỏi, cũng chính là giúp bạn và những người khác.
 				</p>
+				<a href="/classifyQuestion" target="_blank" class="btn btn-danger"><span class="glyphicon glyphicon-play"></span> Bắt đầu phân loại</a>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
