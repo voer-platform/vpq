@@ -105,7 +105,7 @@
 									<div class="row <?php echo ($noTest)?'blur3':''; ?>">
 										<hr class="mgt-10 mgb-10" />
 										
-										<div class="col-md-4 col-sm-4 pdr-5">
+										<div class="col-md-4 col-sm-4 col-xs-3 pdr-5">
 											<a class="nudl no-style" href="<?php 
 													echo $this->Html->url(
 														array(
@@ -129,7 +129,7 @@
 												
 											</a>	
 										</div>	
-										<div class="col-md-8 col-sm-8  fs-12 pdl-5">
+										<div class="col-md-8 col-sm-8 col-xs-9 fs-12 pdl-5">
 											<?php echo __('Tiến trình học tập'); ?> <a href="javascript:void(0);" class="hasDetail pull-right pls-popover" data-type="Progress Popover" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="top" data-content="Được tính bằng tỷ lệ số bài học đã thực hành trên tổng số bài của môn học này"><span class="glyphicon glyphicon-question-sign"></span></a>
 											
 											<div class="progress" style="margin: 7px 0;">
@@ -405,11 +405,20 @@
         chart.draw(data, options);
     }*/
 	
-	//Check phone device
-	if($('.check-phone').is(':visible')==false)
+	//Check phone device on click test button
+	if($('.check-phone').is(':visible')==true)
 	{
-		window.location.href = PLS.ajaxUrl+'mobile';
-	}
+		mixpanel.track_links(".pls-test-btn", "Dashboard Test", function(e){
+			return {"test_on": $(e).attr('data-teston')};
+		});
+	} else {
+		$(document).on('click', '.pls-test-btn', function(){
+			// window.location.href = PLS.ajaxUrl+'mobile';
+			alert('PLS chưa hỗ trợ mobile, hãy sử dụng máy tính để làm bài bạn nhé!');
+			return false;
+		});
+	};
+	
 	
 	$('.category-row td:first-child').click(function(){
 		catId = $(this).parent().attr('data-id');
