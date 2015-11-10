@@ -141,7 +141,7 @@ class ClassifyQuestionController extends AppController {
 								$this->Question->id = $question[0]['Question']['id'];
 								$this->Question->save(
 												array(
-													'status' => 0,
+													'status' => 1,
 												)
 								);
 							}else{	
@@ -224,7 +224,7 @@ class ClassifyQuestionController extends AppController {
 								$this->Question->id = $question[0]['Question']['id'];
 								$this->Question->save(
 												array(
-													'status' => 1,
+													'status' => 0,
 												)
 								);
 								$this->set('message', 'Phân loại của bạn đã được ghi nhận, hãy tiếp tục với câu hỏi bên dưới nhé! Cảm ơn bạn nhiều ^^!');

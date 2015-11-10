@@ -415,7 +415,7 @@ class PartnerController extends Controller {
 						$this->Question->begin();
 						$error = false;
 						$this->Question->create();
-						if($this->Question->save(
+						if($this->Question->saveAll(
 												array(
 													'content'	=>$data_question[0]['ImportQuestion']['question'],
 													'difficulty'=>0,
@@ -424,13 +424,12 @@ class PartnerController extends Controller {
 													'time'		=>0,
 													'report'	=>0,
 													'wrong'		=>0,
-													'status'	=>0,
+													'status'	=>1,
 													'iquestion_id'	=> $this->request->data['id'],
 												)									
 						)){
 							$insert_id=$this->Question->getLastInsertId();
-							$this->QuestionsSubcategory->create();
-							if(!$this->QuestionsSubcategory->save(
+							if(!$this->QuestionsSubcategory->saveAll(
 													array(
 														'question_id'=>$insert_id,
 														'subcategory_id'=>$data_question[0]['ImportQuestion']['subcategory_id'],
@@ -451,9 +450,8 @@ class PartnerController extends Controller {
 							);
 							for($i=0;$i<=4;$i++)
 							{
-								$this->Answer->create();
 								if($i==$data_question[0]['ImportQuestion']['answer_correct']){
-									if(!$this->Answer->save(
+									if(!$this->Answer->saveAll(
 													array(
 														'question_id'	=>	$insert_id,
 														'order'			=>	$i,
@@ -464,7 +462,7 @@ class PartnerController extends Controller {
 										$error	= true;
 									}
 								}else{
-									if(!$this->Answer->save(
+									if(!$this->Answer->saveAll(
 													array(
 														'question_id'	=>	$insert_id,
 														'order'			=>	$i,
