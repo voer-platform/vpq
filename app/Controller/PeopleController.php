@@ -495,6 +495,8 @@ class PeopleController extends AppController {
 												)	
 											)
 										);
+			// $log = $this->Grade->getDataSource()->getLog(false, false);
+			// debug($log);
 			$progressDetail = $this->Progress->progressOnGrade($user_id);
 			//pr($progressDetail);
 			
