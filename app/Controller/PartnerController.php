@@ -412,9 +412,7 @@ class PartnerController extends Controller {
 						$this->redirect(array('controller' =>'partner', 'action' => 'list_questions'));
 						$this->Session->setFlash(__('Xác nhận thành công'));
 					}else{
-						$this->Question->begin();
-						$error = false;
-						$this->Question->create();
+
 						if($this->Question->saveAll(
 												array(
 													'content'	=>$data_question[0]['ImportQuestion']['question'],
@@ -438,9 +436,8 @@ class PartnerController extends Controller {
 														'subcategory2_id'=>0,
 														'persion2_id_id'=>null,
 													)
-							)){
-								$error = true; 
-							}
+							));
+							
 							$content=array(
 										'0'	=> $data_question[0]['ImportQuestion']['answer_a'],
 										'1'	=> $data_question[0]['ImportQuestion']['answer_b'],
@@ -448,6 +445,7 @@ class PartnerController extends Controller {
 										'3'	=> $data_question[0]['ImportQuestion']['answer_d'],
 										'4'	=> $data_question[0]['ImportQuestion']['answer_e'],
 							);
+							
 							for($i=0;$i<=4;$i++)
 							{
 								if($i==$data_question[0]['ImportQuestion']['answer_correct']){
@@ -458,9 +456,7 @@ class PartnerController extends Controller {
 														'content'		=>  $content[$i],
 														'correctness'	=>	1,
 													)
-									)){
-										$error	= true;
-									}
+									));
 								}else{
 									if(!$this->Answer->saveAll(
 													array(
@@ -469,23 +465,13 @@ class PartnerController extends Controller {
 														'content'		=>  $content[$i],
 														'correctness'	=> 	0,
 													)
-									)){
-										$error = true; 
-									}
+									));
 								}
 							}
 						};
-						if($error) {
-							$this->Question->rollback();
-							$this->Session->setFlash(__('Có lỗi xảy ra trong quá trình cập nhật câu hỏi.'));
-						}
-						else
-						{							
-							$this->Question->commit();
-							echo $insert_id;
-							$this->redirect(array('controller' =>'partner', 'action' => 'list_questions'));
-							$this->Session->setFlash(__('Câu hỏi đã được xác nhận.'));
-						}
+						echo $insert_id;
+						$this->redirect(array('controller' =>'partner', 'action' => 'list_questions'));
+						$this->Session->setFlash(__('Câu hỏi đã được xác nhận.'));
 					}
 				}else{
 					$this->Session->setFlash(__('Duyệt thất bại'));
