@@ -293,4 +293,53 @@ class ClassifyQuestionController extends AppController {
 	    return parent::isAuthorized($user);
 	}	
 	
+	public function updateClassifyData()
+	{
+		$this->autoRender = false;
+		$this->loadModel('ClassifyQuestion');
+		$this->loadModel('ImportQuestion');
+		
+		$listQuestion = $this->ClassifyQuestion->find('all', array('fields' => array('DISTINCT iquestion_id')));
+		
+		foreach ($listQuestion AS $question) {
+			$questionId = $question['ClassifyQuestion']['iquestion_id'];
+
+			$dataiquestion = $this->ClassifyQuestion->find('all',array('conditions' => array('iquestion_id' => $questionId)));
+			$n=0;
+			$statistical = array();
+			foreach($dataiquestion as $key=>$value)
+			{
+				$n = $n + $value['ClassifyQuestion']['role'];
+				if(array_key_exists($value['ClassifyQuestion']['subcategories_id'],$statistical))
+				{
+					$statistical[$value['ClassifyQuestion']['subcategories_id']] = $statistical[$value['ClassifyQuestion']['subcategories_id']] + $value['ClassifyQuestion']['role'];
+				}else{
+					$statistical[$value['ClassifyQuestion']['subcategories_id']] = $value['ClassifyQuestion']['role'];
+				}
+			}
+			
+			$t=0;					
+			foreach($statistical as $key=>$value)
+			{
+				if($value>$t)
+				{
+					$t=$value;
+					$correct_subcatergory=$key;
+				}
+			}
+
+			$p=round($t/$n,2)*100;					
+			
+			$this->ImportQuestion->id = $questionId;
+						
+			$this->ImportQuestion->save(
+									array(
+										'correct_percent' => $p,
+										'number'		  => $n,
+									)
+			);
+		}	
+	}
+	
+	
 }

@@ -120,66 +120,70 @@
 				  <!-- Nav tabs -->
 				  <ul class="nav nav-tabs grade-tabs" role="tablist">
 					<?php foreach($gradeContents AS $grade){ ?>
-						<li role="presentation" class="<?php if( $grade['Grade']['name']==$user['grade']) echo 'active'; ?>"><a href="#grade<?php echo $grade['Grade']['id']; ?>" aria-controls="grade<?php echo $grade['Grade']['id']; ?>" role="tab" data-toggle="tab"><?php echo __('Grade').' '.$grade['Grade']['name']; ?></a></li>
+						<?php if (!empty($grade['Category']) && $grade['Grade']['id'] != 4) { ?>
+							<li role="presentation" class="<?php if( $grade['Grade']['name']==$user['grade']) echo 'active'; ?>"><a href="#grade<?php echo $grade['Grade']['id']; ?>" aria-controls="grade<?php echo $grade['Grade']['id']; ?>" role="tab" data-toggle="tab"><?php echo __('Grade').' '.$grade['Grade']['name']; ?></a></li>
+						<?php } ?>	
 					<?php } ?>
 				  </ul>
 				  <!-- Tab panes -->
 				  <div class="tab-content">
 					<?php foreach($gradeContents AS $grade){ ?>
-						<div role="tabpanel" class="tab-pane <?php if($grade['Grade']['name']==$user['grade']) echo 'active'; ?>" id="grade<?php echo $grade['Grade']['id']; ?>">
-							<table class="table table-bordered subcategory-detail-table" style="border-top:0;">
-								<thead>
-									<th></th>
-									<th class="center"><?php echo __('Score'); ?></th>
-									<th class="center"><?php echo __('Rank'); ?></th>
-									<th class="center"><?php echo __('Test'); ?></th>
-								</thead>
-							<?php foreach($grade['Category'] AS $category){ ?>
-								<tr class="category-row" data-id="<?php echo $category['id']; ?>">
-									<td>
-										<a href="javascript:void(0);"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp; Chương: <?php echo $category['name']; ?></a>
-									</td>
-									<td class="center w-100">
-										<b><?php echo (isset($progressDetail['category'][$category['id']]))?$progressDetail['category'][$category['id']]:'-'; ?></b>
-									</td>
-									<td class="center w-100">
-										<?php $rank = (isset($progressDetail['category'][$category['id']]))?$this->Name->determineRank($progressDetail['category'][$category['id']]):'-'; ?>
-											<span class="label label-<?php echo (is_array($rank))?$rank['color']:''; ?>"><?php echo (is_array($rank))?$rank['rank']:'-'; ?></span>
-									</td>
-									<td class="center w-100">
-										<a href="<?php echo $this->Html->url(array('controller' => 'Tests', 
-																				'action' => 'chooseTest', 
-																				$progress['Subject']['id'],
-																				'?'	=>	array('category'=>$category['id']))); ?>" class="pls-test-btn" data-teston="category">
-											<button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-play"></span> <?=__('Test'); ?></button>
-										</a>
-									</td>
-								</tr>
-								<?php foreach($category['Subcategory'] AS $subcategory){ ?>
-									<tr class="subcategory-row subcategory-<?php echo $category['id']; ?>">
+						<?php if (!empty($grade['Category'])) { ?>
+							<div role="tabpanel" class="tab-pane <?php if($grade['Grade']['name']==$user['grade'] || $grade['Grade']['id'] == 4) echo 'active'; ?>" id="grade<?php echo $grade['Grade']['id']; ?>">
+								<table class="table table-bordered subcategory-detail-table" style="border-top:0;">
+									<thead>
+										<th></th>
+										<th class="center"><?php echo __('Score'); ?></th>
+										<th class="center"><?php echo __('Rank'); ?></th>
+										<th class="center"><?php echo __('Test'); ?></th>
+									</thead>
+								<?php foreach($grade['Category'] AS $category){ ?>
+									<tr class="category-row" data-id="<?php echo $category['id']; ?>">
 										<td>
-											&emsp;&emsp;Bài: <?php echo $subcategory['name']; ?>
+											<a href="javascript:void(0);"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp; Chương: <?php echo $category['name']; ?></a>
 										</td>
-										<td class="center">
-											<b><?php echo (isset($progressDetail['subcategory'][$subcategory['id']]))?$progressDetail['subcategory'][$subcategory['id']]:'-'; ?></b>
+										<td class="center w-100">
+											<b><?php echo (isset($progressDetail['category'][$category['id']]))?$progressDetail['category'][$category['id']]:'-'; ?></b>
 										</td>
-										<td class="center">
-											<?php $rank = (isset($progressDetail['subcategory'][$subcategory['id']]))?$this->Name->determineRank($progressDetail['subcategory'][$subcategory['id']]):'-'; ?>
-											<span class="label label-<?php echo (is_array($rank))?$rank['color']:''; ?>"><?php echo (is_array($rank))?$rank['rank']:'-'; ?></span>
+										<td class="center w-100">
+											<?php $rank = (isset($progressDetail['category'][$category['id']]))?$this->Name->determineRank($progressDetail['category'][$category['id']]):'-'; ?>
+												<span class="label label-<?php echo (is_array($rank))?$rank['color']:''; ?>"><?php echo (is_array($rank))?$rank['rank']:'-'; ?></span>
 										</td>
 										<td class="center w-100">
 											<a href="<?php echo $this->Html->url(array('controller' => 'Tests', 
-																				'action' => 'chooseTest', 
-																				$progress['Subject']['id'],
-																				'?' => array('subcategory' => $subcategory['id']))); ?>" class="pls-test-btn" data-teston="subcategory">
+																					'action' => 'chooseTest', 
+																					$progress['Subject']['id'],
+																					'?'	=>	array('category'=>$category['id']))); ?>" class="pls-test-btn" data-teston="category">
 												<button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-play"></span> <?=__('Test'); ?></button>
-											</a>	
+											</a>
 										</td>
 									</tr>
+									<?php foreach($category['Subcategory'] AS $subcategory){ ?>
+										<tr class="subcategory-row subcategory-<?php echo $category['id']; ?>">
+											<td>
+												&emsp;&emsp;Bài: <?php echo $subcategory['name']; ?>
+											</td>
+											<td class="center">
+												<b><?php echo (isset($progressDetail['subcategory'][$subcategory['id']]))?$progressDetail['subcategory'][$subcategory['id']]:'-'; ?></b>
+											</td>
+											<td class="center">
+												<?php $rank = (isset($progressDetail['subcategory'][$subcategory['id']]))?$this->Name->determineRank($progressDetail['subcategory'][$subcategory['id']]):'-'; ?>
+												<span class="label label-<?php echo (is_array($rank))?$rank['color']:''; ?>"><?php echo (is_array($rank))?$rank['rank']:'-'; ?></span>
+											</td>
+											<td class="center w-100">
+												<a href="<?php echo $this->Html->url(array('controller' => 'Tests', 
+																					'action' => 'chooseTest', 
+																					$progress['Subject']['id'],
+																					'?' => array('subcategory' => $subcategory['id']))); ?>" class="pls-test-btn" data-teston="subcategory">
+													<button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-play"></span> <?=__('Test'); ?></button>
+												</a>	
+											</td>
+										</tr>
+									<?php } ?>
 								<?php } ?>
-							<?php } ?>
-							</table>
-						</div>
+								</table>
+							</div>
+						<?php } ?>
 					<?php } ?>
 				  </div>
 

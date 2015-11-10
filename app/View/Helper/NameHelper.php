@@ -163,4 +163,15 @@ class NameHelper extends AppHelper {
             return '#777';
         }
     }
+	
+	public function subjectHasGrade($subject_id) {
+		$Subject = new Subject();
+        $subject = $Subject->find('first', array(
+            'conditions' => array('Subject.id' => $subject_id)
+            ));
+        if($subject){
+            return $subject['Subject']['has_grade'];    
+        }
+	}
+	
 }
