@@ -374,15 +374,35 @@ class PartnerController extends Controller {
 		}
 		//$same_question=$this->Question->query("SELECT * FROM questions WHERE content LIKE '$string%'");
 		$this->Paginator->settings = array(
+			'fields'	=> array(
+									'Question.id',
+									'Question.content',
+									'ans.content'
+								),
 			'limit' => 5,
 			'recursive' => -1,
+			'joins'	=>	array(
+							array(
+								'table'	=>	'answers',
+								'alias'	=>	'ans',
+								'type'	=>	'INNER',
+								'conditions'	=>	array('ans.question_id = Question.id')
+							)
+						),
 			'conditions'=>array(
-							'content LIKE'=>$string.'%',
+							'Question.content LIKE'=>$string.'%',
 			)
 		);
 		$same_question = $this->Paginator->paginate('Question');
-		$this->set('count_same',count($same_question));
-		$this->set('same_question',$same_question);
+		$same_question2=array();
+		foreach($same_question as $value)
+		{
+			$same_question2[$value['Question']['id']]['question'] = $value['Question']['content'];
+			$same_question2[$value['Question']['id']]['answers'][] = $value['ans']['content'];
+			
+		}
+		$this->set('count_same',count($same_question2));
+		$this->set('same_question2',$same_question2);
 		//pr($same_question);
 		$correct=explode(' ',trim($data_question[0]['ImportQuestion']['answer_correct']));
 		foreach($correct as $correct){

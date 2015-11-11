@@ -162,10 +162,15 @@
 					<th style='text-align:center;width:70px'>STT</th>
 					<th style='text-align:center;'>Câu hỏi</th>
 				</tr>
-				<?php foreach($same_question as $sq): ?>
+				<?php foreach($same_question2 as $sq): ?>
 					<tr>
 						<td style='text-align:center;'><?php echo $i; ?></td>
-						<td><?php echo $sq['Question']['content']; ?></td>
+						<td>
+							<?php echo $sq['question']; ?>
+							<?php foreach($sq['answers'] as $value){ ?>
+								- <?php echo $value; ?></br>
+							<?php } ?>
+						</td>
 					</tr>
 					<?php $i++; ?>	
 				<?php endforeach; ?>
