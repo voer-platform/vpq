@@ -541,7 +541,7 @@ class PartnerController extends Controller {
 					'recursive' => -1,
 					'conditions' => array("role='editor'")
 					);
-			$people_insert=$this->Person->find('all',$option0);								
+			$people_insert=$this->Person->find('all',$option0);
 			foreach($people_insert as $key=>$value)
 			{
 					$id=$value['Person']['id'];					
@@ -599,6 +599,66 @@ class PartnerController extends Controller {
 					);
 					$wait=$this->ImportQuestion->find('count',$option9);
 					$people_insert[$key]['Person']['wait']=$wait;
+					$option10 = array(
+						'recursive' => -1,
+						'conditions' => array("subject_id='3' AND solution!='' AND check_question='1' AND user='$id'")
+					);
+					$has_solution_math=$this->ImportQuestion->find('count',$option10);
+					$people_insert[$key]['Person']['has_solution_math']=$has_solution_math;
+					$option11 = array(
+						'recursive' => -1,
+						'conditions' => array("subject_id='2' AND solution!='' AND check_question='1' AND user='$id'")
+					);
+					$has_solution_physical=$this->ImportQuestion->find('count',$option11);
+					$people_insert[$key]['Person']['has_solution_physical']=$has_solution_physical;
+					$option12 = array(
+						'recursive' => -1,
+						'conditions' => array("subject_id='4' AND solution!='' AND check_question='1' AND user='$id'")
+					);
+					$has_solution_chemistry=$this->ImportQuestion->find('count',$option12);
+					$people_insert[$key]['Person']['has_solution_chemistry']=$has_solution_chemistry;
+					$option13 = array(
+						'recursive' => -1,
+						'conditions' => array("subject_id='1' AND solution!='' AND check_question='1' AND user='$id'")
+					);
+					$has_solution_english=$this->ImportQuestion->find('count',$option13);
+					$people_insert[$key]['Person']['has_solution_english']=$has_solution_english;
+					$option14 = array(
+						'recursive' => -1,
+						'conditions' => array("subject_id='8' AND solution!='' AND check_question='1' AND user='$id'")
+					);
+					$has_solution_biological=$this->ImportQuestion->find('count',$option14);
+					$people_insert[$key]['Person']['has_solution_biological']=$has_solution_biological;
+					$option15 = array(
+						'recursive' => -1,
+						'conditions' => array("subject_id='3' AND solution='' AND check_question='1' AND user='$id'")
+					);
+					$check_math=$this->ImportQuestion->find('count',$option15);
+					$people_insert[$key]['Person']['check_math']=$check_math;
+					$option16 = array(
+						'recursive' => -1,
+						'conditions' => array("subject_id='2' AND solution='' AND check_question='1' AND user='$id'")
+					);
+					$check_physical=$this->ImportQuestion->find('count',$option16);
+					$people_insert[$key]['Person']['check_physical']=$check_physical;
+					$option17 = array(
+						'recursive' => -1,
+						'conditions' => array("subject_id='4' AND solution='' AND check_question='1' AND user='$id'")
+					);
+					$check_chemistry=$this->ImportQuestion->find('count',$option17);
+					$people_insert[$key]['Person']['check_chemistry']=$check_chemistry;
+					$option18 = array(
+						'recursive' => -1,
+						'conditions' => array("subject_id='1' AND solution='' AND check_question='1' AND user='$id'")
+					);
+					$check_english=$this->ImportQuestion->find('count',$option18);
+					$people_insert[$key]['Person']['check_english']=$check_english;
+					$option19 = array(
+						'recursive' => -1,
+						'conditions' => array("subject_id='8' AND solution='' AND check_question='1' AND user='$id'")
+					);
+					$check_biological=$this->ImportQuestion->find('count',$option19);
+					$people_insert[$key]['Person']['check_biological']=$check_biological;
 			};
 			$this->set('people_insert',$people_insert);
 			$option_total1 = array(

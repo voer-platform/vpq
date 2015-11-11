@@ -14,11 +14,11 @@
 				<tr>
 					<th style="text-align:center;width:200px;background-color:#d9edf7;">Họ tên</th>
 					<th style="text-align:center;width:150px;background-color:#d9edf7;">Tổng số câu</th>
-					<th style="text-align:center;width:100px;background-color:#d9edf7;">Toán</th>
-					<th style="text-align:center;width:100px;background-color:#d9edf7;">Lý</th>
-					<th style="text-align:center;width:100px;background-color:#d9edf7;">Hóa</th>
-					<th style="text-align:center;width:100px;background-color:#d9edf7;">Anh</th>
-					<th style="text-align:center;width:100px;background-color:#d9edf7;">Sinh</th>
+					<th style="text-align:center;width:150px;background-color:#d9edf7;">Toán</th>
+					<th style="text-align:center;width:150px;background-color:#d9edf7;">Lý</th>
+					<th style="text-align:center;width:150px;background-color:#d9edf7;">Hóa</th>
+					<th style="text-align:center;width:150px;background-color:#d9edf7;">Anh</th>
+					<th style="text-align:center;width:150px;background-color:#d9edf7;">Sinh</th>
 					<th style="text-align:center;width:120px;background-color:#d9edf7;">Hủy</th>
 					<th style="text-align:center;width:120px;background-color:#d9edf7;">Đã kiểm tra</th>
 					<th style="text-align:center;width:120px;background-color:#d9edf7;">Thanh Toán</th>
@@ -29,11 +29,11 @@
 					<tr>
 						<td><?php echo $value['Person']['fullname'] ?></td>
 						<td style="text-align:center;"><?php echo $value['Person']['total'] ?></td>
-						<td style="text-align:center;"><?php echo $value['Person']['math'] ?></td>
-						<td style="text-align:center;"><?php echo $value['Person']['physical'] ?></td>
-						<td style="text-align:center;"><?php echo $value['Person']['chemistry'] ?></td>
-						<td style="text-align:center;"><?php echo $value['Person']['english'] ?></td>
-						<td style="text-align:center;"><?php echo $value['Person']['biological'] ?></td>
+						<td style="text-align:center;"><?php echo $value['Person']['has_solution_math'] ?> / <?php echo $value['Person']['check_math'] ?> / <?php echo $value['Person']['math'] ?></td>
+						<td style="text-align:center;"><?php echo $value['Person']['has_solution_physical'] ?>/ <?php echo $value['Person']['check_physical'] ?> / <?php echo $value['Person']['physical'] ?></td>
+						<td style="text-align:center;"><?php echo $value['Person']['has_solution_chemistry'] ?>/ <?php echo $value['Person']['check_chemistry'] ?> / <?php echo $value['Person']['chemistry'] ?></td>
+						<td style="text-align:center;"><?php echo $value['Person']['has_solution_english'] ?>/ <?php echo $value['Person']['check_english'] ?> / <?php echo $value['Person']['english'] ?></td>
+						<td style="text-align:center;"><?php echo $value['Person']['has_solution_biological'] ?>/ <?php echo $value['Person']['check_biological'] ?> / <?php echo $value['Person']['biological'] ?></td>
 						<td style="text-align:center;"><?php echo $value['Person']['delete'] ?></td>
 						<td style="text-align:center;"><?php echo $value['Person']['status'] ?></td>
 						<td style="text-align:center;"><?php echo $value['Person']['number'] ?></td>
