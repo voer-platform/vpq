@@ -141,15 +141,12 @@ class ClassifyQuestionController extends AppController {
 								$this->Question->id = $question[0]['Question']['id'];
 								$this->Question->save(
 												array(
-													'status' => 0,
+													'status' => 1,
 												)
 								);
 							}else{	
-								$data_question = $this->ImportQuestion->find('all',array('conditions' => array('id' => $questionId)));							
-								$this->Question->begin();
-								$error = false;
-								$this->Question->create();
-								if($this->Question->save(
+								$data_question = $this->ImportQuestion->find('all',array('conditions' => array('id' => $questionId)));
+								if($this->Question->saveAll(
 														array(
 															'content'	=>$data_question[0]['ImportQuestion']['question'],
 															'difficulty'=>0,
@@ -158,13 +155,12 @@ class ClassifyQuestionController extends AppController {
 															'time'		=>0,
 															'report'	=>0,
 															'wrong'		=>0,
-															'status'	=>0,
+															'status'	=>1,
 															'iquestion_id'	=> $data_question[0]['ImportQuestion']['id'],
 														)									
 								)){
 									$insert_id=$this->Question->getLastInsertId();
-									$this->QuestionsSubcategory->create();
-									if(!$this->QuestionsSubcategory->save(
+									if(!$this->QuestionsSubcategory->saveAll(
 															array(
 																'question_id'=>$insert_id,
 																'subcategory_id'=>$correct_subcatergory,
@@ -173,9 +169,7 @@ class ClassifyQuestionController extends AppController {
 																'subcategory2_id'=>0,
 																'persion2_id_id'=>null,
 															)
-									)){
-										$error = true; 
-									}
+									));
 									$content=array(
 												'0'	=> $data_question[0]['ImportQuestion']['answer_a'],
 												'1'	=> $data_question[0]['ImportQuestion']['answer_b'],
@@ -185,20 +179,17 @@ class ClassifyQuestionController extends AppController {
 									);
 									for($i=0;$i<=4;$i++)
 									{
-										$this->Answer->create();
 										if($i==$data_question[0]['ImportQuestion']['answer_correct']){
-											if(!$this->Answer->save(
+											if(!$this->Answer->saveAll(
 															array(
 																'question_id'	=>	$insert_id,
 																'order'			=>	$i,
 																'content'		=>  $content[$i],
 																'correctness'	=>	1,
 															)
-											)){
-												$error	= true;
-											}
+											));
 										}else{
-											if(!$this->Answer->save(
+											if(!$this->Answer->saveAll(
 															array(
 																'question_id'	=>	$insert_id,
 																'order'			=>	$i,
@@ -208,15 +199,8 @@ class ClassifyQuestionController extends AppController {
 											));
 										}
 									}
-								};
-								if($error){
-									$this->Question->rollback();
-								}
-								else
-								{							
-									$this->Question->commit();
-									$this->set('message', 'Phân loại của bạn đã được ghi nhận, hãy tiếp tục với câu hỏi bên dưới nhé! Cảm ơn bạn nhiều ^^!');
-								}
+								};						
+								$this->set('message', 'Phân loại của bạn đã được ghi nhận, hãy tiếp tục với câu hỏi bên dưới nhé! Cảm ơn bạn nhiều ^^!');
 							}
 						}else{
 							if($question)
@@ -224,7 +208,7 @@ class ClassifyQuestionController extends AppController {
 								$this->Question->id = $question[0]['Question']['id'];
 								$this->Question->save(
 												array(
-													'status' => 1,
+													'status' => 0,
 												)
 								);
 								$this->set('message', 'Phân loại của bạn đã được ghi nhận, hãy tiếp tục với câu hỏi bên dưới nhé! Cảm ơn bạn nhiều ^^!');

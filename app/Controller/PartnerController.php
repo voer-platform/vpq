@@ -374,15 +374,35 @@ class PartnerController extends Controller {
 		}
 		//$same_question=$this->Question->query("SELECT * FROM questions WHERE content LIKE '$string%'");
 		$this->Paginator->settings = array(
+			'fields'	=> array(
+									'Question.id',
+									'Question.content',
+									'ans.content'
+								),
 			'limit' => 5,
 			'recursive' => -1,
+			'joins'	=>	array(
+							array(
+								'table'	=>	'answers',
+								'alias'	=>	'ans',
+								'type'	=>	'INNER',
+								'conditions'	=>	array('ans.question_id = Question.id')
+							)
+						),
 			'conditions'=>array(
-							'content LIKE'=>$string.'%',
+							'Question.content LIKE'=>$string.'%',
 			)
 		);
 		$same_question = $this->Paginator->paginate('Question');
-		$this->set('count_same',count($same_question));
-		$this->set('same_question',$same_question);
+		$same_question2=array();
+		foreach($same_question as $value)
+		{
+			$same_question2[$value['Question']['id']]['question'] = $value['Question']['content'];
+			$same_question2[$value['Question']['id']]['answers'][] = $value['ans']['content'];
+			
+		}
+		$this->set('count_same',count($same_question2));
+		$this->set('same_question2',$same_question2);
 		//pr($same_question);
 		$correct=explode(' ',trim($data_question[0]['ImportQuestion']['answer_correct']));
 		foreach($correct as $correct){
@@ -412,10 +432,8 @@ class PartnerController extends Controller {
 						$this->redirect(array('controller' =>'partner', 'action' => 'list_questions'));
 						$this->Session->setFlash(__('Xác nhận thành công'));
 					}else{
-						$this->Question->begin();
-						$error = false;
-						$this->Question->create();
-						if($this->Question->save(
+
+						if($this->Question->saveAll(
 												array(
 													'content'	=>$data_question[0]['ImportQuestion']['question'],
 													'difficulty'=>0,
@@ -424,13 +442,12 @@ class PartnerController extends Controller {
 													'time'		=>0,
 													'report'	=>0,
 													'wrong'		=>0,
-													'status'	=>0,
+													'status'	=>1,
 													'iquestion_id'	=> $this->request->data['id'],
 												)									
 						)){
 							$insert_id=$this->Question->getLastInsertId();
-							$this->QuestionsSubcategory->create();
-							if(!$this->QuestionsSubcategory->save(
+							if(!$this->QuestionsSubcategory->saveAll(
 													array(
 														'question_id'=>$insert_id,
 														'subcategory_id'=>$data_question[0]['ImportQuestion']['subcategory_id'],
@@ -439,9 +456,8 @@ class PartnerController extends Controller {
 														'subcategory2_id'=>0,
 														'persion2_id_id'=>null,
 													)
-							)){
-								$error = true; 
-							}
+							));
+							
 							$content=array(
 										'0'	=> $data_question[0]['ImportQuestion']['answer_a'],
 										'1'	=> $data_question[0]['ImportQuestion']['answer_b'],
@@ -449,45 +465,33 @@ class PartnerController extends Controller {
 										'3'	=> $data_question[0]['ImportQuestion']['answer_d'],
 										'4'	=> $data_question[0]['ImportQuestion']['answer_e'],
 							);
+							
 							for($i=0;$i<=4;$i++)
 							{
-								$this->Answer->create();
 								if($i==$data_question[0]['ImportQuestion']['answer_correct']){
-									if(!$this->Answer->save(
+									if(!$this->Answer->saveAll(
 													array(
 														'question_id'	=>	$insert_id,
 														'order'			=>	$i,
 														'content'		=>  $content[$i],
 														'correctness'	=>	1,
 													)
-									)){
-										$error	= true;
-									}
+									));
 								}else{
-									if(!$this->Answer->save(
+									if(!$this->Answer->saveAll(
 													array(
 														'question_id'	=>	$insert_id,
 														'order'			=>	$i,
 														'content'		=>  $content[$i],
 														'correctness'	=> 	0,
 													)
-									)){
-										$error = true; 
-									}
+									));
 								}
 							}
 						};
-						if($error) {
-							$this->Question->rollback();
-							$this->Session->setFlash(__('Có lỗi xảy ra trong quá trình cập nhật câu hỏi.'));
-						}
-						else
-						{							
-							$this->Question->commit();
-							echo $insert_id;
-							$this->redirect(array('controller' =>'partner', 'action' => 'list_questions'));
-							$this->Session->setFlash(__('Câu hỏi đã được xác nhận.'));
-						}
+						echo $insert_id;
+						$this->redirect(array('controller' =>'partner', 'action' => 'list_questions'));
+						$this->Session->setFlash(__('Câu hỏi đã được xác nhận.'));
 					}
 				}else{
 					$this->Session->setFlash(__('Duyệt thất bại'));
@@ -557,7 +561,7 @@ class PartnerController extends Controller {
 					'recursive' => -1,
 					'conditions' => array("role='editor'")
 					);
-			$people_insert=$this->Person->find('all',$option0);								
+			$people_insert=$this->Person->find('all',$option0);
 			foreach($people_insert as $key=>$value)
 			{
 					$id=$value['Person']['id'];					
@@ -615,6 +619,66 @@ class PartnerController extends Controller {
 					);
 					$wait=$this->ImportQuestion->find('count',$option9);
 					$people_insert[$key]['Person']['wait']=$wait;
+					$option10 = array(
+						'recursive' => -1,
+						'conditions' => array("subject_id='3' AND solution!='' AND check_question='1' AND user='$id'")
+					);
+					$has_solution_math=$this->ImportQuestion->find('count',$option10);
+					$people_insert[$key]['Person']['has_solution_math']=$has_solution_math;
+					$option11 = array(
+						'recursive' => -1,
+						'conditions' => array("subject_id='2' AND solution!='' AND check_question='1' AND user='$id'")
+					);
+					$has_solution_physical=$this->ImportQuestion->find('count',$option11);
+					$people_insert[$key]['Person']['has_solution_physical']=$has_solution_physical;
+					$option12 = array(
+						'recursive' => -1,
+						'conditions' => array("subject_id='4' AND solution!='' AND check_question='1' AND user='$id'")
+					);
+					$has_solution_chemistry=$this->ImportQuestion->find('count',$option12);
+					$people_insert[$key]['Person']['has_solution_chemistry']=$has_solution_chemistry;
+					$option13 = array(
+						'recursive' => -1,
+						'conditions' => array("subject_id='1' AND solution!='' AND check_question='1' AND user='$id'")
+					);
+					$has_solution_english=$this->ImportQuestion->find('count',$option13);
+					$people_insert[$key]['Person']['has_solution_english']=$has_solution_english;
+					$option14 = array(
+						'recursive' => -1,
+						'conditions' => array("subject_id='8' AND solution!='' AND check_question='1' AND user='$id'")
+					);
+					$has_solution_biological=$this->ImportQuestion->find('count',$option14);
+					$people_insert[$key]['Person']['has_solution_biological']=$has_solution_biological;
+					$option15 = array(
+						'recursive' => -1,
+						'conditions' => array("subject_id='3' AND solution='' AND check_question='1' AND user='$id'")
+					);
+					$check_math=$this->ImportQuestion->find('count',$option15);
+					$people_insert[$key]['Person']['check_math']=$check_math;
+					$option16 = array(
+						'recursive' => -1,
+						'conditions' => array("subject_id='2' AND solution='' AND check_question='1' AND user='$id'")
+					);
+					$check_physical=$this->ImportQuestion->find('count',$option16);
+					$people_insert[$key]['Person']['check_physical']=$check_physical;
+					$option17 = array(
+						'recursive' => -1,
+						'conditions' => array("subject_id='4' AND solution='' AND check_question='1' AND user='$id'")
+					);
+					$check_chemistry=$this->ImportQuestion->find('count',$option17);
+					$people_insert[$key]['Person']['check_chemistry']=$check_chemistry;
+					$option18 = array(
+						'recursive' => -1,
+						'conditions' => array("subject_id='1' AND solution='' AND check_question='1' AND user='$id'")
+					);
+					$check_english=$this->ImportQuestion->find('count',$option18);
+					$people_insert[$key]['Person']['check_english']=$check_english;
+					$option19 = array(
+						'recursive' => -1,
+						'conditions' => array("subject_id='8' AND solution='' AND check_question='1' AND user='$id'")
+					);
+					$check_biological=$this->ImportQuestion->find('count',$option19);
+					$people_insert[$key]['Person']['check_biological']=$check_biological;
 			};
 			$this->set('people_insert',$people_insert);
 			$option_total1 = array(
