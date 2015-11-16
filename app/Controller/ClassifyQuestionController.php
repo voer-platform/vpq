@@ -239,13 +239,22 @@ class ClassifyQuestionController extends AppController {
 		$subQuery = ' ImportQuestion.id NOT IN (' . $subQuery . ') ';
 		$subQueryExpression = $db->expression($subQuery);
 		$conditions[] = $subQueryExpression;
-		
+		$conditions['ImportQuestion.subcategory_id'] = null;
 		$this->paginate = array(
 							'conditions'=>$conditions
 						);
 		
 		$this->ImportQuestion->recursive = 0;
-		$this->set('questions', $this->Paginator->paginate('ImportQuestion'));
+		
+		$listQuestion = $this->Paginator->paginate('ImportQuestion');
+		
+		if (!$listQuestion) {
+			unset($conditions['ImportQuestion.subcategory_id']);
+		}
+		
+		$listQuestion = $this->Paginator->paginate('ImportQuestion');
+		
+		$this->set('questions', $listQuestion);
 		
 		$this->loadModel('Subject');
 		$subjects = $this->Subject->find('list');
