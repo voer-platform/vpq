@@ -398,8 +398,13 @@ class QuestionsController extends AppController {
 		$subQuery = ' ImportQuestion.id NOT IN (' . $subQuery . ') ';
 		$subQueryExpression = $db->expression($subQuery);
 		$conditions[] = $subQueryExpression;
+		$conditions[] = 'ImportQuestion.subcategory_id IS NULL';
 		$order[] = 'RAND()';
 		$unSortingQuestion = $this->ImportQuestion->find('first', compact('conditions', 'order'));
+		if (!$unSortingQuestion) {
+			$conditions = array($subQueryExpression);
+			$unSortingQuestion = $this->ImportQuestion->find('first', compact('conditions', 'order'));
+		}
 		$this->set('question', $unSortingQuestion);
 		
 		if ($unSortingQuestion['ImportQuestion']['categories_id']) {
