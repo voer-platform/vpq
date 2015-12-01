@@ -160,13 +160,13 @@
 			<div class="row">
 				<div class="col-md-8">
 
-					<div class="topbanner-container" <?php if(!$user){ ?>data-toggle="modal" data-target="#login-modal" data-section="menu-top"<?php } else { ?>onClick="window.location.href='/people/dashboard';"<?php } ?>>
+					<!--<div class="topbanner-container" <?php if(!$user){ ?>data-toggle="modal" data-target="#login-modal" data-section="menu-top"<?php } else { ?>onClick="window.location.href='/people/dashboard';"<?php } ?>>
 						<?=$this->Html->image('topbanner03.gif', array('class'=>'fw topbanner', 'alt' => 'Quảng cáo'));?>
 						<?=$this->Html->image('topbanner-hover03.gif', array('class'=>'fw topbanner-hover', 'alt' => 'Quảng cáo'));?>
 					</div>
-					<br/>
+					<br/>-->
 					<div class="about">
-						<h1 class="text-danger">Học trực tuyến tại PLS Edu</h1>
+						<h1 class="text-danger">Học trực tuyến tại PLS Edu - Miễn phí trọn đời</h1>
 						<p>PLS là một mạng xã hội học tập, giúp cho học sinh có thể ôn luyện bài học bằng cách làm bài tập và theo dõi tiến độ cũng như chất lượng học tập.</p>
 					  </div>
 					
