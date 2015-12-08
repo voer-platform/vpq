@@ -189,6 +189,26 @@
 				</div>
 				<div class="col-md-4">
 					<?=$this->element('../Portal/rankings');?>
+					<div class="panel panel-info">
+						<div class="panel-heading pd10"><span class="glyphicon glyphicon-stats"></span> Thống kê môn học PLS</div>
+						<div class="panel-body pd0">
+							<table class="table table-striped table-bordered fs-13 mgb-0">
+								<tr>
+									<th>Môn học</th>
+									<th>Số câu</th>
+									<th>Chưa phân loại</th>
+								</tr>
+								<?php foreach ($questionStatistic AS $subj) { ?>
+								<tr>
+									<td><?=$subj['subject'];?></td>
+									<td><?=@$subj['classified'];?></td>
+									<td><?=@$subj['unclassify'];?></td>
+								</tr>
+								<?php } ?>
+							</table>
+						</div>
+					</div>	
+					
 				</div>
 			</div>
 			

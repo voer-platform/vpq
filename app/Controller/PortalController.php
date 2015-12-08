@@ -59,6 +59,7 @@ class PortalController extends AppController {
 		$this->set('subjects', $subjects);
 		// pr($this->getRankings(date('Y-m')));
 		$this->set('rankings', $this->getRankings(date('Y-m')));
+		$this->set('questionStatistic', $this->questionStatistic());
 	}
 	
 	public function listNews()
@@ -167,6 +168,63 @@ class PortalController extends AppController {
 					// );
 		// $rankings = $this->Person->find('all', $options);
 		// return $rankings;
+	}
+	
+	private function questionStatistic()
+	{
+		$this->loadModel('Question');
+		$this->Question->recursive = -1;
+		$countQuestion = $this->Question->find('all', array(
+										'escape'=>false,
+										'fields'=>array('COUNT(DISTINCT Question.id) AS total', 'subjects.name', 'subjects.id'), 
+										'joins'	=>	array(
+														array(
+															'table'	=>	'questions_subcategories',
+															'type'	=>	'INNER',
+															'conditions'	=>	array('Question.id = questions_subcategories.question_id')
+														),
+														array(
+															'table'	=>	'subcategories',
+															'type'	=>	'INNER',
+															'conditions'	=>	array('subcategories.id = questions_subcategories.subcategory_id')
+														),
+														array(
+															'table'	=>	'categories',
+															'type'	=>	'INNER',
+															'conditions'	=>	array('categories.id = subcategories.category_id')
+														),
+														array(
+															'table'	=>	'subjects',
+															'type'	=>	'INNER',
+															'conditions'	=>	array('categories.subject_id = subjects.id')
+														)
+													),
+										'group'	=>	array('subjects.name', 'subjects.id')
+									)
+							);
+		$this->loadModel('ImportQuestion');
+		$unclassify = $this->ImportQuestion->find('all', array(
+			'escape'=>false,
+			'fields'	=>	array('subject_id', 'COUNT(ImportQuestion.id) AS uc'),
+			'conditions'	=>	array('subcategory_id IS NULL'),
+			'group'	=>	array('subject_id')
+		));
+		
+		$questionStatisticData = array();
+		
+		foreach ($unclassify AS $subj) {
+		
+			$questionStatisticData[$subj['ImportQuestion']['subject_id']]['unclassify'] = $subj[0]['uc'];
+		
+		}
+		
+		foreach ($countQuestion AS $subj) {
+			$questionStatisticData[$subj['subjects']['id']]['classified'] = $subj[0]['total'];
+			$questionStatisticData[$subj['subjects']['id']]['subject'] = $subj['subjects']['name'];
+		}
+		
+		return $questionStatisticData;
+		
 	}
 	
 	
