@@ -210,6 +210,13 @@ class PortalController extends AppController {
 			'group'	=>	array('subject_id')
 		));
 		
+		$this->loadModel('TestsSubject');
+		$testStat = $this->TestsSubject->find('all', array(
+			'escape'=>false,
+			'fields'	=>	array('subject_id', 'COUNT(TestsSubject.id) AS numtest'),
+			'group'	=>	array('subject_id')
+		));
+		
 		$questionStatisticData = array();
 		
 		foreach ($unclassify AS $subj) {
@@ -221,6 +228,12 @@ class PortalController extends AppController {
 		foreach ($countQuestion AS $subj) {
 			$questionStatisticData[$subj['subjects']['id']]['classified'] = $subj[0]['total'];
 			$questionStatisticData[$subj['subjects']['id']]['subject'] = $subj['subjects']['name'];
+		}
+		
+		foreach ($testStat AS $subj) {
+		
+			$questionStatisticData[$subj['TestsSubject']['subject_id']]['numtest'] = $subj[0]['numtest'];
+		
 		}
 		
 		return $questionStatisticData;

@@ -155,10 +155,10 @@
 <div class="container">
 
 	<div class="row">
-		<div class="col-md-9">
+		<div class="col-md-6">
 			
 			<div class="row">
-				<div class="col-md-8">
+				<div class="col-md-12">
 
 					<!--<div class="topbanner-container" <?php if(!$user){ ?>data-toggle="modal" data-target="#login-modal" data-section="menu-top"<?php } else { ?>onClick="window.location.href='/people/dashboard';"<?php } ?>>
 						<?=$this->Html->image('topbanner03.gif', array('class'=>'fw topbanner', 'alt' => 'Quảng cáo'));?>
@@ -187,34 +187,48 @@
 						<?php } ?>
 					</div>
 				</div>
-				<div class="col-md-4">
+				
+			</div>
+			
+		</div>
+		<div class="col-md-6">
+			<div class="row">
+				<div class="col-md-6">
 					<?=$this->element('../Portal/rankings');?>
+						
+					
+				</div>
+				<div class="col-md-6">
+					<?=$this->element('../Portal/sidebar');?>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<br/>
 					<div class="panel panel-info">
 						<div class="panel-heading pd10"><span class="glyphicon glyphicon-stats"></span> Thống kê môn học PLS</div>
 						<div class="panel-body pd0">
+							
 							<table class="table table-striped table-bordered fs-13 mgb-0">
 								<tr>
 									<th>Môn học</th>
-									<th>Số câu</th>
-									<th>Chưa phân loại</th>
+									<th>Tổng số câu</th>
+									<th>Số câu chưa phân loại</th>
+									<th>Số bài kiểm tra</th>
 								</tr>
 								<?php foreach ($questionStatistic AS $subj) { ?>
 								<tr>
 									<td><?=$subj['subject'];?></td>
 									<td><?=@$subj['classified'];?></td>
 									<td><?=@$subj['unclassify'];?></td>
+									<td><?=@$subj['numtest'];?></td>
 								</tr>
 								<?php } ?>
 							</table>
 						</div>
-					</div>	
-					
-				</div>
+					</div>
+				</div>	
 			</div>
-			
-		</div>
-		<div class="col-md-3">
-			<?=$this->element('../Portal/sidebar');?>
 		</div>
 	</div>	
 
