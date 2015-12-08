@@ -39,7 +39,7 @@ class PortalController extends AppController {
 		foreach($newsletterCategories AS $k=>$category){
 			$newsletter = $this->Newsletter->find('all', array(
 															'conditions'=>array('newsletter_category_id'=>$category['NewsletterCategory']['id'], 'Newsletter.status' => 1),
-															'limit'	=>	3,
+															'limit'	=>	6,
 															'order'	=>	array('created DESC')
 														)
 													);
