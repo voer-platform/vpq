@@ -170,7 +170,7 @@ class PartnerController extends Controller {
 									'iquestion_id'	=>	$iquestion_id,
 									'user_id'	  	=>	$user['id'],
 									'subcategories_id' =>	trim($question['subcategories']),
-									'role'			=> 5
+									'role'			=> 50
 								)
 			);
 			
@@ -179,7 +179,7 @@ class PartnerController extends Controller {
 			$this->ImportQuestion->save(
 									array(
 										'correct_percent' => 100,
-										'number'		  => 5,
+										'number'		  => 50,
 									)
 			);
 		}
