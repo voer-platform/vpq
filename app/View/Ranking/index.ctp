@@ -30,7 +30,7 @@
 				</div>
 				</div>
 		</div>
-		<div class="col-md-4">
+		<!--<div class="col-md-4">
 			<div class="panel panel-success">
 				<div class="panel-heading pd10">
 					<span class="glyphicon glyphicon-star"></span> &nbsp;Top Cao Điểm
@@ -62,7 +62,7 @@
 					</div>
 				</div>
 				</div>
-		</div>
+		</div>-->
 		<div class="col-md-4">
 			<div class="panel panel-primary">
 				<div class="panel-heading pd10">
@@ -97,6 +97,36 @@
 				</div>
 				</div>
 		</div>
+		<?php foreach ($rankingBySubject AS $subjId => $subj) { ?>
+			<div class="col-md-4">
+				<div class="panel panel-info">
+					<div class="panel-heading pd10">
+						<span class="glyphicon glyphicon-education"></span> &nbsp;TOP 10 <?=$subjects[$subjId];?> tháng <?=ltrim(date('m'), '0');?>
+					</div>
+					<div class="panel-body pd0">
+						<div>
+						<ul class="ranking-list" id="ranking-list">
+						<?php foreach($subj AS $k=>$entry){ ?>
+							<li class="ranking-item">
+								<div class="ranking-entry">
+									<span class="ranking-number"><?=$k+1;?></span>
+									<?php echo $this->Html->image('avatars/'.$entry['Person']['image'], array('class' => 'l40 avatar')); ?>
+									<p class="mgl-80">
+										<b><a href="<?=$this->Html->url('/thanh-vien/'.$entry['Person']['id'], true);?>"><?=$entry['Person']['fullname'];?></a></b>
+										<span class="ranking-xp"><?=$entry['Exp']['exp'];?>xp</span>
+										<br/>
+										<span class="ranking-meta">Tỷ lệ đúng <?=floor($entry['Exp']['correct']/($entry['Exp']['correct']+$entry['Exp']['wrong'])*100);?>%</span>
+										
+									</p>
+								</div>
+							</li>
+						<?php } ?>
+						</ul>
+						</div>
+					</div>
+					</div>
+			</div>
+		<?php } ?>
 	</div>
 	<div class="row">
 		<div class="col-md-12">

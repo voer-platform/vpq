@@ -54,6 +54,25 @@ class RankingController extends AppController {
 		$monthRankings = $this->Exp->find('all', $options);
 		$this->set('monthRankings', $monthRankings);
 		
+		
+		$rankingBySubject = array();
+		
+		$this->loadModel('ExpSubject');
+		foreach ($subjects AS $subjId => $subj) {
+		
+			$this->ExpSubject->alias = 'Exp';
+			$options = array(
+							'conditions'	=>	array("Exp.date LIKE '$month%'", "Exp.subject_id = $subjId", "Exp.exp > 0"),
+							'limit'	=>	10,
+							'order'	=>	'Exp.exp DESC'
+						);
+			$rankingBySubject[$subjId] = $this->ExpSubject->find('all', $options);
+		
+		}
+		
+		$this->set('rankingBySubject', $rankingBySubject);
+		
+		/*
 		$this->loadModel('Ranking');
 		$options = array(
 						//'conditions'	=>	array("Exp.date LIKE '$month%'"),
@@ -73,7 +92,7 @@ class RankingController extends AppController {
 					);
 		$scoreRankings = $this->Ranking->find('all', $options);
 		 // pr($scoreRankings);
-		$this->set('scoreRankings', $scoreRankings);
+		$this->set('scoreRankings', $scoreRankings);*/
 		
 	}
 }	
