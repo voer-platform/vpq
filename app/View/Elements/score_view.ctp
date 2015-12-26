@@ -1,4 +1,4 @@
-<?php echo $this->Html->css('score_view.css'); ?>
+<?php echo $this->Html->css('score_view.css?v=1.2'); ?>
 <?php $this->start('meta'); ?>
 <link href="<?php echo Router::url( $this->here, true ); ?>" rel="canonical">
 <meta property="og:url" content="<?php echo Router::url( $this->here, true ); ?>" />

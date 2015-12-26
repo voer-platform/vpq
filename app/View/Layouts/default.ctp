@@ -26,7 +26,7 @@
     <?php echo $this->HTML->css('jquery-ui.css'); ?>
     <?php echo $this->HTML->css('jquery.multiselect.css'); ?>
     <?php echo $this->HTML->css('global.css?v=1.7'); ?>
-    <?php echo $this->HTML->css('style.css'); ?>
+    <?php echo $this->HTML->css('style.css?v=1.2'); ?>
 	<?php echo $this->HTML->css('datepicker.css'); ?>
 	<?php echo $this->HTML->css('select2.css'); ?>
 	
