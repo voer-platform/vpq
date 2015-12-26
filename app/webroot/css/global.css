@@ -378,6 +378,7 @@ transition: all 0.7s ease;
 .mgt-100 {margin-top:100px!important;}
 .mgb-0 {margin-bottom:0px!important;}
 .mgb-10 {margin-bottom:10px!important;}
+.mgb-30 {margin-bottom:30px!important;}
 .mglr-10{margin:0 10px!important;}
 .pd0 {padding:0!important;}
 .pd10 {padding:10px!important;}
@@ -505,6 +506,14 @@ transition: all 0.7s ease;
 		padding-left: 5px;
 	}
 	
+	.mgl-xs-15 {
+		margin-left: 15px;
+	}
+	
+	.mgr-xs-15 {
+		margin-right: 15px!important;
+	}
+	
 	.detail-subject-score {
 		height: 100%!important;
 		width: 100%!important;
@@ -532,6 +541,10 @@ transition: all 0.7s ease;
 		width: 70%;
 	}
 	
+	.zopim {
+		display:none;
+	}
+	
 }
 
 @media (min-width: 992px) {
@@ -552,6 +565,8 @@ transition: all 0.7s ease;
 		padding-left: 0;
 	}
 	
-	
+	.w-md-700 {
+		width:700px;
+	}
 	
 }

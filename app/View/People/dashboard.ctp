@@ -406,7 +406,7 @@
     }*/
 	
 	//Check phone device on click test button
-	if($('.check-phone').is(':visible')==true)
+	/*if($('.check-phone').is(':visible')==true)
 	{
 		mixpanel.track_links(".pls-test-btn", "Dashboard Test", function(e){
 			return {"test_on": $(e).attr('data-teston')};
@@ -417,7 +417,7 @@
 			alert('PLS chưa hỗ trợ mobile, hãy sử dụng máy tính để làm bài bạn nhé!');
 			return false;
 		});
-	};
+	};*/
 	
 	
 	$('.category-row td:first-child').click(function(){

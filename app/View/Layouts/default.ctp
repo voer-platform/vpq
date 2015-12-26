@@ -25,7 +25,7 @@
 	<?php echo $this->Html->css('bootstrap.min.css'); ?>
     <?php echo $this->HTML->css('jquery-ui.css'); ?>
     <?php echo $this->HTML->css('jquery.multiselect.css'); ?>
-    <?php echo $this->HTML->css('global.css?v=1.6'); ?>
+    <?php echo $this->HTML->css('global.css?v=1.7'); ?>
     <?php echo $this->HTML->css('style.css'); ?>
 	<?php echo $this->HTML->css('datepicker.css'); ?>
 	<?php echo $this->HTML->css('select2.css'); ?>
@@ -39,7 +39,7 @@
     <?php echo $this->Html->script('jquery.multiselect.js');?>
 	<?php echo $this->Html->script('bootstrap-datepicker.js');?>
 	<?php echo $this->Html->script('select2.min.js');?>
-	<?php echo $this->Html->script('global.min.js?v=2.4');?>
+	<?php echo $this->Html->script('global.min.js?v=2.5');?>
 	<?php echo $this->Html->script('jquery.slimscroll.min.js');?>
 	<?php echo $this->Html->script('../mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML');?>
     <!-- if production server -->

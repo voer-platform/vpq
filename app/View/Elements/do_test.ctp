@@ -1,90 +1,96 @@
+<div class="visible-xs">
+	<h3 class="center mgt-0"><?php echo __('Test'); ?>: <?php echo $this->Name->subjectToName($subject); ?></h3>
+	<h4 class="center"><?php echo __('Timelimit'); ?>: <?php echo $duration.' '.__('minutes'); ?> (<?php echo $numberOfQuestions; ?> câu hỏi)</h4>
+	<br/>
+</div>
 <div id='doTest'>
     <?php echo $this->Form->create('TestAnswers', array( 'url' => 'score')); ?>
-    <div id="left">
-        <ul id="questions">
-        <?php foreach ($questions as $index => $question): ?>
-            <li id='dotestQuestions<?php echo $index+1;?>' rel="<?php echo $index+1;?>" data-id='<?php echo $question['Question']['id'];?>'>
-                <fieldset>
-                    <div class="question">
-                        <div class="title"><?php echo "<b>", 'Câu ', $index+1, ":</b>  "; ?></div>
-                        <div class="question-content"><?php echo html_entity_decode($question['Question']['content']); ?></div>
-                    </div>
-                    <?php $option = array(); ?>
-                    <?php foreach ($question['Answer'] as $aindex => $answer): ?>
-                        <?php $option[$aindex] = "<span class='lbanswer'>" . chr(97 + $aindex) . "</span>" . $answer['content']; //.'--'.$answer['correctness']; ?>
-                    <?php endforeach; ?>
-                    <div class="btn-group answer" data-toggle='buttons'>
-                        <input type="hidden" value="" name="<?php echo $question['Question']['id']; ?>">
-                    <?php echo $this->Form->input( $index, array(
-                            'name' => $question['Question']['id'],
-							'class' => 'input-answer',
-                            'label' => false,
-                            'legend' => false,
-                            'options' => $option,
-                            'before' => '<label class="btn btn-answer">',
-                            'after' => '</label>',
-                            'separator' => '</label><label class="btn btn-answer">',
-                            'type' => 'radio',
-                            'hiddenField' => false,
-                            'div' => ''
-                        ));
-                    ?>
-                    </div>
-                </fieldset>
-                <div class="choose-answer">&nbsp;</div>
-                <div class="nav">
-                    <button class="btn pull-left prev" type="button">Câu hỏi trước</button>
-                    <button class="btn pull-right next" type="button">Câu hỏi sau</button>
-                </div>
-            </li>
-        <?php endforeach; ?>
-        </ul>
-        <?php echo $this->Form->input( 'test_id', array(
-                'name' => 'testID',
-                'value' => $testID,
-                'type' => 'hidden'
-                ));?>
-        <?php echo $this->Form->input( 'number_of_questions', array(
-                'name' => 'numberOfQuestions',
-                'value' => $numberOfQuestions,
-                'type' => 'hidden'
-                ));?>
-        <?php echo $this->Form->input( 'duration', array(
-                'name' => 'duration',
-                'value' => 0,
-                'type' => 'hidden'
-                ));?>
-    </div>
-    <div id="right">
-        <div class="test-info">
-            <div class="title">Thông tin</div>
-            <table>
-                <tr>
-                    <td class="first"><?php echo __('Test'); ?>:</td>
-                    <td><?php echo $this->Name->subjectToName($subject); ?> </td>
-                </tr>
-                <tr>
-                    <td class="first"><?php echo __('Timelimit'); ?>:</td>
-                    <td><?php echo $duration.' '.__('minutes'); ?></td>
-                </tr>
-                <tr>
-                    <td class="first"><?php echo __('Number of questions'); ?>:</td>
-                    <td><?php echo $numberOfQuestions; ?></td>
-                </tr>
-            </table>
-        </div> 
-        <div class="clock">
-            <?php echo $this->element('clock'); ?>
-        </div>
-        <div id="submitTest">
-            <?php echo $this->Form->button("Nộp bài", array(
-                'type' => 'button',//__('Submit your answers'), 
-                'class' => 'btn btn-warning btn-lg nb', 
-                'onclick' => 'submitTest()',
-                'id' => 'btn-submit')); ?>
-        </div>   
-    </div>
-    <div style="clear:both;"></div>
+	<div class="row">
+		<div class="col-md-8 col-lg-8 col-sm-8 col-xs-12" id="left">
+			<ul id="questions">
+			<?php foreach ($questions as $index => $question): ?>
+				<li id='dotestQuestions<?php echo $index+1;?>' rel="<?php echo $index+1;?>" data-id='<?php echo $question['Question']['id'];?>'>
+					<fieldset>
+						<div class="question">
+							<div class="title"><?php echo "<b>", 'Câu ', $index+1, ":</b>  "; ?></div>
+							<div class="question-content"><?php echo html_entity_decode($question['Question']['content']); ?></div>
+						</div>
+						<?php $option = array(); ?>
+						<?php foreach ($question['Answer'] as $aindex => $answer): ?>
+							<?php $option[$aindex] = "<span class='lbanswer'>" . chr(97 + $aindex) . "</span>" . $answer['content']; //.'--'.$answer['correctness']; ?>
+						<?php endforeach; ?>
+						<div class="btn-group answer" data-toggle='buttons'>
+							<input type="hidden" value="" name="<?php echo $question['Question']['id']; ?>">
+						<?php echo $this->Form->input( $index, array(
+								'name' => $question['Question']['id'],
+								'class' => 'input-answer',
+								'label' => false,
+								'legend' => false,
+								'options' => $option,
+								'before' => '<label class="btn btn-answer">',
+								'after' => '</label>',
+								'separator' => '</label><label class="btn btn-answer">',
+								'type' => 'radio',
+								'hiddenField' => false,
+								'div' => ''
+							));
+						?>
+						</div>
+					</fieldset>
+					<div class="choose-answer">&nbsp;</div>
+					<div class="nav">
+						<button class="btn pull-left prev" type="button">Câu hỏi trước</button>
+						<button class="btn pull-right next" type="button">Câu hỏi sau</button>
+					</div>
+				</li>
+			<?php endforeach; ?>
+			</ul>
+			<?php echo $this->Form->input( 'test_id', array(
+					'name' => 'testID',
+					'value' => $testID,
+					'type' => 'hidden'
+					));?>
+			<?php echo $this->Form->input( 'number_of_questions', array(
+					'name' => 'numberOfQuestions',
+					'value' => $numberOfQuestions,
+					'type' => 'hidden'
+					));?>
+			<?php echo $this->Form->input( 'duration', array(
+					'name' => 'duration',
+					'value' => 0,
+					'type' => 'hidden'
+					));?>
+		</div>
+		<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" id="right">
+			<div class="test-info hidden-xs">
+				<div class="title">Thông tin</div>
+				<table>
+					<tr>
+						<td class="first"><?php echo __('Test'); ?>:</td>
+						<td><?php echo $this->Name->subjectToName($subject); ?> </td>
+					</tr>
+					<tr>
+						<td class="first"><?php echo __('Timelimit'); ?>:</td>
+						<td><?php echo $duration.' '.__('minutes'); ?></td>
+					</tr>
+					<tr>
+						<td class="first"><?php echo __('Number of questions'); ?>:</td>
+						<td><?php echo $numberOfQuestions; ?></td>
+					</tr>
+				</table>
+			</div> 
+			<div class="clock mgr-xs-15">
+				<?php echo $this->element('clock'); ?>
+			</div>
+			<div id="submitTest" class="mgr-xs-15">
+				<?php echo $this->Form->button("Nộp bài", array(
+					'type' => 'button',//__('Submit your answers'), 
+					'class' => 'btn btn-warning btn-lg nb', 
+					'onclick' => 'submitTest()',
+					'id' => 'btn-submit')); ?>
+			</div>   
+		</div>
+	</div>	
     <?php echo $this->Form->end(); ?>
 </div>
 <div id="msgNotice" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
@@ -304,4 +310,3 @@
     });
 	
 </script>
-

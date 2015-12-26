@@ -293,7 +293,6 @@ button#btn-submit{
 
 div#doTest{
   margin: 0 auto;
-  width: 980px;
 }
 
 div#center{
@@ -313,17 +312,10 @@ div#left{
   border: 1px solid #ccc;
   border-radius: 4px;
   box-shadow: 0 0 15px #ccc;
-  min-height: 400px;
-  padding: 0 1px 20px;
-  width: 710px;
-  float: left;
+  padding-bottom:20px;
 }
 
 div#right{
-  padding-bottom: 25px;
-  top: 12px;
-  width: 265px;
-  float: right;
 }
 
 div#countdown{
