@@ -30,6 +30,7 @@
  */
 	Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'));
 	Router::connect('/gioi-thieu', array('controller' => 'pages', 'action' => 'aboutUs'));
+	Router::connect('/huong-dan', array('controller' => 'pages', 'action' => 'instruction'));
 	Router::connect('/hoi-dap', array('controller' => 'pages', 'action' => 'Qa'));
 	Router::connect('/bang-xep-hang', array('controller' => 'ranking', 'action' => 'index'));
 	Router::connect('/tin-tuc', array('controller' => 'portal', 'action' => 'listNews'));

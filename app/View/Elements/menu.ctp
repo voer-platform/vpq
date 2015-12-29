@@ -18,9 +18,9 @@
         <?php if(!empty($user) ): ?>
           <li><?php echo $this->HTML->link(__('Dashboard'), array('controller' => 'people', 'action' => 'dashboard')); ?></li>
           <li><?php echo $this->HTML->link(__('History'), array('controller' => 'people', 'action' => 'history')); ?></li>
-          <li><?php echo $this->HTML->link(__('Faq'), array('controller' => 'faqs', 'action' => 'userIndex')); ?></li>		  
+          <!--<li><?php echo $this->HTML->link(__('Faq'), array('controller' => 'faqs', 'action' => 'userIndex')); ?></li>-->		  
         <?php endif; ?>
-
+		<li><?php echo $this->HTML->link(__('Hướng dẫn'), '/huong-dan'); ?></li>
 		<li><?php echo $this->HTML->link(__('About'), '/gioi-thieu'); ?></li>
 		 <?php if(!empty($user) ): ?>
 		<!--<li id='napthe'><a href="<?php echo $this->Html->url(array('controller'=> 'rechargeCard')); ?>">Nạp thẻ</a></li>-->

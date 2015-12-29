@@ -35,7 +35,7 @@ class PagesController extends AppController {
 public function beforeFilter(){
 	parent::beforeFilter();
 
-	$this->Auth->allow('display', 'aboutUs','forgotPassword', 'Qa');
+	$this->Auth->allow('display', 'aboutUs','forgotPassword', 'Qa','instruction');
 }	
 
 /**
@@ -99,5 +99,9 @@ public function beforeFilter(){
 
         // $this->set('about', $about);
     }
+	
+	public function instruction(){
+		$this->set('title_for_layout',__("Instruction"));
+	}
 	
 }
