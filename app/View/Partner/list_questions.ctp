@@ -124,7 +124,7 @@
                 <h4 class="modal-title" id="myModalLabel">Thông báo</h4>
             </div>
             <div class="modal-body" style='text-align:center'>
-                <p id='tb' style='font-size:16px;'>Bạn đã được thanh toán <?php echo $number ?> câu.</p>
+                <p id='tb' style='font-size:16px;'>Bạn đã được thanh toán <?php echo $number ?> VND.</p>
             </div>
             <div class="modal-footer">
 				<button type="button" class="btn btn-primary" id="accept" data-dismiss="modal">Xác nhận</button>

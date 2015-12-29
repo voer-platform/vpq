@@ -424,6 +424,18 @@ class TestsController extends AppController {
 				);				
 			$allcat = $this->Category->find('all', $options);
 			$this->set('allcat',$allcat);
+			
+			$user_id = $this->Session->read('Auth.User')['id'];
+			$this->loadModel('Subject');
+			$viewSubjects = array($subject);
+			$overviews = $this->Subject->subjectOverview($user_id, array('subject'=>$viewSubjects));
+			if($overviews[0]['Ranking']['score'])
+			{
+				$this->set('score',$overviews[0]['Ranking']['score']);
+			}else{
+				$this->set('score','5');
+			}
+			
 			if(!isset($this->request->query['subcategory']) && !isset($this->request->query['category'])){		
 				if ($gradeUser == 0){
 					$birthday = $user['birthday'];
@@ -515,6 +527,7 @@ class TestsController extends AppController {
             // retrieve request data
             $numberOfQuestions = $time;
             $timeLimit = $time;
+			$score = $this->request->data['score'];
             $strCategories = $this->request->data['categories'];
 			
             //$categories = split(",", $strCategories);
@@ -527,7 +540,7 @@ class TestsController extends AppController {
 					$update_sub=$update_sub.','.$dt;					
 				}
 			}
-            $questions = $this->Test->generateTest($numberOfQuestions, $categories);
+            $questions = $this->Test->generateTest($numberOfQuestions, $categories, $score);
 			$id_question=array();
 			foreach($questions as $rs){
 				$id_question[]=$rs['Question']['id'];
@@ -687,7 +700,7 @@ class TestsController extends AppController {
         }
     }
 	
-	public function byQuestion($numberOfQuestions = null, $categories = null){	
+	public function byQuestion($numberOfQuestions = null, $categories = null, $score = null){	
         $this->layout = "ajax";
         $this->autoLayout = false;
         $this->autoRender = false;
@@ -698,7 +711,7 @@ class TestsController extends AppController {
 					$categories[]=$dt;				
 				}
 			}
-		$questions = $this->Test->generateTest($numberOfQuestions, $categories);		
+		$questions = $this->Test->generateTest($numberOfQuestions, $categories, $score);		
         $this->header('Content-Type: application/json');
         echo json_encode(count($questions));
 		return;

@@ -135,6 +135,7 @@
 								}
 							?>
 							<input type="hidden" name="categories" id="categories" />
+							<input type="hidden" name="score" id="score" value="<?php echo $score ?>" />
 						</div>
 					</div>
 				</div>
@@ -202,6 +203,7 @@ function preSelectCategories(){
 function doTest(t){
 	var n=0;
     $subject = <?php echo $subject; ?>;
+	$score = <?php echo $score; ?>;
 	var $str='';
 	for(i=0;i<=3;i++){
 		$str = 	$str+$('#grade'+i)
@@ -221,7 +223,7 @@ function doTest(t){
 	
 	if(n!=0){
 		$('#categories').val($str);	
-		var url = '<?php echo Router::url(array('controller'=>'tests','action'=>'byQuestion'));?>/' + t + '/'+$str;
+		var url = '<?php echo Router::url(array('controller'=>'tests','action'=>'byQuestion'));?>/' + t + '/'+$str+ '/'+$score;
 		$.getJSON(url, function( data ) {
 			 if(data<t){			
 				$('#modal_message').modal({
@@ -231,7 +233,7 @@ function doTest(t){
 				$("#preDoTest").attr("action", "/Tests/doTest/" + t + "/" + $subject + "/");
 				$('#preDoTest').submit();
 			 }
-		});
+		});		
 	}else{
 		$('#msgNotice').modal({
 				backdrop: true

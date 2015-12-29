@@ -119,7 +119,8 @@ class Test extends AppModel {
         return $results;
     }*/
 	
-	public function generateTest($numberOfQuestions, $categories){
+	//lấy câu hỏi với tỉ lệ 40% tổng số câu là câu ít được lựa chọn nhất
+	/*public function generateTest($numberOfQuestions, $categories, $score){ 
 		$numberOfQuestions1=$numberOfQuestions*0.4;
 		$numberOfQuestions2=$numberOfQuestions-$numberOfQuestions1;
         $this->Question->unBindModel( array('hasAndBelongsToMany' => array('Score', 'Test')) );
@@ -143,7 +144,7 @@ class Test extends AppModel {
 		foreach($_results1 as $rs){
 			$id_question[]=$rs['Question']['id'];
 		};
-		//pr($id_question);
+
         $_results = $this->Question->find('all', array(
 					'fields'=>array('DISTINCT `Question`.`id`','`Question`.`count`','`Question`.`content`'),
                     'limit' => $numberOfQuestions2,
@@ -165,17 +166,108 @@ class Test extends AppModel {
                         )
                     )
                 ));
-		/*$id_question2=array();
-		foreach($_results as $rs2){
-			$id_question2[]=$rs2['Question']['id'];
-		}
-		pr($id_question2);
-		exit();*/
+
 		foreach($_results1 as $rs1){
 			$_results[]=$rs1;
 		}
-		//pr($_results);
-		//exit();
+
+        $results = Set::sort($_results, '{n}.Question.id', 'asc');
+        return $results;
+    }*/
+	
+	//lấy câu hỏi dựa vào điểu của người sử dụng
+	public function generateTest($numberOfQuestions, $categories, $score){
+		$denta1=$score-2;
+		$denta2=$score+2;
+		$numberOfQuestions1=$numberOfQuestions*0.4;
+		$numberOfQuestions2=$numberOfQuestions-$numberOfQuestions1;
+        $this->Question->unBindModel( array('hasAndBelongsToMany' => array('Score', 'Test')) );
+		$_results1=$this->Question->find('all', array(
+					'fields'=>array('DISTINCT `Question`.`id`','`Question`.`count`','`Question`.`content`'),
+                    'limit' => $numberOfQuestions1,
+					'order' => 'rand()',
+                    'conditions' => array('Subcategory.subcategory_id' => $categories, 'Question.status' => 1, "Question.difficulty<='$score'", "Question.difficulty>='$denta1'"),
+                    'joins'=>array(
+                        array(
+                            'type'=>'LEFT',
+                            'table'=>'questions_subcategories',
+                            'alias'=>'Subcategory',
+                            'conditions'=>array(
+                                'Question.id = Subcategory.question_id'
+                            )
+                        )
+                    )
+                ));
+		$id_question=array();
+		foreach($_results1 as $rs){
+			$id_question[]=$rs['Question']['id'];
+		};
+		
+		$_results2=$this->Question->find('all', array(
+					'fields'=>array('DISTINCT `Question`.`id`','`Question`.`count`','`Question`.`content`'),
+                    'limit' => $numberOfQuestions1,
+					'order' => 'rand()',
+                    'conditions' => array('Subcategory.subcategory_id' => $categories, 'Question.status' => 1, "Question.difficulty<='$denta2'", "Question.difficulty>'$score'"),
+                    'joins'=>array(
+                        array(
+                            'type'=>'LEFT',
+                            'table'=>'questions_subcategories',
+                            'alias'=>'Subcategory',
+                            'conditions'=>array(
+                                'Question.id = Subcategory.question_id'
+                            )
+                        )
+                    )
+                ));
+				
+		foreach($_results2 as $rs){
+			$id_question[]=$rs['Question']['id'];
+		};
+
+		if(count($_results1)+count($_results2)<$numberOfQuestions)
+		{
+			$numberOfQuestions3 = $numberOfQuestions - count($_results1) - count($_results2);
+			$_results = $this->Question->find('all', array(
+					'fields'=>array('DISTINCT `Question`.`id`','`Question`.`count`','`Question`.`content`'),
+                    'limit' => $numberOfQuestions3,
+                    'order' => array('Question.count'=>'asc'),
+                    'conditions' => array(
+											array('Subcategory.subcategory_id' => $categories, 'Question.status' => 1),
+											'NOT'=>array(														
+														'Question.id'=> $id_question,
+											),											
+										),
+                    'joins'=>array(
+                        array(
+                            'type'=>'LEFT',
+                            'table'=>'questions_subcategories',
+                            'alias'=>'Subcategory',
+                            'conditions'=>array(
+                                'Question.id = Subcategory.question_id'
+                            )
+                        )
+                    )
+                ));
+
+			foreach($_results1 as $rs1){
+				$_results[]=$rs1;
+			}
+			
+			foreach($_results2 as $rs2){
+				$_results[]=$rs2;
+			}
+		}else{
+			$_results = array();
+			
+			foreach($_results1 as $rs1){
+				$_results[]=$rs1;
+			}
+			
+			foreach($_results2 as $rs2){
+				$_results[]=$rs2;
+			}
+		}
+
         $results = Set::sort($_results, '{n}.Question.id', 'asc');
         return $results;
     }
