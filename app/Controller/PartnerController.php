@@ -436,7 +436,7 @@ class PartnerController extends Controller {
 						if($this->Question->saveAll(
 												array(
 													'content'	=>$data_question[0]['ImportQuestion']['question'],
-													'difficulty'=>0,
+													'difficulty'=>5,
 													'solution'	=>$data_question[0]['ImportQuestion']['solution'],
 													'count'		=>0,
 													'time'		=>0,
