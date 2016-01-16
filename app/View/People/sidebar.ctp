@@ -3,8 +3,8 @@
 		<div class="user-overview">
 			<?php echo $this->Html->image('avatars/'.(($user['image'])?$user['image']:'no_avatar.gif'), array('class' => 'avatar')); ?>
 			<div class="info-overview">
-				<b><?=$user['fullname'];?></b><br/>
-				<span class="fs-12"><a href="javascript:void(0);" class="hasDetail" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="left" data-html="true" data-content="<b>Điểm kinh nghiệm (Exp)</b><br/>là điểm bạn nhận được khi làm bài hoặc tham gia các sự kiện"><span class="glyphicon glyphicon-question-sign"></span></a> Exp: <?=$data_user['exp'];?></span><br/><br/>
+				<b><?=(isset($user))?$user['fullname']:'Lính mới';?></b><br/>
+				<span class="fs-12"><a href="javascript:void(0);" class="hasDetail" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="left" data-html="true" data-content="<b>Điểm kinh nghiệm (Exp)</b><br/>là điểm bạn nhận được khi làm bài hoặc tham gia các sự kiện<?=(isset($user))?'':"<br/><b><font color='red'>Bạn cần đăng nhập để sử dụng</font></b>";?>"><span class="glyphicon glyphicon-question-sign"></span></a> Exp: <?=(isset($user))?$data_user['exp']:0;?></span><br/><br/>
 			</div>
 		</div>	
 		<hr class="mgb-10" />
@@ -19,13 +19,15 @@
 		</div>	
 	</div>
 </div>
-
+<?php if(isset($user)){ ?>
 <div class="panel panel-default hover-pointer" id="open-sorting-panel">
 	<div class="panel-body pd-0">
 		<?php echo $this->Html->image('question-sorting.gif', array('class' => 'fw')); ?>
 	</div>
 </div>	
-
+<?php } else { ?>
+	<?php echo $this->element('../Portal/activities'); ?>
+<?php } ?>
 <div class="fb-page" data-href="https://www.facebook.com/plseduvn" data-small-header="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="false">
 	<div class="fb-xfbml-parse-ignore">
 		<blockquote cite="https://www.facebook.com/plseduvn">

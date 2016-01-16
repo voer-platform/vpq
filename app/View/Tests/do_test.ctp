@@ -3,6 +3,6 @@
 <script>
 	mixpanel.track("Do Test", {
 						"test_time": <?=$duration;?>,
-						"user_id":<?=$user['id'];?>,
+						"user_id":<?=($user['id'])?$user['id']:"'-'";?>,
 					});
 </script>

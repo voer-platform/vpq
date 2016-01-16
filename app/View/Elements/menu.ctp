@@ -16,10 +16,11 @@
 		<li><?php echo $this->HTML->link(__('Home'), '/'); ?></li>
         <!-- if logged in user -->
         <?php if(!empty($user) ): ?>
-          <li><?php echo $this->HTML->link(__('Dashboard'), array('controller' => 'people', 'action' => 'dashboard')); ?></li>
-          <li><?php echo $this->HTML->link(__('History'), array('controller' => 'people', 'action' => 'history')); ?></li>
-          <!--<li><?php echo $this->HTML->link(__('Faq'), array('controller' => 'faqs', 'action' => 'userIndex')); ?></li>-->		  
-        <?php endif; ?>
+          <li><?php echo $this->HTML->link(__('Dashboard'), array('controller' => 'people', 'action' => 'dashboard')); ?></li>         	  
+        <?php else: ?>
+		  <li><?php echo $this->HTML->link(__('Test'), array('controller' => 'people', 'action' => 'publicDashboard')); ?></li>
+		<?php endif; ?>
+		<li><?php echo $this->HTML->link(__('History'), array('controller' => 'people', 'action' => 'history')); ?></li>
 		<li><?php echo $this->HTML->link(__('Hướng dẫn'), '/huong-dan'); ?></li>
 		<li><?php echo $this->HTML->link(__('About'), '/gioi-thieu'); ?></li>
 		 <?php if(!empty($user) ): ?>

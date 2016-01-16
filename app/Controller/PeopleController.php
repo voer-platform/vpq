@@ -35,6 +35,7 @@ class PeopleController extends AppController {
                 return true;
             }
         }
+		
         return parent::isAuthorized($user);
     }
 /*
@@ -43,7 +44,7 @@ class PeopleController extends AppController {
     public function beforeFilter(){
         parent::beforeFilter();
         // Allow users to
-        $this->Auth->allow('register', 'login');
+        $this->Auth->allow('register', 'login', 'publicDashboard', 'history');
 
         Security::setHash('md5');
     }
@@ -495,10 +496,8 @@ class PeopleController extends AppController {
 												)	
 											)
 										);
-			// $log = $this->Grade->getDataSource()->getLog(false, false);
-			// debug($log);
+
 			$progressDetail = $this->Progress->progressOnGrade($user_id);
-			//pr($progressDetail);
 			
 			$this->set('progressDetail', $progressDetail);
 			$this->set('gradeContents', $gradeContents);
@@ -516,10 +515,10 @@ class PeopleController extends AppController {
 		else
 		{
 			$this->loadModel('Subject');
-			$viewSubjects = array(2,4,8,3,1);
-			$overviews = $this->Subject->subjectOverview($user_id, array('subject'=>$viewSubjects));
+			$viewSubjects = $this->Subject->find('list', array('fields' => array('id'), 'conditions' => array('Subject.visible' => 1)));
+			$overviews = $this->Subject->subjectOverview($user_id, $viewSubjects);
 			$this->set('overviews', $overviews);
-			//pr($overviews);
+
 			$this->loadModel('Progress');
 			$progresses = $this->Progress->progressOnSubject($user_id);
 			$this->set('progresses', $progresses);
@@ -542,16 +541,41 @@ class PeopleController extends AppController {
 			{
 				$chart['chart']['subject'][$subj_id] = array('date'=>array(), 'score'=>array());
 			}
-				
-			//pr($chart);
+
 			$this->set('chart', json_encode($chart));
 			
 		}
 		
+    }
+
+	/**
+	 * Allow users do test without account
+	 */
+	 
+	public function publicDashboard(){
+        $this->set('title_for_layout',__("Dashboard"));
+		
+		$this->loadModel('Announcement');
+		$announcement = $this->Announcement->find('all', array('conditions' => array('status = 1')));
+		$this->set('announcement', $announcement);
+		
+		$this->loadModel('Subject');
+		$viewSubjects = $this->Subject->find('list', array('fields' => array('id'), 'conditions' => array('Subject.visible' => 1)));
+		$overviews = $this->Subject->subjectOverview(null, array('subject'=>$viewSubjects));
+		$this->set('overviews', $overviews);
+		
+		$chart = array('chart' => array('title' => [__('Time'), __('Score')]));
+		foreach($viewSubjects AS $subj_id)
+		{
+			$chart['chart']['subject'][$subj_id] = array('date'=>array('-','-','-','-'), 'score'=>array(3,7,5,9));
+		}
+			
+		$this->set('chart', json_encode($chart));
+		
 		$this->set('activities', $this->getActivities());
 		
     }
-
+	
 /**
  * history
  */
@@ -561,13 +585,20 @@ class PeopleController extends AppController {
         $this->loadModel('Score');
         //$history = $this->Score->getAllScores($this->Session->read('Auth.User')['id'], 10);
 		$id=$this->Session->read('Auth.User')['id'];
-		$history=$this->Score->query("
-							SELECT * From scores as Score 
-							INNER JOIN tests as Test ON Test.id=Score.test_id
-							INNER JOIN tests_subjects as TestsSubject ON Test.id=TestsSubject.test_id
-							INNER JOIN subjects as Subject ON Subject.id=TestsSubject.subject_id
-							WHERE Score.person_id='$id' Group By Score.time_taken DESC Limit 10
-							");
+		$sql = "SELECT * From scores as Score 
+				INNER JOIN tests as Test ON Test.id=Score.test_id
+				INNER JOIN tests_subjects as TestsSubject ON Test.id=TestsSubject.test_id
+				INNER JOIN subjects as Subject ON Subject.id=TestsSubject.subject_id ";
+
+		if ($id) {
+			$sql.="WHERE Score.person_id='$id'";
+		} else {
+			$sql.="WHERE Score.person_id IS NULL";
+		}
+		
+		$sql.=" Group By Score.time_taken DESC Limit 10";
+		
+		$history=$this->Score->query($sql);
         $this->set('scores', $history);
     }
 

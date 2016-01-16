@@ -7,7 +7,7 @@
 	<script>
 		mixpanel.track("Finish Test", {
 							"test_time": <?=$duration;?>,
-							"user_id":<?=$userInfo['id'];?>,
+							"user_id":<?=($userInfo['id'])?:"'-'";?>,
 						});
 	</script>
 <?php } ?>

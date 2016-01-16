@@ -32,7 +32,7 @@ class TestsController extends AppController {
     public function beforeFilter(){
         parent::beforeFilter();
 
-        $this->Auth->allow('sampleTest', 'score');
+        $this->Auth->allow('sampleTest', 'score', 'chooseTest', 'byQuestion', 'doTest', 'timeQuestion');
     }
     /**
      * Components
@@ -392,13 +392,13 @@ class TestsController extends AppController {
 			$this->set('subject', $subject);
 			
 			$user = $this->Session->read('Auth.User');
-			$this->loadModel('Person');
-			$options = array(
-					'recursive' => -1,
-					'conditions' => array('Person.id'=>$user['id'])
-					);			
-			$person = $this->Person->find('first',$options);
-			$coin=$person['Person']['coin'];
+			// $this->loadModel('Person');
+			// $options = array(
+					// 'recursive' => -1,
+					// 'conditions' => array('Person.id'=>$user['id'])
+					// );			
+			// $person = $this->Person->find('first',$options);
+			//$coin=$person['Person']['coin'];
 			// $date1 = strtotime($coin[0]['Person']['last_login']);
 			// $date2 = strtotime(date('Y-m-d'));
 			// $diff = abs($date2-$date1);
@@ -415,7 +415,7 @@ class TestsController extends AppController {
 										// )
 									// );
 			$this->set('over',$this->Session->read('over'));						
-			$this->set('coin',$coin);
+			//$this->set('coin',$coin);
 			$gradeUser = $user['grade'];
 			
 			$options = array(
@@ -663,35 +663,39 @@ class TestsController extends AppController {
             // save to db if user has logged in
             // else just calculate.
             $scoreId = $this->Score->calculateScore($testId, $this->request->data, $user, $scoreData, $numberOfQuestions);
-            // calculate progress
-            $this->loadModel('Progress');
-            $this->Progress->calculateProgress($user['id'], $scoreData);
-			//calcutale score for ranking
-			$this->loadModel('TestsSubject');
-			$subject = $this->TestsSubject->find('first', array('conditions'=>array('test_id'=>$testId)));
-			$subject_id = $subject['Subject']['id'];
 			
-			$totalScore = $this->Progress->progressOnSubject($user['id'], array('subject'=>$subject_id));
-			$totalScore = round($totalScore[0]['Progress']['sum_progress']/$totalScore[0]['Progress']['sum_total'], 2)*10;
+			//If is public test, do not calculate any more
+			if ($user['id']) {
+				// calculate progress
+				$this->loadModel('Progress');
+				$this->Progress->calculateProgress($user['id'], $scoreData);
+				//calcutale score for ranking
+				$this->loadModel('TestsSubject');
+				$subject = $this->TestsSubject->find('first', array('conditions'=>array('test_id'=>$testId)));
+				$subject_id = $subject['Subject']['id'];
+				
+				$totalScore = $this->Progress->progressOnSubject($user['id'], array('subject'=>$subject_id));
+				$totalScore = round($totalScore[0]['Progress']['sum_progress']/$totalScore[0]['Progress']['sum_total'], 2)*10;
 			
-			$this->loadModel('Ranking');
-			$subject_ranking = $this->Ranking->find('first', array('conditions'=>array('subject_id'=>$subject_id, 'person_id'=>$user['id'])));
-			$ranking_data = array(
-								'person_id'	=>	$user['id'],
-								'subject_id'	=>	$subject_id,
-								'score'	=>	$totalScore,
-								'time_update'	=>	date('Y-m-d H:i:s')
-							);
-			if(empty($subject_ranking))
-			{
-				$this->Ranking->create();
-				$this->Ranking->save($ranking_data);
-			}
-			else
-			{
-				$ranking_data['time_update'] = "'".date('Y-m-d H:i:s')."'";
-				$this->Ranking->updateAll($ranking_data, array('subject_id'=>$subject_id, 'person_id'=>$user['id']));
-			}
+				$this->loadModel('Ranking');
+				$subject_ranking = $this->Ranking->find('first', array('conditions'=>array('subject_id'=>$subject_id, 'person_id'=>$user['id'])));
+				$ranking_data = array(
+									'person_id'	=>	$user['id'],
+									'subject_id'	=>	$subject_id,
+									'score'	=>	$totalScore,
+									'time_update'	=>	date('Y-m-d H:i:s')
+								);
+				if(empty($subject_ranking))
+				{
+					$this->Ranking->create();
+					$this->Ranking->save($ranking_data);
+				}
+				else
+				{
+					$ranking_data['time_update'] = "'".date('Y-m-d H:i:s')."'";
+					$this->Ranking->updateAll($ranking_data, array('subject_id'=>$subject_id, 'person_id'=>$user['id']));
+				}
+			}	
 			$this->Session->write('finishTest', 1);
 			$this->redirect(array('controller' => 'Scores', 'action' => 'viewDetails', $scoreId));
         }
@@ -721,22 +725,24 @@ class TestsController extends AppController {
 		$this->layout = "ajax";
         $this->autoLayout = false;
         $this->autoRender = false;
-		$datatime=$this->request->data;
-		foreach($datatime as $index=>$data_t)
-		{
-			$options = array(
-				'recursive' => 0,
-				'conditions' => array('id'=>$index)
-				);				
-			$question = $this->Question->find('all', $options);
-			$time = $question[0]['Question']['time']+$data_t;
-			$this->Question->id=$index;
-			$this->Question->save(
-										array(
-											'time' => $time,
-										)
-									);
-		}
+		if ($this->Auth->user('id')) {
+			$datatime=$this->request->data;
+			foreach($datatime as $index=>$data_t)
+			{
+				$options = array(
+					'recursive' => 0,
+					'conditions' => array('id'=>$index)
+					);				
+				$question = $this->Question->find('all', $options);
+				$time = $question[0]['Question']['time']+$data_t;
+				$this->Question->id=$index;
+				$this->Question->save(
+											array(
+												'time' => $time,
+											)
+										);
+			}
+		}	
 		exit();
 	}
 }

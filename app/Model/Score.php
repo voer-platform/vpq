@@ -131,7 +131,7 @@ class Score extends AppModel {
  * get next ScoreID
  * @return: next will be stored scoreID
  */
-    public function getNextScoreId(){
+    private function getNextScoreId(){
         $score = $this->find('first', array(
                 'recursive' => -1,
                 'limit' => 1,
@@ -158,7 +158,7 @@ class Score extends AppModel {
  * @return id of stored score 
  *        
  */
-    public function calculateScore($testId, $answers, $user, &$scoreData, $numberOfQuestions){
+    public function calculateScore($testId, $answers, $user = array('id' => 0), &$scoreData, $numberOfQuestions){
 		$TestsSubject=new TestsSubject();
 		$subject = $TestsSubject->find('first', array('conditions'=>array('test_id'=>$testId)));
 		$subject_id = $subject['Subject']['id'];
@@ -202,23 +202,27 @@ class Score extends AppModel {
             else{
 				$wrongCounter++;
                 $scoreData[$question]['correct'] = 0;
-				$wrong=$data_Question['Question']['wrong']+1;
-				$this->Question->id=$question;
-				$this->Question->save(
-											array(
-												'wrong' => $wrong,
-											)
-										);
 				
+				// Do not update question if public test
+				if ($person_id) {
+					$wrong=$data_Question['Question']['wrong']+1;
+					$this->Question->id=$question;
+					$this->Question->save(
+												array(
+													'wrong' => $wrong,
+												)
+											);
+				}
             }
             
         }
 		
-        if(!empty($user)){
-            // save score to db
-            $scoreId = $this->getNextScoreId();
-            $this->saveScore($scoreId, $testId, $user['id'], $correctCounter, $duration, date("Y-m-d H:i:s"));
-			
+		// save score to db
+		$scoreId = $this->getNextScoreId();
+		$this->saveScore($scoreId, $testId, $user['id'], $correctCounter, $duration, date("Y-m-d H:i:s"));
+		
+		// If is public test, do not calculate Exp
+		if ($person_id) {
 			// update exp
 			$exp=$correctCounter - $wrongCounter;
 			
@@ -320,7 +324,7 @@ class Score extends AppModel {
 									)
 							);
 			};
-        }
+		}	
 
         // save score_question
           $scoreQuestionData = array();
