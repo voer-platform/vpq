@@ -4,7 +4,7 @@
   </div>
   <div class="panel-body pd0">
     <ul class="ranking-list table-scroll" id="ranking-list">
-	<?php foreach($rankings AS $entry){ ?>
+	<?php foreach($event AS $entry){ ?>
 		<li class="ranking-item">
 			<div class="ranking-entry">
 				<?php echo $this->Html->image('avatars/'.$entry['Person']['image'], array('class' => 'avatar')); ?>

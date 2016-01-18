@@ -158,6 +158,7 @@
 				<?php } ?>	
 		</div>	
 		<div class="col-md-3 hidden-sm">
+			<?=$this->element('../People/event');?>	
 			<?=$this->element('../People/sidebar');?>
 		</div>
 	</div>	

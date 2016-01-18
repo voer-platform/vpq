@@ -57,7 +57,6 @@ class PortalController extends AppController {
 		$this->set('newsletterCategories', $newsletterCategories);
 		$this->set('activities', $this->getActivities());
 		$this->set('subjects', $subjects);
-		// pr($this->getRankings(date('Y-m')));
 		$this->set('rankings', $this->getRankings(date('Y-m')));
 		$this->set('questionStatistic', $this->questionStatistic());
 	}
