@@ -274,6 +274,10 @@ class Score extends AppModel {
 			}
 			else
 			{
+				if($exp<0)
+				{
+					$exp = 0;
+				}
 				$Exp->create();
 				$Exp->save(
 								array(
@@ -312,6 +316,10 @@ class Score extends AppModel {
 			}
 			else
 			{
+				if($exp<0)
+				{
+					$exp = 0;
+				}
 				$ExpSubject->create();
 				$ExpSubject->save(
 								array(
