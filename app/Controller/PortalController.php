@@ -148,7 +148,7 @@ class PortalController extends AppController {
 		return $activities;
 	}
 	
-	private function getRankings($month)
+	/*private function getRankings($month)
 	{
 		$this->loadModel('Exp');
 		$options = array(
@@ -168,6 +168,18 @@ class PortalController extends AppController {
 					// );
 		// $rankings = $this->Person->find('all', $options);
 		// return $rankings;
+	}*/
+	
+	private function getRankings($month)
+	{
+		$this->loadModel('Exp');
+		$options = array(
+						'conditions'	=>	array("Exp.date >= '2016-01-18'", "Exp.date <= '2015-01-24'", "Exp.exp > 0"),
+						'limit'	=>	50,
+						'order'	=>	'Exp.exp DESC'
+					);
+		$rankings = $this->Exp->find('all', $options);
+		return $rankings;
 	}
 	
 	private function questionStatistic()
