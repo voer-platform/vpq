@@ -147,7 +147,7 @@ class PortalController extends AppController {
 		return $activities;
 	}
 	
-	/*private function getRankings($month)
+	private function getRankings($month)
 	{
 		$this->loadModel('Exp');
 		$options = array(
@@ -157,19 +157,9 @@ class PortalController extends AppController {
 					);
 		$rankings = $this->Exp->find('all', $options);
 		return $rankings;
-		// $this->loadModel('Person');
-		// $options = array(
-						// 'fields'	=>	array('Person.id, Person.fullname', 'Person.image', 'Province.name', 'Person.exp'),
-						
-						// 'recursive'	=>	0,
-						// 'limit'	=>	10,
-						// 'order'	=>	'Person.exp DESC'
-					// );
-		// $rankings = $this->Person->find('all', $options);
-		// return $rankings;
-	}*/
+	}
 	
-	private function getRankings($month)
+	/*private function getRankings($month)
 	{
 		$this->loadModel('Exp');
 		$options = array(
@@ -179,7 +169,7 @@ class PortalController extends AppController {
 					);
 		$rankings = $this->Exp->find('all', $options);
 		return $rankings;
-	}
+	}*/
 	
 	private function questionStatistic()
 	{

@@ -194,8 +194,8 @@
 		<div class="col-md-6">
 			<div class="row">
 				<div class="col-md-6">
-					<!--<?=$this->element('../Portal/rankings');?>-->
-					<?=$this->element('../Portal/event');?>	
+					<?=$this->element('../Portal/rankings');?>
+					<!--<?=$this->element('../Portal/event');?>-->	
 					
 				</div>
 				<div class="col-md-6">

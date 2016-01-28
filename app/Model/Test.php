@@ -205,7 +205,7 @@ class Test extends AppModel {
 		
 		$_results2=$this->Question->find('all', array(
 					'fields'=>array('DISTINCT `Question`.`id`','`Question`.`count`','`Question`.`content`'),
-                    'limit' => $numberOfQuestions1,
+                    'limit' => $numberOfQuestions2,
 					'order' => 'rand()',
                     'conditions' => array('Subcategory.subcategory_id' => $categories, 'Question.status' => 1, "Question.difficulty<='$denta2'", "Question.difficulty>'$score'"),
                     'joins'=>array(
