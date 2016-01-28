@@ -453,7 +453,7 @@ class PeopleController extends AppController {
 						// );
 		// $this->set('over',$this->Session->read('over'));
 		// $this->set('coin',$coin);
-		$this->set('event', $this->getRankings(date('Y-m')));
+		//$this->set('event', $this->getRankings(date('Y-m')));
 		$this->loadModel('Ranking');
 		$ranking_data = $this->Ranking->getSubjectRanking($user_id);
 		$this->set('rankings', $ranking_data);
@@ -955,7 +955,7 @@ class PeopleController extends AppController {
 		$mpdf->Output();
 	}
 	
-	private function getRankings($month)
+	/*private function getRankings($month)
 	{
 		$this->loadModel('Exp');
 		$options = array(
@@ -965,5 +965,5 @@ class PeopleController extends AppController {
 					);
 		$rankings = $this->Exp->find('all', $options);
 		return $rankings;
-	}
+	}*/
 }
